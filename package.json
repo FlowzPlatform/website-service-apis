@@ -1,0 +1,57 @@
+{
+  "name": "ProductServiceApi",
+  "description": "Service for directory listing for FlowzBuilder",
+  "version": "0.0.0",
+  "homepage": "",
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "Faizan Saiyed",
+    "email": "fsaiyed@officebrain.com"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "scripts": {
+    "test": "npm run eslint && npm run mocha",
+    "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "start": "node src/",
+    "mocha": "mocha test/ --recursive"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
+    "cors": "^2.8.3",
+    "directory-tree": "^2.0.0",
+    "feathers": "^2.1.7",
+    "feathers-configuration": "^0.4.1",
+    "feathers-errors": "^2.8.2",
+    "feathers-hooks": "^2.0.1",
+    "feathers-hooks-common": "^3.5.5",
+    "feathers-rest": "^1.7.4",
+    "feathers-socketio": "^2.0.0",
+    "fs": "0.0.1-security",
+    "helmet": "^3.6.1",
+    "lodash": "^4.17.4",
+    "node-dir": "^0.1.17",
+    "path": "^0.12.7",
+    "rimraf": "^2.6.1",
+    "serve-favicon": "^2.4.3",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "mocha": "^3.4.2",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  }
+}
