@@ -1,0 +1,1 @@
+<div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p>&lt;component :is="NavbarComponent" :options="[{ navbarClass: 'navbar-default' }]"&gt;&lt;/component&gt;</p><!--/gm-editable-region--></div></div> 
