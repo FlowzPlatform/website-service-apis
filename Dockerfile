@@ -22,7 +22,7 @@ RUN sh copy.sh
 
 
 RUN cp -a -f apache2.conf /etc/apache2/apache2.conf
-RUN cp -R -f /opt/app/projects/* /var/www/html/
+RUN cp -R -f /opt/app/websites/* /var/www/html/
 #RUN cp /opt/app/.htaccess /var/www/html/dist/
 #RUN cp /opt/app/vhost.conf /etc/apache2/sites-enabled/
 RUN rm -rf /opt/app/*

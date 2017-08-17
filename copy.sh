@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for f in ./projects/*
+for f in ./websites/*
  do
     if [ -d "$f/layouts" ]
      then
