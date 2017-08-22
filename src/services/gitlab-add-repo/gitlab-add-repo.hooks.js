@@ -102,7 +102,7 @@ function after_commit_repo(hook) {
           shell.echo('Sorry, this script requires git');
           shell.exit(1);
         } else {
-          shell.cd('/www/html/websites/newPro2');
+          shell.cd('/var/www/html/websites/newPro2');
 
           shell.exec('git add .');
 
