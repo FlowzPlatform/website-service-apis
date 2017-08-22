@@ -104,7 +104,7 @@ function after_commit_repo(hook) {
         } else {
           shell.cd('/var/www/html/websites/newPro2');
 
-          shell.exec('git status');
+          shell.exec('pwd');
 
           shell.exec('git add .');
 
