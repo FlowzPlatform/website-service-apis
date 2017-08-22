@@ -20,7 +20,8 @@ const appHooks = require('./app.hooks');
 
 const app = feathers();
 
-global.appRoot = path.join(path.join(__dirname, '..'), 'websites');
+//global.appRoot = path.join(path.join(__dirname, '..'), 'websites');
+global.appRoot = "/var/www/html/websites";
 
 // Load app configuration
 app.configure(configuration(path.join(__dirname, '..')));
