@@ -104,13 +104,13 @@ function after_commit_repo(hook) {
         } else {
           shell.cd('/var/www/html/websites/newPro2');
 
-          shell.exec('git pull origin master');
+          shell.exec('git status');
 
           shell.exec('git add .');
 
           shell.exec('git commit -m "' + hook.data.commitMessage + '"');
 
-          shell.exec('git push -u origin master');          
+          shell.exec('git push -u origin master --force');          
         }
         resolve(hook)
     })
