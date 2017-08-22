@@ -110,7 +110,6 @@ function after_commit_repo(hook) {
 
           shell.exec('git push -u origin master');          
         }
-          hook.result = repos;
           resolve(hook)
     })
 }
