@@ -1,6 +1,8 @@
 let rp = require('request-promise');
 let shell = require('shelljs');
 
+const config = require('../../config');
+
 module.exports = {
   before: {
     all: [],
@@ -83,7 +85,7 @@ function after_revert_commit(hook) {
           shell.echo('Sorry, this script requires git');
           shell.exit(1);
         } else {
-          shell.cd('/var/www/html/websites/'+repoName);
+          shell.cd( config.path + repoName );
 
           shell.exec('git checkout ' + commitSHA + ' .');         
         }

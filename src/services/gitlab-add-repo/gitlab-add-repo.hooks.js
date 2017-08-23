@@ -3,8 +3,6 @@ let shell = require('shelljs');
 
 const config = require('../../config');
 
-console.log(config.path);
-
 module.exports = {
   before: {
     all: [],
@@ -58,6 +56,7 @@ function before_commit_repo(hook) {
 function after_send_repoToGit(hook) {
     return new Promise((resolve, reject) => {
       let nameOfRepo = hook.params.query.nameOfRepo;
+      let username = hook.params.query.username;
         var options = {
             method: 'POST',
             uri: 'http://162.209.122.250/api/v4/projects',
@@ -87,7 +86,7 @@ function after_send_repoToGit(hook) {
                 shell.echo(nameOfRepo);
                 shell.exec('git init');
                 shell.echo('git intialized');
-                shell.exec('git remote add origin http://162.209.122.250/fsaiyed/'+ nameOfRepo +'.git');
+                shell.exec('git remote add origin http://162.209.122.250/' + username + '/'+ nameOfRepo +'.git');
                 shell.echo('remote added');
                 shell.exec('git remote -v');
                 shell.exec('git add .');
@@ -119,7 +118,7 @@ function after_commit_repo(hook) {
           shell.echo('Sorry, this script requires git');
           shell.exit(1);
         } else {
-          shell.cd('/var/www/html/websites/'+nameOfRepo+'/');
+          shell.cd(config.path + nameOfRepo+'/');
 
           shell.exec('pwd');
 
