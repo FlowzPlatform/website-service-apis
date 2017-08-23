@@ -1,4 +1,5 @@
 let rp = require('request-promise');
+let shell = require('shelljs');
 
 module.exports = {
   before: {
@@ -66,23 +67,25 @@ function after_get_commits_list(hook) {
     })
 }
 
-// function before_revert_commit(hook) {
-//     hook.result = hook.data;
-// }
+function before_revert_commit(hook) {
+    hook.result = hook.data;
+}
 
-// function after_revert_commit(hook) {
-//     return new Promise((resolve, reject) => {
-//         var projectId = hook.params.query.projectId;
-//         var branchName = hook.params.query.branchName;
-//         var commitSHA = hook.params.query.sha;
+function after_revert_commit(hook) {
+    return new Promise((resolve, reject) => {
+        var projectId = hook.params.query.projectId;
+        var branchName = hook.params.query.branchName;
+        var commitSHA = hook.params.query.sha;
+        var repoName = hook.params.query.repoName;
+        
+        if (!shell.which('git')) {
+          shell.echo('Sorry, this script requires git');
+          shell.exit(1);
+        } else {
+          shell.cd('/var/www/html/websites/'+repoName);
 
-//         f (!shell.which('git')) {
-//           shell.echo('Sorry, this script requires git');
-//           shell.exit(1);
-//         } else {
-//           shell.exec('git add .');
-//           shell.exec('git commit -m "new commit"');
-//           shell.exec('git push -u origin master');
-//         }
-//     })
-// }
+          shell.exec('git checkout ' + commitSHA + ' .');         
+        }
+        resolve(hook)
+    })
+}

@@ -1,6 +1,10 @@
 let rp = require('request-promise');
 let shell = require('shelljs');
 
+const config = require('../../config');
+
+console.log(config.path);
+
 module.exports = {
   before: {
     all: [],
@@ -53,7 +57,7 @@ function before_commit_repo(hook) {
 
 function after_send_repoToGit(hook) {
     return new Promise((resolve, reject) => {
-      let nameOfRepo = "newPro2"
+      let nameOfRepo = hook.params.query.nameOfRepo;
         var options = {
             method: 'POST',
             uri: 'http://162.209.122.250/api/v4/projects',
@@ -72,12 +76,25 @@ function after_send_repoToGit(hook) {
                 shell.echo('Sorry, this script requires git');
                 shell.exit(1);
               } else {
-                shell.cd('/home/software/Desktop/demo');
+                //shell.cd('/var/www/html/websites/'+nameOfRepo+'/');
                 // shell.exec('cd /home/software/Desktop/demo');
-                shell.exec('git init');
-                shell.exec('git remote add origin git@162.209.122.250/fsaiyed/'+ nameOfRepo +'.git');
+                //shell.exec('git init');
+                //shell.exec('git remote add origin git@162.209.122.250/fsaiyed/'+ nameOfRepo +'.git');
                 //shell.exec('git add .');
                 //shell.exec('git push -u origin master');
+                //shell.exec('git status');
+                shell.cd(config.path + nameOfRepo+'/');
+                shell.echo(nameOfRepo);
+                shell.exec('git init');
+                shell.echo('git intialized');
+                shell.exec('git remote add origin http://162.209.122.250/fsaiyed/'+ nameOfRepo +'.git');
+                shell.echo('remote added');
+                shell.exec('git remote -v');
+                shell.exec('git add .');
+                shell.exec('git commit -m "Initial commit"');
+                shell.echo('committed');
+                shell.exec('git push -u origin master -f');
+                shell.echo('pushed');
                 shell.exec('git status');
               }
                 hook.result = repos;
@@ -96,13 +113,13 @@ function after_send_repoToGit(hook) {
 
 function after_commit_repo(hook) {
     return new Promise((resolve, reject) => {
-      let nameOfRepo = "newPro2"
+      let nameOfRepo = hook.data.repoName;
         
         if (!shell.which('git')) {
           shell.echo('Sorry, this script requires git');
           shell.exit(1);
         } else {
-          shell.cd('/var/www/html/websites/newPro2');
+          shell.cd('/var/www/html/websites/'+nameOfRepo+'/');
 
           shell.exec('pwd');
 
@@ -115,3 +132,4 @@ function after_commit_repo(hook) {
         resolve(hook)
     })
 }
+
