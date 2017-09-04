@@ -1,4 +1,5 @@
  let axios = require('axios');
+ const config = require('../../config');
 
 module.exports = {
   before: {
@@ -50,7 +51,7 @@ function before_create_user(hook) {
 
 function after_create_user(hook) {
   return new Promise((resolve , reject) => {
-    axios.post('http://162.209.122.250/api/v4/users', {
+    axios.post( config.gitLabUrl + '/api/v4/users', {
       email: hook.data.email,
       password: hook.data.password,
       username: hook.data.username,
@@ -76,7 +77,7 @@ function before_create_login(hook) {
 
 function after_create_login(hook) {
   return new Promise((resolve , reject) => {
-    axios.post('http://162.209.122.250/api/v4/session?email='+hook.params.query.email+'&password='+hook.params.query.password, {
+    axios.post( config.gitLabUrl + '/api/v4/session?email='+hook.params.query.email+'&password='+hook.params.query.password, {
     }, {
       headers: {
         'PRIVATE-TOKEN' : '-n128c9zzFJSB1_bSM7z'

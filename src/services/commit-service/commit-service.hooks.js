@@ -51,7 +51,7 @@ function after_get_commits_list(hook) {
     console.log(hook.params.query);
     return new Promise((resolve, reject) => {
         var options = {
-            uri: 'http://162.209.122.250/api/v4/projects/'+hook.params.query.projectId+'/repository/commits',
+            uri: config.gitLabUrl + '/api/v4/projects/'+hook.params.query.projectId+'/repository/commits',
             headers: {
                 'PRIVATE-TOKEN': hook.params.query.privateToken
             },

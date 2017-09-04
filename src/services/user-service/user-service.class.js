@@ -1,4 +1,5 @@
 var axios = require('axios');
+const config = require('../../config');
 
 /* eslint-disable no-unused-vars */
 class Service {
@@ -15,7 +16,7 @@ class Service {
     let password = params.query.password;
     let privateToken = '';
 
-    await axios.post('http://162.209.122.250/api/v4/session?login='+username+'&password='+password, {
+    await axios.post( config.gitLabUrl + '/api/v4/session?login='+username+'&password='+password, {
     }, {
       headers: {
         'Content-Type'  : 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -24,7 +25,7 @@ class Service {
     }).then(response => {
       privateToken = response.data.private_token;
     }).catch(error => {
-      console.log('Cannot get the user');
+      console.log('Cannot get the user details..');
     })
     
     return Promise.resolve([
