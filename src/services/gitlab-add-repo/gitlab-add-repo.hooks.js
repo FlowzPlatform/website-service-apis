@@ -78,7 +78,7 @@ function after_send_repoToGit(hook) {
                 shell.cd(config.path + nameOfRepo+'/');
 
                 shell.exec('git init');
-                shell.exec('git remote add origin ' + config.gitLabUrl + username + '/'+ nameOfRepo +'.git');
+                shell.exec('git remote add origin ' + config.gitLabUrl + '/' + username + '/'+ nameOfRepo +'.git');
                 shell.exec('git remote -v');
 
                 shell.exec('git status');
