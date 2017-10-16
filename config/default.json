@@ -5,5 +5,14 @@
   "paginate": {
     "default": 10,
     "max": 50
+  },
+  "rethinkdb": {
+    "db": "product_service_api",
+    "servers": [
+      {
+        "host": "localhost",
+        "port": "28015"
+      }
+    ]
   }
 }
