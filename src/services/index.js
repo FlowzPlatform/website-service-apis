@@ -3,6 +3,7 @@ const commitService = require('./commit-service/commit-service.service.js');
 const gitlabAddRepo = require('./gitlab-add-repo/gitlab-add-repo.service.js');
 const userService = require('./user-service/user-service.service.js');
 const metalsmith = require('./metalsmith/metalsmith.service.js');
+const transaction = require('./transaction/transaction.service.js');
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -10,4 +11,5 @@ module.exports = function () {
   app.configure(gitlabAddRepo);
   app.configure(userService);
   app.configure(metalsmith);
+  app.configure(transaction);
 };
