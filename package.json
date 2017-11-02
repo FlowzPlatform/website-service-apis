@@ -45,6 +45,7 @@
     "lodash": "^4.17.4",
     "node-dir": "^0.1.17",
     "path": "^0.12.7",
+    "rethinkdb": "^2.3.3",
     "rethinkdbdash": "^2.3.31",
     "rimraf": "^2.6.1",
     "serve-favicon": "^2.4.3",

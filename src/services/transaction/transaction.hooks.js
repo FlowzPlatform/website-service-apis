@@ -5,9 +5,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [
-       hook => before_insert_record(hook)
-    ],
+    create: [],
     update: [],
     patch: [],
     remove: []
@@ -33,8 +31,3 @@ module.exports = {
     remove: []
   }
 };
-
-function before_insert_record(hook){
-  hook.data.createAt = new Date();
-  hook.data.userId = 1;
-}
