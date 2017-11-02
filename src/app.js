@@ -18,9 +18,12 @@ const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 
+const rethinkdb = require('./rethinkdb');
+
 const app = feathers();
 
-global.appRoot = path.join(path.join(__dirname, '..'), 'websites');
+//global.appRoot = path.join(path.join(__dirname, '..'), 'websites');
+global.appRoot = "/var/www/html/websites";
 
 // Load app configuration
 app.configure(configuration(path.join(__dirname, '..')));
@@ -36,6 +39,7 @@ app.use('/', feathers.static(app.get('public')));
 
 // Set up Plugins and providers
 app.configure(hooks());
+app.configure(rethinkdb);
 app.configure(rest());
 app.configure(socketio());
 
