@@ -28,6 +28,7 @@
     "mocha": "mocha test/ --recursive"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "compression": "^1.7.0",
     "cors": "^2.8.3",
@@ -38,14 +39,17 @@
     "feathers-hooks": "^2.0.1",
     "feathers-hooks-common": "^3.5.5",
     "feathers-rest": "^1.7.4",
+    "feathers-rethinkdb": "^0.4.3",
     "feathers-socketio": "^2.0.0",
-    "fs": "0.0.1-security",
     "helmet": "^3.6.1",
     "lodash": "^4.17.4",
     "node-dir": "^0.1.17",
     "path": "^0.12.7",
+    "rethinkdb": "^2.3.3",
+    "rethinkdbdash": "^2.3.31",
     "rimraf": "^2.6.1",
     "serve-favicon": "^2.4.3",
+    "shelljs": "^0.7.8",
     "winston": "^2.3.1"
   },
   "devDependencies": {
