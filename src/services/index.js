@@ -7,6 +7,8 @@ const transaction = require('./transaction/transaction.service.js');
 const imageUpload = require('./image-upload/image-upload.service.js');
 const getDirectoryList = require('./get-directory-list/get-directory-list.service.js');
 
+const wishlist = require('./wishlist/wishlist.service.js');
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -14,10 +16,11 @@ module.exports = function () {
   app.configure(gitlabAddRepo);
   app.configure(userService);
   app.configure(metalsmith);
-  
+
   app.configure(transaction);
 
   app.configure(imageUpload);
   app.configure(getDirectoryList);
-  
+
+  app.configure(wishlist);
 };
