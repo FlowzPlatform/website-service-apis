@@ -1,9 +1,12 @@
 var rethinkCon = require('./rethinkCon.js');
 const fs = require('fs');
+const config = require("config")
+console.log("Rethnk HOST " , config.get('rdb_host'));
+console.log("Rethnk PORT " , config.get('rdb_port'));
 
 var dbConfig={
-		host:'localhost',
-		port: 28015,
+		host: config.get('rdb_host'),
+		port: config.get('rdb_port'),
 		dbname:'feathers_demo',
 		table_name:'tbl_transaction'
 	}

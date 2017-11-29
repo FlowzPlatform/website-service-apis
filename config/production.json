@@ -1,4 +1,18 @@
 {
-  "host": "ProductServiceApi-app.feathersjs.com",
-  "port": "PORT"
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "rethinkdb": {
+    "db": "product_service_api",
+    "servers": [
+      {
+        "host": "RDB_HOST",
+        "port": "RDB_PORT"
+      }
+    ]
+  }
 }
