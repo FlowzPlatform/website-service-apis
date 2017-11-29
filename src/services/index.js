@@ -6,6 +6,7 @@ const metalsmith = require('./metalsmith/metalsmith.service.js');
 const transaction = require('./transaction/transaction.service.js');
 const imageUpload = require('./image-upload/image-upload.service.js');
 const getDirectoryList = require('./get-directory-list/get-directory-list.service.js');
+const shoppingCart = require('./shoppingCart/shoppingCart.service.js');
 
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
@@ -19,5 +20,6 @@ module.exports = function () {
 
   app.configure(imageUpload);
   app.configure(getDirectoryList);
+  app.configure(shoppingCart);
   
 };
