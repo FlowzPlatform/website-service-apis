@@ -11,10 +11,19 @@ class Service {
     }
 
     find(params) {
-        console.log('appRoot', appRoot)
-        const dirTree = require('directory-tree');
-        const tree = dirTree(appRoot);
-        return Promise.resolve(tree)
+        if(params.query.website == undefined){
+            const dirTree = require('directory-tree');
+            const tree = dirTree(appRoot);
+            return Promise.resolve(tree)
+        }else{
+            const dirTree = require('directory-tree');
+            const tree = dirTree(appRoot+"/"+params.query.website);
+            if(!tree)
+            {
+                return Promise.resolve({code : 204 , message: "website "+params.query.website+" not found"})
+            }
+            return Promise.resolve(tree)
+        }
     }
 
     get(id, params) {
