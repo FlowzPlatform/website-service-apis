@@ -52,3 +52,267 @@
 2017-10-30T09:19:00.609674284 1.457608s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 3.
 2017-10-30T09:19:00.617432721 1.465367s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 3. Latest log index is 6.
 2017-10-30T09:19:01.278058872 2.125993s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-03T15:45:09.950551149 0.121143s notice: Recursively removing directory /home/software/Harsh Patel/project/FlowzServiceApi/rethinkdb_data/tmp
+2017-11-03T15:45:09.971338624 0.141934s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-03T15:45:09.977021080 0.147617s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-03T15:45:09.977158345 0.147748s notice: Loading data from directory /home/software/Harsh Patel/project/FlowzServiceApi/rethinkdb_data
+2017-11-03T15:45:10.037685975 0.208281s info: Automatically using cache size of 4667 MB
+2017-11-03T15:45:10.067137492 0.237728s notice: Listening for intracluster connections on port 29015
+2017-11-03T15:45:10.158884208 0.329474s notice: Listening for client driver connections on port 28015
+2017-11-03T15:45:10.176481282 0.347072s error: Could not bind to http port: The address at localhost:8080 is reserved or already in use.
+2017-11-03T15:45:31.783805406 0.067854s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-03T15:45:31.789700764 0.073749s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-03T15:45:31.789847218 0.073891s notice: Loading data from directory /home/software/Harsh Patel/project/FlowzServiceApi/rethinkdb_data
+2017-11-03T15:45:31.838510243 0.122561s info: Automatically using cache size of 4672 MB
+2017-11-03T15:45:31.839662063 0.123705s notice: Listening for intracluster connections on port 29015
+2017-11-03T15:45:31.882308959 0.166353s notice: Listening for client driver connections on port 28015
+2017-11-03T15:45:31.882580878 0.166624s notice: Listening for administrative HTTP connections on port 8081
+2017-11-03T15:45:31.882634863 0.166678s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-03T15:45:31.882637808 0.166681s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-03T15:45:31.882640436 0.166683s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-03T15:45:31.882642838 0.166686s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-03T15:45:31.882645392 0.166688s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-03T15:45:32.949192588 1.233236s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 4.
+2017-11-03T15:45:32.967294576 1.251338s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 4. Latest log index is 9.
+2017-11-03T15:45:33.409873950 1.693917s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 3.
+2017-11-03T15:45:33.431898472 1.715942s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 3. Latest log index is 6.
+2017-11-03T15:45:34.018306273 2.302350s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-03T15:56:04.796421354 633.080464s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2017-11-03T15:56:04.796476015 633.080519s notice: Shutting down client connections...
+2017-11-03T15:56:04.796523849 633.080567s notice: All client connections closed.
+2017-11-03T15:56:04.796525267 633.080568s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2017-11-03T15:56:04.798206835 633.082250s notice: Storage engine shut down.
+2017-11-03T15:56:53.361008140 0.075338s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-03T15:56:53.362980262 0.077309s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-03T15:56:53.363086989 0.077414s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-03T15:56:53.395482563 0.109811s info: Automatically using cache size of 4204 MB
+2017-11-03T15:56:53.395869035 0.110196s notice: Listening for intracluster connections on port 29015
+2017-11-03T15:56:53.441401281 0.155730s notice: Listening for client driver connections on port 28015
+2017-11-03T15:56:53.441783847 0.156112s notice: Listening for administrative HTTP connections on port 8081
+2017-11-03T15:56:53.441955441 0.156283s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-03T15:56:53.441959662 0.156287s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-03T15:56:53.441961472 0.156288s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-03T15:56:53.441963608 0.156291s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-03T15:56:53.441970462 0.156297s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-03T15:56:54.467343047 1.181671s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 5.
+2017-11-03T15:56:54.483843855 1.198171s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 5. Latest log index is 12.
+2017-11-03T15:56:54.782880238 1.497208s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 4.
+2017-11-03T15:56:54.797992747 1.512320s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 4. Latest log index is 9.
+2017-11-03T15:56:55.395997701 2.110325s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-08T09:38:14.384125123 0.196679s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-08T09:38:14.396844898 0.209399s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-08T09:38:14.396962288 0.209511s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-08T09:38:14.464396121 0.276948s info: Automatically using cache size of 6709 MB
+2017-11-08T09:38:14.482029136 0.294579s notice: Listening for intracluster connections on port 29015
+2017-11-08T09:38:14.596776915 0.409326s notice: Listening for client driver connections on port 28015
+2017-11-08T09:38:14.596918009 0.409467s notice: Listening for administrative HTTP connections on port 8080
+2017-11-08T09:38:14.616166688 0.428716s notice: Listening on cluster addresses: 127.0.0.1, 172.17.0.1, 127.0.1.1, 172.16.230.125, ::1, fe80::aeb1:503a:f961:32e%3
+2017-11-08T09:38:14.625230275 0.437779s notice: Listening on driver addresses: 127.0.0.1, 172.17.0.1, 127.0.1.1, 172.16.230.125, ::1, fe80::aeb1:503a:f961:32e%3
+2017-11-08T09:38:14.637434168 0.449983s notice: Listening on http addresses: 127.0.0.1, 172.17.0.1, 127.0.1.1, 172.16.230.125, ::1, fe80::aeb1:503a:f961:32e%3
+2017-11-08T09:38:14.637452013 0.450001s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-08T09:38:15.676430520 1.488980s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 5.
+2017-11-08T09:38:15.695199283 1.507749s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 5. Latest log index is 12.
+2017-11-08T09:38:16.069620569 1.882170s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 6.
+2017-11-08T09:38:16.085245092 1.897794s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 6. Latest log index is 15.
+2017-11-08T09:38:16.470662812 2.283212s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-08T09:38:29.208471886 15.021021s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:38:50.724470587 36.537020s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:39:10.727602293 56.540152s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:39:30.731438244 76.543988s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:39:50.735202776 96.547752s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:40:10.738865236 116.551415s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:40:30.742837145 136.555387s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:40:50.746631292 156.559181s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:41:10.750113285 176.562663s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:41:30.754119207 196.566669s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:41:50.758016353 216.570566s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:42:10.761787877 236.574337s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:42:30.767349027 256.579898s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:42:50.770641380 276.583191s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:43:10.776057432 296.588607s notice: Someone asked for the nonwhitelisted file "/__webpack_hmr".  If this should be accessible, add it to the static web assets.
+2017-11-08T09:43:25.535188351 311.347738s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2017-11-08T09:43:25.535322063 311.347872s notice: Shutting down client connections...
+2017-11-08T09:43:25.543831695 311.356381s notice: All client connections closed.
+2017-11-08T09:43:25.543837451 311.356386s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2017-11-08T09:43:25.547393084 311.359942s notice: Storage engine shut down.
+2017-11-08T09:43:53.681531754 0.041487s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-08T09:43:53.684667595 0.044623s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-08T09:43:53.684757387 0.044710s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-08T09:43:53.729709883 0.089666s info: Automatically using cache size of 6147 MB
+2017-11-08T09:43:53.730623166 0.090575s notice: Listening for intracluster connections on port 29015
+2017-11-08T09:43:53.776666982 0.136620s notice: Listening for client driver connections on port 28015
+2017-11-08T09:43:53.776959789 0.136912s notice: Listening for administrative HTTP connections on port 8081
+2017-11-08T09:43:53.776965210 0.136917s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-08T09:43:53.776969670 0.136922s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-08T09:43:53.776973484 0.136925s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-08T09:43:53.776977641 0.136930s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-08T09:43:53.776986698 0.136939s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-08T09:43:54.800340355 1.160293s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 6.
+2017-11-08T09:43:54.818174501 1.178127s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 6. Latest log index is 15.
+2017-11-08T09:43:55.193444378 1.553397s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 7.
+2017-11-08T09:43:55.210401904 1.570354s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 7. Latest log index is 18.
+2017-11-08T09:43:56.747938341 3.107891s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-08T17:13:47.718281570 0.079658s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-08T17:13:47.721480589 0.082857s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-08T17:13:47.721525422 0.082900s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-08T17:13:47.760254670 0.121631s info: Automatically using cache size of 6157 MB
+2017-11-08T17:13:47.761542960 0.122918s notice: Listening for intracluster connections on port 29015
+2017-11-08T17:13:47.806419147 0.167794s notice: Listening for client driver connections on port 28015
+2017-11-08T17:13:47.806527276 0.167902s notice: Listening for administrative HTTP connections on port 8081
+2017-11-08T17:13:47.806530654 0.167905s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-08T17:13:47.806533274 0.167908s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-08T17:13:47.806574067 0.167949s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-08T17:13:47.806575368 0.167950s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-08T17:13:47.806576762 0.167951s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-08T17:13:48.827533016 1.188908s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 8.
+2017-11-08T17:13:48.837464687 1.198840s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 8. Latest log index is 21.
+2017-11-08T17:13:49.021116587 1.382492s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 7.
+2017-11-08T17:13:49.034727968 1.396103s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 7. Latest log index is 18.
+2017-11-08T17:13:49.543342426 1.904717s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-09T09:35:02.076098077 0.156570s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-09T09:35:02.079771752 0.160243s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-09T09:35:02.079817065 0.160287s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-09T09:35:02.118730536 0.199202s info: Automatically using cache size of 5627 MB
+2017-11-09T09:35:02.120336934 0.200807s notice: Listening for intracluster connections on port 29015
+2017-11-09T09:35:02.165617065 0.246087s notice: Listening for client driver connections on port 28015
+2017-11-09T09:35:02.165767125 0.246237s notice: Listening for administrative HTTP connections on port 8081
+2017-11-09T09:35:02.165767952 0.246238s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-09T09:35:02.165768620 0.246238s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-09T09:35:02.165772088 0.246242s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-09T09:35:02.165779402 0.246249s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-09T09:35:02.165782711 0.246253s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-09T09:35:03.775104534 1.855575s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 9.
+2017-11-09T09:35:03.785608704 1.866079s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 9. Latest log index is 24.
+2017-11-09T09:35:03.794024290 1.874494s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 8.
+2017-11-09T09:35:03.810542078 1.891012s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 8. Latest log index is 21.
+2017-11-09T09:35:03.869859420 1.950330s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-10T09:30:16.567722931 0.068857s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-10T09:30:16.574467331 0.075601s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-10T09:30:16.574596645 0.075726s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-10T09:30:16.614238429 0.115371s info: Automatically using cache size of 6691 MB
+2017-11-10T09:30:16.616230407 0.117360s notice: Listening for intracluster connections on port 29015
+2017-11-10T09:30:16.665520640 0.166650s notice: Listening for client driver connections on port 28015
+2017-11-10T09:30:16.665700175 0.166829s notice: Listening for administrative HTTP connections on port 8081
+2017-11-10T09:30:16.665717059 0.166846s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-10T09:30:16.665721882 0.166851s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-10T09:30:16.665724533 0.166853s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-10T09:30:16.665727114 0.166856s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-10T09:30:16.665729835 0.166859s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-10T09:30:17.968302300 1.469432s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-10T09:30:18.067810793 1.568941s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 10.
+2017-11-10T09:30:18.077034890 1.578165s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 10. Latest log index is 27.
+2017-11-10T09:30:18.261569510 1.762700s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 9.
+2017-11-10T09:30:18.271073306 1.772204s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 9. Latest log index is 24.
+2017-11-10T23:48:02.116639315 50340.250036s warn: Some RethinkDB data on this server has been placed into swap memory. This may impact performance.
+2017-11-13T10:00:17.408948639 0.198131s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-13T10:00:17.411927905 0.201111s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-13T10:00:17.411971137 0.201152s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-13T10:00:17.437495191 0.226678s info: Automatically using cache size of 6668 MB
+2017-11-13T10:00:17.438834097 0.228015s notice: Listening for intracluster connections on port 29015
+2017-11-13T10:00:17.466725649 0.255907s notice: Listening for client driver connections on port 28015
+2017-11-13T10:00:17.466848567 0.256030s notice: Listening for administrative HTTP connections on port 8081
+2017-11-13T10:00:17.466851574 0.256033s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-13T10:00:17.466853695 0.256035s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-13T10:00:17.466856097 0.256037s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-13T10:00:17.466857938 0.256039s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-13T10:00:17.466865353 0.256046s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-13T10:00:18.710630630 1.499812s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 11.
+2017-11-13T10:00:18.718433299 1.507614s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 11. Latest log index is 30.
+2017-11-13T10:00:18.853595532 1.642777s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 10.
+2017-11-13T10:00:18.861791420 1.650972s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 10. Latest log index is 27.
+2017-11-13T10:00:24.270883662 7.060065s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-14T09:47:56.165518474 0.110664s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-14T09:47:56.177895331 0.123041s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-14T09:47:56.178013505 0.123154s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-14T09:47:56.245302185 0.190447s info: Automatically using cache size of 6370 MB
+2017-11-14T09:47:56.248631909 0.193773s notice: Listening for intracluster connections on port 29015
+2017-11-14T09:47:56.348083803 0.293226s notice: Listening for client driver connections on port 28015
+2017-11-14T09:47:56.348629603 0.293771s notice: Listening for administrative HTTP connections on port 8081
+2017-11-14T09:47:56.348635196 0.293776s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-14T09:47:56.348639220 0.293780s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-14T09:47:56.348643292 0.293784s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-14T09:47:56.348647271 0.293788s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-14T09:47:56.348652740 0.293793s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-14T09:47:57.406345253 1.351486s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 11.
+2017-11-14T09:47:57.420559677 1.365701s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 11. Latest log index is 30.
+2017-11-14T09:47:57.557914583 1.503055s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 12.
+2017-11-14T09:47:57.572845882 1.517987s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 12. Latest log index is 33.
+2017-11-14T09:47:58.421440973 2.366582s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-20T10:40:45.674086221 0.257032s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-20T10:40:45.687356548 0.270304s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-20T10:40:45.687479017 0.270420s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-20T10:40:45.756750272 0.339697s info: Automatically using cache size of 5619 MB
+2017-11-20T10:40:45.769274622 0.352216s notice: Listening for intracluster connections on port 29015
+2017-11-20T10:40:45.861093721 0.444035s notice: Listening for client driver connections on port 28015
+2017-11-20T10:40:45.861270471 0.444212s notice: Listening for administrative HTTP connections on port 8081
+2017-11-20T10:40:45.861273084 0.444214s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-20T10:40:45.861275312 0.444216s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-20T10:40:45.861277233 0.444218s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-20T10:40:45.861281572 0.444222s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-20T10:40:45.861283240 0.444224s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-20T10:40:47.160258057 1.743199s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 12.
+2017-11-20T10:40:47.174921886 1.757863s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 12. Latest log index is 33.
+2017-11-20T10:40:47.719625092 2.302571s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-20T10:40:47.733189545 2.316131s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 13.
+2017-11-20T10:40:47.748487798 2.331429s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 13. Latest log index is 36.
+2017-11-21T15:41:56.716312867 0.242162s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-21T15:41:56.723362242 0.249214s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-21T15:41:56.723509654 0.249354s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-21T15:41:56.775862176 0.301712s info: Automatically using cache size of 4350 MB
+2017-11-21T15:41:56.777902227 0.303746s notice: Listening for intracluster connections on port 29015
+2017-11-21T15:41:56.827780429 0.353624s notice: Listening for client driver connections on port 28015
+2017-11-21T15:41:56.827955757 0.353799s notice: Listening for administrative HTTP connections on port 8081
+2017-11-21T15:41:56.827959105 0.353803s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-21T15:41:56.827961972 0.353805s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-21T15:41:56.827964654 0.353808s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-21T15:41:56.827966917 0.353810s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-21T15:41:56.827976055 0.353820s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-21T15:41:58.141352198 1.667196s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 13.
+2017-11-21T15:41:58.148521205 1.674366s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 13. Latest log index is 36.
+2017-11-21T15:41:58.292040865 1.817886s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 14.
+2017-11-21T15:41:58.302822751 1.828667s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 14. Latest log index is 39.
+2017-11-21T15:41:59.937071996 3.462916s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-23T10:38:56.732225873 0.124328s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-23T10:38:56.745792461 0.137895s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-23T10:38:56.745929201 0.138027s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-23T10:38:56.812977747 0.205080s info: Automatically using cache size of 5530 MB
+2017-11-23T10:38:56.816415681 0.208513s notice: Listening for intracluster connections on port 29015
+2017-11-23T10:38:56.902028808 0.294127s notice: Listening for client driver connections on port 28015
+2017-11-23T10:38:56.902389761 0.294487s notice: Listening for administrative HTTP connections on port 8081
+2017-11-23T10:38:56.902395617 0.294493s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-23T10:38:56.902400172 0.294497s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-23T10:38:56.902404561 0.294502s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-23T10:38:56.902425544 0.294522s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-23T10:38:56.902431192 0.294528s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-23T10:38:58.570835220 1.962933s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 14.
+2017-11-23T10:38:58.584368942 1.976467s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 15.
+2017-11-23T10:38:58.588119109 1.980217s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 14. Latest log index is 39.
+2017-11-23T10:38:58.603217785 1.995315s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 15. Latest log index is 42.
+2017-11-23T10:38:59.447931988 2.840030s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-23T10:46:43.957379154 467.349477s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2017-11-23T10:46:43.957737173 467.349835s notice: Shutting down client connections...
+2017-11-23T10:46:43.965723990 467.357822s notice: All client connections closed.
+2017-11-23T10:46:43.965744368 467.357842s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2017-11-23T10:46:43.974592904 467.366690s notice: Storage engine shut down.
+2017-11-30T09:40:38.443344993 0.065062s notice: Running rethinkdb 2.3.5 (GCC 5.4.0)...
+2017-11-30T09:40:38.447426252 0.069143s notice: Running on Linux 4.4.0-98-generic x86_64
+2017-11-30T09:40:38.447470403 0.069185s notice: Loading data from directory /home/software/HarshPatel/project/FlowzServiceApi/rethinkdb_data
+2017-11-30T09:40:38.488753110 0.110473s info: Automatically using cache size of 6631 MB
+2017-11-30T09:40:38.490454826 0.112171s notice: Listening for intracluster connections on port 29015
+2017-11-30T09:40:38.587577618 0.209293s notice: Listening for client driver connections on port 28015
+2017-11-30T09:40:38.587920748 0.209636s notice: Listening for administrative HTTP connections on port 8081
+2017-11-30T09:40:38.587925533 0.209641s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-30T09:40:38.587944027 0.209659s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-30T09:40:38.587947361 0.209662s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-11-30T09:40:38.587950282 0.209665s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-11-30T09:40:38.587953667 0.209669s notice: Server ready, "OBLAP_56_nkb" 1971bb51-702e-42eb-947b-eb21260a4bed
+2017-11-30T09:40:39.816653601 1.438370s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: Starting a new Raft election for term 15.
+2017-11-30T09:40:39.833696598 1.455412s info: Table 85433f67-69e4-4a11-8a22-2def68accf45: This server is Raft leader for term 15. Latest log index is 42.
+2017-11-30T09:40:40.362299296 1.984015s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-11-30T09:40:40.364485734 1.986201s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: Starting a new Raft election for term 16.
+2017-11-30T09:40:40.380163086 2.001879s info: Table 430aee80-2c46-4dd2-a532-8e895e81d6fd: This server is Raft leader for term 16. Latest log index is 45.
+2017-11-30T09:41:42.165262082 63.786978s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2017-11-30T09:41:42.165425335 63.787141s notice: Shutting down client connections...
+2017-11-30T09:41:42.173019111 63.794735s notice: All client connections closed.
+2017-11-30T09:41:42.173038284 63.794753s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2017-11-30T09:41:42.187740535 63.809457s notice: Storage engine shut down.
