@@ -1,36 +1,16 @@
-FROM ubuntu:16.04
-MAINTAINER fl0wz <dm@officebrain.com>
+FROM mhart/alpine-node:8
 
-# install dependencies
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
-		apache2 \
-	&& rm -r /var/lib/apt/lists/*
+RUN mkdir -p /usr/src/app
 
-# Default command
+WORKDIR /usr/src/app
 
+COPY package.json /usr/src/app/
 
-RUN mkdir -p /opt/app
+RUN npm install
 
-#working directory
-WORKDIR /opt/app
-ADD .  /opt/app/
-#COPY copy.sh .
-RUN sh copy.sh
+COPY . /usr/src/app
 
-#RUN rm -f copy.sh
+EXPOSE 3030
 
-
-RUN cp -a -f apache2.conf /etc/apache2/apache2.conf
-RUN cp -R -f /opt/app/websites/* /var/www/html/
-#RUN cp /opt/app/.htaccess /var/www/html/dist/
-#RUN cp /opt/app/vhost.conf /etc/apache2/sites-enabled/
-RUN rm -rf /opt/app/*
-RUN a2enmod rewrite
-RUN service apache2 restart
-
-
-# Ports
-EXPOSE 80
-CMD ["apachectl", "-D", "FOREGROUND"]
+CMD [ "npm", "start" ]
 
