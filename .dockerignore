@@ -1,4 +1,9 @@
 node_modules
 .gitignore
 Dockerfile
+websites
+copy.sh
+Dockerfile2
+Jenkins_master
+README.md
 LICENSE
