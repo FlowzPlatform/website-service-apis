@@ -9,7 +9,7 @@ $(document).ready(function() {
 // var host = 'http://172.16.230.84:3030';
 
 // WiFi ipAddress
-var host = 'http://172.16.230.152:3030';
+var host = 'http://api.flowz.com/serverapi';
 
 // Local IpAddress
 // var host = 'http://localhost:3030';
