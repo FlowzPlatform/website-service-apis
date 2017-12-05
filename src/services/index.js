@@ -3,7 +3,6 @@ const commitService = require('./commit-service/commit-service.service.js');
 const gitlabAddRepo = require('./gitlab-add-repo/gitlab-add-repo.service.js');
 const userService = require('./user-service/user-service.service.js');
 const metalsmith = require('./metalsmith/metalsmith.service.js');
-const transaction = require('./transaction/transaction.service.js');
 const imageUpload = require('./image-upload/image-upload.service.js');
 const getDirectoryList = require('./get-directory-list/get-directory-list.service.js');
 const shoppingCart = require('./shoppingCart/shoppingCart.service.js');
@@ -16,9 +15,6 @@ module.exports = function () {
   app.configure(gitlabAddRepo);
   app.configure(userService);
   app.configure(metalsmith);
-  
-  app.configure(transaction);
-
   app.configure(imageUpload);
   app.configure(getDirectoryList);
   app.configure(shoppingCart);
