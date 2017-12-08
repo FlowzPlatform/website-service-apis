@@ -37,6 +37,8 @@ app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
 app.use('/', feathers.static(app.get('public')));
 
+app.options('*', cors());
+
 // Set up Plugins and providers
 app.configure(hooks());
 app.configure(rethinkdb);

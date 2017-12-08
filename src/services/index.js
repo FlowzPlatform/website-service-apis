@@ -8,6 +8,7 @@ const getDirectoryList = require('./get-directory-list/get-directory-list.servic
 const shoppingCart = require('./shoppingCart/shoppingCart.service.js');
 const register = require('./register/register.service.js');
 
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
