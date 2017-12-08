@@ -3,6 +3,7 @@ const createService = require('./flows-dir-listing.class.js');
 const hooks = require('./flows-dir-listing.hooks');
 const filters = require('./flows-dir-listing.filters');
 
+
 module.exports = function () {
   const app = this;
   const paginate = app.get('paginate');
