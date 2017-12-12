@@ -41,17 +41,17 @@ function ImpletementSocekt() {
 
               switch(globalVariables[i].variableType){
                   case 'text':
-                      if(($('body [data-id="' + globalVariables[i].variableId + '"]').length > 0)){
-                          $('body [data-id="' + globalVariables[i].variableId + '"]').text(globalVariables[i].variableValue);
+                      if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                          $('body [data-global-id="' + globalVariables[i].variableId + '"]').text(globalVariables[i].variableValue);
                       } 
                       break;
                   case 'image':
                       var _varId = globalVariables[i].variableId;
                       var _varValue = globalVariables[i].variableValue;
-                      if(($('body [data-id="' + _varId + '"]').length > 0)){
+                      if(($('body [dat-globala-id="' + _varId + '"]').length > 0)){
 
                           if(globalVariables[i].isImageUrl == true){
-                              $('body [data-id="' + _varId + '"]').children('img').attr('src', _varValue);
+                              $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
                           } else {
                               var getImageData = await $.ajax({
                                 url:'../assets/' + _varValue,
@@ -64,7 +64,7 @@ function ImpletementSocekt() {
                                 },
                                 success: function(res)
                                 {
-                                  $('body [data-id="' + _varId + '"]').children('img').attr('src', res);
+                                  $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
                                   return true;
                                 }
                               });
@@ -73,14 +73,14 @@ function ImpletementSocekt() {
                       } 
                       break;
                   case 'hyperlink':
-                      if(($('body [data-id="' + globalVariables[i].variableId + '"]').length > 0)){
-                          $('body [data-id="' + globalVariables[i].variableId + '"]').children('a')[0].text = globalVariables[i].variableTitle;
-                          $('body [data-id="' + globalVariables[i].variableId + '"]').children('a')[0].href = globalVariables[i].variableValue;
+                      if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                          $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].text = globalVariables[i].variableTitle;
+                          $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].href = globalVariables[i].variableValue;
                       }
                       break; 
                   case 'html':
-                      if(($('body [data-id="' + globalVariables[i].variableId + '"]').length > 0)){
-                          $('body [data-id="' + globalVariables[i].variableId + '"]').html(globalVariables[i].variableValue);
+                      if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                          $('body [data-global-id="' + globalVariables[i].variableId + '"]').html(globalVariables[i].variableValue);
                       } 
                       break;
                   default:

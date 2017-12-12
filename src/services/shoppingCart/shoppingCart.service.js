@@ -4,8 +4,8 @@ const hooks = require('./shoppingCart.hooks');
 const filters = require('./shoppingCart.filters');
 const fs = require('fs');
 
-let ssl = process.env.cert ? { ca: fs.readFileSync(__dirname+process.env.cert) } : null;
-let rauth = process.env.rauth ? process.env.rauth : null;
+// let ssl = process.env.cert ? { ca: fs.readFileSync(__dirname+process.env.cert) } : null;
+// let rauth = process.env.rauth ? process.env.rauth : null;
 let connection;
 
 module.exports = function () {
@@ -21,8 +21,8 @@ module.exports = function () {
     host: config.get('rdb_host'),
     port: config.get("rdb_port"),
     db: config.get("rethinkdb").db,
-    authKey: rauth,
-    ssl: ssl
+    // authKey: rauth,
+    // ssl: ssl
   }, function(err, conn) {
     if (err) throw err;
     connection = conn;
