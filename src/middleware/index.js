@@ -34,12 +34,12 @@ module.exports = async function () {
           // console.log(typeof response)
           response = JSON.parse(response)
           totalMessage = response.children.length
-          // console.log("totalmessage",totalMessage)
+          console.log("totalmessage",totalMessage)
         })
         .catch(function (err) {
           console.log(err)
         });
-        // console.log(secureRouteInfo.value, '====', totalMessage)
+        console.log(secureRouteInfo.value, '====', totalMessage)
         if (route === '/flows-dir-listing' && secureRouteInfo.value > totalMessage) {
           resolve(true)
         }

@@ -48,10 +48,10 @@ function before_get_list(hook) {
         var dirPath = folderUrl;  //directory path
         // var fileType = '.html'; //file extension
         var files = [];
-        var val_to_replace = '.html';
-        var replace_with = '';
+        // var val_to_replace = '.html';
+        // var replace_with = '';
         fs.readdirSync(dirPath).forEach(file => {
-          file = file.replace(val_to_replace, replace_with);
+          // file = file.replace(val_to_replace, replace_with);
           files.push(file)
         })
         hook.result = files;
