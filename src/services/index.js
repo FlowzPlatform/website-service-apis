@@ -12,6 +12,12 @@ const register = require('./register/register.service.js');
 const publishNow = require('./publish-now/publish-now.service.js');
 
 
+const projectConfiguration = require('./project-configuration/project-configuration.service.js');
+
+
+const webpackApi = require('./webpack-api/webpack-api.service.js');
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -24,4 +30,6 @@ module.exports = function () {
   app.configure(shoppingCart);
   app.configure(register);
   app.configure(publishNow);
+  app.configure(projectConfiguration);
+  app.configure(webpackApi);
 };
