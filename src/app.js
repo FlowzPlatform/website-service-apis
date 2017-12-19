@@ -37,11 +37,16 @@ app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
 app.use('/', feathers.static(app.get('public')));
 
+app.options('*', cors());
+
 // Set up Plugins and providers
 app.configure(hooks());
 app.configure(rethinkdb);
 app.configure(rest());
-app.configure(socketio());
+app.configure(socketio(4032,{
+  wsEngine: 'uws',
+  origin: '*.flowz.com:*'
+}));
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);

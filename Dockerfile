@@ -44,4 +44,4 @@ CMD service apache2 start && npm start
 #RUN a2enmod rewrite
 #RUN service apache2 restart
 
-EXPOSE 80 3032
+EXPOSE 80 3032 4032

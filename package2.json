@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-loader": "^7.1.2",
+    "css-loader": "^0.28.7",
+    "element-ui": "^2.0.8",
+    "file-loader": "^1.1.5",
     "file-system": "^2.2.2",
     "fs": "0.0.1-security",
     "handlebars": "^4.0.10",
@@ -17,6 +21,10 @@
     "metalsmith-in-place": "^3.0.1",
     "metalsmith-layouts": "^1.8.1",
     "metalsmith-markdown": "^0.2.1",
-    "metalsmith-permalinks": "^0.5.0"
+    "metalsmith-permalinks": "^0.5.0",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "vue": "^2.5.11",
+    "vue-style-loader": "^3.0.3"
   }
 }
