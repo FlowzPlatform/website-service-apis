@@ -43,7 +43,10 @@ app.options('*', cors());
 app.configure(hooks());
 app.configure(rethinkdb);
 app.configure(rest());
-app.configure(socketio());
+app.configure(socketio(4032,{
+  wsEngine: 'uws',
+  origin: '*.flowz.com:*'
+}));
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);

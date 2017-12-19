@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-// let ssl = process.env.cert ? { ca: fs.readFileSync(__dirname+process.env.cert) } : null;
-// let rauth = process.env.rauth ? process.env.rauth : null;
+let ssl = process.env.cert ? { ca: fs.readFileSync(__dirname+process.env.cert) } : null;
+let rauth = process.env.rauth ? process.env.rauth : null;
 
 // type = 1  ====> wishlist
 // type = 2  ====> cart 
@@ -15,8 +15,8 @@ let response;
 r.connect({
   host: config.get('rdb_host'),
   port: config.get("rdb_port"),
-  // authKey: rauth,
-  // ssl: ssl,
+  authKey: rauth,
+  ssl: ssl,
   db: config.get("rethinkdb").db
 }, function(err, conn) {
   if (err) throw err;
