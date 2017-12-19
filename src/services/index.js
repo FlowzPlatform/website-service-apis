@@ -9,6 +9,8 @@ const getDirectoryList = require('./get-directory-list/get-directory-list.servic
 const shoppingCart = require('./shoppingCart/shoppingCart.service.js');
 const register = require('./register/register.service.js');
 
+const requestInfo = require('./request-info/request-info.service.js');
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -16,11 +18,12 @@ module.exports = function () {
   app.configure(gitlabAddRepo);
   app.configure(userService);
   app.configure(metalsmith);
-  
+
   app.configure(transaction);
 
   app.configure(imageUpload);
   app.configure(getDirectoryList);
   app.configure(shoppingCart);
   app.configure(register);
+  app.configure(requestInfo);
 };
