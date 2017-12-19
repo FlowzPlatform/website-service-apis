@@ -5,6 +5,8 @@ var userEmail = '';
 var projectName = '';
 var configDataUrl = '';
 
+var host = 'http://api.flowz.com/serverapi';
+
 $(document).ready(function() {
     getProjectInfo();
     ImpletementSocekt();
@@ -16,7 +18,7 @@ async function getProjectInfo() {
         userEmail = data[0].projectOwner;
         projectName = data[0].projectName;
 
-        configDataUrl = "http://localhost:3032/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
+        configDataUrl = host + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
     });
 
     getConfigData();
@@ -88,15 +90,6 @@ async function updateGlobalVariables () {
 
     }
 }
-
-// LAN IpAddress
-// var host = 'http://172.16.230.84:3030';
-
-// WiFi ipAddress
-// var host = 'http://172.16.230.152:3030';
-
-// Local IpAddress
-var host = 'http://localhost:3032';
 
 function ImpletementSocekt() {
   var socket = io(host);
