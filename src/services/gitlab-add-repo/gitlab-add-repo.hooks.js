@@ -96,6 +96,8 @@ function after_send_repoToGit(hook) {
                 shell.exec('git push -u origin master -f');
 
                 shell.echo('New Repository Pushed to GitLab server');
+
+                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "159.203.142.21" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.85.135.193/pretty/atomiadns.json/SetDnsRecords\'');
               }
                 hook.result = repos;
                 resolve(hook)
