@@ -8,7 +8,7 @@ services:
 branches:
   only:
   - master
-  
+
 jobs:
   include:
     - stage: Flowz-Service-Api-Backend-Flowz
@@ -18,10 +18,22 @@ jobs:
       - docker images
       - docker tag flowz_service_api_backend_flowz:"$DOCKER_IMAGE_TAG" $DOCKER_USERNAME/flowz_service_api_backend_flowz:"$DOCKER_IMAGE_TAG"
       - docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:"$DOCKER_IMAGE_TAG"
-    - stage: Upgrade Rancher Service 
-      script: 
+    - stage: Upgrade Rancher Service
+      script:
       - bash ./upgrade.sh
     - stage: Finish Rancher Service
       script:
       - bash ./finish.sh
-    
+
+notifications:
+  email:
+    recipients:
+      - arpitap@officebeacon.com
+      - kaushalm@officebrain.com
+      - anuj@officebrain.com
+      - naveeng@officebrain.com
+      - fsaiyed@officebrain.com
+      - gkumar@officebrain.com
+      - mshah@officebrain.com
+    on_success: always
+    on_failure: always

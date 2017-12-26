@@ -5,7 +5,8 @@ var userEmail = '';
 var projectName = '';
 var configDataUrl = '';
 
-var host = 'http://api.flowz.com/serverapi';
+var baseURL = 'http://api.flowz.com/serverapi';
+var socketHost = 'http://ws.flowz.com:4032';
 
 $(document).ready(function() {
     getProjectInfo();
@@ -18,7 +19,7 @@ async function getProjectInfo() {
         userEmail = data[0].projectOwner;
         projectName = data[0].projectName;
 
-        configDataUrl = host + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
+        configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
     });
 
     getConfigData();
@@ -92,7 +93,7 @@ async function updateGlobalVariables () {
 }
 
 function ImpletementSocekt() {
-  var socket = io(host);
+  var socket = io(socketHost);
   var client = feathers()
       .configure(feathers.hooks())
       .configure(feathers.socketio(socket));
