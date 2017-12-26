@@ -122,7 +122,7 @@ function after_commit_repo(hook) {
           shell.cd(config.path + nameOfRepo+'/');
 
           shell.exec('git status');
-
+          shell.exec('git remote -v');
           shell.exec('git add .');
 
           shell.exec('git commit -m "' + hook.data.commitMessage + '"');
