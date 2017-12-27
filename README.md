@@ -1,4 +1,4 @@
-# ProductServiceApi
+# ProductServiceApi [![Build Status](https://travis-ci.org/FlowzPlatform/website-service-apis.svg?branch=master)](https://travis-ci.org/FlowzPlatform/website-service-apis)
 
 > Service for directory listing for FlowzBuilder
 
