@@ -33,6 +33,8 @@ RUN cp -a -f /opt/app/plugins/* /var/www/html/plugins/
 
 RUN mv /opt/app/package2.json /var/www/html/package.json
 
+RUN cp /opt/app/vhost.conf /etc/apache2/sites-enabled/
+
 
 WORKDIR /var/www/html
 RUN npm install
@@ -42,6 +44,7 @@ CMD service apache2 start && npm start
 
 
 #RUN a2enmod rewrite
-#RUN service apache2 restart
+RUN a2enmod vhost_alias
+RUN service apache2 restart
 
 EXPOSE 80 3032 4032
