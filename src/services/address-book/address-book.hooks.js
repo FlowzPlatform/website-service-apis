@@ -48,6 +48,9 @@ module.exports = {
   }
 };
 
+// function getAddressDataAfterInsert (hook){
+//   console.log("===>>",hook);
+// }
  beforeCreateAddressBook = async hook => {
     //return new Promise ((resolve,reject) => {
         // r.table('userAddressBook').
@@ -69,7 +72,7 @@ module.exports = {
         hook.data.created_uid = hook.data.user_id;
         hook.data.updated_uid = null;
         hook.data.deleted_uid = null;
-        hook.data.is_default = isDefault;
+        hook.data.is_default = isDefault.toString();
         // console.log("--",hook.data);
         // resolve(hook);
   //  });
