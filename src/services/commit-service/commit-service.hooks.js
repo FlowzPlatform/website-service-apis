@@ -53,7 +53,7 @@ function after_get_commits_list(hook) {
         var options = {
             uri: config.gitLabUrl + '/api/v4/projects/'+hook.params.query.projectId+'/repository/commits',
             headers: {
-                'PRIVATE-TOKEN': hook.params.query.privateToken
+                'PRIVATE-TOKEN': config.gitLabToken
             },
             json: true
         };
@@ -80,12 +80,13 @@ function after_revert_commit(hook) {
         var branchName = hook.params.query.branchName;
         var commitSHA = hook.params.query.sha;
         var repoName = hook.params.query.repoName;
+        var email = hook.params.query.email;
         
         if (!shell.which('git')) {
           shell.echo('Sorry, this script requires git');
           shell.exit(1);
         } else {
-          shell.cd( config.path + repoName );
+          shell.cd( config.path + email + '/' + repoName );
 
           shell.exec('git checkout ' + commitSHA + ' .');         
         }
