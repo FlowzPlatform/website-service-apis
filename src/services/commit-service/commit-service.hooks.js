@@ -80,13 +80,13 @@ function after_revert_commit(hook) {
         var branchName = hook.params.query.branchName;
         var commitSHA = hook.params.query.sha;
         var repoName = hook.params.query.repoName;
-        var email = hook.params.query.email;
+        var userDetailId = hook.params.query.userDetailId;
         
         if (!shell.which('git')) {
           shell.echo('Sorry, this script requires git');
           shell.exit(1);
         } else {
-          shell.cd( config.path + email + '/' + repoName );
+          shell.cd( config.path + userDetailId + '/' + repoName );
 
           shell.exec('git checkout ' + commitSHA + ' .');         
         }
