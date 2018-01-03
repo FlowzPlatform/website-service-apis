@@ -117,7 +117,8 @@ function after_send_repoToGit(hook) {
 function after_commit_repo(hook) {
     return new Promise((resolve, reject) => {
       let nameOfRepo = hook.data.repoName;
-        
+      let email = hook.data.email;
+
         if (!shell.which('git')) {
           shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
           shell.exit(1);
