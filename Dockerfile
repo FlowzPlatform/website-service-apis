@@ -16,7 +16,12 @@ RUN curl --silent --location https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install --yes nodejs
 RUN apt-get install --yes build-essential
 
+
 RUN apt-get install --yes git
+ADD .netrc /root
+RUN git config --global user.email " fsaiyed@officebrain.com"
+RUN git config --global user.name "Faizan Saiyed"
+
 
 
 # add project data
