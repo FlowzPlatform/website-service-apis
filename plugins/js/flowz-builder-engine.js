@@ -388,51 +388,116 @@ catch (err) {
 // Popular products ends
 
 // dataField JS
-// const dataFieldGroup = Vue.component('datafieldgroup', {
-// template: `<div>
-//             <div v-for="item in items"><slot :text="item"></slot></div>
-//           </div>`,
-// props: ['data_schema'],
-// computed: {},
-// data: function() {
-//   return {
-//     items: []
-//   }
-// },
-// mounted() {
-//   this.getData()
-// },
-// methods: {
-//   getData() {
-//     let self = this;
-//     this.data_schema;
-//     let schemaVal = this.data_schema.split(":");
-//     let connString = $.trim(schemaVal[0]);
-//     let schemaName = $.trim(schemaVal[1]);
-//     let apiUrl = 'http://172.16.230.80:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
-//     $.getJSON(apiUrl, function(data) {
-//       self.items = data;
-//     });
-//   }
-// }
-// });
+const MyGroup = Vue.component('datafieldgroup', {
+  template: `<div class="dfgroup">
+                    <div class="dfrepeate" v-for="item in items"><slot :text="item"></slot></div>
+            </div>`,
+  props: ['data_api', 'data_schema'],
+  computed: {},
+  data: function() {
+    return {
+      items: []
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      let self = this;
+      console.log("data_schema", this.data_schema)
+      console.log("data_api", this.data_api)
+      if (this.data_schema != undefined) {
+        if (this.data_schema.length > 0) {
+          console.log("hello")
+          this.data_schema;
+          let schemaVal = this.data_schema.split(":");
+          let connString = $.trim(schemaVal[0]);
+          let schemaName = $.trim(schemaVal[1]);
+          let apiUrl = 'http://172.16.230.80:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
+          $.getJSON(apiUrl, function(data) {
+            console.log(data)
+            self.items = data;
+          });
+        } else {
+          $.getJSON(this.data_api, function(data) {
+            console.log(data)
+            self.items = data;
+          });
+        }
+      } else {
+        $.getJSON(this.data_api, function(data) {
+          console.log(data)
+          self.items = data;
+        });
+      }
+    }
+  }
+});
 
-// const dataFieldList = Vue.component('datafieldlist', {
-// template: '<div><div v-for="item in items"><slot :text="item"></slot></div></div>',
-// props: ['items']
-// });
+const MyObj = Vue.component('datafieldobject', {
+  template: `<div class="dfgroup">
+                    <div class="dfrepeate"><slot :text="items"></slot></div>
+            </div>`,
+  props: ['data_api', 'data_schema'],
+  computed: {},
+  data: function() {
+    return {
+      items: []
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      let self = this;
+      console.log("data_schema", this.data_schema)
+      console.log("data_api", this.data_api)
+      if (this.data_schema != undefined) {
+        if (this.data_schema.length > 0) {
+          console.log("hello")
+          this.data_schema;
+          let schemaVal = this.data_schema.split(":");
+          let connString = $.trim(schemaVal[0]);
+          let schemaName = $.trim(schemaVal[1]);
+          let apiUrl = 'http://172.16.230.80:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
+          $.getJSON(apiUrl, function(data) {
+            console.log(data)
+            self.items = data;
+          });
+        } else {
+          $.getJSON(this.data_api, function(data) {
+            console.log(data)
+            self.items = data;
+          });
+        }
+      } else {
+        $.getJSON(this.data_api, function(data) {
+          console.log(data)
+          self.items = data;
+        });
+      }
+    }
+  }
+});
 
-// const dataFieldText = Vue.component('datafieldtext', {
-// template: '<h3>{{text}}</h3>',
-// props: ['text']
-// });
+const MyList = Vue.component('datafieldlist', {
+  template: '<div class="dflist"><div v-for="item in items"><slot :text="item"></slot></div></div>',
+  props: ['items']
+});
 
-// new Vue({
-// el: '#app',
-// components: {
-//   dataFieldGroup,
-//   dataFieldList,
-//   dataFieldText
-// }
-// })
+const MyText = Vue.component('datafieldtext', {
+  template: '<div class="dftext"><h3>{{text}}</h3></div>',
+  props: ['text']
+});
+
+new Vue({
+  el: '#app',
+  components: {
+    MyGroup,
+    MyList,
+    MyText
+  }
+})
 // dataField js ends
