@@ -64,7 +64,7 @@ function before_remove_project(hook) {
 function after_send_repoToGit(hook) {
     return new Promise((resolve, reject) => {
       let nameOfRepo = hook.params.query.nameOfRepo;
-      let email = hook.params.query.email;
+      let userDetailId = hook.params.query.userDetailId;
       // let username = 'fsaiyed';
         var options = {
             method: 'POST',
@@ -84,7 +84,7 @@ function after_send_repoToGit(hook) {
                 shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
                 shell.exit(1);
               } else {
-                shell.cd(config.path + email + '/' + nameOfRepo+'/');
+                shell.cd(config.path + userDetailId + '/' + nameOfRepo+'/');
 
                 shell.exec('git init');
                 shell.exec('git remote add origin ' + config.gitLabUrl + '/' + config.gitLabUsername + '/'+ nameOfRepo +'.git');
@@ -117,13 +117,13 @@ function after_send_repoToGit(hook) {
 function after_commit_repo(hook) {
     return new Promise((resolve, reject) => {
       let nameOfRepo = hook.data.repoName;
-      let email = hook.data.email;
+      let userDetailId = hook.data.userDetailId;
 
         if (!shell.which('git')) {
           shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
           shell.exit(1);
         } else {
-          shell.cd(config.path + email + '/'  + nameOfRepo+'/');
+          shell.cd(config.path + userDetailId + '/'  + nameOfRepo+'/');
 
           shell.exec('git status');
           shell.exec('git remote -v');
