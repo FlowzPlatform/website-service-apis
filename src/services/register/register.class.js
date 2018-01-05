@@ -27,7 +27,7 @@ class Service {
       let password = this.randomPassword(password_length);
       var options = {
         method: 'POST',
-        uri: 'http://ec2-54-88-11-110.compute-1.amazonaws.com/api/setup',
+        uri: process.env.REGISTER_URL,
         body: {
             email: data.email,
             password: password,

@@ -53,13 +53,6 @@ class Service {
                 });
             }).then(content => {
                 var filename = content.filename.replace(/^.*[\\\/]/, '')
-                if (filename.includes(".layout")) {
-                    console.log('filename', filename.replace('.layout', '.html'))
-                    fs.writeFile('/opt/lampp/htdocs/exported/' + filename.replace('.layout', '.html'), data.text, function(err) {
-                        console.log(err);
-                        //err ? reject(err) : resolve(data)
-                    });
-                }
                 // console.log(content);
                 const dirTree = require('directory-tree');
                 const filedetails = dirTree(content.filename);
