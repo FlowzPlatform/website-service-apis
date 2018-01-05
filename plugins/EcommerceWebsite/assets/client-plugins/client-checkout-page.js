@@ -27,22 +27,35 @@ $.ajax({
             {
               productHtml.find(".js-checkout-description").html(response_data[key].special_instruction);
             }
-            
+
             productHtml.find(".js-checkout-unit-price").html("$"+response_data[key].unit_price);
             productHtml.find(".js-checkout-qty").html(response_data[key].total_qty);
-            var total = parseFloat(response_data[key].total_qty)*parseFloat(response_data[key].unit_price);
+
+            // charges
+            let charges=0;
+            if(typeof response_data[key].charges != "undefined")
+            {
+              for(let charge_list in response_data[key].charges)
+              {
+                charges = charges+parseFloat(response_data[key].charges[charge_list]);
+              }
+            }
+            // END - charges
+            var total = parseFloat(response_data[key].total_qty)*parseFloat(response_data[key].unit_price)+charges;
+
             productHtml.find(".js-checkout-product-total").html("$"+total);
             newHtml += productHtml.html();
+
+
             grand_total = grand_total + total;
             total_qty = total_qty + parseInt(response_data[key].total_qty);
           }
         });
       }
 
-      $(newHtml).insertAfter(".js-replace-products");     
+      $(newHtml).insertAfter(".js-replace-products");
       $(".js-checkout-grand-total").html("$"+grand_total);
-      $(".checkout_product_list").find('tbody tr:first').remove(); 
+      $(".checkout_product_list").find('tbody tr:first').remove();
     }
   }
 });
-

@@ -7,10 +7,6 @@ body {
     margin: 0;
 }
 
-:root {
-    margin-top: 0px;
-}
-
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
@@ -210,68 +206,65 @@ span.color {
 }
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <div class="js-list hide">
-    <div>
-        <div class="col-md-12 ob-product-compare">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped compare-block">
-                    <tr id="item_title_price">
-                        <td class="product--data-id-">
-                            <div class="product">
-                                <button class="btn btn-danger remove js-remove-compare" data-id="#data.id#"><i class="fa fa-trash-o danger" aria-hidden="true"></i>
-                                </button>
-                                <img class="img-responsive" src="#data.image#" alt="product image" />
-                                <h5 class="productTitle"><strong>#data.title#</strong></h5>
-                                <hr/>
-                                <h3>#data.price#</h3>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr></tr>
-                    <tr id="item_sku">
-                        <td class="product--data-id-">#data.sku#</td>
-                    </tr>
-                    <tr id="item_features">
-                        <td class="product--data-id-">
-                            <p>#data.features#</p>
-                        </td>
-                    </tr>
-                    <tr id="item_summary">
-                        <td class="product--data-id-">
-                            <p>#data.summary#</p>
-                        </td>
-                    </tr>
-                </table>
+        <div>
+            <div class="col-md-12 ob-product-compare">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped compare-block">
+                        <tr id="item_title_price">
+                            <td class="product-#data.id#">
+                                <div class="product">
+                                    <button class="btn btn-danger remove js-remove-compare" data-id="#data.id#"><i class="fa fa-trash-o danger" aria-hidden="true"></i>
+                                    </button>
+                                    <img class="img-responsive" src="#data.image#" alt="product image" />
+                                    <h5 class="productTitle"><strong>#data.title#</strong></h5>
+                                    <hr/>
+                                    <h3>#data.price#</h3>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr id="item_sku">
+                            <td class="product-#data.id#">#data.sku#</td>
+                        </tr>
+                        <tr id="item_features">
+                            <td class="product-#data.id#">
+                                <p>#data.features#</p>
+                            </td>
+                        </tr>
+                        <tr id="item_summary">
+                            <td class="product-#data.id#">
+                                <p>#data.summary#</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="hide" id="listing">
-    <div>
-        <div class="col-md-12 ob-product-compare">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped compare-block">
-                    <tr id="item_title_price1"></tr>
-                    <tr></tr>
-                    <tr id="item_sku1"></tr>
-                    <tr id="item_features1"></tr>
-                    <tr id="item_summary1"></tr>
-                </table>
+    <div id="listing" class="hide">
+
+        <div>
+            <div class="col-md-12 ob-product-compare">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped compare-block">
+                        <tr id="item_title_price1">
+                            
+                        </tr>
+                        <tr></tr>
+                        <tr id="item_sku1">
+                            
+                        </tr>
+                        <tr id="item_features1">
+                            
+                        </tr>
+                        <tr id="item_summary1">
+                            
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
+        
     </div>
-</div>
 <script src="./../assets/client-plugins/client-wishlist.js"></script>

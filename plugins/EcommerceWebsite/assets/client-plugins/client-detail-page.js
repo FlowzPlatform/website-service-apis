@@ -1,20 +1,25 @@
-function getaddressBookData(addressType,isAddress,userId){
-  let data = {"address_type":addressType,"user_id": userId,"is_default": 1,"is_address":isAddress};
-  let returnData = '';
-  $.ajax({
-    type : 'GET',
-    url : project_settings.address_book_api_url,
-    data : data,
-    dataType : 'json',
-    headers: {"Authorization": project_settings.product_api_token},
-    success : function(response) {
-      if(response.data != undefined && response.data.length > 0){
-        returnData = response.data[0];
-        //console.log("==>",returnData);
-      }
-    }
-  });
-  return returnData;
+var pid = getParameterByName('pid');
+if(pid != null) {
+var get_product_details = function () {
+    var tmp = null;
+    $.ajax({
+        type: 'GET',
+        url: project_settings.product_api_url+pid,
+        async: false,
+        dataType: 'json',
+         headers: {
+              'Authorization' : project_settings.product_api_token
+          },
+        success: function (data) {
+            if(data.hits.hits.length > 0)
+            {
+                productData = data;
+                tmp = productData.hits.hits[0]._source;
+            }
+        }
+    });
+    return tmp;
+  }();
 }
 
 $(document).ready(function(){
@@ -183,7 +188,7 @@ if(pid != null) {
                     $.ajax({
                       type : 'GET',
                       url : project_settings.address_book_api_url,
-                      data : {"address_type":"shipping","user_id": user_id,"is_default": 1,"is_address":1},
+                      data : {"address_type":"shipping","user_id": user_id,"is_default": 1,"is_address":1,"deleted_at":false},
                       dataType : 'json',
                       headers: {"Authorization": project_settings.product_api_token},
                       success : function(response) {
@@ -528,12 +533,21 @@ if(pid != null) {
         //let position_id = $('#decoration-Decoration-Print-position-block').data('id');
         var imprint_position = [];
         $('.js_add_imprint_location_request_quote:checked').each(function(i) {
-            let position_name = $(this).val();
+            let position_name = replaceWithUnderscore($(this).val());
             let imprint_method_name = $("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").data('dropval');
             let no_of_color = $("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").data('value');
             var imprint_position_data = { 'imprint_position_name': position_name,'imprint_method_name': imprint_method_name,'no_of_color' : no_of_color };
             imprint_position.push(imprint_position_data);
         });
+
+        // charges
+        let total_setup_charge = calculate_setup_charge(imprint_position)
+        let charges = {};
+        if(total_setup_charge > 0)
+        {
+            charges['setup_charge'] = total_setup_charge;
+        }
+        // END - charges
 
         let special_instruction = $('#js_request_quote_instruction').val();
 
@@ -576,11 +590,12 @@ if(pid != null) {
             data['order_type'] = order_type;
             data['color'] = colors_qty;
             data['imprint'] = imprint_position;
+            data['charges'] = charges;
             data['special_instruction'] = special_instruction;
             data['total_qty'] = total_qty;
             data['unit_price'] = unit_price;
             data['shipping_method'] = shipping_method;
-            console.log('product data == ',data);
+            // console.log('product data == ',data);
             $.ajax({
             type : 'POST',
             url : project_settings.shopping_api_url,
@@ -605,8 +620,42 @@ if(pid != null) {
             }
         }
     });
-
+	
+	 /* Virtual tool */
+      let virtualButtonHtml = $("#ob_virtual_list").html();
+      virtualButtonHtml1 = virtualButtonHtml.replace("#data.sku#",get_product_details.sku)
+      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",get_product_details.supplier_id)
+      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
+      $("#ob_virtual_list").html(virtualButtonHtml1)
+      $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
+		
    });
+
+function calculate_setup_charge(imprint_position)
+{
+    let setup_charge = 0;
+    if(jQuery.inArray("setup_charge", project_settings.charges) !== -1)
+    {
+        for(imprint_position_val in imprint_position)
+        {
+            let imprint_data = get_product_details.imprint_data;
+            for(let item in imprint_data)
+            {
+                let data_imprint_method = replaceWithUnderscore(imprint_data[item].imprint_method)	
+                let selected_imprint_method = imprint_position[imprint_position_val].imprint_method_name
+                if(data_imprint_method == selected_imprint_method)
+                {
+                    let replace_setup_charge = imprint_data[item].setup_charge
+                    stripped = replace_setup_charge.replace(/[^0-9\.]/g, '');
+                    setup_charge = setup_charge + parseFloat(stripped);
+                }
+            }
+            // console.log('imprint_position1',imprint_position[imprint_position_val].imprint_method_name);
+        }
+        // console.log('imprint_position',imprint_position);
+    }
+    return setup_charge;
+}
 
 function replaceWithUnderscore(value){
   let returnVal = value.toLowerCase();

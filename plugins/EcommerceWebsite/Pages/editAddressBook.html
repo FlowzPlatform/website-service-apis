@@ -47,12 +47,6 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
 }
-
-.c29557 {
-    display: block;
-    width: 100%;
-    min-height: 20px;
-}
 </style>
 
 
@@ -68,25 +62,21 @@ body {
                         <ul>
                             <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
                             </li>
-                            <li><a href="#">My Account</a><i class="fa fa-angle-right fa-fw"></i>
+                            <li><a href="#">My Account </a><i class="fa fa-angle-right fa-fw"> </i>
                             </li>
-                            <li><strong>Address Book</strong>
+                            <li><a href="#">Address Book </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><strong>Edit new address</strong>
                             </li>
                         </ul>
                     </div>
-                    <div class="ob-main-address-block">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <h1 class="main-title"><i class="fa fa-edit"></i>Address Book</h1>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="pull-right"><a class="btn-search pull-right" href="addAddressBook.html">add new address</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <reusecomponent class="c29557">{{> addressBook id='addressBookList.partial' }}</reusecomponent>
-                        </div>
+                    <div class="ob-add-new-address">
+                        <h1 class="main-title">Edit new address</h1>
+                        <h2>contact information</h2>
+                        <div class="require-message">(Please Fill Your Contact information. Don't Forget To Save!)</div>
+                    </div>
+                    <div class="row">
+                        <reusecomponent class="c17829">{{> addressBook id='addAddress.partial' }}</reusecomponent>
                     </div>
                 </div>
             </div>
