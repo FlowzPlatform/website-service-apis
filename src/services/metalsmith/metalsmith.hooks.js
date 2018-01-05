@@ -48,7 +48,7 @@ function after_create_ms(hook) {
       // console.log('Replaced path: '+replace_path);
       //  shell.cd(replace_path);
       //  shell.exec('pwd');
-       shell.exec('node '+hook.params.query.path+'/assets/metalsmith.js');
+       shell.exec('node '+hook.params.query.path+'/public/assets/metalsmith.js');
        hook.result = 'Successfull executed MetalSmith';
       resolve(hook);
   })
