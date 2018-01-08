@@ -78,7 +78,7 @@ module.exports = {
       if (error) throw error;
       cursor.toArray(function(err, result) {
         if (err) throw err;
-        if(result.length > 0){
+        if(result.length > 0 && hook.data.type !=2 && hook.data.type !='2'){
           hook.result = {status:400, data:result, message: "Item already exist"};
         }else{
           hook.data.createdAt = new Date();
