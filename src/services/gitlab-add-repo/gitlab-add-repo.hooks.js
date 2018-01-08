@@ -64,7 +64,8 @@ function before_remove_project(hook) {
 function after_send_repoToGit(hook) {
     return new Promise((resolve, reject) => {
       let nameOfRepo = hook.params.query.nameOfRepo;
-      let username = hook.params.query.username;
+      let userDetailId = hook.params.query.userDetailId;
+      // let username = 'fsaiyed';
         var options = {
             method: 'POST',
             uri: config.gitLabUrl + '/api/v4/projects',
@@ -72,7 +73,7 @@ function after_send_repoToGit(hook) {
               name: nameOfRepo
             },
             headers: {
-                'PRIVATE-TOKEN': hook.params.query.privateToken
+                'PRIVATE-TOKEN': config.gitLabToken
             },
             json: true
         };
@@ -83,10 +84,10 @@ function after_send_repoToGit(hook) {
                 shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
                 shell.exit(1);
               } else {
-                shell.cd(config.path + nameOfRepo+'/');
+                shell.cd(config.path + userDetailId + '/' + nameOfRepo+'/');
 
                 shell.exec('git init');
-                shell.exec('git remote add origin ' + config.gitLabUrl + '/' + username + '/'+ nameOfRepo +'.git');
+                shell.exec('git remote add origin ' + config.gitLabUrl + '/' + config.gitLabUsername + '/'+ nameOfRepo +'.git');
                 shell.exec('git remote -v');
 
                 shell.exec('git status');
@@ -96,6 +97,8 @@ function after_send_repoToGit(hook) {
                 shell.exec('git push -u origin master -f');
 
                 shell.echo('New Repository Pushed to GitLab server');
+
+                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "139.59.37.43" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\'');
               }
                 hook.result = repos;
                 resolve(hook)
@@ -114,15 +117,16 @@ function after_send_repoToGit(hook) {
 function after_commit_repo(hook) {
     return new Promise((resolve, reject) => {
       let nameOfRepo = hook.data.repoName;
-        
+      let userDetailId = hook.data.userDetailId;
+
         if (!shell.which('git')) {
           shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
           shell.exit(1);
         } else {
-          shell.cd(config.path + nameOfRepo+'/');
+          shell.cd(config.path + userDetailId + '/'  + nameOfRepo+'/');
 
           shell.exec('git status');
-
+          shell.exec('git remote -v');
           shell.exec('git add .');
 
           shell.exec('git commit -m "' + hook.data.commitMessage + '"');
@@ -138,14 +142,12 @@ function after_commit_repo(hook) {
 
 function after_remove_project(hook) {
     return new Promise((resolve, reject) => {
-      console.log("Repo ID:", hook.id);
-      console.log("privateToken: ", hook.params.query.privateToken );
 
       var options = {
             method: 'DELETE',
             uri: config.gitLabUrl + '/api/v4/projects/'+hook.id,
             headers: {
-                'PRIVATE-TOKEN': hook.params.query.privateToken
+                'PRIVATE-TOKEN': config.gitLabToken
             },
             json: true
         };

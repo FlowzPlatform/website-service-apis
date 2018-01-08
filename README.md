@@ -1,4 +1,4 @@
-# ProductServiceApi
+# ProductServiceApi [![Build Status](https://travis-ci.org/FlowzPlatform/website-service-apis.svg?branch=master)](https://travis-ci.org/FlowzPlatform/website-service-apis)
 
 > Service for directory listing for FlowzBuilder
 
@@ -44,6 +44,8 @@ $ feathers help                           # Show all commands
 
 For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
 
+Updated UserDetailId
+
 ## Changelog
 
 __0.1.0__
@@ -55,3 +57,4 @@ __0.1.0__
 Copyright (c) 2016
 
 Licensed under the [MIT license](LICENSE).
+

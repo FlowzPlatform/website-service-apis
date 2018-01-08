@@ -25,6 +25,13 @@ const app = feathers();
 //global.appRoot = path.join(path.join(__dirname, '..'), 'websites');
 global.appRoot = "/var/www/html/websites";
 
+app.use(function(req, res, next) {
+   this.apiHeaders = req.headers ;
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+});
+
 // Load app configuration
 app.configure(configuration(path.join(__dirname, '..')));
 // Enable CORS, security, compression, favicon and body parsing
@@ -43,7 +50,10 @@ app.options('*', cors());
 app.configure(hooks());
 app.configure(rethinkdb);
 app.configure(rest());
-app.configure(socketio());
+app.configure(socketio(4032,{
+  wsEngine: 'uws',
+  origin: '*.flowz.com:*'
+}));
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);

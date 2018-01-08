@@ -1,0 +1,153 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#c53481 {
+    position: relative;
+    overflow: hidden;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c53481 {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#c53501 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    width: 600px;
+    height: 426px;
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    max-width: none;
+    max-height: none;
+}
+
+#c53505 {
+    max-width: 100px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+}
+
+#c53510 {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+    height: 100px;
+}
+
+#c53515 {
+    width: auto;
+    position: relative;
+    transition-duration: 0s;
+    transform: translate3d(0px, -107px, 0px);
+}
+
+#c53520 {
+    float: none;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    position: relative;
+    width: 95px;
+    margin-bottom: 7px;
+}
+
+#c53543 {
+    float: none;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    position: relative;
+    width: 95px;
+    margin-bottom: 7px;
+}
+
+#c53561 {
+    float: none;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    position: relative;
+    width: 95px;
+    margin-bottom: 7px;
+}
+
+#image-test {
+    display: none;
+}
+</style>
+
+
+<div class="product-gallery-view ob-product-gallery">
+    <aside class="quick-view-left">
+        <div class="product-big-image">
+            <div class="zoom product-gallery" id="c53481">
+                <img class="img-responsive virt-img" id="product_img" alt="Product image"
+                />
+                <div class="zoom-col"><i class="fa"></i>
+                </div>
+            </div>
+        </div>
+        <div class="product-big-image-thumbnails js-image-gallery" id="c53515">
+            <div class="slide" id="c53543"><a class="product-thumb-img-anchar" href="javascript:void(0);"><img alt="product-image"/></a>
+                <input
+                type="hidden" id="var_img_clr_id" value="clr_" />
+            </div>
+        </div>
+        <input type="hidden" id="ob-virtual-product-status" value="0" />
+        <div id="image-test"></div>
+        <div class="clearfix"></div>
+    </aside>
+    <div class="clearfix"></div>
+    <reusecomponent class="c9910">{{> productDetail id='productDetailAction.partial' }}</reusecomponent>
+</div>

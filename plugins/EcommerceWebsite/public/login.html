@@ -1,0 +1,291 @@
+<html>
+<head>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<title></title><link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' />
+<script src='https://code.jquery.com/jquery-3.2.1.js'></script>
+<link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'/>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/theme.min.css' />
+<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js' crossorigin='anonymous'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
+<script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
+<script type='text/javascript' src='https://unpkg.com/vue/dist/vue.js'></script>
+<link rel='stylesheet' href='./../main-files/main.css'/>
+</head><body><div id="app">
+<div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"><link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css" type="text/css"><header class="bg-dark"> <div class="container"> <nav class="navbar navbar-expand-lg"> <a class="navbar-brand" href="#"> <img src="https://imgur.com/ak2v9y7.png" height="30" alt="image"/> </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav13" aria-controls="navbarNav13" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button> <div class="collapse navbar-collapse" id="navbarNav13"> <ul class="navbar-nav mr-auto"> <li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li><li class="nav-item"> <a class="nav-link" href="#">Features</a> </li><li class="nav-item"> <a class="nav-link" href="#">Pricing</a> </li><li class="nav-item"> <a class="nav-link" href="#">Team</a> </li></ul> <ul class="navbar-nav justify-content-end ml-auto"> <li class="nav-item"> <a class="nav-link" href="#">Docs</a> </li><li class="nav-item"> <a class="nav-link" href="#">Contact</a> </li><li class="nav-item"> <a class="nav-link" href="#">Log In</a> </li></ul> <a class="btn btn-white ml-md-3" href="#">Button</a> </div></nav> </div></header></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c31064 {
+    width: 100%;
+}
+
+.fdb-block {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(238, 238, 238);
+}
+
+.c838165 {
+    background-image: url("https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder//imgs/bg_0.svg");
+}
+
+input[type="text"] {
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    font-size: 1rem;
+    font-family: sans-serif;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgba(0, 0, 0, 0.15);
+    border-right-color: rgba(0, 0, 0, 0.15);
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+    border-left-color: rgba(0, 0, 0, 0.15);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+ul.social-network {
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    display: inline;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin-left: 0px !important;
+}
+
+ul.social-network li {
+    display: inline;
+    margin-top: 0px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+
+.social-network a.icoRss:hover {
+    background-color: rgb(245, 101, 5);
+}
+
+.social-network a.icoFacebook:hover {
+    background-color: rgb(59, 89, 152);
+}
+
+.social-network a.icoTwitter:hover {
+    background-color: rgb(51, 204, 255);
+}
+
+.social-network a.icoGoogle:hover {
+    background-color: rgb(189, 53, 24);
+}
+
+.social-network a.icoVimeo:hover {
+    background-color: rgb(5, 144, 184);
+}
+
+.social-network a.icoLinkedin:hover {
+    background-color: rgb(0, 123, 183);
+}
+
+.social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i, .social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+    color: rgb(255, 255, 255);
+}
+
+.socialHoverClass, a.socialIcon:hover {
+    color: rgb(68, 188, 221);
+}
+
+.social-circle li a {
+    display: inline-block;
+    position: relative;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.social-circle li i {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.triggeredHover, .social-circle li a:hover i {
+    transform: rotate(360deg);
+    transition-duration: 0.2s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+.social-circle i {
+    color: rgb(255, 255, 255);
+    transition-duration: 0.8s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+a {
+    background-color: rgb(211, 211, 211);
+}
+
+.col-md-12 {
+    background-color: rgb(82, 139, 255);
+}
+
+.col-md-12.mt-4 {
+    background-color: rgb(45, 49, 60);
+}
+
+.row.mt-4.signup-message {
+    text-align: right;
+}
+</style>
+
+
+
+
+<div class="cssImports">
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
+    type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+</div>
+<section class="fdb-block c838165">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
+                <div class="fdb-box fdb-touch">
+                    <div class="row">
+                        <div class="col">
+                            <h1>Log In</h1>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <input class="form-control user_email" type="text" placeholder="Email"
+                            required="true" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <input class="form-control mb-1 user_pass" type="password" placeholder="Password"
+                            required="true" />
+                            <p class="text-right"><a href="signup.html">New User?</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <button class="btn login-submit" type="button">Submit</button>
+                        </div>
+                    </div>
+                    <div class="row mt-4 error-message hide">
+                        <div class="col red">Please enter valid username and password</div>
+                    </div>
+                    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+                    rel="stylesheet" />
+                    <div class="col-md-12 mt-4">
+                        <form id="form-social-icons" name="form-google" method="post">
+                            <input type="hidden" name="success_url" id="success_url" />
+                            <ul class="social-network social-circle">
+                                <li><a class="icoFacebook socialMedCls" href="javascript:;" title="facebook"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li><a class="icoTwitter socialMedCls" href="javascript:;" title="twitter"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li><a class="icoGoogle socialMedCls" href="javascript:;" title="Gplus"><i class="fa fa-google-plus"></i></a>
+                                </li>
+                                <li><a class="icoLinkedin socialMedCls" href="javascript:;" title="linkedin"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                                <li><a class="icoRss socialMedCls" href="javascript:;" title="github"><i class="fa fa-github"></i></a>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="./../assets/client-plugins/client-login-page.js"></script></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"><link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css" type="text/css"><footer class="fdb-block footer-large bg-dark"> <div class="container"> <div class="row align-items-top text-center text-md-left"> <div class="col-12 col-sm-6 col-md-4"> <h3><strong>Country A</strong></h3> <p>Street Address 52 <br/>Contact Name</p><p>+44 827 312 5002</p><p><a href="#">countrya@amazing.com</a> </p></div><div class="col-12 col-sm-6 col-md-4 mt-4 mt-sm-0"> <h3><strong>Country B</strong></h3> <p>Street Address 100 <br/>Contact Name</p><p>+13 827 312 5002</p><p><a href="#">countryb@amazing.com</a> </p></div><div class="col-12 col-md-4 mt-5 mt-md-0 text-md-left"> <h3><strong>About Us</strong></h3> <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p></div></div><div class="row mt-5"> <div class="col text-center" data-highlightable="1">(c) 2017 Flowz. All Rights Reserved</div></div></div></footer></p><!--/gm-editable-region--></div></div>
+</div>
+<script src="./../assets/client-plugins/global-variables-plugin.js"></script>
+<script src="./../assets/client-plugins/flowz-builder-engine.js"></script>
+<script src="./../assets/client-plugins/shopping-cart.js"></script>
+<script src="./../main-files/main.js"></script>
+</body>
+</html>
