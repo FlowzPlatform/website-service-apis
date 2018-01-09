@@ -14,7 +14,7 @@ RUN apt-get update \
 RUN curl --silent --location https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install --yes nodejs
 RUN apt-get install --yes build-essential
-
+RUN npm install --global surge
 
 RUN apt-get install --yes git
 ADD .netrc /root
