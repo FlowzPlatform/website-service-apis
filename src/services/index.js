@@ -15,6 +15,8 @@ const webpackApi = require('./webpack-api/webpack-api.service.js');
 
 const addressBook = require('./address-book/address-book.service.js');
 
+const emailSubscribers = require('./email-subscribers/email-subscribers.service.js');
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -35,4 +37,5 @@ module.exports = function () {
   app.configure(webpackApi);
 
   app.configure(addressBook);
+  app.configure(emailSubscribers);
 };
