@@ -150,7 +150,7 @@ try{
         }
         if (elem.title) {
             if (elem.children != undefined) {
-                html.push('<a class="dropdown-toggle" data-toggle="dropdown" href="' + elem.customSelect + '">' + elem.title + ' <b class="caret"></b></a>');
+                html.push('<a class="dropdown-toggle" data-toggle="dropdown" href="' + elem.customSelect + '">' + elem.title + ' </a>');
             } else {
                 html.push('<a href="' + elem.customSelect + '">' + elem.title + ' </a>');
             }
