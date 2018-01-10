@@ -62,21 +62,17 @@ async function paynow() {
 	   method: 'post',
 	   url: 'http://api.flowz.com/crm/payment',
 	   data : {
-			   "settingId" : "dcfc3719-fe95-4227-80ac-0d94416d7fe4",
-			   "gateway":"stripe",
+			   "settingId" : "ddc62653-6854-408d-9fd5-e56c63cb7ecf",
+			   "gateway": "stripe",
 			   "id" : invoice.data.InvoiceID,
-			   "amount" :invoice.data.AmountDue,
-			   "cname" : "Coco Cafe",
-			   "value" : "59",							//keep it as it is
+			   "amount" :50,		
+			   "Name" : "Dweep1",
 			   "type": cardType,						//change
 			   "cardNumber": cardNumber,				//change
 			   "expMonth": expiryMonth,					//change
 			   "expYear": expiryYear,					//change
 			   "cvc": cvCode							//change
-		   },
-	   headers: {
-		 "Authorization" : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OWE4ZTBkZDQxZGMxNzAwMWFlYjFlNjciLCJpYXQiOjE1MTQ0NzQ3NTksImV4cCI6MTUxNDUxNzk4OSwiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiYW5vbnltb3VzIn0.4RMUI4-37fUBmUs_ufAEgkB_Bbfng_tYuD6DAMV1JGo'
-	   }
+		   }
    })
    .then(function (response) {
 	 console.log("Payment response",response);
@@ -94,15 +90,16 @@ async function addInvoice() {
 		  method: 'post',
 		  url: 'http://api.flowz.com/crm/invoice',
 		  data: {
-			settingId : "dcfc3719-fe95-4227-80ac-0d94416d7fe4",
-			name : "Coco Cafe",
-			description : "Sales Invoice",
-			qty : total_qty,							//change
-			amount : grand_total						//cahnge
-		  },
-		  headers:{
-			"Authorization" : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OWE4ZTBkZDQxZGMxNzAwMWFlYjFlNjciLCJpYXQiOjE1MTQ0NzIyNjYsImV4cCI6MTUxNDQ3NTg5NiwiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiYW5vbnltb3VzIn0.vojdNl3N0lQgUqA4GHfEhbq2uP_2Pgzr4dJy1OHbfQI'
-		  }
+			settingId : "ddc62653-6854-408d-9fd5-e56c63cb7ecf",
+			user : "janydoe@email.com",
+			Name : "Dweep1",
+			EmailAddress : "janydoe@email.com",
+			"products" : [{
+				"description" : "Sales Invoice",
+				"qty" : total_qty,
+				"amount" : grand_total
+			}]
+			}
 	  })
 	.then(function (response) {
 	  console.log("Invoice response",response);
@@ -113,3 +110,4 @@ async function addInvoice() {
 	});
 	return resp;
   }
+

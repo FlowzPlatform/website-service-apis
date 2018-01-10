@@ -96,7 +96,11 @@ body {
                         class="clearfix"></div>
                 <reusecomponent class="c9193">{{> productDetail id='specialInfo.partial' }}</reusecomponent>
                 <div class="clearfix"></div>
-                <button class="btn place-order-submit" type="button">Add to cart</button>
+                <div class="product-section-box">
+                    <div class="text-right pull-right">
+                        <button class="small-but btn-default place-order-submit" type="button"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                    </div>
+	            </div>
             </div>
             </form>
         </div>

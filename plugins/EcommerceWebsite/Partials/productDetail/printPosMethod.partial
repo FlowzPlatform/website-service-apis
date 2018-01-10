@@ -1,4 +1,4 @@
- <style>
+<style>
 * {
     box-sizing: border-box;
 }
@@ -14,6 +14,14 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
 }
 
 .row {
@@ -47,9 +55,8 @@ body {
 
 
 
-
 <div id="js_imprint_request_quote">
-    <div class="optional-panel js-printPosition--printPosMethod--section"
+    <div class="optional-panel js-printposition-section"
     id="js_imprint_request_quote_box_#printPosMethodId#">
         <div class="option-head"><a href="javascript:void(0)" id="print_pos"><i class="fa fa-caret-down"></i>#data.printPositionName#<span class="caret-icon pull-right"></span></a>
         </div>
@@ -69,69 +76,24 @@ body {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option"><span class="question">How many colours are in your design?</span>
-                    <div
-                    class="selection-common-box pull-left imprint-color-select">
-                        <div class="dropdown dropdown_size js_imprint_method_selectbox_#data.printPosition#_#data.printMethod#">
-                            <input class="js_max_selectable_color_#data.printPosition#_#data.printMethod#"
+                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option"><span class="question">How many colours are in design?</span>
+                    <div class="selection-common-box pull-left imprint-color-select">
+                        <div class="dropdown dropdown_size js_imprint_method_selectbox_#data-printPosition#_#data-printMethod#">
+                            <input class="js_max_selectable_color_#data-printPosition#_#data-printMethod#"
                             type="hidden" value="#data.maxImprintColor#" />
                             <button class="btn dropdown-toggle" aria-expanded="true" data-toggle="dropdown"
                             id="dropdownMenu16" type="button">Select Colour<span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu js_set_selected_value js_set_selected_value_col" aria-labelledby="dropdownMenu17"
-                            role="menu">
+                            <ul class="dropdown-menu js_set_selected_value js_set_selected_value_col"
+                            aria-labelledby="dropdownMenu17" role="menu">
                                 <li data-value="1"><a href="javascript:void(0)">1 Colour</a>
                                 </li>
                             </ul>
                         </div>
-                </div><a class="other-color pull-left" href="javascript:void(0)"><i class="fa fa-question-circle"></i></a>
-                <div
-                class="other-color-dropdown" id="c212908">
-                    <div class="color-option-col">
-                        <h3>How many colours does your design have ?</h3>
-                        <ul>
-                            <li>
-                                <div class="pull-left"><span>1 colour</span>
-                                    <p>Your Design in one Solid Colour</p>
-                                </div>
-                                <div class="pull-right">
-                                    <img src="/bundles/officebraincustombundletheme/KeyInnovationTheme/images/1-color-logo.png"
-                                    />
-                                </div>
-                            </li>
-                            <li>
-                                <div class="pull-left"><span>2 colour</span>
-                                    <p>Your Design in two Solid Colour</p>
-                                </div>
-                                <div class="pull-right">
-                                    <img src="/bundles/officebraincustombundletheme/KeyInnovationTheme/images/2-color-logo.png"
-                                    />
-                                </div>
-                            </li>
-                            <li>
-                                <div class="pull-left"><span>3 colour</span>
-                                    <p>Your Design in three Solid Colour</p>
-                                </div>
-                                <div class="pull-right">
-                                    <img src="/bundles/officebraincustombundletheme/KeyInnovationTheme/images/3-color-logo.png"
-                                    />
-                                </div>
-                            </li>
-                            <li>
-                                <div class="pull-left"><span>Full colour</span>
-                                    <p>1 Colour Your Design is
-                                        <br/>4 + Colours Or Contains Gradients.</p>
-                                </div>
-                                <div class="pull-right">
-                                    <img src="/bundles/officebraincustombundletheme/KeyInnovationTheme/images/4-color-logo.png"
-                                    />
-                                </div>
-                            </li>
-                        </ul>
                     </div>
+                </div>
             </div>
+            <div class="js-color-div-append hide"></div>
         </div>
     </div>
-</div>
-</div>
 </div>

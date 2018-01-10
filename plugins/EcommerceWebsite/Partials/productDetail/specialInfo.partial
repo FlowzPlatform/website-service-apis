@@ -34,7 +34,7 @@ body {
 
 
 <div class="product-section-box">
-    <h2 class="heading-block no-tag">Special Instructions</h2>
+    <h2 class="heading-block no-tag js-section-number ">Special Instructions</h2>
     <div class="special-instruction-textarea js-specialInstruction-section">
         <textarea name="note" placeholder="Please fill your comments here..."
         id="js_request_quote_instruction" required="true"></textarea>

@@ -2,7 +2,7 @@ if (user_id == null ) {
   window.location = 'login.html';
 }
 $(function() {
-
+    let addressBookId = getParameterByName("id");
     // Add Contact Book
     $('form#address_book').validate({
   			rules: {
@@ -47,29 +47,41 @@ $(function() {
         submitHandler: function(form) {
             let formObj = $(form);
             // console.log("form",formObj.serialize());
+            if(addressBookId != null){
+              methodType = "PATCH"
+              url = project_settings.address_book_api_url+"/"+addressBookId;
+            }else{
+              methodType = "POST"
+              url = project_settings.address_book_api_url;
+            }
+
             $.ajax({
-                  type: 'POST',
-                  url: project_settings.address_book_api_url,
+                  type: methodType,
+                  url: url,
                   data: formObj.serialize()+'&user_id='+user_id+'&culture='+project_settings.default_culture+'&is_address=1',
                   cache: false,
                   dataType: 'json',
                   headers: {"Authorization": project_settings.product_api_token},
                   success: function(response){
                       if(response.id != undefined && response.id != '' ){
+                        if(addressBookId != null){
+                          showSuccessMessage("Your address book is updated successfully..","addressBookList.html");
+                        }else{
                           showSuccessMessage("Your address book is saved successfully..","addressBookList.html");
+                        }
                           return false;
                       }
                   },
                   error: function(jqXHR, textStatus, errorThrown) {
                   }
             });
+
         },
     });
+
     /* End Add Address Book */
 
     /* Edit Address Book Start */
-
-    let addressBookId = getParameterByName("id");
     if(addressBookId != null){
       axios({
           method: 'GET',
@@ -79,7 +91,18 @@ $(function() {
       .then(response => {
           if(response.data != undefined ){
               let addressBookDetail = response.data;
-            // $("#")
+              console.log("addressBookDetail",addressBookDetail);
+              let formObj = $('form#address_book');
+              $.each(addressBookDetail,function(element,value){
+                  $(formObj.find('input[type="text"][name*="'+element+'"]')).val(value);
+                  $('option:selected', 'select[name="'+element+'"]').removeAttr('selected');
+                  $('select[name="'+element+'"]').find('option[value="'+value+'"]').attr("selected",true);
+                  $(formObj.find('[name*="'+element+'"]')).parent('span').find(".checkout-holder").text(value)
+                  $('input:radio[name="'+element+'"]').prop('checked', true);
+                  if($(formObj.find('[name*="'+element+'"]')).parent('span').find(".checkout-holder").text() == "shipping"){
+                    $(".js-isoffice").show()
+                  }
+              });
           }
       })
       .catch(error => {

@@ -37,6 +37,10 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
 }
+ .obv-virtualbrochurelibrary-main-div .row.obv-padding-top-50.obv-padding-bottom-15 {
+    width: 1028px;
+}
+
 </style>
 
 <script type="text/javascript" src="http://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js"></script>

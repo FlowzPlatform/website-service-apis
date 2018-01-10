@@ -52,7 +52,7 @@ body {
 
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-left">
-        <h1>#data.product_name#</h1>
+        <h1 class="heading-2">#data.product_name#</h1>
     </div>
     <div class="skuprice pull-right">
         <div>ITEM CODE :<span>#data.sku#</span>
