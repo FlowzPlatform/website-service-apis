@@ -17,6 +17,9 @@ const addressBook = require('./address-book/address-book.service.js');
 
 const emailSubscribers = require('./email-subscribers/email-subscribers.service.js');
 
+const publishSurge = require('./publish-surge/publish-surge.service.js');
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -35,6 +38,7 @@ module.exports = function () {
   app.configure(publishNow);
   app.configure(projectConfiguration);
   app.configure(webpackApi);
+  app.configure(publishSurge);
 
   app.configure(addressBook);
   app.configure(emailSubscribers);
