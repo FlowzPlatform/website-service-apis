@@ -29,7 +29,7 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      hook => bypassDefaultInsert(hook)
+      hook => newsletterDefaultInsert(hook)
     ],
     update: [],
     patch: [],
@@ -57,7 +57,7 @@ module.exports = {
   }
 };
 
-bypassDefaultInsert= async hook => {
+newsletterDefaultInsert= async hook => {
   await r.table("email_subscribers")
   .filter(r.row("email").eq(hook.data.email))
   .run(connection , function(error , cursor){
