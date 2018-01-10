@@ -400,3 +400,59 @@ new Vue({
   }
 })
 // dataField js ends
+
+// Payment JS
+try{
+    var paymentgateways = [];
+
+    var userEmail = '';
+    var projectName = '';
+    var configDataUrl = '';
+    // var baseURL = 'http://localhost:3032';
+    // var socketURL = 'http://localhost:4032';
+    var baseURL = 'http://api.flowz.com/serverapi';
+    var socketHost = 'http://ws.flowz.com:4032';
+
+    $(document).ready(function() {
+        getProjectInfo();
+        // ImpletementSocekt();
+    });
+
+    async function getProjectInfo() {
+        await $.getJSON( "../assets/project-details.json", function( data ) {  
+            var configData = data;
+            userEmail = data[0].projectOwner;
+            projectName = data[0].projectName;
+
+            configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
+        });
+        getConfigData();
+    }
+
+    async function getConfigData () {
+
+        await $.getJSON( configDataUrl , function( data ) {  
+            var configData = data.data[0].configData;
+            // globalVariables = configData[1].projectSettings[1].GlobalVariables;
+            paymentgateways=configData[1].projectSettings[1].PaymentGateways
+        console.log('configData',configData[1].projectSettings[1].PaymentGateways)
+        }); 
+        Paymentgateways();
+    }
+
+
+    async function Paymentgateways () {
+        var paymentbuttons=''
+        for(let i=0;i<paymentgateways.length;i++){
+            if(paymentgateways[i].checked==true){
+                paymentbuttons=paymentbuttons+'<button type="button" class="btn" data-id="'+ paymentgateways[i].name+'" title="'+ paymentgateways[i].description+'">'+paymentgateways[i].gateway+'</button>'
+            }
+        }
+        $('paymentgateway').replaceWith(paymentbuttons);
+            
+    }
+}
+catch (err) {
+    console.log('Error in Payment Module: ', err);
+}
+// Payment JS Ends
