@@ -1,0 +1,35 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+<div class="product-section-box">
+    <h2 class="heading-block js-section-number">Colours </h2>
+    <div class="checkbox_colors">
+        <div>
+            <input class="js_color_checkbox" type="checkbox" name="col1" id="#data.colorID#"
+            value="#data.colorVal#" />
+            <label for="#data.colorVal#">#data.colorList#</label>
+        </div>
+    </div>
+</div>

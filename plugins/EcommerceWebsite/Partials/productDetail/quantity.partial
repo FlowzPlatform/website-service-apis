@@ -1,0 +1,73 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+<div class="product-section-box">
+    <div class="panel-group" id="Order-decoration-Quantity" role="tablist"
+    aria-multiselectable="true">
+        <div class="panel-heading product-section-box open" role="tab">
+            <h2 class="panel-title heading-block js-section-number">Quantity
+			          </h2><a class="caret-icon js-add-class tab-quantity" data-toggle="collapse"
+            data-parent="#Order-decoration-Quantity" href="#Order-decoration-Quantity-block"
+            aria-expanded="true"><i class="caret-icon"></i></a>
+        </div>
+        <div class="panel-collapse collapse js-quantity-section in" id="Order-decoration-Quantity-block"
+        role="tabpanel">
+            <div class="panel-body">
+                <div class="quantity-table additional-table">
+                    <div id="js_request_quote_qty_box">
+                        <div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_green_camo_with_green_trim">
+                            <div class="color-input" title="Green Camo with Green Trim">
+                                <br/>
+                            </div>
+                            <div class="selector-quantity js-quantity-section in">
+                                <div class="selector-btn">
+                                    <div class="sp-minus"><a class="js-quantity-selector" data-multi="-1" href="javascript:void(0)">-</a>
+                                    </div>
+                                    <div class="selector-input">
+                                        <input class="selector-input js_request_quote_qty js_request_quote_nosize_qty"
+                                        type="text" value="0" />
+                                    </div>
+                                    <div class="sp-plus"><a class="js-quantity-selector" data-multi="1" href="javascript:void(0)">+</a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div><a class="js_request_quote_qty_remove remove-qty" href="javascript:void(0)"
+                            data-toggle="tooltip" data-id="green_camo_with_green_trim"><i class="fa fa-trash-o"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

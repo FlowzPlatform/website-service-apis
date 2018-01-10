@@ -8,15 +8,14 @@ const getDirectoryList = require('./get-directory-list/get-directory-list.servic
 const shoppingCart = require('./shoppingCart/shoppingCart.service.js');
 const register = require('./register/register.service.js');
 
-
+const requestInfo = require('./request-info/request-info.service.js');
 const publishNow = require('./publish-now/publish-now.service.js');
-
-
 const projectConfiguration = require('./project-configuration/project-configuration.service.js');
-
-
 const webpackApi = require('./webpack-api/webpack-api.service.js');
 
+const addressBook = require('./address-book/address-book.service.js');
+
+const emailSubscribers = require('./email-subscribers/email-subscribers.service.js');
 
 const publishSurge = require('./publish-surge/publish-surge.service.js');
 
@@ -31,13 +30,20 @@ module.exports = function () {
   app.configure(gitlabAddRepo);
   app.configure(userService);
   app.configure(metalsmith);
+
+  //app.configure(transaction);
   app.configure(imageUpload);
   app.configure(getDirectoryList);
   app.configure(shoppingCart);
   app.configure(register);
+
+  app.configure(requestInfo);
   app.configure(publishNow);
   app.configure(projectConfiguration);
   app.configure(webpackApi);
   app.configure(publishSurge);
   app.configure(copyWebsite);
+
+  app.configure(addressBook);
+  app.configure(emailSubscribers);
 };
