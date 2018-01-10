@@ -2,7 +2,7 @@
   "project_settings":
       {
         "product_api_url": "http://api.flowzcluster.tk/pdm/api/products/US/",
-        "product_api_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OTkxNDA1NTZjNzFkMTAwMWMwMjA3MjkiLCJpYXQiOjE1MTU1Njg3OTksImV4cCI6MTUxNTU3MjQyOSwiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiYW5vbnltb3VzIn0.rJ07h8ppH1_Nr9lBMO_F5WBtqVG4T04R_xDN6L46pHQ",
+        "product_api_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OTkxNDA1NTZjNzFkMTAwMWMwMjA3MjkiLCJpYXQiOjE1MTU1OTEwMDIsImV4cCI6MTUxNTU5NDYzMiwiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiYW5vbnltb3VzIn0.q1tBTGVLd6rb5fdwesn2VbgZw08kq7PXEy88mOlLPm8",
         "product_api_image_url": "http://image.promoworld.ca/migration-api-hidden-new/web/images/",
         "search_api_url": "https://f21a94c6770cd2850444cb6de9b333cf.us-east-1.aws.found.io:9243/pdm1/_search",
         "search_api_auth_token": "Basic YWFrcm9uOjEyMzQ1Ng==",
@@ -16,11 +16,11 @@
         "social_process_api": "http://auth.flowzcluster.tk/api/verifyemail",
         "default_culture": "en_us",
         "api_url": "http://auth.flowzcluster.tk/api/",
-        "shopping_api_url": "http://api.flowzcluster.tk/serverapi/shoppingCart",
-        "request_info_api_url": "http://api.flowzcluster.tk/serverapi/request-info",
-        "address_book_api_url": "http://api.flowzcluster.tk/serverapi/address-book",
+        "shopping_api_url": "http://localhost:3032/shoppingCart",
+        "request_info_api_url": "http://localhost:3032/request-info",
+        "address_book_api_url": "http://localhost:3032/address-book",
         "charges":["setup_charge","pms_charge"],
         "price_decimal": 2,
-        "email_subscribe_api_url": "http://api.flowzcluster.tk/serverapi/emailSubscribers"
+        "email_subscribe_api_url": "http://localhost:3032/emailSubscribers"
       }
 }

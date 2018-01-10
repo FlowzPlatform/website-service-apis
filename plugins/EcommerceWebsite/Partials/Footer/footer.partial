@@ -59,6 +59,9 @@ body {
 .detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
     color: #fff !important;
 }
+.innerpage, .home-content > .container {
+    min-height: 700px;
+}
 </style>
 
 <div class="middle-footer">
