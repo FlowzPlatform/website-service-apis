@@ -38,7 +38,9 @@ RUN cp -a -f /opt/app/plugins/* /var/www/html/plugins/
 RUN mv /opt/app/package2.json /var/www/html/package.json
 
 RUN cp /opt/app/nginx.conf /etc/nginx/sites-available/
-
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/qa.conf /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/flowz.conf /etc/nginx/sites-enabled/
 
 WORKDIR /var/www/html
 RUN npm install
