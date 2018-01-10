@@ -8,7 +8,7 @@ var apiUsername = $('popularProducts').attr('apiusername');
 var apiPassword = $('popularProducts').attr('apipassword');
 var numberOfItems = $('popularProducts').attr('numberofitems');
 
-console.log("API URL: " + apiUrl + ", APi Username: " + apiUsername + ", API Password: " + apiPassword + ", Number of Items: " + numberOfItems + ", Selected Template: " + selectTemplate);
+// console.log("API URL: " + apiUrl + ", APi Username: " + apiUsername + ", API Password: " + apiPassword + ", Number of Items: " + numberOfItems + ", Selected Template: " + selectTemplate);
 
 $('#sliderListItems').html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw">');
 
@@ -22,7 +22,7 @@ $.ajax({
   dataType: 'json',
   success: function (data) {
     console.log("Product data received...!!!")
-    rawData = data.hits.hits; 
+    rawData = data.hits.hits;
     productData = rawData;
   }
 });

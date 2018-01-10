@@ -62,6 +62,9 @@ if(pid != null) {
                   let listHtml = $('#title .row').html();
                   let titleAndSkuHtml = listHtml.replace('#data.product_name#',ProductName);
                   titleAndSkuHtml = titleAndSkuHtml.replace('#data.sku#',ProductSku);
+                  let breadcrumbHtml = $(".breadcrumb").html();
+                  breadcrumbHtml = breadcrumbHtml.replace("#data.title#",ProductName)
+                  $(".breadcrumb").html(breadcrumbHtml);
                   // console.log(titleAndSkuHtml);
                   // productHtml += listHtml1;
                   $('#title .row').html(titleAndSkuHtml);
@@ -76,7 +79,6 @@ if(pid != null) {
     		          if(productDetails.images != undefined){
                     let imageGallaryHtml = '';
     		            $.each(productDetails.images[0].images, function(index, element) {
-                      productDetails.supplier_id = 5;
     		              var imageUrl = project_settings.product_api_image_url+productDetails.supplier_id+'/'+element.web_image;
     		              var color = element.color;
     		               color = color.toLowerCase().replace(/\s/g, '-');
@@ -176,58 +178,132 @@ if(pid != null) {
                 }
 
                 $(".js_select_shipping_type").on("click",function(){
+                    if (user_id == null ) {
+                      window.location = 'login.html';
+                      return false;
+                    }
+                    // let colors_qty = [];
+                    //
+                    // $('.js_color_checkbox:checked').each(function() {
+                    //     let color_name = $(this).attr('id');
+                    //     let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+                    //     if(qty == 0){
+                    //       showErrorMessage("Please enter quantity.")
+                    //       return false;
+                    //     }
+                    //     colors_qty[color_name] = qty;
+                    //     colors_qty.push({color_name:qty})
+                    // });
+                    let colors_qty = {};
+                    $('.js_color_checkbox:checked').each(function() {
+                        let colorName = $(this).val();
+                        let color_name = $(this).attr('id');
+                        let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+                        if(qty == 0){
+                              showErrorMessage("Please enter quantity.")
+                              return false;
+                        }
+                        colors_qty[colorName] = qty;
+                    });
+
+                    if(colors_qty.length == 0){
+                      showErrorMessage("Please select color.")
+                      return false;
+                    }
+
+                    shippigCounter = 0
                     shippigCounter = shippigCounter+1;
+
                     $(".js_request_quote_shipping_counter").val(shippigCounter);
+                    let colorQtyHtml = $(".js_shipping_qty_box_main").html();
+                    let replaceQtyHtml = '';
+                    $.each(colors_qty,function(key,value){
+                      colorQtyHtml1 = colorQtyHtml.replace(/#data.color#/g,key)
+                      colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,value)
+                      replaceQtyHtml += colorQtyHtml1
+                    })
+                    $(".js_shipping_qty_box_main").html(replaceQtyHtml);
                     let shippingAddressHml = $(".shipping-method #js_shipping_method").html();
                     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
                     $(".shipping-method #js_shipping_method").html(shippingAddressHml)
                     let addressBookHtml = $("#js_shipping_addresses_"+shippigCounter+" p").html();
-                    // console.log("html==>>",addressBookHtml);
-                    // addressBookHtml.replace("#data.address#",)
-                    let replaceAddressHtml = '';
-                    $.ajax({
-                      type : 'GET',
-                      url : project_settings.address_book_api_url,
-                      data : {"address_type":"shipping","user_id": user_id,"is_default": 1,"is_address":1,"deleted_at":false},
-                      dataType : 'json',
-                      headers: {"Authorization": project_settings.product_api_token},
-                      success : function(response) {
-                        if(response.data != undefined && response.data.length > 0){
-                          returnData = response.data[0];
-                          replaceAddressHtml += returnData.name+"<br>";
-                          replaceAddressHtml += returnData.email+"<br>";
-                          replaceAddressHtml += returnData.street1+"<br>,";
-                          if(returnData.street2 != undefined){
-                            replaceAddressHtml += returnData.street2+"<br>";
-                          }
-                          replaceAddressHtml += returnData.city+",";
-                          replaceAddressHtml += returnData.state+",";
-                          if(returnData.postalcode != undefined ){
-                            replaceAddressHtml += returnData.postalcode+",";
-                          }
-                          replaceAddressHtml += returnData.country+"<br>";
-                          if(returnData.phone != undefined ){
-                            replaceAddressHtml += "T: "+returnData.phone+",<br>";
-                          }
-                          if(returnData.mobile != undefined ){
-                            replaceAddressHtml += "M: "+returnData.mobile+"<br>";
-                          }
 
-                          if(addressBookHtml.indexOf("#data.address#")!= -1){
-                              addressBookHtml = addressBookHtml.replace(/#data.address#/g,replaceAddressHtml);
-                              addressBookHtml = addressBookHtml+'<input name="shippingAddressId_'+shippigCounter+'" id="shippingAddressId_'+shippigCounter+'" value="'+returnData.id+'" type="hidden">'
-                              $("#js_shipping_addresses_"+shippigCounter+" p").html(addressBookHtml);
-                          }else{
-                              $("#js_shipping_addresses_"+shippigCounter+" p").html(replaceAddressHtml)
-                          }
-                          $(".shipping-method #js_shipping_method").removeClass("hide");
-                        }else{
-                            showErrorMessage("Address Book is not found.")
-                            return false;
-                        }
-                      }
-                    });
+                    $(".shipping-method #js_shipping_method").removeClass("hide");
+
+                    if ($(".auto_complete_shipping_email").length > 0)
+                  	{
+                  		var ShipAddUrl = project_settings.address_book_api_url+'?address_type=shipping&user_id='+user_id+'&deleted_at=false&is_address=1';
+                  		$(".auto_complete_shipping_email").typeahead({
+                  			name : 'sear',
+                  			display:'value',
+                  			minLength: 2,
+                  			limit: 10,
+                  			remote: {
+                  			url : ShipAddUrl+'&email=%QUERY',
+                  				filter: function (data) {
+                  					if(user_id == null){
+                              window.location = "login.html";
+                              return false;
+                  					}
+                  					return $.map(data.data, function (data) {
+                  						return {
+                  							id: data.id,
+                  							value: data.name+' ( '+data.email+' ) '
+                  							};
+                  					});
+                  				}
+                  			}
+                  		}).on('typeahead:selected', function (obj, datum) {
+                    			let counter = $(obj.currentTarget).data('counter');
+                    			let addressBookId = datum.id;
+                          console.log("address_book_id",addressBookId);
+                          axios({
+                              method: 'GET',
+                              url: project_settings.address_book_api_url+'/'+addressBookId,
+                              headers: {'Authorization': project_settings.product_api_token},
+                            })
+                          .then(response => {
+                              if(response.data != undefined ){
+                                  let returnData = response.data;
+                                  let replaceAddressHtml = '';
+                                  console.log("returnData===>>>",returnData);
+                                  replaceAddressHtml += returnData.name+"<br>";
+                                  replaceAddressHtml += returnData.email+"<br>";
+                                  replaceAddressHtml += returnData.street1+"<br>,";
+                                  if(returnData.street2 != undefined){
+                                    replaceAddressHtml += returnData.street2+"<br>";
+                                  }
+                                  replaceAddressHtml += returnData.city+",";
+                                  replaceAddressHtml += returnData.state+",";
+                                  if(returnData.postalcode != undefined ){
+                                    replaceAddressHtml += returnData.postalcode+",";
+                                  }
+                                  replaceAddressHtml += returnData.country+"<br>";
+                                  if(returnData.phone != undefined ){
+                                    replaceAddressHtml += "T: "+returnData.phone+",<br>";
+                                  }
+                                  if(returnData.mobile != undefined ){
+                                    replaceAddressHtml += "M: "+returnData.mobile+"<br>";
+                                  }
+                                  replaceAddressHtml += '<input name="shippingAddressId_'+shippigCounter+'" id="shippingAddressId_'+shippigCounter+'" value="'+returnData.id+'" type="hidden">';
+                                  if(addressBookHtml.indexOf("#data.address#")!= -1){
+                                      addressBookHtml = addressBookHtml.replace(/#data.address#/g,replaceAddressHtml);
+                                      $("#js_shipping_addresses_"+shippigCounter+" p").html(addressBookHtml);
+                                  }else{
+                                      $("#js_shipping_addresses_"+shippigCounter+" p").html(replaceAddressHtml)
+                                  }
+                                  $("#js_shipping_addresses_"+shippigCounter).removeClass("hide");
+                              }
+                          })
+                          .catch(error => {
+                            console.log('Error fetching and parsing data', error);
+                          });
+                  		});
+                  	}
                 });
+
+                // Auto sugession for search of addressbook
+
 
                 //product detail page bottom section
 				        if(typeof productDetails.description !== "undefined" || !productDetails.description) {
@@ -311,6 +387,14 @@ if(pid != null) {
                         }
                     }
                 }
+
+                let sectionCount = 0;
+                $( "#place_order_form .js-section-number" ).each(function( index ) {
+                  if($(this).closest('.panel-group').css('display') != 'none'){
+                    sectionCount = sectionCount + 1;
+                    $(this).prepend("<i>"+sectionCount+"</i>&nbsp;");
+                  }
+                });
             }
             else{
                 console.log("Authentication is failed to fetch product information.");
@@ -465,10 +549,10 @@ if(pid != null) {
 
           if($("#js_imprint_request_quote").html() !=""){
                 $("#js_imprint_request_quote").append(productHtmlPrintPosMethod);
-                $("#js_imprint_request_quote_box_"+print_pos_id).find(".js_set_selected_value").html(select_imprint_method);
+                $("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
           }else{
               $("#js_imprint_request_quote").html(productHtmlPrintPosMethod);
-              $("#js_imprint_request_quote_box_"+print_pos_id).find(".js_set_selected_value").html(select_imprint_method);
+              $("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
           }
           $("#js_imprint_request_quote_box_"+print_pos_id).find('.imprint-color-select').hide()
        }
@@ -491,8 +575,41 @@ if(pid != null) {
        }
      });
 
-      let select_how_colr = '';
+     $(document).on("click",".js_set_selected_value_col li",function(){
+        let thisObj = $(this);
+        let dataAttributes = thisObj.data();
+        let colorHtml = "<div class='row choose-variation js_select_color_boxes'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title js_color_title pull-left' data-type='standard'>Standard</div></div></div><input type='hidden' id='js_selected_color_id_#data.printPositionName#_#data.imprintId#_#data-printColor#' value='#data.color#' data-type='standard' /><div class='relative-col'><div class='row color-selection-block selection-common-box'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title hidden-lg hidden-md hidden-sm'>Standard</div><div class='selection-color-box'><div class='dropdown dropdown_size color-select-box'><button class='btn dropdown-toggle' aria-expanded='true' data-toggle='dropdown' type='button'>Select Color <span class='caret'></span></button><ul class='dropdown-menu js_select_color_from_list js_set_selected_value' role='menu' aria-labelledby='dropdownMenu_1' data-imprint-id='#data.imprintId#' data-color-no='#data.printColor#' data-type='standard'><li data-value='#data.imprintColor#'>#data.imprintColor#</li></ul></div></div></div></div></div>";
+        let replaceColorHtml = '';
+        let dropDownColorHtml = '';
+        let imprintData = $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js_select_method").parent('div').find("button").data();
+        let imprintMethod = imprintData.dropval
+        let printPosition = imprintData.printpos;
+        if(get_product_details.attributes.imprint_color != undefined && get_product_details.attributes.imprint_color instanceof Array){
+          for(let i=1;i<=dataAttributes.value;i++){
+            colorHtml1 = colorHtml.replace(/#data.printPositionName#/g,printPosition)
+            colorHtml1 = colorHtml1.replace(/#data.imprintId#/g,imprintMethod)
+            colorHtml1 = colorHtml1.replace(/#data.printColor#/g,i)
+            replaceColorHtml += colorHtml1;
+          }
+          $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js-color-div-append").html(replaceColorHtml)
 
+          $.each(get_product_details.attributes.imprint_color,function(key,imprintColor){
+            dropDownColorHtml += "<li data-value='"+imprintColor+"'><a href='javascript:void(0);'>"+imprintColor+"</a></li>"
+          })
+          $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js_select_color_from_list").html(dropDownColorHtml)
+          $("#js_imprint_request_quote_box_"+dataAttributes.position).find('.js-color-div-append').removeClass('hide');
+        }
+    });
+
+    $(document).on("click",".js_select_color_from_list li",function(){
+        let color_name = $(this).before('button').data('value');
+        let color_no = $(this).parent('ul').data('color-no');
+        let method_name = $(this).closest('.js-printposition-section').find('.imprint-method-select button').data('dropval');
+        let position_name = $(this).closest('.js-printposition-section').find('.imprint-method-select button').data('printpos');
+        $('#js_selected_color_id_'+position_name+'_'+method_name+'_'+color_no).val(color_name);
+    });
+
+     let select_how_colr = '';
      $(document).on("click",".js_select_method li",function(){
        let thisObj = $(this);
        let id = thisObj.attr("id");
@@ -507,7 +624,7 @@ if(pid != null) {
        productHtmlPrintPosColor += listHtmlPrintPosColor1;
         if(dataAttributes.maxImprintColor > 0){
           for(let i=1;i<=dataAttributes.maxImprintColor;i++){
-             imprintColor +=  '<li data-value="'+i+'"><a href="javascript:void(0)">'+i+'Colour</a></li>'
+             imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+'Colour</a></li>'
           }
           $("#js_imprint_request_quote_box_"+dataAttributes.printpos).find(".imprint-color-select").html(productHtmlPrintPosColor);
           $("#js_imprint_request_quote_box_"+dataAttributes.printpos).find(".js_set_selected_value_col").html(imprintColor);
@@ -530,13 +647,18 @@ if(pid != null) {
             colors_qty[color_name] = qty;
         });
 
-        //let position_id = $('#decoration-Decoration-Print-position-block').data('id');
         var imprint_position = [];
         $('.js_add_imprint_location_request_quote:checked').each(function(i) {
             let position_name = replaceWithUnderscore($(this).val());
             let imprint_method_name = $("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").data('dropval');
             let no_of_color = $("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").data('value');
-            var imprint_position_data = { 'imprint_position_name': position_name,'imprint_method_name': imprint_method_name,'no_of_color' : no_of_color };
+
+            var selected_colors = {};
+            for(var k=1;k<=no_of_color;k++) {
+                selected_colors[k-1] = $('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
+            }
+
+            var imprint_position_data = { 'imprint_position_name': position_name,'imprint_method_name': imprint_method_name,'no_of_color' : no_of_color,'selected_colors' : selected_colors };
             imprint_position.push(imprint_position_data);
         });
 
@@ -578,11 +700,8 @@ if(pid != null) {
           shipping_details.push({'color_quantity':colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail});
         }
         let shipping_method = {'shipping_detail':shipping_details,"shipping_type":shipping_type};
-        // console.log("total_qty",total_qty);
-        // console.log("order_type",order_type);
-        // console.log("unit_price",unit_price);
-        // console.log("user_id",user_id);
-        if(order_type != '' && total_qty != 0 && unit_price != 0 && user_id!=null) {
+
+        if(order_type != '' && total_qty != 0 && unit_price != 0 && user_id!=null && typeof shipping_type!='undefined') {
             var data = {};
             data['type'] = 2;
             data['product_id'] = pid;
@@ -595,23 +714,36 @@ if(pid != null) {
             data['total_qty'] = total_qty;
             data['unit_price'] = unit_price;
             data['shipping_method'] = shipping_method;
-            // console.log('product data == ',data);
+            //console.log('product data == ',data);
+
             $.ajax({
             type : 'POST',
             url : project_settings.shopping_api_url,
             data : data,
             dataType : 'json',
-            success : function(response_data) {
-                if(response_data.status == 200) {
-                    showSuccessMessage("Product added to cart","cartPage.html");
-                    return false;
+                success : function(response_data) {
+                    if(response_data.status == 200) {
+                            showSuccessMessage("Product added to cart","cartPage.html");
+                            return false;
+                        }
+                        else if(response_data.status == 400) {
+                            showSuccessMessage(response_data.message);
+                            return false;
+                        }
                 }
-            }
             });
         }
         else {
             if(user_id==null) {
                 showErrorMessage('Login required.');
+                return false;
+            }
+            else if(unit_price==0) {
+                showErrorMessage('Select valid quantity.');
+                return false;
+            }
+            else if(typeof shipping_type == 'undefined') {
+                showErrorMessage('Select shipping method.');
                 return false;
             }
             else {
@@ -620,15 +752,14 @@ if(pid != null) {
             }
         }
     });
-	
-	 /* Virtual tool */
+      /* Virtual tool */
       let virtualButtonHtml = $("#ob_virtual_list").html();
       virtualButtonHtml1 = virtualButtonHtml.replace("#data.sku#",get_product_details.sku)
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",get_product_details.supplier_id)
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
       $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
-		
+
    });
 
 function calculate_setup_charge(imprint_position)
@@ -641,7 +772,7 @@ function calculate_setup_charge(imprint_position)
             let imprint_data = get_product_details.imprint_data;
             for(let item in imprint_data)
             {
-                let data_imprint_method = replaceWithUnderscore(imprint_data[item].imprint_method)	
+                let data_imprint_method = replaceWithUnderscore(imprint_data[item].imprint_method)
                 let selected_imprint_method = imprint_position[imprint_position_val].imprint_method_name
                 if(data_imprint_method == selected_imprint_method)
                 {

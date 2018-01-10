@@ -36,7 +36,7 @@ body {
     <div class="panel-group" id="Order-decoration-Quantity" role="tablist"
     aria-multiselectable="true">
         <div class="panel-heading product-section-box open" role="tab">
-            <h2 class="panel-title heading-block">Quantity
+            <h2 class="panel-title heading-block js-section-number">Quantity
 			          </h2><a class="caret-icon js-add-class tab-quantity" data-toggle="collapse"
             data-parent="#Order-decoration-Quantity" href="#Order-decoration-Quantity-block"
             aria-expanded="true"><i class="caret-icon"></i></a>

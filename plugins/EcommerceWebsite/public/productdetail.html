@@ -2,7 +2,6 @@
 <head>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <title></title>
-<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' />
 <script src='https://code.jquery.com/jquery-3.2.1.js'></script>
 <link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'/>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -35,6 +34,8 @@
 
 body {
     margin: 0;
+      background: url('https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg') no-repeat center top;
+    background-attachment: fixed;
 }
 
 .row {
@@ -354,6 +355,17 @@ body {
 .ob-menu {
     background-color: rgb(73, 78, 107) !important;
 }
+ .row.header-search-col {
+position: absolute;
+width: 325px;
+top: 25px;
+left: 276px;
+}
+.row.header-search-col .col-lg-10,
+.row.header-search-col .col-lg-2 {
+padding: 0;
+}
+
 
 @media screen and (max-width: 600px) {
     #menu {
@@ -492,11 +504,11 @@ body {
 }
 </style>
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-rel="stylesheet" crossorigin="anonymous" />
 <script type="text/javascript" src="../assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
+    rel="stylesheet" type="text/css" />
+    <link href="../assets/css/base.css"
     rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
@@ -513,7 +525,7 @@ rel="stylesheet" crossorigin="anonymous" />
                             <ul class="header-loging">
                                 <li class="header-login-text"> <a href="index.html"> <span class="login-text">Home</span> </a>
                                 </li>
-                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="login.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
                                 </li>
                                 <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
                                 </li>
@@ -765,7 +777,7 @@ body {
             <ul>
                 <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
                 </li>
-                <li><strong>Berkeley Hampyton Polo</strong>
+                <li><strong>#data.title#</strong>
                 </li>
             </ul>
         </div>
@@ -824,7 +836,7 @@ body {
 
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-left">
-        <h1>#data.product_name#</h1>
+        <h1 class="heading-2">#data.product_name#</h1>
     </div>
     <div class="skuprice pull-right">
         <div>ITEM CODE :<span>#data.sku#</span>
@@ -994,6 +1006,14 @@ body {
     margin: 0;
 }
 
+#c70827 {
+    display: none;
+}
+
+:root {
+    margin-top: 0px;
+}
+
 :root {
     margin-top: 0px;
 }
@@ -1005,8 +1025,22 @@ body {
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
-</style>
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+ .obv-virtualbrochurelibrary-main-div .row.obv-padding-top-50.obv-padding-bottom-15 {
+    width: 1028px;
+}
+
+</style>
 
 <script type="text/javascript" src="http://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js"></script>
 <div class="product-section-box">
@@ -1233,7 +1267,7 @@ body {
 </style>
 
 <div class="product-section-box">
-    <h2 class="heading-block">Colours </h2>
+    <h2 class="heading-block js-section-number">Colours </h2>
     <div class="checkbox_colors">
         <div>
             <input class="js_color_checkbox" type="checkbox" name="col1" id="#data.colorID#"
@@ -1282,7 +1316,7 @@ body {
     <div class="panel-group" id="Order-decoration-Quantity" role="tablist"
     aria-multiselectable="true">
         <div class="panel-heading product-section-box open" role="tab">
-            <h2 class="panel-title heading-block">Quantity
+            <h2 class="panel-title heading-block js-section-number">Quantity
 			          </h2><a class="caret-icon js-add-class tab-quantity" data-toggle="collapse"
             data-parent="#Order-decoration-Quantity" href="#Order-decoration-Quantity-block"
             aria-expanded="true"><i class="caret-icon"></i></a>
@@ -1379,7 +1413,7 @@ body {
     <div class="panel-group" id="decoration-Decoration-Print-position" role="tablist"
     aria-multiselectable="true">
         <div class="panel-heading open" role="tab">
-            <h2 class="panel-title heading-block">Print Position</h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="#decoration-Decoration-Print-position"
+            <h2 class="panel-title heading-block js-section-number ">Print Position</h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="#decoration-Decoration-Print-position"
             href="#decoration-Decoration-Print-position-block" aria-expanded="true"><i class="caret-icon"></i></a>
         </div>
         <div class="panel-collapse collapse in" id="decoration-Decoration-Print-position-block"
@@ -1400,7 +1434,7 @@ body {
                     </div>
                 </div>
             </div>
-            <reusecomponent class="c15594"> <style>
+            <reusecomponent class="c15594"><style>
 * {
     box-sizing: border-box;
 }
@@ -1416,6 +1450,14 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
 }
 
 .row {
@@ -1449,9 +1491,8 @@ body {
 
 
 
-
 <div id="js_imprint_request_quote">
-    <div class="optional-panel js-printPosition--printPosMethod--section"
+    <div class="optional-panel js-printposition-section"
     id="js_imprint_request_quote_box_#printPosMethodId#">
         <div class="option-head"><a href="javascript:void(0)" id="print_pos"><i class="fa fa-caret-down"></i>#data.printPositionName#<span class="caret-icon pull-right"></span></a>
         </div>
@@ -1471,73 +1512,27 @@ body {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option"><span class="question">How many colours are in your design?</span>
-                    <div
-                    class="selection-common-box pull-left imprint-color-select">
-                        <div class="dropdown dropdown_size js_imprint_method_selectbox_#data.printPosition#_#data.printMethod#">
-                            <input class="js_max_selectable_color_#data.printPosition#_#data.printMethod#"
+                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option"><span class="question">How many colours are in design?</span>
+                    <div class="selection-common-box pull-left imprint-color-select">
+                        <div class="dropdown dropdown_size js_imprint_method_selectbox_#data-printPosition#_#data-printMethod#">
+                            <input class="js_max_selectable_color_#data-printPosition#_#data-printMethod#"
                             type="hidden" value="#data.maxImprintColor#" />
                             <button class="btn dropdown-toggle" aria-expanded="true" data-toggle="dropdown"
                             id="dropdownMenu16" type="button">Select Colour<span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu js_set_selected_value js_set_selected_value_col" aria-labelledby="dropdownMenu17"
-                            role="menu">
+                            <ul class="dropdown-menu js_set_selected_value js_set_selected_value_col"
+                            aria-labelledby="dropdownMenu17" role="menu">
                                 <li data-value="1"><a href="javascript:void(0)">1 Colour</a>
                                 </li>
                             </ul>
                         </div>
-                </div><a class="other-color pull-left" href="javascript:void(0)"><i class="fa fa-question-circle"></i></a>
-                <div
-                class="other-color-dropdown" id="c212908">
-                    <div class="color-option-col">
-                        <h3>How many colours does your design have ?</h3>
-                        <ul>
-                            <li>
-                                <div class="pull-left"><span>1 colour</span>
-                                    <p>Your Design in one Solid Colour</p>
-                                </div>
-                                <div class="pull-right">
-                                    <img src="/bundles/officebraincustombundletheme/KeyInnovationTheme/images/1-color-logo.png"
-                                    />
-                                </div>
-                            </li>
-                            <li>
-                                <div class="pull-left"><span>2 colour</span>
-                                    <p>Your Design in two Solid Colour</p>
-                                </div>
-                                <div class="pull-right">
-                                    <img src="/bundles/officebraincustombundletheme/KeyInnovationTheme/images/2-color-logo.png"
-                                    />
-                                </div>
-                            </li>
-                            <li>
-                                <div class="pull-left"><span>3 colour</span>
-                                    <p>Your Design in three Solid Colour</p>
-                                </div>
-                                <div class="pull-right">
-                                    <img src="/bundles/officebraincustombundletheme/KeyInnovationTheme/images/3-color-logo.png"
-                                    />
-                                </div>
-                            </li>
-                            <li>
-                                <div class="pull-left"><span>Full colour</span>
-                                    <p>1 Colour Your Design is
-                                        <br/>4 + Colours Or Contains Gradients.</p>
-                                </div>
-                                <div class="pull-right">
-                                    <img src="/bundles/officebraincustombundletheme/KeyInnovationTheme/images/4-color-logo.png"
-                                    />
-                                </div>
-                            </li>
-                        </ul>
                     </div>
+                </div>
             </div>
+            <div class="js-color-div-append hide"></div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</reusecomponent>
+</div></reusecomponent>
         </div>
     </div>
 </div></reusecomponent>
@@ -1589,12 +1584,12 @@ body {
 }
 </style>
 
-
+<script type="text/javascript" src="../assets/client-plugins/typeahead.min.js"></script>
 <div class="product-section-box">
     <div class="panel-group" id="blank-Shipping-method-quote" role="tablist"
     aria-multiselectable="true">
         <div class="panel-heading open" role="tab">
-            <h2 class="panel-title heading-block">Shipping Method
+            <h2 class="panel-title heading-block js-section-number ">Shipping Method
             </h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="#blank-Shipping-method-quote"
             href="#Shipping-method-col" aria-expanded="true"><i class="caret-icon"></i></a>
         </div>
@@ -1614,13 +1609,24 @@ body {
                     <div id="js_shipping_method">
                         <div class="optional-panel in js_shipping_method_detail" id="js_shipping_method_detail_#data.counter#"
                         data-shipping-counter="#data.counter#">
-                            <div class="option-head"><a href="javascript:void(0);">Shipping Address</a>
+                            <div class="option-head"><a href="javascript:void(0);">Shipping Address #data.counter#</a>
                             </div>
                             <div class="option-body js-shippingMethod--data-counter--section" id="c19663">
                                 <div class="shipping-address">
                                     <div class="ship-add-tit">Select a Shipping address from your address book or enter a new address.</div>
+                                    <div class="ship-add-parts">
+                                        <a class="btn" data-placement="top" data-toggle="tooltip" href="addAddressBook.html" data-original-title="Add New Address" target="_blank">
+                                            Add New Address
+                                        </a>
+                                    </div>
+                                    <div class="search-mail-block">
+                                        <div class="search-col">
+                                            <input type="text" name="auto_complete_shipping_email" placeholder="Please enter a name or email address from your address book" class="auto_complete_shipping_email" data-counter="#data.counter#">
+                                            <input type="submit" value="" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="shipping-scroll" id="js_shipping_addresses_#data.counter#">
+                                <div class="shipping-scroll hide" id="js_shipping_addresses_#data.counter#">
                                     <reusecomponent class="c21612"><style>
 * {
     box-sizing: border-box;
@@ -1666,6 +1672,23 @@ body {
     </div>
 </div></reusecomponent>
                                 </div>
+                                <div class="js_shipping_qty_box_main" data-shipping-counter="#data.counter#">
+                                    <div class="optional-panel size-selection-col js_rq_shipping_quantity" data-color-id="#data.color#" >
+                                        <div class="option-head">
+                                            <a href="javascript:void(0);" class="pull-right">
+                                                #data.color#<span class="pull-right">Selected Quantity : <total>#data.quantity#<total></span>
+                                            </a>
+                                        </div>
+                                        <div class="option-body">
+                                            <div class="row select-quntity-col js_qty_box">
+                                                <div class="col-lg-4 col-md-6 col-sm-4 col-xs-12" data-size-id="0">
+                                                    <span>Quantity : </span>
+                                                    <input readonly type="text" value="#data.quantity#" class="js_request_quote_shipping_qty_box js_request_quote_qty"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1673,7 +1696,8 @@ body {
             </div>
         </div>
     </div>
-</div></reusecomponent>
+</div>
+</reusecomponent>
                         <div
                         class="clearfix"></div>
                 <reusecomponent class="c9193"><style>
@@ -1712,14 +1736,18 @@ body {
 
 
 <div class="product-section-box">
-    <h2 class="heading-block no-tag">Special Instructions</h2>
+    <h2 class="heading-block no-tag js-section-number ">Special Instructions</h2>
     <div class="special-instruction-textarea js-specialInstruction-section">
         <textarea name="note" placeholder="Please fill your comments here..."
         id="js_request_quote_instruction" required="true"></textarea>
     </div>
 </div></reusecomponent>
                 <div class="clearfix"></div>
-                <button class="btn place-order-submit" type="button">Add to cart</button>
+                <div class="product-section-box">
+                    <div class="text-right pull-right">
+                        <button class="small-but btn-default place-order-submit" type="button"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                    </div>
+	            </div>
             </div>
             </form>
         </div>
@@ -1885,7 +1913,7 @@ body {
 
 
 <div class="product-section-box">
-    <h2 class="heading-block no-tag">Special Instructions</h2>
+    <h2 class="heading-block no-tag js-section-number ">Special Instructions</h2>
     <div class="special-instruction-textarea js-specialInstruction-section">
         <textarea name="note" placeholder="Please fill your comments here..."
         id="js_request_quote_instruction" required="true"></textarea>
@@ -2074,6 +2102,7 @@ body {
 }
 .detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
     color: #fff !important;
+}
 </style>
 
 <div class="middle-footer">
