@@ -45,7 +45,7 @@ body {
                               <th>Shipping : #data.shipping_type# </th>
                               <th>
                                 <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" class="js_view_order ui-link" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                <a data-original-title="Delete" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" class="js-btn-delete-cart-list  cart-product-delete-btn  " data-cart-id="#data.cart_id#"><i class="fa fa-trash-o"></i></a>  
+                                <a data-original-title="Delete" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" class="js-btn-delete-cart-list  cart-product-delete-btn  " data-cart-id="#data.cart_id#"><i class="fa fa-trash-o"></i></a>
                               </th>
                            </tr>
                         </thead>
@@ -112,7 +112,7 @@ body {
                                                                        <div class="estimate-row">#data.colours#</div>
                                                                     </div>
                                                                   </td>
-                                                                  <td><br></td>
+                                                                  <td>#data.additional_charges_list#</td>
                                                                   <td class="border-right-none">$ #data.charges#</td>
                                                                </tr>
                                                             </tbody>
@@ -139,7 +139,7 @@ body {
                                                                        		#data.color_quantity#
                                                                   </td>
                                                                   <td class="border-right-none"></td>
-                                                                  <td><span>Shipping Carrier: </span> #data.shipping_carrier# <br><span>Method: </span> #data.shipping_method# <br><span>Ship on my account: </span> #data.ship_account# <br><span>In Hand Date: </span> #data.on_hand_date# 														
+                                                                  <td><span>Shipping Carrier: </span> #data.shipping_carrier# <br><span>Method: </span> #data.shipping_method# <br><span>Ship on my account: </span> #data.ship_account# <br><span>In Hand Date: </span> #data.on_hand_date#
                                                                   </td>
                                                                   <td class="text-center">$ #data.shipping_charges#</td>
                                                                </tr>
@@ -153,12 +153,12 @@ body {
                                        </tr>
                                        <tr class="order-item-subtotal">
                                           <td>Total : $ #data.total#</td>
-                                          <td>Additional Charges : $ #data.additional_charges#</td>
+                                          <td>Additional Charges : $ #data.charges#</td>
                                           <td>Shipping Charge : $ #data.shipping_charges#</td>
                                           <td>
                                              Tax : $ #data.tax#
                                           </td>
-                                          <td colspan="2">			
+                                          <td colspan="2">
                                              Sub Total :<span>$ #data.subtotal#</span>
                                           </td>
                                        </tr>

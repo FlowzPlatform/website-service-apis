@@ -11,10 +11,6 @@ body {
     margin-top: 0px;
 }
 
-:root {
-    margin-top: 0px;
-}
-
 .clearfix {
     clear: both;
 }
@@ -44,21 +40,27 @@ body {
 .news-box {
     display: block !important;
 }
+.virtual-button {
+    background: #666;
+    text-align: center;
+    min-width: auto;
+    min-height: 39px;
+    padding: 8px;
+    color: #818792 !important;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-family: inherit;
+    min-height: auto !important;
+}
+.detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
+    color: #fff !important;
+}
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <div class="middle-footer">
     <div class="container">
         <div class="social-icon-box">
@@ -82,13 +84,15 @@ body {
             </div>
             <div class="pull-right">
                 <p class="newslatter">GET DEALS AND IDEAS FROM US</p>
-                <form class="form-inline news-box" role="form">
+                <form class="form-inline news-box" id="sunscribe_email"
+                metod="post" onsubmit="return submitNewsLetterForm();">
                     <div class="form-group">
-                        <input class="form-control" type="email" id="email_id" name="email_send"
-                        placeholder="Enter Your Email Address" aria-describedby="basic-addon1"
-                        />
+                        <input class="required email form-control js-subscribe_email" type="email"
+                        name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
+                        required="true" />
                     </div>
-                    <button class="btn btn-default news-letter-validation-submit-btn" type="submit">SUBSCRIBE</button>
+                    <input class="btn btn-default news-letter-validation-submit-btn" type="submit"
+                    value="Subscribe" name="subscribe" />
                 </form>
             </div>
             <div class="clearfix"></div>

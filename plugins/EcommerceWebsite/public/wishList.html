@@ -23,6 +23,7 @@
 <script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
 <link rel='stylesheet' href='./../main-files/main.css'/>
 <script src="./../main-files/main.js"></script>
+<script src="./../assets/client-plugins/client-cart.js"></script>
 
 </head>
 <body>
@@ -34,6 +35,8 @@
 
 body {
     margin: 0;
+      background: url('https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg') no-repeat center top;
+    background-attachment: fixed;
 }
 
 .row {
@@ -43,10 +46,6 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     width: 100%;
-}
-
-:root {
-    margin-top: 0px;
 }
 
 :root {
@@ -357,6 +356,17 @@ body {
 .ob-menu {
     background-color: rgb(73, 78, 107) !important;
 }
+ .row.header-search-col {
+position: absolute;
+width: 325px;
+top: 25px;
+left: 276px;
+}
+.row.header-search-col .col-lg-10,
+.row.header-search-col .col-lg-2 {
+padding: 0;
+}
+
 
 @media screen and (max-width: 600px) {
     #menu {
@@ -495,19 +505,6 @@ body {
 }
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 rel="stylesheet" crossorigin="anonymous" />
 <script type="text/javascript" src="../assets/client-plugins/jquery.validate.min.js"></script>
@@ -669,7 +666,8 @@ rel="stylesheet" crossorigin="anonymous" />
             </div>
         </div>
     </nav>
-</menucomponent></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
+</menucomponent>
+</p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
 * {
     box-sizing: border-box;
 }
@@ -836,18 +834,8 @@ button.remove {
 
 
 
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <div class="js-list hide">
-    <div class="col-md-12 myCartListings product--data-id-">
+    <div class="col-md-12 myCartListings product-#data-id#">
         <div class="col-md-4">
             <img src="#data.image#" width="100%" height="50%" />
         </div>
@@ -863,7 +851,8 @@ button.remove {
         </div>
     </div>
 </div>
-<div class="listing"></div>
+<div class="listing">
+</div>
 <script src="./../assets/client-plugins/client-wishlist.js"></script></reusecomponent>
     </div>
 </div></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
@@ -873,10 +862,6 @@ button.remove {
 
 body {
     margin: 0;
-}
-
-:root {
-    margin-top: 0px;
 }
 
 :root {
@@ -912,21 +897,27 @@ body {
 .news-box {
     display: block !important;
 }
+.virtual-button {
+    background: #666;
+    text-align: center;
+    min-width: auto;
+    min-height: 39px;
+    padding: 8px;
+    color: #818792 !important;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-family: inherit;
+    min-height: auto !important;
+}
+.detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
+    color: #fff !important;
+}
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <div class="middle-footer">
     <div class="container">
         <div class="social-icon-box">
@@ -969,12 +960,13 @@ body {
         class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
     </div>
 </div>
-<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script></p><!--/gm-editable-region--></div></div>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script></p><!--/gm-editable-region--></div></div><script src="./../assets/client-plugins/client-slider-plugin.js"></script>
+<script src="./../assets/client-plugins/client-popular-product-slider-plugin.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+
 </div>
 <script src="./../assets/client-plugins/global-variables-plugin.js"></script>
 <script src="./../assets/client-plugins/flowz-builder-engine.js"></script>
-<script src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/js/product-search.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 
 </body>
 </html>

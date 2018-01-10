@@ -12,17 +12,8 @@
 <script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
 <script type='text/javascript' src='https://unpkg.com/vue/dist/vue.js'></script>
-<script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-memory@8.0.9/dist/y-memory.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-webrtc@8.0.7/dist/y-webrtc.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-indexeddb@8.1.9/dist/y-indexeddb.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
-<link rel='stylesheet' href='./../main-files/main.css'/>
-<script src="./../main-files/main.js"></script>
+<link rel='stylesheet' href='./../public/main-files/main.css'/>
+<script src="./../public/main-files/main.js"></script>
 
 </head>
 <body>
@@ -57,12 +48,21 @@ body {
     clear: both;
 }
 
+.navbar {
+    float: right;
+    width: 50%;
+}
+
 .row {
     display: table;
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
+    width: 100%;
+}
+
+.navbar {
     width: 100%;
 }
 
@@ -79,6 +79,16 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
+    background-image: url("https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg");
+    background-position-x: center;
+    background-position-y: top;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background-attachment: fixed;
 }
 
 #c47368 {
@@ -358,6 +368,26 @@ body {
     background-color: rgb(73, 78, 107) !important;
 }
 
+.row.header-search-col {
+    position: absolute;
+    width: 325px;
+    top: 25px;
+    left: 276px;
+}
+
+.row.header-search-col .col-lg-10, .row.header-search-col .col-lg-2 {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+.c31353 {
+    padding: 10px;
+    display: block;
+    min-height: 75px;
+}
+
 @media screen and (max-width: 600px) {
     #menu {
         position: relative;
@@ -508,12 +538,11 @@ body {
     <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
     type="text/css" />
 </div>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-rel="stylesheet" crossorigin="anonymous" />
 <script type="text/javascript" src="../assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
     rel="stylesheet" type="text/css" />
+    <link href="../assets/css/base.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
@@ -529,7 +558,7 @@ rel="stylesheet" crossorigin="anonymous" />
                             <ul class="header-loging">
                                 <li class="header-login-text"> <a href="index.html"> <span class="login-text">Home</span> </a>
                                 </li>
-                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="login.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
                                 </li>
                                 <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
                                 </li>
@@ -590,84 +619,30 @@ rel="stylesheet" crossorigin="anonymous" />
 </div>
 <menucomponent>
     <nav id="menu">
-        <div class="ob-menu">
-            <div class="container">
-                <ul>
-                    <li><a class="prett">PRODUCTS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
+        <div class="ob-menu"></div>
+        <navimenu class="c31353" menuid="default">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> 
+                    </button>
+                    <div class="collapse navbar-collapse" id="navigationDiv">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
                             </li>
-                            <li><a href="#">Drop Menu 2</a>
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
                             </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
+                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Dropdown link </a> 
+                                <div
+                                class="dropdown-menu"> <a class="dropdown-item" href="#">Link 1</a>  <a class="dropdown-item" href="#">Link 2</a> 
+                                    <a
+                                    class="dropdown-item" href="#">Link 3</a>
+                    </div>
                     </li>
-                    <li><a class="prett">BRANDS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">CATLOG</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">SERVICE</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">TOOLS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">PROMOTIONS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a>OUTLET</a>
-                    </li>
-                    <li><a class="prett">ABOUT</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        </navimenu>
     </nav>
 </menucomponent></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
 * {
@@ -699,6 +674,10 @@ body {
 
 :root {
     margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
 }
 
 .heading {
@@ -1072,22 +1051,7 @@ body {
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: rgb(238, 238, 238);
-}
-
-.c24594 {
-    color: black;
-}
-
-.c24709 {
-    color: black;
-}
-
-.c24767 {
-    color: black;
-}
-
-.c24839 {
-    color: black;
+    background-color: rgb(255, 255, 255);
 }
 
 .text-h3 {
@@ -1323,6 +1287,12 @@ body {
     right: 9px;
 }
 
+.c1225868 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
 @media (max-width: 768px) {
     .cell {
         width: 100%;
@@ -1478,86 +1448,336 @@ body {
 
 <div class="cssImports"></div>
 <div class="ob-innovation">
-    <div class="container">
-        <menucomponent></menucomponent>
-        <slider class="c423491" image1="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_b074798f396f51b60a5df056102aed6d05d82514.JPG"
-        image2="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_311c3783d2f9e09b15fb2cf06d9dd6df1fe3b80b.jpg"
-        image3="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_28e7bab82c4a63cb4f65d8f4572e736af51952bb.png"
-        image4="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_982176a6b6fdbd52bb46793daa79eff0c55976dd.JPG"
-        image5="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_311c3783d2f9e09b15fb2cf06d9dd6df1fe3b80b.jpg"></slider>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-        />
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-        rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-        />
-        <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/froala_blocks.css"
-        rel="stylesheet" type="text/css" />
-        <section class="fdb-block">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-12">
-                        <h1 class="heading">Why Key Innovations?</h1>
-                        <p class="text-h3">Our goal is to make your buying experience easy, efficient, and with confidence.</p>
-                        <p
-                        class="text-h3">We are dedicated to providing you with creative ideas, quality products,
-                            first class service and on-time delivery.</p>
-                    </div>
-                </div>
-                <div class="row text-center justify-content-center mt-5">
-                    <div class="col-10 col-sm-3">
-                        <img class="c24594" src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-1.png"
+    <div class="home-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ob-slide-box">
+                        <menucomponent></menucomponent>
+                        <slider class="c423491" image1="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_b074798f396f51b60a5df056102aed6d05d82514.JPG"
+                        image2="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_311c3783d2f9e09b15fb2cf06d9dd6df1fe3b80b.jpg"
+                        image3="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_28e7bab82c4a63cb4f65d8f4572e736af51952bb.png"
+                        image4="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_982176a6b6fdbd52bb46793daa79eff0c55976dd.JPG"
+                        image5="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_311c3783d2f9e09b15fb2cf06d9dd6df1fe3b80b.jpg"></slider>
+                        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+                        rel="stylesheet" />
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
                         />
-                        <h3 id="c4803"><strong>We are canadian</strong></h3>
+                        <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/froala_blocks.css"
+                        rel="stylesheet" type="text/css" />
                     </div>
-                    <div class="col-10 col-sm-3 pt-5 pt-sm-0">
-                        <img class="c24709" src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-2.png"
-                        />
-                        <h3 id="c4830"><strong>See Samples</strong></h3>
-                    </div>
-                    <div class="col-10 col-sm-3 pt-5 pt-sm-0">
-                        <img class="c24767" src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-3.png"
-                        />
-                        <h3 id="c4857"><strong>High Detail</strong></h3>
-                    </div>
-                    <div class="col-10 col-sm-3 pt-5 pt-sm-0">
-                        <img class="c24839" src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-4.png"
-                        />
-                        <h3 id="c4884"><strong>Personal</strong></h3>
-                    </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
-        </section>
-        <section>
-            <div class="cell width-33">
-                <div class="c23818">Call it SWAG, promotional products, or branding; it's what we do best...
-                    put your brand into someone's hands. We make custom branded products that
-                    people use, hold on to and love to get as gifts or promo. When your brand
-                    is printed on any item, it carries your logo or advertising message. When
-                    people use your branded item, they see your brand and, subtly, it reinforces
-                    familiarity with your brand and develops a stronger liking to it. These
-                    imprinted items are what build your brand's relationships and are essential
-                    to long lasting brand marketing.</div>
+            <reusecomponent class="c1225868"><div class="in-prod-main">
+    <h1 class="heading">Branded Products That Build Relationships With Your Brand</h1>
+    <div class="in-prod-under">
+        <div class="in-prod-main">
+            <div class="in-prod-under">
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051271_awards.PNG" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Awards &amp; awareness</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Bracelets</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Coins</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Clocks</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Frames-picture</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051371_bags2.PNG" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Bags</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Tags</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Pouches</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Coolers</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Backpacks</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051467_evolutiondecospread.jpg" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Clothing</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Vests</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Shirts</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Sweaters</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Hoodies</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051413_beverage4.PNG" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Drinkware</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Coasters</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Beverages</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Coffee</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Jars</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490052317_food.PNG" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Food &amp; wine</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Breath fresheners</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Candy</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Cans</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Gum</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490052081_fun.jpg" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Fun &amp; outdoor</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Garden supplies</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Umbrellas</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Picnic baskets</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Flying discs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490052125_golf.jpg" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Golf &amp; sport</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Divot tools</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Markers</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Golf kits</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Tees (golf)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056671_home.jpg" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Home &amp; kitchen</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Containers</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Candles</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Utensils</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Blankets</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490057468_office.PNG" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Office</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Cases</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Desk organizers</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Openers</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Mats</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490057507_travel.PNG" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Other</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Boxes</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Ornaments</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Door knockers</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Hangers</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056747_tech.PNG" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Technology</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Wallets</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Phone accessories</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Power supplies/inverters</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Stands</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490057043_tools.PNG" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Tools &amp; auto</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Buckets</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Automotive kits</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Flashlights</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Carabiners</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056898_tradeshow.jpg" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Tradeshow &amp; events</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Flags</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Displays</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Badge holders</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Lanyards</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056982_FITNESS-PRODUCTS-Banner-for-website2.jpg" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Wellness &amp; safety</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Dispensers</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Reflectors</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Armbands</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Strobe lights</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="in-box-cont">
+                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056861_pens.jpg" alt=""></a></div>
+                    <div class="left-part">
+                        <div class="pro-title"><a href="#" data-item-type="product-category">Writing &amp; stationery</a></div>
+                        <div class="pro-cat">
+                            <ul>
+                                <li><a href="#" data-item-type="category-product-list">Seed paper</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Paper</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Diaries</a></li>
+                                <li><a href="#" data-item-type="category-product-list">Money-play</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="cell width-33">
-                <div class="c23122">A custom printed lanyard, a custom branded umbrella, and the ever popular
-                    imprinted tote bag are a few of the vehicles that get your company brand
-                    carried around. Use them internally as employee gifts, service awards,
-                    appreciation, or at team building events where you give everyone a cool
-                    branded piece of company SWAG. Use them to externally promote and advertise
-                    your business to give customers an incentive to buy from you again or build
-                    relationships with new customers who will come to like your brand.</div>
-            </div>
-            <div class="cell width-33">
-                <div class="c23172">Reach out to us today to have one of our consultants work with you on
-                    your project. You can order custom printed products online or have us guide
-                    you along the way. We take special requests and provide custom sourcing
-                    solutions. We look forward to speaking with you about your project to build
-                    your brand's relationships.</div>
-            </div>
-        </section>
+        </div>
+    </div>
+</div></reusecomponent>
+            <section
+            class="fdb-block">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <h1 class="heading">Why Key Innovations?</h1>
+                            <p class="text-h3">Our goal is to make your buying experience easy, efficient, and with confidence.</p>
+                            <p
+                            class="text-h3">We are dedicated to providing you with creative ideas, quality products,
+                                first class service and on-time delivery.</p>
+                        </div>
+                    </div>
+                    <div class="row text-center justify-content-center mt-5">
+                        <div class="service-col">
+                            <div>
+                                <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-1.png"/></a>
+                                </div>
+                                <div class="service-text"><a><span>We </span>Are Canadian
+                            </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-col">
+                            <div>
+                                <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-2.png"/></a>
+                                </div>
+                                <div class="service-text"><a><span> see samples  </span>Before You Buy
+                            </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-col">
+                            <div>
+                                <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-3.png"/></a>
+                                </div>
+                                <div class="service-text"><a><span> High Detail </span>On-Time Delivery
+                            </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-col">
+                            <div>
+                                <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-4.png"/></a>
+                                </div>
+                                <div class="service-text"><a><span>  Personal  </span>Service
+                            </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-col">
+                            <div>
+                                <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-5.png"/></a>
+                                </div>
+                                <div class="service-text"><a><span>  Product  </span>Safety
+                            </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="cell width-33">
+                        <div class="c23818">Call it SWAG, promotional products, or branding; it's what we do best...
+                            put your brand into someone's hands. We make custom branded products that
+                            people use, hold on to and love to get as gifts or promo. When your brand
+                            is printed on any item, it carries your logo or advertising message. When
+                            people use your branded item, they see your brand and, subtly, it reinforces
+                            familiarity with your brand and develops a stronger liking to it. These
+                            imprinted items are what build your brand's relationships and are essential
+                            to long lasting brand marketing.</div>
+                    </div>
+                    <div class="cell width-33">
+                        <div class="c23122">A custom printed lanyard, a custom branded umbrella, and the ever popular
+                            imprinted tote bag are a few of the vehicles that get your company brand
+                            carried around. Use them internally as employee gifts, service awards,
+                            appreciation, or at team building events where you give everyone a cool
+                            branded piece of company SWAG. Use them to externally promote and advertise
+                            your business to give customers an incentive to buy from you again or build
+                            relationships with new customers who will come to like your brand.</div>
+                    </div>
+                    <div class="cell width-33">
+                        <div class="c23172">Reach out to us today to have one of our consultants work with you on
+                            your project. You can order custom printed products online or have us guide
+                            you along the way. We take special requests and provide custom sourcing
+                            solutions. We look forward to speaking with you about your project to build
+                            your brand's relationships.</div>
+                    </div>
+                </div>
+                </section>
+        </div>
     </div>
 </div></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
@@ -1566,10 +1786,6 @@ body {
 
 body {
     margin: 0;
-}
-
-:root {
-    margin-top: 0px;
 }
 
 :root {
@@ -1605,21 +1821,27 @@ body {
 .news-box {
     display: block !important;
 }
+.virtual-button {
+    background: #666;
+    text-align: center;
+    min-width: auto;
+    min-height: 39px;
+    padding: 8px;
+    color: #818792 !important;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-family: inherit;
+    min-height: auto !important;
+}
+.detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
+    color: #fff !important;
+}
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <div class="middle-footer">
     <div class="container">
         <div class="social-icon-box">
@@ -1643,13 +1865,15 @@ body {
             </div>
             <div class="pull-right">
                 <p class="newslatter">GET DEALS AND IDEAS FROM US</p>
-                <form class="form-inline news-box" role="form">
+                <form class="form-inline news-box" id="sunscribe_email"
+                metod="post" onsubmit="return submitNewsLetterForm();">
                     <div class="form-group">
-                        <input class="form-control" type="email" id="email_id" name="email_send"
-                        placeholder="Enter Your Email Address" aria-describedby="basic-addon1"
-                        />
+                        <input class="required email form-control js-subscribe_email" type="email"
+                        name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
+                        required="true" />
                     </div>
-                    <button class="btn btn-default news-letter-validation-submit-btn" type="submit">SUBSCRIBE</button>
+                    <input class="btn btn-default news-letter-validation-submit-btn" type="submit"
+                    value="Subscribe" name="subscribe" />
                 </form>
             </div>
             <div class="clearfix"></div>
@@ -1664,8 +1888,20 @@ body {
 </div>
 <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script></p><!--/gm-editable-region--></div></div>
 </div>
-<script src="./../assets/client-plugins/global-variables-plugin.js"></script>
-<script src="./../assets/client-plugins/flowz-builder-engine.js"></script>
+<script src="./../public/assets/client-plugins/global-variables-plugin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-memory@8.0.9/dist/y-memory.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-webrtc@8.0.7/dist/y-webrtc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-indexeddb@8.1.9/dist/y-indexeddb.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
+<script src="./../public/assets/client-plugins/flowz-builder-engine.js"></script>
+<script src="./../public/assets/client-plugins/shopping-cart.js"></script>
+<script src="./../public/assets/client-plugins/client-slider-plugin.js"></script>
+<script src="./../public/assets/client-plugins/client-popular-product-slider-plugin.js"></script>
 <script src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/js/product-search.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 

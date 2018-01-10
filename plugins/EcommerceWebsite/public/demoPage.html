@@ -1,0 +1,1639 @@
+<html>
+<head>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<title></title>
+<script src='https://code.jquery.com/jquery-3.2.1.js'></script>
+<link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'/>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/theme.min.css' />
+<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js' crossorigin='anonymous'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
+<script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
+<script type='text/javascript' src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-memory@8.0.9/dist/y-memory.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-webrtc@8.0.7/dist/y-webrtc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-indexeddb@8.1.9/dist/y-indexeddb.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
+<link rel='stylesheet' href='./../main-files/main.css'/>
+<script src="./../main-files/main.js"></script>
+<script src="./../assets/client-plugins/client-cart.js"></script>
+
+</head>
+<body>
+<div id="app">
+<div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+      background: url('https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg') no-repeat center top;
+    background-attachment: fixed;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c47368 {
+    display: none;
+}
+
+#c99549 {
+    display: none;
+}
+
+#c4046 {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: black;
+    border-right-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c26340 {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: black;
+    border-right-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#menu {
+    color: rgb(238, 238, 238);
+    height: 35px;
+}
+
+#menu ul, #menu li {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+}
+
+#menu ul {
+    height: 35px;
+}
+
+#menu li {
+    float: left;
+    display: inline;
+    position: relative;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    font-size: 13px;
+    line-height: normal;
+    font-family: Arial;
+}
+
+#menu li a {
+    color: rgb(204, 204, 204);
+}
+
+#menu a {
+    display: block;
+    line-height: 35px;
+    padding-top: 0px;
+    padding-right: 14px;
+    padding-bottom: 0px;
+    padding-left: 14px;
+    color: rgb(51, 51, 51);
+}
+
+#menu li:hover > a, #menu li a:hover {
+    color: rgb(255, 255, 255);
+}
+
+#menu input {
+    display: none;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    width: 80px;
+    height: 35px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#menu label {
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    font-size: 30px;
+    font-family: Arial;
+    display: none;
+    width: 35px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+}
+
+#menu label span {
+    font-size: 13px;
+    position: absolute;
+    left: 35px;
+}
+
+#menu ul.menus {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 180px;
+    background-image: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+    background-size: initial;
+    position: absolute;
+    z-index: 99;
+    display: none;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-color: rgb(204, 204, 204);
+    border-bottom-color: rgb(204, 204, 204);
+    border-left-color: rgb(204, 204, 204);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    border-top-width: initial;
+    border-top-style: none;
+    border-top-color: initial;
+    color: rgb(51, 51, 51);
+}
+
+#menu ul.menus a {
+    color: rgb(51, 51, 51);
+}
+
+#menu ul.menus li {
+    display: block;
+    width: 100%;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 12px;
+    line-height: normal;
+    font-family: Arial;
+    text-transform: none;
+}
+
+#menu li:hover ul.menus {
+    display: block;
+}
+
+#menu a.prett, #menu a.trigger2 {
+    padding-top: 0px;
+    padding-right: 27px;
+    padding-bottom: 0px;
+    padding-left: 14px;
+}
+
+#menu li:hover > a.prett, #menu a.prett:hover {
+    background-image: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+    background-size: initial;
+    color: rgb(51, 51, 51);
+}
+
+#menu a.prett::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-top-width: 6px;
+    border-right-width: 5px;
+    border-bottom-width: 6px;
+    border-left-width: 5px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(238, 238, 238);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    position: absolute;
+    top: 15px;
+    right: 9px;
+}
+
+#menu ul.menus a:hover {
+    background-image: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(186, 186, 186);
+    background-size: initial;
+}
+
+#menu a.trigger2::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-top-width: 5px;
+    border-right-width: 6px;
+    border-bottom-width: 5px;
+    border-left-width: 6px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: rgb(238, 238, 238);
+    position: absolute;
+    top: 13px;
+    right: 9px;
+}
+
+.ob-menu {
+    background-color: rgb(73, 78, 107) !important;
+}
+ .row.header-search-col {
+position: absolute;
+width: 325px;
+top: 25px;
+left: 276px;
+}
+.row.header-search-col .col-lg-10,
+.row.header-search-col .col-lg-2 {
+padding: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    #menu {
+        position: relative;
+    }
+
+    #menu ul {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(131, 131, 131);
+        background-size: initial;
+        position: absolute;
+        top: 100%;
+        right: 0px;
+        left: 0px;
+        z-index: 3;
+        height: auto;
+        display: none;
+    }
+
+    #menu ul.menus {
+        width: 100%;
+        position: static;
+        border-top-width: initial;
+        border-right-width: initial;
+        border-bottom-width: initial;
+        border-left-width: initial;
+        border-top-style: none;
+        border-right-style: none;
+        border-bottom-style: none;
+        border-left-style: none;
+        border-top-color: initial;
+        border-right-color: initial;
+        border-bottom-color: initial;
+        border-left-color: initial;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+    }
+
+    #menu li {
+        display: block;
+        float: none;
+        width: auto;
+        text-align: left;
+    }
+
+    #menu li a {
+        color: rgb(255, 255, 255);
+    }
+
+    #menu li a:hover {
+        color: rgb(51, 51, 51);
+    }
+
+    #menu li:hover {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(186, 186, 186);
+        background-size: initial;
+        color: rgb(51, 51, 51);
+    }
+
+    #menu li:hover > a.prett, #menu a.prett:hover {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(186, 186, 186);
+        background-size: initial;
+        color: rgb(51, 51, 51);
+    }
+
+    #menu ul.menus a {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(186, 186, 186);
+        background-size: initial;
+    }
+
+    #menu ul.menus a:hover {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(255, 255, 255);
+        background-size: initial;
+    }
+
+    #menu input, #menu label {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: block;
+    }
+
+    #menu input {
+        z-index: 4;
+    }
+
+    #menu input:checked + label {
+        color: white;
+    }
+
+    #menu input:checked ~ ul {
+        display: block;
+    }
+}
+</style>
+
+<script type="text/javascript" src="../assets/client-plugins/jquery.validate.min.js"></script>
+<div>
+    <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
+    rel="stylesheet" type="text/css" />
+    <link href="../assets/css/base.css"
+    rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
+    rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
+    rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <div id="js-fix-header-controller">
+        <div class="ob-header">
+            <div class="main-logo-part">
+                <div class="ob-top-menu">
+                    <div class="container">
+                        <div class="slidemenu shop-menu">
+                            <ul class="header-loging">
+                                <li class="header-login-text"> <a href="index.html"> <span class="login-text">Home</span> </a>
+                                </li>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
+                                </li>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
+                                </li>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="compare.html"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span> </a>
+                                </li>
+                                <li class="dropdown login-col header-login-text login-show hide"><a class="dropdown-toggle" href="login.html"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
+                                </li>
+                                <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
+                                    <ul
+                                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
+                                        <li><a href="myaccount.html">MY ACCOUNT</a>
+                                        </li>
+                                        <li><a href="changePassword.html">CHANGE PASSWORD</a>
+                                        </li>
+                                        <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
+                                        </li>
+                            </ul>
+                            </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ob-logo-block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/imgs/img_logo.png"/></a>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-right">
+                                <div class="support-col"> <a href="#"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
+                                </div>
+                                <div class="call-text"> <i></i><span>604 589 5268</span><em>Call Us: Speak with a Rep!</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row header-search-col">
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                <input placeholder="Search Products Here" type="text" name="search" />
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <input class="btn-search" type="button" title="Click to search" value="Search"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ob-menu ui-menu-nav menu-option-3">
+            <div class="container">
+                <div class="navbar2 navbar-default menu-box" role="navigation" id="mainmenu-nav">
+                    <div class="navbar-header2"> <a class="navbar-toggle"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<menucomponent>
+    <nav id="menu">
+        <div class="ob-menu">
+            <div class="container">
+                <ul>
+                    <li><a class="prett">PRODUCTS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">BRANDS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">CATLOG</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">SERVICE</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">TOOLS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">PROMOTIONS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a>OUTLET</a>
+                    </li>
+                    <li><a class="prett">ABOUT</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</menucomponent>
+</p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#addToCartBtn {
+    margin-bottom: 10px;
+}
+
+#c20811 {
+    visibility: hidden;
+}
+
+#c21061 {
+    visibility: hidden;
+}
+
+.product-card {
+    max-width: 23%;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    display: inline-block;
+    box-shadow: rgb(153, 153, 153) 2px 2px 15px;
+}
+
+.product-card > a {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(242, 242, 242);
+    color: rgb(51, 51, 51);
+    transition-duration: 0.1s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    transition-property: all;
+    position: relative;
+    display: block;
+    z-index: 0;
+    padding-bottom: 5px;
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+}
+
+.product-card > a:hover {
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px;
+}
+
+.product-card-title {
+    min-height: 70px;
+    font-size: 21px;
+}
+
+.product-description {
+    min-height: 70px;
+    max-height: 70px;
+    overflow-y: auto;
+}
+
+.product-card-img {
+    display: block;
+    height: 250px;
+    width: 100%;
+}
+
+.product-card figcaption {
+    display: block;
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+}
+
+.product-card .product-card-address {
+    color: rgb(136, 136, 136);
+    line-height: 1.2;
+}
+
+.product-card .product-card-address i {
+    font-size: 14px;
+    margin-right: 2px;
+    line-height: 1.2;
+}
+
+.product-card .product-card-price {
+    display: block;
+    text-align: right;
+}
+
+.product-card .product-card-price .original-price, .product-card .product-card-price .price-savings {
+    line-height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.product-card .product-card-price .price-savings {
+    float: left;
+    color: rgb(130, 181, 72);
+}
+
+.product-card .product-card-price .original-price {
+    color: rgb(170, 170, 170);
+    font-size: 14px;
+}
+
+.product-card .product-card-price .amount-price {
+    text-align: right;
+    font-size: 20px;
+    color: rgb(130, 181, 72);
+}
+
+.product-card .product-card-price .from {
+    font-size: 12px;
+}
+
+.product_price span, .product_title h5 {
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul.product_list {
+    list-style-type: none;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    width: 100%;
+    display: inline;
+}
+
+.product_grid {
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+    display: inline;
+}
+
+.product_item {
+    display: inline-block;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(204, 204, 204);
+    border-right-color: rgb(204, 204, 204);
+    border-bottom-color: rgb(204, 204, 204);
+    border-left-color: rgb(204, 204, 204);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.product_sale {
+    position: absolute;
+    z-index: 2;
+    right: -28px;
+    transform: rotate(45deg);
+}
+
+.product_image {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.product_image img {
+    display: block;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+.product_image img:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.product_title {
+    float: left;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.product_title h5 {
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    font-weight: 500;
+    padding-bottom: 5px;
+}
+
+.product_price a {
+    color: rgb(0, 0, 0);
+}
+
+.price_old {
+    color: rgb(234, 46, 73);
+    text-decoration-line: line-through;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+}
+
+.product_desc p {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    line-height: 1.3;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+}
+
+.product_rating {
+    float: right;
+    width: 100px;
+    height: 20px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-image: url("https://bit.ly/1B4PjyM");
+    background-position-x: 0px;
+    background-position-y: 76%;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+}
+
+.product_buttons {
+    -webkit-font-smoothing: antialiased;
+}
+
+.product_buttons .product_heart:hover {
+    color: rgb(223, 4, 4);
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.product_buttons .product_compare:hover {
+    color: rgb(18, 150, 18);
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.product_buttons .add_to_cart:hover {
+    color: rgb(77, 200, 211);
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.listing {
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    display: inline-block;
+}
+
+.product a {
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+}
+
+.price {
+    position: absolute;
+}
+
+.product:hover .info {
+    height: 40px;
+}
+
+.product:hover .info::before {
+    transform: scaleY(0.7);
+}
+
+.product:hover .info::after {
+    visibility: visible;
+    transform: translateY(10px);
+}
+
+.slide-title a {
+    color: inherit;
+}
+
+.product:hover .slide-title {
+    transform: translateY(-18px);
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+}
+
+.price.sale {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(0, 186, 47);
+}
+
+.price.old {
+    font-size: 0.95em;
+    padding-top: 4px;
+    padding-right: 6px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    text-decoration-line: line-through;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+    top: -43px;
+}
+
+.actions-wrapper * {
+    width: 50%;
+    padding-top: 2px;
+    padding-right: 0px;
+    padding-bottom: 2px;
+    padding-left: 0px;
+    text-align: center;
+    color: rgb(25, 25, 25);
+    font-size: 0.95em;
+    font-weight: 700;
+}
+
+.actions-wrapper ::before {
+    font-family: FontAwesome;
+    margin-right: 8px;
+}
+
+.product:hover .actions-wrapper * {
+    visibility: visible;
+}
+
+.wrp-product-2 {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.wrp-product-2:hover {
+    box-shadow: rgba(0, 0, 0, 0.36) 0px 10px 25px -2px;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+.wrp-product-2 * {
+    box-sizing: border-box;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+.wrp-product-2 img {
+    max-width: 100%;
+    vertical-align: top;
+    position: relative;
+}
+
+.wrp-product-2 .add-to-cart {
+    position: absolute;
+    top: 0px;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    opacity: 0;
+    background-color: rgb(64, 154, 213);
+    transform: rotateX(-90deg);
+    transform-origin: 100% 0px 0px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.wrp-product-2 .add-to-cart i {
+    display: inline-block;
+    margin-right: 10px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: rgb(22, 70, 102);
+    color: rgb(255, 255, 255);
+    font-size: 1.4em;
+}
+
+.wrp-product-2 .wrp-row {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    background-color: rgb(238, 238, 238);
+}
+
+.wrp-product-2 h3, .wrp-product-2 p {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.wrp-product-2 h3 {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+}
+
+.wrp-product-2 p {
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.wrp-product-2 .price {
+    font-weight: 500;
+    font-size: 1.5em;
+    line-height: 48px;
+    letter-spacing: 1px;
+}
+
+.wrp-product-2 .price s {
+    margin-right: 5px;
+    opacity: 0.5;
+    font-size: 0.9em;
+}
+
+.wrp-product-2 a {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.wrp-product-2:hover .add-to-cart {
+    opacity: 1;
+    transform: rotateX(0deg);
+}
+
+.wrp-product-2:hover .add-to-cart i {
+    background-color: rgb(41, 128, 185);
+}
+
+.c20708 {
+    display: block;
+    width: 100%;
+}
+
+@media only screen and (min-width: 320px) {
+    .product_sale p {
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        color: rgb(255, 255, 255);
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: red;
+        padding-top: 3px;
+        padding-right: 25px;
+        padding-bottom: 3px;
+        padding-left: 25px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
+    }
+
+    .product_values {
+        float: left;
+        width: calc(100% - 100px);
+        padding-top: 0px;
+        padding-right: 10px;
+        padding-bottom: 0px;
+        padding-left: 10px;
+    }
+
+    .product_rating {
+        margin-right: 10px;
+    }
+
+    .product_image {
+        height: 150px;
+        float: left;
+        width: 100px;
+    }
+
+    .product_image .product_buttons {
+        display: none;
+    }
+
+    .product_desc {
+        overflow-x: hidden;
+        overflow-y: hidden;
+        line-height: 1;
+    }
+
+    .product_values .product_buttons {
+        position: relative;
+        text-align: left;
+        float: left;
+        margin-top: 7px;
+    }
+
+    .product_values .product_buttons button {
+        color: rgb(37, 37, 37);
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(255, 255, 255);
+        font-size: 1em;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        width: 40px;
+        height: 40px;
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-left-width: 1px;
+        border-top-style: solid;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-left-style: solid;
+        border-top-color: rgb(0, 0, 0);
+        border-right-color: rgb(0, 0, 0);
+        border-bottom-color: rgb(0, 0, 0);
+        border-left-color: rgb(0, 0, 0);
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .product_image {
+        height: 250px;
+        width: 175px;
+    }
+
+    .product_values {
+        width: calc(100% - 175px);
+    }
+}
+
+@media only screen and (min-width: 678px) {
+    .product_item {
+        width: 49.5%;
+    }
+
+    .product_image {
+        height: 150px;
+        width: 100px;
+    }
+
+    .product_values {
+        width: calc(100% - 100px);
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .product_image {
+        height: 250px;
+        width: 175px;
+    }
+
+    .product_values {
+        width: calc(100% - 175px);
+    }
+
+    .product_desc {
+        max-height: 200px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .product_item {
+        width: 33%;
+    }
+
+    .product_desc {
+        max-height: 131px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .product_desc {
+        max-height: 67px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .product_title h5 {
+        font-weight: 700;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .product_buttons {
+        display: none;
+    }
+
+    .product_desc {
+        display: none;
+    }
+
+    .product_sale {
+        display: none;
+    }
+
+    .product_image img {
+        position: relative;
+    }
+
+    .product_price span {
+        float: left;
+        width: 100%;
+    }
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+rel="stylesheet" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<productlisting class="c20708" id="123" apiurl="https://8ff5dc743a142143274218c2a594348d.us-east-1.aws.found.io:9243/pdm1/_search"
+apiusername="dist1" apipassword="123456" numberofitems="4" selecttemplate="portrait">
+    <figure class="product-card portrait placeholderCard">
+        <img class="product-card-img" src="http://placehold.it/400x300" />
+        <figcaption>
+            <h3 class="product-card-title">Product Title</h3>
+            <div class="product-description">Product Description</div>
+            <p class="product-card-address"> <i class="fa fa-map-marker"></i> US</p>
+            <div class="product-card-price"> <span class="price-savings">Save 25%</span><s class="original-price">$ 10.99</s>
+                <p
+                class="amount-price"> <span class="from">starting at</span> $ 10.99</p>
+            </div>
+            <button class="btn btn-info btn-block" id="addToCartBtn">Add To Cart</button>
+        </figcaption>
+    </figure>
+    <div class="product_grid landscape" id="c20811">
+        <ul class="product_list list">
+            <li class="product_item">
+                <div class="product_sale">
+                    <p>On Sale</p>
+                </div>
+                <div class="product_image"> <a href="#"><img src="http://placehold.it/400x300" alt="Product images"/></a>
+                    <div
+                    class="product_buttons">
+                        <button class="product_heart"><i class="fa fa-heart"></i>
+                        </button>
+                        <button class="product_compare"><i class="fa fa-random"></i>
+                        </button>
+                        <button class="add_to_cart"><i class="fa fa-shopping-cart"></i>
+                        </button>
+                        <div class="quick_view"> <a href="#"> <h6>Quick View</h6> </a>
+                        </div>
+                </div>
+    </div>
+    <div class="product_values">
+        <div class="product_title">
+            <h5>Product Title</h5>
+        </div>
+        <div class="product_price"> <a href="#"><span class="price_old">$79.99</span> <span class="price_new">$11.11</span></a>
+            <span
+            class="product_rating"></span>
+        </div>
+        <div class="product_desc">
+            <p class="truncate">Product Descriptions</p>
+        </div>
+        <div class="product_buttons">
+            <button class="product_heart"><i class="fa fa-heart"></i>
+            </button>
+            <button class="product_compare"><i class="fa fa-random"></i>
+            </button>
+            <button class="add_to_cart"><i class="fa fa-shopping-cart"></i>
+            </button>
+        </div>
+    </div>
+    </li>
+    </ul>
+    </div>
+    <div class="listing creative" id="c21061">
+        <div>
+            <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            />
+            <div>
+                <div>
+                    <div class="col-md-3">
+                        <div class="wrp-product-2">
+                            <img src="http://cdn2-www.craveonline.com/assets/uploads/2015/01/Watch-business-man.png"
+                            alt="Lorem Ipsum" />
+                            <div class="add-to-cart"><i class="ion-android-add"></i><span>Add to Cart</span>
+                            </div>
+                            <div class="wrp-row">
+                                <h3>Pudol Doux</h3>
+                                <p>A small description of the product goes here.</p>
+                                <div class="price"> <s>$24.00</s>$19.00</div>
+                                <p><small>Special Offer: <b>10% off</b></small>
+                                </p>
+                            </div><a href="#"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</productlisting></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.newslatter {
+    margin-top: 10px !important;
+    margin-right: 25px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+}
+
+.news-box {
+    display: block !important;
+}
+.virtual-button {
+    background: #666;
+    text-align: center;
+    min-width: auto;
+    min-height: 39px;
+    padding: 8px;
+    color: #818792 !important;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-family: inherit;
+    min-height: auto !important;
+}
+.detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
+    color: #fff !important;
+}
+</style>
+
+<div class="middle-footer">
+    <div class="container">
+        <div class="social-icon-box">
+            <div class="pull-left">
+                <ul class="list-unstyled footer-link">
+                    <li class="social-icon"><a href="https://www.facebook.com/KeyInnovations/" target="_blank"><i class="fb-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://twitter.com/KeyInnovations" target="_blank"><i class="twitter-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.pinterest.com/brandingproducts/" target="_blank"><i class="g-plus-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.linkedin.com/company/key-innovations-inc-" target="_blank"><i class="in-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.youtube.com/channel/UCQs3fbfBWmUGpw81jUaONpw" target="_blank"><i class="yt-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.instagram.com/key_innovations/" target="_blank"><i class="instagram-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://plus.google.com/+Keypromo" target="_blank"><i class="gpl-icon strip-icon"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <p class="newslatter">GET DEALS AND IDEAS FROM US</p>
+                <form class="form-inline news-box" role="form">
+                    <div class="form-group">
+                        <input class="form-control" type="email" id="email_id" name="email_send"
+                        placeholder="Enter Your Email Address" aria-describedby="basic-addon1"
+                        />
+                    </div>
+                    <button class="btn btn-default news-letter-validation-submit-btn" type="submit">SUBSCRIBE</button>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="bottom-footer">
+    <div class="container"><span class="pull-left">Powered by : <a href="#" target="_blank"><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/officebeacon-light.png"/></a></span>
+        <span
+        class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
+    </div>
+</div>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script></p><!--/gm-editable-region--></div></div><script src="./../assets/client-plugins/client-slider-plugin.js"></script>
+<script src="./../assets/client-plugins/client-popular-product-slider-plugin.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+
+</div>
+<script src="./../assets/client-plugins/global-variables-plugin.js"></script>
+<script src="./../assets/client-plugins/flowz-builder-engine.js"></script>
+
+</body>
+</html>

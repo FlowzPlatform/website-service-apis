@@ -37,67 +37,46 @@ body {
 #c23476 {
     font-size: 16px;
 }
-
-.fdb-block {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(238, 238, 238);
-}
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <section class="fdb-block">
-    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
-        <div class="account-address-block">
-            <div class="address-inner-block">
-                <div class="address-title-block">
-                    <h4>martin johnson</h4>
-                    <div class="pull-right address-edit-del-block">
+    <div class="js_address_book_list">
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+            <div class="account-address-block">
+                <div class="address-inner-block">
+                    <div class="address-title-block">
+                        <h4>#data.name#</h4>
+                        <div class="pull-right address-edit-del-block">
+                            <ul>
+                                <li><a class="ui-link" data-original-title="Edit" data-placement="top" data-toggle="tooltip"
+                                    href="editAddressBook.html?id=#data.id#" data-id="#data.id#"><i class="fa fa-pencil-square-o"></i></a>
+                                </li>
+                                <li><a class="ui-link js_delete_address" data-original-title="Delete" data-placement="top" data-toggle="tooltip"
+                                    href="javascript:void(0)" data-id="#data.id#"><i class="fa fa-trash-o"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="address-info-block">
+                        <div class="scrollbar" id="style-1">
+                            <p>#data.address#</p>
+                        </div>
+                    </div>
+                    <div class="address-contact-info-block">
                         <ul>
-                            <li><a class="ui-link" data-original-title="Edit" data-placement="top" data-toggle="tooltip"
-                                href="#"><i class="fa fa-pencil-square-o"></i></a>
+                            <li><i class="fa fa-phone"></i>#data.phone#</li>
+                            <li><a href="#"><i class="fa fa-envelope"></i>#data.email#</a>
                             </li>
-                            <li><a class="ui-link" data-original-title="Delete" data-placement="top" data-toggle="tooltip"
-                                href="javascript:void(0)"><i class="fa fa-trash-o"></i></a>
-                            </li>
+                            <li><i class="fa fa-print"></i>#data.mobile#</li>
                         </ul>
                     </div>
-                </div>
-                <div class="address-info-block">
-                    <div class="scrollbar" id="style-1">
-                        <p>company pvt.ltd.
-                            <br/>no 11,tower name,street name
-                            <br/>lasvegas,alaska,123456
-                            <br/>united states</p>
+                    <div class="address-shipping-block js_address_type">
+                        <div class="checkbox"><a href="javascript:void(0)" class="#activeDefaultClass#" data-id="#data.id#"><i class="fa fa-check-circle"></i>#data.addressType#</a>
+                        </div>
                     </div>
-                </div>
-                <div class="address-contact-info-block">
-                    <ul>
-                        <li><i class="fa fa-phone"></i>0123456789</li>
-                        <li><a href="#"><i class="fa fa-envelope"></i>martinjohnson123@gmail.com</a>
-                        </li>
-                        <li><i class="fa fa-print"></i>9876543210</li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-globe"></i>www.saveonpromo.no</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="address-shipping-block"><a href="javascript:void(0)"><i class="fa fa-check-circle"></i>Biling</a>
-                    <a
-                    href="javascript:void(0)"><i class="fa fa-check-circle"></i>Shipping</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script type="text/javascript" src="../assets/client-plugins/client-address-book.js"></script>

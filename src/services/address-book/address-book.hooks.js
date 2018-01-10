@@ -1,6 +1,6 @@
 const config = require("config");
 const errors = require('feathers-errors');
-
+let rp = require('request-promise');
 let r = require('rethinkdb')
 let connection;
 let response;
@@ -17,13 +17,17 @@ var axios = require('axios');
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [
+      hook => beforeFind(hook)
+    ],
     get: [],
     create: [
       hook => beforeCreateAddressBook(hook)
     ],
     update: [],
-    patch: [],
+    patch: [
+      hook => beforPatchAddressBook(hook)
+    ],
     remove: []
   },
 
@@ -48,54 +52,76 @@ module.exports = {
   }
 };
 
-// function getAddressDataAfterInsert (hook){
-//   console.log("===>>",hook);
-// }
- beforeCreateAddressBook = async hook => {
-    //return new Promise ((resolve,reject) => {
-        // r.table('userAddressBook').
-        // console.log("==>>",hook.data.is_address);
-        var is_default = 0;
+beforeFind = async hook => {
+  if(hook.params.query.deleted_at == "false"){
+      hook.params.query.deleted_at = false;
+  }
+  if(hook.params.query.email !=""){
+    hook.params.query.email = {$search: hook.params.query.email}
+  }
+}
+
+beforeCreateAddressBook = async hook => {
         if(hook.data.address_type == "" || hook.data.address_type == undefined){
             throw errors.NotFound(new Error('Address type is missing.'));
         }
         else if (hook.data.is_address == undefined) {
             throw errors.NotFound(new Error('Address book or contact book detail is missing.'));
         }
-
+        let is_default = '1';
         let isDefault = await checkIsDefault(hook);
-        // console.log(">>>>>>>>>>>>>>>> " , isDefault)
-        //hook.params.query.is_default = {'user_id':hook.data.user_id,'is_address':hook.data.is_address,'address_type':hook.data.address_type,'is_default':1}
+
+        if(isDefault.length > 0){
+          is_default = '0';
+        }
+
         hook.data.created_at = new Date();
-        hook.data.updated_at = null;
-        hook.data.deleted_at = null;
-        hook.data.created_uid = hook.data.user_id;
-        hook.data.updated_uid = null;
-        hook.data.deleted_uid = null;
-        hook.data.is_default = isDefault.toString();
-        // console.log("--",hook.data);
-        // resolve(hook);
-  //  });
+        hook.data.updated_at = '';
+        hook.data.deleted_at = false;
+        hook.data.is_default = is_default;
 }
 
 checkIsDefault = async hook =>{
   return new Promise ((resolve , reject) =>{
-    console.log(hook.data)
-    // hook.params.query.is_default = {'user_id':hook.data.user_id,'is_address':hook.data.is_address,'address_type':hook.data.address_type,'is_default':1}
+    // console.log(hook.data)
     r.db('product_service_api').table('userAddressBook')
-      .filter({'user_id':hook.data.user_id,'is_address':hook.data.is_address,'address_type':hook.data.address_type,'is_default':1})
+      .filter({'user_id':hook.data.user_id,'is_address':hook.data.is_address,'address_type':hook.data.address_type,'is_default':'1','deleted_at':false})
       .run(connection , function(error , cursor){
           if (error) throw error;
           cursor.toArray(function(err, result) {
               if (err) throw err;
-              if(result.length > 0){
-                let data = 0;
-                resolve(data)
-              }else{
-                let data = 1;
-                resolve(data)
-              }
+              resolve(result)
           });
     })
   })
 }
+
+
+beforPatchAddressBook = async hook =>{
+    return new Promise ((resolve , reject) =>{
+      r.db('product_service_api').table('userAddressBook')
+        .get(hook.id)
+        .run(connection , async function(error , cursor){
+           if (error) throw error;
+           console.log("cursor.is_default",cursor.is_default);
+           if(hook.data.deleted_at == undefined && cursor.is_default != '1')
+           {
+             let obj = '';
+             let user_id = cursor.user_id;
+             let is_address = cursor.is_address;
+             let address_type = cursor.address_type;
+              obj = {'data':{'user_id': user_id,'is_address': is_address,'address_type': address_type}}
+              let isDefault = await checkIsDefault(obj);
+              // console.log("isdefault",isDefault);
+              if(isDefault.length > 0){
+                  let oldDefaultObj = isDefault[0];
+                  r.db('product_service_api').table('userAddressBook').get(oldDefaultObj.id).update({'is_default': "0",'updated_at':new Date()}).run(connection)
+              }
+           }
+           hook.data.updated_at = new Date();
+           resolve(hook)
+        })
+        // console.log("id==",hook.id);
+    })
+}
+

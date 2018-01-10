@@ -45,24 +45,12 @@ body {
 }
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
+<script type="text/javascript" src="../assets/client-plugins/typeahead.min.js"></script>
 <div class="product-section-box">
     <div class="panel-group" id="blank-Shipping-method-quote" role="tablist"
     aria-multiselectable="true">
         <div class="panel-heading open" role="tab">
-            <h2 class="panel-title heading-block">Shipping Method
+            <h2 class="panel-title heading-block js-section-number ">Shipping Method
             </h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="#blank-Shipping-method-quote"
             href="#Shipping-method-col" aria-expanded="true"><i class="caret-icon"></i></a>
         </div>
@@ -82,14 +70,42 @@ body {
                     <div id="js_shipping_method">
                         <div class="optional-panel in js_shipping_method_detail" id="js_shipping_method_detail_#data.counter#"
                         data-shipping-counter="#data.counter#">
-                            <div class="option-head"><a href="javascript:void(0);">Shipping Address</a>
+                            <div class="option-head"><a href="javascript:void(0);">Shipping Address #data.counter#</a>
                             </div>
                             <div class="option-body js-shippingMethod--data-counter--section" id="c19663">
                                 <div class="shipping-address">
                                     <div class="ship-add-tit">Select a Shipping address from your address book or enter a new address.</div>
+                                    <div class="ship-add-parts">
+                                        <a class="btn" data-placement="top" data-toggle="tooltip" href="addAddressBook.html" data-original-title="Add New Address" target="_blank">
+                                            Add New Address
+                                        </a>
+                                    </div>
+                                    <div class="search-mail-block">
+                                        <div class="search-col">
+                                            <input type="text" name="auto_complete_shipping_email" placeholder="Please enter a name or email address from your address book" class="auto_complete_shipping_email" data-counter="#data.counter#">
+                                            <input type="submit" value="" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="shipping-scroll" id="js_shipping_addresses_#data.counter#">
+                                <div class="shipping-scroll hide" id="js_shipping_addresses_#data.counter#">
                                     <reusecomponent class="c21612">{{> productDetail id='addressBox.partial' }}</reusecomponent>
+                                </div>
+                                <div class="js_shipping_qty_box_main" data-shipping-counter="#data.counter#">
+                                    <div class="optional-panel size-selection-col js_rq_shipping_quantity" data-color-id="#data.color#" >
+                                        <div class="option-head">
+                                            <a href="javascript:void(0);" class="pull-right">
+                                                #data.color#<span class="pull-right">Selected Quantity : <total>#data.quantity#<total></span>
+                                            </a>
+                                        </div>
+                                        <div class="option-body">
+                                            <div class="row select-quntity-col js_qty_box">
+                                                <div class="col-lg-4 col-md-6 col-sm-4 col-xs-12" data-size-id="0">
+                                                    <span>Quantity : </span>
+                                                    <input readonly type="text" value="#data.quantity#" class="js_request_quote_shipping_qty_box js_request_quote_qty"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
