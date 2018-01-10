@@ -1,11 +1,9 @@
-// $(document).ready(function(){
-  // $(document).on("click","js_submit_address",function(e){
-  // $("form#address_book").submit(function(event) {
-    // let formObj = $(this);
 if (user_id == null ) {
   window.location = 'login.html';
 }
 $(function() {
+
+    // Add Contact Book
     $('form#address_book').validate({
   			rules: {
           "name":"required",
@@ -67,6 +65,155 @@ $(function() {
             });
         },
     });
+    /* End Add Address Book */
+
+    /* Edit Address Book Start */
+
+    let addressBookId = getParameterByName("id");
+    if(addressBookId != null){
+      axios({
+          method: 'GET',
+          url: project_settings.address_book_api_url+'/'+addressBookId,
+          headers: {'Authorization': project_settings.product_api_token},
+        })
+      .then(response => {
+          if(response.data != undefined ){
+              let addressBookDetail = response.data;
+            // $("#")
+          }
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
+    }
+
+    /*  Edit Address Book End */
+
+    /* for Address type start */
+   	if($('.js-address-type').val() == 'shipping'){
+   		$('.js-isoffice').show();
+   	}
+
+   	$(document).on('change', '.js-address-type', function(e) {
+  		if($(this).val() == 'shipping'){
+  			$('.js-isoffice').show();
+  			if(!$('.js-isoffice input[type="radio"]').is(':checked')){
+  				$('.js-isoffice input[type="radio"]:first').prop('checked', true);
+  			}
+  		}else{
+  			$('.js-isoffice').hide();
+  		}
+  	});
+
+  	$(".custom-select").each(function () {
+  	    $(this).wrap("<span class='checkout-select-wrapper'></span>");
+        $(this).after("<span class='checkout-holder'></span>");
+  	});
+
+  	$(document).on('change','.custom-select', function() {
+  		var selectedOption = $(this).find(":selected").text();
+  	    $(this).parents(".checkout-select-wrapper").find(".checkout-holder").text(selectedOption);
+  	});
+  	$('.custom-select').trigger('change');
+  	$(document).on('click','.custom-select option', function() {
+  	    $(this).parents(".checkout-select-wrapper").find(".checkout-holder").html('<span>'+ this.innerHTML+ '</span>');
+  	});
+
+    /* for Address type end */
+
+
+    /* for Listing Address Book */
+
+    if($(".js_address_book_list").find('.account-address-block').length > 0)
+    {
+        let addressBookHtml = $(".js_address_book_list").html();
+        let replaceAdddressBookHtml = '';
+
+        axios({
+            method: 'GET',
+            url: project_settings.address_book_api_url,
+            headers: {'Authorization': project_settings.product_api_token},
+            params: {
+              "user_id":user_id,
+              "is_address":'1',
+              "deleted_at": false
+             }
+          })
+        .then(response => {
+          // console.log("+++",response.data);
+            if(response.data != undefined  && response.data.total > 0){
+                $.each(response.data.data,function(key,data){
+                    let addressBookHtml1 = "";
+                    let address = data.street1;
+                    if(data.street2 != undefined && data.street2 != ''){
+                        address += ",<br>"+data.street2;
+                    }
+                    address += ",<br>"+data.city;
+                    address += ","+data.state;
+                    address += ","+data.postalcode;
+                    address += "<br>"+data.country;
+                    addressBookHtml1 = addressBookHtml.replace("#data.name#",data.name)
+                    addressBookHtml1 = addressBookHtml1.replace("#data.phone#",data.phone)
+                    addressBookHtml1 = addressBookHtml1.replace("#data.email#",data.email)
+                    addressBookHtml1 = addressBookHtml1.replace("#data.addressType#",data.address_type)
+                    if(data.is_default == '1'){
+                      addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","address-active")
+                    }else{
+                      addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","is-default")
+                    }
+                    addressBookHtml1 = addressBookHtml1.replace("#data.addressType#",data.address_type)
+                    addressBookHtml1 = addressBookHtml1.replace(/#data.id#/g,data.id)
+                    replaceAdddressBookHtml += addressBookHtml1.replace("#data.address#",address)
+                })
+                $(".js_address_book_list").html(replaceAdddressBookHtml)
+            }else{
+                $(".js_address_book_list").html('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h1 class="main-title">Not found</h1></div>')
+            }
+
+        })
+        .catch(error => {
+          console.log('Error fetching and parsing data', error);
+        });
+
+        // set default address in address book
+        $(document).on("click",".js_address_type a",function(){
+            let addressBookId = $(this).data('id');
+            if($(this).attr('class') == "address-active"){
+              showErrorMessage("This is already default address.");
+              return false;
+            }
+            axios({
+              method: 'PATCH',
+              url: project_settings.address_book_api_url+'/'+addressBookId,
+              headers: {'Authorization': project_settings.product_api_token},
+              data: {"is_default": '1'}
+            }).then(function(response) {
+                if(response.data != undefined){
+                   showSuccessMessage("Default Address Book is Updated Successfully","addressBookList.html");
+                   return false
+                }
+            });
+
+        });
+
+        // Start addressBook Soft Delete
+        $(document).on("click",".js_delete_address",function(){
+            let addressBookId = $(this).data('id');
+            axios({
+              method: 'PATCH',
+              url: project_settings.address_book_api_url+'/'+addressBookId,
+              headers: {'Authorization': project_settings.product_api_token},
+              data: {"deleted_at": true}
+            }).then(function(response) {
+                if(response.data != undefined){
+                   showSuccessMessage("Address Book is deleted successfully.","addressBookList.html");
+                   return false
+                }
+            });
+        })
+
+    }
+    /* for Address Book list end */
 
     if( $('.js-phone')){
   		var cntkey=0;
@@ -96,34 +243,5 @@ $(function() {
   	    });
   	}
 
-    /* for shhiping type start */
-   	if($('.js-address-type').val() == 'shipping'){
-   		$('.js-isoffice').show();
-   	}
-
-   	$(document).on('change', '.js-address-type', function(e) {
-  		if($(this).val() == 'shipping'){
-  			$('.js-isoffice').show();
-  			if(!$('.js-isoffice input[type="radio"]').is(':checked')){
-  				$('.js-isoffice input[type="radio"]:first').prop('checked', true);
-  			}
-  		}else{
-  			$('.js-isoffice').hide();
-  		}
-  	});
-   	/* for shhiping type end */
-
-  	$(".custom-select").each(function () {
-  	    $(this).wrap("<span class='checkout-select-wrapper'></span>");
-        $(this).after("<span class='checkout-holder'></span>");
-  	});
-  	$(document).on('change','.custom-select', function() {
-  		var selectedOption = $(this).find(":selected").text();
-  	    $(this).parents(".checkout-select-wrapper").find(".checkout-holder").text(selectedOption);
-  	});
-  	$('.custom-select').trigger('change');
-  	$(document).on('click','.custom-select option', function() {
-  	    $(this).parents(".checkout-select-wrapper").find(".checkout-holder").html('<span>'+ this.innerHTML+ '</span>');
-  	});
 });
 // });

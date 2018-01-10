@@ -65,7 +65,7 @@ async function paynow() {
 			   "settingId" : "dcfc3719-fe95-4227-80ac-0d94416d7fe4",
 			   "gateway":"stripe",
 			   "id" : invoice.data.InvoiceID,
-			   "amount" :invoice.data.AmountDue,		
+			   "amount" :invoice.data.AmountDue,
 			   "cname" : "Coco Cafe",
 			   "value" : "59",							//keep it as it is
 			   "type": cardType,						//change
@@ -113,5 +113,3 @@ async function addInvoice() {
 	});
 	return resp;
   }
-
-

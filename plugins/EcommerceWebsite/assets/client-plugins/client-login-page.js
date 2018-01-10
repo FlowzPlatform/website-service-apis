@@ -1,7 +1,6 @@
 if(getCookie('loginTokenKey') != null) {
 	window.location = "index.html";
 }
-
 $(document).ready(function() {
 	$("#success_url").val(project_settings.base_url+"public/socialDashboard.html");
 });
@@ -61,7 +60,13 @@ $('.login-submit').on('click',function(){
 
 			//redirect to previous page.
 			if(document.referrer.trim() != '') {
-				window.location = document.referrer;
+				if (document.referrer.indexOf(project_settings.base_url) >= 0)
+				{
+					window.location = document.referrer;
+				}
+				else{
+					window.location = "index.html";
+				}
 			}
 			else {
 				window.location = "index.html";

@@ -78,7 +78,7 @@ module.exports = {
       if (error) throw error;
       cursor.toArray(function(err, result) {
         if (err) throw err;
-        if(result.length > 0){
+        if(result.length > 0 && hook.data.type !=2 && hook.data.type !='2'){
           hook.result = {status:400, data:result, message: "Item already exist"};
         }else{
           hook.data.createdAt = new Date();
@@ -116,41 +116,41 @@ ifItemAlreadyExistBeforeCreate = async hook =>  {
 }
 
 deleteShoppingCartItem = async hook => {
-  let table = decide_database_table(hook.params.query.type);
-  if(table == false) {
-    hook.result = {status:400, message: "type is invalid. Please select type 1 for wislist, type 2 for cart, type 3 for compare"}
-  }else if(table != false && hook.params.query.product_id == undefined || hook.params.query.user_id == undefined){
-    await r.table(table)
-    .delete({return_changes : true})
-    .run(connection , function(error , result){
-      if (error){
-        hook.result = error
-      }else if(result.deleted == 0){
-        hook.result = {status : 204 ,  message:"couldn't find the product with provided values for deleting"};
-      }else{
-        result.status = 200;
-        //result.type = hook.params.query.type;
-        result.message = "Item deleted successfully";
-        hook.result = result
-      }
-    })
-  }else{
-    await r.table(table)
-    .filter(r.row('product_id').eq(hook.params.query.product_id).and(r.row("type").eq(hook.params.query.type)).and(r.row("user_id").eq(hook.params.query.user_id)))
-    .delete({return_changes : true})
-    .run(connection, function(error , result){
-      if (error){
-        hook.result = error
-      }else if(result.deleted == 0){
-        hook.result = {status : 204 ,  message:"couldn't find the product with provided values for deleting"};
-      }else{
-        result.status = 200;
-        //result.type = hook.params.query.type;
-        result.message = "Item deleted successfully";
-        hook.result = result
-      }
-    })
-  }
+  // let table = decide_database_table(hook.params.query.type);
+  // if(table == false) {
+  //   hook.result = {status:400, message: "type is invalid. Please select type 1 for wislist, type 2 for cart, type 3 for compare"}
+  // }
+  // else if(table != false && hook.params.query.user_id == undefined){
+  //   await r.table(table)
+  //   .delete({return_changes : true})
+  //   .run(connection , function(error , result){
+  //     if (error){
+  //       hook.result = error
+  //     }else if(result.deleted == 0){
+  //       hook.result = {status : 204 ,  message:"couldn't find the product with provided values for deleting"};
+  //     }else{
+  //       result.status = 200;
+  //       result.message = "Item deleted successfully";
+  //       hook.result = result
+  //     }
+  //   })
+  // }
+  // else {
+  //   await r.table(table)
+  //   .filter(r.row("type").eq(hook.params.query.type).and(r.row("user_id").eq(hook.params.query.user_id)).and(r.row("id").eq(hook.params.query.id)))
+  //   .delete({return_changes : true})
+  //   .run(connection, function(error , result){
+  //     if (error){
+  //       hook.result = error
+  //     }else if(result.deleted == 0){
+  //       hook.result = {status : 204 ,  message:"couldn't find the product with provided values for deleting"};
+  //     }else{
+  //       result.status = 200;
+  //       result.message = "Item deleted successfully";
+  //       hook.result = result
+  //     }
+  //   })
+  // }
 }
 
 
