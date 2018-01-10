@@ -1,0 +1,16 @@
+.quick-view-left .product-big-image {
+   width : 455px
+}
+
+.innerpage {
+    margin: 0;
+}
+
+.header-search-col {
+    width: 40%;
+    margin-top: 27px;
+}
+.header-search-col form input[type="text"] {
+    width: 72%;
+}
+

@@ -1,0 +1,108 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.newslatter {
+    margin-top: 10px !important;
+    margin-right: 25px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+}
+
+.news-box {
+    display: block !important;
+}
+.virtual-button {
+    background: #666;
+    text-align: center;
+    min-width: auto;
+    min-height: 39px;
+    padding: 8px;
+    color: #818792 !important;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-family: inherit;
+    min-height: auto !important;
+}
+.detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
+    color: #fff !important;
+}
+</style>
+
+<div class="middle-footer">
+    <div class="container">
+        <div class="social-icon-box">
+            <div class="pull-left">
+                <ul class="list-unstyled footer-link">
+                    <li class="social-icon"><a href="https://www.facebook.com/KeyInnovations/" target="_blank"><i class="fb-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://twitter.com/KeyInnovations" target="_blank"><i class="twitter-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.pinterest.com/brandingproducts/" target="_blank"><i class="g-plus-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.linkedin.com/company/key-innovations-inc-" target="_blank"><i class="in-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.youtube.com/channel/UCQs3fbfBWmUGpw81jUaONpw" target="_blank"><i class="yt-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.instagram.com/key_innovations/" target="_blank"><i class="instagram-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://plus.google.com/+Keypromo" target="_blank"><i class="gpl-icon strip-icon"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <p class="newslatter">GET DEALS AND IDEAS FROM US</p>
+                <form class="form-inline news-box" id="sunscribe_email"
+                metod="post" onsubmit="return submitNewsLetterForm();">
+                    <div class="form-group">
+                        <input class="required email form-control js-subscribe_email" type="email"
+                        name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
+                        required="true" />
+                    </div>
+                    <input class="btn btn-default news-letter-validation-submit-btn" type="submit"
+                    value="Subscribe" name="subscribe" />
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="bottom-footer">
+    <div class="container"><span class="pull-left">Powered by : <a href="#" target="_blank"><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/officebeacon-light.png"/></a></span>
+        <span
+        class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
+    </div>
+</div>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>

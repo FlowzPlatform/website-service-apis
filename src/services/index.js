@@ -21,6 +21,9 @@ const webpackApi = require('./webpack-api/webpack-api.service.js');
 const publishSurge = require('./publish-surge/publish-surge.service.js');
 
 
+const copyWebsite = require('./copy-website/copy-website.service.js');
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -36,4 +39,5 @@ module.exports = function () {
   app.configure(projectConfiguration);
   app.configure(webpackApi);
   app.configure(publishSurge);
+  app.configure(copyWebsite);
 };

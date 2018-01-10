@@ -1,0 +1,270 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c43672 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c43676 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c43680 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c43684 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c43688 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.productTitle {
+    text-align: center;
+    min-height: 70px;
+}
+
+.table td {
+    text-align: center;
+}
+
+.colors-list li {
+    display: inline;
+}
+
+span.color {
+    min-width: 15px;
+    min-height: 15px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(170, 170, 170);
+    border-right-color: rgb(170, 170, 170);
+    border-bottom-color: rgb(170, 170, 170);
+    border-left-color: rgb(170, 170, 170);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+.ob-product-compare .compare-block > tbody > tr:first-child > td {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+}
+
+.ob-product-compare .compare-block > tbody > tr > td {
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgb(221, 221, 221);
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-align: center;
+    position: relative;
+    vertical-align: top;
+    width: 225px;
+}
+
+.ob-product-compare .table-responsive {
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 100%;
+    display: inline-block;
+    max-width: 1125px;
+}
+
+.ob-product-compare .compare-block {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(221, 221, 221);
+    text-align: center;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    border-collapse: separate !important;
+}
+</style>
+
+<div class="js-list hide">
+        <div>
+            <div class="col-md-12 ob-product-compare">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped compare-block">
+                        <tr id="item_title_price">
+                            <td class="product-#data.id#">
+                                <div class="product">
+                                    <button class="btn btn-danger remove js-remove-compare" data-id="#data.id#"><i class="fa fa-trash-o danger" aria-hidden="true"></i>
+                                    </button>
+                                    <img class="img-responsive" src="#data.image#" alt="product image" />
+                                    <h5 class="productTitle"><strong>#data.title#</strong></h5>
+                                    <hr/>
+                                    <h3>#data.price#</h3>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr id="item_sku">
+                            <td class="product-#data.id#">#data.sku#</td>
+                        </tr>
+                        <tr id="item_features">
+                            <td class="product-#data.id#">
+                                <p>#data.features#</p>
+                            </td>
+                        </tr>
+                        <tr id="item_summary">
+                            <td class="product-#data.id#">
+                                <p>#data.summary#</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="listing" class="hide">
+
+        <div>
+            <div class="col-md-12 ob-product-compare">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped compare-block">
+                        <tr id="item_title_price1">
+                            
+                        </tr>
+                        <tr></tr>
+                        <tr id="item_sku1">
+                            
+                        </tr>
+                        <tr id="item_features1">
+                            
+                        </tr>
+                        <tr id="item_summary1">
+                            
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+<script src="./../assets/client-plugins/client-wishlist.js"></script>

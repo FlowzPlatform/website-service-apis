@@ -8,7 +8,7 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      hook => before_publish_surge(hook)
+      hook => before_copy_website(hook)
     ],
     update: [],
     patch: [],
@@ -20,7 +20,7 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      hook => after_publish_surge(hook)
+      hook => after_copy_website(hook)
     ],
     update: [],
     patch: [],
@@ -38,24 +38,26 @@ module.exports = {
   }
 };
 
-function before_publish_surge(hook) {
+function before_copy_website(hook) {
     hook.result = hook.data;
 }
 
 
-function after_publish_surge(hook) {
+function after_copy_website(hook) {
     return new Promise((resolve, reject) => {
       let projectPath = hook.data.projectPath;
-      let domainName = hook.data.domainName;
+      let templateName = hook.data.templateName;
 
       let response = '';
       if (!shell.which('git')) {
         shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
         shell.exit(1);
       } else {
-        shell.echo('Publishing Website');
-        // shell.cd(config.path + projectPath + '/');
-        response = shell.exec('surge --project ' + config.path + projectPath + '/  --domain ' + domainName);
+
+        console.log('cp -rf ' + config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/* ' + config.path + projectPath + '/');
+        // response = shell.cp('-Rf', config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/*', config.path + projectPath + '/');
+        response = shell.exec('cp -rf ' + config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/* ' + config.path + projectPath + '/');
+
       }
       hook.result = response;
       resolve(hook)
