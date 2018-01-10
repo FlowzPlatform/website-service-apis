@@ -56,6 +56,9 @@ beforeFind = async hook => {
   if(hook.params.query.deleted_at == "false"){
       hook.params.query.deleted_at = false;
   }
+  if(hook.params.query.email !=""){
+    hook.params.query.email = {$search: hook.params.query.email}
+  }
 }
 
 beforeCreateAddressBook = async hook => {
