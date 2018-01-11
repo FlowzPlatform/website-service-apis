@@ -33,12 +33,12 @@ try {
         return [parseInt(m[1], 16),parseInt(m[2], 16),parseInt(m[3], 16) ]
     }
 
-    var color1 = hex_to_RGB(color1)
-    var color2 = hex_to_RGB(color2)
-    var color3 = hex_to_RGB(color3)
-    var color4 = hex_to_RGB(color4)
-    var color5 = hex_to_RGB(color5)
-    var color6 = hex_to_RGB(color6)
+    var color1 = hex_to_RGB(color1) 
+    var color2 = hex_to_RGB(color2) 
+    var color3 = hex_to_RGB(color3) 
+    var color4 = hex_to_RGB(color4) 
+    var color5 = hex_to_RGB(color5) 
+    var color6 = hex_to_RGB(color6) 
 
     var colors = new Array(
     color1,
@@ -49,7 +49,7 @@ try {
     color6);
 
     var step = 0;
-    //color table indices for:
+    //color table indices for: 
     // current color left
     // next color left
     // current color right
@@ -61,9 +61,9 @@ try {
 
     function updateGradient()
     {
-
+    
         if ( $===undefined ) return;
-
+        
         var c0_0 = colors[colorIndices[0]];
         var c0_1 = colors[colorIndices[1]];
         var c1_0 = colors[colorIndices[2]];
@@ -83,19 +83,19 @@ try {
         $('#gradient').css({
         background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
             background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
-
+        
         step += gradientSpeed;
         if ( step >= 1 )
         {
             step %= 1;
             colorIndices[0] = colorIndices[1];
             colorIndices[2] = colorIndices[3];
-
+            
             //pick two new target color indices
             //do not pick the same as the current one
             colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
             colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
-
+            
         }
     }
 
@@ -239,7 +239,7 @@ catch (err) {
 }
 // Pagination JS ends
 
-// Populat products slider
+// Popular products slider
 try {
     var projectName = 'setNameHere';
     var rawData = {};
@@ -262,7 +262,7 @@ try {
         },
     dataType: 'json',
     success: function (data) {
-        rawData = data.hits.hits;
+        rawData = data.hits.hits; 
         productData = rawData;
     }
     });
@@ -336,8 +336,8 @@ catch (err) {
 
 // const MyObj = Vue.component('datafieldobject', {
 //   template: `<div class="dfgroup">
-//                                                 <div class="dfrepeate"><slot :text="items"></slot></div>
-//                                         </div>`,
+//                     <div class="dfrepeate"><slot :text="items"></slot></div>
+//             </div>`,
 //   props: ['data_api', 'data_schema'],
 //   computed: {},
 //   data: function() {
@@ -401,7 +401,6 @@ catch (err) {
 // })
 // dataField js ends
 
-
 // Payment JS
 try{
     var paymentgateways = [];
@@ -409,10 +408,10 @@ try{
     var userEmail = '';
     var projectName = '';
     var configDataUrl = '';
-    var baseURL = 'http://localhost:3032';
-    var socketURL = 'http://localhost:4032';
-    // var baseURL = 'http://api.flowz.com/serverapi';
-    // var socketHost = 'http://ws.flowz.com:4032';
+    // var baseURL = 'http://localhost:3032';
+    // var socketURL = 'http://localhost:4032';
+    var baseURL = 'http://api.flowzcluster.tk/serverapi';
+    var socketHost = 'http://ws.flowzcluster.tk:4032';
 
     $(document).ready(function() {
         getProjectInfo();
@@ -420,7 +419,7 @@ try{
     });
 
     async function getProjectInfo() {
-        await $.getJSON( "./assets/project-details.json", function( data ) {
+        await $.getJSON( "./assets/project-details.json", function( data ) {  
             var configData = data;
             userEmail = data[0].projectOwner;
             projectName = data[0].projectName;
@@ -432,12 +431,12 @@ try{
 
     async function getConfigData () {
 
-        await $.getJSON( configDataUrl , function( data ) {
+        await $.getJSON( configDataUrl , function( data ) {  
             var configData = data.data[0].configData;
             // globalVariables = configData[1].projectSettings[1].GlobalVariables;
             paymentgateways=configData[1].projectSettings[1].PaymentGateways
         console.log('configData',configData[1].projectSettings[1].PaymentGateways)
-        });
+        }); 
         Paymentgateways();
     }
 
@@ -450,7 +449,7 @@ try{
             }
         }
         $('paymentgateway').replaceWith(paymentbuttons);
-
+            
     }
 }
 catch (err) {

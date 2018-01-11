@@ -5,7 +5,8 @@ var userEmail = '';
 var projectName = '';
 var configDataUrl = '';
 
-var host = 'http://api.flowz.com/serverapi';
+var baseURL = 'http://api.flowzcluster.tk/serverapi';
+var socketHost = 'http://ws.flowzcluster.tk:4032';
 
 $(document).ready(function() {
     getProjectInfo();
@@ -13,12 +14,12 @@ $(document).ready(function() {
 });
 
 async function getProjectInfo() {
-    await $.getJSON( "../assets/project-details.json", function( data ) {  
+    await $.getJSON( "./assets/project-details.json", function( data ) {  
         var configData = data;
         userEmail = data[0].projectOwner;
         projectName = data[0].projectName;
 
-        configDataUrl = host + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
+        configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
     });
 
     getConfigData();
@@ -55,7 +56,7 @@ async function updateGlobalVariables () {
                         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
                     } else {
                         var getImageData = await $.ajax({
-                          url:'../assets/' + _varValue,
+                          url:'./assets/' + _varValue,
                           method: 'GET',
                           type: 'HEAD',
                           async: true,
@@ -92,7 +93,7 @@ async function updateGlobalVariables () {
 }
 
 function ImpletementSocekt() {
-  var socket = io(host);
+  var socket = io(socketHost);
   var client = feathers()
       .configure(feathers.hooks())
       .configure(feathers.socketio(socket));
@@ -104,7 +105,7 @@ function ImpletementSocekt() {
     getConfigData();
 
     $('body [id="brandName"]').html(brandName);
-        $('body [id="brandLogo"]').attr('src', '../assets/brand-logo.png');
+        $('body [id="brandLogo"]').attr('src', './assets/brand-logo.png');
     
         // Replace all global variables
         for (var i = 0; i < globalVariables.length; i++){
@@ -124,7 +125,7 @@ function ImpletementSocekt() {
                             $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
                         } else {
                             var getImageData = await $.ajax({
-                            url:'../assets/' + _varValue,
+                            url:'./assets/' + _varValue,
                             method: 'GET',
                             type: 'HEAD',
                             async: true,
