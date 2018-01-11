@@ -8,16 +8,32 @@ services:
 branches:
   only:
   - master
+  - develop
+  - QA
 
 jobs:
   include:
     - stage: Flowz-Service-Api-Backend-Flowz
       script:
-      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t flowz_service_api_backend_flowz:"$DOCKER_IMAGE_TAG" .
-      - docker images
-      - docker tag flowz_service_api_backend_flowz:"$DOCKER_IMAGE_TAG" $DOCKER_USERNAME/flowz_service_api_backend_flowz:"$DOCKER_IMAGE_TAG"
-      - docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:"$DOCKER_IMAGE_TAG"
+      - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
+            docker login -u="$DOCKER_USERNAME_FLOWZ" -p="$DOCKER_PASSWORD_FLOWZ";
+            docker build -t flowz_service_api_backend_flowz:latest .;
+            docker images;
+            docker tag flowz_service_api_backend_flowz:latest $DOCKER_USERNAME_FLOWZ/flowz_service_api_backend_flowz:latest;
+            docker push $DOCKER_USERNAME_FLOWZ/flowz_service_api_backend_flowz:latest;
+        elif [ ${TRAVIS_BRANCH} = "develop" ]; then
+            docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+            docker build -t flowz_service_api_backend_flowz:dev .;
+            docker images;
+            docker tag flowz_service_api_backend_flowz:dev $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
+            docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
+        else
+            docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+            docker build -t flowz_service_api_backend_flowz:qa .;
+            docker images;
+            docker tag flowz_service_api_backend_flowz:qa $DOCKER_USERNAME/flowz_service_api_backend_flowz:qa;
+            docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:qa;
+        fi'
     - stage: Upgrade Rancher Service
       script:
       - bash ./upgrade.sh
@@ -34,6 +50,5 @@ notifications:
       - naveeng@officebrain.com
       - fsaiyed@officebrain.com
       - gkumar@officebrain.com
-      - mshah@officebrain.com
     on_success: always
     on_failure: always
