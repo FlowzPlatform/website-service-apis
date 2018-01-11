@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-<title></title>
+<title></title><link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' />
 <script src='https://code.jquery.com/jquery-3.2.1.js'></script>
 <link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'/>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -10,22 +10,10 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
 <script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
-<script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-memory@8.0.9/dist/y-memory.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-webrtc@8.0.7/dist/y-webrtc.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-indexeddb@8.1.9/dist/y-indexeddb.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
+<script type='text/javascript' src='https://unpkg.com/vue/dist/vue.js'></script>
 <link rel='stylesheet' href='./main-files/main.css'/>
 <script src="./main-files/main.js"></script>
-<script src="./assets/client-plugins/client-cart.js"></script>
-
-</head>
-<body>
-<div id="app">
+</head><body><div id="app">
 <div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
@@ -700,12 +688,6 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
 }
-
-.c29557 {
-    display: block;
-    width: 100%;
-    min-height: 20px;
-}
 </style>
 
 
@@ -721,24 +703,21 @@ body {
                         <ul>
                             <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
                             </li>
-                            <li><a href="#">My Account</a><i class="fa fa-angle-right fa-fw"></i>
+                            <li><a href="#">My Account </a><i class="fa fa-angle-right fa-fw"> </i>
                             </li>
-                            <li><strong>Address Book</strong>
+                            <li><a href="#">Address Book </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><strong>Edit new address</strong>
                             </li>
                         </ul>
                     </div>
-                    <div class="ob-main-address-block">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <h1 class="main-title"><i class="fa fa-edit"></i>Address Book</h1>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="pull-right"><a class="btn-search pull-right" href="addAddressBook.html">add new address</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <reusecomponent class="c29557"><style>
+                    <div class="ob-add-new-address">
+                        <h1 class="main-title">Edit new address</h1>
+                        <h2>contact information</h2>
+                        <div class="require-message">(Please Fill Your Contact information. Don't Forget To Save!)</div>
+                    </div>
+                    <div class="row">
+                        <reusecomponent class="c17829"><style>
 * {
     box-sizing: border-box;
 }
@@ -747,12 +726,30 @@ body {
     margin: 0;
 }
 
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
 :root {
     margin-top: 0px;
 }
 
 :root {
     margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 .gjs-am-file-uploader > form {
@@ -770,58 +767,125 @@ body {
     margin-left: 0px;
 }
 
-#c23460 {
-    font-size: 20px;
-}
-
-#c23476 {
-    font-size: 16px;
-}
 </style>
 
-<section class="fdb-block">
-    <div class="js_address_book_list">
-        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
-            <div class="account-address-block">
-                <div class="address-inner-block">
-                    <div class="address-title-block">
-                        <h4>#data.name#</h4>
-                        <div class="pull-right address-edit-del-block">
-                            <ul>
-                                <li><a class="ui-link" data-original-title="Edit" data-placement="top" data-toggle="tooltip"
-                                    href="editAddressBook.html?id=#data.id#" data-id="#data.id#"><i class="fa fa-pencil-square-o"></i></a>
-                                </li>
-                                <li><a class="ui-link js_delete_address" data-original-title="Delete" data-placement="top" data-toggle="tooltip"
-                                    href="javascript:void(0)" data-id="#data.id#"><i class="fa fa-trash-o"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="address-info-block">
-                        <div class="scrollbar" id="style-1">
-                            <p>#data.address#</p>
-                        </div>
-                    </div>
-                    <div class="address-contact-info-block">
-                        <ul>
-                            <li><i class="fa fa-phone"></i>#data.phone#</li>
-                            <li><a href="#"><i class="fa fa-envelope"></i>#data.email#</a>
-                            </li>
-                            <li><i class="fa fa-print"></i>#data.mobile#</li>
-                        </ul>
-                    </div>
-                    <div class="address-shipping-block js_address_type">
-                        <div class="checkbox"><a href="javascript:void(0)" class="#activeDefaultClass#" data-id="#data.id#"><i class="fa fa-check-circle"></i>#data.addressType#</a>
-                        </div>
+
+
+<form name="address_book" id="address_book" method="post">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="radio js-isoffice" style="display: none;">
+                    <div id="addresstbook_isOffice" class="input" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
+                        <input id="addresstbook_is_office_0" name="is_office" value="1" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_0">Is Office</label>
+                        <input id="addresstbook_is_office_1" name="is_office" value="0" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_1">Is Home</label>
                     </div>
                 </div>
             </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="firstName">Name<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Name"
+                    name="name" id="addresstbook_name"  data-toggle="tooltip" data-placement="bottom" title="Name" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">Address Type<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select js-address-type" id="addresstbook_address_type"
+                    name="address_type"   data-toggle="tooltip" data-placement="bottom" title="Address type" >
+                        <option value="" selected="selected">Select Address Type</option>
+                        <option value="billing">Billing</option>
+                        <option value="shipping">Shipping</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Email<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" placeholder="Enter Email " tabindex="1"
+                    name="email" id="addresstbook_email"   data-toggle="tooltip" data-placement="bottom" title="Email" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 1<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" placeholder="Enter Address 1" type="text" tabindex="1"
+                    id="addresstbook_street1" name="street1"   data-toggle="tooltip" data-placement="bottom" title="Address 1" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 2</label>
+                    <input class="input" placeholder="Enter Address 2" type="text"
+                    tabindex="1" id="addresstbook_street2" name="street2"   data-toggle="tooltip" data-placement="bottom" title="Address2" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">Country<span class="mandatory-field">*</span>
+                    </label>
+                    <input class="input" placeholder="Enter country" type="text" tabindex="1"
+                    id="addresstbook_country" name="country"   data-toggle="tooltip" data-placement="bottom" title="Country" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">State<span class="mandatory-field">*</span>
+                    </label>
+                    <input class="input" placeholder="Enter state" type="text" tabindex="1"
+                    id="addresstbook_state" name="state"   data-toggle="tooltip" data-placement="bottom" title="State" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">City<span class="mandatory-field">*</span>
+                    </label>
+                    <input class="input" placeholder="Enter city" type="text" tabindex="1"
+                    id="addresstbook_city" name="city"   data-toggle="tooltip" data-placement="bottom" title="City" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="postalcode">Postal Code <i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Postal Code"
+                    id="addresstbook_postalcode" name="postalcode"   data-toggle="tooltip" data-placement="bottom" title="Postal Code" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="phone">Phone<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Phone Number"
+                    id="addresstbook_phone" name="phone"   data-toggle="tooltip" data-placement="bottom" title="Phone Number" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="lastName">Mobile</label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Mobile Number"
+                    id="addresstbook_mobile" name="mobile"   data-toggle="tooltip" data-placement="bottom" title="Mobile Number" />
+                </div>
+            </div>
+        </div><span class="required-field pull-right">* Required Fields</span>
+        <div class="btn-box-main">
+            <input class="btn btn-default js_submit_address" type="submit" value="save"
+            tabindex="17" />
+            <input class="btn btn-default" type="reset" value="Reset" tabindex="18"
+            />
         </div>
     </div>
-</section>
+</form>
+
 <script type="text/javascript" src="./assets/client-plugins/client-address-book.js"></script>
 </reusecomponent>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -940,13 +1004,20 @@ body {
 <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
 </p><!--/gm-editable-region--></div></div>
 </div>
-<script src="./assets/client-plugins/client-slider-plugin.js"></script>
-<script src="./assets/client-plugins/client-popular-product-slider-plugin.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
-
-</div>
-<script src="./../public/assets/client-plugins/global-variables-plugin.js"></script>
+<script src="./assets/client-plugins/global-variables-plugin.js"></script>
 <script src="./assets/client-plugins/flowz-builder-engine.js"></script>
-
+<script src="./assets/client-plugins/slider-plugin.js"></script>
+<script src="./assets/client-plugins/shopping-cart.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/js/product-search.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-memory@8.0.9/dist/y-memory.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-webrtc@8.0.7/dist/y-webrtc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-indexeddb@8.1.9/dist/y-indexeddb.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
 </body>
 </html>

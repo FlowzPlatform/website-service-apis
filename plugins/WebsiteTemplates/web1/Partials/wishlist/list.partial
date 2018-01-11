@@ -15,6 +15,28 @@ body {
     margin-top: 0px;
 }
 
+.clearfix {
+    clear: both;
+}
+
+.logo {
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 130px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    min-height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: rgb(77, 17, 79);
+    font-size: 23px;
+}
+
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
@@ -28,30 +50,6 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-}
-
-.myCartListings {
-    background-color: rgb(238, 238, 238);
-    transition-duration: 0.2s;
-    transition-timing-function: linear;
-    transition-delay: initial;
-    transition-property: all;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-}
-
-.myCartListings:hover {
-    box-shadow: rgb(153, 153, 153) 0px 0px 10px;
-    transition-duration: 0.2s;
-    transition-timing-function: linear;
-    transition-delay: initial;
-    transition-property: all;
 }
 
 #productImage {
@@ -73,28 +71,49 @@ button.remove {
     float: right;
     margin-top: 1%;
 }
+
+.col-sm-12.col-md-6.col-lg-4.col-xs-12.product-wrap.js-product-box.product--data-id- {
+    cursor: pointer;
+}
 </style>
 
 
 
 
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
+    type="text/css" />
+</div>
 <div class="js-list hide">
-    <div class="col-md-12 myCartListings product-#data-id#">
-        <div class="col-md-4">
-            <img src="#data.image#" width="100%" height="50%" />
+    <div class="col-sm-12 col-xs-12 product-wrap js-product-box product-#data-id#">
+        <div class="pro-box">
+            <div class="pro-image box01">
+                <div class="product-img-blk"><a class="item-title js-product-title" href="#data.product_link#"><img class="img-responsive center-block" src="#data.image#"/></a>
+                </div>
+            </div>
+            <div class="pro-desc"><a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
+                <div
+                class="item-code">Item Number : #data.sku#</div>
+            <div class="item-price">#data.currency# #data.price#</div>
+            <div class="list-quantity-block">
+                <p><b>Description :</b>
+#data.description#</p>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="col-md-8">
-            <button class="btn btn-danger remove js-remove-wishlist" data-id="#data.id#"><i class="fa fa-trash-o danger" aria-hidden="true"></i>
-            </button>
-            <h2>#data.title#</h2>
-            <h4>#data.currency# #data.price#</h4>
-            <h4>Item # : #data.sku#</h4>
-            <h4>Product Description</h4>
-            <hr/>
-            <h6>#data.description#</h6>
-        </div>
+        <div class="clearfix"></div>
+        <div class="product-tag"></div><a class="product-delete-btn quick-delete wishlist-delete-record js-remove-wishlist"
+        data-original-title="Remove" data-placement="top" data-toggle="tooltip"
+        data-id="#data.id#"><i class="fa fa-trash-o"></i></a>
     </div>
 </div>
-<div class="listing">
 </div>
-<script src="./../assets/client-plugins/client-wishlist.js"></script>
+<div class="listing"></div>
+<script src="./assets/client-plugins/client-wishlist.js"></script>

@@ -54,7 +54,7 @@ if(pid != null) {
                   productData = data;
                   var productDetails = productData.hits.hits[0]._source;
                   // console.log("productDetails==>>",productDetails);
-                	ProductName = productDetails.product_name;
+			ProductName = removeSpecialCharacters(productDetails.product_name);
                 	ProductImage = productDetails.default_image;
                   ProductSku = productDetails.sku;
 
@@ -256,7 +256,6 @@ if(pid != null) {
                   		}).on('typeahead:selected', function (obj, datum) {
                     			let counter = $(obj.currentTarget).data('counter');
                     			let addressBookId = datum.id;
-                          console.log("address_book_id",addressBookId);
                           axios({
                               method: 'GET',
                               url: project_settings.address_book_api_url+'/'+addressBookId,
@@ -266,7 +265,6 @@ if(pid != null) {
                               if(response.data != undefined ){
                                   let returnData = response.data;
                                   let replaceAddressHtml = '';
-                                  console.log("returnData===>>>",returnData);
                                   replaceAddressHtml += returnData.name+"<br>";
                                   replaceAddressHtml += returnData.email+"<br>";
                                   replaceAddressHtml += returnData.street1+"<br>,";
@@ -296,7 +294,7 @@ if(pid != null) {
                               }
                           })
                           .catch(error => {
-                            console.log('Error fetching and parsing data', error);
+                            // console.log('Error fetching and parsing data', error);
                           });
                   		});
                   	}
@@ -397,13 +395,13 @@ if(pid != null) {
                 });
             }
             else{
-                console.log("Authentication is failed to fetch product information.");
+                // console.log("Authentication is failed to fetch product information.");
                 window.location = "error404.html";
                 return false;
             }
 			  },
         error: function(err){
-            console.log("this type of url not present");
+            // console.log("this type of url not present");
         }
     });
 }

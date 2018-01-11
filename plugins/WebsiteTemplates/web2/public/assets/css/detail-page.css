@@ -1,9 +1,38 @@
+.innerpage, .home-content > .container {background: transparent;}
+
 .quick-view-left .product-big-image {
    width : 455px
 }
 
+h1.product-title {
+    width: 100%;
+    font-size: 26px;
+    color: #4b4b4b;
+    font-weight: bold;
+}
+
+.virtual-button {
+    background: #666;
+    text-align: center;
+    min-width: auto;
+    min-height: 39px;
+    padding: 8px;
+    color: #818792 !important;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-family: inherit;
+    min-height: auto !important;
+}
+.detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
+    color: #fff !important;
+}
+
 .innerpage {
-    margin: 0 ;
+    margin: 0;
 }
 
 .header-search-col {

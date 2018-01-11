@@ -6,7 +6,7 @@ var project_settings = function () {
       type: "POST",
       dataType: "json",
       contentType: "application/json; charset=utf-8",
-      url: '../assets/project_settings.json',
+      url: './assets/project_settings.json',
       success: function (data) {
           tmp = data.project_settings;
       },
@@ -23,7 +23,7 @@ Y({
   },
   connector: {
   name: 'webrtc',
-  room: 'wishList-example'
+  room: 'wishList-example5'
   },
   sourceDir: null,
   share: {
@@ -365,7 +365,6 @@ var init = function() {
           .append( "<div>" + item._source.product_name + "</div>" )
           .appendTo( ul );
     };
-
   	$('.header-search-col').find('.btn-search').click(function(){
       if($.trim($('input[name="search"]').val()) != '') {
                window.location.href = project_settings.base_url+'public/search.html?SearchSensor=' + $('input[name="search"]').val()
@@ -381,6 +380,7 @@ var init = function() {
 $(document).on('click', '.js-add-to-wishlist', function(e) {
   e.preventDefault();
   let product_id = $(this).data('id');
+  alert(product_id)
   addInTransaction(1,product_id); // 1 for WishList
 });
 
@@ -838,7 +838,7 @@ function hidePageAjaxLoading(){
 function showWishList(recetAdded=false)
 {
   var listHtml = $('#myWishList .js-list').html()
-
+  alert(listHtml);
   if(user_details != null){
     if(recetAdded) {
       $("#myWishList .listing .js-no-records").remove();
@@ -1123,27 +1123,4 @@ function showCompareList(recetAdded=false)
 
     $('#myCompareList #listing').removeClass('hide');
   }
-}
-
-function submitNewsLetterForm()
-{
-  let data = {"email":$('input[name="subscribe_email"]').val()}
-  $.ajax{
-    type : 'POST',
-    url : project_settings.email_subscribe_api_url,
-    dataType : 'json',
-    data: data,
-    success : function(response_data) {
-      if (response_data!= "") {
-        if(response_data.status == 400) {
-          showErrorMessage(response_data.message)
-        }
-        else{
-          showSuccessMessage("The email has successfully been registered for the newsletter")
-          $('input[name="subscribe_email"]').val('')
-        }
-      }
-    }
-  })
-  return false;
 }
