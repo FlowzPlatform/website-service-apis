@@ -25,6 +25,7 @@
 
 </head>
 <body>
+<div id="app">
 <div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
@@ -32,8 +33,6 @@
 
 body {
     margin: 0;
-      background: url('https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg') no-repeat center top;
-    background-attachment: fixed;
 }
 
 .row {
@@ -49,8 +48,17 @@ body {
     margin-top: 0px;
 }
 
+:root {
+    margin-top: 0px;
+}
+
 .clearfix {
     clear: both;
+}
+
+.navbar {
+    float: right;
+    width: 50%;
 }
 
 .row {
@@ -59,6 +67,10 @@ body {
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
+    width: 100%;
+}
+
+.navbar {
     width: 100%;
 }
 
@@ -75,6 +87,16 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
+    background-image: url("https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg");
+    background-position-x: center;
+    background-position-y: top;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background-attachment: fixed;
 }
 
 #c47368 {
@@ -353,17 +375,26 @@ body {
 .ob-menu {
     background-color: rgb(73, 78, 107) !important;
 }
- .row.header-search-col {
-position: absolute;
-width: 325px;
-top: 25px;
-left: 276px;
-}
-.row.header-search-col .col-lg-10,
-.row.header-search-col .col-lg-2 {
-padding: 0;
+
+.row.header-search-col {
+    position: absolute;
+    width: 325px;
+    top: 25px;
+    left: 276px;
 }
 
+.row.header-search-col .col-lg-10, .row.header-search-col .col-lg-2 {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+.c574096 {
+    padding: 10px;
+    display: block;
+    min-height: 75px;
+}
 
 @media screen and (max-width: 600px) {
     #menu {
@@ -501,14 +532,25 @@ padding: 0;
     }
 }
 
+.c574096 {padding:0px;    min-height: 1px;}
+.dropdown-toggle::after {display:none !important;}
+.nav>li>a:focus, .nav>li>a:hover {background-color: #c63928;}
+section.fdb-block.hmconts {overflow: inherit;vertical-align:  top;}
+.in-prod-main .in-prod-under {display: inline-block;}
+nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px; background-color: #000;}
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background-color: #c63928 !important;color: #fff !important;}
+.nav .open .dropdown-menu {height: inherit !important;background-color: #000;}
+.nav .open .dropdown-menu li,
+.nav .open .dropdown-menu li a {width:100%;}
+.nav .open .dropdown-menu li a:hover {width:100%; background-color: #c63928;}
+.navbar-toggler {display: none;}
 </style>
 
-<script type="text/javascript" src="../assets/client-plugins/jquery.validate.min.js"></script>
+<script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
     rel="stylesheet" type="text/css" />
-    <link href="../assets/css/base.css"
-    rel="stylesheet" type="text/css" />
+    <link href="./assets/css/base.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
@@ -585,87 +627,31 @@ padding: 0;
 </div>
 <menucomponent>
     <nav id="menu">
-        <div class="ob-menu">
-            <div class="container">
-                <ul>
-                    <li><a class="prett">PRODUCTS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
+        <navimenu class="c574096" menuid="default">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> 
+                    </button>
+                    <div class="collapse navbar-collapse" id="navigationDiv">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
                             </li>
-                            <li><a href="#">Drop Menu 2</a>
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
                             </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
+                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Dropdown link </a> 
+                                <div
+                                class="dropdown-menu"> <a class="dropdown-item" href="#">Link 1</a>  <a class="dropdown-item" href="#">Link 2</a> 
+                                    <a
+                                    class="dropdown-item" href="#">Link 3</a>
+                    </div>
                     </li>
-                    <li><a class="prett">BRANDS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">CATLOG</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">SERVICE</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">TOOLS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">PROMOTIONS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a>OUTLET</a>
-                    </li>
-                    <li><a class="prett">ABOUT</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        </navimenu>
     </nav>
-</menucomponent>
-</p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
+</menucomponent></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
 * {
     box-sizing: border-box;
 }
@@ -674,12 +660,108 @@ body {
     margin: 0;
 }
 
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
 :root {
     margin-top: 0px;
 }
 
 :root {
     margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<div class="container main">
+    <div class="content-info-page">
+        <div class="innerpage row account-innerpage">
+            <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+                <div class="ob-account-right">
+                    <div class="breadcrumb">
+                        <ul>
+                            <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
+                            </li>
+                            <li><a href="#">My Account </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><a href="#">Address Book </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><strong>Edit new address</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ob-add-new-address">
+                        <h1 class="main-title">Edit new address</h1>
+                        <h2>contact information</h2>
+                        <div class="require-message">(Please Fill Your Contact information. Don't Forget To Save!)</div>
+                    </div>
+                    <div class="row">
+                        <reusecomponent class="c17829"><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 .gjs-am-file-uploader > form {
@@ -697,83 +779,131 @@ body {
     margin-left: 0px;
 }
 
-#c3960 {
-    margin-top: inherit;
-    margin-right: inherit;
-    margin-bottom: inherit;
-    margin-left: inherit;
-}
-
-.c3933 {
-    display: block;
-    width: 100%;
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    vertical-align: middle;
-}
-
-.colors-list li {
-    display: inline;
-}
-
-span.color {
-    min-width: 25px;
-    min-height: 25px;
-    padding-top: 10px;
-    padding-right: 15px;
-    padding-bottom: 10px;
-    padding-left: 15px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: rgb(170, 170, 170);
-    border-right-color: rgb(170, 170, 170);
-    border-bottom-color: rgb(170, 170, 170);
-    border-left-color: rgb(170, 170, 170);
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-}
 </style>
 
 
 
-
-<div class="cssImports"></div>
-<link href="./assets/css/materialize.min.css" rel="stylesheet" crossorigin="anonymous"
-/>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-rel="stylesheet" crossorigin="anonymous" />
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
-rel="stylesheet" />
-<productsearchfilter class="c3933" apiurl="https://f21a94c6770cd2850444cb6de9b333cf.us-east-1.aws.found.io:9243/pdm1/_search"
-apiusername="aakron" apipassword="123456" selectadvance_search_filter="false"
-selectcategory_filter="true" selectprices_filter="false" selectcolours_filter="true"
-selectbrands_filter="true" selecttheme_filter="portrait">
-    <div class="reomve-texts"> <i class="fa fa-search"></i>
-        <label id="c3960">Product Search Filter</label>
+<form name="address_book" id="address_book" method="post">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="radio js-isoffice" style="display: none;">
+                    <div id="addresstbook_isOffice" class="input" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
+                        <input id="addresstbook_is_office_0" name="is_office" value="1" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_0">Is Office</label>
+                        <input id="addresstbook_is_office_1" name="is_office" value="0" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_1">Is Home</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="firstName">Name<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Name"
+                    name="name" id="addresstbook_name"  data-toggle="tooltip" data-placement="bottom" title="Name" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">Address Type<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select js-address-type" id="addresstbook_address_type"
+                    name="address_type"   data-toggle="tooltip" data-placement="bottom" title="Address type" >
+                        <option value="" selected="selected">Select Address Type</option>
+                        <option value="billing">Billing</option>
+                        <option value="shipping">Shipping</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Email<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" placeholder="Enter Email " tabindex="1"
+                    name="email" id="addresstbook_email"   data-toggle="tooltip" data-placement="bottom" title="Email" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 1<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" placeholder="Enter Address 1" type="text" tabindex="1"
+                    id="addresstbook_street1" name="street1"   data-toggle="tooltip" data-placement="bottom" title="Address 1" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 2</label>
+                    <input class="input" placeholder="Enter Address 2" type="text"
+                    tabindex="1" id="addresstbook_street2" name="street2"   data-toggle="tooltip" data-placement="bottom" title="Address2" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">Country<span class="mandatory-field">*</span>
+                    </label>
+                    <input class="input" placeholder="Enter country" type="text" tabindex="1"
+                    id="addresstbook_country" name="country"   data-toggle="tooltip" data-placement="bottom" title="Country" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">State<span class="mandatory-field">*</span>
+                    </label>
+                    <input class="input" placeholder="Enter state" type="text" tabindex="1"
+                    id="addresstbook_state" name="state"   data-toggle="tooltip" data-placement="bottom" title="State" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">City<span class="mandatory-field">*</span>
+                    </label>
+                    <input class="input" placeholder="Enter city" type="text" tabindex="1"
+                    id="addresstbook_city" name="city"   data-toggle="tooltip" data-placement="bottom" title="City" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="postalcode">Postal Code <i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Postal Code"
+                    id="addresstbook_postalcode" name="postalcode"   data-toggle="tooltip" data-placement="bottom" title="Postal Code" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="phone">Phone<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Phone Number"
+                    id="addresstbook_phone" name="phone"   data-toggle="tooltip" data-placement="bottom" title="Phone Number" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="lastName">Mobile</label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Mobile Number"
+                    id="addresstbook_mobile" name="mobile"   data-toggle="tooltip" data-placement="bottom" title="Mobile Number" />
+                </div>
+            </div>
+        </div><span class="required-field pull-right">* Required Fields</span>
+        <div class="btn-box-main">
+            <input class="btn btn-default js_submit_address" type="submit" value="save"
+            tabindex="17" />
+            <input class="btn btn-default" type="reset" value="Reset" tabindex="18"
+            />
+        </div>
     </div>
-</productsearchfilter>
-<script type="text/javascript" src="./assets/client-plugins/client-search-page.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-rel="stylesheet" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-rel="stylesheet" crossorigin="anonymous" />
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
-rel="stylesheet" /></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
+</form>
+
+<script type="text/javascript" src="./assets/client-plugins/client-address-book.js"></script>
+</reusecomponent>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
 }
@@ -885,6 +1015,7 @@ body {
 </div>
 <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
 </p><!--/gm-editable-region--></div></div>
+</div>
 <script src="./assets/client-plugins/client-slider-plugin.js"></script>
 <script src="./assets/client-plugins/client-popular-product-slider-plugin.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>

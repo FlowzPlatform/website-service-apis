@@ -14,7 +14,6 @@ var project_settings = function () {
   return tmp;
 }();
 
-
 Y({
   db: {
   name: 'indexeddb'
