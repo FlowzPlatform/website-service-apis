@@ -2,6 +2,7 @@
 <head>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <title></title>
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' />
 <script src='https://code.jquery.com/jquery-3.2.1.js'></script>
 <link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'/>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -10,6 +11,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
 <script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
+<script type='text/javascript' src='https://unpkg.com/vue/dist/vue.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
@@ -56,21 +58,12 @@ body {
     clear: both;
 }
 
-.navbar {
-    float: right;
-    width: 50%;
-}
-
 .row {
     display: table;
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
-    width: 100%;
-}
-
-.navbar {
     width: 100%;
 }
 
@@ -87,16 +80,21 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    background-image: url("https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg");
-    background-position-x: center;
-    background-position-y: top;
-    background-size: initial;
-    background-repeat-x: no-repeat;
-    background-repeat-y: no-repeat;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: initial;
-    background-attachment: fixed;
+}
+
+#c46113 {
+    margin-top: inherit;
+    margin-right: inherit;
+    margin-bottom: inherit;
+    margin-left: inherit;
+}
+
+#c2471 {
+    background-color: rgb(255, 255, 255);
+}
+
+.container {
+    width: 100%;
 }
 
 #c47368 {
@@ -372,29 +370,56 @@ body {
     right: 9px;
 }
 
-.ob-menu {
-    background-color: rgb(73, 78, 107) !important;
+.ob-menu .container {
+    position: relative;
 }
 
-.row.header-search-col {
-    position: absolute;
-    width: 325px;
-    top: 25px;
-    left: 276px;
+.c12395 {
+    color: black;
+    width: 198px;
+    height: 68px;
 }
 
-.row.header-search-col .col-lg-10, .row.header-search-col .col-lg-2 {
+div#js-fix-header-controller .main-logo-part {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+div#js-fix-header-controller .row.header-search-col {
+    display: inline-block;
+    width: 430px;
+    vertical-align: middle;
+    margin-top: 12px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 50px !important;
+}
+
+div#js-fix-header-controller .slidemenu.shop-menu {
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+    margin-right: 10px;
+}
+
+div#js-fix-header-controller .slidemenu.shop-menu .login-show {
+    border-right-width: 0px;
+    border-right-style: initial;
+    border-right-color: initial;
+}
+
+div#js-fix-header-controller .row.header-search-col .col-lg-10, div#js-fix-header-controller .row.header-search-col .col-lg-2 {
     padding-top: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
 }
-
-.c574096 {
-    padding: 10px;
-    display: block;
-    min-height: 75px;
-}
+.ob-menu ul li a {color: #000  !important;}
+.ob-menu ul li a:after { border-top-color:#000  !important}
 
 @media screen and (max-width: 600px) {
     #menu {
@@ -531,125 +556,150 @@ body {
         display: block;
     }
 }
-
-.c574096 {padding:0px;    min-height: 1px;}
-.dropdown-toggle::after {display:none !important;}
-.nav>li>a:focus, .nav>li>a:hover {background-color: #c63928;}
-section.fdb-block.hmconts {overflow: inherit;vertical-align:  top;}
-.in-prod-main .in-prod-under {display: inline-block;}
-nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px; background-color: #000;}
-.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background-color: #c63928 !important;color: #fff !important;}
-.nav .open .dropdown-menu {height: inherit !important;background-color: #000;}
-.nav .open .dropdown-menu li,
-.nav .open .dropdown-menu li a {width:100%;}
-.nav .open .dropdown-menu li a:hover {width:100%; background-color: #c63928;}
-.navbar-toggler {display: none;}
 </style>
 
-<script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
+
+
+
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
+    type="text/css" />
+</div>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+rel="stylesheet" crossorigin="anonymous" />
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
     rel="stylesheet" type="text/css" />
-    <link href="./assets/css/base.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
     rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="./assets/css/promobilia.css"
+    />
     <div id="js-fix-header-controller">
-        <div class="ob-header">
-            <div class="main-logo-part">
-                <div class="ob-top-menu">
-                    <div class="container">
-                        <div class="slidemenu shop-menu">
-                            <ul class="header-loging">
-                                <li class="header-login-text"> <a href="index.html"> <span class="login-text">Home</span> </a>
-                                </li>
-                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
-                                </li>
-                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
-                                </li>
-                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="compare.html"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span> </a>
-                                </li>
-                                <li class="dropdown login-col header-login-text login-show hide"><a class="dropdown-toggle" href="login.html"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
-                                </li>
-                                <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
-                                    <ul
-                                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
-                                        <li><a href="myaccount.html">MY ACCOUNT</a>
-                                        </li>
-                                        <li><a href="changePassword.html">CHANGE PASSWORD</a>
-                                        </li>
-                                        <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
-                                        </li>
-                            </ul>
-                            </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ob-logo-block">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/imgs/img_logo.png"/></a>
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-right">
-                                <div class="support-col"> <a href="#"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
-                                </div>
-                                <div class="call-text"> <i></i><span>604 589 5268</span><em>Call Us: Speak with a Rep!</em>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row header-search-col">
-                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                <input placeholder="Search Products Here" type="text" name="search" />
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <input class="btn-search" type="button" title="Click to search" value="Search"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="main-logo-part"><a href="index.html"><img class="c12395" src="http://www.aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/logo.png?v=0.0.1"/></a>
+        </div>
+        <div class="row header-search-col">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <input placeholder="Search Products Here" type="text" name="search" />
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <input class="btn-search" type="button" title="Click to search" value="Search" onclick="location.reload(search.html);"
+                />
             </div>
         </div>
-        <div class="ob-menu ui-menu-nav menu-option-3">
-            <div class="container">
-                <div class="navbar2 navbar-default menu-box" role="navigation" id="mainmenu-nav">
-                    <div class="navbar-header2"> <a class="navbar-toggle"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-                    </div>
-                </div>
-            </div>
+        <div class="slidemenu shop-menu">
+            <ul class="header-loging">
+                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
+                </li>
+                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="compare.html"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span> </a>
+                </li>
+                <li class="dropdown login-col header-login-text login-show hide"><a class="dropdown-toggle" href="login.html"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
+                </li>
+                <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
+                    <ul
+                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
+                        <li><a href="myaccount.html">MY ACCOUNT</a>
+                        </li>
+                        <li><a href="changePassword.html">CHANGE PASSWORD</a>
+                        </li>
+                        <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
+                        </li>
+            </ul>
+            </li>
+            </ul>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
 <menucomponent>
     <nav id="menu">
-        <navimenu class="c574096" menuid="default">
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <div class="container">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> 
-                    </button>
-                    <div class="collapse navbar-collapse" id="navigationDiv">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
+        <div class="ob-menu">
+            <div class="container">
+                <ul>
+                    <li><a class="prett">PRODUCTS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
+                            <li><a href="#">Drop Menu 2</a>
                             </li>
-                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Dropdown link </a> 
-                                <div
-                                class="dropdown-menu"> <a class="dropdown-item" href="#">Link 1</a>  <a class="dropdown-item" href="#">Link 2</a> 
-                                    <a
-                                    class="dropdown-item" href="#">Link 3</a>
-                    </div>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
                     </li>
-                    </ul>
-                </div>
-                </div>
-            </nav>
-        </navimenu>
+                    <li><a class="prett">BRANDS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">CATLOG</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">SERVICE</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">TOOLS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">PROMOTIONS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a>OUTLET</a>
+                    </li>
+                    <li><a class="prett">ABOUT</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 </menucomponent></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
 * {
@@ -728,6 +778,86 @@ body {
     padding-left: 0px !important;
 }
 
+.container {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+#partner-logo {
+    display: block;
+    opacity: 1;
+}
+
+#c498117 {
+    width: 3080px;
+    left: 0px;
+    display: block;
+}
+
+#c498122 {
+    width: 154px;
+}
+
+#c498135 {
+    width: 154px;
+}
+
+#c498146 {
+    width: 154px;
+}
+
+#c498157 {
+    width: 154px;
+}
+
+#c498168 {
+    width: 154px;
+}
+
+#c498179 {
+    width: 154px;
+}
+
+#c498190 {
+    width: 154px;
+}
+
+#c498201 {
+    width: 154px;
+}
+
+#c498212 {
+    width: 154px;
+}
+
+#c498223 {
+    width: 154px;
+}
+
+.item > .cell {
+    width: 33.3%;
+    display: block;
+    height: auto;
+}
+
+#c7934 {
+    width: 1017px;
+    height: 466px;
+}
+
+#c392673 {
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+}
+
+#c117496 {
+    background-color: rgb(47, 105, 189);
+}
+
 #c4771 {
     font-size: 16px;
 }
@@ -772,7 +902,7 @@ body {
     padding-right: 5px;
     padding-bottom: 5px;
     padding-left: 5px;
-    box-shadow: none;
+    box-shadow: rgb(51, 51, 51) 2px 2px 4px, rgb(221, 221, 221) 1px 1px 0px inset;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -1015,78 +1145,101 @@ body {
     margin-right: 10px;
 }
 
-.c423491 {
-    display: block;
-    min-height: 50px;
+#menu {
+    color: rgb(238, 238, 238);
+    height: 35px;
 }
 
-.width-33 {
-    width: 33%;
-}
-
-.c23122 {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    text-align: justify;
-    font-size: 16px;
-    color: rgb(85, 85, 85);
-}
-
-.c23172 {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    text-align: justify;
-    font-size: 16px;
-    color: rgb(85, 85, 85);
-}
-
-.c23818 {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    font-size: 16px;
-    color: rgb(85, 85, 85);
-    text-align: justify;
-}
-
-.fdb-block {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(238, 238, 238);
-    background-color: rgb(255, 255, 255);
-}
-
-.text-h3 {
+#menu ul, #menu li {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    line-height: 25px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
 }
 
-.c1225868 {
+#menu ul {
+    height: 35px;
+}
+
+#menu li {
+    float: left;
+    display: inline;
+    position: relative;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    font-size: 13px;
+    line-height: normal;
+    font-family: Arial;
+}
+
+#menu li a {
+    color: rgb(204, 204, 204);
+}
+
+#menu a {
     display: block;
-    width: 100%;
-    min-height: 20px;
+    line-height: 35px;
+    padding-top: 0px;
+    padding-right: 14px;
+    padding-bottom: 0px;
+    padding-left: 14px;
+    color: rgb(51, 51, 51);
 }
 
-.home-content {
-    margin-top: 0px !important;
+#menu li:hover > a, #menu li a:hover {
+    color: rgb(255, 255, 255);
 }
 
-.service-col {
+#menu input {
+    display: none;
     margin-top: 0px;
-    margin-right: 10px;
+    margin-right: 0px;
     margin-bottom: 0px;
-    margin-left: 10px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    width: 80px;
+    height: 35px;
+    opacity: 0;
+    cursor: pointer;
 }
 
-.fdb-block.keyina {
+#menu label {
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    font-size: 30px;
+    font-family: Arial;
+    display: none;
+    width: 35px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+}
+
+#menu label span {
+    font-size: 13px;
+    position: absolute;
+    left: 35px;
+}
+
+#menu ul.menus {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 180px;
     background-image: initial;
     background-position-x: initial;
     background-position-y: initial;
@@ -1096,25 +1249,308 @@ body {
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
-    background-color: rgb(248, 248, 248);
-    border-top-width: 1px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    z-index: 99;
+    display: none;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-color: rgb(204, 204, 204);
+    border-bottom-color: rgb(204, 204, 204);
+    border-left-color: rgb(204, 204, 204);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    border-top-width: initial;
+    border-top-style: none;
+    border-top-color: initial;
+    color: rgb(51, 51, 51);
+}
+
+#menu ul.menus a {
+    color: rgb(51, 51, 51);
+}
+
+#menu ul.menus li {
+    display: block;
+    width: 100%;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 12px;
+    line-height: normal;
+    font-family: Arial;
+    text-transform: none;
+}
+
+#menu li:hover ul.menus {
+    display: block;
+}
+
+#menu a.prett, #menu a.trigger2 {
+    padding-top: 0px;
+    padding-right: 27px;
+    padding-bottom: 0px;
+    padding-left: 14px;
+}
+
+#menu li:hover > a.prett, #menu a.prett:hover {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
+}
+
+#menu a.prett::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-top-width: 6px;
+    border-right-width: 5px;
+    border-bottom-width: 6px;
+    border-left-width: 5px;
     border-top-style: solid;
-    border-top-color: rgb(228, 228, 228);
-    padding-top: 30px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(238, 238, 238);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    position: absolute;
+    top: 15px;
+    right: 9px;
+}
+
+#menu ul.menus a:hover {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(186, 186, 186);
+}
+
+#menu a.trigger2::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-top-width: 5px;
+    border-right-width: 6px;
+    border-bottom-width: 5px;
+    border-left-width: 6px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: rgb(238, 238, 238);
+    position: absolute;
+    top: 13px;
+    right: 9px;
+}
+
+.inner {
+    width: 500%;
+}
+
+.inner::after {
+    display: block;
+    height: 0px;
+    clear: both;
+}
+
+.page {
+    float: left;
+    width: 20%;
+}
+
+.c258325 {
+    display: block;
+    min-height: 50px;
+}
+
+.ob-innovation {
+    padding-top: 15px;
     padding-right: 0px;
-    padding-bottom: 50px;
+    padding-bottom: 0px;
     padding-left: 0px;
+}
+
+.c9982 {
+    color: black;
+    width: auto;
+    max-width: 100%;
+}
+
+div#slider #active {
+    display: none !important;
 }
 
 @media (max-width: 768px) {
     .cell {
         width: 100%;
         display: block;
-        height: auto;
     }
 
     .cell {
         width: 100%;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #menu {
+        position: relative;
+    }
+
+    #menu ul {
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(131, 131, 131);
+        position: absolute;
+        top: 100%;
+        right: 0px;
+        left: 0px;
+        z-index: 3;
+        height: auto;
+        display: none;
+    }
+
+    #menu ul.menus {
+        width: 100%;
+        position: static;
+        border-top-width: initial;
+        border-right-width: initial;
+        border-bottom-width: initial;
+        border-left-width: initial;
+        border-top-style: none;
+        border-right-style: none;
+        border-bottom-style: none;
+        border-left-style: none;
+        border-top-color: initial;
+        border-right-color: initial;
+        border-bottom-color: initial;
+        border-left-color: initial;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+    }
+
+    #menu li {
+        display: block;
+        float: none;
+        width: auto;
+        text-align: left;
+    }
+
+    #menu li a {
+        color: rgb(255, 255, 255);
+    }
+
+    #menu li a:hover {
+        color: rgb(51, 51, 51);
+    }
+
+    #menu li:hover {
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(186, 186, 186);
+        color: rgb(51, 51, 51);
+    }
+
+    #menu li:hover > a.prett, #menu a.prett:hover {
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(186, 186, 186);
+        color: rgb(51, 51, 51);
+    }
+
+    #menu ul.menus a {
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(186, 186, 186);
+    }
+
+    #menu ul.menus a:hover {
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(255, 255, 255);
+    }
+
+    #menu input, #menu label {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: block;
+    }
+
+    #menu input {
+        z-index: 4;
+    }
+
+    #menu input:checked + label {
+        color: white;
+    }
+
+    #menu input:checked ~ ul {
         display: block;
     }
 }
@@ -1124,335 +1560,404 @@ body {
 
 
 <div class="cssImports"></div>
-<div class="home-content ob-innovation">
+<div class="ob-innovation">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ob-slide-box">
-                    <menucomponent></menucomponent>
-                    <slider class="c423491" image1="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_3f5f004bd4d7f3c103d3b3c51e80d4d49ce76b76.jpg"
-                    image2="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_311c3783d2f9e09b15fb2cf06d9dd6df1fe3b80b.jpg"
-                    image3="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_28e7bab82c4a63cb4f65d8f4572e736af51952bb.png"
-                    image4="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_982176a6b6fdbd52bb46793daa79eff0c55976dd.JPG"
-                    image5="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_311c3783d2f9e09b15fb2cf06d9dd6df1fe3b80b.jpg"></slider>
-                    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-                    rel="stylesheet" />
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-                    />
-                    <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/froala_blocks.css"
-                    rel="stylesheet" type="text/css" />
+        <slider class="c258325" image1="http://www.aakronline.com/images/uploads/banner_images/thumb_d009dae4b5bc6da008b9bfa334eaad6de046584e.jpg"
+        image2="http://www.aakronline.com/images/uploads/banner_images/thumb_d009dae4b5bc6da008b9bfa334eaad6de046584e.jpg"
+        image3="http://www.aakronline.com/images/uploads/banner_images/thumb_d009dae4b5bc6da008b9bfa334eaad6de046584e.jpg"
+        image4="http://www.aakronline.com/images/uploads/banner_images/thumb_4eee3c772dc8203cb35daad72c04c2bfeb4e6691.jpg"
+        image5="http://www.aakronline.com/images/uploads/banner_images/thumb_227f5006f13e1301f7601763f340385fac89fc3b.jpg">
+            <div id="slider">
+                <input type="radio" id="slide3" name="slider" />
+                <div id="slides">
+                    <div id="overflow">
+                        <div class="inner">
+                            <div class="page">
+                                <img id="c7934" src="http://placehold.it/1146x466" />
+                            </div>
+                            <div class="page">
+                                <img src="http://placehold.it/1146x466" />
+                            </div>
+                            <div class="page">
+                                <img src="http://placehold.it/1146x466" />
+                            </div>
+                            <div class="page">
+                                <img src="http://placehold.it/1146x466" />
+                            </div>
+                            <div class="page">
+                                <img src="http://placehold.it/1146x466" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="clearfix"></div>
+                <div id="controls">
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                    <label for="slide3"></label>
+                    <label for="slide4"></label>
+                    <label for="slide5"></label>
+                </div>
             </div>
+        </slider>
+    </div>
+    <div class="container">
+        <menucomponent></menucomponent>
+    </div>
+</div>
+<div class="container">
+    <div class="row item">
+        <div class="cell">
+            <img class="c9982" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/ournewproducts2018.jpg?v=0.0.1"
+            />
         </div>
-        <reusecomponent class="c1225868"><div class="in-prod-main">
-    <h1 class="heading">Branded Products That Build Relationships With Your Brand</h1>
-    <div class="in-prod-under">
-        <div class="in-prod-main">
-            <div class="in-prod-under">
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051271_awards.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Awards &amp; awareness</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Bracelets</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Coins</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Clocks</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Frames-picture</a></li>
-                            </ul>
+        <div class="cell">
+            <img class="c9982" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/catalog2018.jpg?v=0.0.1"
+            />
+        </div>
+        <div class="cell">
+            <img class="c9982" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/fcd2018.jpg?v=0.0.1"
+            />
+        </div>
+    </div>
+    <div class="supplier-logo">
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1441736918_mood-pro-logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1441813046_zingline-logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1512040864_Otaria_Line_FCD_1.13.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1441737065_barware-logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1479988439_logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1479727262_Exclusively-AAkron.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1479746101_fcd.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1500271510_1484080331_FCDD_logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1480535138_Made_in_USA-globe.png"/></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="slider-wrapper js-editable">
+                <div class="heading"><a href="#"><h1>Specials</h1></a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-15610-translucent-red.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-15610-translucent-red.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-15610-translucent-red.jpg" alt="Mardi Gras Grip Pen, Full Color Digital"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                            Mardi Gras Grip Pen, Full Color Digital
+                        </a>
+                                        <div class="item-code">80-15610</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$0.52</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
                         </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051371_bags2.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Bags</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Tags</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Pouches</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Coolers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Backpacks</a></li>
-                            </ul>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20305-neon-pink.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20305-neon-pink.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20305-neon-pink.jpg" alt="Nite Glow Pencil"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                            Nite Glow Pencil
+                                        </a>
+                                        <div class="item-code">20305</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$0.312</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
                         </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051467_evolutiondecospread.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Clothing</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Vests</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Shirts</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Sweaters</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Hoodies</a></li>
-                            </ul>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20550-orange-to-bright-yellow_2.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20550-orange-to-bright-yellow_2.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20550-orange-to-bright-yellow_2.jpg" alt="Mood Pencil with Black Eraser"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                            Mood Pencil with Black Eraser
+                                        </a>
+                                        <div class="item-code">20550</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$0.260</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051413_beverage4.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Drinkware</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Coasters</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Beverages</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Coffee</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Jars</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490052317_food.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Food &amp; wine</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Breath fresheners</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Candy</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Cans</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Gum</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490052081_fun.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Fun &amp; outdoor</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Garden supplies</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Umbrellas</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Picnic baskets</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Flying discs</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490052125_golf.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Golf &amp; sport</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Divot tools</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Markers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Golf kits</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Tees (golf)</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056671_home.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Home &amp; kitchen</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Containers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Candles</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Utensils</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Blankets</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490057468_office.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Office</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Cases</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Desk organizers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Openers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Mats</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490057507_travel.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Other</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Boxes</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Ornaments</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Door knockers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Hangers</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056747_tech.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Technology</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Wallets</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Phone accessories</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Power supplies/inverters</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Stands</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490057043_tools.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Tools &amp; auto</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Buckets</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Automotive kits</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Flashlights</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Carabiners</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056898_tradeshow.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Tradeshow &amp; events</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Flags</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Displays</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Badge holders</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Lanyards</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056982_FITNESS-PRODUCTS-Banner-for-website2.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Wellness &amp; safety</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Dispensers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Reflectors</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Armbands</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Strobe lights</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056861_pens.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Writing &amp; stationery</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Seed paper</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Paper</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Diaries</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Money-play</a></li>
-                            </ul>
-                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div></reusecomponent>
-    </div>
-    <section class="fdb-block keyina">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-12">
-                    <h1 class="heading">Why Key Innovations?</h1>
-                    <p class="text-h3">Our goal is to make your buying experience easy, efficient, and with confidence.</p>
-                    <p
-                    class="text-h3">We are dedicated to providing you with creative ideas, quality products,
-                        first class service and on-time delivery.</p>
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div class="slider-wrapper js-editable">
+                <div class="heading"><a href="#"><h1>Closeouts</h1></a>
                 </div>
-            </div>
-            <div class="row text-center justify-content-center mt-5">
-                <div class="service-col">
-                    <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-1.png"/></a>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/44335-white.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/44335-white.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/44335-white.jpg" alt="TRACK IT Tag"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                TRACK IT Tag
+                                                </a>
+                                        <div class="item-code">44335</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$4.52</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
                         </div>
-                        <div class="service-text"><a><span>We </span>Are Canadian
-                            </a>
-                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="service-col">
-                    <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-2.png"/></a>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/43310-lime-green_7.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/43310-lime-green_7.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/43310-lime-green_7.jpg" alt="Fold-Away Absorbent Towel"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                Fold-Away Absorbent Towel
+                                                </a>
+                                        <div class="item-code">43310</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$4.05</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
                         </div>
-                        <div class="service-text"><a><span> see samples  </span>Before You Buy
-                            </a>
-                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="service-col">
-                    <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-3.png"/></a>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/71114-yellow-green.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/71114-yellow-green.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/71114-yellow-green.jpg" alt="14 oz. Mood Hurricane Cup"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                14 oz. Mood Hurricane Cup
+                                                </a>
+                                        <div class="item-code">71114</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$1.55</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
                         </div>
-                        <div class="service-text"><a><span> High Detail </span>On-Time Delivery
-                            </a>
-                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                </div>
-                <div class="service-col">
-                    <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-4.png"/></a>
-                        </div>
-                        <div class="service-text"><a><span>  Personal  </span>Service
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-col">
-                    <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-5.png"/></a>
-                        </div>
-                        <div class="service-text"><a><span>  Product  </span>Safety
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="cell width-33">
-                    <div class="c23818">Call it SWAG, promotional products, or branding; it's what we do best...
-                        put your brand into someone's hands. We make custom branded products that
-                        people use, hold on to and love to get as gifts or promo. When your brand
-                        is printed on any item, it carries your logo or advertising message. When
-                        people use your branded item, they see your brand and, subtly, it reinforces
-                        familiarity with your brand and develops a stronger liking to it. These
-                        imprinted items are what build your brand's relationships and are essential
-                        to long lasting brand marketing.</div>
-                </div>
-                <div class="cell width-33">
-                    <div class="c23122">A custom printed lanyard, a custom branded umbrella, and the ever popular
-                        imprinted tote bag are a few of the vehicles that get your company brand
-                        carried around. Use them internally as employee gifts, service awards,
-                        appreciation, or at team building events where you give everyone a cool
-                        branded piece of company SWAG. Use them to externally promote and advertise
-                        your business to give customers an incentive to buy from you again or build
-                        relationships with new customers who will come to like your brand.</div>
-                </div>
-                <div class="cell width-33">
-                    <div class="c23172">Reach out to us today to have one of our consultants work with you on
-                        your project. You can order custom printed products online or have us guide
-                        you along the way. We take special requests and provide custom sourcing
-                        solutions. We look forward to speaking with you about your project to build
-                        your brand's relationships.</div>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="col-md-6 col-xs-12">
+            <div class="slider-wrapper js-editable">
+                <div class="heading"><a href="/en_us/search?tag_name=Top+Sellers&tag_id%5B%5D=top-sellers"><h1>Top Sellers</h1></a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-44700.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-44700.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-44700.jpg" alt="Cube Shape Portable Speakers, Full Color Digital - Closeout"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                Cube Shape Portable Speakers, Full Color Digital - Closeout
+                                                </a>
+                                        <div class="item-code">80-44700 - Closeout</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$4.990</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/89152-closeout.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/89152-closeout.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/89152-closeout.jpg" alt="Carabineer Led Flashlight - Closeout"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                Carabineer Led Flashlight - Closeout
+                                                </a>
+                                        <div class="item-code">89152-Closeout</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$2.29</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/64000-blank-yellow.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/64000-blank-yellow.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/64000-blank-yellow.jpg" alt="Golf Tees, Bulk - Closeout"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                Golf Tees, Bulk - Closeout
+                                                </a>
+                                        <div class="item-code">64000-BLANK - Closeout</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$0.09</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
@@ -1462,12 +1967,34 @@ body {
     margin: 0;
 }
 
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
 :root {
     margin-top: 0px;
 }
 
 .clearfix {
     clear: both;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 .gjs-am-file-uploader > form {
@@ -1484,94 +2011,102 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
 }
-
-.newslatter {
-    margin-top: 10px !important;
-    margin-right: 25px !important;
-    margin-bottom: 0px !important;
-    margin-left: 0px !important;
-}
-
-.news-box {
-    display: block !important;
-}
-.virtual-button {
-    background: #666;
-    text-align: center;
-    min-width: auto;
-    min-height: 39px;
-    padding: 8px;
-    color: #818792 !important;
-    font-weight: normal;
-    font-size: 16px;
-    text-transform: uppercase;
-    position: relative;
-    top: 0;
-    left: 0;
-    font-family: inherit;
-    min-height: auto !important;
-}
-.detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
-    color: #fff !important;
-}
-.innerpage, .home-content > .container {
-    min-height: 700px;
-}
+.owl-carousel .owl-wrapper  {display: block;}
+.partner-logo.owl-carousel {display:block;} 
 </style>
 
-<div class="middle-footer">
+
+
+
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
+    type="text/css" />
+</div>
+<footer>
     <div class="container">
-        <div class="social-icon-box">
-            <div class="pull-left">
-                <ul class="list-unstyled footer-link">
-                    <li class="social-icon"><a href="https://www.facebook.com/KeyInnovations/" target="_blank"><i class="fb-icon strip-icon"></i></a>
+        <div class="row footer-inner">
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 footer-logo">
+                <img class="img-responsive" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/footer-logo.png?v=0.0.1"
+                />
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 footer-link accordian_tab">
+                <h3>Company</h3>
+                <div class="clearfix"></div>
+                <ul class="accordian_display_block">
+                    <li><a href="#" title="About Us">About Us</a>
                     </li>
-                    <li class="social-icon"><a href="https://twitter.com/KeyInnovations" target="_blank"><i class="twitter-icon strip-icon"></i></a>
+                    <li><a href="#" title="BIOS">BIOS</a>
                     </li>
-                    <li class="social-icon"><a href="https://www.pinterest.com/brandingproducts/" target="_blank"><i class="g-plus-icon strip-icon"></i></a>
+                    <li><a href="#" title="General Info">General Info</a>
                     </li>
-                    <li class="social-icon"><a href="https://www.linkedin.com/company/key-innovations-inc-" target="_blank"><i class="in-icon strip-icon"></i></a>
+                    <li><a href="http://www.zoomcatalog.com/catalogs/aakron-line-2016#/1/" title="E-Catalog">E-Catalog</a>
                     </li>
-                    <li class="social-icon"><a href="https://www.youtube.com/channel/UCQs3fbfBWmUGpw81jUaONpw" target="_blank"><i class="yt-icon strip-icon"></i></a>
+                    <li><a href="#" title="Sitemap">Sitemap</a>
                     </li>
-                    <li class="social-icon"><a href="https://www.instagram.com/key_innovations/" target="_blank"><i class="instagram-icon strip-icon"></i></a>
+                    <li><a href="#" title="Product Safety">Product Safety</a>
                     </li>
-                    <li class="social-icon"><a href="https://plus.google.com/+Keypromo" target="_blank"><i class="gpl-icon strip-icon"></i></a>
+                    <li><a href="#" title="Career">Career</a>
                     </li>
                 </ul>
             </div>
-            <div class="pull-right">
-                <p class="newslatter">GET DEALS AND IDEAS FROM US</p>
-                <form class="form-inline news-box" id="sunscribe_email"
-                metod="post" onsubmit="return submitNewsLetterForm();">
-                    <div class="form-group">
-                        <input class="required email form-control js-subscribe_email" type="email"
-                        name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
-                        required="true" />
-                    </div>
-                    <input class="btn btn-default news-letter-validation-submit-btn" type="submit"
-                    value="Subscribe" name="subscribe" />
-                </form>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
-<div class="bottom-footer">
-    <div class="container"><span class="pull-left">Powered by : <a href="#" target="_blank"><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/officebeacon-light.png"/></a></span>
-        <span
-        class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
-    </div>
-</div>
-<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
-</p><!--/gm-editable-region--></div></div>
-</div>
-<script src="./assets/client-plugins/client-slider-plugin.js"></script>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 footer-link accordian_tab">
+                <h3>My Account</h3>
+                <div class="clearfix"></div>
+                <ul class="accordian_display_block">
+                    <li><a href="#" title="Accounts Info">Accounts Info</a>
+                    </li>
+                    <li><a href="#" title="Order Status">Order Status</a>
+                    </li>
+                    <li><a href="#" title="My Quote">My Quote</a>
+                    </li>
+                    <li>
+                        <a href="#" " title="My Favorite List
+                        ">My Favorite List</a></li><li><a href="# " title="My Order ">My Order</a></li></ul></div><div class="col-lg-2
+                        col-md-2 col-sm-3 col-xs-12 footer-link accordian_tab
+                        "><h3>Information</h3><div class="clearfix "></div><ul class="accordian_display_block "><li><a href="#
+                        " title="New Customer Info ">New Customer Info</a></li><li><a href="# " title="Production
+                        Time ">Production Time</a></li><li><a href="# " title="Art Requirements
+                        ">Art Requirements</a></li><li><a href="# " title="Catalog Corrections
+                        ">Catalog Corrections</a></li></ul></div><div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 footer-link accordian_tab
+                        "><h3>Extras</h3><div class="clearfix "></div><ul class="accordian_display_block "><li><a href="#
+                        " title="Top Sellers ">Top Sellers</a></li><li><a href="# " title="Specials
+                        ">Specials</a></li><li><a href="# " title="Closeouts
+                        ">Closeouts</a></li></ul></div></div></div></footer><div class="middle-footer "><div class="container "><div class="partner-logo owl-carousel
+                        owl-theme " id="partner-logo "><div class="owl-wrapper-outer style="display:block;"
+                        "><div class="owl-wrapper " id="c498117 " style="display:block;"><div class="owl-item " id="c498122
+                        "><div class="item "><img class="center-block " src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/UPIC-logo.png?v=0.0.1
+                        "/></div></div><div class="owl-item " id="c498135 "><div class="item "><img class="center-block
+                        " src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/counselor-design-logo.png?v=0.0.1
+                        "/></div></div><div class="owl-item " id="c498146 "><div class="item "><img class="center-block
+                        " src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/counselor-disributor-logo.png?v=0.0.1
+                        "/></div></div><div class="owl-item " id="c498157 "><div class="item "><img class="center-block
+                        " src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/member-logo.png?v=0.0.1
+                        "/></div></div><div class="owl-item " id="c498168 "><div class="item "><img class="center-block
+                        " src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/PPAI_logo.png?v=0.0.1
+                        "/></div></div><div class="owl-item " id="c498179 "><div class="item "><img class="center-block
+                        " src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/asi_logo.png?v=0.0.1
+                        "/></div></div><div class="owl-item " id="c498190 "><div class="item "><img class="center-block
+                        " src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/promo_logo.png?v=0.0.1
+                        "/></div></div><div class="owl-item " id="c498201 "><div class="item "><img class="center-block img-responsive
+                        " src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/Verified_logo.png?v=0.0.1
+                        "/></div></div><div class="owl-item " id="c498212 "><div class="item "><img class="center-block
+                        " src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/sage_logo.png?v=0.0.1
+                        "/></div></div></div></div></div></div></div><div class="bottom-footer "><div class="container "><span class="pull-left
+                        ">Powered by : <a href="# " target="_blank "><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/officebeacon-light.png
+                        "/></a></span><span class="col-xs-8 text-center
+                        ">Copyright © 2017 AAkron Line. All rights reserved</span></div></div><script type="text/javascript " src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js
+                        "></script></p><!--/gm-editable-region--></div></div><script src="./assets/client-plugins/client-slider-plugin.js"></script>
 <script src="./assets/client-plugins/client-popular-product-slider-plugin.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 
 </div>
-<script src="./../public/assets/client-plugins/global-variables-plugin.js"></script>
+<script src="./assets/client-plugins/global-variables-plugin.js"></script>
 <script src="./assets/client-plugins/flowz-builder-engine.js"></script>
 
 </body>
