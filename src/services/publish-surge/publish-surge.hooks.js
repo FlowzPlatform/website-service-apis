@@ -8,7 +8,7 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      hook => before_poblish_surge(hook)
+      hook => before_publish_surge(hook)
     ],
     update: [],
     patch: [],
@@ -20,7 +20,7 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      hook => after_poblish_surge(hook)
+      hook => after_publish_surge(hook)
     ],
     update: [],
     patch: [],
@@ -38,12 +38,12 @@ module.exports = {
   }
 };
 
-function before_poblish_surge(hook) {
+function before_publish_surge(hook) {
     hook.result = hook.data;
 }
 
 
-function after_poblish_surge(hook) {
+function after_publish_surge(hook) {
     return new Promise((resolve, reject) => {
       let projectPath = hook.data.projectPath;
       let domainName = hook.data.domainName;
