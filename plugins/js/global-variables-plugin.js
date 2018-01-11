@@ -5,8 +5,8 @@ var userEmail = '';
 var projectName = '';
 var configDataUrl = '';
 
-var baseURL = 'http://api.flowz.com/serverapi';
-var socketHost = 'http://ws.flowz.com:4032';
+var baseURL = 'http://api.flowzcluster.tk/serverapi';
+var socketHost = 'http://ws.flowzcluster.tk:4032';
 
 $(document).ready(function() {
     getProjectInfo();
