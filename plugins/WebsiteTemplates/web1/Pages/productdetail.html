@@ -1,0 +1,159 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c99215 {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: black;
+    border-right-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.c22805 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c25962 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c152859 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c192300 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<link href="./assets/css/detail-page.css" rel="stylesheet" crossorigin="anonymous"
+/>
+<div class="container main">
+    <div class="innerpage ob-product-detail-page">
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
+                </li>
+                <li><strong>#data.title#</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="title-block" id="title">
+            <reusecomponent class="c313421">{{> productDetail id='titleSku.partial' }}</reusecomponent>
+        </div>
+        <div class="product-showcase row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-left">
+                <reusecomponent class="c22805">{{> productDetail id='productDetailLeft.partial' }}</reusecomponent>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-right">
+                <div class="product-wrapper active" role="tabpanel">
+                    <div class="product-description product-detail-wrapper js_product_detail_tabs">
+                        <div role="tabpanel">
+                            <div class="tabbable">
+                                <ul class="nav nav-tabs bordred-tab" role="tablist" id="js_tab_list">
+                                    <li class="active"><a href="#js-place-order" aria-controls="js-place-order" role="tab" data-exist-sub-content="1"
+                                        data-toggle="tab">Place Order</a>
+                                    </li>
+                                    <li><a href="#js-request-info" data-exist-sub-content="0" aria-controls="js-request-info"
+                                        role="tab" data-toggle="tab">Request Info</a>
+                                    </li>
+                                </ul>
+                                <div class="request-tab-content tab-content">
+                                    <div class="tab-pane fade active in" id="js-place-order">
+                                        <reusecomponent class="c192300">{{> productDetail id='placeOrder.partial' }}</reusecomponent>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="tab-pane fade" id="js-request-info">
+                                        <reusecomponent class="c152859">{{> productDetail id='requestInfoLayout.partial' }}</reusecomponent>
+                                        <div
+                                        class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <reusecomponent class="c25962">{{> productDetail id='productDetailBottom.partial' }}</reusecomponent>
+</div>
+</div>
+<script type="text/javascript" src="./assets/client-plugins/client-detail-page.js"></script>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/jquery.zoom.js"></script>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/jquery.elevatezoom.js"></script>
