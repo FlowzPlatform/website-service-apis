@@ -91,28 +91,13 @@ button.remove {
     type="text/css" />
 </div>
 <div class="js-list hide">
-    <div class="col-sm-12 col-xs-12 product-wrap js-product-box product--data-id-"
-    id="product-row-3219" data-product-detail-url="https://keyinnovations.ca/en_ca/product/white-matte-paper-roll-label-stock-square-shape-1-5-x1-5">
+    <div class="col-sm-12 col-xs-12 product-wrap js-product-box product-#data-id#">
         <div class="pro-box">
-            <div class="pro-image box01 product-details-boxs3219">
-                <div class="product-rating-top-block hide">
-                    <div class="rating-start"><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
-                        <i
-                        class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
-                    </div>
-                </div>
-                <div class="product-flag-block">
-                    <div class="sales">
-                        <div class="product-label f-new">
-                            <h2 class="logo"><i class="fa fa-archive"></i>New</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="product-img-blk"><a class="item-title js-product-title" href="javascript:void(0)"><img class="img-responsive center-block" src="#data.image#"/></a>
+            <div class="pro-image box01">
+                <div class="product-img-blk"><a class="item-title js-product-title" href="#data.product_link#"><img class="img-responsive center-block" src="#data.image#"/></a>
                 </div>
             </div>
-            <div class="pro-desc"><a class="item-title js-product-title" href="javascript:void(0)">#data.title#</a>
+            <div class="pro-desc"><a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
                 <div
                 class="item-code">Item Number : #data.sku#</div>
             <div class="item-price">#data.currency# #data.price#</div>
