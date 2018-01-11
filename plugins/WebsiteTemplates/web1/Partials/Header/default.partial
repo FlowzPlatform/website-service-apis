@@ -362,7 +362,7 @@ body {
     padding-left: 0px;
 }
 
-.c31353 {
+.c574096 {
     padding: 10px;
     display: block;
     min-height: 75px;
@@ -503,21 +503,21 @@ body {
         display: block;
     }
 }
+
+.c574096 {padding:0px;    min-height: 1px;}
+.dropdown-toggle::after {display:none !important;}
+.nav>li>a:focus, .nav>li>a:hover {background-color: #c63928;}
+section.fdb-block.hmconts {overflow: inherit;vertical-align:  top;}
+.in-prod-main .in-prod-under {display: inline-block;}
+nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px; background-color: #000;}
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background-color: #c63928 !important;color: #fff !important;}
+.nav .open .dropdown-menu {height: inherit !important;background-color: #000;}
+.nav .open .dropdown-menu li,
+.nav .open .dropdown-menu li a {width:100%;}
+.nav .open .dropdown-menu li a:hover {width:100%; background-color: #c63928;}
+.navbar-toggler {display: none;}
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
@@ -599,8 +599,7 @@ body {
 </div>
 <menucomponent>
     <nav id="menu">
-        <div class="ob-menu"></div>
-        <navimenu class="c31353" menuid="default">
+        <navimenu class="c574096" menuid="default">
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
                 <div class="container">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> 
