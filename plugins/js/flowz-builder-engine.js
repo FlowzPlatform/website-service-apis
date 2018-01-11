@@ -150,7 +150,7 @@ try{
         }
         if (elem.title) {
             if (elem.children != undefined) {
-                html.push('<a class="dropdown-toggle" data-toggle="dropdown" href="' + elem.customSelect + '">' + elem.title + ' <b class="caret"></b></a>');
+                html.push('<a class="dropdown-toggle" data-toggle="dropdown" href="' + elem.customSelect + '">' + elem.title + ' </a>');
             } else {
                 html.push('<a href="' + elem.customSelect + '">' + elem.title + ' </a>');
             }
@@ -287,116 +287,172 @@ catch (err) {
 // Popular products ends
 
 // dataField JS
-const MyGroup = Vue.component('datafieldgroup', {
-  template: `<div class="dfgroup">
-                    <div class="dfrepeate" v-for="item in items"><slot :text="item"></slot></div>
-            </div>`,
-  props: ['data_api', 'data_schema'],
-  computed: {},
-  data: function() {
-    return {
-      items: []
-    }
-  },
-  mounted() {
-    this.getData()
-  },
-  methods: {
-    getData() {
-      let self = this;
-      console.log("data_schema", this.data_schema)
-      console.log("data_api", this.data_api)
-      if (this.data_schema != undefined) {
-        if (this.data_schema.length > 0) {
-          console.log("hello")
-          this.data_schema;
-          let schemaVal = this.data_schema.split(":");
-          let connString = $.trim(schemaVal[0]);
-          let schemaName = $.trim(schemaVal[1]);
-          let apiUrl = 'http://172.16.230.80:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
-          $.getJSON(apiUrl, function(data) {
-            console.log(data)
-            self.items = data;
-          });
-        } else {
-          $.getJSON(this.data_api, function(data) {
-            console.log(data)
-            self.items = data;
-          });
-        }
-      } else {
-        $.getJSON(this.data_api, function(data) {
-          console.log(data)
-          self.items = data;
-        });
-      }
-    }
-  }
-});
+// const MyGroup = Vue.component('datafieldgroup', {
+//   template: `<div class="dfgroup">
+//                     <div class="dfrepeate" v-for="item in items"><slot :text="item"></slot></div>
+//             </div>`,
+//   props: ['data_api', 'data_schema'],
+//   computed: {},
+//   data: function() {
+//     return {
+//       items: []
+//     }
+//   },
+//   mounted() {
+//     this.getData()
+//   },
+//   methods: {
+//     getData() {
+//       let self = this;
+//       console.log("data_schema", this.data_schema)
+//       console.log("data_api", this.data_api)
+//       if (this.data_schema != undefined) {
+//         if (this.data_schema.length > 0) {
+//           console.log("hello")
+//           this.data_schema;
+//           let schemaVal = this.data_schema.split(":");
+//           let connString = $.trim(schemaVal[0]);
+//           let schemaName = $.trim(schemaVal[1]);
+//           let apiUrl = 'http://172.16.230.80:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
+//           $.getJSON(apiUrl, function(data) {
+//             console.log(data)
+//             self.items = data;
+//           });
+//         } else {
+//           $.getJSON(this.data_api, function(data) {
+//             console.log(data)
+//             self.items = data;
+//           });
+//         }
+//       } else {
+//         $.getJSON(this.data_api, function(data) {
+//           console.log(data)
+//           self.items = data;
+//         });
+//       }
+//     }
+//   }
+// });
 
-const MyObj = Vue.component('datafieldobject', {
-  template: `<div class="dfgroup">
-                    <div class="dfrepeate"><slot :text="items"></slot></div>
-            </div>`,
-  props: ['data_api', 'data_schema'],
-  computed: {},
-  data: function() {
-    return {
-      items: []
-    }
-  },
-  mounted() {
-    this.getData()
-  },
-  methods: {
-    getData() {
-      let self = this;
-      console.log("data_schema", this.data_schema)
-      console.log("data_api", this.data_api)
-      if (this.data_schema != undefined) {
-        if (this.data_schema.length > 0) {
-          console.log("hello")
-          this.data_schema;
-          let schemaVal = this.data_schema.split(":");
-          let connString = $.trim(schemaVal[0]);
-          let schemaName = $.trim(schemaVal[1]);
-          let apiUrl = 'http://172.16.230.80:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
-          $.getJSON(apiUrl, function(data) {
-            console.log(data)
-            self.items = data;
-          });
-        } else {
-          $.getJSON(this.data_api, function(data) {
-            console.log(data)
-            self.items = data;
-          });
-        }
-      } else {
-        $.getJSON(this.data_api, function(data) {
-          console.log(data)
-          self.items = data;
-        });
-      }
-    }
-  }
-});
+// const MyObj = Vue.component('datafieldobject', {
+//   template: `<div class="dfgroup">
+//                     <div class="dfrepeate"><slot :text="items"></slot></div>
+//             </div>`,
+//   props: ['data_api', 'data_schema'],
+//   computed: {},
+//   data: function() {
+//     return {
+//       items: []
+//     }
+//   },
+//   mounted() {
+//     this.getData()
+//   },
+//   methods: {
+//     getData() {
+//       let self = this;
+//       console.log("data_schema", this.data_schema)
+//       console.log("data_api", this.data_api)
+//       if (this.data_schema != undefined) {
+//         if (this.data_schema.length > 0) {
+//           console.log("hello")
+//           this.data_schema;
+//           let schemaVal = this.data_schema.split(":");
+//           let connString = $.trim(schemaVal[0]);
+//           let schemaName = $.trim(schemaVal[1]);
+//           let apiUrl = 'http://172.16.230.80:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
+//           $.getJSON(apiUrl, function(data) {
+//             console.log(data)
+//             self.items = data;
+//           });
+//         } else {
+//           $.getJSON(this.data_api, function(data) {
+//             console.log(data)
+//             self.items = data;
+//           });
+//         }
+//       } else {
+//         $.getJSON(this.data_api, function(data) {
+//           console.log(data)
+//           self.items = data;
+//         });
+//       }
+//     }
+//   }
+// });
 
-const MyList = Vue.component('datafieldlist', {
-  template: '<div class="dflist"><div v-for="item in items"><slot :text="item"></slot></div></div>',
-  props: ['items']
-});
+// const MyList = Vue.component('datafieldlist', {
+//   template: '<div class="dflist"><div v-for="item in items"><slot :text="item"></slot></div></div>',
+//   props: ['items']
+// });
 
-const MyText = Vue.component('datafieldtext', {
-  template: '<div class="dftext"><h3>{{text}}</h3></div>',
-  props: ['text']
-});
+// const MyText = Vue.component('datafieldtext', {
+//   template: '<div class="dftext"><h3>{{text}}</h3></div>',
+//   props: ['text']
+// });
 
-new Vue({
-  el: '#app',
-  components: {
-    MyGroup,
-    MyList,
-    MyText
-  }
-})
+// new Vue({
+//   el: '#app',
+//   components: {
+//     MyGroup,
+//     MyList,
+//     MyText
+//   }
+// })
 // dataField js ends
+
+// Payment JS
+try{
+    var paymentgateways = [];
+
+    var userEmail = '';
+    var projectName = '';
+    var configDataUrl = '';
+    // var baseURL = 'http://localhost:3032';
+    // var socketURL = 'http://localhost:4032';
+    var baseURL = 'http://api.flowz.com/serverapi';
+    var socketHost = 'http://ws.flowz.com:4032';
+
+    $(document).ready(function() {
+        getProjectInfo();
+        // ImpletementSocekt();
+    });
+
+    async function getProjectInfo() {
+        await $.getJSON( "./assets/project-details.json", function( data ) {  
+            var configData = data;
+            userEmail = data[0].projectOwner;
+            projectName = data[0].projectName;
+
+            configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
+        });
+        getConfigData();
+    }
+
+    async function getConfigData () {
+
+        await $.getJSON( configDataUrl , function( data ) {  
+            var configData = data.data[0].configData;
+            // globalVariables = configData[1].projectSettings[1].GlobalVariables;
+            paymentgateways=configData[1].projectSettings[1].PaymentGateways
+        console.log('configData',configData[1].projectSettings[1].PaymentGateways)
+        }); 
+        Paymentgateways();
+    }
+
+
+    async function Paymentgateways () {
+        var paymentbuttons=''
+        for(let i=0;i<paymentgateways.length;i++){
+            if(paymentgateways[i].checked==true){
+                paymentbuttons=paymentbuttons+'<button type="button" class="btn" data-id="'+ paymentgateways[i].name+'" title="'+ paymentgateways[i].description+'">'+paymentgateways[i].gateway+'</button>'
+            }
+        }
+        $('paymentgateway').replaceWith(paymentbuttons);
+            
+    }
+}
+catch (err) {
+    console.log('Error in Payment Module: ', err);
+}
+// Payment JS Ends

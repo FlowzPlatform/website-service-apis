@@ -1,0 +1,100 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.myCartListings {
+    background-color: rgb(238, 238, 238);
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: initial;
+    transition-property: all;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+.myCartListings:hover {
+    box-shadow: rgb(153, 153, 153) 0px 0px 10px;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+#productImage {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+}
+
+h4 {
+    padding-top: 1%;
+}
+
+#comment {
+    margin-top: 5%;
+}
+
+button.remove {
+    float: right;
+    margin-top: 1%;
+}
+</style>
+
+
+
+
+<div class="js-list hide">
+    <div class="col-md-12 myCartListings product-#data-id#">
+        <div class="col-md-4">
+            <img src="#data.image#" width="100%" height="50%" />
+        </div>
+        <div class="col-md-8">
+            <button class="btn btn-danger remove js-remove-wishlist" data-id="#data.id#"><i class="fa fa-trash-o danger" aria-hidden="true"></i>
+            </button>
+            <h2>#data.title#</h2>
+            <h4>#data.currency# #data.price#</h4>
+            <h4>Item # : #data.sku#</h4>
+            <h4>Product Description</h4>
+            <hr/>
+            <h6>#data.description#</h6>
+        </div>
+    </div>
+</div>
+<div class="listing">
+</div>
+<script src="./../assets/client-plugins/client-wishlist.js"></script>

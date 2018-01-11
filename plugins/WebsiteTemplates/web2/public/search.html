@@ -2,7 +2,6 @@
 <head>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <title></title>
-<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' />
 <script src='https://code.jquery.com/jquery-3.2.1.js'></script>
 <link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'/>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -11,7 +10,6 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
 <script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
-<script type='text/javascript' src='https://unpkg.com/vue/dist/vue.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
@@ -21,13 +19,12 @@
 <script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
-<link rel='stylesheet' href='./../main-files/main.css'/>
-<script src="./../main-files/main.js"></script>
-<script src="./../assets/client-plugins/client-cart.js"></script>
+<link rel='stylesheet' href='./main-files/main.css'/>
+<script src="./main-files/main.js"></script>
+<script src="./assets/client-plugins/client-cart.js"></script>
 
 </head>
 <body>
-<div id="app">
 <div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
@@ -503,13 +500,14 @@ padding: 0;
         display: block;
     }
 }
+
 </style>
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-rel="stylesheet" crossorigin="anonymous" />
 <script type="text/javascript" src="../assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
+    rel="stylesheet" type="text/css" />
+    <link href="../assets/css/base.css"
     rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
@@ -526,7 +524,7 @@ rel="stylesheet" crossorigin="anonymous" />
                             <ul class="header-loging">
                                 <li class="header-login-text"> <a href="index.html"> <span class="login-text">Home</span> </a>
                                 </li>
-                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="login.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
                                 </li>
                                 <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
                                 </li>
@@ -676,30 +674,12 @@ body {
     margin: 0;
 }
 
-.row {
-    display: table;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    width: 100%;
-}
-
 :root {
     margin-top: 0px;
 }
 
 :root {
     margin-top: 0px;
-}
-
-.row {
-    display: table;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    width: 100%;
 }
 
 .gjs-am-file-uploader > form {
@@ -716,68 +696,84 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
 }
+
+#c3960 {
+    margin-top: inherit;
+    margin-right: inherit;
+    margin-bottom: inherit;
+    margin-left: inherit;
+}
+
+.c3933 {
+    display: block;
+    width: 100%;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    vertical-align: middle;
+}
+
+.colors-list li {
+    display: inline;
+}
+
+span.color {
+    min-width: 25px;
+    min-height: 25px;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(170, 170, 170);
+    border-right-color: rgb(170, 170, 170);
+    border-bottom-color: rgb(170, 170, 170);
+    border-left-color: rgb(170, 170, 170);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
 </style>
 
 
 
 
 <div class="cssImports"></div>
-<div class="container">
-    <div class="ob-main-address-block">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <h1 class="main-title"><i class="fa fa-lock"></i>Change Password</h1>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 pull-right"></div>
-        </div>
-        <div class="ob-change-password">
-            <form name="ob_change_pwd" method="post" id="change_pass_form">
-                <div class="row">
-                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label class="required" for="ob_change_pwd_current_password">Current Password</label><span class="red">*</span>
-                                    <input class="input"
-                                    type="password" id="change_password_current" name="current_password" required="required"
-                                    placeholder="Enter Current Password" data-original-title="Current Password"
-                                    data-placement="bottom" />
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label class="required" for="ob_change_pwd_password_first">New Password</label><span class="red">*</span>
-                                    <input class="input" type="password"
-                                    id="change_password_first" name="first_password" required="required" placeholder="Enter New Password"
-                                    data-original-title="New Password" data-placement="bottom" />
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label class="required" for="ob_change_pwd_password_second">Confirm Password</label><span class="red">*</span>
-                                    <input class="input"
-                                    type="password" id="change_password_second" name="second_password" required="required"
-                                    placeholder="Enter New Password Again" data-original-title="Confirm Password"
-                                    data-placement="bottom" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                        <div class="btn-box-main"><span class="required-field">* Required Fields</span>
-                            <input class="btn btn-default"
-                            type="submit" value="Save" />
-                            <input class="btn btn-default" type="reset" value="Reset" />
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+<link href="./assets/css/materialize.min.css" rel="stylesheet" crossorigin="anonymous"
+/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+rel="stylesheet" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+rel="stylesheet" />
+<productsearchfilter class="c3933" apiurl="https://f21a94c6770cd2850444cb6de9b333cf.us-east-1.aws.found.io:9243/pdm1/_search"
+apiusername="aakron" apipassword="123456" selectadvance_search_filter="false"
+selectcategory_filter="true" selectprices_filter="false" selectcolours_filter="true"
+selectbrands_filter="true" selecttheme_filter="portrait">
+    <div class="reomve-texts"> <i class="fa fa-search"></i>
+        <label id="c3960">Product Search Filter</label>
     </div>
-</div>
-<script src="./../assets/client-plugins/change-password-page.js"></script></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
+</productsearchfilter>
+<script type="text/javascript" src="./assets/client-plugins/client-search-page.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+rel="stylesheet" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+rel="stylesheet" /></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
 }
@@ -838,6 +834,9 @@ body {
 .detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
     color: #fff !important;
 }
+.innerpage, .home-content > .container {
+    min-height: 700px;
+}
 </style>
 
 <div class="middle-footer">
@@ -863,13 +862,15 @@ body {
             </div>
             <div class="pull-right">
                 <p class="newslatter">GET DEALS AND IDEAS FROM US</p>
-                <form class="form-inline news-box" role="form">
+                <form class="form-inline news-box" id="sunscribe_email"
+                metod="post" onsubmit="return submitNewsLetterForm();">
                     <div class="form-group">
-                        <input class="form-control" type="email" id="email_id" name="email_send"
-                        placeholder="Enter Your Email Address" aria-describedby="basic-addon1"
-                        />
+                        <input class="required email form-control js-subscribe_email" type="email"
+                        name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
+                        required="true" />
                     </div>
-                    <button class="btn btn-default news-letter-validation-submit-btn" type="submit">SUBSCRIBE</button>
+                    <input class="btn btn-default news-letter-validation-submit-btn" type="submit"
+                    value="Subscribe" name="subscribe" />
                 </form>
             </div>
             <div class="clearfix"></div>
@@ -882,13 +883,15 @@ body {
         class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
     </div>
 </div>
-<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script></p><!--/gm-editable-region--></div></div><script src="./../assets/client-plugins/client-slider-plugin.js"></script>
-<script src="./../assets/client-plugins/client-popular-product-slider-plugin.js"></script>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
+</p><!--/gm-editable-region--></div></div>
+<script src="./assets/client-plugins/client-slider-plugin.js"></script>
+<script src="./assets/client-plugins/client-popular-product-slider-plugin.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 
 </div>
-<script src="./../assets/client-plugins/global-variables-plugin.js"></script>
-<script src="./../assets/client-plugins/flowz-builder-engine.js"></script>
+<script src="./../public/assets/client-plugins/global-variables-plugin.js"></script>
+<script src="./assets/client-plugins/flowz-builder-engine.js"></script>
 
 </body>
 </html>

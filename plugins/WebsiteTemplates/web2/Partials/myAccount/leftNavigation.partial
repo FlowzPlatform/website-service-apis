@@ -1,0 +1,76 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+
+
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
+    type="text/css" />
+</div>
+<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 category-block ob-myaccount-sidebar"><a class="js-category myaccount-dropdown" href="javascript:void(0);">Navigation <i class="fa fa-chevron-right pull-right"></i></a>
+    <div
+    class="filter-search">
+        <div class="my-account-left filter-search">
+            <div class="panel-heading">
+                <h4 class="panel-title"><span class="profile-pic"><img class="list_img img-responsive" alt="profile-pic"/></span><span>Mr. Martin Johnson</span><i class="fa fa-tachometer"></i></h4>
+            </div>
+            <ul>
+                <li><a class="ui-link active" href="#"><i class="fa fa-user"></i>My Account Info</a>
+                </li>
+                <li><a class="ui-link" href="#"><i class="fa fa-edit"></i>Address Book</a>
+                </li>
+                <li><a class="ui-link" href="#"><i class="fa fa-lock"></i>Change Password</a>
+                </li>
+                <li><a class="ui-link" href="#"><i class="fa fa-file-text"></i>My Orders</a>
+                </li>
+                <li><a class="ui-link" href="#"><i class="fa fa-truck"></i>Track My Orders</a>
+                </li>
+                <li><a class="ui-link" href="#"><i class="fa fa-heart"></i>My Wishlist</a>
+                </li>
+                <li><a class="ui-link" href="#"><i class="fa fa-joomla"></i>My Artwork</a>
+                </li>
+                <li><a class="ui-link" href="#"><i class="fa fa-share-alt"></i>Socials</a>
+                </li>
+                <li><a class="ui-link" href="#"><i class="fa fa-power-off" aria-hidden="true"></i>Sign Out</a>
+                </li>
+            </ul>
+        </div>
+</div>
+</div>

@@ -1,0 +1,110 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c13721 {
+    display: none;
+}
+
+.c69153 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c487287 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c632793 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c71062 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c9193 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
+
+
+
+<div class="active" role="tabpanel">
+    <div class="product-detail-wrapper three-tab">
+        <div role="tabpanel">
+            <div class="tabbable">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#Decoration" aria-controls="Decoration" role="tab" data-toggle="tab">Decorative</a>
+                    </li>
+                </ul>
+                <div class="request-tab-content tab-content">
+                    <form id="place_order_form">
+                        <div class="tab-pane fade in active" id="Decoration">
+                            <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
+                            <div
+                            class="clearfix"></div>
+                        <reusecomponent class="c487287">{{> productDetail id='colours.partial' }}</reusecomponent>
+                        <div class="clearfix"></div>
+                        <reusecomponent class="c632793">{{> productDetail id='quantity.partial' }}</reusecomponent>
+                        <div class="clearfix"></div>
+                        <reusecomponent class="c4238">{{> productDetail id='printPosition.html' }}</reusecomponent>
+                        <div class="clearfix"></div>
+                        <reusecomponent class="c71062">{{> productDetail id='shippingMethod.partial' }}</reusecomponent>
+                        <div
+                        class="clearfix"></div>
+                <reusecomponent class="c9193">{{> productDetail id='specialInfo.partial' }}</reusecomponent>
+                <div class="clearfix"></div>
+                <div class="product-section-box">
+                    <div class="text-right pull-right">
+                        <button class="small-but btn-default place-order-submit" type="button"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                    </div>
+	            </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
