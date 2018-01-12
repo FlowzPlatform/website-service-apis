@@ -5,8 +5,7 @@ var userEmail = '';
 var projectName = '';
 var configDataUrl = '';
 
-var baseURL = 'http://api.flowzcluster.tk/serverapi';
-var socketHost = 'http://ws.flowzcluster.tk:4032';
+var host = 'http://api.flowz.com/serverapi';
 
 $(document).ready(function() {
     getProjectInfo();
@@ -19,7 +18,7 @@ async function getProjectInfo() {
         userEmail = data[0].projectOwner;
         projectName = data[0].projectName;
 
-        configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
+        configDataUrl = host + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
     });
 
     getConfigData();
@@ -93,7 +92,7 @@ async function updateGlobalVariables () {
 }
 
 function ImpletementSocekt() {
-  var socket = io(socketHost);
+  var socket = io(host);
   var client = feathers()
       .configure(feathers.hooks())
       .configure(feathers.socketio(socket));
@@ -105,7 +104,7 @@ function ImpletementSocekt() {
     getConfigData();
 
     $('body [id="brandName"]').html(brandName);
-        $('body [id="brandLogo"]').attr('src', './assets/brand-logo.png');
+        $('body [id="brandLogo"]').attr('src', '../assets/brand-logo.png');
     
         // Replace all global variables
         for (var i = 0; i < globalVariables.length; i++){

@@ -4,7 +4,7 @@
     "repository_id": 667,
     "repository_name": "aakron",
     "product_api_url": "http://api.flowzcluster.tk/pdm/api/products/US/",
-    "product_api_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OTkxNDA1NTZjNzFkMTAwMWMwMjA3MjkiLCJpYXQiOjE1MTU2ODM0NzIsImV4cCI6MTUxNTY4NzEwMiwiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiYW5vbnltb3VzIn0.ddxD-q_0UxlDMI933MkxZjn1hLTIWoDxk-T8MqSR-6E",
+    "product_api_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OTkxNDA1NTZjNzFkMTAwMWMwMjA3MjkiLCJpYXQiOjE1MTU3MzYyNzgsImV4cCI6MTUxNTgyMjcwOCwiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiYW5vbnltb3VzIn0.qFKDW0K67QSz1oCEGtVrf6YoIFrLW_TsWFhYMstXoew",
     "product_api_image_url": "http://image.promoworld.ca/migration-api-hidden-new/web/images/",
     "search_api_url": "https://f21a94c6770cd2850444cb6de9b333cf.us-east-1.aws.found.io:9243/pdm1/_search",
     "search_api_auth_token": "Basic YWFrcm9uOjEyMzQ1Ng==",

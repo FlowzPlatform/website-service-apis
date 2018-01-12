@@ -3,7 +3,7 @@ var project_settings = function () {
   var tmp = null;
   $.ajax({
       async: false,
-      type: "POST",
+      type: "GET",
       dataType: "json",
       contentType: "application/json; charset=utf-8",
       url: './assets/project_settings.json',
