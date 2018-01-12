@@ -408,6 +408,7 @@ try{
     var userEmail = '';
     var projectName = '';
     var configDataUrl = '';
+    var ProjectbaseURL = '';
     // var baseURL = 'http://localhost:3032';
     // var socketURL = 'http://localhost:4032';
     var baseURL = 'http://api.flowzcluster.tk/serverapi';
@@ -435,7 +436,7 @@ try{
             var configData = data.data[0].configData;
             // globalVariables = configData[1].projectSettings[1].GlobalVariables;
             paymentgateways=configData[1].projectSettings[1].PaymentGateways
-        console.log('configData',configData[1].projectSettings[1].PaymentGateways)
+            ProjectbaseURL=configData[0].repoSettings[0].BaseURL;
         }); 
         Paymentgateways();
     }
