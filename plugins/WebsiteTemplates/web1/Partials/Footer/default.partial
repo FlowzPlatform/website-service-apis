@@ -62,6 +62,21 @@ body {
 .innerpage, .home-content > .container {
     min-height: 700px;
 }
+.btn-success {
+    color: #fff;
+    background-color: #5d5c5c;
+    border-color: #5d5c5c;
+}
+.btn-success:active:hover{
+    color: #fff;
+    background: #c51327;
+    border: 1px #c51327 solid;
+}
+.btn-success:hover{
+    color: #fff;
+    background: #c51327;
+    border: 1px #c51327 solid;
+}
 </style>
 
 <div class="middle-footer">
@@ -103,9 +118,9 @@ body {
     </div>
 </div>
 <div class="bottom-footer">
-    <div class="container"><span class="pull-left">Powered by : <a href="#" target="_blank"><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/officebeacon-light.png"/></a></span>
+    <div class="container"><span class="pull-left">Powered by : <a href="#" class="footer_logo"><img src="./assets/images/footer_logo.png" style="width:auto;height:30px;"/></a></span>
         <span
-        class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
+        class="col-xs-8 text-center">Copyright &copy; 2017 Flowz. All rights reserved</span>
     </div>
 </div>
 <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
