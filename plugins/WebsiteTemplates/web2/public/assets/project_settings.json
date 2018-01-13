@@ -9,7 +9,7 @@
     "search_api_url": "https://f21a94c6770cd2850444cb6de9b333cf.us-east-1.aws.found.io:9243/pdm1/_search",
     "search_api_auth_token": "Basic YWFrcm9uOjEyMzQ1Ng==",
     "login_api": "http://auth.flowzcluster.tk/api/login",
-    "base_url": "http://localhost/websites/aakron/",
+    "base_url": "http://localhost/websites/aakron/public/",
     "base_path": "/var/www/html/websites/aakron/",
     "user_detail_api": "http://auth.flowzcluster.tk/api/userdetails",
     "change_password_api": "http://auth.flowzcluster.tk/api/changepassword",
