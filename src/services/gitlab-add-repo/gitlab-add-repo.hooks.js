@@ -145,10 +145,6 @@ function after_remove_project(hook) {
 
     return new Promise((resolve, reject) => {
 
-        let projectPath = hook.params.query.projectPath;
-
-        shell.rm('-rf', projectPath);
-
         var options = {
             method: 'DELETE',
             uri: config.gitLabUrl + '/api/v4/projects/' + hook.id,
@@ -161,7 +157,6 @@ function after_remove_project(hook) {
         rp(options)
             .then(function(repos) {
                 console.log('repo deleted!');
-                // shell.exec('npm cache clean -f');
                 hook.result = repos;
                 resolve(hook)
             })
