@@ -104,7 +104,7 @@ function ImpletementSocekt() {
     getConfigData();
 
     $('body [id="brandName"]').html(brandName);
-        $('body [id="brandLogo"]').attr('src', '../public/assets/brand-logo.png');
+        $('body [id="brandLogo"]').attr('src', './assets/brand-logo.png');
 
         // Replace all global variables
         for (var i = 0; i < globalVariables.length; i++){

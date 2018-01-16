@@ -26,10 +26,7 @@
 </head>
 <body>
 <div id="app">
-<div class="row">
-    <div class="column col-md-12 col-sm-12 col-xs-12">
-        <!--gm-editable-region-->
-        <p><style>
+<div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
 }
@@ -61,7 +58,7 @@ body {
 
 .navbar {
     float: right;
-    width: 50%;
+    width: 100%;
 }
 
 .row {
@@ -91,8 +88,8 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
     background-image: url("https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg");
-    background-position-x: center;
-    background-position-y: top;
+    background-position-x: 50%;
+    background-position-y: 0%;
     background-size: initial;
     background-repeat-x: no-repeat;
     background-repeat-y: no-repeat;
@@ -394,9 +391,67 @@ body {
 }
 
 .c574096 {
-    padding: 10px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
     display: block;
-    min-height: 75px;
+    min-height: 1px;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: rgb(198, 57, 40);
+}
+
+section.fdb-block.hmconts {
+    overflow-x: inherit;
+    overflow-y: inherit;
+    vertical-align: top;
+}
+
+.in-prod-main .in-prod-under {
+    display: inline-block;
+}
+
+nav.navbar {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    min-height: 1px;
+    margin-bottom: 0px;
+    background-color: rgb(0, 0, 0);
+}
+
+.nav > li > a:focus, .nav > li > a:hover, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color: rgb(198, 57, 40) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.nav .open .dropdown-menu {
+    background-color: rgb(0, 0, 0);
+    height: inherit !important;
+}
+
+.nav .open .dropdown-menu li, .nav .open .dropdown-menu li a {
+    width: 100%;
+}
+
+.nav .open .dropdown-menu li a:hover {
+    width: 100%;
+    background-color: rgb(198, 57, 40);
+}
+
+.navbar-toggler {
+    display: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -534,21 +589,21 @@ body {
         display: block;
     }
 }
-
-.c574096 {padding:0px;    min-height: 1px;}
-.dropdown-toggle::after {display:none !important;}
-.nav>li>a:focus, .nav>li>a:hover {background-color: #c63928;}
-section.fdb-block.hmconts {overflow: inherit;vertical-align:  top;}
-.in-prod-main .in-prod-under {display: inline-block;}
-nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px; background-color: #000;}
-.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background-color: #c63928 !important;color: #fff !important;}
-.nav .open .dropdown-menu {height: inherit !important;background-color: #000;}
-.nav .open .dropdown-menu li,
-.nav .open .dropdown-menu li a {width:100%;}
-.nav .open .dropdown-menu li a:hover {width:100%; background-color: #c63928;}
-.navbar-toggler {display: none;}
 </style>
 
+
+
+
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
+    type="text/css" />
+</div>
 <script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
@@ -630,20 +685,20 @@ nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px;
 </div>
 <menucomponent>
     <nav id="menu">
-        <navimenu class="c574096" menuid="default">
+        <navimenu class="c574096" menuid="ki">
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
                 <div class="container">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> 
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navigationDiv">
                         <ul class="navbar-nav">
-                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a>
                             </li>
-                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Dropdown link </a> 
+                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Dropdown link </a>
                                 <div
-                                class="dropdown-menu"> <a class="dropdown-item" href="#">Link 1</a>  <a class="dropdown-item" href="#">Link 2</a> 
+                                class="dropdown-menu"> <a class="dropdown-item" href="#">Link 1</a><a class="dropdown-item" href="#">Link 2</a>
                                     <a
                                     class="dropdown-item" href="#">Link 3</a>
                     </div>
@@ -654,14 +709,7 @@ nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px;
             </nav>
         </navimenu>
     </nav>
-</menucomponent></p>
-        <!--/gm-editable-region-->
-    </div>
-</div>
-<div class="row">
-    <div class="column col-md-12 col-sm-12 col-xs-12">
-        <!--gm-editable-region-->
-        <p><div id="flowz_content"><style>
+</menucomponent></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
 * {
     box-sizing: border-box;
 }
@@ -1155,225 +1203,226 @@ body {
                 <div class="clearfix"></div>
             </div>
         </div>
-        <reusecomponent class="c1225868"><div class="in-prod-main">
-    <h1 class="heading">Branded Products That Build Relationships With Your Brand</h1>
-    <div class="in-prod-under">
-        <div class="in-prod-main">
+        <reusecomponent class="c1225868">        <div class="in-prod-main">
+            <h1 class="heading">Branded Products That Build Relationships With Your Brand</h1>
             <div class="in-prod-under">
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051271_awards.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Awards &amp; awareness</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Bracelets</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Coins</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Clocks</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Frames-picture</a></li>
-                            </ul>
+                <div class="in-prod-main">
+                    <div class="in-prod-under">
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490051271_awards.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Awards &amp; awareness</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Bracelets</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Coins</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Clocks</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Frames-picture</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051371_bags2.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Bags</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Tags</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Pouches</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Coolers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Backpacks</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490051371_bags2.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Bags</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Tags</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Pouches</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Coolers</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Backpacks</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051467_evolutiondecospread.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Clothing</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Vests</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Shirts</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Sweaters</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Hoodies</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490051467_evolutiondecospread.jpg" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Clothing</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Vests</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Shirts</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Sweaters</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Hoodies</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490051413_beverage4.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Drinkware</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Coasters</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Beverages</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Coffee</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Jars</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490051413_beverage4.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Drinkware</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Coasters</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Beverages</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Coffee</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Jars</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490052317_food.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Food &amp; wine</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Breath fresheners</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Candy</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Cans</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Gum</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052317_food.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Food &amp; wine</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Breath fresheners</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Candy</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Cans</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Gum</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490052081_fun.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Fun &amp; outdoor</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Garden supplies</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Umbrellas</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Picnic baskets</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Flying discs</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052081_fun.jpg" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Fun &amp; outdoor</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Garden supplies</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Umbrellas</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Picnic baskets</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Flying discs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490052125_golf.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Golf &amp; sport</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Divot tools</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Markers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Golf kits</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Tees (golf)</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052125_golf.jpg" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Golf &amp; sport</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Divot tools</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Markers</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Golf kits</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Tees (golf)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056671_home.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Home &amp; kitchen</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Containers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Candles</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Utensils</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Blankets</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056671_home.jpg" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Home &amp; kitchen</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Containers</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Candles</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Utensils</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Blankets</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490057468_office.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Office</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Cases</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Desk organizers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Openers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Mats</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490057468_office.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Office</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Cases</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Desk organizers</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Openers</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Mats</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490057507_travel.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Other</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Boxes</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Ornaments</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Door knockers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Hangers</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490057507_travel.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Other</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Boxes</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Ornaments</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Door knockers</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Hangers</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056747_tech.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Technology</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Wallets</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Phone accessories</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Power supplies/inverters</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Stands</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056747_tech.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Technology</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Wallets</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Phone accessories</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Power supplies/inverters</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Stands</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490057043_tools.PNG" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Tools &amp; auto</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Buckets</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Automotive kits</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Flashlights</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Carabiners</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490057043_tools.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Tools &amp; auto</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Buckets</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Automotive kits</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Flashlights</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Carabiners</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056898_tradeshow.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Tradeshow &amp; events</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Flags</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Displays</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Badge holders</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Lanyards</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056898_tradeshow.jpg" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Tradeshow &amp; events</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Flags</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Displays</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Badge holders</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Lanyards</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056982_FITNESS-PRODUCTS-Banner-for-website2.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Wellness &amp; safety</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Dispensers</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Reflectors</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Armbands</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Strobe lights</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056982_FITNESS-PRODUCTS-Banner-for-website2.jpg" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Wellness &amp; safety</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Dispensers</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Reflectors</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Armbands</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Strobe lights</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="in-box-cont">
-                    <div class="right-part"><a href="#"><img src="https://www.keyinnovations.ca/images/uploads/category/1490056861_pens.jpg" alt=""></a></div>
-                    <div class="left-part">
-                        <div class="pro-title"><a href="#" data-item-type="product-category">Writing &amp; stationery</a></div>
-                        <div class="pro-cat">
-                            <ul>
-                                <li><a href="#" data-item-type="category-product-list">Seed paper</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Paper</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Diaries</a></li>
-                                <li><a href="#" data-item-type="category-product-list">Money-play</a></li>
-                            </ul>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href="#"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056861_pens.jpg" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href="#" data-item-type="product-category">Writing &amp; stationery</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href="#" data-item-type="category-product-list">Seed paper</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Paper</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Diaries</a></li>
+                                        <li><a href="#" data-item-type="category-product-list">Money-play</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div></reusecomponent>
+</reusecomponent>
     </div>
     <section class="fdb-block keyina">
         <div class="container">
@@ -1463,14 +1512,7 @@ body {
             </div>
         </div>
     </section>
-</div></div></p>
-        <!--/gm-editable-region-->
-    </div>
-</div>
-<div class="row">
-    <div class="column col-md-12 col-sm-12 col-xs-12">
-        <!--gm-editable-region-->
-        <p><style>
+</div></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
 }
@@ -1575,16 +1617,13 @@ body {
     </div>
 </div>
 <div class="bottom-footer">
-    <div class="container"><span class="pull-left">Powered by : <a href="#" target="_blank"><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/officebeacon-light.png"/></a></span>
+    <div class="container"><span class="pull-left">Powered by : <a href="#" class="footer_logo"><img src="./assets/images/footer_logo.png" style="width:auto;height:30px;"/></a></span>
         <span
-        class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
+        class="col-xs-8 text-center">Copyright &copy; 2017 Flowz. All rights reserved</span>
     </div>
 </div>
 <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
-</p>
-        <!--/gm-editable-region-->
-    </div>
-</div>
+</p><!--/gm-editable-region--></div></div>
 </div>
 <script src="./assets/client-plugins/client-slider-plugin.js"></script>
 <script src="./assets/client-plugins/client-popular-product-slider-plugin.js"></script>

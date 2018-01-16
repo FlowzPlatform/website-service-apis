@@ -72,7 +72,7 @@ function showCart()
                 productData = rawData;
 
                 var listHtmlReplace = listHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
-                let detailLink = project_settings.base_url+'public/productdetail.html?locale='+project_settings.default_culture+'&pid='+productData[0]._id;
+                let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productData[0]._id;
                 var listHtmlReplace = listHtmlReplace.replace(/#data.product_link#/g,detailLink);
                 var listHtmlReplace = listHtmlReplace.replace(/#data.id#/g,response_data[key].id);
                 var listHtmlReplace = listHtmlReplace.replace(/#data.product_id#/g,response_data[key].id);

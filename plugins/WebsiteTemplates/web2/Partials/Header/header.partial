@@ -388,8 +388,14 @@ div#js-fix-header-controller .row.header-search-col .col-lg-10, div#js-fix-heade
     padding-bottom: 0px;
     padding-left: 0px;
 }
-.ob-menu ul li a {color: #000  !important;}
-.ob-menu ul li a:after { border-top-color:#000  !important}
+
+.ob-menu ul li a {
+    color: rgb(0, 0, 0) !important;
+}
+
+.ob-menu ul li a::after {
+    border-top-color: rgb(0, 0, 0) !important;
+}
 
 @media screen and (max-width: 600px) {
     #menu {
@@ -562,8 +568,8 @@ rel="stylesheet" crossorigin="anonymous" />
                 <input placeholder="Search Products Here" type="text" name="search" />
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <input class="btn-search" type="button" title="Click to search" value="Search" onclick="location.reload(search.html);"
-                />
+                <input class="btn-search" type="button" title="Click to search" value="Search"
+                onclick="location.reload(search.html);" />
             </div>
         </div>
         <div class="slidemenu shop-menu">

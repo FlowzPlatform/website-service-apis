@@ -13,7 +13,7 @@ $(document).ready(function() {
 });
 
 async function getProjectInfo() {
-    await $.getJSON( "../assets/project-details.json", function( data ) {  
+    await $.getJSON( "./assets/project-details.json", function( data ) {  
         var configData = data;
         userEmail = data[0].projectOwner;
         projectName = data[0].projectName;
@@ -55,7 +55,7 @@ async function updateGlobalVariables () {
                         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
                     } else {
                         var getImageData = await $.ajax({
-                          url:'../assets/' + _varValue,
+                          url:'./assets/' + _varValue,
                           method: 'GET',
                           type: 'HEAD',
                           async: true,
@@ -124,7 +124,7 @@ function ImpletementSocekt() {
                             $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
                         } else {
                             var getImageData = await $.ajax({
-                            url:'../assets/' + _varValue,
+                            url:'./assets/' + _varValue,
                             method: 'GET',
                             type: 'HEAD',
                             async: true,

@@ -3,7 +3,7 @@ var project_settings = function () {
   var tmp = null;
   $.ajax({
       async: false,
-      type: "POST",
+      type: "GET",
       dataType: "json",
       contentType: "application/json; charset=utf-8",
       url: './assets/project_settings.json',
@@ -294,10 +294,10 @@ var init = function() {
     
     $('.header-search-col').find('.btn-search').click(function(){  
       if($.trim($('input[name="search"]').val()) != '') {
-               window.location.href = project_settings.base_url+'public/search.html?SearchSensor=' + $('input[name="search"]').val()
+               window.location.href = project_settings.base_url+'search.html?SearchSensor=' + $('input[name="search"]').val()
       }
       else {
-        window.location.href = project_settings.base_url+'public/search.html';
+        window.location.href = project_settings.base_url+'search.html';
       }
       return false;
     })
@@ -313,7 +313,7 @@ $(document).on('click', '.js-add-to-wishlist', function(e) {
 $(document).on('click', '.js-add-to-cart', function(e) {
   e.preventDefault();
   let product_id = $(this).data('id');
-  location.href = project_settings.base_url+'public/productdetail.html?locale='+project_settings.default_culture+'&pid='+product_id; // 2 for Cart
+  location.href = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_id; // 2 for Cart
 });
 
 $(document).on('click', '.js-add-to-compare', function(e) {
@@ -864,7 +864,7 @@ function showWishList(recetAdded=false)
                   listHtml1 = listHtml1.replace('#data.price#',productData[0]._source.price_1);
                   listHtml1 = listHtml1.replace('#data.currency#',productData[0]._source.currency);
                   
-                  let detailLink = project_settings.base_url+'public/productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
+                  let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                   listHtml1 = listHtml1.replace(/#data.product_link#/g,detailLink);
                   
   
@@ -1013,7 +1013,7 @@ function showCompareList(recetAdded=false)
                   var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
                   var itemTitleHtml = itemTitleHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
                   
-                  let detailLink = project_settings.base_url+'public/productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
+                  let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                   var itemTitleHtml = itemTitleHtml.replace('#data.product_link#',detailLink);
                   
                   var itemTitleHtml = itemTitleHtml.replace('#data.title#',removeSpecialCharacters(productData[0]._source.product_name));
