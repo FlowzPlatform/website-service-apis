@@ -78,17 +78,17 @@ class Service {
             fs.stat(params.query.filename, function(err, stats) {
                 if (!err) {
                     if (stats.isFile()) {
-                        console.log('Stats%%%%%%%%%', stats);
-                        console.log('To Delete FileName :', params.query.filename);
+                        // console.log('Stats%%%%%%%%%', stats);
+                        // console.log('To Delete FileName :', params.query.filename);
                         shell.rm(params.query.filename);      
-                        resolve(params.query.filename.replace(/\//g, "\\"));                  
+                        resolve(params.query.filename.replace(/\//g, "\\"));                
                         // fs.unlink(params.query.filename, function(err) {
                         //     err ? reject(err) : resolve(params.query.filename.replace(/\//g, "\\"))
                         // });
                         
                     } else {
-                        console.log('Stats%%%%%%%%%', stats);
-                        console.log('To Delete FolderName :', params.query.filename);
+                        // console.log('Stats%%%%%%%%%', stats);
+                        // console.log('To Delete FolderName :', params.query.filename);
                         shell.rm('-rf', params.query.filename);
                         resolve(params.query.filename.replace(/\//g, "\\"));
                         // shell.rm(params.query.filename);
