@@ -169,7 +169,6 @@ function after_remove_project(hook) {
         rp(options)
             .then(function(repos) {
                 console.log('repo deleted!');
-                // shell.exec('npm cache clean -f');
                 hook.result = repos;
                 resolve(hook)
             })

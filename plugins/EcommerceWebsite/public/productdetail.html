@@ -10,7 +10,6 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
 <script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
-<script type='text/javascript' src='https://unpkg.com/vue/dist/vue.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
@@ -20,9 +19,9 @@
 <script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
-<link rel='stylesheet' href='./../main-files/main.css'/>
-<script src="./../main-files/main.js"></script>
-<script src="./../assets/client-plugins/client-cart.js"></script>
+<link rel='stylesheet' href='./main-files/main.css'/>
+<script src="./main-files/main.js"></script>
+<script src="./assets/client-plugins/client-cart.js"></script>
 
 </head>
 <body>
@@ -34,8 +33,6 @@
 
 body {
     margin: 0;
-      background: url('https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg') no-repeat center top;
-    background-attachment: fixed;
 }
 
 .row {
@@ -51,8 +48,17 @@ body {
     margin-top: 0px;
 }
 
+:root {
+    margin-top: 0px;
+}
+
 .clearfix {
     clear: both;
+}
+
+.navbar {
+    float: right;
+    width: 50%;
 }
 
 .row {
@@ -61,6 +67,10 @@ body {
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
+    width: 100%;
+}
+
+.navbar {
     width: 100%;
 }
 
@@ -77,6 +87,16 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
+    background-image: url("https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg");
+    background-position-x: center;
+    background-position-y: top;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background-attachment: fixed;
 }
 
 #c47368 {
@@ -355,17 +375,26 @@ body {
 .ob-menu {
     background-color: rgb(73, 78, 107) !important;
 }
- .row.header-search-col {
-position: absolute;
-width: 325px;
-top: 25px;
-left: 276px;
-}
-.row.header-search-col .col-lg-10,
-.row.header-search-col .col-lg-2 {
-padding: 0;
+
+.row.header-search-col {
+    position: absolute;
+    width: 325px;
+    top: 25px;
+    left: 276px;
 }
 
+.row.header-search-col .col-lg-10, .row.header-search-col .col-lg-2 {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+.c574096 {
+    padding: 10px;
+    display: block;
+    min-height: 75px;
+}
 
 @media screen and (max-width: 600px) {
     #menu {
@@ -502,14 +531,26 @@ padding: 0;
         display: block;
     }
 }
+
+.c574096 {padding:0px;    min-height: 1px;}
+.dropdown-toggle::after {display:none !important;}
+.nav>li>a:focus, .nav>li>a:hover {background-color: #c63928;}
+section.fdb-block.hmconts {overflow: inherit;vertical-align:  top;}
+.in-prod-main .in-prod-under {display: inline-block;}
+nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px; background-color: #000;}
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background-color: #c63928 !important;color: #fff !important;}
+.nav .open .dropdown-menu {height: inherit !important;background-color: #000;}
+.nav .open .dropdown-menu li,
+.nav .open .dropdown-menu li a {width:100%;}
+.nav .open .dropdown-menu li a:hover {width:100%; background-color: #c63928;}
+.navbar-toggler {display: none;}
 </style>
 
-<script type="text/javascript" src="../assets/client-plugins/jquery.validate.min.js"></script>
+<script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
     rel="stylesheet" type="text/css" />
-    <link href="../assets/css/base.css"
-    rel="stylesheet" type="text/css" />
+    <link href="./assets/css/base.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
@@ -586,87 +627,31 @@ padding: 0;
 </div>
 <menucomponent>
     <nav id="menu">
-        <div class="ob-menu">
-            <div class="container">
-                <ul>
-                    <li><a class="prett">PRODUCTS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
+        <navimenu class="c574096" menuid="default">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> 
+                    </button>
+                    <div class="collapse navbar-collapse" id="navigationDiv">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
                             </li>
-                            <li><a href="#">Drop Menu 2</a>
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
                             </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
+                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Dropdown link </a> 
+                                <div
+                                class="dropdown-menu"> <a class="dropdown-item" href="#">Link 1</a>  <a class="dropdown-item" href="#">Link 2</a> 
+                                    <a
+                                    class="dropdown-item" href="#">Link 3</a>
+                    </div>
                     </li>
-                    <li><a class="prett">BRANDS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">CATLOG</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">SERVICE</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">TOOLS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">PROMOTIONS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a>OUTLET</a>
-                    </li>
-                    <li><a class="prett">ABOUT</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        </navimenu>
     </nav>
-</menucomponent>
-</p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
+</menucomponent></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
 * {
     box-sizing: border-box;
 }
@@ -718,6 +703,10 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
+}
+
+.product-showcase.row {
+    display: inline;
 }
 
 #c99215 {
@@ -855,9 +844,8 @@ body {
     margin: 0;
 }
 
-#c53481 {
-    position: relative;
-    overflow: hidden;
+:root {
+    margin-top: 0px;
 }
 
 :root {
@@ -976,6 +964,8 @@ body {
 </style>
 
 
+
+
 <div class="product-gallery-view ob-product-gallery">
     <aside class="quick-view-left">
         <div class="product-big-image">
@@ -1006,10 +996,6 @@ body {
     margin: 0;
 }
 
-#c70827 {
-    display: none;
-}
-
 :root {
     margin-top: 0px;
 }
@@ -1036,11 +1022,16 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
 }
- .obv-virtualbrochurelibrary-main-div .row.obv-padding-top-50.obv-padding-bottom-15 {
-    width: 1028px;
+
+#c70827 {
+    display: none;
 }
 
+.obv-virtualbrochurelibrary-main-div .row.obv-padding-top-50.obv-padding-bottom-15 {
+    width: 1028px;
+}
 </style>
+
 
 <script type="text/javascript" src="http://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js"></script>
 <div class="product-section-box">
@@ -1052,9 +1043,12 @@ body {
             </li>
             <li id="ob_virtual_list">
                 <div id="ob-virtualmarketingcart">
-                    <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"/>
-                    <input id="ob-virtualmarketingcart-supplier" type="hidden" value="#data.spplierId#" />
-                    <input id="ob-virtualmarketingcart-culture" type="hidden" value="#data.culture#" />
+                    <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"
+                    />
+                    <input id="ob-virtualmarketingcart-supplier" type="hidden" value="#data.spplierId#"
+                    />
+                    <input id="ob-virtualmarketingcart-culture" type="hidden" value="#data.culture#"
+                    />
                     <input class="ob-btvirtualloadcontent" id="c70827" type="button" />
                 </div>
             </li>
@@ -1155,7 +1149,6 @@ body {
 </style>
 
 
-
 <div class="active" role="tabpanel">
     <div class="product-detail-wrapper three-tab">
         <div role="tabpanel">
@@ -1250,6 +1243,10 @@ body {
     margin: 0;
 }
 
+:root {
+    margin-top: 0px;
+}
+
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
@@ -1266,6 +1263,8 @@ body {
 }
 </style>
 
+
+
 <div class="product-section-box">
     <h2 class="heading-block js-section-number">Colours </h2>
     <div class="checkbox_colors">
@@ -1275,8 +1274,7 @@ body {
             <label for="#data.colorVal#">#data.colorList#</label>
         </div>
     </div>
-</div>
-</reusecomponent>
+</div></reusecomponent>
                         <div class="clearfix"></div>
                         <reusecomponent class="c632793"><style>
 * {
@@ -1285,6 +1283,10 @@ body {
 
 body {
     margin: 0;
+}
+
+:root {
+    margin-top: 0px;
 }
 
 :root {
@@ -1490,10 +1492,8 @@ body {
 </style>
 
 
-
 <div id="js_imprint_request_quote">
-    <div class="optional-panel js-printposition-section"
-    id="js_imprint_request_quote_box_#printPosMethodId#">
+    <div class="optional-panel js-printposition-section" id="js_imprint_request_quote_box_#printPosMethodId#">
         <div class="option-head"><a href="javascript:void(0)" id="print_pos"><i class="fa fa-caret-down"></i>#data.printPositionName#<span class="caret-icon pull-right"></span></a>
         </div>
         <div class="option-body">
@@ -1514,8 +1514,8 @@ body {
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option"><span class="question">How many colours are in design?</span>
                     <div class="selection-common-box pull-left imprint-color-select">
-                        <div class="dropdown dropdown_size js_imprint_method_selectbox_#data-printPosition#_#data-printMethod#">
-                            <input class="js_max_selectable_color_#data-printPosition#_#data-printMethod#"
+                        <div class="dropdown dropdown_size js_imprint_method_selectbox_-data-printPosition-_-data-printMethod-">
+                            <input class="js_max_selectable_color_-data-printPosition-_-data-printMethod-"
                             type="hidden" value="#data.maxImprintColor#" />
                             <button class="btn dropdown-toggle" aria-expanded="true" data-toggle="dropdown"
                             id="dropdownMenu16" type="button">Select Colour<span class="caret"></span>
@@ -1546,6 +1546,15 @@ body {
     margin: 0;
 }
 
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
 :root {
     margin-top: 0px;
 }
@@ -1556,6 +1565,15 @@ body {
 
 .clearfix {
     clear: both;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 .gjs-am-file-uploader > form {
@@ -1584,12 +1602,14 @@ body {
 }
 </style>
 
+
+
 <script type="text/javascript" src="../assets/client-plugins/typeahead.min.js"></script>
 <div class="product-section-box">
     <div class="panel-group" id="blank-Shipping-method-quote" role="tablist"
     aria-multiselectable="true">
         <div class="panel-heading open" role="tab">
-            <h2 class="panel-title heading-block js-section-number ">Shipping Method
+            <h2 class="panel-title heading-block js-section-number">Shipping Method
             </h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="#blank-Shipping-method-quote"
             href="#Shipping-method-col" aria-expanded="true"><i class="caret-icon"></i></a>
         </div>
@@ -1614,20 +1634,23 @@ body {
                             <div class="option-body js-shippingMethod--data-counter--section" id="c19663">
                                 <div class="shipping-address">
                                     <div class="ship-add-tit">Select a Shipping address from your address book or enter a new address.</div>
-                                    <div class="ship-add-parts">
-                                        <a class="btn" data-placement="top" data-toggle="tooltip" href="addAddressBook.html" data-original-title="Add New Address" target="_blank">
+                                    <div
+                                    class="ship-add-parts"><a class="btn" data-placement="top" data-toggle="tooltip" href="addAddressBook.html"
+                                        data-original-title="Add New Address" target="_blank">
                                             Add New Address
                                         </a>
-                                    </div>
-                                    <div class="search-mail-block">
-                                        <div class="search-col">
-                                            <input type="text" name="auto_complete_shipping_email" placeholder="Please enter a name or email address from your address book" class="auto_complete_shipping_email" data-counter="#data.counter#">
-                                            <input type="submit" value="" />
-                                        </div>
+                                </div>
+                                <div class="search-mail-block">
+                                    <div class="search-col">
+                                        <input class="auto_complete_shipping_email" type="text" name="auto_complete_shipping_email"
+                                        placeholder="Please enter a name or email address from your address book"
+                                        data-counter="#data.counter#" />
+                                        <input type="submit" />
                                     </div>
                                 </div>
-                                <div class="shipping-scroll hide" id="js_shipping_addresses_#data.counter#">
-                                    <reusecomponent class="c21612"><style>
+                            </div>
+                            <div class="shipping-scroll hide" id="js_shipping_addresses_#data.counter#">
+                                <reusecomponent class="c21612"><style>
 * {
     box-sizing: border-box;
 }
@@ -1671,20 +1694,18 @@ body {
         </div>
     </div>
 </div></reusecomponent>
-                                </div>
-                                <div class="js_shipping_qty_box_main" data-shipping-counter="#data.counter#">
-                                    <div class="optional-panel size-selection-col js_rq_shipping_quantity" data-color-id="#data.color#" >
-                                        <div class="option-head">
-                                            <a href="javascript:void(0);" class="pull-right">
-                                                #data.color#<span class="pull-right">Selected Quantity : <total>#data.quantity#<total></span>
-                                            </a>
-                                        </div>
-                                        <div class="option-body">
-                                            <div class="row select-quntity-col js_qty_box">
-                                                <div class="col-lg-4 col-md-6 col-sm-4 col-xs-12" data-size-id="0">
-                                                    <span>Quantity : </span>
-                                                    <input readonly type="text" value="#data.quantity#" class="js_request_quote_shipping_qty_box js_request_quote_qty"/>
-                                                </div>
+                            </div>
+                            <div class="js_shipping_qty_box_main" data-shipping-counter="#data.counter#">
+                                <div class="optional-panel size-selection-col js_rq_shipping_quantity"
+                                data-color-id="#data.color#">
+                                    <div class="option-head"><a class="pull-right" href="javascript:void(0);">
+                                                #data.color#<span class="pull-right">Selected Quantity : <total>#data.quantity#<total></total></total></span></a>
+                                    </div>
+                                    <div class="option-body">
+                                        <div class="row select-quntity-col js_qty_box">
+                                            <div class="col-lg-4 col-md-6 col-sm-4 col-xs-12" data-size-id="0"><span>Quantity : </span>
+                                                <input class="js_request_quote_shipping_qty_box js_request_quote_qty"
+                                                type="text" value="#data.quantity#" />
                                             </div>
                                         </div>
                                     </div>
@@ -1696,6 +1717,7 @@ body {
             </div>
         </div>
     </div>
+</div>
 </div>
 </reusecomponent>
                         <div
@@ -1747,7 +1769,7 @@ body {
                     <div class="text-right pull-right">
                         <button class="small-but btn-default place-order-submit" type="button"><i class="fa fa-shopping-cart"></i>Add to cart</button>
                     </div>
-	            </div>
+                </div>
             </div>
             </form>
         </div>
@@ -1765,6 +1787,10 @@ body {
 
 body {
     margin: 0;
+}
+
+:root {
+    margin-top: 0px;
 }
 
 :root {
@@ -1796,6 +1822,7 @@ body {
     min-height: 20px;
 }
 </style>
+
 
 
 <div class="tab-pane fade active in" id="js-request-info">
@@ -1955,6 +1982,16 @@ body {
     width: 100%;
 }
 
+.cell {
+    width: 8%;
+    display: table-cell;
+    height: 75px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
 :root {
     margin-top: 0px;
 }
@@ -1968,10 +2005,40 @@ body {
     width: 100%;
 }
 
+.cell {
+    width: 8%;
+    display: table-cell;
+    height: 75px;
+}
+
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+@media (max-width: 768px) {
+    .cell {
+        width: 100%;
+        display: block;
+    }
+
+    .cell {
+        width: 100%;
+        display: block;
+    }
+}
 </style>
+
 
 
 <section class="fdb-block">
@@ -2002,7 +2069,18 @@ body {
                                     <table class="main-table" width="100%">
                                         <tr>
                                             <td>
-                                                <table class="sub-table border-right-10" cellpadding="5" width="100%"></table>
+                                                <table class="sub-table border-right-10" cellpadding="5" width="100%">
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
                                     </table>
@@ -2013,7 +2091,18 @@ body {
                                     <table class="main-table" width="100%">
                                         <tr>
                                             <td>
-                                                <table class="sub-table border-right-10" cellpadding="5" width="100%"></table>
+                                                <table class="sub-table border-right-10" cellpadding="5" width="100%">
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
                                     </table>
@@ -2024,7 +2113,18 @@ body {
                                     <table class="main-table" width="100%">
                                         <tr>
                                             <td>
-                                                <table class="sub-table border-right-10" width="100%" cellpadding="5"></table>
+                                                <table class="sub-table border-right-10" width="100%" cellpadding="5">
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
                                     </table>
@@ -2103,6 +2203,9 @@ body {
 .detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
     color: #fff !important;
 }
+.innerpage, .home-content > .container {
+    min-height: 700px;
+}
 </style>
 
 <div class="middle-footer">
@@ -2128,13 +2231,15 @@ body {
             </div>
             <div class="pull-right">
                 <p class="newslatter">GET DEALS AND IDEAS FROM US</p>
-                <form class="form-inline news-box" role="form">
+                <form class="form-inline news-box" id="sunscribe_email"
+                metod="post" onsubmit="return submitNewsLetterForm();">
                     <div class="form-group">
-                        <input class="form-control" type="email" id="email_id" name="email_send"
-                        placeholder="Enter Your Email Address" aria-describedby="basic-addon1"
-                        />
+                        <input class="required email form-control js-subscribe_email" type="email"
+                        name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
+                        required="true" />
                     </div>
-                    <button class="btn btn-default news-letter-validation-submit-btn" type="submit">SUBSCRIBE</button>
+                    <input class="btn btn-default news-letter-validation-submit-btn" type="submit"
+                    value="Subscribe" name="subscribe" />
                 </form>
             </div>
             <div class="clearfix"></div>
@@ -2147,13 +2252,16 @@ body {
         class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
     </div>
 </div>
-<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script></p><!--/gm-editable-region--></div></div><script src="./../assets/client-plugins/client-slider-plugin.js"></script>
-<script src="./../assets/client-plugins/client-popular-product-slider-plugin.js"></script>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
+</p><!--/gm-editable-region--></div></div>
+</div>
+<script src="./assets/client-plugins/client-slider-plugin.js"></script>
+<script src="./assets/client-plugins/client-popular-product-slider-plugin.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 
 </div>
-<script src="./../assets/client-plugins/global-variables-plugin.js"></script>
-<script src="./../assets/client-plugins/flowz-builder-engine.js"></script>
+<script src="./../public/assets/client-plugins/global-variables-plugin.js"></script>
+<script src="./assets/client-plugins/flowz-builder-engine.js"></script>
 
 </body>
 </html>

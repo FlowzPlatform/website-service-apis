@@ -16,6 +16,16 @@ body {
     width: 100%;
 }
 
+.cell {
+    width: 8%;
+    display: table-cell;
+    height: 75px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
 :root {
     margin-top: 0px;
 }
@@ -29,10 +39,40 @@ body {
     width: 100%;
 }
 
+.cell {
+    width: 8%;
+    display: table-cell;
+    height: 75px;
+}
+
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+@media (max-width: 768px) {
+    .cell {
+        width: 100%;
+        display: block;
+    }
+
+    .cell {
+        width: 100%;
+        display: block;
+    }
+}
 </style>
+
 
 
 <section class="fdb-block">
@@ -63,7 +103,18 @@ body {
                                     <table class="main-table" width="100%">
                                         <tr>
                                             <td>
-                                                <table class="sub-table border-right-10" cellpadding="5" width="100%"></table>
+                                                <table class="sub-table border-right-10" cellpadding="5" width="100%">
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
                                     </table>
@@ -74,7 +125,18 @@ body {
                                     <table class="main-table" width="100%">
                                         <tr>
                                             <td>
-                                                <table class="sub-table border-right-10" cellpadding="5" width="100%"></table>
+                                                <table class="sub-table border-right-10" cellpadding="5" width="100%">
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
                                     </table>
@@ -85,7 +147,18 @@ body {
                                     <table class="main-table" width="100%">
                                         <tr>
                                             <td>
-                                                <table class="sub-table border-right-10" width="100%" cellpadding="5"></table>
+                                                <table class="sub-table border-right-10" width="100%" cellpadding="5">
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                    <tr class="row">
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                        <td class="cell"></td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
                                     </table>

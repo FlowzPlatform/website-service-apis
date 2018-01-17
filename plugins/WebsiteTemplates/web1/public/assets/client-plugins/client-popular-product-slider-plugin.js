@@ -21,13 +21,13 @@ $.ajax({
 	},
   dataType: 'json',
   success: function (data) {
-    console.log("Product data received...!!!")
+    // console.log("Product data received...!!!")
     rawData = data.hits.hits;
     productData = rawData;
   }
 });
 
-console.log(productData);
+// console.log(productData);
 
 if(numberOfItems == 'all' || numberOfItems == '' ){
 	productHtml = '';

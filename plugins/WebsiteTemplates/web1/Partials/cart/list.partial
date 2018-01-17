@@ -65,7 +65,7 @@ body {
                                     </thead>
                                     <tbody>
                                        <tr>
-                                          <td><img src="#data.image#" alt="" class="img-responsive"></td>
+                                          <td><a href="#data.product_link#"><img src="#data.image#" alt="" class="img-responsive"></a></td>
                                           <td>#data.sku#</td>
                                           <td>#data.product_name#</td>
                                           <td>#data.quantitye#</td>

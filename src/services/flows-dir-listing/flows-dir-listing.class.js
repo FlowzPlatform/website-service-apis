@@ -4,7 +4,6 @@ const path = require('path');
 let fs = require('fs');
 let _ = require('lodash');
 let rimraf = require('rimraf');
-let shell = require('shelljs');
 
 class Service {
     constructor(options) {

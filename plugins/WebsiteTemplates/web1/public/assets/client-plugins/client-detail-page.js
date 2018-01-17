@@ -54,7 +54,7 @@ if(pid != null) {
                   productData = data;
                   var productDetails = productData.hits.hits[0]._source;
                   // console.log("productDetails==>>",productDetails);
-                	ProductName = productDetails.product_name;
+                	ProductName = removeSpecialCharacters(productDetails.product_name);
                 	ProductImage = productDetails.default_image;
                   ProductSku = productDetails.sku;
 
@@ -256,7 +256,6 @@ if(pid != null) {
                   		}).on('typeahead:selected', function (obj, datum) {
                     			let counter = $(obj.currentTarget).data('counter');
                     			let addressBookId = datum.id;
-                          console.log("address_book_id",addressBookId);
                           axios({
                               method: 'GET',
                               url: project_settings.address_book_api_url+'/'+addressBookId,
@@ -266,7 +265,6 @@ if(pid != null) {
                               if(response.data != undefined ){
                                   let returnData = response.data;
                                   let replaceAddressHtml = '';
-                                  console.log("returnData===>>>",returnData);
                                   replaceAddressHtml += returnData.name+"<br>";
                                   replaceAddressHtml += returnData.email+"<br>";
                                   replaceAddressHtml += returnData.street1+"<br>,";
@@ -296,7 +294,7 @@ if(pid != null) {
                               }
                           })
                           .catch(error => {
-                            console.log('Error fetching and parsing data', error);
+                            // console.log('Error fetching and parsing data', error);
                           });
                   		});
                   	}
@@ -306,7 +304,7 @@ if(pid != null) {
 
 
                 //product detail page bottom section
-				        if(typeof productDetails.description !== "undefined" || !productDetails.description) {
+				        if(typeof productDetails.description !== "undefined") {
                     $('.product_description_label').removeClass('hide');
                     $('.product_description_text').html(productDetails.description);
                 }
@@ -318,24 +316,25 @@ if(pid != null) {
                     imprint_position = productDetails.imprint_data[0].imprint_position;
                     ltm_charge = productDetails.imprint_data[0].ltm_charge;
                     pms_charge = productDetails.imprint_data[0].pms_charge;
-                    if(typeof imprint_method !== "undefined" || !imprint_method) {
+                    if(typeof imprint_method !== "undefined") {
                         $('.imprint-info-text').append("<tr><td class='title'>Imprint Method : </td><td>"+imprint_method+"</td></tr>");
                     }
                     if(productDetails.attributes['imprint color'] instanceof Array) {
                         imprint_color = productDetails.attributes['imprint color'];
-                        if(typeof imprint_color !== "undefined" || !imprint_color) {
+                        if(typeof imprint_color !== "undefined") {
                             $('.imprint-info-text').append("<tr><td class='title'>Imprint Color : </td><td>"+imprint_color.join(", ")+"</td></tr>");
                         }
                     }
-                    if(typeof imprint_position !== "undefined" || !imprint_position) {
+                    if(typeof imprint_position !== "undefined") {
                         $('.imprint-info-text').append("<tr><td class='title'>Imprint Position : </td><td>"+imprint_position+"</td></tr>");
                     }
-                    if(typeof ltm_charge !== "undefined" || !ltm_charge) {
+                    if(typeof ltm_charge !== "undefined") {
                         $('.imprint-info-text').append("<tr><td class='title'>LTM Charge : </td><td>"+ltm_charge+"</td></tr>");
                     }
-                    if(typeof pms_charge !== "undefined" || !pms_charge) {
+                    if(typeof pms_charge !== "undefined") {
                         $('.imprint-info-text').append("<tr><td class='title'>PMS Charge : </td><td>"+pms_charge+"</td></tr>");
                     }
+
                 }
 
 
@@ -344,10 +343,10 @@ if(pid != null) {
                     if(productData.hits.hits[0]._source.imprint_data instanceof Array) {
                         production_days = productDetails.imprint_data[0].production_days+" "+productDetails.imprint_data[0].production_unit;
                         setup_charge = productDetails.imprint_data[0].setup_charge;
-                        if(typeof production_days !== "undefined" || !production_days) {
+                        if(typeof production_days !== "undefined") {
                             $('.product-shipping-text').append("<tr><td class='title'>Production Days : </td><td>"+production_days+"</td></tr>");
                         }
-                        if(typeof setup_charge !== "undefined" || !setup_charge) {
+                        if(typeof setup_charge !== "undefined") {
                             $('.product-shipping-text').append("<tr><td class='title'>Setup Charge : </td><td>"+setup_charge+"</td></tr>");
                         }
                     }
@@ -356,16 +355,16 @@ if(pid != null) {
                         carton_length = productDetails.shipping[0].carton_length+" "+productDetails.shipping[0].carton_size_unit;
                         carton_weight = productDetails.shipping[0].carton_weight+" "+productDetails.shipping[0].carton_weight_unit;
                         shipping_qty_per_carton = productDetails.shipping[0].shipping_qty_per_carton;
-                        if(typeof fob !== "undefined" || !fob) {
+                        if(typeof fob !== "undefined") {
                             $('.product-shipping-text').append("<tr><td class='title'>FOB : </td><td>"+fob+"</td></tr>");
                         }
-                        if(typeof carton_length !== "undefined" || !carton_length) {
+                        if(typeof carton_length !== "undefined") {
                             $('.product-shipping-text').append("<tr><td class='title'>Carton Length : </td><td>"+carton_length+"</td></tr>");
                         }
-                        if(typeof carton_weight !== "undefined" || !carton_weight) {
+                        if(typeof carton_weight !== "undefined") {
                             $('.product-shipping-text').append("<tr><td class='title'>Carton Weight : </td><td>"+carton_weight+"</td></tr>");
                         }
-                        if(typeof shipping_qty_per_carton !== "undefined" || !shipping_qty_per_carton) {
+                        if(typeof shipping_qty_per_carton !== "undefined") {
                             $('.product-shipping-text').append("<tr><td class='title'>Qty Per Carton : </td><td>"+shipping_qty_per_carton+"</td></tr>");
                         }
                     }
@@ -376,13 +375,13 @@ if(pid != null) {
                     $('.product-detail-label').removeClass('hide');
                     if(productDetails.categories instanceof Array) {
                         categories = productDetails.categories;
-                        if(typeof categories !== "undefined" || !categories) {
+                        if(typeof categories !== "undefined") {
                             $('.product-detail-text').append("<tr><td class='title'>Categories : </td><td>"+categories.join(", ")+"</td></tr>");
                         }
                     }
                     if(productDetails.attributes['colors'] instanceof Array) {
                         colors = productDetails.attributes['colors'];
-                        if(typeof colors !== "undefined" || !colors) {
+                        if(typeof colors !== "undefined") {
                             $('.product-detail-text').append("<tr><td class='title'>Colors : </td><td>"+colors.join(", ")+"</td></tr>");
                         }
                     }
@@ -397,13 +396,13 @@ if(pid != null) {
                 });
             }
             else{
-                console.log("Authentication is failed to fetch product information.");
+                // console.log("Authentication is failed to fetch product information.");
                 window.location = "error404.html";
                 return false;
             }
 			  },
         error: function(err){
-            console.log("this type of url not present");
+            // console.log("this type of url not present");
         }
     });
 }
@@ -584,7 +583,14 @@ if(pid != null) {
         let imprintData = $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js_select_method").parent('div').find("button").data();
         let imprintMethod = imprintData.dropval
         let printPosition = imprintData.printpos;
-        if(get_product_details.attributes.imprint_color != undefined && get_product_details.attributes.imprint_color instanceof Array){
+        let imprint_color_val = [];
+        if(get_product_details.attributes != undefined ){
+          $.each(get_product_details.attributes,function(key,val){
+              key = key.replace(/ /g,"_");
+              imprint_color_val[key] = val;
+          })
+        }
+
           for(let i=1;i<=dataAttributes.value;i++){
             colorHtml1 = colorHtml.replace(/#data.printPositionName#/g,printPosition)
             colorHtml1 = colorHtml1.replace(/#data.imprintId#/g,imprintMethod)
@@ -593,12 +599,11 @@ if(pid != null) {
           }
           $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js-color-div-append").html(replaceColorHtml)
 
-          $.each(get_product_details.attributes.imprint_color,function(key,imprintColor){
+          $.each(imprint_color_val.imprint_color,function(key,imprintColor){
             dropDownColorHtml += "<li data-value='"+imprintColor+"'><a href='javascript:void(0);'>"+imprintColor+"</a></li>"
           })
           $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js_select_color_from_list").html(dropDownColorHtml)
           $("#js_imprint_request_quote_box_"+dataAttributes.position).find('.js-color-div-append').removeClass('hide');
-        }
     });
 
     $(document).on("click",".js_select_color_from_list li",function(){
@@ -739,7 +744,7 @@ if(pid != null) {
                 return false;
             }
             else if(unit_price==0) {
-                showErrorMessage('Select valid quantity.');
+                showErrorMessage('Select valid color and quantity.');
                 return false;
             }
             else if(typeof shipping_type == 'undefined') {
@@ -776,9 +781,12 @@ function calculate_setup_charge(imprint_position)
                 let selected_imprint_method = imprint_position[imprint_position_val].imprint_method_name
                 if(data_imprint_method == selected_imprint_method)
                 {
-                    let replace_setup_charge = imprint_data[item].setup_charge
-                    stripped = replace_setup_charge.replace(/[^0-9\.]/g, '');
-                    setup_charge = setup_charge + parseFloat(stripped);
+					if(typeof imprint_data[item].setup_charge !== "undefined")
+					{
+						let replace_setup_charge = imprint_data[item].setup_charge
+		                stripped = replace_setup_charge.replace(/[^0-9\.]/g, '');
+		                setup_charge = setup_charge + parseFloat(stripped);
+					}
                 }
             }
             // console.log('imprint_position1',imprint_position[imprint_position_val].imprint_method_name);
