@@ -109,19 +109,30 @@ catch (err){
 // Navbar Plugins JS
 try{
     var JSON;
-    var menuJsonName = './assets/' + $('navimenu').attr('menuId') + '.json';
 
-    $.ajax({
-        type: 'GET',
-        url: menuJsonName,
-        async: true,
-        dataType: 'json',
-        success: function(data) {
-            JSON = {
-                "menu": data
-            };
-        }
+    $(document).ready(function(){
+        var menuJsonName = './assets/' + $('navimenu').attr('menuId') + '.json';
+
+        $.getJSON({
+            type: 'GET',
+            url: menuJsonName,
+            async: true,
+            dataType: 'json',
+            success: function(data) {
+                JSON = {
+                    "menu": data
+                };
+            }
+        });
+
+        $(function() {
+            var topLevelUl = true;
+            $("#navigationDiv").html(makeUL(JSON.menu, topLevelUl, true));
+
+        });
     });
+
+    
 
     function makeUL(lst, topLevelUl, rootLvl) {
         var html = [];
@@ -162,12 +173,6 @@ try{
         html.push('</li>');
         return html.join("\n");
     }
-
-    $(function() {
-        var topLevelUl = true;
-        $("#navigationDiv").html(makeUL(JSON.menu, topLevelUl, true));
-
-    });
 
     $(document).ready(function() {
         $('.navbar a.dropdown-toggle').on('click', function(e) {
