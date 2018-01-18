@@ -2,7 +2,7 @@ if(getCookie('loginTokenKey') != null) {
 	window.location = "index.html";
 }
 $(document).ready(function() {
-	$("#success_url").val(project_settings.base_url+"public/socialDashboard.html");
+	$("#success_url").val(project_settings.base_url+"socialDashboard.html");
 });
 
 $('.login-submit').on('click',function(){

@@ -1,0 +1,197 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+</style>
+
+
+
+
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/froala_blocks.css"
+    type="text/css" />
+</div>
+<form>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="firstName">First Name<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter First Name"
+                    />
+                    <ul class="error-message">
+                        <li>Enter Valid First Name!</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">Address Type<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select" name="timepass">
+                        <option>Select Address Type</option>
+                        <option>Driving</option>
+                        <option>Internet</option>
+                        <option>Movie</option>
+                        <option>Music</option>
+                        <option>Reading</option>
+                        <option>Sports</option>
+                    </select>
+                    <ul class="error-message">
+                        <li>Enter Valid Address Type!</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Email<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" placeholder="Enter Email " tabindex="1"
+                    />
+                    <ul class="error-message">
+                        <li>Enter Valid Email Address!</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 1<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" placeholder="Enter Address 1" type="text" tabindex="1"
+                    />
+                    <ul class="error-message">
+                        <li>Enter Valid Enter Address!</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 2</label>
+                    <input class="input" placeholder="Enter Address 2" type="text"
+                    tabindex="1" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">Country<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select" name="timepass">
+                        <option>Select Country</option>
+                        <option>Driving</option>
+                        <option>Internet</option>
+                        <option>Movie</option>
+                        <option>Music</option>
+                        <option>Reading</option>
+                        <option>Sports</option>
+                    </select>
+                    <ul class="error-message">
+                        <li>Enter Valid Country!</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">Province<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select" name="timepass">
+                        <option>Select Province</option>
+                        <option>Driving</option>
+                        <option>Internet</option>
+                        <option>Movie</option>
+                        <option>Music</option>
+                        <option>Reading</option>
+                        <option>Sports</option>
+                    </select>
+                    <ul class="error-message">
+                        <li>Enter Valid Province!</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">City<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select" name="timepass">
+                        <option>Select City</option>
+                        <option>Driving</option>
+                        <option>Internet</option>
+                        <option>Movie</option>
+                        <option>Music</option>
+                        <option>Reading</option>
+                        <option>Sports</option>
+                    </select>
+                    <ul class="error-message">
+                        <li>Enter Valid City!</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="postalcode">Postal Code <i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Postal Code"
+                    />
+                    <ul class="error-message">
+                        <li>Enter Valid Postal Code!</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="phone">Phone<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Phone Number"
+                    />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="lastName">Mobile</label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Mobile Number"
+                    />
+                </div>
+            </div>
+        </div><span class="required-field pull-right">* Required Fields</span>
+        <div class="btn-box-main">
+            <input class="btn btn-default" type="submit" value="save" tabindex="17"
+            />
+            <input class="btn btn-default" type="reset" value="Reset" tabindex="18"
+            />
+        </div>
+    </div>
+</form>

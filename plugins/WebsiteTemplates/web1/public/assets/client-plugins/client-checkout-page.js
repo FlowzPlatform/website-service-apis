@@ -5,7 +5,6 @@ $.ajax({
   url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2',
   dataType : 'json',
   success : function(response_data) {
-    // console.log(response_data);
     var newHtml = "";
     if (response_data!= "") {
       for (var key in response_data) {

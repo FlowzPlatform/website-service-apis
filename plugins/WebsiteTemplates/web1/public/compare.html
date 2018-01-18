@@ -10,7 +10,6 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
 <script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
-<script type='text/javascript' src='https://unpkg.com/vue/dist/vue.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
@@ -20,9 +19,9 @@
 <script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
-<link rel='stylesheet' href='./../main-files/main.css'/>
-<script src="./../main-files/main.js"></script>
-<script src="./../assets/client-plugins/client-cart.js"></script>
+<link rel='stylesheet' href='./main-files/main.css'/>
+<script src="./main-files/main.js"></script>
+<script src="./assets/client-plugins/client-cart.js"></script>
 
 </head>
 <body>
@@ -502,13 +501,14 @@ padding: 0;
         display: block;
     }
 }
+
 </style>
 
-<script type="text/javascript" src="../assets/client-plugins/jquery.validate.min.js"></script>
+<script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
     rel="stylesheet" type="text/css" />
-    <link href="../assets/css/base.css"
+    <link href="./assets/css/base.css"
     rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
@@ -525,7 +525,7 @@ padding: 0;
                             <ul class="header-loging">
                                 <li class="header-login-text"> <a href="index.html"> <span class="login-text">Home</span> </a>
                                 </li>
-                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (<span id="cartCount">0</span>)</span> </a>
                                 </li>
                                 <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
                                 </li>
@@ -555,7 +555,7 @@ padding: 0;
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/imgs/img_logo.png"/></a>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-right">
-                                <div class="support-col"> <a href="#"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
+                                <div class="support-col"> <a href="mailto:admin@flowz.com"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
                                 </div>
                                 <div class="call-text"> <i></i><span>604 589 5268</span><em>Call Us: Speak with a Rep!</em>
                                 </div>
@@ -675,8 +675,122 @@ body {
     margin: 0;
 }
 
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
 :root {
     margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.table td {
+    text-align: center;
+}
+
+.colors-list li {
+    display: inline;
+}
+
+span.color {
+    min-width: 15px;
+    min-height: 15px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(170, 170, 170);
+    border-right-color: rgb(170, 170, 170);
+    border-bottom-color: rgb(170, 170, 170);
+    border-left-color: rgb(170, 170, 170);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+.c90784 {
+    display: block;
+    min-height: 20px;
+}
+
+.c93217 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: transparent;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<div class="c90784">
+    <div class="container" id="myCompareList">
+        <div class="innerpage">
+            <div class="row">
+                <div class="col-md-5">
+                    <h3>Compare Products</h3>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <reusecomponent class="c93217"><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
 }
 
 :root {
@@ -698,171 +812,126 @@ body {
     margin-left: 0px;
 }
 
-#addToCartBtn {
-    margin-bottom: 10px;
+#c43672 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
 }
 
-#c20811 {
-    visibility: hidden;
+#c43676 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
 }
 
-#c21061 {
-    visibility: hidden;
+#c43680 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
 }
 
-.product-card {
-    max-width: 23%;
-    font-size: 12px;
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    display: inline-block;
-    box-shadow: rgb(153, 153, 153) 2px 2px 15px;
+#c43684 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
 }
 
-.product-card > a {
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: rgb(242, 242, 242);
-    color: rgb(51, 51, 51);
-    transition-duration: 0.1s;
-    transition-timing-function: initial;
-    transition-delay: initial;
-    transition-property: all;
-    position: relative;
-    display: block;
-    z-index: 0;
-    padding-bottom: 5px;
-    text-decoration-line: none;
-    text-decoration-style: initial;
-    text-decoration-color: initial;
+#c43688 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
 }
 
-.product-card > a:hover {
-    text-decoration-line: none;
-    text-decoration-style: initial;
-    text-decoration-color: initial;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px;
-}
-
-.product-card-title {
+.productTitle {
+    text-align: center;
     min-height: 70px;
-    font-size: 21px;
 }
 
-.product-description {
-    min-height: 70px;
-    max-height: 70px;
-    overflow-y: auto;
+.table td {
+    text-align: center;
 }
 
-.product-card-img {
-    display: block;
-    height: 250px;
-    width: 100%;
+.colors-list li {
+    display: inline;
 }
 
-.product-card figcaption {
-    display: block;
-    padding-top: 0px;
+span.color {
+    min-width: 15px;
+    min-height: 15px;
+    padding-top: 5px;
     padding-right: 10px;
-    padding-bottom: 0px;
+    padding-bottom: 5px;
     padding-left: 10px;
-}
-
-.product-card .product-card-address {
-    color: rgb(136, 136, 136);
-    line-height: 1.2;
-}
-
-.product-card .product-card-address i {
-    font-size: 14px;
-    margin-right: 2px;
-    line-height: 1.2;
-}
-
-.product-card .product-card-price {
-    display: block;
-    text-align: right;
-}
-
-.product-card .product-card-price .original-price, .product-card .product-card-price .price-savings {
-    line-height: 22px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.product-card .product-card-price .price-savings {
-    float: left;
-    color: rgb(130, 181, 72);
-}
-
-.product-card .product-card-price .original-price {
-    color: rgb(170, 170, 170);
-    font-size: 14px;
-}
-
-.product-card .product-card-price .amount-price {
-    text-align: right;
-    font-size: 20px;
-    color: rgb(130, 181, 72);
-}
-
-.product-card .product-card-price .from {
-    font-size: 12px;
-}
-
-.product_price span, .product_title h5 {
-    font-size: 1.1em;
-    line-height: 1;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-ul.product_list {
-    list-style-type: none;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    width: 100%;
-    display: inline;
-}
-
-.product_grid {
-    text-decoration-line: none;
-    text-decoration-style: initial;
-    text-decoration-color: initial;
-    display: inline;
-}
-
-.product_item {
-    display: inline-block;
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: rgb(255, 255, 255);
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -871,658 +940,130 @@ ul.product_list {
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: rgb(204, 204, 204);
-    border-right-color: rgb(204, 204, 204);
-    border-bottom-color: rgb(204, 204, 204);
-    border-left-color: rgb(204, 204, 204);
+    border-top-color: rgb(170, 170, 170);
+    border-right-color: rgb(170, 170, 170);
+    border-bottom-color: rgb(170, 170, 170);
+    border-left-color: rgb(170, 170, 170);
     border-image-source: initial;
     border-image-slice: initial;
     border-image-width: initial;
     border-image-outset: initial;
     border-image-repeat: initial;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+.ob-product-compare .compare-block > tbody > tr:first-child > td {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+}
+
+.ob-product-compare .compare-block > tbody > tr > td {
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgb(221, 221, 221);
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
-.product_sale {
-    position: absolute;
-    z-index: 2;
-    right: -28px;
-    transform: rotate(45deg);
-}
-
-.product_image {
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
-.product_image img {
-    display: block;
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    margin-top: auto;
-    margin-right: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    transition-duration: 0.5s;
-    transition-timing-function: ease-in-out;
-    transition-delay: initial;
-    transition-property: all;
-}
-
-.product_image img:hover {
-    transform: scale(1.2, 1.2);
-}
-
-.product_title {
-    float: left;
-    width: 100%;
-    text-transform: uppercase;
-}
-
-.product_title h5 {
-    margin-top: auto;
-    margin-right: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    font-weight: 500;
-    padding-bottom: 5px;
-}
-
-.product_price a {
-    color: rgb(0, 0, 0);
-}
-
-.price_old {
-    color: rgb(234, 46, 73);
-    text-decoration-line: line-through;
-    text-decoration-style: initial;
-    text-decoration-color: initial;
-}
-
-.product_desc p {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    line-height: 1.3;
-    padding-top: 10px;
-    padding-right: 0px;
-    padding-bottom: 10px;
-    padding-left: 0px;
-}
-
-.product_rating {
-    float: right;
-    width: 100px;
-    height: 20px;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background-image: url("https://bit.ly/1B4PjyM");
-    background-position-x: 0px;
-    background-position-y: 76%;
-    background-size: initial;
-    background-repeat-x: no-repeat;
-    background-repeat-y: no-repeat;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: initial;
-}
-
-.product_buttons {
-    -webkit-font-smoothing: antialiased;
-}
-
-.product_buttons .product_heart:hover {
-    color: rgb(223, 4, 4);
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.product_buttons .product_compare:hover {
-    color: rgb(18, 150, 18);
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.product_buttons .add_to_cart:hover {
-    color: rgb(77, 200, 211);
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.listing {
-    list-style-type: none;
-    list-style-position: initial;
-    list-style-image: initial;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    display: inline-block;
-}
-
-.product a {
-    text-decoration-line: none;
-    text-decoration-style: initial;
-    text-decoration-color: initial;
-}
-
-.price {
-    position: absolute;
-}
-
-.product:hover .info {
-    height: 40px;
-}
-
-.product:hover .info::before {
-    transform: scaleY(0.7);
-}
-
-.product:hover .info::after {
-    visibility: visible;
-    transform: translateY(10px);
-}
-
-.slide-title a {
-    color: inherit;
-}
-
-.product:hover .slide-title {
-    transform: translateY(-18px);
-    font-weight: 700;
-    color: rgb(0, 0, 0);
-}
-
-.price.sale {
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: rgb(0, 186, 47);
-}
-
-.price.old {
-    font-size: 0.95em;
-    padding-top: 4px;
-    padding-right: 6px;
-    padding-bottom: 4px;
-    padding-left: 6px;
-    text-decoration-line: line-through;
-    text-decoration-style: initial;
-    text-decoration-color: initial;
-    top: -43px;
-}
-
-.actions-wrapper * {
-    width: 50%;
-    padding-top: 2px;
-    padding-right: 0px;
-    padding-bottom: 2px;
-    padding-left: 0px;
     text-align: center;
-    color: rgb(25, 25, 25);
-    font-size: 0.95em;
-    font-weight: 700;
-}
-
-.actions-wrapper ::before {
-    font-family: FontAwesome;
-    margin-right: 8px;
-}
-
-.product:hover .actions-wrapper * {
-    visibility: visible;
-}
-
-.wrp-product-2 {
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-}
-
-.wrp-product-2:hover {
-    box-shadow: rgba(0, 0, 0, 0.36) 0px 10px 25px -2px;
-    transition-duration: 0.2s;
-    transition-timing-function: linear;
-    transition-delay: initial;
-    transition-property: all;
-}
-
-.wrp-product-2 * {
-    box-sizing: border-box;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-out;
-    transition-delay: initial;
-    transition-property: all;
-}
-
-.wrp-product-2 img {
-    max-width: 100%;
+    position: relative;
     vertical-align: top;
-    position: relative;
+    width: 225px;
 }
 
-.wrp-product-2 .add-to-cart {
-    position: absolute;
-    top: 0px;
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    opacity: 0;
-    background-color: rgb(64, 154, 213);
-    transform: rotateX(-90deg);
-    transform-origin: 100% 0px 0px;
-    padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-}
-
-.wrp-product-2 .add-to-cart i {
-    display: inline-block;
-    margin-right: 10px;
-    width: 40px;
-    line-height: 40px;
-    text-align: center;
-    background-color: rgb(22, 70, 102);
-    color: rgb(255, 255, 255);
-    font-size: 1.4em;
-}
-
-.wrp-product-2 .wrp-row {
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    background-color: rgb(238, 238, 238);
-}
-
-.wrp-product-2 h3, .wrp-product-2 p {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-}
-
-.wrp-product-2 h3 {
-    font-size: 1.5em;
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    text-overflow: ellipsis;
-}
-
-.wrp-product-2 p {
-    font-size: 0.9em;
-    letter-spacing: 1px;
-    font-weight: 400;
-}
-
-.wrp-product-2 .price {
-    font-weight: 500;
-    font-size: 1.5em;
-    line-height: 48px;
-    letter-spacing: 1px;
-}
-
-.wrp-product-2 .price s {
-    margin-right: 5px;
-    opacity: 0.5;
-    font-size: 0.9em;
-}
-
-.wrp-product-2 a {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-}
-
-.wrp-product-2:hover .add-to-cart {
-    opacity: 1;
-    transform: rotateX(0deg);
-}
-
-.wrp-product-2:hover .add-to-cart i {
-    background-color: rgb(41, 128, 185);
-}
-
-.c20708 {
-    display: block;
+.ob-product-compare .table-responsive {
+    overflow-x: auto;
+    overflow-y: auto;
     width: 100%;
+    display: inline-block;
+    max-width: 1125px;
 }
 
-@media only screen and (min-width: 320px) {
-    .product_sale p {
-        margin-top: 0px;
-        margin-right: 0px;
-        margin-bottom: 0px;
-        margin-left: 0px;
-        color: rgb(255, 255, 255);
-        background-image: initial;
-        background-position-x: initial;
-        background-position-y: initial;
-        background-size: initial;
-        background-repeat-x: initial;
-        background-repeat-y: initial;
-        background-attachment: initial;
-        background-origin: initial;
-        background-clip: initial;
-        background-color: red;
-        padding-top: 3px;
-        padding-right: 25px;
-        padding-bottom: 3px;
-        padding-left: 25px;
-        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
-    }
-
-    .product_values {
-        float: left;
-        width: calc(100% - 100px);
-        padding-top: 0px;
-        padding-right: 10px;
-        padding-bottom: 0px;
-        padding-left: 10px;
-    }
-
-    .product_rating {
-        margin-right: 10px;
-    }
-
-    .product_image {
-        height: 150px;
-        float: left;
-        width: 100px;
-    }
-
-    .product_image .product_buttons {
-        display: none;
-    }
-
-    .product_desc {
-        overflow-x: hidden;
-        overflow-y: hidden;
-        line-height: 1;
-    }
-
-    .product_values .product_buttons {
-        position: relative;
-        text-align: left;
-        float: left;
-        margin-top: 7px;
-    }
-
-    .product_values .product_buttons button {
-        color: rgb(37, 37, 37);
-        background-image: initial;
-        background-position-x: initial;
-        background-position-y: initial;
-        background-size: initial;
-        background-repeat-x: initial;
-        background-repeat-y: initial;
-        background-attachment: initial;
-        background-origin: initial;
-        background-clip: initial;
-        background-color: rgb(255, 255, 255);
-        font-size: 1em;
-        border-top-left-radius: 50%;
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
-        border-bottom-left-radius: 50%;
-        width: 40px;
-        height: 40px;
-        border-top-width: 1px;
-        border-right-width: 1px;
-        border-bottom-width: 1px;
-        border-left-width: 1px;
-        border-top-style: solid;
-        border-right-style: solid;
-        border-bottom-style: solid;
-        border-left-style: solid;
-        border-top-color: rgb(0, 0, 0);
-        border-right-color: rgb(0, 0, 0);
-        border-bottom-color: rgb(0, 0, 0);
-        border-left-color: rgb(0, 0, 0);
-        border-image-source: initial;
-        border-image-slice: initial;
-        border-image-width: initial;
-        border-image-outset: initial;
-        border-image-repeat: initial;
-    }
+.ob-product-compare .compare-block {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(221, 221, 221);
+    text-align: center;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    border-collapse: separate !important;
+}
+ .compare_img {
+    margin: 0 auto;
+    height: 125px;
+    width: auto;
 }
 
-@media only screen and (min-width: 480px) {
-    .product_image {
-        height: 250px;
-        width: 175px;
-    }
-
-    .product_values {
-        width: calc(100% - 175px);
-    }
-}
-
-@media only screen and (min-width: 678px) {
-    .product_item {
-        width: 49.5%;
-    }
-
-    .product_image {
-        height: 150px;
-        width: 100px;
-    }
-
-    .product_values {
-        width: calc(100% - 100px);
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .product_image {
-        height: 250px;
-        width: 175px;
-    }
-
-    .product_values {
-        width: calc(100% - 175px);
-    }
-
-    .product_desc {
-        max-height: 200px;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .product_item {
-        width: 33%;
-    }
-
-    .product_desc {
-        max-height: 131px;
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    .product_desc {
-        max-height: 67px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .product_title h5 {
-        font-weight: 700;
-    }
-}
-
-@media only screen and (max-width: 320px) {
-    .product_buttons {
-        display: none;
-    }
-
-    .product_desc {
-        display: none;
-    }
-
-    .product_sale {
-        display: none;
-    }
-
-    .product_image img {
-        position: relative;
-    }
-
-    .product_price span {
-        float: left;
-        width: 100%;
-    }
-}
 </style>
 
 
 
-
-<div class="cssImports"></div>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-rel="stylesheet" crossorigin="anonymous" />
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
-rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<productlisting class="c20708" id="123" apiurl="https://8ff5dc743a142143274218c2a594348d.us-east-1.aws.found.io:9243/pdm1/_search"
-apiusername="dist1" apipassword="123456" numberofitems="4" selecttemplate="portrait">
-    <figure class="product-card portrait placeholderCard">
-        <img class="product-card-img" src="http://placehold.it/400x300" />
-        <figcaption>
-            <h3 class="product-card-title">Product Title</h3>
-            <div class="product-description">Product Description</div>
-            <p class="product-card-address"> <i class="fa fa-map-marker"></i> US</p>
-            <div class="product-card-price"> <span class="price-savings">Save 25%</span><s class="original-price">$ 10.99</s>
-                <p
-                class="amount-price"> <span class="from">starting at</span> $ 10.99</p>
-            </div>
-            <button class="btn btn-info btn-block" id="addToCartBtn">Add To Cart</button>
-        </figcaption>
-    </figure>
-    <div class="product_grid landscape" id="c20811">
-        <ul class="product_list list">
-            <li class="product_item">
-                <div class="product_sale">
-                    <p>On Sale</p>
-                </div>
-                <div class="product_image"> <a href="#"><img src="http://placehold.it/400x300" alt="Product images"/></a>
-                    <div
-                    class="product_buttons">
-                        <button class="product_heart"><i class="fa fa-heart"></i>
-                        </button>
-                        <button class="product_compare"><i class="fa fa-random"></i>
-                        </button>
-                        <button class="add_to_cart"><i class="fa fa-shopping-cart"></i>
-                        </button>
-                        <div class="quick_view"> <a href="#"> <h6>Quick View</h6> </a>
-                        </div>
-                </div>
-    </div>
-    <div class="product_values">
-        <div class="product_title">
-            <h5>Product Title</h5>
-        </div>
-        <div class="product_price"> <a href="#"><span class="price_old">$79.99</span> <span class="price_new">$11.11</span></a>
-            <span
-            class="product_rating"></span>
-        </div>
-        <div class="product_desc">
-            <p class="truncate">Product Descriptions</p>
-        </div>
-        <div class="product_buttons">
-            <button class="product_heart"><i class="fa fa-heart"></i>
-            </button>
-            <button class="product_compare"><i class="fa fa-random"></i>
-            </button>
-            <button class="add_to_cart"><i class="fa fa-shopping-cart"></i>
-            </button>
-        </div>
-    </div>
-    </li>
-    </ul>
-    </div>
-    <div class="listing creative" id="c21061">
-        <div>
-            <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            />
-            <div>
-                <div>
-                    <div class="col-md-3">
-                        <div class="wrp-product-2">
-                            <img src="http://cdn2-www.craveonline.com/assets/uploads/2015/01/Watch-business-man.png"
-                            alt="Lorem Ipsum" />
-                            <div class="add-to-cart"><i class="ion-android-add"></i><span>Add to Cart</span>
+<div class="js-list hide">
+    <div>
+        <div class="col-md-12 ob-product-compare">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped compare-block">
+                    <tr id="item_title_price">
+                        <td class="product-#data-id#">
+                            <div class="product">
+                                <a class="delete-block js-remove-compare" data-id="#data.id#" href="javascript:void(0);" data-placement="left" data-toggle="tooltip" data-original-title="Remove"><i class="fa  fa-times-circle fa-fw"></i></a>
+                                <a href="#data.product_link#">
+                                    <img class="img-responsive compare_img mb-4" src="#data.image#" alt="product image" />
+                                
+                                    <h5 class="productTitle"><strong>#data.title#</strong></h5>
+                                </a>
+                                <hr/>
+                                <h3>#data.price#</h3>
                             </div>
-                            <div class="wrp-row">
-                                <h3>Pudol Doux</h3>
-                                <p>A small description of the product goes here.</p>
-                                <div class="price"> <s>$24.00</s>$19.00</div>
-                                <p><small>Special Offer: <b>10% off</b></small>
-                                </p>
-                            </div><a href="#"></a>
-                        </div>
-                    </div>
-                </div>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr id="item_sku">
+                        <td class="product-#data-id#">#data.sku#</td>
+                    </tr>
+                    <tr id="item_features">
+                        <td class="product-#data-id#">
+                            <p>#data.features#</p>
+                        </td>
+                    </tr>
+                    <tr id="item_summary">
+                        <td class="product-#data-id#">
+                            <p>#data.summary#</p>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
-</productlisting></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
+</div>
+<div class="hide" id="listing">
+    <div>
+        <div class="col-md-12 ob-product-compare">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped compare-block">
+                    <tr id="item_title_price1"></tr>
+                    <tr></tr>
+                    <tr id="item_sku1"></tr>
+                    <tr id="item_features1"></tr>
+                    <tr id="item_summary1"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./assets/client-plugins/client-wishlist.js"></script>
+</reusecomponent>
+                <div class="col-md-12"></div>
+            </div>
+        </div>
+    </div>
+</div></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
 }
@@ -1583,6 +1124,9 @@ body {
 .detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
     color: #fff !important;
 }
+.innerpage, .home-content > .container {
+    min-height: 700px;
+}
 </style>
 
 <div class="middle-footer">
@@ -1608,13 +1152,15 @@ body {
             </div>
             <div class="pull-right">
                 <p class="newslatter">GET DEALS AND IDEAS FROM US</p>
-                <form class="form-inline news-box" role="form">
+                <form class="form-inline news-box" id="sunscribe_email"
+                metod="post" onsubmit="return submitNewsLetterForm();">
                     <div class="form-group">
-                        <input class="form-control" type="email" id="email_id" name="email_send"
-                        placeholder="Enter Your Email Address" aria-describedby="basic-addon1"
-                        />
+                        <input class="required email form-control js-subscribe_email" type="email"
+                        name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
+                        required="true" />
                     </div>
-                    <button class="btn btn-default news-letter-validation-submit-btn" type="submit">SUBSCRIBE</button>
+                    <input class="btn btn-default news-letter-validation-submit-btn" type="submit"
+                    value="Subscribe" name="subscribe" />
                 </form>
             </div>
             <div class="clearfix"></div>
@@ -1627,13 +1173,16 @@ body {
         class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
     </div>
 </div>
-<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script></p><!--/gm-editable-region--></div></div><script src="./../assets/client-plugins/client-slider-plugin.js"></script>
-<script src="./../assets/client-plugins/client-popular-product-slider-plugin.js"></script>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
+</p><!--/gm-editable-region--></div></div>
+</div>
+<script src="./assets/client-plugins/client-slider-plugin.js"></script>
+<script src="./assets/client-plugins/client-popular-product-slider-plugin.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 
 </div>
-<script src="./../assets/client-plugins/global-variables-plugin.js"></script>
-<script src="./../assets/client-plugins/flowz-builder-engine.js"></script>
+<script src="./../public/assets/client-plugins/global-variables-plugin.js"></script>
+<script src="./assets/client-plugins/flowz-builder-engine.js"></script>
 
 </body>
 </html>
