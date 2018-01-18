@@ -4,5 +4,5 @@ module.exports = {
     basePath: '/var/www/html/',
     gitLabUrl: 'http://162.209.122.250',
     gitLabUsername: 'fsaiyed',
-    gitLabToken: 'zfgkxJyVyhdWD35isENX'
+    gitLabToken: 'eQ1-V9hyB9PN_XYnYfkV'
 }
