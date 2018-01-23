@@ -70,7 +70,7 @@ function after_send_repoToGit(hook) {
           method: 'POST',
           uri: config.gitLabUrl + '/api/v4/projects',
           body: {
-            name: userDetailId + '-' + nameOfRepo
+            name: nameOfRepo
           },
           headers: {
               'PRIVATE-TOKEN': config.gitLabToken
@@ -87,7 +87,7 @@ function after_send_repoToGit(hook) {
                   shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
 
                   shell.exec('git init');
-                  shell.exec('git remote add origin ' + config.gitLabUrl + '/' + config.gitLabUsername + '/'+ userDetailId + '-' + nameOfRepo +'.git');
+                  shell.exec('git remote add origin ' + config.gitLabUrl + '/' + config.gitLabUsername + '/' + nameOfRepo +'.git');
                   shell.exec('git remote -v');
 
                   shell.exec('git status');
@@ -97,8 +97,8 @@ function after_send_repoToGit(hook) {
                   shell.exec('git push -u origin master -f');
 
                   if(process.env.NODE_ENV != 'development'){
-                    shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "47.89.253.225" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\'');
-                    shell.exec('curl -i -X POST -d \'[ "qaflowz.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "47.254.23.137" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\''); 
+                    shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "47.89.253.225" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\'');
+                    shell.exec('curl -i -X POST -d \'[ "qaflowz.tk", [ { "ttl" : "3600", "label" : "' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "47.254.23.137" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\''); 
                   }
                   
               }
