@@ -1,4 +1,4 @@
-var projectName = 'keyinnovation';
+var projectName = 'aakron';
 var rawData = {};
 var productData = {};
 var productHtml = "";
@@ -22,7 +22,7 @@ $.ajax({
   dataType: 'json',
   success: function (data) {
     console.log("Product data received...!!!")
-    rawData = data.hits.hits;
+    rawData = data.hits.hits; 
     productData = rawData;
   }
 });

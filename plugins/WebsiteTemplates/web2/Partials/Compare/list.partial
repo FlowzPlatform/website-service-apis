@@ -208,10 +208,26 @@ span.color {
     -webkit-border-vertical-spacing: 0px;
     border-collapse: separate !important;
 }
+.compare_img {
+    margin: 0 auto;
+    height: 125px;
+    width: auto;
+}
 </style>
 
 
 
+
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
+    type="text/css" />
+</div>
 <div class="js-list hide">
     <div>
         <div class="col-md-12 ob-product-compare">
@@ -221,7 +237,9 @@ span.color {
                         <td class="product-#data-id#">
                             <div class="product">
                                 <a class="delete-block js-remove-compare" data-id="#data.id#" href="javascript:void(0);" data-placement="left" data-toggle="tooltip" data-original-title="Remove"><i class="fa  fa-times-circle fa-fw"></i></a>
-                                <img class="img-responsive" src="#data.image#" alt="product image" />
+                                <a href="#data.product_link#">
+                                    <img class="img-responsive compare_img" src="#data.image#" alt="product image" />
+                                </a>
                                 <h5 class="productTitle"><strong>#data.title#</strong></h5>
                                 <hr/>
                                 <h3>#data.price#</h3>
@@ -262,4 +280,4 @@ span.color {
         </div>
     </div>
 </div>
-<script src="./assets/client-plugins/client-wishlist.js"></script>
+<script src="./../assets/client-plugins/client-wishlist.js"></script>

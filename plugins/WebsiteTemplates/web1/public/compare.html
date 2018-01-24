@@ -33,6 +33,8 @@
 
 body {
     margin: 0;
+      background: url('https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg') no-repeat center top;
+    background-attachment: fixed;
 }
 
 .row {
@@ -42,10 +44,6 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     width: 100%;
-}
-
-:root {
-    margin-top: 0px;
 }
 
 :root {
@@ -56,21 +54,12 @@ body {
     clear: both;
 }
 
-.navbar {
-    float: right;
-    width: 50%;
-}
-
 .row {
     display: table;
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
-    width: 100%;
-}
-
-.navbar {
     width: 100%;
 }
 
@@ -87,16 +76,6 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    background-image: url("https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg");
-    background-position-x: center;
-    background-position-y: top;
-    background-size: initial;
-    background-repeat-x: no-repeat;
-    background-repeat-y: no-repeat;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: initial;
-    background-attachment: fixed;
 }
 
 #c47368 {
@@ -375,26 +354,17 @@ body {
 .ob-menu {
     background-color: rgb(73, 78, 107) !important;
 }
-
-.row.header-search-col {
-    position: absolute;
-    width: 325px;
-    top: 25px;
-    left: 276px;
+ .row.header-search-col {
+position: absolute;
+width: 325px;
+top: 25px;
+left: 276px;
+}
+.row.header-search-col .col-lg-10,
+.row.header-search-col .col-lg-2 {
+padding: 0;
 }
 
-.row.header-search-col .col-lg-10, .row.header-search-col .col-lg-2 {
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-}
-
-.c574096 {
-    padding: 10px;
-    display: block;
-    min-height: 75px;
-}
 
 @media screen and (max-width: 600px) {
     #menu {
@@ -532,25 +502,14 @@ body {
     }
 }
 
-.c574096 {padding:0px;    min-height: 1px;}
-.dropdown-toggle::after {display:none !important;}
-.nav>li>a:focus, .nav>li>a:hover {background-color: #c63928;}
-section.fdb-block.hmconts {overflow: inherit;vertical-align:  top;}
-.in-prod-main .in-prod-under {display: inline-block;}
-nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px; background-color: #000;}
-.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background-color: #c63928 !important;color: #fff !important;}
-.nav .open .dropdown-menu {height: inherit !important;background-color: #000;}
-.nav .open .dropdown-menu li,
-.nav .open .dropdown-menu li a {width:100%;}
-.nav .open .dropdown-menu li a:hover {width:100%; background-color: #c63928;}
-.navbar-toggler {display: none;}
 </style>
 
 <script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
     rel="stylesheet" type="text/css" />
-    <link href="./assets/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="./assets/css/base.css"
+    rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
@@ -566,7 +525,7 @@ nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px;
                             <ul class="header-loging">
                                 <li class="header-login-text"> <a href="index.html"> <span class="login-text">Home</span> </a>
                                 </li>
-                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (<span id="cartCount">0</span>)</span> </a>
                                 </li>
                                 <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
                                 </li>
@@ -596,7 +555,7 @@ nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px;
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/imgs/img_logo.png"/></a>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-right">
-                                <div class="support-col"> <a href="#"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
+                                <div class="support-col"> <a href="mailto:admin@flowz.com"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
                                 </div>
                                 <div class="call-text"> <i></i><span>604 589 5268</span><em>Call Us: Speak with a Rep!</em>
                                 </div>
@@ -627,31 +586,87 @@ nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px;
 </div>
 <menucomponent>
     <nav id="menu">
-        <navimenu class="c574096" menuid="default">
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <div class="container">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> 
-                    </button>
-                    <div class="collapse navbar-collapse" id="navigationDiv">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
+        <div class="ob-menu">
+            <div class="container">
+                <ul>
+                    <li><a class="prett">PRODUCTS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
+                            <li><a href="#">Drop Menu 2</a>
                             </li>
-                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Dropdown link </a> 
-                                <div
-                                class="dropdown-menu"> <a class="dropdown-item" href="#">Link 1</a>  <a class="dropdown-item" href="#">Link 2</a> 
-                                    <a
-                                    class="dropdown-item" href="#">Link 3</a>
-                    </div>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
                     </li>
-                    </ul>
-                </div>
-                </div>
-            </nav>
-        </navimenu>
+                    <li><a class="prett">BRANDS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">CATLOG</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">SERVICE</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">TOOLS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="prett">PROMOTIONS</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a>OUTLET</a>
+                    </li>
+                    <li><a class="prett">ABOUT</a>
+                        <ul class="menus">
+                            <li><a href="#">Drop Menu 1</a>
+                            </li>
+                            <li><a href="#">Drop Menu 2</a>
+                            </li>
+                            <li><a href="#">Drop Menu 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-</menucomponent></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
+</menucomponent>
+</p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
 * {
     box-sizing: border-box;
 }
@@ -699,6 +714,59 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
+}
+
+.table td {
+    text-align: center;
+}
+
+.colors-list li {
+    display: inline;
+}
+
+span.color {
+    min-width: 15px;
+    min-height: 15px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(170, 170, 170);
+    border-right-color: rgb(170, 170, 170);
+    border-bottom-color: rgb(170, 170, 170);
+    border-left-color: rgb(170, 170, 170);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+.c90784 {
+    display: block;
+    min-height: 20px;
+}
+
+.c93217 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: transparent;
 }
 </style>
 
@@ -706,30 +774,17 @@ body {
 
 
 <div class="cssImports"></div>
-<div class="container main">
-    <div class="content-info-page">
-        <div class="innerpage row account-innerpage">
-            <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
-                <div class="ob-account-right">
-                    <div class="breadcrumb">
-                        <ul>
-                            <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
-                            </li>
-                            <li><a href="#">My Account </a><i class="fa fa-angle-right fa-fw"> </i>
-                            </li>
-                            <li><a href="#">Address Book </a><i class="fa fa-angle-right fa-fw"> </i>
-                            </li>
-                            <li><strong>Edit new address</strong>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="ob-add-new-address">
-                        <h1 class="main-title">Edit new address</h1>
-                        <h2>contact information</h2>
-                        <div class="require-message">(Please Fill Your Contact information. Don't Forget To Save!)</div>
-                    </div>
-                    <div class="row">
-                        <reusecomponent class="c17829"><style>
+<div class="c90784">
+    <div class="container" id="myCompareList">
+        <div class="innerpage">
+            <div class="row">
+                <div class="col-md-5">
+                    <h3>Compare Products</h3>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <reusecomponent class="c93217"><style>
 * {
     box-sizing: border-box;
 }
@@ -738,30 +793,8 @@ body {
     margin: 0;
 }
 
-.row {
-    display: table;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    width: 100%;
-}
-
 :root {
     margin-top: 0px;
-}
-
-:root {
-    margin-top: 0px;
-}
-
-.row {
-    display: table;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    width: 100%;
 }
 
 .gjs-am-file-uploader > form {
@@ -779,127 +812,254 @@ body {
     margin-left: 0px;
 }
 
+#c43672 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c43676 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c43680 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c43684 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c43688 {
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.productTitle {
+    text-align: center;
+    min-height: 70px;
+}
+
+.table td {
+    text-align: center;
+}
+
+.colors-list li {
+    display: inline;
+}
+
+span.color {
+    min-width: 15px;
+    min-height: 15px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(170, 170, 170);
+    border-right-color: rgb(170, 170, 170);
+    border-bottom-color: rgb(170, 170, 170);
+    border-left-color: rgb(170, 170, 170);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+.ob-product-compare .compare-block > tbody > tr:first-child > td {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+}
+
+.ob-product-compare .compare-block > tbody > tr > td {
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgb(221, 221, 221);
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-align: center;
+    position: relative;
+    vertical-align: top;
+    width: 225px;
+}
+
+.ob-product-compare .table-responsive {
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 100%;
+    display: inline-block;
+    max-width: 1125px;
+}
+
+.ob-product-compare .compare-block {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(221, 221, 221);
+    text-align: center;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    border-collapse: separate !important;
+}
+ .compare_img {
+    margin: 0 auto;
+    height: 125px;
+    width: auto;
+}
+
 </style>
 
 
 
-<form name="address_book" id="address_book" method="post">
-    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                <div class="radio js-isoffice" style="display: none;">
-                    <div id="addresstbook_isOffice" class="input" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
-                        <input id="addresstbook_is_office_0" name="is_office" value="1" data-fv-field="isOffice" type="radio">
-                        <label for="addresstbook_is_office_0">Is Office</label>
-                        <input id="addresstbook_is_office_1" name="is_office" value="0" data-fv-field="isOffice" type="radio">
-                        <label for="addresstbook_is_office_1">Is Home</label>
-                    </div>
-                </div>
+<div class="js-list hide">
+    <div>
+        <div class="col-md-12 ob-product-compare">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped compare-block">
+                    <tr id="item_title_price">
+                        <td class="product-#data-id#">
+                            <div class="product">
+                                <a class="delete-block js-remove-compare" data-id="#data.id#" href="javascript:void(0);" data-placement="left" data-toggle="tooltip" data-original-title="Remove"><i class="fa  fa-times-circle fa-fw"></i></a>
+                                <a href="#data.product_link#">
+                                    <img class="img-responsive compare_img mb-4" src="#data.image#" alt="product image" />
+                                
+                                    <h5 class="productTitle"><strong>#data.title#</strong></h5>
+                                </a>
+                                <hr/>
+                                <h3>#data.price#</h3>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr id="item_sku">
+                        <td class="product-#data-id#">#data.sku#</td>
+                    </tr>
+                    <tr id="item_features">
+                        <td class="product-#data-id#">
+                            <p>#data.features#</p>
+                        </td>
+                    </tr>
+                    <tr id="item_summary">
+                        <td class="product-#data-id#">
+                            <p>#data.summary#</p>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label class="checkout-label" for="firstName">Name<i class="mandatory-field">*</i>
-                    </label>
-                    <input class="input" type="text" tabindex="1" placeholder="Enter Name"
-                    name="name" id="addresstbook_name"  data-toggle="tooltip" data-placement="bottom" title="Name" />
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <div class="form-group inp-parts">
-                    <label class="checkout-label" for="country1">Address Type<span class="mandatory-field">*</span>
-                    </label>
-                    <select class="custom-select js-address-type" id="addresstbook_address_type"
-                    name="address_type"   data-toggle="tooltip" data-placement="bottom" title="Address type" >
-                        <option value="" selected="selected">Select Address Type</option>
-                        <option value="billing">Billing</option>
-                        <option value="shipping">Shipping</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label class="checkout-label" for="LastName">Email<i class="mandatory-field">*</i>
-                    </label>
-                    <input class="input" type="text" placeholder="Enter Email " tabindex="1"
-                    name="email" id="addresstbook_email"   data-toggle="tooltip" data-placement="bottom" title="Email" />
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label class="checkout-label" for="LastName">Address 1<i class="mandatory-field">*</i>
-                    </label>
-                    <input class="input" placeholder="Enter Address 1" type="text" tabindex="1"
-                    id="addresstbook_street1" name="street1"   data-toggle="tooltip" data-placement="bottom" title="Address 1" />
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label class="checkout-label" for="LastName">Address 2</label>
-                    <input class="input" placeholder="Enter Address 2" type="text"
-                    tabindex="1" id="addresstbook_street2" name="street2"   data-toggle="tooltip" data-placement="bottom" title="Address2" />
-                </div>
-            </div>
-            <div class="col-sm-6 col-xs-12">
-                <div class="form-group inp-parts">
-                    <label class="checkout-label" for="country1">Country<span class="mandatory-field">*</span>
-                    </label>
-                    <input class="input" placeholder="Enter country" type="text" tabindex="1"
-                    id="addresstbook_country" name="country"   data-toggle="tooltip" data-placement="bottom" title="Country" />
-                </div>
-            </div>
-            <div class="col-sm-6 col-xs-12">
-                <div class="form-group inp-parts">
-                    <label class="checkout-label" for="country1">State<span class="mandatory-field">*</span>
-                    </label>
-                    <input class="input" placeholder="Enter state" type="text" tabindex="1"
-                    id="addresstbook_state" name="state"   data-toggle="tooltip" data-placement="bottom" title="State" />
-                </div>
-            </div>
-            <div class="col-sm-6 col-xs-12">
-                <div class="form-group inp-parts">
-                    <label class="checkout-label" for="country1">City<span class="mandatory-field">*</span>
-                    </label>
-                    <input class="input" placeholder="Enter city" type="text" tabindex="1"
-                    id="addresstbook_city" name="city"   data-toggle="tooltip" data-placement="bottom" title="City" />
-                </div>
-            </div>
-            <div class="col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label class="checkout-label" for="postalcode">Postal Code <i class="mandatory-field">*</i>
-                    </label>
-                    <input class="input" type="text" tabindex="1" placeholder="Enter Postal Code"
-                    id="addresstbook_postalcode" name="postalcode"   data-toggle="tooltip" data-placement="bottom" title="Postal Code" />
-                </div>
-            </div>
-            <div class="col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label class="checkout-label" for="phone">Phone<i class="mandatory-field">*</i>
-                    </label>
-                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Phone Number"
-                    id="addresstbook_phone" name="phone"   data-toggle="tooltip" data-placement="bottom" title="Phone Number" />
-                </div>
-            </div>
-            <div class="col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label class="checkout-label" for="lastName">Mobile</label>
-                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Mobile Number"
-                    id="addresstbook_mobile" name="mobile"   data-toggle="tooltip" data-placement="bottom" title="Mobile Number" />
-                </div>
-            </div>
-        </div><span class="required-field pull-right">* Required Fields</span>
-        <div class="btn-box-main">
-            <input class="btn btn-default js_submit_address" type="submit" value="save"
-            tabindex="17" />
-            <input class="btn btn-default" type="reset" value="Reset" tabindex="18"
-            />
         </div>
     </div>
-</form>
-
-<script type="text/javascript" src="./assets/client-plugins/client-address-book.js"></script>
+</div>
+<div class="hide" id="listing">
+    <div>
+        <div class="col-md-12 ob-product-compare">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped compare-block">
+                    <tr id="item_title_price1"></tr>
+                    <tr></tr>
+                    <tr id="item_sku1"></tr>
+                    <tr id="item_features1"></tr>
+                    <tr id="item_summary1"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./assets/client-plugins/client-wishlist.js"></script>
 </reusecomponent>
-                    </div>
-                </div>
+                <div class="col-md-12"></div>
             </div>
         </div>
     </div>

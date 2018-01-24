@@ -46,7 +46,6 @@ $(function() {
         wrapper: "ul",
         submitHandler: function(form) {
             let formObj = $(form);
-            // console.log("form",formObj.serialize());
             if(addressBookId != null){
               methodType = "PATCH"
               url = project_settings.address_book_api_url+"/"+addressBookId;
@@ -91,7 +90,6 @@ $(function() {
       .then(response => {
           if(response.data != undefined ){
               let addressBookDetail = response.data;
-              console.log("addressBookDetail",addressBookDetail);
               let formObj = $('form#address_book');
               $.each(addressBookDetail,function(element,value){
                   $(formObj.find('input[type="text"][name*="'+element+'"]')).val(value);
@@ -106,7 +104,7 @@ $(function() {
           }
       })
       .catch(error => {
-        console.log('Error fetching and parsing data', error);
+        // console.log('Error fetching and parsing data', error);
       });
     }
 
@@ -163,7 +161,6 @@ $(function() {
              }
           })
         .then(response => {
-          // console.log("+++",response.data);
             if(response.data != undefined  && response.data.total > 0){
                 $.each(response.data.data,function(key,data){
                     let addressBookHtml1 = "";
@@ -195,7 +192,7 @@ $(function() {
 
         })
         .catch(error => {
-          console.log('Error fetching and parsing data', error);
+          // console.log('Error fetching and parsing data', error);
         });
 
         // set default address in address book
