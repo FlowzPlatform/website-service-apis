@@ -111,7 +111,7 @@ try{
     var JSON;
 
     $(document).ready(function(){
-        var menuJsonName = './assets/' + $('navimenu').attr('menuId') + '.json';
+        var menuJsonName = './assets/' + $('.customMenu').attr('menuId') + '.json';
 
         $.getJSON({
             type: 'GET',
@@ -128,6 +128,20 @@ try{
         $(function() {
             var topLevelUl = true;
             $("#navigationDiv").html(makeUL(JSON.menu, topLevelUl, true));
+
+            $('.navbar a.dropdown-toggle').on('click', function(e) {
+                var $el = $(this);
+                var $parent = $(this).offsetParent(".dropdown-menu");
+                $(this).parent("li").toggleClass('open');
+
+                if(!$parent.parent().hasClass('nav')) {
+                    $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+                }
+
+                $('.nav li.open').not($(this).parents("li")).removeClass("open");
+
+                return false;
+            });
 
         });
     });
@@ -174,21 +188,21 @@ try{
         return html.join("\n");
     }
 
-    $(document).ready(function() {
-        $('.navbar a.dropdown-toggle').on('click', function(e) {
-            var $el = $(this);
-            var $parent = $(this).offsetParent(".dropdown-menu");
-            $(this).parent("li").toggleClass('open');
+    // $(document).ready(function() {
+    //     $('.navbar a.dropdown-toggle').on('click', function(e) {
+    //         var $el = $(this);
+    //         var $parent = $(this).offsetParent(".dropdown-menu");
+    //         $(this).parent("li").toggleClass('open');
 
-            if(!$parent.parent().hasClass('nav')) {
-                $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
-            }
+    //         if(!$parent.parent().hasClass('nav')) {
+    //             $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+    //         }
 
-            $('.nav li.open').not($(this).parents("li")).removeClass("open");
+    //         $('.nav li.open').not($(this).parents("li")).removeClass("open");
 
-            return false;
-        });
-    });
+    //         return false;
+    //     });
+    // });
 }
 catch (err) {
     console.log('Navigation menu not found!', err);

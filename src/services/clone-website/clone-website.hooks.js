@@ -45,13 +45,13 @@ function before_clone_website(hook) {
 function after_clone_website(hook) {
     return new Promise((resolve, reject) => {
       let sourceProjectName = hook.params.query.sourceProjectName;
-      let destinationProjectName = sourceProjectName + '_copy';
+      let destinationProjectName = hook.params.query.destinationFolderName;
 
       let userDetailId = hook.params.query.userDetailId;
       
       let response = '';
 
-      response = shell.cp('-Rf', config.path + userDetailId + '/' + sourceProjectName, config.path + userDetailId + '/' + destinationProjectName);
+      response = shell.cp('-Rf', config.path + userDetailId + '/' + sourceProjectName + '/*', config.path + userDetailId + '/' + destinationProjectName);
       
       hook.result = response;
       resolve(hook)
