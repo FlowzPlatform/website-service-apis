@@ -23,6 +23,12 @@ const publishSurge = require('./publish-surge/publish-surge.service.js');
 const copyWebsite = require('./copy-website/copy-website.service.js');
 
 
+const changeCityStateCountry = require('./change-city-state-country/change-city-state-country.service.js');
+
+
+const myOrders = require('./my-orders/my-orders.service.js');
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -46,4 +52,6 @@ module.exports = function () {
 
   app.configure(addressBook);
   app.configure(emailSubscribers);
+  app.configure(changeCityStateCountry);
+  app.configure(myOrders);
 };
