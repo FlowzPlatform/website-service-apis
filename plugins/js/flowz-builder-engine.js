@@ -109,19 +109,44 @@ catch (err){
 // Navbar Plugins JS
 try{
     var JSON;
-    var menuJsonName = './assets/' + $('navimenu').attr('menuId') + '.json';
 
-    $.ajax({
-        type: 'GET',
-        url: menuJsonName,
-        async: true,
-        dataType: 'json',
-        success: function(data) {
-            JSON = {
-                "menu": data
-            };
-        }
+    $(document).ready(function(){
+        var menuJsonName = './assets/' + $('.customMenu').attr('menuId') + '.json';
+
+        $.getJSON({
+            type: 'GET',
+            url: menuJsonName,
+            async: true,
+            dataType: 'json',
+            success: function(data) {
+                JSON = {
+                    "menu": data
+                };
+            }
+        });
+
+        $(function() {
+            var topLevelUl = true;
+            $("#navigationDiv").html(makeUL(JSON.menu, topLevelUl, true));
+
+            $('.navbar a.dropdown-toggle').on('click', function(e) {
+                var $el = $(this);
+                var $parent = $(this).offsetParent(".dropdown-menu");
+                $(this).parent("li").toggleClass('open');
+
+                if(!$parent.parent().hasClass('nav')) {
+                    $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+                }
+
+                $('.nav li.open').not($(this).parents("li")).removeClass("open");
+
+                return false;
+            });
+
+        });
     });
+
+    
 
     function makeUL(lst, topLevelUl, rootLvl) {
         var html = [];
@@ -163,27 +188,21 @@ try{
         return html.join("\n");
     }
 
-    $(function() {
-        var topLevelUl = true;
-        $("#navigationDiv").html(makeUL(JSON.menu, topLevelUl, true));
+    // $(document).ready(function() {
+    //     $('.navbar a.dropdown-toggle').on('click', function(e) {
+    //         var $el = $(this);
+    //         var $parent = $(this).offsetParent(".dropdown-menu");
+    //         $(this).parent("li").toggleClass('open');
 
-    });
+    //         if(!$parent.parent().hasClass('nav')) {
+    //             $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+    //         }
 
-    $(document).ready(function() {
-        $('.navbar a.dropdown-toggle').on('click', function(e) {
-            var $el = $(this);
-            var $parent = $(this).offsetParent(".dropdown-menu");
-            $(this).parent("li").toggleClass('open');
+    //         $('.nav li.open').not($(this).parents("li")).removeClass("open");
 
-            if(!$parent.parent().hasClass('nav')) {
-                $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
-            }
-
-            $('.nav li.open').not($(this).parents("li")).removeClass("open");
-
-            return false;
-        });
-    });
+    //         return false;
+    //     });
+    // });
 }
 catch (err) {
     console.log('Navigation menu not found!', err);
