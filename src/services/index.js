@@ -23,6 +23,9 @@ const publishSurge = require('./publish-surge/publish-surge.service.js');
 const copyWebsite = require('./copy-website/copy-website.service.js');
 
 
+const requestQuote = require('./request-quote/request-quote.service.js');
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -46,4 +49,5 @@ module.exports = function () {
 
   app.configure(addressBook);
   app.configure(emailSubscribers);
+  app.configure(requestQuote);
 };
