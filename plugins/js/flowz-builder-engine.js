@@ -476,3 +476,150 @@ catch (err) {
     console.log('Error in Payment Module: ', err);
 }
 // Payment JS Ends
+
+// dataField JS
+const dfGroup = Vue.component('datafieldgroup', {
+    template: `<div class="grid">
+            <template v-for="item in items"><div class="item"><div class="item-content"><slot :text="item"></slot></div></div></template>
+          </div>`,
+    props: ['data_schema', 'data_api'],
+    computed: {},
+    data: function() {
+        return {
+            items: []
+        }
+    },
+    created() {
+        //alert(11);
+        let self = this;
+
+        var r = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/; //http://www.regular-expressions.info/examples.html
+
+        var a = this,data_api;
+
+        var dataApiHost = a.match(r);
+
+        let socketClient = io(dataApiHost);
+        let apiClient = feathers()
+            .configure(feathers.hooks())
+            .configure(feathers.socketio(socketClient));
+
+        let schemaVal = this.data_schema.split(":");
+        let connString = $.trim(schemaVal[0]);
+        let schemaName = $.trim(schemaVal[1]);
+
+        ///let apiDataService = apiClient.service('connectiondata/' + connString + '?schemaname=' + schemaName);
+        let apiDataService = apiClient.service('person-data');
+
+        apiDataService.on("created", async function(data) {
+            self.items.push(data);
+        });
+        apiDataService.on("updated", async function(data) {
+            let arrIndex = self.search(data.email);
+            self.items[arrIndex] = data;
+        });
+
+
+    },
+    mounted() {
+        this.getData()
+    },
+    watch: {
+        items: function(val) {}
+    },
+    updated() {
+        var grid = new Muuri('.grid', {
+            dragEnabled: true
+        });
+    },
+    methods: {
+        getData() {
+            let self = this;
+            if (this.data_schema != undefined) {
+                if (this.data_schema.length > 0) {
+                    this.data_schema;
+                    let schemaVal = this.data_schema.split(":");
+                    let connString = $.trim(schemaVal[0]);
+                    let schemaName = $.trim(schemaVal[1]);
+                    let apiUrl = 'http://172.16.230.86:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
+                    $.getJSON(apiUrl, function(data) {
+                        self.items = data;
+                    });
+                } else {
+                    $.getJSON(this.data_api, function(data) {
+                        self.items = data;
+                    });
+                }
+            } else {
+                $.getJSON(this.data_api, function(data) {
+                    self.items = data;
+                });
+            }
+        },
+        search(searchEmail) {
+            for (let i = 0; i < this.items.length; i++) {
+                if (this.items[i].email == searchEmail) {
+                    return i;
+                }
+            }
+        }
+    }
+});
+
+const Table = Vue.component('datafieldtable', {
+    template: `
+            <Table :columns="columns1" ata="data1"></Table>
+            `,
+    props: ['column_value', 'data_api'],
+    computed: {},
+    data: function() {
+        return {
+            columns1: [],
+            data1: []
+        }
+    },
+    mounted() {
+        this.getData()
+    },
+    methods: {
+        getData() {
+            let self = this;
+            let arr_column = []
+            var str = this.column_value;
+            var res = str.split(",");
+            for (let index = 0; index < res.length; index++) {
+                let data = {
+                    "title": res[index],
+                    "key": res[index]
+                }
+                arr_column.push(data)
+            }
+            self.columns1 = arr_column;
+            $.getJSON(this.data_api, function(data) {
+                self.data1 = data;
+            });
+
+        }
+    }
+});
+
+
+const dfList = Vue.component('datafieldlist', {
+    template: '<div><div v-for="item in items"><slot :text="item"></slot></div></div>',
+    props: ['items']
+});
+
+const dfText = Vue.component('datafieldtext', {
+    template: '<h3>{{text}}</h3>',
+    props: ['text']
+});
+
+new Vue({
+    el: '#app',
+    components: {
+        dfGroup,
+        dfList,
+        dfText
+    }
+})
+// dataField js ends
