@@ -22,9 +22,11 @@ const publishSurge = require('./publish-surge/publish-surge.service.js');
 
 const copyWebsite = require('./copy-website/copy-website.service.js');
 
-
 const colorTable = require('./color-table/color-table.service.js');
+const cloneWebsite = require('./clone-website/clone-website.service.js');
 
+
+const saveMenu = require('./save-menu/save-menu.service.js');
 
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
@@ -50,4 +52,6 @@ module.exports = function () {
   app.configure(addressBook);
   app.configure(emailSubscribers);
   app.configure(colorTable);
+  app.configure(cloneWebsite);
+  app.configure(saveMenu);
 };
