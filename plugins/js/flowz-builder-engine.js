@@ -492,7 +492,12 @@ const dfGroup = Vue.component('datafieldgroup', {
     created() {
         //alert(11);
         let self = this;
-        let dataApiHost = 'http://172.16.230.86:3080/';
+
+        var r = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/; //http://www.regular-expressions.info/examples.html
+
+        var a = this,data_api;
+
+        var dataApiHost = a.match(r);
 
         let socketClient = io(dataApiHost);
         let apiClient = feathers()
