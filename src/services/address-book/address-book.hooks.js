@@ -84,7 +84,7 @@ beforeCreateAddressBook = async hook => {
 checkIsDefault = async hook =>{
   return new Promise ((resolve , reject) =>{
     // console.log(hook.data)
-    r.db('product_service_api').table('userAddressBook')
+    r.table('userAddressBook')
       .filter({'user_id':hook.data.user_id,'is_address':hook.data.is_address,'address_type':hook.data.address_type,'is_default':'1','deleted_at':false})
       .run(connection , function(error , cursor){
           if (error) throw error;
@@ -99,7 +99,7 @@ checkIsDefault = async hook =>{
 
 beforPatchAddressBook = async hook =>{
     return new Promise ((resolve , reject) =>{
-      r.db('product_service_api').table('userAddressBook')
+      r.table('userAddressBook')
         .get(hook.id)
         .run(connection , async function(error , cursor){
            if (error) throw error;
