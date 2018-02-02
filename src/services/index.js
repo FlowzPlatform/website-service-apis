@@ -30,6 +30,7 @@ const myOrders = require('./my-orders/my-orders.service.js');
 
 const colorTable = require('./color-table/color-table.service.js');
 
+const shippingEstimator = require('./shipping-estimator/shipping-estimator.service.js');
 
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
@@ -57,4 +58,5 @@ module.exports = function () {
   app.configure(changeCityStateCountry);
   app.configure(myOrders);
   app.configure(colorTable);
+  app.configure(shippingEstimator);
 };
