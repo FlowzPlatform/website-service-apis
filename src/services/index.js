@@ -22,6 +22,11 @@ const publishSurge = require('./publish-surge/publish-surge.service.js');
 
 const copyWebsite = require('./copy-website/copy-website.service.js');
 
+const colorTable = require('./color-table/color-table.service.js');
+const cloneWebsite = require('./clone-website/clone-website.service.js');
+
+
+const saveMenu = require('./save-menu/save-menu.service.js');
 
 const changeCityStateCountry = require('./change-city-state-country/change-city-state-country.service.js');
 
@@ -57,4 +62,6 @@ module.exports = function () {
   app.configure(changeCityStateCountry);
   app.configure(myOrders);
   app.configure(colorTable);
+  app.configure(cloneWebsite);
+  app.configure(saveMenu);
 };
