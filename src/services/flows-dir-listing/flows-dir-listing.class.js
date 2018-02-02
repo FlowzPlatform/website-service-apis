@@ -34,15 +34,11 @@ class Service {
     create(data, params) {
         if (data.type == "folder") {
             return new Promise((resolve, reject) => {
-                if(!fs.existsSync(data.foldername))
-                {
-                    console.log('create new dir.........');
+                if(!fs.existsSync(data.foldername)) {
                     fs.mkdir(data.foldername, function(err) {
-                    //console.log('test');
                     err ? reject(err) : resolve(data)
                     });    
                 } else {
-                    console.log('dir exists.........');
                     resolve(data)
                 }
             }).then(content => {

@@ -482,7 +482,7 @@ const dfGroup = Vue.component('datafieldgroup', {
     template: `<div class="grid">
             <template v-for="item in items"><div class="item"><div class="item-content"><slot :text="item"></slot></div></div></template>
           </div>`,
-    props: ['data_schema', 'data_api'],
+    props: ['data_schema', 'data_api', 'draggable'],
     computed: {},
     data: function() {
         return {
@@ -529,7 +529,7 @@ const dfGroup = Vue.component('datafieldgroup', {
     },
     updated() {
         var grid = new Muuri('.grid', {
-            dragEnabled: true
+            dragEnabled: this.draggable
         });
     },
     methods: {
