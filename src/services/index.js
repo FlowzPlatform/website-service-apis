@@ -63,10 +63,9 @@ module.exports = function () {
   app.configure(changeCityStateCountry);
   app.configure(myOrders);
   app.configure(colorTable);
-<<<<<<< HEAD
   app.configure(shippingEstimator);
-=======
+
   app.configure(cloneWebsite);
   app.configure(saveMenu);
->>>>>>> c532316e9df663a6511c59d5fc4f643606619756
+
 };

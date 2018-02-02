@@ -21,11 +21,7 @@ module.exports = function () {
   const service = app.service('color-table');
 
   service.hooks(hooks);
-<<<<<<< HEAD
-console.log('Testing Data2');
-=======
-
->>>>>>> c532316e9df663a6511c59d5fc4f643606619756
+  
   if (service.filter) {
     service.filter(filters);
   }
