@@ -28,6 +28,8 @@ const changeCityStateCountry = require('./change-city-state-country/change-city-
 
 const myOrders = require('./my-orders/my-orders.service.js');
 
+const colorTable = require('./color-table/color-table.service.js');
+
 
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
@@ -54,4 +56,5 @@ module.exports = function () {
   app.configure(emailSubscribers);
   app.configure(changeCityStateCountry);
   app.configure(myOrders);
+  app.configure(colorTable);
 };
