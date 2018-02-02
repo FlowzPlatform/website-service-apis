@@ -19,7 +19,7 @@ async function getProjectInfo() {
         userEmail = data[0].projectOwner;
         projectName = data[0].projectName;
 
-        configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
+        configDataUrl = baseURL + "/project-configuration/" + projectName;
     });
 
     getConfigData();
@@ -28,7 +28,7 @@ async function getProjectInfo() {
 async function getConfigData () {
 
     await $.getJSON( configDataUrl , function( data ) {  
-        var configData = data.data[0].configData;
+        var configData = data.configData;
         globalVariables = configData[1].projectSettings[1].GlobalVariables;
     }); 
 

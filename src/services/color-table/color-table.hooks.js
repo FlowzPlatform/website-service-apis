@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const fs = require('fs');
 
 let ssl = process.env.cert ? { ca: fs.readFileSync(__dirname+process.env.cert) } : null;
@@ -22,13 +23,20 @@ r.connect({
   if (err) throw err;
   connection = conn
 })
+=======
+
+>>>>>>> c532316e9df663a6511c59d5fc4f643606619756
 
 module.exports = {
   before: {
     all: [],
+<<<<<<< HEAD
     find: [
       hook => beforeFindColorSwatch(hook)
     ],
+=======
+    find: [],
+>>>>>>> c532316e9df663a6511c59d5fc4f643606619756
     get: [],
     create: [],
     update: [],
@@ -36,7 +44,10 @@ module.exports = {
     remove: []
   },
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c532316e9df663a6511c59d5fc4f643606619756
   after: {
     all: [],
     find: [],
@@ -57,6 +68,7 @@ module.exports = {
     remove: []
   }
 };
+<<<<<<< HEAD
 
 
 beforeFindColorSwatch = async hook => {
@@ -67,3 +79,5 @@ beforeFindColorSwatch = async hook => {
     }
 
 }
+=======
+>>>>>>> c532316e9df663a6511c59d5fc4f643606619756
