@@ -14,27 +14,17 @@ const projectConfiguration = require('./project-configuration/project-configurat
 const webpackApi = require('./webpack-api/webpack-api.service.js');
 
 const addressBook = require('./address-book/address-book.service.js');
-
 const emailSubscribers = require('./email-subscribers/email-subscribers.service.js');
 
 const publishSurge = require('./publish-surge/publish-surge.service.js');
-
-
 const copyWebsite = require('./copy-website/copy-website.service.js');
 
 const colorTable = require('./color-table/color-table.service.js');
 const cloneWebsite = require('./clone-website/clone-website.service.js');
 
-
 const saveMenu = require('./save-menu/save-menu.service.js');
-
 const changeCityStateCountry = require('./change-city-state-country/change-city-state-country.service.js');
-
-
 const myOrders = require('./my-orders/my-orders.service.js');
-
-const colorTable = require('./color-table/color-table.service.js');
-
 
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
