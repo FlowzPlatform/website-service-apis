@@ -28,6 +28,14 @@ const cloneWebsite = require('./clone-website/clone-website.service.js');
 
 const saveMenu = require('./save-menu/save-menu.service.js');
 
+const changeCityStateCountry = require('./change-city-state-country/change-city-state-country.service.js');
+
+
+const myOrders = require('./my-orders/my-orders.service.js');
+
+const colorTable = require('./color-table/color-table.service.js');
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -51,6 +59,8 @@ module.exports = function () {
 
   app.configure(addressBook);
   app.configure(emailSubscribers);
+  app.configure(changeCityStateCountry);
+  app.configure(myOrders);
   app.configure(colorTable);
   app.configure(cloneWebsite);
   app.configure(saveMenu);

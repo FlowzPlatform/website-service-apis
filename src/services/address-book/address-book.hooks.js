@@ -103,7 +103,7 @@ beforPatchAddressBook = async hook =>{
         .get(hook.id)
         .run(connection , async function(error , cursor){
            if (error) throw error;
-           console.log("cursor.is_default",cursor.is_default);
+          //  console.log("cursor.is_default",cursor.is_default);
            if(hook.data.deleted_at == undefined && cursor.is_default != '1')
            {
              let obj = '';
@@ -124,4 +124,3 @@ beforPatchAddressBook = async hook =>{
         // console.log("id==",hook.id);
     })
 }
-
