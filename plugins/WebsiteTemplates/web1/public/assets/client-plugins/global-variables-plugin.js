@@ -5,8 +5,8 @@ var userEmail = '';
 var projectName = '';
 var configDataUrl = '';
 
-var host = 'http://api.flowz.com/serverapi';
-
+var host = 'http://localhost:3032';
+var socketHost='http://localhost:4032';
 $(document).ready(function() {
     getProjectInfo();
     ImpletementSocekt();

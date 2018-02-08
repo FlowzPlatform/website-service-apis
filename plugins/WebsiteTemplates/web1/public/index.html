@@ -1,15 +1,16 @@
 <html>
 <head>
-<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<meta charset="UTF-8"><meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <title></title>
+
 <script src='https://code.jquery.com/jquery-3.2.1.js'></script>
 <link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'/>
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js' defer='defer' ></script>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/theme.min.css' />
 <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js' crossorigin='anonymous'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js' defer='defer'></script>
 <script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous' defer='defer'></script>
 <script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
@@ -19,13 +20,13 @@
 <script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
+<script src="./assets/client-plugins/flowz-builder-engine.js"></script>
 <link rel='stylesheet' href='./main-files/main.css'/>
-<script src="./main-files/main.js"></script>
-<script src="./assets/client-plugins/client-cart.js"></script>
+<script src="./main-files/main.js" defer='defer'></script>
+<script src="./assets/client-plugins/client-cart.js" defer="defer"></script>
 
 </head>
 <body>
-<div id="app">
 <div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
 * {
     box-sizing: border-box;
@@ -592,18 +593,6 @@ nav.navbar {
 </style>
 
 
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
 <div>
     <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
@@ -624,7 +613,7 @@ nav.navbar {
                             <ul class="header-loging">
                                 <li class="header-login-text"> <a href="index.html"> <span class="login-text">Home</span> </a>
                                 </li>
-                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (<span id="cartCount">0</span>)</span> </a>
                                 </li>
                                 <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
                                 </li>
@@ -635,8 +624,6 @@ nav.navbar {
                                 <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
                                     <ul
                                     class="dropdown-menu dropdown-menu-arrow user-dropdown">
-                                        <li><a href="myaccount.html">MY ACCOUNT</a>
-                                        </li>
                                         <li><a href="changePassword.html">CHANGE PASSWORD</a>
                                         </li>
                                         <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
@@ -654,7 +641,7 @@ nav.navbar {
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/imgs/img_logo.png"/></a>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-right">
-                                <div class="support-col"> <a href="#"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
+                                <div class="support-col"> <a href="mailto:admin@flowz.com"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
                                 </div>
                                 <div class="call-text"> <i></i><span>604 589 5268</span><em>Call Us: Speak with a Rep!</em>
                                 </div>
@@ -731,6 +718,8 @@ body {
     width: 8%;
     display: table-cell;
     height: 75px;
+    flex-grow: 1 !important;
+    flex-basis: 100% !important;
 }
 
 :root {
@@ -762,9 +751,9 @@ body {
 }
 
 .cell {
-    width: 8%;
-    display: table-cell;
     height: 75px;
+    flex-grow: 1 !important;
+    flex-basis: 100% !important;
 }
 
 .gjs-am-file-uploader > form {
@@ -1181,18 +1170,29 @@ body {
 
 
 
-<div class="cssImports"></div>
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
+    type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    />
+</div>
 <div class="home-content ob-innovation">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="ob-slide-box">
                     <menucomponent></menucomponent>
-                    <slider class="c423491" image1="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_3f5f004bd4d7f3c103d3b3c51e80d4d49ce76b76.jpg"
-                    image2="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_311c3783d2f9e09b15fb2cf06d9dd6df1fe3b80b.jpg"
-                    image3="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_28e7bab82c4a63cb4f65d8f4572e736af51952bb.png"
-                    image4="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_982176a6b6fdbd52bb46793daa79eff0c55976dd.JPG"
-                    image5="https://www.keyinnovations.ca/images/uploads/banner_images/thumb_311c3783d2f9e09b15fb2cf06d9dd6df1fe3b80b.jpg"></slider>
+                    <slider class="c423491" image1="http://res.cloudinary.com/flowz/raw/upload/v1515997617/websites/distributor/images/banner1.jpg"
+                    image2="http://res.cloudinary.com/flowz/raw/upload/v1515997617/websites/distributor/images/banner2.JPG"
+                    image3="http://res.cloudinary.com/flowz/raw/upload/v1515997617/websites/distributor/images/banner3.jpg"
+                    image4="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/banner4.png"
+                    image5="http://res.cloudinary.com/flowz/raw/upload/v1515997617/websites/distributor/images/banner1.jpg"></slider>
                     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
                     rel="stylesheet" />
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -1438,7 +1438,7 @@ body {
             <div class="row text-center justify-content-center mt-5">
                 <div class="service-col">
                     <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-1.png"/></a>
+                        <div class="service-img"><a><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/service-icon-1.png"/></a>
                         </div>
                         <div class="service-text"><a><span>We </span>Are Canadian
                             </a>
@@ -1447,7 +1447,7 @@ body {
                 </div>
                 <div class="service-col">
                     <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-2.png"/></a>
+                        <div class="service-img"><a><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/service-icon-2.png"/></a>
                         </div>
                         <div class="service-text"><a><span> see samples  </span>Before You Buy
                             </a>
@@ -1456,7 +1456,7 @@ body {
                 </div>
                 <div class="service-col">
                     <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-3.png"/></a>
+                        <div class="service-img"><a><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/service-icon-3.png"/></a>
                         </div>
                         <div class="service-text"><a><span> High Detail </span>On-Time Delivery
                             </a>
@@ -1465,7 +1465,7 @@ body {
                 </div>
                 <div class="service-col">
                     <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-4.png"/></a>
+                        <div class="service-img"><a><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/service-icon-4.png"/></a>
                         </div>
                         <div class="service-text"><a><span>  Personal  </span>Service
                             </a>
@@ -1474,7 +1474,7 @@ body {
                 </div>
                 <div class="service-col">
                     <div>
-                        <div class="service-img"><a><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/service-icon-5.png"/></a>
+                        <div class="service-img"><a><img src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/service-icon-5.png"/></a>
                         </div>
                         <div class="service-text"><a><span>  Product  </span>Safety
                             </a>
@@ -1576,6 +1576,21 @@ body {
 .innerpage, .home-content > .container {
     min-height: 700px;
 }
+.btn-success {
+    color: #fff;
+    background-color: #5d5c5c;
+    border-color: #5d5c5c;
+}
+.btn-success:active:hover{
+    color: #fff;
+    background: #c51327;
+    border: 1px #c51327 solid;
+}
+.btn-success:hover{
+    color: #fff;
+    background: #c51327;
+    border: 1px #c51327 solid;
+}
 </style>
 
 <div class="middle-footer">
@@ -1624,14 +1639,12 @@ body {
 </div>
 <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
 </p><!--/gm-editable-region--></div></div>
-</div>
-<script src="./assets/client-plugins/client-slider-plugin.js"></script>
-<script src="./assets/client-plugins/client-popular-product-slider-plugin.js"></script>
+<script src="./assets/client-plugins/client-slider-plugin.js" defer="defer"></script>
+<script src="./assets/client-plugins/client-popular-product-slider-plugin.js" defer="defer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 
 </div>
 <script src="./../public/assets/client-plugins/global-variables-plugin.js"></script>
-<script src="./assets/client-plugins/flowz-builder-engine.js"></script>
 
 </body>
 </html>
