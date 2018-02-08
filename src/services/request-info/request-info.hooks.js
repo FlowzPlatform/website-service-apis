@@ -51,15 +51,16 @@ module.exports = {
 };
 
 function beforeCreateRequestInfo(hook){
+  // let response = await getProductDetailById(hook.data.form_data.product_id,hook.data.form_data.product_api_url);
     return new Promise ((resolve,reject) => {
+        // console.log("&&&&&&&&&&&&&&&&",hook.data)
+        // console.log(hook.data);
         let obj = [];
-        // getProductDetailById(hook.data.form_data.product_id,hook.data.product_api_url,this.apiHeaders.authorization).
-        // then(function(result,err){
-            // if(result.hits.hits.length > 0){
-            if(hook.data.product_data != null){
+        getProductDetailById(hook.data.form_data.product_id,hook.data.product_api_url,this.apiHeaders.authorization).
+        then(function(result,err){
+            if(result.hits.hits.length > 0){
               let productInfo = [];
-              // productInfo.push(result.hits.hits[0]._source);
-              productInfo.push(hook.data.product_data)
+              productInfo.push(result.hits.hits[0]._source);
               if(hook.data.user_detail._id != undefined){
                   var user_id = hook.data.user_detail._id;
                   var guest_info = null;
@@ -70,12 +71,11 @@ function beforeCreateRequestInfo(hook){
               obj.push({
                   userId: user_id,
                   instruction: hook.data.form_data.note,
-                  productId: hook.data.product_id,
+                  productId: hook.data.form_data.product_id,
                   productInfo: productInfo,
                   commentInfo:null,
-                  supplierId: hook.data.product_data.supplier_id, //result.hits.hits[0]._source.supplier_id,
-                  // supplierName: result.hits.hits[0]._source.supplier_info.company,
-                  supplierName: hook.data.product_data.supplier_info.supplier_name,
+                  supplierId: 5, //result.hits.hits[0]._source.supplier_id,
+                  supplierName:result.hits.hits[0]._source.supplier_info.company,
                   culture: hook.data.culture,
                   createAt: new Date(),
                   updatedAt: null,
@@ -83,25 +83,24 @@ function beforeCreateRequestInfo(hook){
                   createdUid:hook.data.user_detail._id,
                   deletedUid: null,
                   guestUserInfo:guest_info,
-                  website_id: hook.data.website_id,
               });
-              // console.log("&&&",hook.data.product_data);
+              // console.log("Obj&&&&&",obj);
               hook.data = obj
               resolve(hook)
             }else{
               resolve("Product data not found.");
-              // throw errors.NotFound(new Error('Product data not found.'));
             }
+        });
+        // let productUrl = hook.data.product_api_url+hook.data.form_data.product_id;
     })
 }
 
 var product_detail = {
   getProductDetailById: function(productId,productApi,token){
-    // console.log("++",productApi+"?_id="+productId);
     return rp({
       method: 'GET',
-      uri: productApi+"?_id="+productId,
-      headers: {'User-Agent': 'Request-Promise','vid': token},
+      uri: productApi+productId,
+      headers: {'User-Agent': 'Request-Promise','Authorization': token},
       json: true
     });
   }
@@ -110,6 +109,28 @@ var product_detail = {
 function getProductDetailById(productId,productApi,token) {
   return product_detail.getProductDetailById(productId,productApi,token);
 }
+
+
+
+// function getProductDetailById(productId,productApi){
+//   let productUrl = productApi+productId;
+//   var res;
+//   var options = {
+//     method: 'GET',
+//     headers: {'User-Agent': 'Request-Promise','Authorization': this.apiHeaders.authorization},
+//     json: true // Automatically parses the JSON string in the response
+//   };
+//
+//   rp(productUrl,options)
+//    .then(function (repos) {
+//       //  res = repos.hits.hits[0]._source;
+//       return repos.hits.hits[0]._source;
+//    })
+//    .catch(function (err) {
+//       //  console.log('User', err);
+//        return err;
+//    });
+// }
 
 function before_all_service(hook) {
    module.exports.apiHeaders = this.apiHeaders;

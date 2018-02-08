@@ -48,10 +48,24 @@ body {
     margin-left: 0px;
 }
 
-.c67694 {
-    display: block;
-    width: 100%;
-    min-height: 20px;
+#productImage {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+}
+
+h4 {
+    padding-top: 1%;
+}
+
+#comment {
+    margin-top: 5%;
+}
+
+button.remove {
+    float: right;
+    margin-top: 1%;
 }
 </style>
 
@@ -59,27 +73,18 @@ body {
 
 
 <div class="cssImports"></div>
-<div class="container" id="myWishList">
-    <div class="innerpage row account-innerpage">
-        <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
-            <div class="ob-myaccount-mywishlist">
-                <div class="myaccount-title">
-                    <h1 class="main-title">
-                  My WishList                        
-               </h1>
-                </div>
-            </div>
-            <div class="myaccount-my-wishlist">
-                <div class="product-main-list-block">
-                    <div class="tab-pane active">
-                        <div class="ob-product-grid js-product-grid list-view" id="product-list-container">
-                            <div class="row">
-                                <reusecomponent class="c67694">{{> wishlist id='list.partial' }}</reusecomponent>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="c105695">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <div class="container" id="myWishList">
+        <div class="row">
+            <div class="col-md-5">
+                <h3>My Wishlist</h3>
             </div>
         </div>
+        <hr/>
+        <reusecomponent class="c1158844">{{> wishlist id='list.partial' }}</reusecomponent>
     </div>
 </div>

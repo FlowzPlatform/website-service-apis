@@ -3,7 +3,7 @@
 }
 
 .innerpage {
-    margin: 0 ;
+    margin: 0;
 }
 
 .header-search-col {
@@ -13,3 +13,4 @@
 .header-search-col form input[type="text"] {
     width: 72%;
 }
+

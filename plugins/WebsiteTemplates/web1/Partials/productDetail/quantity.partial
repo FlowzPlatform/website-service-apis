@@ -11,10 +11,6 @@ body {
     margin-top: 0px;
 }
 
-:root {
-    margin-top: 0px;
-}
-
 .clearfix {
     clear: both;
 }

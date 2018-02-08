@@ -7,8 +7,9 @@ body {
     margin: 0;
 }
 
-:root {
-    margin-top: 0px;
+#c53481 {
+    position: relative;
+    overflow: hidden;
 }
 
 :root {
@@ -125,8 +126,6 @@ body {
     display: none;
 }
 </style>
-
-
 
 
 <div class="product-gallery-view ob-product-gallery">
