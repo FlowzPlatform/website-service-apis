@@ -1,32 +1,38 @@
 var pid = getParameterByName('pid');
+
+
 if(pid != null) {
-var get_product_details = function () {
-    var tmp = null;
-    $.ajax({
-        type: 'GET',
-        url: project_settings.product_api_url+pid,
-        async: false,
-        dataType: 'json',
-         headers: {
-              'Authorization' : project_settings.product_api_token
+  var get_product_details = function () {
+      var tmp = null;
+      $.ajax({
+          type: 'GET',
+          url: project_settings.product_api_url+"?_id="+pid,
+          async: false,
+          dataType: 'json',
+           headers: {
+                'vid' : project_settings.vid
+            },
+          success: function (data) {
+              if(data.hits.hits.length > 0)
+              {
+                  productData = data;
+                  tmp = productData.hits.hits[0]._source;
+              }
           },
-        success: function (data) {
-            if(data.hits.hits.length > 0)
-            {
-                productData = data;
-                tmp = productData.hits.hits[0]._source;
-            }
-        }
-    });
-    return tmp;
-  }();
+          error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+          },
+      });
+      return tmp;
+    }();
+  // var get_product_details = getProductDetailById(pid)
+
 }
 
+showPageAjaxLoading()
 $(document).ready(function(){
-// showPageAjaxLoading();
 let value_split = [];
 var productData = {};
-
 
 var colors = '';
 var Quantity = '';
@@ -37,24 +43,24 @@ listHtmlPrintPosMethod = $('#js_imprint_request_quote').html();
 let listHtmlPrintPosColor = '';
 listHtmlPrintPosColor = $('.imprint-color-select').html();
 
-var pid = getParameterByName('pid');
 if(pid != null) {
         $.ajax({
 			  type: 'GET',
-			  url: project_settings.product_api_url+pid,
+			  url: project_settings.product_api_url+"?_id="+pid,
 			  async: false,
 			  dataType: 'json',
 			   headers: {
-				    'Authorization' : project_settings.product_api_token
+				    'vid' : project_settings.vid
 				},
 			  success: function (data) {
-          // hidePageAjaxLoading();
+          hidePageAjaxLoading();
+          var colorQtyHtml = $(".js_shipping_qty_box_main").html();
 			    // product name , sku, default images
           if(data.hits.hits.length > 0){
                   productData = data;
                   var productDetails = productData.hits.hits[0]._source;
                   // console.log("productDetails==>>",productDetails);
-                	ProductName = productDetails.product_name;
+                	ProductName = removeSpecialCharacters(productDetails.product_name);
                 	ProductImage = productDetails.default_image;
                   ProductSku = productDetails.sku;
 
@@ -68,25 +74,27 @@ if(pid != null) {
                   // console.log(titleAndSkuHtml);
                   // productHtml += listHtml1;
                   $('#title .row').html(titleAndSkuHtml);
-
-                  $('#product_img').attr("src",project_settings.product_api_image_url+ProductImage)
-                  $('#product_img').data("zoom-image",project_settings.product_api_image_url+ProductImage)
-                  $('#product_img').data("orig-img",project_settings.product_api_image_url+ProductImage)
+                  let productImageUrl = project_settings.product_api_image_url+ProductImage;
+                  $('#product_img').attr("src",productImageUrl)
+                  $('#product_img').data("zoom-image",productImageUrl)
+                  $('#product_img').data("orig-img",productImageUrl)
 			            // $('#product_sku').html(ProductSku);
 
                   // Add Variation Images
-
+                  let imageGallaryHtml = '';
+                  imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_default_link" data-zoom-image="'+productImageUrl+'">';
+                  imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
+                  // console.log("imageGallaryHtml",imageGallaryHtml);
     		          if(productDetails.images != undefined){
-                    let imageGallaryHtml = '';
     		            $.each(productDetails.images[0].images, function(index, element) {
-    		              var imageUrl = project_settings.product_api_image_url+productDetails.supplier_id+'/'+element.web_image;
+    		              var imageUrl = project_settings.product_api_image_url+5+'/'+element.web_image;
     		              var color = element.color;
     		               color = color.toLowerCase().replace(/\s/g, '-');
     		               imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
     		               imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+'" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
     		            });
-    		            $(".js-image-gallery").html(imageGallaryHtml);
     		          }
+                  $(".js-image-gallery").html(imageGallaryHtml);
 
 
 		            // Product Quantity Price
@@ -118,9 +126,10 @@ if(pid != null) {
                   $.each(productDetails.attributes.colors, function(index_color,element_color){
                      let colorVal = element_color.toLowerCase();
                      colorVal = colorVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
-                     listHtmlColor1 = listHtmlColor.replace('#data.colorList#',element_color);
-                     listHtmlColor1 = listHtmlColor1.replace('#data.colorID#',colorVal);
-                     listHtmlColor1 = listHtmlColor1.replace('#data.colorVal#',element_color);
+                     listHtmlColor1 = listHtmlColor.replace(/#data.colorList#/g,element_color);
+                     listHtmlColor1 = listHtmlColor1.replace(/#data.colorID#/g,colorVal);
+                     listHtmlColor1 = listHtmlColor1.replace(/#data.colorVal#/g,element_color);
+                     listHtmlColor1 = listHtmlColor1.replace(/#data.colorHexCode#/g,element_color);
                      productHtmlColor +=listHtmlColor1;
                      $(".checkbox_colors").html(productHtmlColor);
                   });
@@ -163,13 +172,13 @@ if(pid != null) {
                 }
                 // Request info section
 
-                if($("#js_tab_list").find("li.active").find('a').attr("href") == "#js-request-info"){
-                    let formId = $(".request-tab-content").find(".tab-pane.active").find("form").attr("id");
-                    $("#"+formId+"_product_id").val(pid);
-                    $("#"+formId+"_api_url").val(project_settings.product_api_url);
-                    // $("#"+formId+"_api_token").val(project_settings.product_api_token);
-                    $(".request-tab-content").find("#js-place-order").addClass("hide");
-                }
+                // if($("#js_tab_list").find("li.active").find('a').attr("href") == "#js-request-info"){
+                //     let formId = $(".request-tab-content").find(".tab-pane.active").find("form").attr("id");
+                //     $("#"+formId+"_product_id").val(pid);
+                //     $("#"+formId+"_api_url").val(project_settings.product_api_url);
+                //     // $("#"+formId+"_api_token").val(project_settings.product_api_token);
+                //     $(".request-tab-content").find("#js-place-order").addClass("hide");
+                // }
 
                 //Shipping Section
                 let shippigCounter = parseInt($(".js_request_quote_shipping_counter").val());
@@ -195,15 +204,18 @@ if(pid != null) {
                     //     colors_qty.push({color_name:qty})
                     // });
                     let colors_qty = {};
+                    let colors_hex_code = {};
                     $('.js_color_checkbox:checked').each(function() {
                         let colorName = $(this).val();
                         let color_name = $(this).attr('id');
+                        let hex_code = $(this).parent().css('background-color');
                         let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
                         if(qty == 0){
                               showErrorMessage("Please enter quantity.")
                               return false;
                         }
                         colors_qty[colorName] = qty;
+                        colors_hex_code[colorName] = hex_code;
                     });
 
                     if(colors_qty.length == 0){
@@ -215,10 +227,11 @@ if(pid != null) {
                     shippigCounter = shippigCounter+1;
 
                     $(".js_request_quote_shipping_counter").val(shippigCounter);
-                    let colorQtyHtml = $(".js_shipping_qty_box_main").html();
+                    // let colorQtyHtml = $(".js_shipping_qty_box_main").html();
                     let replaceQtyHtml = '';
                     $.each(colors_qty,function(key,value){
                       colorQtyHtml1 = colorQtyHtml.replace(/#data.color#/g,key)
+                      colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
                       colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,value)
                       replaceQtyHtml += colorQtyHtml1
                     })
@@ -256,29 +269,37 @@ if(pid != null) {
                   		}).on('typeahead:selected', function (obj, datum) {
                     			let counter = $(obj.currentTarget).data('counter');
                     			let addressBookId = datum.id;
-                          console.log("address_book_id",addressBookId);
                           axios({
                               method: 'GET',
                               url: project_settings.address_book_api_url+'/'+addressBookId,
                               headers: {'Authorization': project_settings.product_api_token},
                             })
-                          .then(response => {
+                          .then(async response => {
                               if(response.data != undefined ){
                                   let returnData = response.data;
                                   let replaceAddressHtml = '';
-                                  console.log("returnData===>>>",returnData);
                                   replaceAddressHtml += returnData.name+"<br>";
                                   replaceAddressHtml += returnData.email+"<br>";
                                   replaceAddressHtml += returnData.street1+"<br>,";
                                   if(returnData.street2 != undefined){
                                     replaceAddressHtml += returnData.street2+"<br>";
                                   }
-                                  replaceAddressHtml += returnData.city+",";
-                                  replaceAddressHtml += returnData.state+",";
+                                  // change
+                                  let city = await getCountryStateCityById(returnData.city,3);
+                                  replaceAddressHtml += city+",";
+                                  
+                                  let state = await getCountryStateCityById(returnData.state,2);
+                                  replaceAddressHtml += state+",";
+                                  
+                                  let country = await getCountryStateCityById(returnData.country,1);     
+                                  $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').html('Select Carrier <span class="caret"></span>');
+                                //   $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').attr('data-value','');                             
+                                  replaceAddressHtml += country
+                                  // END -Change                    
+
                                   if(returnData.postalcode != undefined ){
-                                    replaceAddressHtml += returnData.postalcode+",";
+                                    replaceAddressHtml += "-"+returnData.postalcode+"<br>";
                                   }
-                                  replaceAddressHtml += returnData.country+"<br>";
                                   if(returnData.phone != undefined ){
                                     replaceAddressHtml += "T: "+returnData.phone+",<br>";
                                   }
@@ -292,11 +313,57 @@ if(pid != null) {
                                   }else{
                                       $("#js_shipping_addresses_"+shippigCounter+" p").html(replaceAddressHtml)
                                   }
+
+                                // change
+                                    let shipping_details = get_product_details.shipping[0];
+                                    var addressFrom  = {
+                                        // "name": returnData.name,
+                                        // "street1": returnData.street1,
+                                        "city": shipping_details.fob_city,
+                                        "state": shipping_details.fob_state_code,
+                                        "zip": shipping_details.fob_zip_code,
+                                        "country": shipping_details.fob_country_code,
+                                        // "phone": "+1 555 341 9393",//optional
+                                        // "email": "shippotle@goshippo.com",//optional
+                                        "validate": true//optional
+                                    };
+                                    
+                                    var addressTo  = {
+                                        // "name": returnData.name,
+                                        // "street1": "500 to 598 1st St",//returnData.street1,
+                                        "city": city,
+                                        "state": state,
+                                        "zip": returnData.postalcode,
+                                        "country": country,
+                                        // "phone": "+1 555 341 9393",//optional
+                                        // "email": "shippotle@goshippo.com",//optional
+                                        "validate": true//optional
+                                    };
+                                    // console.log("addressTo",addressTo);
+
+                                    $(document).off('click', '#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li').on('click','#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li', function (e) {
+                                        // if(e.handled !== true) 
+                                        {
+                                            showPageAjaxLoading()
+                                            var thisObj = $(this);
+                                            
+                                            let attr = $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value');
+
+                                            if (typeof attr !== typeof undefined && attr !== false) {
+                                                $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value','')
+                                                $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-service','')
+                                            }
+                                            getShippingRate('#js_shipping_method_detail_'+shippigCounter,thisObj,addressFrom,addressTo,shipping_details);
+                                        }
+                                    });  
+                                    $("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").removeClass("hide");
+                                // END -Change
+                                  
                                   $("#js_shipping_addresses_"+shippigCounter).removeClass("hide");
                               }
                           })
                           .catch(error => {
-                            console.log('Error fetching and parsing data', error);
+                            // console.log('Error fetching and parsing data', error);
                           });
                   		});
                   	}
@@ -306,7 +373,7 @@ if(pid != null) {
 
 
                 //product detail page bottom section
-				        if(typeof productDetails.description !== "undefined" || !productDetails.description) {
+				        if(typeof productDetails.description !== "undefined") {
                     $('.product_description_label').removeClass('hide');
                     $('.product_description_text').html(productDetails.description);
                 }
@@ -318,24 +385,25 @@ if(pid != null) {
                     imprint_position = productDetails.imprint_data[0].imprint_position;
                     ltm_charge = productDetails.imprint_data[0].ltm_charge;
                     pms_charge = productDetails.imprint_data[0].pms_charge;
-                    if(typeof imprint_method !== "undefined" || !imprint_method) {
+                    if(typeof imprint_method !== "undefined") {
                         $('.imprint-info-text').append("<tr><td class='title'>Imprint Method : </td><td>"+imprint_method+"</td></tr>");
                     }
                     if(productDetails.attributes['imprint color'] instanceof Array) {
                         imprint_color = productDetails.attributes['imprint color'];
-                        if(typeof imprint_color !== "undefined" || !imprint_color) {
+                        if(typeof imprint_color !== "undefined") {
                             $('.imprint-info-text').append("<tr><td class='title'>Imprint Color : </td><td>"+imprint_color.join(", ")+"</td></tr>");
                         }
                     }
-                    if(typeof imprint_position !== "undefined" || !imprint_position) {
+                    if(typeof imprint_position !== "undefined") {
                         $('.imprint-info-text').append("<tr><td class='title'>Imprint Position : </td><td>"+imprint_position+"</td></tr>");
                     }
-                    if(typeof ltm_charge !== "undefined" || !ltm_charge) {
+                    if(typeof ltm_charge !== "undefined") {
                         $('.imprint-info-text').append("<tr><td class='title'>LTM Charge : </td><td>"+ltm_charge+"</td></tr>");
                     }
-                    if(typeof pms_charge !== "undefined" || !pms_charge) {
+                    if(typeof pms_charge !== "undefined") {
                         $('.imprint-info-text').append("<tr><td class='title'>PMS Charge : </td><td>"+pms_charge+"</td></tr>");
                     }
+
                 }
 
 
@@ -344,28 +412,28 @@ if(pid != null) {
                     if(productData.hits.hits[0]._source.imprint_data instanceof Array) {
                         production_days = productDetails.imprint_data[0].production_days+" "+productDetails.imprint_data[0].production_unit;
                         setup_charge = productDetails.imprint_data[0].setup_charge;
-                        if(typeof production_days !== "undefined" || !production_days) {
+                        if(typeof production_days !== "undefined") {
                             $('.product-shipping-text').append("<tr><td class='title'>Production Days : </td><td>"+production_days+"</td></tr>");
                         }
-                        if(typeof setup_charge !== "undefined" || !setup_charge) {
+                        if(typeof setup_charge !== "undefined") {
                             $('.product-shipping-text').append("<tr><td class='title'>Setup Charge : </td><td>"+setup_charge+"</td></tr>");
                         }
                     }
                     if(productDetails.shipping instanceof Array) {
-                        fob = productDetails.shipping[0].free_on_board;
-                        carton_length = productDetails.shipping[0].carton_length+" "+productDetails.shipping[0].carton_size_unit;
-                        carton_weight = productDetails.shipping[0].carton_weight+" "+productDetails.shipping[0].carton_weight_unit;
-                        shipping_qty_per_carton = productDetails.shipping[0].shipping_qty_per_carton;
-                        if(typeof fob !== "undefined" || !fob) {
+                        if(productDetails.shipping[0].free_on_board != undefined){
+                            fob = productDetails.shipping[0].free_on_board;
                             $('.product-shipping-text').append("<tr><td class='title'>FOB : </td><td>"+fob+"</td></tr>");
                         }
-                        if(typeof carton_length !== "undefined" || !carton_length) {
+                        if(productDetails.shipping[0].carton_length != undefined ){
+                            carton_length = productDetails.shipping[0].carton_length+" "+productDetails.shipping[0].carton_size_unit;
                             $('.product-shipping-text').append("<tr><td class='title'>Carton Length : </td><td>"+carton_length+"</td></tr>");
                         }
-                        if(typeof carton_weight !== "undefined" || !carton_weight) {
+                        if(productDetails.shipping[0].carton_weight != undefined){
+                            carton_weight = productDetails.shipping[0].carton_weight+" "+productDetails.shipping[0].carton_weight_unit;
                             $('.product-shipping-text').append("<tr><td class='title'>Carton Weight : </td><td>"+carton_weight+"</td></tr>");
                         }
-                        if(typeof shipping_qty_per_carton !== "undefined" || !shipping_qty_per_carton) {
+                        if(productDetails.shipping[0].shipping_qty_per_carton !=undefined){
+                            shipping_qty_per_carton = productDetails.shipping[0].shipping_qty_per_carton;
                             $('.product-shipping-text').append("<tr><td class='title'>Qty Per Carton : </td><td>"+shipping_qty_per_carton+"</td></tr>");
                         }
                     }
@@ -376,13 +444,13 @@ if(pid != null) {
                     $('.product-detail-label').removeClass('hide');
                     if(productDetails.categories instanceof Array) {
                         categories = productDetails.categories;
-                        if(typeof categories !== "undefined" || !categories) {
+                        if(typeof categories !== "undefined") {
                             $('.product-detail-text').append("<tr><td class='title'>Categories : </td><td>"+categories.join(", ")+"</td></tr>");
                         }
                     }
                     if(productDetails.attributes['colors'] instanceof Array) {
                         colors = productDetails.attributes['colors'];
-                        if(typeof colors !== "undefined" || !colors) {
+                        if(typeof colors !== "undefined") {
                             $('.product-detail-text').append("<tr><td class='title'>Colors : </td><td>"+colors.join(", ")+"</td></tr>");
                         }
                     }
@@ -397,32 +465,34 @@ if(pid != null) {
                 });
             }
             else{
-                console.log("Authentication is failed to fetch product information.");
+              hidePageAjaxLoading()
+                // console.log("Authentication is failed to fetch product information.");
                 window.location = "error404.html";
                 return false;
             }
 			  },
         error: function(err){
-            console.log("this type of url not present");
+          hidePageAjaxLoading()
+            // console.log("this type of url not present");
         }
     });
-}
+  }
+  hidePageAjaxLoading()
+  $('.ob-product-gallery .product-big-image-thumbnails').bxSlider({
+        mode: 'vertical',
+        slideWidth:100,
+        minSlides: 2,
+        pager:false,
+        slideMargin:7
+  });
 
-    $('.ob-product-gallery .product-big-image-thumbnails').bxSlider({
-      mode: 'vertical',
-      slideWidth:100,
-      minSlides: 2,
-      pager:false,
-      slideMargin:7
-    });
-
-    $('.product-gallery').zoom({ on:'click' });
-    $(".product-thumb-img-anchar").on('click', function () {
+  $('.product-gallery').zoom({ on:'click' });
+  $(".product-thumb-img-anchar").on('click', function () {
         $('.product-gallery').trigger('zoom.destroy');
         var img_src = $(this).find("img").attr("src");
         $(".product-big-image").find("img").attr("src", img_src);
         $('.product-gallery').zoom({ on:'click' });
-    });
+  });
 
     // QUANTITY PRICE TABLE START
     $(".quantity-table-col").owlCarousel({
@@ -438,11 +508,12 @@ if(pid != null) {
 
     //requestInfoconsole.log("=====",user_details);
 
-    $(document).on('click','.js_submit_info', function (e) {
+    $(document).on('click','.js_submit_info', async function (e) {
             let formObj = $(this).closest('form');
+            let product_data = await getProductDetailById(pid)
             if(formObj.find("textarea[name='note']").val() == ''){
               if($(".special-instruction-textarea").find('ul').length <= 0){
-                $("textarea[name='note']").after('<ul class="red"><li>Please enter special instructions.</li></ul>');
+                $("#js-request-info").find("textarea[name='note']").after('<ul class="red"><li>Please enter special instructions.</li></ul>');
               }
               return false;
             }
@@ -450,15 +521,18 @@ if(pid != null) {
               window.location = "login.html";
               return false;
             }
-
+            showPageAjaxLoading()
             $.ajax({
                   type: 'POST',
                   url: project_settings.request_info_api_url,
-                  data: {product_api_url:project_settings.product_api_url,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null},
+                  // data: {product_api_url:project_settings.product_api_url,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":"bb1e5568-f907-4583-9259-42019a2352cc"},
+                  data: {'product_id':pid,'product_data':product_data,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID']},
                   cache: false,
                   dataType: 'json',
-                  headers: {"Authorization": project_settings.product_api_token},
+                  // headers: {"Authorization": project_settings.product_api_token},
+                  headers: {"vid": project_settings.vid},
                   success: function(response){
+                    hidePageAjaxLoading()
                       if(response.length > 0 && response[0].id != '' ){
                           showSuccessMessage("Your request info is submitted successfully.");
                           window.location = "thankYou.html";
@@ -493,8 +567,8 @@ if(pid != null) {
           let id = $(this).attr("id");
 
           if($('#'+id).is(":checked")) {
-
-           Quantity = '<div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_'+id+'"><div class="color-input" title="'+$(this).val()+'"><br></div><div class="selector-quantity js-quantity-section in"><div class="selector-btn"><div class="sp-minus"><a data-multi="-1" href="javascript:void(0)" class="js-quantity-selector">-</a></div>'+
+          var hexCodeBgColor = $(this).parent().css('background-color')
+           Quantity = '<div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_'+id+'"><div class="color-input" style="background-color:'+hexCodeBgColor+'" title="'+$(this).val()+'"><br></div><div class="selector-quantity js-quantity-section in"><div class="selector-btn"><div class="sp-minus"><a data-multi="-1" href="javascript:void(0)" class="js-quantity-selector">-</a></div>'+
           '<div class="selector-input"> <input type="text" value="0" class="selector-input js_request_quote_qty js_request_quote_nosize_qty" ></div><div class="sp-plus"><a data-multi="1" href="javascript:void(0)" class="js-quantity-selector">+</a></div></div><div class="clearfix"></div></div><a href="javascript:void(0)" data-toggle="tooltip" class="js_request_quote_qty_remove remove-qty" data-id="'+id+'">'+
           '<i class="fa fa-trash-o"></i></a></div>';
             $('#'+id).attr('checked',true);
@@ -584,7 +658,14 @@ if(pid != null) {
         let imprintData = $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js_select_method").parent('div').find("button").data();
         let imprintMethod = imprintData.dropval
         let printPosition = imprintData.printpos;
-        if(get_product_details.attributes.imprint_color != undefined && get_product_details.attributes.imprint_color instanceof Array){
+        let imprint_color_val = [];
+        if(get_product_details.attributes != undefined ){
+          $.each(get_product_details.attributes,function(key,val){
+              key = key.replace(/ /g,"_");
+              imprint_color_val[key] = val;
+          })
+        }
+
           for(let i=1;i<=dataAttributes.value;i++){
             colorHtml1 = colorHtml.replace(/#data.printPositionName#/g,printPosition)
             colorHtml1 = colorHtml1.replace(/#data.imprintId#/g,imprintMethod)
@@ -593,12 +674,11 @@ if(pid != null) {
           }
           $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js-color-div-append").html(replaceColorHtml)
 
-          $.each(get_product_details.attributes.imprint_color,function(key,imprintColor){
+          $.each(imprint_color_val.imprint_color,function(key,imprintColor){
             dropDownColorHtml += "<li data-value='"+imprintColor+"'><a href='javascript:void(0);'>"+imprintColor+"</a></li>"
           })
           $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js_select_color_from_list").html(dropDownColorHtml)
           $("#js_imprint_request_quote_box_"+dataAttributes.position).find('.js-color-div-append').removeClass('hide');
-        }
     });
 
     $(document).on("click",".js_select_color_from_list li",function(){
@@ -695,14 +775,36 @@ if(pid != null) {
         let shipping_details = [];
         let shipping_counter = parseInt($(".js_request_quote_shipping_counter").val());
         for(let i = 1 ;i<=shipping_counter;i++){
-          let selected_address_id = $("#js_shipping_addresses_"+i+" #shippingAddressId_"+i).val();
-          let shipping_detail = {"on_hand_date":'','ship_date':'',"ship_transittime": "","shipping_carrier": "","shipping_charge": "","shipping_method": ""};
-          shipping_details.push({'color_quantity':colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail});
+            let selected_address_id = $("#js_shipping_addresses_"+i+" #shippingAddressId_"+i).val();
+          
+            var shipping_carrier = $("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_shippingcarrier").attr('data-value');
+          
+            if (typeof shipping_carrier === typeof undefined ) {
+                shipping_carrier = "";
+            }
+
+            var get_shipping_charge = $("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_shippingmethod").attr('data-value');
+
+            if (typeof get_shipping_charge === typeof undefined ) {
+                get_shipping_charge = "";
+            }
+
+            var get_shipping_method = $("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_shippingmethod").attr('data-service');
+
+            if (typeof get_shipping_method === typeof undefined ) {
+                get_shipping_method = "";
+            }
+            
+            // return false;
+            let shipping_detail = {"on_hand_date":'','ship_date':'',"ship_transittime": "","shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
+
+            shipping_details.push({'color_quantity':colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail});
         }
         let shipping_method = {'shipping_detail':shipping_details,"shipping_type":shipping_type};
 
         if(order_type != '' && total_qty != 0 && unit_price != 0 && user_id!=null && typeof shipping_type!='undefined') {
             var data = {};
+
             data['type'] = 2;
             data['product_id'] = pid;
             data['user_id'] = user_id;
@@ -714,7 +816,9 @@ if(pid != null) {
             data['total_qty'] = total_qty;
             data['unit_price'] = unit_price;
             data['shipping_method'] = shipping_method;
-            //console.log('product data == ',data);
+            data['website_id'] = website_settings['projectID'];
+            
+            // data['product_description'] = get_product_details;
 
             $.ajax({
             type : 'POST',
@@ -739,7 +843,7 @@ if(pid != null) {
                 return false;
             }
             else if(unit_price==0) {
-                showErrorMessage('Select valid quantity.');
+                showErrorMessage('Select valid color and quantity.');
                 return false;
             }
             else if(typeof shipping_type == 'undefined') {
@@ -759,9 +863,68 @@ if(pid != null) {
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
       $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
+      // replaceColorNameWithHexaCodes();
+});
 
-   });
+//change
+function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_details)
+{
+    var qty = 0;
+    var shippingaddId =0 ;
+    var thisShipCounter = thisObj.closest('ul').data('shipping-counter');
+    var thisRequestType = thisObj.closest('ul').data('request-type');
 
+    var buttonObj = thisObj.parent().parent().find('button');
+    var selectedVal = thisObj.find('a').text();
+    var shippingMethod=thisObj.data('value');
+
+    var total_qty = 0;
+    $('.js_color_checkbox:checked').each(function() {
+        let color_name = $(this).attr('id');
+        let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+        total_qty = total_qty + qty;
+    });
+    
+    if(total_qty >0)
+    {
+        userDetails = {'shipping_estimator_key':project_settings.shipping_estimator_key,'carrier_account':project_settings.carrier_account[shippingMethod],'carrier':shippingMethod,'addressFrom':addressFrom,'addressTo':addressTo,'total_qty':total_qty,'shipping_details':shipping_details};
+        $.ajax({
+            type: 'POST',
+            url: project_settings.shipping_estimator_api_url,
+            async: true,
+            data:  JSON.stringify(userDetails),
+            dataType: 'json',
+            headers: { 'Content-Type': 'application/json' },
+            success: function (result) {
+                let rateHtml = '';
+                if(typeof result.data !== "undefined" && result.data != null && typeof result.data.rates !== "undefined" && result.data.rates.length>0)
+                {
+                    for(let ratekey in result.data.rates)
+                    {
+                        let rateDetails = result.data.rates[ratekey];
+
+                        rateHtml +='<li data-service="'+rateDetails.servicelevel.name+'" data-value="'+rateDetails.amount+'" data-transit-time=""><a href="javascript:void(0)">'+rateDetails.servicelevel.name+' '+rateDetails.currency+' '+rateDetails.amount+'</a></li>';
+                    }
+                }
+                else{
+                    rateHtml = '<li><a href="javascript:void(0)">Shipping Details Invalid</a></li>'
+                }
+                $(parentObj+" .js_rq_ship_shipmethod_ul").html(rateHtml);
+                hidePageAjaxLoading()                
+            },
+            error: function(err) {
+                $('.error-message').removeClass('hide');
+                hidePageAjaxLoading()                
+            }
+        });
+        $(parentObj+" .js_rq_ship_shippingmethod").html('Select Method <span class="caret"></span>');
+    }
+    else{
+        $(parentObj+" .js_rq_ship_shipmethod_ul").html('');
+        hidePageAjaxLoading()        
+    }
+}
+//END - change
 function calculate_setup_charge(imprint_position)
 {
     let setup_charge = 0;
@@ -776,9 +939,12 @@ function calculate_setup_charge(imprint_position)
                 let selected_imprint_method = imprint_position[imprint_position_val].imprint_method_name
                 if(data_imprint_method == selected_imprint_method)
                 {
-                    let replace_setup_charge = imprint_data[item].setup_charge
-                    stripped = replace_setup_charge.replace(/[^0-9\.]/g, '');
-                    setup_charge = setup_charge + parseFloat(stripped);
+					if(typeof imprint_data[item].setup_charge !== "undefined")
+					{
+						let replace_setup_charge = imprint_data[item].setup_charge
+		                stripped = replace_setup_charge.replace(/[^0-9\.]/g, '');
+		                setup_charge = setup_charge + parseFloat(stripped);
+					}
                 }
             }
             // console.log('imprint_position1',imprint_position[imprint_position_val].imprint_method_name);
@@ -793,3 +959,55 @@ function replaceWithUnderscore(value){
   returnVal = returnVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
   return returnVal;
 }
+
+
+function replaceColorNameWithHexaCodesold(){
+  // alert("++++")
+  //var data = { 'colors': colors };
+  var all_colors = [];
+  $( ".js_color_checkbox" ).each(function( index,colorCheckbox ) {
+    all_colors.push($( this ).data("hex-code"))
+  });
+
+  var data = {'colorname':all_colors};
+  //var data = {'colorname':all_colors,'skip':0,'limit':all_colors.length};
+  $.ajax({
+    type : 'GET',
+    url : project_settings.color_table_api_url,
+    data : data,
+    dataType : 'json',
+    success : function(response_data) {
+
+      $( ".js_color_checkbox" ).each(function( index ) {
+        //var bgColor = $( this ).parent().css("background-color");
+        var bgColor = $( this ).data("hex-code");
+        var checkbox = $( this )
+
+        if(typeof response_data.data != 'undefined')
+        {
+          $.each(response_data.data, function( index, value ) {
+
+            if(typeof value.colorname != 'undefined')
+            {
+              if(value.colorname.toLowerCase() == bgColor.toLowerCase())
+              if(typeof value.hexcode != 'undefined')
+              {
+                checkbox.attr("data-hex-code",value.hexcode)
+                checkbox.parent().css('background-color',value.hexcode)
+                checkbox.parent().attr('title',value.colorname)
+              }
+            }
+          });
+        }
+
+        //console.log( index + ": " + $( this ).text() );
+      });
+      /*console.log(response_data);
+      return response_data;*/
+    }
+  })
+}
+
+$(document).ready(function() {
+  replaceColorNameWithHexaCodesold();
+})

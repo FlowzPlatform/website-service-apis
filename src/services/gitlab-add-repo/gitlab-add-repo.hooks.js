@@ -70,7 +70,7 @@ function after_send_repoToGit(hook) {
           method: 'POST',
           uri: config.gitLabUrl + '/api/v4/projects',
           body: {
-            name: userDetailId + '-' + nameOfRepo
+            name: nameOfRepo
           },
           headers: {
               'PRIVATE-TOKEN': config.gitLabToken
@@ -87,7 +87,7 @@ function after_send_repoToGit(hook) {
                   shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
 
                   shell.exec('git init');
-                  shell.exec('git remote add origin ' + config.gitLabUrl + '/' + config.gitLabUsername + '/'+ userDetailId + '-' + nameOfRepo +'.git');
+                  shell.exec('git remote add origin ' + config.gitLabUrl + '/' + config.gitLabUsername + '/' + nameOfRepo +'.git');
                   shell.exec('git remote -v');
 
                   shell.exec('git status');
@@ -96,7 +96,11 @@ function after_send_repoToGit(hook) {
                   shell.exec('git commit -m "Initial commit"');
                   shell.exec('git push -u origin master -f');
 
-                  shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "139.59.37.43" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\'');
+                  if(process.env.NODE_ENV != 'development'){
+                    shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "47.89.253.225" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\'');
+                    shell.exec('curl -i -X POST -d \'[ "qaflowz.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "47.254.23.137" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\''); 
+                  }
+                  
               }
 
               hook.result = repos;
@@ -143,6 +147,15 @@ function after_commit_repo(hook) {
 function after_remove_project(hook) {
 
     return new Promise((resolve, reject) => {
+
+        let projectPath = hook.params.query.projectPath;
+
+        shell.rm('-rf', projectPath);
+        // shell.cd('/var/www/html/websites');
+        process.chdir('/var/www/html/websites');
+
+        // console.log('Project Delete CWD after delete: ', process.cwd());
+        // process.cwd() = 
 
         var options = {
             method: 'DELETE',

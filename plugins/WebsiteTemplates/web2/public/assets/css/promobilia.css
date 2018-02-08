@@ -1,0 +1,153 @@
+.container {width:96% !important}
+
+.ob-header .logo-col {
+    margin: 23px 0;
+}
+
+/* .ob-menu {
+    background: #006ca0;
+    z-index: 2;
+    box-shadow: -1px 2px 4px 0 rgba(0,0,0,0.30);
+}
+.ob-menu .container {
+    position: relative;
+} */
+
+.fdb-block {
+	padding:0px;
+}
+
+.supplier-logo {
+    border-bottom: 1px #ccc solid;
+    padding-left: 25px;
+    padding-top: 9px;
+    width: 100%;
+    padding-bottom: 10px;
+    display: table;
+    background-color: #fff;
+    min-height: 1px!important;
+}
+
+.supplier-logo .item {
+    display: table-cell;
+    text-align: center;
+}
+
+a, a:focus {
+    text-decoration: none;
+    outline: none !important;
+}
+
+.supplier-logo .item img {
+    max-height: 90px;
+    max-width: 95%;
+    display: inline-block;
+}
+
+.bottom-footer {
+    background: #333;
+}
+
+.owl-carousel .owl-wrapper-outer {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.owl-wrapper {
+    width: 3080px;
+    left: 0px;
+    display: block;
+}
+
+.owl-carousel .owl-item {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    -webkit-backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-right: 0px !important;
+    width: 154px;
+}
+
+.middle-footer, .middle-footer .footer-heading {
+    background: #f0f0f0;
+    font-size: 12px;
+    color: gray;
+    padding: 25px 0;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    line-height: 22px;
+}
+
+.slider > .active {
+    display: none;
+} 
+
+footer {
+    background: #1A1A1A;
+}
+
+.footer-logo {
+    width: 21%;
+    margin-right: 4%;
+    padding-top: 55px;
+}
+
+.img-responsive{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.footer-link {
+    width: 12.5%;
+}
+
+footer h3 {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.footer-link li {
+    padding-bottom: 5px;
+}
+
+.footer-link li a {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #727272;
+    word-break: initial;
+}
+
+.social-link {
+    width: 24%;
+}
+
+.social-link .social_media {
+    padding-bottom: 20px;
+}
+
+.social-link li {
+    display: inline-block;
+    margin-right: 5.5px;
+}
+
+.social-icon {
+    float: left;
+}
+
+.custom-btn1 {
+    background: url(http://promobilia.com/bundles/officebraincustombundletheme/PromoBiliaTheme/images/promobilia/block-btn1.png)no-repeat center;
+    min-width: 270px;
+    min-height: 78px;
+    display: block;
+    text-align: left;
+}

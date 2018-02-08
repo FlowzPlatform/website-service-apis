@@ -12,11 +12,11 @@ description: "Some Description",
 generator: "Metalsmith",
 url: "http://www.metalsmith.io/"})
 .source('')
-.destination('/var/www/html/websites/59db1335dd92ed001a69aae2/menuwebsite/public')
+.destination('/var/www/html/websites/5a586a92450a3100124ce7cf/592f69c9-b935-45e6-b41d-6e556467f225/public')
 .clean(false)
 .use(markdown())
 .use(inPlace(true))
-.use(layouts({engine:'handlebars',directory:'/var/www/html/websites/59db1335dd92ed001a69aae2/menuwebsite/Layout'}))
+.use(layouts({engine:'handlebars',directory:'/var/www/html/websites/5a586a92450a3100124ce7cf/592f69c9-b935-45e6-b41d-6e556467f225/Layout'}))
 .build(function(err,files)
 {if(err){
 console.log(err)

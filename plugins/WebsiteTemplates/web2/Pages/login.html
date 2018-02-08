@@ -52,16 +52,6 @@ body {
     width: 100%;
 }
 
-.fdb-block {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(238, 238, 238);
-}
-
-.c838165 {
-    background-image: url("https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder//imgs/bg_0.svg");
-}
-
 input[type="text"] {
     padding-top: 0.5rem;
     padding-right: 0.75rem;
@@ -175,7 +165,7 @@ ul.social-network li {
 }
 
 .social-circle i {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     transition-duration: 0.8s;
     transition-timing-function: initial;
     transition-delay: initial;
@@ -186,14 +176,6 @@ a {
     background-color: rgb(211, 211, 211);
 }
 
-.col-md-12 {
-    background-color: rgb(82, 139, 255);
-}
-
-.col-md-12.mt-4 {
-    background-color: rgb(45, 49, 60);
-}
-
 .row.mt-4.signup-message {
     text-align: right;
 }
@@ -202,68 +184,59 @@ a {
 
 
 
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-</div>
-<section class="fdb-block c838165">
+<div class="cssImports"></div>
+<section>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
-                <div class="fdb-box fdb-touch">
-                    <div class="row">
-                        <div class="col">
-                            <h1>Log In</h1>
+        <div class="innerpage">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
+                    <div class="fdb-box fdb-touch">
+                        <div class="row">
+                            <div class="col">
+                                <h1>Log In</h1>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col">
-                            <input class="form-control user_email" type="text" placeholder="Email"
-                            required="true" />
+                        <div class="row mt-4">
+                            <div class="col">
+                                <input class="form-control user_email" type="text" placeholder="Email"
+                                required="true" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col">
-                            <input class="form-control mb-1 user_pass" type="password" placeholder="Password"
-                            required="true" />
-                            <p class="text-right"><a href="signup.html">New User?</a>
-                            </p>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <input class="form-control mb-1 user_pass" type="password" placeholder="Password"
+                                required="true" />
+                                <p class="text-right"><a href="signup.html">New User?</a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col">
-                            <button class="btn login-submit" type="button">Submit</button>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <button class="btn login-submit" type="button">Submit</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-4 error-message hide">
-                        <div class="col red">Please enter valid username and password</div>
-                    </div>
-                    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-                    rel="stylesheet" />
-                    <div class="col-md-12 mt-4">
-                        <form id="form-social-icons" name="form-google" method="post">
-                            <input type="hidden" name="success_url" id="success_url" />
-                            <ul class="social-network social-circle">
-                                <li><a class="icoFacebook socialMedCls" href="javascript:;" title="facebook"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li><a class="icoTwitter socialMedCls" href="javascript:;" title="twitter"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li><a class="icoGoogle socialMedCls" href="javascript:;" title="Gplus"><i class="fa fa-google-plus"></i></a>
-                                </li>
-                                <li><a class="icoLinkedin socialMedCls" href="javascript:;" title="linkedin"><i class="fa fa-linkedin"></i></a>
-                                </li>
-                                <li><a class="icoRss socialMedCls" href="javascript:;" title="github"><i class="fa fa-github"></i></a>
-                                </li>
-                            </ul>
-                        </form>
+                        <div class="row mt-4 error-message hide">
+                            <div class="col red">Please enter valid username and password</div>
+                        </div>
+                        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+                        rel="stylesheet" />
+                        <div class="col-md-12 mt-4">
+                            <form id="form-social-icons" name="form-google" method="post">
+                                <input type="hidden" name="success_url" id="success_url" />
+                                <ul class="social-network social-circle">
+                                    <li><a class="icoFacebook socialMedCls" href="javascript:;" title="facebook"><i class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li><a class="icoTwitter socialMedCls" href="javascript:;" title="twitter"><i class="fa fa-twitter"></i></a>
+                                    </li>
+                                    <li><a class="icoGoogle socialMedCls" href="javascript:;" title="Gplus"><i class="fa fa-google-plus"></i></a>
+                                    </li>
+                                    <li><a class="icoLinkedin socialMedCls" href="javascript:;" title="linkedin"><i class="fa fa-linkedin"></i></a>
+                                    </li>
+                                    <li><a class="icoRss socialMedCls" href="javascript:;" title="github"><i class="fa fa-github"></i></a>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

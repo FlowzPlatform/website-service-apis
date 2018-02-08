@@ -47,6 +47,12 @@ body {
     vertical-align: middle;
 }
 
+.filter-heading a:hover, .filter-heading a:focus, .filter-heading a:active {
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+}
+
 .colors-list li {
     display: inline;
 }
@@ -80,6 +86,10 @@ span.color {
     margin-bottom: 5px;
     margin-left: 5px;
 }
+
+.pro-ject .row {
+    display: block;
+}
 </style>
 
 
@@ -92,9 +102,9 @@ span.color {
 rel="stylesheet" crossorigin="anonymous" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
 rel="stylesheet" />
-<productsearchfilter class="c3933" apiurl="https://f21a94c6770cd2850444cb6de9b333cf.us-east-1.aws.found.io:9243/pdm1/_search"
-apiusername="aakron" apipassword="123456" selectadvance_search_filter="false"
-selectcategory_filter="true" selectprices_filter="false" selectcolours_filter="true"
+<productsearchfilter class="c3933" apiurl="https://8ff5dc743a142143274218c2a594348d.us-east-1.aws.found.io:9243/pdm1/_search"
+apiusername="aakron" apipassword="123456" selectadvance_search_filter="true"
+selectcategory_filter="true" selectprices_filter="true" selectcolours_filter="true"
 selectbrands_filter="true" selecttheme_filter="portrait">
     <div class="reomve-texts"> <i class="fa fa-search"></i>
         <label id="c3960">Product Search Filter</label>
@@ -102,8 +112,4 @@ selectbrands_filter="true" selecttheme_filter="portrait">
 </productsearchfilter>
 <script type="text/javascript" src="./assets/client-plugins/client-search-page.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-rel="stylesheet" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-rel="stylesheet" crossorigin="anonymous" />
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
 rel="stylesheet" />

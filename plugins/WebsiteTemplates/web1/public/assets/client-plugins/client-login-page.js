@@ -2,10 +2,11 @@ if(getCookie('loginTokenKey') != null) {
 	window.location = "index.html";
 }
 $(document).ready(function() {
-	$("#success_url").val(project_settings.base_url+"public/socialDashboard.html");
+	$("#success_url").val(project_settings.base_url+"socialDashboard.html");
 });
 
 $('.login-submit').on('click',function(){
+	showPageAjaxLoading();
 	var user_email = $('.user_email').val();
 	var user_pass  = $('.user_pass').val();
 
@@ -18,6 +19,7 @@ $('.login-submit').on('click',function(){
 		dataType: 'json',
 		headers: { 'Content-Type': 'application/json' },
 		success: function (result) {
+			hidePageAjaxLoading()
 			if(!$( ".error-message" ).hasClass( "hide" )) {
 				$('.error-message').addClass('hide');
 			}
@@ -73,6 +75,7 @@ $('.login-submit').on('click',function(){
 			}
 		},
 		error: function(err) {
+			hidePageAjaxLoading()
 			$('.error-message').removeClass('hide');
 		}
 	});

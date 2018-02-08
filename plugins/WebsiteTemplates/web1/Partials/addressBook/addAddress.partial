@@ -77,7 +77,7 @@ body {
                 <div class="form-group inp-parts">
                     <label class="checkout-label" for="country1">Address Type<span class="mandatory-field">*</span>
                     </label>
-                    <select class="custom-select js-address-type" id="addresstbook_address_type"
+                    <select class="custom-select js-address-type" tabindex="1" id="addresstbook_address_type"
                     name="address_type"   data-toggle="tooltip" data-placement="bottom" title="Address type" >
                         <option value="" selected="selected">Select Address Type</option>
                         <option value="billing">Billing</option>
@@ -110,26 +110,31 @@ body {
             </div>
             <div class="col-sm-6 col-xs-12">
                 <div class="form-group inp-parts">
-                    <label class="checkout-label" for="country1">Country<span class="mandatory-field">*</span>
+                    <label class="checkout-label">Country<span class="mandatory-field">*</span>
                     </label>
-                    <input class="input" placeholder="Enter country" type="text" tabindex="1"
-                    id="addresstbook_country" name="country"   data-toggle="tooltip" data-placement="bottom" title="Country" />
+                    <select class="custom-select js-country" tabindex="1" id="addresstbook_country" name="country" data-toggle="tooltip" data-placement="bottom" title="Country">
+                        <option value="" selected="selected">Select Country</option>
+                    </select>
                 </div>
             </div>
             <div class="col-sm-6 col-xs-12">
                 <div class="form-group inp-parts">
-                    <label class="checkout-label" for="country1">State<span class="mandatory-field">*</span>
+                    <label class="checkout-label">State<span class="mandatory-field">*</span>
                     </label>
-                    <input class="input" placeholder="Enter state" type="text" tabindex="1"
-                    id="addresstbook_state" name="state"   data-toggle="tooltip" data-placement="bottom" title="State" />
+                    <select class="custom-select js-state" tabindex="1" id="addresstbook_state" name="state" data-toggle="tooltip" data-placement="bottom" title="State">
+                        <option value="" selected="selected">Select State</option>
+                    </select>
                 </div>
             </div>
+            
+
             <div class="col-sm-6 col-xs-12">
                 <div class="form-group inp-parts">
-                    <label class="checkout-label" for="country1">City<span class="mandatory-field">*</span>
+                    <label class="checkout-label">City<span class="mandatory-field">*</span>
                     </label>
-                    <input class="input" placeholder="Enter city" type="text" tabindex="1"
-                    id="addresstbook_city" name="city"   data-toggle="tooltip" data-placement="bottom" title="City" />
+                    <select class="custom-select js-city" tabindex="1" id="addresstbook_city" name="city" data-toggle="tooltip" data-placement="bottom" title="City">
+                        <option value="" selected="selected">Select city</option>
+                    </select>
                 </div>
             </div>
             <div class="col-sm-6 col-xs-12">
@@ -165,4 +170,4 @@ body {
     </div>
 </form>
 
-<script type="text/javascript" src="../assets/client-plugins/client-address-book.js"></script>
+<script type="text/javascript" src="./assets/client-plugins/client-address-book.js"></script>
