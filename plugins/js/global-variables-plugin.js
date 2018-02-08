@@ -5,8 +5,8 @@ var userEmail = '';
 var projectName = '';
 var configDataUrl = '';
 
-var baseURL = 'http://api.flowzcluster.tk/serverapi';
-var socketHost = 'http://ws.flowzcluster.tk:4032';
+var baseURL = 'http://api.flowz.com/serverapi';
+var socketHost = 'http://ws.flowz.com:4032';
 
 $(document).ready(function() {
     getProjectInfo();
@@ -19,7 +19,7 @@ async function getProjectInfo() {
         userEmail = data[0].projectOwner;
         projectName = data[0].projectName;
 
-        configDataUrl = baseURL + "/project-configuration/" + projectName;
+        configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
     });
 
     getConfigData();
@@ -28,7 +28,7 @@ async function getProjectInfo() {
 async function getConfigData () {
 
     await $.getJSON( configDataUrl , function( data ) {  
-        var configData = data.configData;
+        var configData = data.data[0].configData;
         globalVariables = configData[1].projectSettings[1].GlobalVariables;
     }); 
 

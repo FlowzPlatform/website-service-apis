@@ -59,60 +59,68 @@ body {
 
 
 <div class="cssImports"></div>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-/>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
 <div class="container">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
-                <h1 class="main-title"><i class="fa fa-shopping-cart"></i>Shopping cart</h1>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12"><a class="continue-shopping-btn" href="javascript:void(0)">Continue Shopping <i class="fa fa-angle-double-right"></i></a>
+    <div class="row innerpage">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                    <h1 class="main-title"><i class="fa fa-shopping-cart"></i>Shopping cart</h1>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12"><a class="continue-shopping-btn" href="search.html">Continue Shopping <i class="fa fa-angle-double-right"></i></a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row" id="js-cart_data">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="main-shopping-cart-block">
-                <div class="table-responsive">
-                    <table class="shopping-table-block">
-                        <tr>
-                            <td class="js-listing">
-                                <reusecomponent class="c108233">{{> cart id='list.partial' }}</reusecomponent>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <table class="total-amount-block pull-right js-cart-amount">
-                                    <tr>
-                                        <td>Total</td>
-                                        <td>$ #data.grand_total#</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Additional Charges</td>
-                                        <td>$ #data.additional_charges#</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shipping Charge</td>
-                                        <td>$ #data.shipping_charges#</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tax</td>
-                                        <td>$ #data.tax#</td>
-                                    </tr>
-                                    <tr class="grand-total">
-                                        <td>Grand Total</td>
-                                        <td class="total-price js_check_complete" data-complete="1">$ #data.grand_total_with_tax#</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
+        <div class="row" id="js-cart_data">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="main-shopping-cart-block">
+                    <div class="table-responsive">
+                        <table class="shopping-table-block">
+                            <tr>
+                                <td class="js-listing">
+                                    <reusecomponent class="c108233">{{> cart id='list.partial' }}</reusecomponent>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="total-amount-block pull-right js-cart-amount">
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>$ <span class="js-cart-total">#data.grand_total#</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Additional Charges</td>
+                                            <td>$ <span class="js-additional-charges">#data.charges#</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping Charge</td>
+                                            <td>$ <span class="js-shipping-charges">#data.shipping_charges#</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tax</td>
+                                            <td>$ <span class="js-tax">#data.tax#</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="grand-total">
+                                            <td>Grand Total</td>
+                                            <td class="total-price js_check_complete" data-complete="1">$ <span class="js-grand-total">#data.grand_total_with_tax#</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a class="proceed-checkout-btn js_proceed_checkout mb-4" href="checkOut.html">Proceed to checkout</a>
+                                    <a
+                                    class="continue-shop-btn mb-4" href="search.html">Continue Shopping</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="./../assets/client-plugins/client-cart.js"></script>

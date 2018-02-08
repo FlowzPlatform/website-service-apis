@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+#c70827 {
+    display: none;
+}
+
 :root {
     margin-top: 0px;
 }
@@ -33,33 +37,25 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
 }
-
-#c70827 {
-    display: none;
-}
-
-.obv-virtualbrochurelibrary-main-div .row.obv-padding-top-50.obv-padding-bottom-15 {
+ .obv-virtualbrochurelibrary-main-div .row.obv-padding-top-50.obv-padding-bottom-15 {
     width: 1028px;
 }
-</style>
 
+</style>
 
 <script type="text/javascript" src="http://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js"></script>
 <div class="product-section-box">
     <div class="detail-popup-block">
         <ul>
-            <li>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#shipping-estimator" class="js_open_modal_shipping_estimator"><i class="strip estimator-strip"></i> Shipping Estimator
-			</a>
+            <li><a class="js-product-social-sharing" href="javascript:void(0)" data-toggle="modal"
+                data-target="#share-product"><i class="strip share-strip"></i>
+          Share Product </a>
             </li>
             <li id="ob_virtual_list">
                 <div id="ob-virtualmarketingcart">
-                    <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"
-                    />
-                    <input id="ob-virtualmarketingcart-supplier" type="hidden" value="#data.spplierId#"
-                    />
-                    <input id="ob-virtualmarketingcart-culture" type="hidden" value="#data.culture#"
-                    />
+                    <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"/>
+                    <input id="ob-virtualmarketingcart-supplier" type="hidden" value="#data.spplierId#" />
+                    <input id="ob-virtualmarketingcart-culture" type="hidden" value="#data.culture#" />
                     <input class="ob-btvirtualloadcontent" id="c70827" type="button" />
                 </div>
             </li>

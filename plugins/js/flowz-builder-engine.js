@@ -6,378 +6,6 @@ $(document).on("click", ".smooth-scroll", function(event) {
     }, 500);
 });
 
-// G-Form custom components
-try {
-  var class_g_form = '.g-form';
-  var class_g_form_panel = '.g-form-panel';
-  var class_g_form_group_button = '.g-form-group-button';
-  var entitys = [];
-  var data = [];
-  var schemaarr = {}
-  var configs = {};
-  window.addEventListener("message", function(event) {
-    if (event.data && event.data.entity) {
-      entitys = event.data.entity
-    }
-    if (event.data && event.data.formData && event.data.schema) {
-      data = event.data.formData
-      schemaarr = event.data.schema
-      configs = event.data.configs
-      this.setValue()
-    }
-  });
-  var setValue = () => {
-    var $form = document.querySelector(class_g_form);
-    setRecursiveValues(data, entitys, $form)
-    AWS.config.update({
-      accessKeyId: configs.accesskey,
-      secretAccessKey: configs.secretkey
-    });
-    AWS.config.region = 'us-west-2';
-  }
-  var setRecursiveValues = (data, entitys, $form) => {
-    var clone_panel = $form.querySelector(class_g_form_panel).cloneNode(true)
-    for (var [index, item] of data.entries()) {
-      var $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
-      if (index > 0) {
-        $panels[$panels.length - 1].insertAdjacentHTML('afterend', clone_panel.outerHTML)
-      }
-      for (var [inx, entity] of entitys.entries()) {
-        $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
-        if (entity.customtype) {
-          if ($panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]')) {
-            setRecursiveValues(item[entity.name], entity.entity, $panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form))
-          }
-        } else {
-          if (item[entity.name] != undefined || item[entity.name] != null) {
-            $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = item[entity.name]
-          }
-        }
-      }
-    }
-  }
-  var getValidate = (event, schema, form) => {
-    let self = this
-    let err = []
-    let val, result, element, newSchema
-    schema === undefined ? newSchema = self.customSchema : newSchema = schema
-    let emailRegEx = '(\\w+)\\@(\\w+)\\.[a-zA-Z]'
-    let numberRegEx = '^[0-9]+$'
-    let phoneRegEx = '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
-    let dateRegEx = '(0?[1-9]|[12]\\d|30|31)[^\\w\\d\\r\\n:](0?[1-9]|1[0-2])[^\\w\\d\\r\\n:](\\d{4}|\\d{2})'
-    Object.keys(event).forEach(function(key, index) {
-      for (var i = 0; i < newSchema.length; i++) {
-        if (key === newSchema[i].name || Array.isArray(newSchema[i])) {
-          val = event[key]
-          result = newSchema[i]
-          element = {
-            value: event[key],
-            name: key,
-            type: Array.isArray(newSchema[i]) ? 'customtype' : newSchema[i].type
-          }
-          if (element.type === 'customtype') {
-            var inndervalidate = self.getValidate(event[key], newSchema[i], form.querySelector(class_g_form))
-          } else {
-            if (result.property.optional === false) {
-              if (val === '' || val === null || val === undefined) {
-                err.push(element.name + ' - is required..!')
-                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - is required..!')
-              } else {
-                if (element.type === 'text') {
-                  if (result.property.regEx !== null && result.property.regEx !== undefined) {
-                    let pttrn = new RegExp(result.property.regEx)
-                    let regEx = pttrn.test(val)
-                    if (!regEx) {
-                      err.push(element.name + ' - Enter proper format..!')
-                      $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter proper format..!')
-                    } else {
-                      if (result.property.max != 0 && val.length > result.property.max) {
-                        err.push(element.name + ' - Enter proper format..!')
-                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - max ' + result.property.max + ' character allowed..!')
-                      } else {
-                        let exist = false
-                        if (result.property.allowedValue.length != 0) {
-                          for (let i = 0; i < result.property.allowedValue.length; i++) {
-                            if (result.property.allowedValue[i] == val) {
-                              exist = true
-                            }
-                          }
-                        } else {
-                          exist = true
-                        }
-                        if (!exist) {
-                          err.push(element.name + ' - Not allowed value, please enter allow one..!')
-                          $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
-                        } else {
-                          $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                        }
-                      }
-                    }
-                  }
-                } else if (element.type === 'email') {
-                  let re = new RegExp(emailRegEx)
-                  let testEmail = re.test(val)
-                  if (!testEmail) {
-                    err.push(element.name + ' - Enter valid email address..!')
-                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter valid email address..!')
-                  } else {
-                    let exist = false
-                    if (result.property.allowedValue.length != 0) {
-                      for (let i = 0; i < result.property.allowedValue.length; i++) {
-                        if (result.property.allowedValue[i] == val) {
-                          exist = true
-                        }
-                      }
-                    } else {
-                      exist = true
-                    }
-                    if (!exist) {
-                      err.push(element.name + ' - Not allowed value, please enter allow one..!')
-                      $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
-                    } else {
-                      $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                    }
-                  }
-                } else if (element.type === 'number') {
-                  let re = new RegExp(numberRegEx)
-                  if (result.property.regEx != '' && result.property.regEx != null && result.property.regEx != undefined) {
-                    re = new RegExp(result.property.regEx)
-                  }
-                  testEmail = re.test(val)
-                  if (!testEmail) {
-                    err.push(element.name + ' - Enter numbers only..!')
-                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter numbers only..!')
-                  } else {
-                    if (result.property.max != '' && result.property.max != undefined && result.property.min != '' && result.property.max != undefined) {
-                      if (result.property.max != 0 && result.property.min != 0) {
-                        if (val < result.property.min) {
-                          err.push(element.name + ' - Value must be greater than !' + result.property.min)
-                          $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Value must be greater than or equal ' + result.property.min + ' ..!')
-                        } else if (val > result.property.max) {
-                          err.push(element.name + ' - Value must be less than !' + result.property.max)
-                          $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Value must be less than or equal ' + result.property.max + ' ..!')
-                        } else {
-                          let exist = false
-                          if (result.property.allowedValue.length != 0) {
-                            for (let i = 0; i < result.property.allowedValue.length; i++) {
-                              if (result.property.allowedValue[i] == val) {
-                                exist = true
-                              }
-                            }
-                          } else {
-                            exist = true
-                          }
-                          if (!exist) {
-                            err.push(element.name + ' - Not allowed value, please enter allow one..!')
-                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
-                          } else {
-                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                          }
-                        }
-                      } else {
-                        let exist = false
-                        if (result.property.allowedValue.length != 0) {
-                          for (let i = 0; i < result.property.allowedValue.length; i++) {
-                            if (result.property.allowedValue[i] == val) {
-                              exist = true
-                            }
-                          }
-                        } else {
-                          exist = true
-                        }
-                        if (!exist) {
-                          err.push(element.name + ' - Not allowed value, please enter allow one..!')
-                          $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
-                        } else {
-                          $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                        }
-                      }
-                    } else {
-                      let exist = false
-                      if (result.property.allowedValue.length != 0) {
-                        for (let i = 0; i < result.property.allowedValue.length; i++) {
-                          if (result.property.allowedValue[i] == val) {
-                            exist = true
-                          }
-                        }
-                      } else {
-                        exist = true
-                      }
-                      if (!exist) {
-                        err.push(element.name + ' - Not allowed value, please enter allow one..!')
-                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
-                      } else {
-                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                      }
-                    }
-                  }
-                } else if (element.type === 'phone') {
-                  let re = new RegExp(phoneRegEx)
-                  if (result.property.regEx != '' && result.property.regEx != null && result.property.regEx != undefined) {
-                    re = new RegExp(result.property.regEx)
-                  }
-                  testEmail = re.test(val)
-                  if (!testEmail) {
-                    err.push(element.name + ' - Enter valid phone number..!')
-                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter valid phone number..!')
-                  } else {
-                    let exist = false
-                    if (result.property.allowedValue.length != 0) {
-                      for (let i = 0; i < result.property.allowedValue.length; i++) {
-                        if (result.property.allowedValue[i] == val) {
-                          exist = true
-                        }
-                      }
-                    } else {
-                      exist = true
-                    }
-                    if (!exist) {
-                      err.push(element.name + ' - Not allowed value, please enter allow one..!')
-                      $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
-                    } else {
-                      $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                    }
-                  }
-                } else if (element.type === 'date') {
-                  if (result.property.maxdate != '' && result.property.maxdate != undefined && result.property.mindate != '' && result.property.maxdate != undefined) {
-                    if (result.property.maxdate != '' && result.property.mindate != '') {
-                      if (val < result.property.mindate) {
-                        err.push(element.name + ' - Date must be greater than !' + result.property.mindate)
-                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Date must be greater than or equal ' + result.property.mindate + ' ..!')
-                      } else if (val > result.property.maxdate) {
-                        err.push(element.name + ' - Date must be less than !' + result.property.maxdate)
-                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Date must be less than or equal ' + result.property.maxdate + ' ..!')
-                      } else {
-                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                      }
-                    } else {
-                      $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                    }
-                  } else {
-                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                  }
-                } else {
-                  $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                }
-              }
-            }
-          }
-        }
-      }
-    })
-    if (err.length > 0) {
-      return false
-    } else {
-      return true
-    }
-  }
-  var getValues = async() => {
-    var $form = document.querySelector(class_g_form)
-    var _tempdata = await getRecursiveValues($form, entitys, schemaarr)
-    if (_tempdata.msg) {
-      parent.postMessage(_tempdata.data, "*");
-    }
-  }
-  var getRecursiveValues = async($form, entitys, schema) => {
-    var datas = [];
-    var validarr = [];
-    for (let [i, form] of $form.querySelectorAll(':scope >' + class_g_form_panel).entries()) {
-      var data = {}
-      for (var [index, entity] of entitys.entries()) {
-        if (entity.customtype) {
-          if (form.querySelector('[attr-id="' + entity.name + '"]')) {
-            var s = await getRecursiveValues(form.querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form), entity.entity, schema[index])
-            data[entity.name] = s.data
-            validarr.push(s.msg)
-          } else {
-            data[entity.name] = ''
-          }
-        } else {
-          if (form.querySelector('[name="' + entity.name + '"]').type == 'file') {
-            let bucket = new AWS.S3({
-              params: {
-                Bucket: 'airflowbucket1/obexpense/expenses'
-              }
-            });
-            let fileChooser = form.querySelector('[name="' + entity.name + '"]');
-            let file = fileChooser.files[0];
-            if (file) {
-              let fileurl = await getFileUrl(file)
-              data[entity.name] = fileurl
-            } else {
-              data[entity.name] = ''
-            }
-          } else {
-            data[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
-          }
-        }
-      }
-      validated = this.getValidate(data, schema, form)
-      validarr.push(validated)
-      datas.push(data)
-    }
-    let valid = true
-    for (let i = 0; i < validarr.length; i++) {
-      if (!validarr[i]) {
-        valid = false
-      }
-    }
-    return {
-      data: datas,
-      msg: valid
-    }
-  }
-  var getFileUrl = (file) => {
-    return new Promise((resolve, reject) => {
-      let bucket = new AWS.S3({
-        params: {
-          Bucket: 'airflowbucket1/obexpense/expenses'
-        }
-      });
-      var params = {
-        Key: file.name,
-        ContentType: file.type,
-        Body: file
-      };
-      bucket.upload(params).on('httpUploadProgress', function(evt) {
-      }).send(function(err, data) {
-        if (err) {
-          resolve('')
-        }
-        resolve(data.Location)
-      })
-    })
-  }
-  var handleAdd = (event) => {
-    var target = event.target || event.srcElement;
-    var $buttonGroup = target.closest(class_g_form_group_button)
-    var $parent = target.closest(class_g_form)
-    var $cloneMain = $parent.querySelector(class_g_form_panel).cloneNode(true)
-    getHtml($cloneMain)
-    $buttonGroup.insertAdjacentHTML('beforebegin', $cloneMain.outerHTML);
-  }
-  var getHtml = ($cloneMain) => {
-    if ($cloneMain.querySelector(class_g_form)) {
-      var $cloneChild = $cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel).cloneNode(true);
-      while ($cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel)) {
-        $cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel).remove()
-      }
-      $cloneMain.querySelector(class_g_form).querySelector(class_g_form_group_button).insertAdjacentHTML('beforebegin', $cloneChild.outerHTML)
-      getHtml($cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel))
-    }
-  }
-  var handleDelete = (event) => {
-    var target = event.target || event.srcElement;
-    var $parent = target.closest(class_g_form_panel);
-    if ($parent.closest(class_g_form).querySelectorAll(':scope > ' + class_g_form_panel).length > 1) {
-      $parent.remove();
-    }
-  }
-} catch (err) {
-  console.log(err)
-}
-// G-Form JS ends
-
 // Progressbar component
 try{
     var progress = $('progressbar').attr('progress');
@@ -481,44 +109,19 @@ catch (err){
 // Navbar Plugins JS
 try{
     var JSON;
+    var menuJsonName = './assets/' + $('navimenu').attr('menuId') + '.json';
 
-    $(document).ready(function(){
-        var menuJsonName = './assets/' + $('.customMenu').attr('menuId') + '.json';
-
-        $.getJSON({
-            type: 'GET',
-            url: menuJsonName,
-            async: true,
-            dataType: 'json',
-            success: function(data) {
-                JSON = {
-                    "menu": data
-                };
-            }
-        });
-
-        $(function() {
-            var topLevelUl = true;
-            $("#navigationDiv").html(makeUL(JSON.menu, topLevelUl, true));
-
-            $('.navbar a.dropdown-toggle').on('click', function(e) {
-                var $el = $(this);
-                var $parent = $(this).offsetParent(".dropdown-menu");
-                $(this).parent("li").toggleClass('open');
-
-                if(!$parent.parent().hasClass('nav')) {
-                    $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
-                }
-
-                $('.nav li.open').not($(this).parents("li")).removeClass("open");
-
-                return false;
-            });
-
-        });
+    $.ajax({
+        type: 'GET',
+        url: menuJsonName,
+        async: true,
+        dataType: 'json',
+        success: function(data) {
+            JSON = {
+                "menu": data
+            };
+        }
     });
-
-    
 
     function makeUL(lst, topLevelUl, rootLvl) {
         var html = [];
@@ -560,21 +163,27 @@ try{
         return html.join("\n");
     }
 
-    // $(document).ready(function() {
-    //     $('.navbar a.dropdown-toggle').on('click', function(e) {
-    //         var $el = $(this);
-    //         var $parent = $(this).offsetParent(".dropdown-menu");
-    //         $(this).parent("li").toggleClass('open');
+    $(function() {
+        var topLevelUl = true;
+        $("#navigationDiv").html(makeUL(JSON.menu, topLevelUl, true));
 
-    //         if(!$parent.parent().hasClass('nav')) {
-    //             $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
-    //         }
+    });
 
-    //         $('.nav li.open').not($(this).parents("li")).removeClass("open");
+    $(document).ready(function() {
+        $('.navbar a.dropdown-toggle').on('click', function(e) {
+            var $el = $(this);
+            var $parent = $(this).offsetParent(".dropdown-menu");
+            $(this).parent("li").toggleClass('open');
 
-    //         return false;
-    //     });
-    // });
+            if(!$parent.parent().hasClass('nav')) {
+                $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+            }
+
+            $('.nav li.open').not($(this).parents("li")).removeClass("open");
+
+            return false;
+        });
+    });
 }
 catch (err) {
     console.log('Navigation menu not found!', err);
@@ -799,11 +408,10 @@ try{
     var userEmail = '';
     var projectName = '';
     var configDataUrl = '';
-    var ProjectbaseURL = '';
     // var baseURL = 'http://localhost:3032';
     // var socketURL = 'http://localhost:4032';
-    var baseURL = 'http://api.flowzcluster.tk/serverapi';
-    var socketHost = 'http://ws.flowzcluster.tk:4032';
+    var baseURL = 'http://api.flowz.com/serverapi';
+    var socketHost = 'http://ws.flowz.com:4032';
 
     $(document).ready(function() {
         getProjectInfo();
@@ -827,7 +435,7 @@ try{
             var configData = data.data[0].configData;
             // globalVariables = configData[1].projectSettings[1].GlobalVariables;
             paymentgateways=configData[1].projectSettings[1].PaymentGateways
-            ProjectbaseURL=configData[0].repoSettings[0].BaseURL;
+        console.log('configData',configData[1].projectSettings[1].PaymentGateways)
         }); 
         Paymentgateways();
     }
@@ -848,150 +456,3 @@ catch (err) {
     console.log('Error in Payment Module: ', err);
 }
 // Payment JS Ends
-
-// dataField JS
-const dfGroup = Vue.component('datafieldgroup', {
-    template: `<div class="grid">
-            <template v-for="item in items"><div class="item"><div class="item-content"><slot :text="item"></slot></div></div></template>
-          </div>`,
-    props: ['data_schema', 'data_api', 'draggable'],
-    computed: {},
-    data: function() {
-        return {
-            items: []
-        }
-    },
-    created() {
-        //alert(11);
-        let self = this;
-
-        var r = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/; //http://www.regular-expressions.info/examples.html
-
-        var a = this,data_api;
-
-        var dataApiHost = a.match(r);
-
-        let socketClient = io(dataApiHost);
-        let apiClient = feathers()
-            .configure(feathers.hooks())
-            .configure(feathers.socketio(socketClient));
-
-        let schemaVal = this.data_schema.split(":");
-        let connString = $.trim(schemaVal[0]);
-        let schemaName = $.trim(schemaVal[1]);
-
-        ///let apiDataService = apiClient.service('connectiondata/' + connString + '?schemaname=' + schemaName);
-        let apiDataService = apiClient.service('person-data');
-
-        apiDataService.on("created", async function(data) {
-            self.items.push(data);
-        });
-        apiDataService.on("updated", async function(data) {
-            let arrIndex = self.search(data.email);
-            self.items[arrIndex] = data;
-        });
-
-
-    },
-    mounted() {
-        this.getData()
-    },
-    watch: {
-        items: function(val) {}
-    },
-    updated() {
-        var grid = new Muuri('.grid', {
-            dragEnabled: this.draggable
-        });
-    },
-    methods: {
-        getData() {
-            let self = this;
-            if (this.data_schema != undefined) {
-                if (this.data_schema.length > 0) {
-                    this.data_schema;
-                    let schemaVal = this.data_schema.split(":");
-                    let connString = $.trim(schemaVal[0]);
-                    let schemaName = $.trim(schemaVal[1]);
-                    let apiUrl = 'http://172.16.230.86:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
-                    $.getJSON(apiUrl, function(data) {
-                        self.items = data;
-                    });
-                } else {
-                    $.getJSON(this.data_api, function(data) {
-                        self.items = data;
-                    });
-                }
-            } else {
-                $.getJSON(this.data_api, function(data) {
-                    self.items = data;
-                });
-            }
-        },
-        search(searchEmail) {
-            for (let i = 0; i < this.items.length; i++) {
-                if (this.items[i].email == searchEmail) {
-                    return i;
-                }
-            }
-        }
-    }
-});
-
-const Table = Vue.component('datafieldtable', {
-    template: `
-            <Table :columns="columns1" ata="data1"></Table>
-            `,
-    props: ['column_value', 'data_api'],
-    computed: {},
-    data: function() {
-        return {
-            columns1: [],
-            data1: []
-        }
-    },
-    mounted() {
-        this.getData()
-    },
-    methods: {
-        getData() {
-            let self = this;
-            let arr_column = []
-            var str = this.column_value;
-            var res = str.split(",");
-            for (let index = 0; index < res.length; index++) {
-                let data = {
-                    "title": res[index],
-                    "key": res[index]
-                }
-                arr_column.push(data)
-            }
-            self.columns1 = arr_column;
-            $.getJSON(this.data_api, function(data) {
-                self.data1 = data;
-            });
-
-        }
-    }
-});
-
-
-const dfList = Vue.component('datafieldlist', {
-    template: '<div><div v-for="item in items"><slot :text="item"></slot></div></div>',
-    props: ['items']
-});
-
-const dfText = Vue.component('datafieldtext', {
-    template: '<h3>{{text}}</h3>',
-    props: ['text']
-});
-
-new Vue({
-    el: '#app',
-    components: {
-        dfGroup,
-        dfList,
-        dfText
-    }
-})
-// dataField js ends

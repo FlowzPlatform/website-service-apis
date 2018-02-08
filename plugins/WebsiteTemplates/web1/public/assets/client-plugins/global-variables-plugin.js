@@ -5,15 +5,15 @@ var userEmail = '';
 var projectName = '';
 var configDataUrl = '';
 
-var host = 'http://localhost:3032';
-var socketHost='http://localhost:4032';
+var host = 'http://api.flowz.com/serverapi';
+
 $(document).ready(function() {
     getProjectInfo();
     ImpletementSocekt();
 });
 
 async function getProjectInfo() {
-    await $.getJSON( "../public/assets/project-details.json", function( data ) {
+    await $.getJSON( "../assets/project-details.json", function( data ) {  
         var configData = data;
         userEmail = data[0].projectOwner;
         projectName = data[0].projectName;
@@ -26,17 +26,17 @@ async function getProjectInfo() {
 
 async function getConfigData () {
 
-    await $.getJSON( configDataUrl , function( data ) {
+    await $.getJSON( configDataUrl , function( data ) {  
         var configData = data.data[0].configData;
         globalVariables = configData[1].projectSettings[1].GlobalVariables;
-    });
+    }); 
 
     updateGlobalVariables();
 }
 
 async function updateGlobalVariables () {
     $('body [id="brandName"]').html(brandName);
-
+  
     // Replace all global variables
     for (var i = 0; i < globalVariables.length; i++){
 
@@ -44,7 +44,7 @@ async function updateGlobalVariables () {
             case 'text':
                 if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
                     $('body [data-global-id="' + globalVariables[i].variableId + '"]').text(globalVariables[i].variableValue);
-                }
+                } 
                 break;
             case 'image':
                 var _varId = globalVariables[i].variableId;
@@ -55,7 +55,7 @@ async function updateGlobalVariables () {
                         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
                     } else {
                         var getImageData = await $.ajax({
-                          url:'../public/assets/' + _varValue,
+                          url:'../assets/' + _varValue,
                           method: 'GET',
                           type: 'HEAD',
                           async: true,
@@ -70,22 +70,22 @@ async function updateGlobalVariables () {
                           }
                         });
                     }
-
-                }
+                  
+                } 
                 break;
             case 'hyperlink':
                 if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
                     $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].text = globalVariables[i].variableTitle;
                     $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].href = globalVariables[i].variableValue;
                 }
-                break;
+                break; 
             case 'html':
                 if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
                     $('body [data-global-id="' + globalVariables[i].variableId + '"]').html(globalVariables[i].variableValue);
-                }
+                } 
                 break;
             default:
-                console.log('No Variables Found');
+                console.log('No Variables Found'); 
         }
 
     }
@@ -99,13 +99,13 @@ function ImpletementSocekt() {
   var flowzDirectoryService = client.service('project-configuration');
 
   flowzDirectoryService.on('updated', async function(flowzDirectoryService) {
-    // console.log('Configurations Updated:', flowzDirectoryService);
+    console.log('Configurations Updated:', flowzDirectoryService);
 
     getConfigData();
 
     $('body [id="brandName"]').html(brandName);
-        $('body [id="brandLogo"]').attr('src', './assets/brand-logo.png');
-
+        $('body [id="brandLogo"]').attr('src', '../assets/brand-logo.png');
+    
         // Replace all global variables
         for (var i = 0; i < globalVariables.length; i++){
 
@@ -113,7 +113,7 @@ function ImpletementSocekt() {
                 case 'text':
                     if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
                         $('body [data-global-id="' + globalVariables[i].variableId + '"]').text(globalVariables[i].variableValue);
-                    }
+                    } 
                     break;
                 case 'image':
                     var _varId = globalVariables[i].variableId;
@@ -124,7 +124,7 @@ function ImpletementSocekt() {
                             $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
                         } else {
                             var getImageData = await $.ajax({
-                            url:'../public/assets/' + _varValue,
+                            url:'../assets/' + _varValue,
                             method: 'GET',
                             type: 'HEAD',
                             async: true,
@@ -139,25 +139,25 @@ function ImpletementSocekt() {
                             }
                             });
                         }
-
-                    }
+                    
+                    } 
                     break;
                 case 'hyperlink':
                     if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
                         $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].text = globalVariables[i].variableTitle;
                         $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].href = globalVariables[i].variableValue;
                     }
-                    break;
+                    break; 
                 case 'html':
                     if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
                         $('body [data-global-id="' + globalVariables[i].variableId + '"]').html(globalVariables[i].variableValue);
-                    }
+                    } 
                     break;
                 default:
-                    console.log('No Variables Found');
+                    console.log('No Variables Found'); 
             }
 
-        }
-
+        }    
+    
   });
 }
