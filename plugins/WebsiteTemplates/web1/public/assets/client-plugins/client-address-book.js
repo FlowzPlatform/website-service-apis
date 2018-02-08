@@ -58,7 +58,7 @@ $(function() {
             $.ajax({
                   type: methodType,
                   url: url,
-                  data: formObj.serialize()+'&user_id='+user_id+'&website_id='+website_settings['projectID']+'&owner_id='+website_settings['UserID']+'&culture='+project_settings.default_culture+'&is_address=1',
+                  data: formObj.serialize()+'&user_id='+user_id+'&website_id='+website_settings['projectID']+'&websiteName='+website_settings['websiteName']+'&owner_id='+website_settings['UserID']+'&culture='+project_settings.default_culture+'&is_address=1',
                   cache: false,
                   dataType: 'json',
                   headers: {"Authorization": project_settings.product_api_token},

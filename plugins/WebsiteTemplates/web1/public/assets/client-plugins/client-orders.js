@@ -52,15 +52,15 @@ function showOrders()
               },
               dataType: 'json',
               success: function (data) {
-            
+
                 rawData = data.hits.hits;
                 productData = rawData;
 
                 console.log('productData',productData)
-                
+
 
                 let productHtmlReplace = productHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
-                let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productData[0]._id;
+                let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productData[0]._id;
                 productHtmlReplace = productHtmlReplace.replace(/#data.product_link#/g,detailLink);
                 productHtmlReplace = productHtmlReplace.replace(/#data.id#/g,response_data[key].id);
                 productHtmlReplace = productHtmlReplace.replace(/#data.product_id#/g,response_data[key].id);
@@ -201,10 +201,10 @@ function showOrders()
                 // END - Shipping Section
                 $(".js_search_list").append(productHtmlReplace);
               }
-            });  
-            
+            });
+
           }
-          
+
           // return false;
         }
       }

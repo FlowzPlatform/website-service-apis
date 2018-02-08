@@ -175,6 +175,8 @@ if(userToken != null) {
     }();
 }
 
+// localStorage.setItem("vOneLocalStorage", user_id);
+
 //Website owner details
 // let userOwnerToken = getCookie('auth_token');
 // if(userOwnerToken != null) {
@@ -276,7 +278,7 @@ var init = function() {
             'type': "GET",
             'global': false,
             'dataType': 'json',
-            'url': project_settings.shopping_api_url+"?type=3&user_id="+user_id,
+            'url': project_settings.shopping_api_url+"?type=3&user_id="+user_id+'&website_id='+website_settings['projectID'],
             'success': function (data) {
                 tmp = data;
             }
@@ -373,10 +375,10 @@ var init = function() {
 
     $('.header-search-col').find('.btn-search').click(function(){
       if($.trim($('input[name="search"]').val()) != '') {
-               window.location.href = project_settings.base_url+'search.html?SearchSensor=' + $('input[name="search"]').val()
+               window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + $('input[name="search"]').val()
       }
       else {
-        window.location.href = project_settings.base_url+'search.html';
+        window.location.href = website_settings.BaseURL+'search.html';
       }
       return false;
     })
@@ -392,7 +394,7 @@ $(document).on('click', '.js-add-to-wishlist', function(e) {
 $(document).on('click', '.js-add-to-cart', function(e) {
   e.preventDefault();
   let product_id = $(this).data('id');
-  location.href = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_id; // 2 for Cart
+  location.href = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_id; // 2 for Cart
 });
 
 $(document).on('click', '.js-add-to-compare', function(e) {
@@ -853,7 +855,7 @@ function hideAlertBar(){
 }
 function showPageAjaxLoading(){
 	if (!$('.widget-box-overlay').length) {
-		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="'+project_settings.base_url+'assets/preloader.gif"></div>');
+		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="'+website_settings.BaseURL+'assets/preloader.gif"></div>');
 	}
 }
 function hidePageAjaxLoading(){
@@ -926,7 +928,7 @@ function showWishList(recetAdded=false)
             {
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,                
+                url: project_settings.product_api_url+"?_id="+prodId,
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -943,7 +945,7 @@ function showWishList(recetAdded=false)
                   listHtml1 = listHtml1.replace('#data.price#',productData[0]._source.price_1);
                   listHtml1 = listHtml1.replace('#data.currency#',productData[0]._source.currency);
 
-                  let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
+                  let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                   listHtml1 = listHtml1.replace(/#data.product_link#/g,detailLink);
 
 
@@ -1036,7 +1038,7 @@ function showCompareList(recetAdded=false)
       var compare_values = window.yList.share.compareList._content;
     }
    }
-    // console.log("compare_values",compare_values)
+    console.log("compare_values",compare_values)
 
 
   if($("#myCompareList").length > 0)
@@ -1078,7 +1080,7 @@ function showCompareList(recetAdded=false)
 
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,                                
+                url: project_settings.product_api_url+"?_id="+prodId,
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -1093,7 +1095,7 @@ function showCompareList(recetAdded=false)
                   var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
                   var itemTitleHtml = itemTitleHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
 
-                  let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
+                  let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                   var itemTitleHtml = itemTitleHtml.replace('#data.product_link#',detailLink);
 
                   var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
