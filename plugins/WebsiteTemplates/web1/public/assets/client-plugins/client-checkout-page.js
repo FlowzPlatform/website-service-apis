@@ -3,7 +3,7 @@ var total_qty=0;
 
 $.ajax({
   type : 'GET',
-  url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2',
+  url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2&website_id='+website_settings['projectID'],
   dataType : 'json',
   success : function(response_data) {
     var newHtml = "";

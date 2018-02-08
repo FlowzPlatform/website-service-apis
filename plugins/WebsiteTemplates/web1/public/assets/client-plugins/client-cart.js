@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event){
   {
     $.ajax({
       type : 'GET',
-      url : callApiUrl+'?user_id='+user_id+'&type=2',
+      url : callApiUrl+'?user_id='+user_id+'&type=2&website_id='+website_settings['projectID'],
       dataType : 'json',
       success : function(response_data) {
         if (response_data!= "") {
@@ -46,7 +46,7 @@ function showCart()
   showPageAjaxLoading()
   axios({
       method: 'GET',
-      url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2',
+      url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2&website_id='+website_settings['projectID'],
     })
   .then(async response_data => {
     response_data = response_data.data
@@ -80,7 +80,7 @@ function showCart()
 
                 var listHtmlReplace = listHtml.replace('#data.image#',project_settings.product_api_image_url+productData.default_image);
                 // let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productData[0]._id;
-                let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+response_data[key].product_id;
+                let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+response_data[key].product_id;
                 var listHtmlReplace = listHtmlReplace.replace(/#data.product_link#/g,detailLink);
                 var listHtmlReplace = listHtmlReplace.replace(/#data.id#/g,response_data[key].id);
                 var listHtmlReplace = listHtmlReplace.replace(/#data.product_id#/g,response_data[key].id);
@@ -267,6 +267,7 @@ function showCart()
 
         $('#js-cart_data .js-cart-amount').html(carAmountHtml)
         $("#js-cart_data").removeClass('hide');
+        replaceColorNameWithHexaCodesNew()
       }
       else if(response_data == '')
       {
@@ -382,13 +383,14 @@ $(document).on('click', '.js-btn-delete-cart-list', function(e) {
   return frags.join(' ');
 }
 
-function replaceColorNameWithHexaCodes(){
+function replaceColorNameWithHexaCodesNew(){
     //var data = { 'colors': colors };
-  var all_colors = [];
+  let all_colors = [];
   $( ".shipping_color" ).each(function( index,colorCheckbox ) {
-    var single_color = $( this ).data("color")
+    let single_color = $( this ).data("color")
     single_color = single_color.replace(/_/g,' ');
     single_color = titleCase(single_color)
+
     // console.log('single_color')
     // console.log(single_color)
     all_colors.push(single_color)
@@ -414,7 +416,7 @@ function replaceColorNameWithHexaCodes(){
 
             if(typeof value.colorname != 'undefined')
             {
-              if(value.colorname.toLowerCase() == bgColor.toLowerCase())
+              if(value.colorname.toLowerCase().replace(/_/g,' ') == bgColor.toLowerCase().replace(/_/g,' '))
               if(typeof value.hexcode != 'undefined')
               {
                 checkbox.attr("data-color",value.hexcode)
@@ -433,10 +435,6 @@ function replaceColorNameWithHexaCodes(){
   })
 }
 
-
-$(document).ready(function() {
-  replaceColorNameWithHexaCodes();
-})
 
 function titleCase(str) {
   str = str.toLowerCase().split(' ');

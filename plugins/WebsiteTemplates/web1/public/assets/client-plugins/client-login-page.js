@@ -2,7 +2,7 @@ if(getCookie('loginTokenKey') != null) {
 	window.location = "index.html";
 }
 $(document).ready(function() {
-	$("#success_url").val(project_settings.base_url+"socialDashboard.html");
+	$("#success_url").val(website_settings.BaseURL+"socialDashboard.html");
 });
 
 $('.login-submit').on('click',function(){
@@ -35,7 +35,7 @@ $('.login-submit').on('click',function(){
 				var tmp = null;
 				$.ajax({
 					'async': false,
-					'type': "POST",
+					'type': "GET",
 					'url': project_settings.user_detail_api,
 					'headers': {"Authorization": result.logintoken},
 					'success': function (res) {
@@ -62,7 +62,7 @@ $('.login-submit').on('click',function(){
 
 			//redirect to previous page.
 			if(document.referrer.trim() != '') {
-				if (document.referrer.indexOf(project_settings.base_url) >= 0)
+				if (document.referrer.indexOf(website_settings.BaseURL) >= 0)
 				{
 					window.location = document.referrer;
 				}

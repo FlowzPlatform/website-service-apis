@@ -51,6 +51,7 @@ function gatewaybtnclick(clicked_id) {
 }
 
 async function paynow() {
+	showPageAjaxLoading()
 	let cardType = $("#cardType").val();
 	let cardNumber = $("#cardNumber").val();
 	let expiryMonth = $("#expiryMonth").val();
@@ -77,6 +78,7 @@ async function paynow() {
 		   }
    })
    .then(async function (response) {
+		 hidePageAjaxLoading();
 		 		resp = response;
 			 let transaction_id;
 			 if(paymentGatewayId == "stripe" || paymentGatewayId == "paypal"){
@@ -85,18 +87,10 @@ async function paynow() {
 				 	transaction_id = response.data.paymentAccounting.id
 			 }
 
-			//  axios({
-			// 		 method: 'GET',
-			// 		 url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2',
-			// 	 })
-			//  .then(async response_data => {
 				let product_response = await getCartProductDataByUser()
 				 if (product_response.data!= "") {
 					 var newHtml = "";
-						//  let product_response = await returnCartData(cart_data.data)
-						//  console.log("product_response",product_response);
-						//  return false;
-						//  product_response = JSON.stringify(product_response)
+
 						 let billing_info = await fetchDefaultBillingInfo()
 						 if(billing_info == null || billing_info == ''){
 							 	showErrorMessage("Please add billing address")
@@ -108,7 +102,7 @@ async function paynow() {
 						 user_info['email'] = user_details['email']
 						 user_info['fullname'] = user_details['fullname']
 
-						 let userDetails = {"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"owner_id":website_settings['UserID'],"setting_id": "5a398717-df05-45b7-aaa2-020b23107c57","products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
+						 let userDetails = {"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID'],"setting_id": "5a398717-df05-45b7-aaa2-020b23107c57","products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
 						//  console.log("userDetails",userDetails);
 						 axios({
 								method: 'POST',
@@ -119,7 +113,7 @@ async function paynow() {
 									// console.log("response_data",response_data);
 									let deletedData = await deleteCartDataByUser()
 									showSuccessMessage("Your order is placed successfully.")
-									window.location = "thankYou.html";
+									window.location = "orderSuccess.html";
 									return false;
 						})
 						.catch(function(err){
@@ -130,6 +124,7 @@ async function paynow() {
 			//  })
    })
    .catch(function (error) {
+		 	hidePageAjaxLoading();
 			// 	console.log("error+++",error);
    });
  return resp;
@@ -152,7 +147,7 @@ async function deleteCartDataByUser(){
 async function getCartProductDataByUser(){
 		return await axios({
 				method: 'GET',
-				url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2',
+				url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2&website_id='+website_settings['projectID'],
 			})
 		.then(async response_data => {
 				if(response_data.data !=""){
