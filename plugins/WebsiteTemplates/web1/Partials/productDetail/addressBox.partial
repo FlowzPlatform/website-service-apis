@@ -20,6 +20,10 @@ body {
     margin-top: 0px;
 }
 
+:root {
+    margin-top: 0px;
+}
+
 .row {
     display: table;
     padding-top: 10px;
@@ -32,7 +36,19 @@ body {
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
 </style>
+
 
 
 <div class="row">
