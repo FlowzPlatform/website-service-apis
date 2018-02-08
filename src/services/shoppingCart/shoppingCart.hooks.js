@@ -73,7 +73,7 @@ module.exports = {
   // }
   // else {
     await r.table(table)
-    .filter(r.row("product_id").eq(hook.data.product_id).and(r.row("user_id").eq(hook.data.user_id)).and(r.row("type").eq(hook.data.type)))
+    .filter(r.row("product_id").eq(hook.data.product_id).and(r.row("user_id").eq(hook.data.user_id)).and(r.row("type").eq(hook.data.type)).and(r.row("website_id").eq(hook.data.website_id)))
     .run(connection , function(error , cursor){
       if (error) throw error;
       cursor.toArray(function(err, result) {
