@@ -28,6 +28,10 @@ const myOrders = require('./my-orders/my-orders.service.js');
 
 const shippingEstimator = require('./shipping-estimator/shipping-estimator.service.js');
 
+const adminOrders = require('./admin-orders/admin-orders.service.js');
+
+const registerWebsiteSubscriptions = require('./register-website-subscriptions/register-website-subscriptions.service.js');
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -58,5 +62,6 @@ module.exports = function () {
 
   app.configure(cloneWebsite);
   app.configure(saveMenu);
-
+  app.configure(registerWebsiteSubscriptions);
+  app.configure(adminOrders);
 };
