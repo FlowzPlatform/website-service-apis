@@ -27,30 +27,34 @@ try {
     }
   });
   var setValue = () => {
-    var $form = document.querySelector(class_g_form);
-    setRecursiveValues(data, entitys, $form)
     AWS.config.update({
       accessKeyId: configs.accesskey,
       secretAccessKey: configs.secretkey
     });
     AWS.config.region = 'us-west-2';
+    // console.log()
+    var $form = document.querySelector(class_g_form);
+    setRecursiveValues(data, entitys, $form)
   }
   var setRecursiveValues = (data, entitys, $form) => {
+    // console.log('...... setRecursiveValues :: ', data, entitys, $form)
     var clone_panel = $form.querySelector(class_g_form_panel).cloneNode(true)
-    for (var [index, item] of data.entries()) {
-      var $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
-      if (index > 0) {
-        $panels[$panels.length - 1].insertAdjacentHTML('afterend', clone_panel.outerHTML)
-      }
-      for (var [inx, entity] of entitys.entries()) {
-        $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
-        if (entity.customtype) {
-          if ($panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]')) {
-            setRecursiveValues(item[entity.name], entity.entity, $panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form))
-          }
-        } else {
-          if (item[entity.name] != undefined || item[entity.name] != null) {
-            $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = item[entity.name]
+    if (data != undefined) {
+      for (var [index, item] of data.entries()) {
+        var $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
+        if (index > 0) {
+          $panels[$panels.length - 1].insertAdjacentHTML('afterend', clone_panel.outerHTML)
+        }
+        for (var [inx, entity] of entitys.entries()) {
+          $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
+          if (entity.customtype) {
+            if ($panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]')) {
+              setRecursiveValues(item[entity.name], entity.entity, $panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form))
+            }
+          } else {
+            if (item[entity.name] != undefined || item[entity.name] != null) {
+              $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = item[entity.name]
+            }
           }
         }
       }
@@ -83,6 +87,7 @@ try {
                 err.push(element.name + ' - is required..!')
                 $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - is required..!')
               } else {
+                // console.log(element.name, ' >>> ', element.type)
                 if (element.type === 'text') {
                   if (result.property.regEx !== null && result.property.regEx !== undefined) {
                     let pttrn = new RegExp(result.property.regEx)
@@ -256,6 +261,24 @@ try {
                   } else {
                     $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
                   }
+                } else if (element.type === 'dropdown') {
+                  // console.log('>>>>', element.name, ' >>> ', element.type, result.property)
+                  let exist = false
+                  if (result.property.options.length != 0) {
+                    for (let i = 0; i < result.property.options.length; i++) {
+                      if (result.property.options[i] == val) {
+                        exist = true
+                      }
+                    }
+                  } else {
+                    exist = true
+                  }
+                  if (!exist) {
+                    err.push(element.name + ' - Please Select input!')
+                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Please Select input!')
+                  } else {
+                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
+                  }
                 } else {
                   $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
                 }
@@ -265,6 +288,7 @@ try {
         }
       }
     })
+    // console.log('ERROR:: ', err)
     if (err.length > 0) {
       return false
     } else {
@@ -274,6 +298,7 @@ try {
   var getValues = async() => {
     var $form = document.querySelector(class_g_form)
     var _tempdata = await getRecursiveValues($form, entitys, schemaarr)
+    // console.log('............................ _tempdata:: ', _tempdata)
     if (_tempdata.msg) {
       parent.postMessage(_tempdata.data, "*");
     }
@@ -293,26 +318,49 @@ try {
             data[entity.name] = ''
           }
         } else {
-          if (form.querySelector('[name="' + entity.name + '"]').type == 'file') {
-            let bucket = new AWS.S3({
-              params: {
-                Bucket: 'airflowbucket1/obexpense/expenses'
+          // console.log('.............', entity.name, form.querySelector('[name="' + entity.name + '"]'))
+          if (form.querySelector('[name="' + entity.name + '"]') !== null) {
+            if (form.querySelector('[name="' + entity.name + '"]').type != null && form.querySelector('[name="' + entity.name + '"]').type == 'file') {
+              let bucket = new AWS.S3({
+                params: {
+                  Bucket: 'airflowbucket1/obexpense/expenses'
+                }
+              });
+              let fileChooser = form.querySelector('[name="' + entity.name + '"]');
+              let file = fileChooser.files[0];
+              if (file) {
+                let fileurl = await getFileUrl(file)
+                // console.log('fileurl............', fileurl)
+                data[entity.name] = fileurl
+              } else {
+                data[entity.name] = ''
               }
-            });
-            let fileChooser = form.querySelector('[name="' + entity.name + '"]');
-            let file = fileChooser.files[0];
-            if (file) {
-              let fileurl = await getFileUrl(file)
-              data[entity.name] = fileurl
             } else {
-              data[entity.name] = ''
+              data[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
             }
           } else {
-            data[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
+            data[entity.name] = ''
           }
+          // if (form.querySelector('[name="' + entity.name + '"]').type == 'file') {
+          //   let bucket = new AWS.S3({
+          //     params: {
+          //       Bucket: 'airflowbucket1/obexpense/expenses'
+          //     }
+          //   });
+          //   let fileChooser = form.querySelector('[name="' + entity.name + '"]');
+          //   let file = fileChooser.files[0];
+          //   if (file) {
+          //     let fileurl = await getFileUrl(file)
+          //     data[entity.name] = fileurl
+          //   } else {
+          //     data[entity.name] = ''
+          //   }
+          // } else {
+          // }
         }
       }
       validated = this.getValidate(data, schema, form)
+      console.log('validated....', validated, validarr)
       validarr.push(validated)
       datas.push(data)
     }
@@ -342,6 +390,7 @@ try {
       bucket.upload(params).on('httpUploadProgress', function(evt) {
       }).send(function(err, data) {
         if (err) {
+          console.log('>>>>>>>>>>>>>>>>>>>. File Error:: ', err)
           resolve('')
         }
         resolve(data.Location)

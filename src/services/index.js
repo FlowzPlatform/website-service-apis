@@ -28,6 +28,8 @@ const cloneWebsite = require('./clone-website/clone-website.service.js');
 
 const saveMenu = require('./save-menu/save-menu.service.js');
 
+const registerWebsiteSubscriptions = require('./register-website-subscriptions/register-website-subscriptions.service.js');
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -54,4 +56,5 @@ module.exports = function () {
   app.configure(colorTable);
   app.configure(cloneWebsite);
   app.configure(saveMenu);
+  app.configure(registerWebsiteSubscriptions);
 };
