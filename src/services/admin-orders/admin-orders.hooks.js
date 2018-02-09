@@ -3,12 +3,9 @@ const fs = require('fs');
 let ssl = process.env.cert ? { ca: fs.readFileSync(__dirname+process.env.cert) } : null;
 let rauth = process.env.rauth ? process.env.rauth : null;
 
-// type = 1  ====> wishlist
-// type = 2  ====> cart
-// type = 3  ====> compare
-
-let limitOfCompareProduct = 5;
 const config = require("config");
+const table = 'my_orders';
+
 let r = require('rethinkdb')
 let connection;
 let response;
@@ -22,11 +19,13 @@ r.connect({
   if (err) throw err;
   connection = conn
 })
+
+
 module.exports = {
   before: {
     all: [],
     find: [
-      hook => beforeFindColorSwatch(hook)
+      hook => findAllAdminOrders(hook)
     ],
     get: [],
     create: [],
@@ -34,6 +33,7 @@ module.exports = {
     patch: [],
     remove: []
   },
+
   after: {
     all: [],
     find: [],
@@ -55,11 +55,10 @@ module.exports = {
   }
 };
 
-beforeFindColorSwatch = async hook => {
+findAllAdminOrders = async hook => {
+  console.log(hook.params.query);
 
-    if(hook.params.query.colorname != "" && hook.params.query.colorname instanceof Array){
-      let colorInputArray = hook.params.query.colorname;
-      hook.params.query.colorname = { $in : hook.params.query.colorname }
-    }
-
+  if(hook.params.query.owner_id == undefined &&  hook.params.query.setting_id == undefined && hook.params.query.website_id == undefined) {
+    hook.result = {status:400, message: "Please pass owner id or setting id or website id"}
+  }
 }

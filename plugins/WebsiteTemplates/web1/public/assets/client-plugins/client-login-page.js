@@ -2,10 +2,11 @@ if(getCookie('loginTokenKey') != null) {
 	window.location = "index.html";
 }
 $(document).ready(function() {
-	$("#success_url").val(project_settings.base_url+"socialDashboard.html");
+	$("#success_url").val(website_settings.BaseURL+"socialDashboard.html");
 });
 
 $('.login-submit').on('click',function(){
+	showPageAjaxLoading();
 	var user_email = $('.user_email').val();
 	var user_pass  = $('.user_pass').val();
 
@@ -18,6 +19,7 @@ $('.login-submit').on('click',function(){
 		dataType: 'json',
 		headers: { 'Content-Type': 'application/json' },
 		success: function (result) {
+			hidePageAjaxLoading()
 			if(!$( ".error-message" ).hasClass( "hide" )) {
 				$('.error-message').addClass('hide');
 			}
@@ -33,7 +35,7 @@ $('.login-submit').on('click',function(){
 				var tmp = null;
 				$.ajax({
 					'async': false,
-					'type': "POST",
+					'type': "GET",
 					'url': project_settings.user_detail_api,
 					'headers': {"Authorization": result.logintoken},
 					'success': function (res) {
@@ -60,7 +62,7 @@ $('.login-submit').on('click',function(){
 
 			//redirect to previous page.
 			if(document.referrer.trim() != '') {
-				if (document.referrer.indexOf(project_settings.base_url) >= 0)
+				if (document.referrer.indexOf(website_settings.BaseURL) >= 0)
 				{
 					window.location = document.referrer;
 				}
@@ -73,6 +75,7 @@ $('.login-submit').on('click',function(){
 			}
 		},
 		error: function(err) {
+			hidePageAjaxLoading()
 			$('.error-message').removeClass('hide');
 		}
 	});

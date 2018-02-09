@@ -25,7 +25,7 @@ $("#change_pass_form").submit(function(event){
 				'Content-Type': 'application/json'
 			},
 			success: function (result) {
-				showSuccessMessage(result.message,project_settings.base_url+"index.html");
+				showSuccessMessage(result.message,website_settings.BaseURL+"index.html");
 			},
 			error: function(err) {
 				showErrorMessage('internal server error');
