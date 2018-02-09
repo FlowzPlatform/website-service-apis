@@ -361,7 +361,7 @@ async function generateHtmlFunc(req , addressBookHtml){
       })
       setTimeout(() => {
           resolve(replaceAdddressBookHtml);
-      }, 500);
+      }, 2000);
   })
 }
 

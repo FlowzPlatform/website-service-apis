@@ -5,7 +5,7 @@
 
 body {
     margin: 0;
-      background: url('https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg') no-repeat center top;
+      background: url('http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/back-bg.jpg') no-repeat center top;
     background-attachment: fixed;
 }
 
@@ -478,9 +478,7 @@ padding: 0;
 
 <script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js" defer="defer"></script>
 <div>
-    <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
-    rel="stylesheet" type="text/css" />
-    <link href="./assets/css/base.css"
+    <link href="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/distributor/css/base.css"
     rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />

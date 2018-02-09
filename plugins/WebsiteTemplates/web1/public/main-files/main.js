@@ -32,7 +32,7 @@ var website_info = function () {
 var website_settings = website_info[0];
 var project_settings = website_settings.project_settings;
 
-console.log("project_settings",project_settings)
+// console.log("project_settings",project_settings)
 
 async function getProductDetailById(id) {
       var returnData = null;
@@ -76,7 +76,7 @@ Y({
   },
   connector: {
   name: 'webrtc',
-  room: 'wishList-example4'
+  room: 'wishList-example'+website_settings['projectID']
   },
   sourceDir: null,
   share: {
@@ -928,7 +928,7 @@ function showWishList(recetAdded=false)
             {
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId,                
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -958,6 +958,9 @@ function showWishList(recetAdded=false)
                   else if($('#myWishList .listing .product-'+prodId).length == 0)
                   {
                     $('#myWishList .listing').append(listHtml1);
+                  }
+                  if(user_id == null){
+                    $("#myWishList .listing").find(".item-price").remove()
                   }
                   // productHtml += listHtml1;
                 }
@@ -1038,7 +1041,7 @@ function showCompareList(recetAdded=false)
       var compare_values = window.yList.share.compareList._content;
     }
    }
-    console.log("compare_values",compare_values)
+    // console.log("compare_values",compare_values)
 
 
   if($("#myCompareList").length > 0)
@@ -1080,7 +1083,7 @@ function showCompareList(recetAdded=false)
 
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId,                                
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -1099,7 +1102,11 @@ function showCompareList(recetAdded=false)
                   var itemTitleHtml = itemTitleHtml.replace('#data.product_link#',detailLink);
 
                   var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
-                  var itemTitleHtml = itemTitleHtml.replace('#data.price#',productData[0]._source.currency+" "+productData[0]._source.price_1);
+                  if(user_id == null){
+                    var itemTitleHtml = itemTitleHtml.replace('#data.price#',"");
+                  }else{
+                    var itemTitleHtml = itemTitleHtml.replace('#data.price#',productData[0]._source.currency+" "+productData[0]._source.price_1);
+                  }
 
                   productHtml = itemTitleHtml;
 
