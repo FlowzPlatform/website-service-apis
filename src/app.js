@@ -24,7 +24,6 @@ const rethinkdb = require('./rethinkdb');
 const subscription = require('flowz-subscription')
 
 const app = feathers();
-const subscription = require('flowz-subscription');
 
 //global.appRoot = path.join(path.join(__dirname, '..'), 'websites');
 global.appRoot = "/var/www/html/websites";
