@@ -14,19 +14,21 @@ const projectConfiguration = require('./project-configuration/project-configurat
 const webpackApi = require('./webpack-api/webpack-api.service.js');
 
 const addressBook = require('./address-book/address-book.service.js');
-
 const emailSubscribers = require('./email-subscribers/email-subscribers.service.js');
 
 const publishSurge = require('./publish-surge/publish-surge.service.js');
-
-
 const copyWebsite = require('./copy-website/copy-website.service.js');
 
 const colorTable = require('./color-table/color-table.service.js');
 const cloneWebsite = require('./clone-website/clone-website.service.js');
 
-
 const saveMenu = require('./save-menu/save-menu.service.js');
+const changeCityStateCountry = require('./change-city-state-country/change-city-state-country.service.js');
+const myOrders = require('./my-orders/my-orders.service.js');
+
+const shippingEstimator = require('./shipping-estimator/shipping-estimator.service.js');
+
+const adminOrders = require('./admin-orders/admin-orders.service.js');
 
 const registerWebsiteSubscriptions = require('./register-website-subscriptions/register-website-subscriptions.service.js');
 
@@ -55,9 +57,14 @@ module.exports = function () {
 
   app.configure(addressBook);
   app.configure(emailSubscribers);
+  app.configure(changeCityStateCountry);
+  app.configure(myOrders);
   app.configure(colorTable);
+  app.configure(shippingEstimator);
+
   app.configure(cloneWebsite);
   app.configure(saveMenu);
   app.configure(registerWebsiteSubscriptions);
   app.configure(websiteUsers);
+  app.configure(adminOrders);
 };

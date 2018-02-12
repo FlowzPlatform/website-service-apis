@@ -71,7 +71,7 @@ $('.email-submit').on('click',function(){
 
 			//redirect to previous page.
 			if(document.referrer.trim() != '') {
-				if (document.referrer.indexOf(project_settings.base_url) >= 0)
+				if (document.referrer.indexOf(website_settings.BaseURL) >= 0)
 				{
 					window.location = document.referrer;
 				}

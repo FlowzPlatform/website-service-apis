@@ -1,18 +1,74 @@
 /* Add your custom JavaScript/jQuery functions here. It will be automatically included in every page. */
-var project_settings = function () {
+// var project_settings = function () {
+//   var tmp = null;
+//   $.ajax({
+//       'async': false,
+//       'type': "GET",
+//       'global': false,
+//       'dataType': 'json',
+//       'url': "./assets/project_settings.json",
+//       'success': function (data) {
+//           tmp = data.project_settings;
+//       }
+//   });
+//   return tmp;
+// }();
+
+var website_info = function () {
   var tmp = null;
   $.ajax({
       'async': false,
       'type': "GET",
       'global': false,
       'dataType': 'json',
-      'url': "./assets/project_settings.json",
+      'url': "./assets/project-details.json",
       'success': function (data) {
-          tmp = data.project_settings;
+          tmp = data;
       }
   });
   return tmp;
 }();
+
+var website_settings = website_info[0];
+var project_settings = website_settings.project_settings;
+
+console.log("project_settings",project_settings)
+
+async function getProductDetailById(id) {
+      var returnData = null;
+    	await axios({
+    			method: 'GET',
+    			url: project_settings.product_api_url+"?_id="+id,
+    			headers: {'vid' : project_settings.vid},
+    		})
+    	.then(response => {
+         productData = response.data;
+        //  console.log("productData",productData);
+         returnData = productData.hits.hits[0]._source;
+
+    		 return returnData
+    	})
+    	.catch({
+
+    	})
+    	return returnData;
+}
+
+// function getProductDetailByIdCallBack(callback,id) {
+//     var data;
+//     $.ajax({
+//         url: project_settings.product_api_url+id,
+//         type: 'GET',
+//         dataType: 'json',
+//         headers: {'Authorization' : project_settings.product_api_token},
+//         success: function (resp) {
+//             data = resp;
+//             callback(data);
+//             return data;
+//         },
+//         error: function () {}
+//     });
+// }
 
 Y({
   db: {
@@ -20,7 +76,7 @@ Y({
   },
   connector: {
   name: 'webrtc',
-  room: 'wishList-example3'
+  room: 'wishList-example4'
   },
   sourceDir: null,
   share: {
@@ -107,7 +163,7 @@ if(userToken != null) {
       var tmp = null;
       $.ajax({
           'async': false,
-          'type': "POST",
+          'type': "GET",
           'url': project_settings.user_detail_api,
           'headers': {"Authorization": userToken},
           'success': function (res) {
@@ -118,6 +174,30 @@ if(userToken != null) {
       return tmp;
     }();
 }
+
+// localStorage.setItem("vOneLocalStorage", user_id);
+
+//Website owner details
+// let userOwnerToken = getCookie('auth_token');
+// if(userOwnerToken != null) {
+//     var user_owner_details = function () {
+//       var tmp = null;
+//       $.ajax({
+//           'async': false,
+//           'type': "POST",
+//           'url': project_settings.user_detail_api,
+//           'headers': {"Authorization": userOwnerToken},
+//           'success': function (res) {
+//               tmp = res.data;
+//               user_owner_id = tmp._id;
+//           }
+//       });
+//       return tmp;
+//     }();
+// }
+
+// console.log("user_owner_details",user_owner_details)
+//Website owner details
 
 function $_GET(param) {
 	var vars = {};
@@ -165,7 +245,12 @@ var init = function() {
               'type': "GET",
               'global': false,
               'dataType': 'json',
-              'url': project_settings.shopping_api_url+"?type=1&user_id="+user_id,
+              'url': project_settings.shopping_api_url,
+              params: {
+                "user_id":user_id,
+                "type":'1',
+                "website_id":website_settings['projectID'],
+              },
               'success': function (data) {
                   tmp = data;
               }
@@ -193,7 +278,7 @@ var init = function() {
             'type': "GET",
             'global': false,
             'dataType': 'json',
-            'url': project_settings.shopping_api_url+"?type=3&user_id="+user_id,
+            'url': project_settings.shopping_api_url+"?type=3&user_id="+user_id+'&website_id='+website_settings['projectID'],
             'success': function (data) {
                 tmp = data;
             }
@@ -290,10 +375,10 @@ var init = function() {
 
     $('.header-search-col').find('.btn-search').click(function(){
       if($.trim($('input[name="search"]').val()) != '') {
-               window.location.href = project_settings.base_url+'search.html?SearchSensor=' + $('input[name="search"]').val()
+               window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + $('input[name="search"]').val()
       }
       else {
-        window.location.href = project_settings.base_url+'search.html';
+        window.location.href = website_settings.BaseURL+'search.html';
       }
       return false;
     })
@@ -309,7 +394,7 @@ $(document).on('click', '.js-add-to-wishlist', function(e) {
 $(document).on('click', '.js-add-to-cart', function(e) {
   e.preventDefault();
   let product_id = $(this).data('id');
-  location.href = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_id; // 2 for Cart
+  location.href = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_id; // 2 for Cart
 });
 
 $(document).on('click', '.js-add-to-compare', function(e) {
@@ -356,7 +441,7 @@ function dataSaveToLocal(type,product_id,show_msg=true){
     localStorage.setItem(decideLocalStorageKey , JSON.stringify(data))
 
     var recentAddedInWishlist = [];
-    recentAddedInWishlist.push({ 'type': type,'product_id': product_id,'id': product_id});
+    recentAddedInWishlist.push({ 'type': type,'product_id': product_id,'id': product_id,'website_id':website_settings['projectID']});
     // localStorage.setItem(decideLocalStorageKey+'Recent' , JSON.stringify(recentAddedInWishlist))
 
     if(decideLocalStorageKey == "savedCompared")
@@ -449,7 +534,7 @@ function deleteFromLocal(type,product_id){
 }
 
 function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
-  var data = { 'type': type,'product_id': product_id,'user_id' : user_id };
+  var data = { 'type': type,'product_id': product_id,'user_id' : user_id,'website_id':website_settings['projectID'] };
   $.ajax({
     type : 'POST',
     url : project_settings.shopping_api_url,
@@ -770,7 +855,7 @@ function hideAlertBar(){
 }
 function showPageAjaxLoading(){
 	if (!$('.widget-box-overlay').length) {
-		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="'+project_settings.base_url+'assets/preloader.gif"></div>');
+		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="'+website_settings.BaseURL+'assets/preloader.gif"></div>');
 	}
 }
 function hidePageAjaxLoading(){
@@ -843,10 +928,10 @@ function showWishList(recetAdded=false)
             {
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId,
                 async: false,
                 beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("Authorization", project_settings.product_api_token);
+                  xhr.setRequestHeader ("vid", project_settings.vid);
                 },
                 dataType: 'json',
                 success: function (data) {
@@ -860,7 +945,7 @@ function showWishList(recetAdded=false)
                   listHtml1 = listHtml1.replace('#data.price#',productData[0]._source.price_1);
                   listHtml1 = listHtml1.replace('#data.currency#',productData[0]._source.currency);
 
-                  let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
+                  let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                   listHtml1 = listHtml1.replace(/#data.product_link#/g,detailLink);
 
 
@@ -929,7 +1014,6 @@ function showWishList(recetAdded=false)
 
 function showCompareList(recetAdded=false)
 {
-  var apiUrl = project_settings.product_api_url;
   var compareHtml = $('#myCompareList #listing')
   var compareValuesCount = 0;
 
@@ -954,7 +1038,7 @@ function showCompareList(recetAdded=false)
       var compare_values = window.yList.share.compareList._content;
     }
    }
-    // console.log("compare_values",compare_values)
+    console.log("compare_values",compare_values)
 
 
   if($("#myCompareList").length > 0)
@@ -996,22 +1080,22 @@ function showCompareList(recetAdded=false)
 
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId,
                 async: false,
                 beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("Authorization", project_settings.product_api_token);
+                  xhr.setRequestHeader ("vid", project_settings.vid);
                 },
                 dataType: 'json',
                 success: function (data)
                 {
                   rawData = data.hits.hits;
                   productData = rawData;
-
+                  if(productData.length >0){
                   var itemTitleHtml = html;
                   var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
                   var itemTitleHtml = itemTitleHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
 
-                  let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
+                  let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                   var itemTitleHtml = itemTitleHtml.replace('#data.product_link#',detailLink);
 
                   var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
@@ -1078,7 +1162,10 @@ function showCompareList(recetAdded=false)
                     compareHtml.find("#item_features1").append(itemFeaturesHtml)
                     $('#myCompareList #listing').html(compareHtml.html());
                   }
-
+                }
+                  else{
+                      console.log("Not found");
+                  }
                 }
               });
             }
@@ -1179,3 +1266,110 @@ function removeSpecialCharacters(str)
  str = str.replace(/[^a-zA-Z0-9\s,"-'`:&]/g, "");
  return str;
 }
+
+
+/* get city , state and country name by id */
+async function getCountryStateCityById(id,type){
+  var resp = "";
+  await axios({
+      method: 'GET',
+      url: project_settings.city_country_state_api,
+      headers: {'Authorization': project_settings.product_api_token},
+      params: {
+          'id':id,
+          'type':type
+      }
+    })
+  .then(function (response) {
+    if(response.data != ''){
+        if(type == 1)
+        resp = response.data.country_name;
+        else if (type == 2)
+        resp = response.data.state_name;
+        else if (type == 3)
+        resp = response.data.city_name;
+        return resp;
+    }
+  })
+  .catch(function (error) {
+    // console.log("error",error);
+  });
+  // console.log("resp",resp);
+  return resp;
+}
+
+var returnAddressBookDetailById = async function(addressBookId) {
+	var returnData = null;
+	await axios({
+			method: 'GET',
+			url: project_settings.address_book_api_url+'/'+addressBookId,
+			headers: {'Authorization': project_settings.product_api_token},
+		})
+	.then(response => {
+		 returnData = response.data;
+		 return returnData
+	})
+	.catch({
+
+	})
+	return returnData;
+}
+
+/* Get Data of state and city by country and state id */
+async function getStateAndCityVal(countryVal,stateVal,dataFrom){
+    let data = {}
+    let returnData = ''
+    data['country_id'] = countryVal;
+    data['data_from'] = dataFrom
+    if(dataFrom == "country_code"){
+      data['type'] = 2;
+    }else if (dataFrom == "state_code") {
+      data['state_id'] = stateVal;
+      data['type'] = 3;
+    }
+    await axios({
+            method: 'GET',
+            url: project_settings.city_country_state_api,
+            headers: {'Authorization': project_settings.product_api_token},
+            params: data
+          })
+          .then(response => {
+              returnData = response;
+              return returnData;
+          }).catch({
+
+          })
+    return returnData;
+}
+
+$(document).ready(function(){
+  if( $('.js-phone')){
+    var cntkey=0;
+      $(document).on('keypress', '.js-phone', function (event)
+      {
+          cntkey=$(this).val().length;
+          phone_delemeter ='-'
+          if(event.which!=0)
+          {
+            if(event.which==8)	return true;
+            else if(((event.which>=48&&event.which<=57)||event.which==45)&&((phone_delemeter == '' && cntkey<10)||(phone_delemeter != '' && cntkey<12)))
+            {
+                if(event.which!=45&&(cntkey==3||cntkey==7))
+                {
+                    $(this).val($(this).val()+phone_delemeter);
+                    return true;
+                }
+                else if(event.which==45&&(cntkey==3||cntkey==7))	return true;
+                else if(event.which==45)	return false;
+                else	return true;
+            }
+            else
+            {
+              return false;
+            }
+          }
+      });
+  }
+
+})
+localStorage.setItem("vOneLocalStorage", user_id);
