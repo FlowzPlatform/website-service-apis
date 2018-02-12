@@ -32,6 +32,8 @@ const adminOrders = require('./admin-orders/admin-orders.service.js');
 
 const registerWebsiteSubscriptions = require('./register-website-subscriptions/register-website-subscriptions.service.js');
 
+const websiteUsers = require('./website-users/website-users.service.js');
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -63,5 +65,6 @@ module.exports = function () {
   app.configure(cloneWebsite);
   app.configure(saveMenu);
   app.configure(registerWebsiteSubscriptions);
+  app.configure(websiteUsers);
   app.configure(adminOrders);
 };
