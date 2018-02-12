@@ -45,6 +45,19 @@ RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 RUN ln -s /etc/nginx/sites-available/qa.conf /etc/nginx/sites-enabled/
 RUN ln -s /etc/nginx/sites-available/flowz.conf /etc/nginx/sites-enabled/
 RUN ln -s /etc/nginx/sites-available/distributor.conf /etc/nginx/sites-enabled/
+RUN cp /opt/app/nginx.conf /etc/nginx/sites-available/
+RUN cp /opt/app/qa.conf /etc/nginx/sites-available/
+RUN cp /opt/app/flowz.conf /etc/nginx/sites-available/
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/qa.conf /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/flowz.conf /etc/nginx/sites-enabled/
+# uncomment chosen locale to enable it's generation
+RUN sed -i 's/# gzip_vary on;/gzip_vary on;/' /etc/nginx/nginx.conf
+RUN sed -i 's/# gzip_proxied any;/gzip_proxied any;/' /etc/nginx/nginx.conf
+RUN sed -i 's/# gzip_comp_level 6;/gzip_comp_level 6;/' /etc/nginx/nginx.conf
+RUN sed -i 's/# gzip_buffers 16 8k;/gzip_buffers 16 8k;/' /etc/nginx/nginx.conf
+RUN sed -i 's/# gzip_http_version 1.1;/gzip_http_version 1.1;/' /etc/nginx/nginx.conf
+RUN sed -i 's/# gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;/gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;/' /etc/nginx/nginx.conf
 
 WORKDIR /var/www/html
 RUN npm install
