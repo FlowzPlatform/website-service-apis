@@ -2251,3 +2251,8 @@ html{line-height:1.5;font-family:"Roboto", sans-serif;font-weight:normal;color:r
     left: 0;
     font-size: 20px;
 }
+.pro-ject .row .rbc-title-active.rbc-rangelabels-active > h4.col.s12, 
+.pro-ject .row .rbc-placeholder-active.rbc-multilist > h4.col.s12 {font-size: 18px;border-bottom: solid 1px #ccc;padding-bottom: 10px;}
+div#ResultList .sweet-loading,
+div#ResultCard .sweet-loading {position: absolute;z-index: 1;top: 30%;left: 50%;}
+.pro-ject .rbc.rbc-resultlist > .card {min-height: 570px;}

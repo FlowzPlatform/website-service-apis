@@ -20,6 +20,9 @@ const appHooks = require('./app.hooks');
 
 const rethinkdb = require('./rethinkdb');
 
+
+const subscription = require('flowz-subscription')
+
 const app = feathers();
 const subscription = require('flowz-subscription');
 
@@ -61,6 +64,7 @@ app.use(subscription.featherSubscription)
 app.configure(services);
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);
+
 // Configure a middleware for 404s and the error handler
 app.use(notFound());
 app.use(handler());

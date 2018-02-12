@@ -1,54 +1,72 @@
 var pid = getParameterByName('pid');
+
+
 if(pid != null) {
-var get_product_details = function () {
-    var tmp = null;
-    $.ajax({
-        type: 'GET',
-        url: project_settings.product_api_url+pid,
-        async: false,
-        dataType: 'json',
-         headers: {
-              'Authorization' : project_settings.product_api_token
+  var get_product_details = function () {
+      var tmp = null;
+      $.ajax({
+          type: 'GET',
+          url: project_settings.product_api_url+"?_id="+pid,
+          async: false,
+          dataType: 'json',
+           headers: {
+                'vid' : project_settings.vid
+            },
+          success: function (data) {
+              if(data.hits.hits.length > 0)
+              {
+                  productData = data;
+                  tmp = productData.hits.hits[0]._source;
+              }
           },
-        success: function (data) {
-            if(data.hits.hits.length > 0)
-            {
-                productData = data;
-                tmp = productData.hits.hits[0]._source;
-            }
-        }
-    });
-    return tmp;
-  }();
+          error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+          },
+      });
+      return tmp;
+    }();
+  // var get_product_details = getProductDetailById(pid)
+
 }
 
-$(document).ready(function(){
-// showPageAjaxLoading();
-let value_split = [];
-var productData = {};
-
-
-var colors = '';
-var Quantity = '';
-var imprint_method_select;
+showPageAjaxLoading()
+let activetab = '';
+let activeSubtab = '';
 let listHtmlPrintPosMethod = '';
+let imprint_method_select;
+let hasImprintData;
+
+$(document).ready(function(){
+let value_split = [];
+let productData = {};
+
+activetab = $('.js_product_detail_tabs').find('#js_tab_list > li.active > a').attr('href');
+activeSubtab = $(activetab).find('#js_sub_tab_list > li.active > a').attr('href');
+activetab = (activeSubtab!=undefined) ? activeSubtab : activetab;
+
+let colors = '';
+let Quantity = '';
+
+// let imprint_method_select;
+// let listHtmlPrintPosMethod = '';
 listHtmlPrintPosMethod = $('#js_imprint_request_quote').html();
 
 let listHtmlPrintPosColor = '';
 listHtmlPrintPosColor = $('.imprint-color-select').html();
 
-var pid = getParameterByName('pid');
+
 if(pid != null) {
         $.ajax({
 			  type: 'GET',
-			  url: project_settings.product_api_url+pid,
+			  url: project_settings.product_api_url+"?_id="+pid,
 			  async: false,
 			  dataType: 'json',
 			   headers: {
-				    'Authorization' : project_settings.product_api_token
+				    'vid' : project_settings.vid
 				},
 			  success: function (data) {
-          // hidePageAjaxLoading();
+          hidePageAjaxLoading();
+          var colorQtyHtml = $(".js_shipping_qty_box_main").html();
 			    // product name , sku, default images
           if(data.hits.hits.length > 0){
                   productData = data;
@@ -57,6 +75,7 @@ if(pid != null) {
                 	ProductName = removeSpecialCharacters(productDetails.product_name);
                 	ProductImage = productDetails.default_image;
                   ProductSku = productDetails.sku;
+                  hasImprintData = productDetails.imprint_data;
 
                   // $('#product_name').html(ProductName)
                   let listHtml = $('#title .row').html();
@@ -68,25 +87,28 @@ if(pid != null) {
                   // console.log(titleAndSkuHtml);
                   // productHtml += listHtml1;
                   $('#title .row').html(titleAndSkuHtml);
-
-                  $('#product_img').attr("src",project_settings.product_api_image_url+ProductImage)
-                  $('#product_img').data("zoom-image",project_settings.product_api_image_url+ProductImage)
-                  $('#product_img').data("orig-img",project_settings.product_api_image_url+ProductImage)
+                  let productImageUrl = project_settings.product_api_image_url+ProductImage;
+                  $('#product_img').attr("src",productImageUrl)
+                  $('#product_img').data("zoom-image",productImageUrl)
+                  $('#product_img').data("orig-img",productImageUrl)
 			            // $('#product_sku').html(ProductSku);
 
                   // Add Variation Images
-
+                  let imageGallaryHtml = '';
+                  imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_default_link" data-zoom-image="'+productImageUrl+'">';
+                  imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
+                  // console.log("imageGallaryHtml",imageGallaryHtml);
     		          if(productDetails.images != undefined){
-                    let imageGallaryHtml = '';
     		            $.each(productDetails.images[0].images, function(index, element) {
-    		              var imageUrl = project_settings.product_api_image_url+productDetails.supplier_id+'/'+element.web_image;
+    		              // var imageUrl = project_settings.product_api_image_url+productDetails.supplier_id+'/'+element.web_image;
+                      var imageUrl = project_settings.product_api_image_url+5+'/'+element.web_image;
     		              var color = element.color;
     		               color = color.toLowerCase().replace(/\s/g, '-');
     		               imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
     		               imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+'" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
     		            });
-    		            $(".js-image-gallery").html(imageGallaryHtml);
     		          }
+                  $(".js-image-gallery").html(imageGallaryHtml);
 
 
 		            // Product Quantity Price
@@ -114,13 +136,17 @@ if(pid != null) {
                   var listHtmlColor1 = '';
                   var productHtmlColor = '';
                   let listHtmlColor = $('.checkbox_colors').html();
-                  $('#js_request_quote_qty_box').html('');
+                  if(activetab!=undefined){
+                      $(activetab).find('#js_request_quote_qty_box').html('');
+                  }
+
                   $.each(productDetails.attributes.colors, function(index_color,element_color){
                      let colorVal = element_color.toLowerCase();
                      colorVal = colorVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
-                     listHtmlColor1 = listHtmlColor.replace('#data.colorList#',element_color);
-                     listHtmlColor1 = listHtmlColor1.replace('#data.colorID#',colorVal);
-                     listHtmlColor1 = listHtmlColor1.replace('#data.colorVal#',element_color);
+                     listHtmlColor1 = listHtmlColor.replace(/#data.colorList#/g,element_color);
+                     listHtmlColor1 = listHtmlColor1.replace(/#data.colorID#/g,colorVal);
+                     listHtmlColor1 = listHtmlColor1.replace(/#data.colorVal#/g,element_color);
+                     listHtmlColor1 = listHtmlColor1.replace(/#data.colorHexCode#/g,element_color);
                      productHtmlColor +=listHtmlColor1;
                      $(".checkbox_colors").html(productHtmlColor);
                   });
@@ -128,8 +154,8 @@ if(pid != null) {
 
                 // product print position
                 var value_split_method = [];
-                 if(productDetails.imprint_data == undefined){
-                   document.getElementById('decoration-Decoration-Print-position').style="display: none";
+                 if(hasImprintData == undefined){
+                   $('#decoration-Decoration-Print-position').hide();
                  }
 
                   if(productDetails.imprint_data != undefined){
@@ -147,7 +173,7 @@ if(pid != null) {
 
                     let listHtmlPrintPos1 = '';
                     let productHtmlPrintPos = '';
-                    listHtmlPrintPos = $('.print-checkbox').html();
+                    listHtmlPrintPos = $(activetab).find('.print-checkbox').html();
                     $('.print-checkbox').html('')
                     $('#js_imprint_request_quote').html('');
                     $.each(value_split,function(index_split,element_split){
@@ -163,13 +189,13 @@ if(pid != null) {
                 }
                 // Request info section
 
-                if($("#js_tab_list").find("li.active").find('a').attr("href") == "#js-request-info"){
-                    let formId = $(".request-tab-content").find(".tab-pane.active").find("form").attr("id");
-                    $("#"+formId+"_product_id").val(pid);
-                    $("#"+formId+"_api_url").val(project_settings.product_api_url);
-                    // $("#"+formId+"_api_token").val(project_settings.product_api_token);
-                    $(".request-tab-content").find("#js-place-order").addClass("hide");
-                }
+                // if($("#js_tab_list").find("li.active").find('a').attr("href") == "#js-request-info"){
+                //     let formId = $(".request-tab-content").find(".tab-pane.active").find("form").attr("id");
+                //     $("#"+formId+"_product_id").val(pid);
+                //     $("#"+formId+"_api_url").val(project_settings.product_api_url);
+                //     // $("#"+formId+"_api_token").val(project_settings.product_api_token);
+                //     $(".request-tab-content").find("#js-place-order").addClass("hide");
+                // }
 
                 //Shipping Section
                 let shippigCounter = parseInt($(".js_request_quote_shipping_counter").val());
@@ -195,15 +221,18 @@ if(pid != null) {
                     //     colors_qty.push({color_name:qty})
                     // });
                     let colors_qty = {};
+                    let colors_hex_code = {};
                     $('.js_color_checkbox:checked').each(function() {
                         let colorName = $(this).val();
                         let color_name = $(this).attr('id');
+                        let hex_code = $(this).parent().css('background-color');
                         let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
                         if(qty == 0){
                               showErrorMessage("Please enter quantity.")
                               return false;
                         }
                         colors_qty[colorName] = qty;
+                        colors_hex_code[colorName] = hex_code;
                     });
 
                     if(colors_qty.length == 0){
@@ -215,24 +244,25 @@ if(pid != null) {
                     shippigCounter = shippigCounter+1;
 
                     $(".js_request_quote_shipping_counter").val(shippigCounter);
-                    let colorQtyHtml = $(".js_shipping_qty_box_main").html();
+                    // let colorQtyHtml = $(".js_shipping_qty_box_main").html();
                     let replaceQtyHtml = '';
                     $.each(colors_qty,function(key,value){
                       colorQtyHtml1 = colorQtyHtml.replace(/#data.color#/g,key)
+                      colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
                       colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,value)
                       replaceQtyHtml += colorQtyHtml1
                     })
                     $(".js_shipping_qty_box_main").html(replaceQtyHtml);
-                    let shippingAddressHml = $(".shipping-method #js_shipping_method").html();
+                    let shippingAddressHml = $(activetab).find(".shipping-method #js_shipping_method").html();
                     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
                     $(".shipping-method #js_shipping_method").html(shippingAddressHml)
-                    let addressBookHtml = $("#js_shipping_addresses_"+shippigCounter+" p").html();
+                    let addressBookHtml = $(activetab).find("#js_shipping_addresses_"+shippigCounter+" p").html();
 
-                    $(".shipping-method #js_shipping_method").removeClass("hide");
+                    $(activetab).find(".shipping-method #js_shipping_method").removeClass("hide");
 
                     if ($(".auto_complete_shipping_email").length > 0)
                   	{
-                  		var ShipAddUrl = project_settings.address_book_api_url+'?address_type=shipping&user_id='+user_id+'&deleted_at=false&is_address=1';
+                  		var ShipAddUrl = project_settings.address_book_api_url+'?address_type=shipping&website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1';
                   		$(".auto_complete_shipping_email").typeahead({
                   			name : 'sear',
                   			display:'value',
@@ -261,7 +291,7 @@ if(pid != null) {
                               url: project_settings.address_book_api_url+'/'+addressBookId,
                               headers: {'Authorization': project_settings.product_api_token},
                             })
-                          .then(response => {
+                          .then(async response => {
                               if(response.data != undefined ){
                                   let returnData = response.data;
                                   let replaceAddressHtml = '';
@@ -271,12 +301,22 @@ if(pid != null) {
                                   if(returnData.street2 != undefined){
                                     replaceAddressHtml += returnData.street2+"<br>";
                                   }
-                                  replaceAddressHtml += returnData.city+",";
-                                  replaceAddressHtml += returnData.state+",";
+                                  // change
+                                  let city = await getCountryStateCityById(returnData.city,3);
+                                  replaceAddressHtml += city+",";
+                                  
+                                  let state = await getCountryStateCityById(returnData.state,2);
+                                  replaceAddressHtml += state+",";
+                                  
+                                  let country = await getCountryStateCityById(returnData.country,1);     
+                                  $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').html('Select Carrier <span class="caret"></span>');
+                                //   $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').attr('data-value','');                             
+                                  replaceAddressHtml += country
+                                  // END -Change                    
+
                                   if(returnData.postalcode != undefined ){
-                                    replaceAddressHtml += returnData.postalcode+",";
+                                    replaceAddressHtml += "-"+returnData.postalcode+"<br>";
                                   }
-                                  replaceAddressHtml += returnData.country+"<br>";
                                   if(returnData.phone != undefined ){
                                     replaceAddressHtml += "T: "+returnData.phone+",<br>";
                                   }
@@ -286,10 +326,56 @@ if(pid != null) {
                                   replaceAddressHtml += '<input name="shippingAddressId_'+shippigCounter+'" id="shippingAddressId_'+shippigCounter+'" value="'+returnData.id+'" type="hidden">';
                                   if(addressBookHtml.indexOf("#data.address#")!= -1){
                                       addressBookHtml = addressBookHtml.replace(/#data.address#/g,replaceAddressHtml);
-                                      $("#js_shipping_addresses_"+shippigCounter+" p").html(addressBookHtml);
+                                      $(activetab).find("#js_shipping_addresses_"+shippigCounter+" p").html(addressBookHtml);
                                   }else{
-                                      $("#js_shipping_addresses_"+shippigCounter+" p").html(replaceAddressHtml)
+                                      $(activetab).find("#js_shipping_addresses_"+shippigCounter+" p").html(replaceAddressHtml)
                                   }
+                                  $(activetab).find("#js_shipping_addresses_"+shippigCounter).removeClass("hide");
+                                // change
+                                    let shipping_details = get_product_details.shipping[0];
+                                    var addressFrom  = {
+                                        // "name": returnData.name,
+                                        // "street1": returnData.street1,
+                                        "city": shipping_details.fob_city,
+                                        "state": shipping_details.fob_state_code,
+                                        "zip": shipping_details.fob_zip_code,
+                                        "country": shipping_details.fob_country_code,
+                                        // "phone": "+1 555 341 9393",//optional
+                                        // "email": "shippotle@goshippo.com",//optional
+                                        "validate": true//optional
+                                    };
+                                    
+                                    var addressTo  = {
+                                        // "name": returnData.name,
+                                        // "street1": "500 to 598 1st St",//returnData.street1,
+                                        "city": city,
+                                        "state": state,
+                                        "zip": returnData.postalcode,
+                                        "country": country,
+                                        // "phone": "+1 555 341 9393",//optional
+                                        // "email": "shippotle@goshippo.com",//optional
+                                        "validate": true//optional
+                                    };
+                                    // console.log("addressTo",addressTo);
+
+                                    $(document).off('click', '#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li').on('click','#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li', function (e) {
+                                        // if(e.handled !== true) 
+                                        {
+                                            showPageAjaxLoading()
+                                            var thisObj = $(this);
+                                            
+                                            let attr = $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value');
+
+                                            if (typeof attr !== typeof undefined && attr !== false) {
+                                                $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value','')
+                                                $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-service','')
+                                            }
+                                            getShippingRate('#js_shipping_method_detail_'+shippigCounter,thisObj,addressFrom,addressTo,shipping_details);
+                                        }
+                                    });  
+                                    $("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").removeClass("hide");
+                                // END -Change
+                                  
                                   $("#js_shipping_addresses_"+shippigCounter).removeClass("hide");
                               }
                           })
@@ -351,20 +437,20 @@ if(pid != null) {
                         }
                     }
                     if(productDetails.shipping instanceof Array) {
-                        fob = productDetails.shipping[0].free_on_board;
-                        carton_length = productDetails.shipping[0].carton_length+" "+productDetails.shipping[0].carton_size_unit;
-                        carton_weight = productDetails.shipping[0].carton_weight+" "+productDetails.shipping[0].carton_weight_unit;
-                        shipping_qty_per_carton = productDetails.shipping[0].shipping_qty_per_carton;
-                        if(typeof fob !== "undefined") {
+                        if(productDetails.shipping[0].free_on_board != undefined){
+                            fob = productDetails.shipping[0].free_on_board;
                             $('.product-shipping-text').append("<tr><td class='title'>FOB : </td><td>"+fob+"</td></tr>");
                         }
-                        if(typeof carton_length !== "undefined") {
+                        if(productDetails.shipping[0].carton_length != undefined ){
+                            carton_length = productDetails.shipping[0].carton_length+" "+productDetails.shipping[0].carton_size_unit;
                             $('.product-shipping-text').append("<tr><td class='title'>Carton Length : </td><td>"+carton_length+"</td></tr>");
                         }
-                        if(typeof carton_weight !== "undefined") {
+                        if(productDetails.shipping[0].carton_weight != undefined){
+                            carton_weight = productDetails.shipping[0].carton_weight+" "+productDetails.shipping[0].carton_weight_unit;
                             $('.product-shipping-text').append("<tr><td class='title'>Carton Weight : </td><td>"+carton_weight+"</td></tr>");
                         }
-                        if(typeof shipping_qty_per_carton !== "undefined") {
+                        if(productDetails.shipping[0].shipping_qty_per_carton !=undefined){
+                            shipping_qty_per_carton = productDetails.shipping[0].shipping_qty_per_carton;
                             $('.product-shipping-text').append("<tr><td class='title'>Qty Per Carton : </td><td>"+shipping_qty_per_carton+"</td></tr>");
                         }
                     }
@@ -396,32 +482,34 @@ if(pid != null) {
                 });
             }
             else{
+              hidePageAjaxLoading()
                 // console.log("Authentication is failed to fetch product information.");
                 window.location = "error404.html";
                 return false;
             }
 			  },
         error: function(err){
+          hidePageAjaxLoading()
             // console.log("this type of url not present");
         }
     });
-}
+  }
+  hidePageAjaxLoading()
+  $('.ob-product-gallery .product-big-image-thumbnails').bxSlider({
+        mode: 'vertical',
+        slideWidth:100,
+        minSlides: 2,
+        pager:false,
+        slideMargin:7
+  });
 
-    $('.ob-product-gallery .product-big-image-thumbnails').bxSlider({
-      mode: 'vertical',
-      slideWidth:100,
-      minSlides: 2,
-      pager:false,
-      slideMargin:7
-    });
-
-    $('.product-gallery').zoom({ on:'click' });
-    $(".product-thumb-img-anchar").on('click', function () {
+  $('.product-gallery').zoom({ on:'click' });
+  $(".product-thumb-img-anchar").on('click', function () {
         $('.product-gallery').trigger('zoom.destroy');
         var img_src = $(this).find("img").attr("src");
         $(".product-big-image").find("img").attr("src", img_src);
         $('.product-gallery').zoom({ on:'click' });
-    });
+  });
 
     // QUANTITY PRICE TABLE START
     $(".quantity-table-col").owlCarousel({
@@ -437,11 +525,12 @@ if(pid != null) {
 
     //requestInfoconsole.log("=====",user_details);
 
-    $(document).on('click','.js_submit_info', function (e) {
+    $(document).on('click','.js_submit_info', async function (e) {
             let formObj = $(this).closest('form');
+            let product_data = await getProductDetailById(pid)
             if(formObj.find("textarea[name='note']").val() == ''){
               if($(".special-instruction-textarea").find('ul').length <= 0){
-                $("textarea[name='note']").after('<ul class="red"><li>Please enter special instructions.</li></ul>');
+                $("#js-request-info").find("textarea[name='note']").after('<ul class="red"><li>Please enter special instructions.</li></ul>');
               }
               return false;
             }
@@ -449,15 +538,18 @@ if(pid != null) {
               window.location = "login.html";
               return false;
             }
-
+            showPageAjaxLoading()
             $.ajax({
                   type: 'POST',
                   url: project_settings.request_info_api_url,
-                  data: {product_api_url:project_settings.product_api_url,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null},
+                  // data: {product_api_url:project_settings.product_api_url,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":"bb1e5568-f907-4583-9259-42019a2352cc"},
+                  data: {'product_id':pid,'product_data':product_data,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']},
                   cache: false,
                   dataType: 'json',
-                  headers: {"Authorization": project_settings.product_api_token},
+                  // headers: {"Authorization": project_settings.product_api_token},
+                  headers: {"vid": project_settings.vid},
                   success: function(response){
+                    hidePageAjaxLoading()
                       if(response.length > 0 && response[0].id != '' ){
                           showSuccessMessage("Your request info is submitted successfully.");
                           window.location = "thankYou.html";
@@ -487,78 +579,7 @@ if(pid != null) {
     });
 
 
-
-    $(document).on("change",".js_color_checkbox",function(){
-          let id = $(this).attr("id");
-
-          if($('#'+id).is(":checked")) {
-
-           Quantity = '<div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_'+id+'"><div class="color-input" title="'+$(this).val()+'"><br></div><div class="selector-quantity js-quantity-section in"><div class="selector-btn"><div class="sp-minus"><a data-multi="-1" href="javascript:void(0)" class="js-quantity-selector">-</a></div>'+
-          '<div class="selector-input"> <input type="text" value="0" class="selector-input js_request_quote_qty js_request_quote_nosize_qty" ></div><div class="sp-plus"><a data-multi="1" href="javascript:void(0)" class="js-quantity-selector">+</a></div></div><div class="clearfix"></div></div><a href="javascript:void(0)" data-toggle="tooltip" class="js_request_quote_qty_remove remove-qty" data-id="'+id+'">'+
-          '<i class="fa fa-trash-o"></i></a></div>';
-            $('#'+id).attr('checked',true);
-            if($("#js_request_quote_qty_box").html() !=""){
-              $("#js_request_quote_qty_box").append(Quantity);
-            }else{
-                $("#js_request_quote_qty_box").html(Quantity);
-            }
-          }
-          else{
-
-            if($("#js_request_quote_qty_box_"+id).length > 0){
-                $("#js_request_quote_qty_box_"+id).remove();
-                $('#'+id).attr('checked',false);
-            }
-          }
-    });
-
-    $(document).on("click",".js_request_quote_qty_remove",function(){
-        let colorCbId = $(this).closest('a').attr("data-id");
-        $("#"+colorCbId).prop("checked",false).trigger("change");
-    });
-
-
-    let print_pos_id;
-
-    $(document).on("change",".js_add_imprint_location_request_quote",function(){
-
-          print_pos_id = $(this).attr("id");
-         let printPos = $(this).attr("value");
-         let listHtmlPrintPosMethod1 = '';
-         let productHtmlPrintPosMethod = '';
-         let select_imprint_method ='<li><a>Select method</a></li>';
-
-       if($('#'+print_pos_id).is(":checked")){
-         listHtmlPrintPosMethod1 = listHtmlPrintPosMethod.replace('#data.printPositionName#',printPos);
-         listHtmlPrintPosMethod1 = listHtmlPrintPosMethod1.replace('#printPosMethod#',print_pos_id);
-         listHtmlPrintPosMethod1 = listHtmlPrintPosMethod1.replace('#printPosMethodId#',print_pos_id);
-         productHtmlPrintPosMethod += listHtmlPrintPosMethod1;
-
-        $.each(imprint_method_select, function(index_imprint_method,element_imprint_method){
-            if(element_imprint_method.imprint_position.includes(printPos) == true){
-              let dropVal;
-              let printposMini;
-              printposMini = replaceWithUnderscore(printPos);
-
-              dropVal = replaceWithUnderscore(element_imprint_method.imprint_method);
-
-              select_imprint_method += '<li id="select_method_'+dropVal+'" data-dropval="'+dropVal+'" data-printpos="'+printposMini+'" data-full-color="'+element_imprint_method.full_color+'" data-max-imprint-color="'+element_imprint_method.max_imprint_color_allowed+'" data-method="'+element_imprint_method.imprint_method+'"><a>'+ element_imprint_method.imprint_method +'</a></li>'
-            }
-          });
-
-          if($("#js_imprint_request_quote").html() !=""){
-                $("#js_imprint_request_quote").append(productHtmlPrintPosMethod);
-                $("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
-          }else{
-              $("#js_imprint_request_quote").html(productHtmlPrintPosMethod);
-              $("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
-          }
-          $("#js_imprint_request_quote_box_"+print_pos_id).find('.imprint-color-select').hide()
-       }
-       else{
-          $("#js_imprint_request_quote_box_"+print_pos_id).remove();
-       }
-     });
+/**/
 
      $(document).on("click",".js_set_selected_value li",function(){
         let thisObj = $(this);
@@ -577,7 +598,7 @@ if(pid != null) {
      $(document).on("click",".js_set_selected_value_col li",function(){
         let thisObj = $(this);
         let dataAttributes = thisObj.data();
-        let colorHtml = "<div class='row choose-variation js_select_color_boxes'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title js_color_title pull-left' data-type='standard'>Standard</div></div></div><input type='hidden' id='js_selected_color_id_#data.printPositionName#_#data.imprintId#_#data-printColor#' value='#data.color#' data-type='standard' /><div class='relative-col'><div class='row color-selection-block selection-common-box'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title hidden-lg hidden-md hidden-sm'>Standard</div><div class='selection-color-box'><div class='dropdown dropdown_size color-select-box'><button class='btn dropdown-toggle' aria-expanded='true' data-toggle='dropdown' type='button'>Select Color <span class='caret'></span></button><ul class='dropdown-menu js_select_color_from_list js_set_selected_value' role='menu' aria-labelledby='dropdownMenu_1' data-imprint-id='#data.imprintId#' data-color-no='#data.printColor#' data-type='standard'><li data-value='#data.imprintColor#'>#data.imprintColor#</li></ul></div></div></div></div></div>";
+        let colorHtml = "<div class='row choose-variation js_select_color_boxes'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title js_color_title pull-left' data-type='standard'>Standard</div></div></div><input type='hidden' id='js_selected_color_id_#data.printPositionName#_#data.imprintId#_#data-printColor#' data-type='standard' /><div class='relative-col'><div class='row color-selection-block selection-common-box'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title hidden-lg hidden-md hidden-sm'>Standard</div><div class='selection-color-box'><div class='dropdown dropdown_size color-select-box'><button class='btn dropdown-toggle' aria-expanded='true' data-toggle='dropdown' type='button'>Select Color <span class='caret'></span></button><ul class='dropdown-menu js_select_color_from_list js_set_selected_value' role='menu' aria-labelledby='dropdownMenu_1' data-imprint-id='#data.imprintId#' data-color-no='#data.printColor#' data-type='standard'><li data-value='#data.imprintColor#'>#data.imprintColor#</li></ul></div></div></div></div></div>";
         let replaceColorHtml = '';
         let dropDownColorHtml = '';
         let imprintData = $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js_select_method").parent('div').find("button").data();
@@ -640,22 +661,26 @@ if(pid != null) {
      });
 
 
-     $('.place-order-submit').on('click',function(){
+     $('.place-order-submit,.request-quote-submit').on('click', async function(event){
+        let ordertab = $(this).attr('data-attr');
         let order_type = $('.request-tab-content li.active a').text().toLowerCase();
 
         var colors_qty = {};
         var total_qty = 0;
         $('.js_color_checkbox:checked').each(function() {
             let color_name = $(this).attr('id');
+            let colorName = $(this).val();
             let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
             total_qty = total_qty + qty;
-            colors_qty[color_name] = qty;
+            colors_qty[colorName] = qty;
         });
 
         var imprint_position = [];
         $('.js_add_imprint_location_request_quote:checked').each(function(i) {
+            let positionName = $(this).val()
             let position_name = replaceWithUnderscore($(this).val());
             let imprint_method_name = $("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").data('dropval');
+            let imprintMethodName = $("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").data('method');
             let no_of_color = $("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").data('value');
 
             var selected_colors = {};
@@ -663,7 +688,7 @@ if(pid != null) {
                 selected_colors[k-1] = $('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
             }
 
-            var imprint_position_data = { 'imprint_position_name': position_name,'imprint_method_name': imprint_method_name,'no_of_color' : no_of_color,'selected_colors' : selected_colors };
+            var imprint_position_data = { 'imprint_position_name': positionName,'imprint_method_name': imprintMethodName,'no_of_color' : no_of_color,'selected_colors' : selected_colors };
             imprint_position.push(imprint_position_data);
         });
 
@@ -700,18 +725,43 @@ if(pid != null) {
         let shipping_details = [];
         let shipping_counter = parseInt($(".js_request_quote_shipping_counter").val());
         for(let i = 1 ;i<=shipping_counter;i++){
-          let selected_address_id = $("#js_shipping_addresses_"+i+" #shippingAddressId_"+i).val();
-          let shipping_detail = {"on_hand_date":'','ship_date':'',"ship_transittime": "","shipping_carrier": "","shipping_charge": "","shipping_method": ""};
-          shipping_details.push({'color_quantity':colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail});
+            let selected_address_id = $("#js_shipping_addresses_"+i+" #shippingAddressId_"+i).val();
+            if(selected_address_id == undefined)
+            {
+                showErrorMessage("Please Select Shipping Address.")
+                return false;   
+            }
+            let shipping_address = await returnshippingData(selected_address_id);
+            var shipping_carrier = $("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_shippingcarrier").attr('data-value');
+
+            if (typeof shipping_carrier === typeof undefined ) {
+                shipping_carrier = "";
+            }
+
+            var get_shipping_charge = $("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_shippingmethod").attr('data-value');
+
+            if (typeof get_shipping_charge === typeof undefined ) {
+                get_shipping_charge = "";
+            }
+
+            var get_shipping_method = $("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_shippingmethod").attr('data-service');
+
+            if (typeof get_shipping_method === typeof undefined ) {
+                get_shipping_method = "";
+            }
+
+            let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
+
+            // return false;
+            let shipping_detail = {"on_hand_date":'','ship_date':'',"ship_transittime": "","shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
+            shipping_details.push({'color_quantity':colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail,'shipping_address':user_shipping_address});
         }
         let shipping_method = {'shipping_detail':shipping_details,"shipping_type":shipping_type};
 
         if(order_type != '' && total_qty != 0 && unit_price != 0 && user_id!=null && typeof shipping_type!='undefined') {
             var data = {};
-            data['type'] = 2;
             data['product_id'] = pid;
             data['user_id'] = user_id;
-            data['order_type'] = order_type;
             data['color'] = colors_qty;
             data['imprint'] = imprint_position;
             data['charges'] = charges;
@@ -719,15 +769,19 @@ if(pid != null) {
             data['total_qty'] = total_qty;
             data['unit_price'] = unit_price;
             data['shipping_method'] = shipping_method;
-            //console.log('product data == ',data);
+            data['website_id'] = website_settings['projectID'];
 
-            $.ajax({
-            type : 'POST',
-            url : project_settings.shopping_api_url,
-            data : data,
-            dataType : 'json',
-                success : function(response_data) {
-                    if(response_data.status == 200) {
+            if(ordertab == 'place-order'){
+                data['type'] = 2;
+                data['order_type'] = order_type;
+                // return false;
+                $.ajax({
+                    type : 'POST',
+                    url : project_settings.shopping_api_url,
+                    data : data,
+                    dataType : 'json',
+                    success : function(response_data) {
+                        if(response_data.status == 200) {
                             showSuccessMessage("Product added to cart","cartPage.html");
                             return false;
                         }
@@ -735,8 +789,38 @@ if(pid != null) {
                             showSuccessMessage(response_data.message);
                             return false;
                         }
-                }
-            });
+                    }
+                });
+            }
+            else{
+                let user_info = {};
+                user_info['id'] = user_details['_id']
+                user_info['email'] = user_details['email']
+                user_info['fullname'] = user_details['fullname']
+                data['user_info'] = user_info;
+                data['product_description'] = get_product_details;
+                data['website_id'] = website_settings['projectID'];
+                data['owner_id'] = website_settings['UserID'];
+                data['billing_info'] = await returnDefaultBillingInfo();
+
+                $.ajax({
+                    type : 'POST',
+                    url : project_settings.request_quote_api_url,
+                    data : data,
+                    headers: {"Authorization": userToken},
+                    dataType : 'json',
+                    success : function(response_data) {
+                        if(response_data!= "") {
+                            showSuccessMessage("Request Quote Save Sucessfully","thankYou.html");
+                            return false;
+                        }
+                        else if(response_data.status == 400) {
+                            showSuccessMessage(response_data.message);
+                            return false;
+                        }
+                    }
+                });
+            }
         }
         else {
             if(user_id==null) {
@@ -764,8 +848,98 @@ if(pid != null) {
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
       $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
+      // replaceColorNameWithHexaCodes();
+      if(user_id == null){
+        if($("#js-place-order").length > 0){
+          $("#js_tab_list li").find('a[href="#js-place-order"]').parent('li').remove()
+          $("#js-place-order").remove()
+        }
 
-   });
+        if($("#js-request-quote").length > 0){
+          $("#js_tab_list li").find('a[href="#js-request-quote"]').parent('li').remove()
+          $("#js-request-quote").remove()
+        }
+
+        if($("#js-request-info").length > 0){
+          $("#js_tab_list li").find('a[href="#js-request-info"]').parent("li").addClass("active")
+          $("#js-request-info").addClass("in active")
+          $("#js-request-info .no-tag").parent('div').remove();
+        }
+
+      }else{
+          $('#js_tab_list li.active').trigger('click');
+      }
+});
+
+//change
+function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_details)
+{
+    var qty = 0;
+    var shippingaddId =0 ;
+    var thisShipCounter = thisObj.closest('ul').data('shipping-counter');
+    var thisRequestType = thisObj.closest('ul').data('request-type');
+
+    var buttonObj = thisObj.parent().parent().find('button');
+    var selectedVal = thisObj.find('a').text();
+    var shippingMethod=thisObj.data('value');
+
+    var total_qty = 0;
+    $('.js_color_checkbox:checked').each(function() {
+        let color_name = $(this).attr('id');
+        let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+        total_qty = total_qty + qty;
+    });
+
+    if(total_qty >0)
+    {
+        userDetails = {'shipping_estimator_key':project_settings.shipping_estimator_key,'carrier_account':project_settings.carrier_account[shippingMethod],'carrier':shippingMethod,'addressFrom':addressFrom,'addressTo':addressTo,'total_qty':total_qty,'shipping_details':shipping_details};
+        $.ajax({
+            type: 'POST',
+            url: project_settings.shipping_estimator_api_url,
+            async: true,
+            data:  JSON.stringify(userDetails),
+            dataType: 'json',
+            headers: { 'Content-Type': 'application/json' },
+            success: function (result) {
+                let rateHtml = '';
+                if(typeof result.data !== "undefined" && result.data != null && typeof result.data.rates !== "undefined" && result.data.rates.length>0)
+                {
+                    for(let ratekey in result.data.rates)
+                    {
+                        let rateDetails = result.data.rates[ratekey];
+
+                        rateHtml +='<li data-service="'+rateDetails.servicelevel.name+'" data-value="'+rateDetails.amount+'" data-transit-time=""><a href="javascript:void(0)">'+rateDetails.servicelevel.name+' '+rateDetails.currency+' '+rateDetails.amount+'</a></li>';
+                    }
+                }
+                else{
+                    rateHtml = '<li><a href="javascript:void(0)">Shipping Details Invalid</a></li>'
+                }
+                $(parentObj+" .js_rq_ship_shipmethod_ul").html(rateHtml);
+                hidePageAjaxLoading()
+            },
+            error: function(err) {
+                $('.error-message').removeClass('hide');
+                hidePageAjaxLoading()
+            }
+        });
+        $(parentObj+" .js_rq_ship_shippingmethod").html('Select Method <span class="caret"></span>');
+    }
+    else{
+        $(parentObj+" .js_rq_ship_shipmethod_ul").html('');
+        hidePageAjaxLoading()
+    }
+}
+//END - change
+
+function autoCounter() {
+    let sectionCount = 0;
+    $(activetab).find( ".js-section-number" ).each(function( index ) {
+        if($(this).closest('.panel-group').css('display') != 'none'){
+            sectionCount = sectionCount + 1;
+            $(this).prepend("<i>"+sectionCount+"</i>&nbsp;");
+        }
+    });
+}
 
 function calculate_setup_charge(imprint_position)
 {
@@ -801,3 +975,212 @@ function replaceWithUnderscore(value){
   returnVal = returnVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
   return returnVal;
 }
+
+
+function replaceColorNameWithHexaCodesold(){
+  // alert("++++")
+  //var data = { 'colors': colors };
+  var all_colors = [];
+  $( ".js_color_checkbox" ).each(function( index,colorCheckbox ) {
+    all_colors.push($( this ).data("hex-code"))
+  });
+
+  var data = {'colorname':all_colors};
+  //var data = {'colorname':all_colors,'skip':0,'limit':all_colors.length};
+  $.ajax({
+    type : 'GET',
+    url : project_settings.color_table_api_url,
+    data : data,
+    dataType : 'json',
+    success : function(response_data) {
+
+      $( ".js_color_checkbox" ).each(function( index ) {
+        //var bgColor = $( this ).parent().css("background-color");
+        var bgColor = $( this ).data("hex-code");
+        var checkbox = $( this )
+
+        if(typeof response_data.data != 'undefined')
+        {
+          $.each(response_data.data, function( index, value ) {
+
+            if(typeof value.colorname != 'undefined')
+            {
+              if(value.colorname.toLowerCase() == bgColor.toLowerCase())
+              if(typeof value.hexcode != 'undefined')
+              {
+                checkbox.attr("data-hex-code",value.hexcode)
+                checkbox.parent().css('background-color',value.hexcode)
+                checkbox.parent().attr('title',value.colorname)
+              }
+            }
+          });
+        }
+
+        //console.log( index + ": " + $( this ).text() );
+      });
+      /*console.log(response_data);
+      return response_data;*/
+    }
+  })
+}
+
+$(document).ready(function() {
+  replaceColorNameWithHexaCodesold();
+})
+
+let returnshippingData = async function(selected_address_id) {
+    let shipping_address = {}
+    let shipping_info_data = []
+    let addressInfo = await returnAddressBookDetailById(selected_address_id)
+    shipping_address['address_type'] = addressInfo.address_type
+    shipping_address['name'] = addressInfo.name
+    shipping_address['city'] = await getCountryStateCityById(addressInfo.city,3)
+    shipping_address['country'] = await getCountryStateCityById(addressInfo.country,1)
+    shipping_address['state'] = await getCountryStateCityById(addressInfo.state,2)
+    shipping_address['culture'] = addressInfo.culture
+    shipping_address['email'] = addressInfo.email
+    if(addressInfo.mobile != "") {shipping_address['mobile'] = addressInfo.mobile}
+    shipping_address['phone'] = addressInfo.phone
+    shipping_address['postalcode'] = addressInfo.postalcode
+    shipping_address['street1'] = addressInfo.street1
+    if(addressInfo.street2 != ""){shipping_address['street2'] = addressInfo.street2}
+
+    return shipping_address ;
+}
+
+let returnDefaultBillingInfo = async function fetchDefaultBillingInfo() {
+    let returnData = null;
+      await axios({
+              method: 'GET',
+              url: project_settings.address_book_api_url+'?address_type=billing&user_id='+user_id+'&deleted_at=false&is_address=1&is_default=1',
+              headers: {'Authorization': project_settings.product_api_token},
+          })
+      .then(async response => {
+            let billing_address = {}
+            if(response.data.data.length > 0){
+            addressInfo  = response.data.data[0]
+            billing_address['address_type'] = addressInfo.address_type
+            billing_address['name'] = addressInfo.name
+            billing_address['city'] = await getCountryStateCityById(addressInfo.city,3)
+            billing_address['country'] = await getCountryStateCityById(addressInfo.country,1)
+            billing_address['state'] = await getCountryStateCityById(addressInfo.state,2)
+            billing_address['culture'] = addressInfo.culture
+            billing_address['email'] = addressInfo.email
+            if(addressInfo.mobile != "") {billing_address['mobile'] = addressInfo.mobile}
+            billing_address['phone'] = addressInfo.phone
+            billing_address['postalcode'] = addressInfo.postalcode
+            billing_address['street1'] = addressInfo.street1
+            if(addressInfo.street2 != ""){billing_address['street2'] = addressInfo.street2}
+            returnData = billing_address
+            return returnData
+        }
+      })
+      .catch({
+      })
+      return returnData;
+}
+
+$(document).on("click","#js_tab_list",function(){
+    activetab = $(this).find('li.active > a').attr('href');
+    activeSubtab = $(activetab).find('#js_sub_tab_list > li.active > a').attr('href');
+    activetab = (activeSubtab!=undefined) ? activeSubtab : activetab;
+
+    let rqhtml = $(activetab+' .checkbox_colors').html();
+    let coloractivetab = activetab.replace(/\#/g, '');
+    rqhtml = rqhtml.replace(/#data.tabID#/g, coloractivetab);
+    $(activetab+' .checkbox_colors').html(rqhtml);
+    $(activetab).find('#js_request_quote_qty_box').html('');
+    $(activetab).find(".js_color_checkbox").each(function(){
+        $(this).prop("checked",false);
+    });
+
+    $(activetab).find(".js_add_imprint_location_request_quote").each(function(){
+        $(this).prop("checked",false);
+    });
+
+    if(hasImprintData == undefined){
+        $(activetab).find('#decoration-Decoration-Print-position').hide();
+    }
+
+    $(activetab + '.print-checkbox').html('');
+    $(activetab).find('#js_imprint_request_quote').empty();
+    $(activetab).find('#js_request_quote_instruction').val('');
+    $(activetab).find('#js_shipping_method').addClass('hide');
+    $(activetab).find('.js_select_shipping_type').prop('checked',false);
+    //console.log($(activetab).find('#js_shipping_method').find(".shipping-scroll").html())
+    //$(activetab).find('#js_shipping_method').find(".shipping-scroll").addClass('hide');
+    autoCounter();
+});
+
+$(document).on("change",activetab + ".js_add_imprint_location_request_quote",function(){
+    let print_pos_id = $(this).attr("id");
+    let printPos = $(this).attr("value");
+    let listHtmlPrintPosMethod1 = '';
+    let productHtmlPrintPosMethod = '';
+    let select_imprint_method ='<li><a>Select method</a></li>';
+
+    if($(activetab).find('#'+print_pos_id).is(":checked")){
+        listHtmlPrintPosMethod1 = listHtmlPrintPosMethod.replace('#data.printPositionName#',printPos);
+        listHtmlPrintPosMethod1 = listHtmlPrintPosMethod1.replace('#printPosMethod#',print_pos_id);
+        listHtmlPrintPosMethod1 = listHtmlPrintPosMethod1.replace('#printPosMethodId#',print_pos_id);
+        productHtmlPrintPosMethod += listHtmlPrintPosMethod1;
+        $.each(imprint_method_select, function(index_imprint_method,element_imprint_method){
+            if(element_imprint_method.imprint_position.includes(printPos) == true){
+                let dropVal;
+                let printposMini;
+                printposMini = replaceWithUnderscore(printPos);
+                dropVal = replaceWithUnderscore(element_imprint_method.imprint_method);
+                select_imprint_method += '<li id="select_method_'+dropVal+'" data-dropval="'+dropVal+'" data-printpos="'+printposMini+'" data-full-color="'+element_imprint_method.full_color+'" data-max-imprint-color="'+element_imprint_method.max_imprint_color_allowed+'" data-method="'+element_imprint_method.imprint_method+'"><a>'+ element_imprint_method.imprint_method +'</a></li>'
+            }
+        });
+
+        if($(activetab).find("#js_imprint_request_quote").length!=""){
+            $(activetab).find("#js_imprint_request_quote").append(productHtmlPrintPosMethod);
+            $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
+        }else{
+            $(activetab).find("#js_imprint_request_quote").html(productHtmlPrintPosMethod);
+            $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
+        }
+        $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find('.imprint-color-select').hide()
+    }
+    else{
+        $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).remove();
+    }
+});
+
+$(document).on("change", activetab + ' .js_color_checkbox',function(){
+    let id = $(this).attr("id");
+    // console.log("================>>>",$(this).closest('form').find(".active").attr("id"));
+    //$(activetab).find('.checkbox_color').find('#'+id).prop("checked",true);
+// console.log("++++++++++++++++",$(activetab).find('.checkbox_colors').find("input:checkbox[id="+id+"]").is(":checked"));
+    if($(this).is(":checked")) {
+        var hexCodeBgColor = $(this).parent().css('background-color')
+        // console.log("hexCodeBgColor",hexCodeBgColor);
+        Quantity = '<div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_'+id+'"><div class="color-input" style="background-color:'+hexCodeBgColor+'" title="'+$(this).val()+'"><br></div><div class="selector-quantity js-quantity-section in"><div class="selector-btn"><div class="sp-minus"><a data-multi="-1" href="javascript:void(0)" class="js-quantity-selector">-</a></div>'+
+        '<div class="selector-input"> <input type="text" value="0" class="selector-input js_request_quote_qty js_request_quote_nosize_qty" ></div><div class="sp-plus"><a data-multi="1" href="javascript:void(0)" class="js-quantity-selector">+</a></div></div><div class="clearfix"></div></div><a href="javascript:void(0)" data-toggle="tooltip" class="js_request_quote_qty_remove remove-qty" data-id="'+id+'">'+
+        '<i class="fa fa-trash-o"></i></a></div>';
+        // console.log("Quantity",Quantity);
+        // $(activetab).find('.checkbox_colors').find('#'+id).attr('checked',true);
+        // console.log("+++++++++++++++++++++++++",$(this).prop("checked"));
+        $(this).prop("checked",true);
+        // console.log("***********",$(this).prop("checked"));
+        if($(activetab).find("#js_request_quote_qty_box").html() !=""){
+            $(activetab).find("#js_request_quote_qty_box").append(Quantity);
+        }else{
+            $(activetab).find("#js_request_quote_qty_box").html(Quantity);
+        }
+    }
+    else{
+        if($(activetab).find("#js_request_quote_qty_box_"+id).length > 0){
+            $(activetab).find("#js_request_quote_qty_box_"+id).remove();
+            // $(activetab).find('.checkbox_colors').find('#'+id).attr('checked',false);
+            $(this).prop("checked",false);
+            $(activetab).find('.js_rq_shipping_quantity').filter('[data-color-id="'+id+'"]').remove();
+        }
+    }
+});
+
+$(document).on("click", activetab + ' .js_request_quote_qty_remove', function(){
+    let colorCbId = $(this).closest('a').attr("data-id");
+    $(activetab).find("#"+colorCbId).prop("checked",false).trigger("change");
+});

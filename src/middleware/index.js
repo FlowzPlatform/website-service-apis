@@ -1,4 +1,3 @@
-let rp = require('request-promise')
 const subscription = require('flowz-subscription')
 module.exports.subscription = subscription
 module.exports = async function () {
