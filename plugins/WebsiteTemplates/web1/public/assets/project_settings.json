@@ -29,6 +29,7 @@
         "color_swatch_filter_api": "http://api.flowzcluster.tk/pdmnew/filters/",
         "shipping_estimator_api_url": "http://api.flowzcluster.tk/serverapi/shipping-estimator",
         "shipping_estimator_key": "shippo_test_3be31f8493f2ad8630b07fdd688dc2324054d1bb",
-        "carrier_account": {"ups": "17bd3f6701a44108b5487370fb93224d","fedex": "de32f747140c459f8b02dd6c0bfab0e8"}
+        "carrier_account": {"ups":"17bd3f6701a44108b5487370fb93224d","fedex":"de32f747140c459f8b02dd6c0bfab0e8"},
+        "request_quote_api_url": "http://api.flowzcluster.tk/serverapi/request-quote"
       }
 }

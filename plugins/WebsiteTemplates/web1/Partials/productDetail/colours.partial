@@ -55,9 +55,9 @@ body {
     <h2 class="heading-block js-section-number">Colours </h2>
     <div class="checkbox_colors">
         <div class="checkbox_color" style="background-color:#data.colorHexCode#">
-            <input class="js_color_checkbox" type="checkbox" name="col1" id="#data.colorID#"
+            <input class="js_color_checkbox" type="checkbox" name="col1" id="#data.tabID##data.colorID#"
             value="#data.colorVal#" data-hex-code="#data.colorHexCode#" />
-            <label for="#data.colorID#"></label>
+            <label for="#data.tabID##data.colorID#"></label>
         </div>
     </div>
 </div>
