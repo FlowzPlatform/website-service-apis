@@ -7,7 +7,7 @@ $('.user-signup').on('click',function() {
 	var useremail = $('.useremail').val().trim();
 	var userpass  = $('.userpass').val().trim();
 	var userpass2  = $('.userpass2').val().trim();
-	
+
 	if(fullname=='') {
 		$('.error-message').removeClass('hide');
 		$('.error-message .red').text('Please enter Full Name');
@@ -33,7 +33,7 @@ $('.user-signup').on('click',function() {
 			dataType: 'json',
 			headers: { 'Content-Type': 'application/json' },
 			success: function (result) {
-				alert(result.message);
+				showSuccessMessage(result.message);
 				window.location = "login.html";
 			},
 			error: function(err) {

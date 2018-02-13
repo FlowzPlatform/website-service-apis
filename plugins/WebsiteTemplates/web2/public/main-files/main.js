@@ -1,22 +1,59 @@
 /* Add your custom JavaScript/jQuery functions here. It will be automatically included in every page. */
-var project_settings = function () {
+// var project_settings = function () {
+//   var tmp = null;
+//   $.ajax({
+//       'async': false,
+//       'type': "GET",
+//       'global': false,
+//       'dataType': 'json',
+//       'url': "./assets/project_settings.json",
+//       'success': function (data) {
+//           tmp = data.project_settings;
+//       },
+//       error: function(err){
+//           console.log(err);
+//       }
+//   });
+//   return tmp;
+// }();
+
+var website_info = function () {
   var tmp = null;
   $.ajax({
-      async: false,
-      type: "GET",
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      url: './assets/project_settings.json',
-      success: function (data) {
-          tmp = data.project_settings;
-      },
-      error: function(err){
-          console.log(err);
+      'async': false,
+      'type': "GET",
+      'global': false,
+      'dataType': 'json',
+      'url': "./assets/project-details.json",
+      'success': function (data) {
+          tmp = data;
       }
   });
   return tmp;
 }();
 
+var website_settings = website_info[0];
+var project_settings = website_settings.project_settings;
+
+async function getProductDetailById(id) {
+  var returnData = null;
+  await axios({
+      method: 'GET',
+      url: project_settings.product_api_url+"?_id="+id,
+      headers: {'vid' : project_settings.vid},
+    })
+  .then(response => {
+     productData = response.data;
+     console.log("productDataMain",productData);
+     returnData = productData.hits.hits[0]._source;
+     console.log("returnDataMain",returnData);
+     //return returnData
+  })
+  .catch({
+
+  })
+  return returnData;
+}
 
 Y({
   db: {
@@ -34,7 +71,7 @@ Y({
       compareListRegister: 'Array'
   }
   }).then(function (y) {
-  window.yList = y	  
+  window.yList = y
   // whenever content changes, make sure to reflect the changes in the DOM
   y.share.wishList.observe(function (event) {
       if (event.type === 'insert') {
@@ -72,7 +109,7 @@ Y({
   $(document).ready(function() {
     init();
   })
-}) 
+})
 
 if(getParameterByName('token')) {
   document.cookie = "loginTokenKey="+getParameterByName('token');
@@ -111,12 +148,31 @@ if(userToken != null) {
       var tmp = null;
       $.ajax({
           'async': false,
-          'type': "POST",
+          'type': "GET",
           'url': project_settings.user_detail_api,
           'headers': {"Authorization": userToken},
           'success': function (res) {
               tmp = res.data;
               user_id = tmp._id;
+          }
+      });
+      return tmp;
+    }();
+}
+
+//Website owner details
+let userOwnerToken = getCookie('auth_token');
+if(userOwnerToken != null) {
+    var user_owner_details = function () {
+      var tmp = null;
+      $.ajax({
+          'async': false,
+          'type': "GET",
+          'url': project_settings.user_detail_api,
+          'headers': {"Authorization": userOwnerToken},
+          'success': function (res) {
+              tmp = res.data;
+              user_owner_id = tmp._id;
           }
       });
       return tmp;
@@ -215,8 +271,8 @@ var init = function() {
       }
       // console.log('window.yList.share.compareListRegister',window.yList.share.compareListRegister)
     }
-  }  
-    
+  }
+
   showWishList();
   showCompareList();
   let type;
@@ -291,8 +347,8 @@ var init = function() {
           .append( "<div>" + item._source.product_name + "</div>" )
           .appendTo( ul );
     };
-    
-    $('.header-search-col').find('.btn-search').click(function(){  
+
+    $('.header-search-col').find('.btn-search').click(function(){
       if($.trim($('input[name="search"]').val()) != '') {
                window.location.href = project_settings.base_url+'search.html?SearchSensor=' + $('input[name="search"]').val()
       }
@@ -365,10 +421,10 @@ function dataSaveToLocal(type,product_id,show_msg=true){
 
     if(decideLocalStorageKey == "savedCompared")
     {
-      window.yList.share.compareList.push(recentAddedInWishlist)                
+      window.yList.share.compareList.push(recentAddedInWishlist)
     }
     else{
-      window.yList.share.wishList.push(recentAddedInWishlist)    
+      window.yList.share.wishList.push(recentAddedInWishlist)
     }
 
     if(show_msg != false) {
@@ -397,14 +453,14 @@ function deleteFromLocal(type,product_id){
     if(window.yList.share.wishList._content != null && window.yList.share.wishList._content.length == 0)
     {
       // localStorage.removeItem('savedWishlist');
-      // window.yList.share.wishList.delete(0)            
-      $('#myWishList .listing').html('No records found.');  
+      // window.yList.share.wishList.delete(0)
+      $('#myWishList .listing').html('No records found.');
       // location.reload();
     }
     else
     {
       document.getElementById("wishlistCount").innerHTML =  window.yList.share.wishList._content.length;
-      // window.yList.share.wishList.delete(0)      
+      // window.yList.share.wishList.delete(0)
     }
   }
   if(type == 3) {
@@ -433,7 +489,7 @@ function deleteFromLocal(type,product_id){
           $('#myCompareList #listing').append('<span class="js-no-records">No records found.</span>')
       }
       else{
-          $('#myCompareList #listing .js-no-records').html('No records found.')                    
+          $('#myCompareList #listing .js-no-records').html('No records found.')
       }
       // location.reload();
     }
@@ -485,7 +541,7 @@ function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
           showSuccessMessage(response_data.message)
         }
         else{
-          showErrorMessage(response_data.message)          
+          showErrorMessage(response_data.message)
         }
       }
     }
@@ -521,7 +577,7 @@ function deleteFromDatabase(type,id,user_id){
               window.yList.share.wishListRegister.delete(parseInt(i))
               $(".product-"+id).remove();
             }
-          }          
+          }
         }
         else if(type == 3)
         {
@@ -537,9 +593,9 @@ function deleteFromDatabase(type,id,user_id){
               window.yList.share.compareListRegister.delete(parseInt(i))
               $(".product-"+id).remove();
             }
-          } 
-        }      
-      
+          }
+        }
+
       }
       $(".product-"+id).remove();
     }
@@ -553,9 +609,9 @@ $(document).on('click', '.js-remove-wishlist', function(e) {
   {
       showPageAjaxLoading();
       let product_id = $(this).data('id');
-      
+
       setTimeout(function()
-      { 
+      {
         if (user_id == null ) {
           deleteFromLocal(1,product_id);
         }
@@ -563,7 +619,7 @@ $(document).on('click', '.js-remove-wishlist', function(e) {
           deleteFromDatabase(1,product_id,user_id)
         }
         hidePageAjaxLoading();
-      
+
       }, 300);
   }
 });
@@ -575,9 +631,9 @@ $(document).on('click', '.js-remove-compare', function(e) {
   {
     showPageAjaxLoading();
     let product_id = $(this).data('id');
-    
+
     setTimeout(function()
-    { 
+    {
       if (user_id == null ) {
         deleteFromLocal(3,product_id);
       }
@@ -585,7 +641,7 @@ $(document).on('click', '.js-remove-compare', function(e) {
         deleteFromDatabase(3,product_id,user_id)
       }
       hidePageAjaxLoading();
-    
+
     }, 300);
   }
 });
@@ -669,17 +725,17 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
     recentAddedInWishlist.push({ 'type': type,'product_id': product_id, 'id': product_id});
     // localStorage.removeItem(decideLocalStorageKey+'Recent');
     // localStorage.setItem(decideLocalStorageKey+'Recent' , JSON.stringify(recentAddedInWishlist))
-    
+
     if(type == 1)
     {
-      window.yList.share.wishList.push(recentAddedInWishlist)      
+      window.yList.share.wishList.push(recentAddedInWishlist)
     }
     else{
-      window.yList.share.compareList.push(recentAddedInWishlist)                      
+      window.yList.share.compareList.push(recentAddedInWishlist)
     }
-  
+
     if(show_msg != false) {
-      showSuccessMessage("Item added successfully");        
+      showSuccessMessage("Item added successfully");
     }
   }else{
     if(show_msg != false) {
@@ -705,7 +761,7 @@ function getProductDetailBysku(sku){
       }
 
       $.ajax(settings).done(function (response) {
-        console.log(response);
+        // console.log(response);
       });
 }
 
@@ -794,7 +850,7 @@ function showWishList(recetAdded=false)
     else {
       $('#myWishList .listing').html('');
       var wishlist_values = window.yList.share.wishListRegister._content;
-    }    
+    }
   }
   else {
     if(recetAdded) {
@@ -808,7 +864,7 @@ function showWishList(recetAdded=false)
       // wishlist_values = JSON.parse(localStorage.getItem("savedWishlist"));
     }
   }
-  
+
   var productHtml='';
   var productData;
   if($("#myWishList").length > 0)
@@ -824,14 +880,14 @@ function showWishList(recetAdded=false)
           }
           else if(user_details == null)
           {
-            showItem = true;            
+            showItem = true;
           }
-          
+
           if(showItem)
           {
             wishlistValuesCount = wishlistValuesCount+1;
             if(user_details != null){
-              var prodId = window.yList.share.wishListRegister._content[item].val.product_id;          
+              var prodId = window.yList.share.wishListRegister._content[item].val.product_id;
             }
             else{
               if(recetAdded) {
@@ -842,7 +898,7 @@ function showWishList(recetAdded=false)
                 // var prodId = wishlist_values[item]['product_id'];
               }
             }
-      
+
             if(wishlist_values[item] != null)
             {
               $.ajax({
@@ -856,21 +912,21 @@ function showWishList(recetAdded=false)
                 success: function (data) {
                   rawData = data.hits.hits;
                   productData = rawData;
-      
+
                   let listHtml1 = listHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
                   listHtml1 = listHtml1.replace(/#data.id#/g,wishlist_values[item].val.id);
                   listHtml1 = listHtml1.replace('#data.title#',removeSpecialCharacters(productData[0]._source.product_name));
                   listHtml1 = listHtml1.replace('#data.sku#',productData[0]._source.sku);
                   listHtml1 = listHtml1.replace('#data.price#',productData[0]._source.price_1);
                   listHtml1 = listHtml1.replace('#data.currency#',productData[0]._source.currency);
-                  
+
                   let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                   listHtml1 = listHtml1.replace(/#data.product_link#/g,detailLink);
-                  
-  
+
+
                   listHtml1 = listHtml1.replace('#data.description#',productData[0]._source.description);
 
-                  if(recetAdded) 
+                  if(recetAdded)
                   {
                     $('#myWishList .js-add-products').append(listHtml1);
                   }
@@ -887,7 +943,7 @@ function showWishList(recetAdded=false)
     } else {
       $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
     }
-  
+
     $('#myWishList .listing').removeClass('hide');
 
     if(wishlistValuesCount)
@@ -895,7 +951,8 @@ function showWishList(recetAdded=false)
       document.getElementById("wishlistCount").innerHTML = wishlistValuesCount;
     }
     else{
-      document.getElementById("wishlistCount").innerHTML = 0;    
+      document.getElementById("wishlistCount").innerHTML = 0;
+      $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
     }
   }
   else{
@@ -910,9 +967,9 @@ function showWishList(recetAdded=false)
         }
         else if(user_details == null)
         {
-          showItem = true;            
+          showItem = true;
         }
-        
+
         if(showItem)
         {
           wishlistValuesCount = wishlistValuesCount+1;
@@ -924,7 +981,8 @@ function showWishList(recetAdded=false)
       document.getElementById("wishlistCount").innerHTML = wishlistValuesCount;
     }
     else{
-      document.getElementById("wishlistCount").innerHTML = 0;    
+      document.getElementById("wishlistCount").innerHTML = 0;
+      $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
     }
   }
 }
@@ -934,14 +992,14 @@ function showCompareList(recetAdded=false)
   var apiUrl = project_settings.product_api_url;
   var compareHtml = $('#myCompareList #listing')
   var compareValuesCount = 0;
-  
+
   if(user_details != null){
     var compare_values = window.yList.share.compareListRegister._content;
-    
+
     // if(compare_values.length != null)
     // {
     //   document.getElementById("comparedCount").innerHTML = compare_values.length;
-    // }    
+    // }
 
     // console.log("window.yList.share.compareListRegister",window.yList.share.compareListRegister._content)
     // console.log("compare_values",compare_values)
@@ -950,15 +1008,15 @@ function showCompareList(recetAdded=false)
    else {
     if(recetAdded) {
       var compare_values = window.yList.share.compareList._content;
-      // var compare_values = JSON.parse(localStorage.getItem("savedComparedRecent"));    
+      // var compare_values = JSON.parse(localStorage.getItem("savedComparedRecent"));
     }
     else {
-      var compare_values = window.yList.share.compareList._content;      
+      var compare_values = window.yList.share.compareList._content;
     }
    }
     // console.log("compare_values",compare_values)
-  
-  
+
+
   if($("#myCompareList").length > 0)
   {
     // console.log('compare_values',compare_values)
@@ -969,9 +1027,9 @@ function showCompareList(recetAdded=false)
     let item_sku = $('.js-list #item_sku').html();
     let activeSummary = $('.js-list #item_summary').html();
     let item_features = $('.js-list #item_features').html();
-    
+
     // if (typeof(compareHtml.html()) !== "undefined" && compare_values != null) {
-    if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) {        
+    if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) {
           for (item in compare_values)
           {
             // console.log('user_id',compare_values[item].val.user_id)
@@ -982,7 +1040,7 @@ function showCompareList(recetAdded=false)
             }
             else if(user_details == null)
             {
-              showItem = true;            
+              showItem = true;
             }
 
             if(showItem)
@@ -990,12 +1048,12 @@ function showCompareList(recetAdded=false)
               compareValuesCount = compareValuesCount+1;
 
               if(user_details != null){
-                var prodId = window.yList.share.compareListRegister._content[item].val.product_id;          
+                var prodId = window.yList.share.compareListRegister._content[item].val.product_id;
               }
               else{
                 var prodId = window.yList.share.compareList._content[item].val.product_id;
               }
-              
+
               $.ajax({
                 type: 'GET',
                 url: project_settings.product_api_url+prodId,
@@ -1004,33 +1062,33 @@ function showCompareList(recetAdded=false)
                   xhr.setRequestHeader ("Authorization", project_settings.product_api_token);
                 },
                 dataType: 'json',
-                success: function (data) 
+                success: function (data)
                 {
                   rawData = data.hits.hits;
                   productData = rawData;
-        
+                  if(productData.length >0){
                   var itemTitleHtml = html;
                   var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
                   var itemTitleHtml = itemTitleHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
-                  
+
                   let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                   var itemTitleHtml = itemTitleHtml.replace('#data.product_link#',detailLink);
-                  
-                  var itemTitleHtml = itemTitleHtml.replace('#data.title#',removeSpecialCharacters(productData[0]._source.product_name));
+
+                  var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
                   var itemTitleHtml = itemTitleHtml.replace('#data.price#',productData[0]._source.currency+" "+productData[0]._source.price_1);
-                  
+
                   productHtml = itemTitleHtml;
-                  
+
                   var itemTitleHtml = item_sku;
                   var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
                   var itemTitleHtml = itemTitleHtml.replace('#data.sku#',productData[0]._source.sku);
                   itemSkuHtml = itemTitleHtml;
-        
+
                   var itemTitleHtml = activeSummary;
                   var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
                   var itemTitleHtml = itemTitleHtml.replace('#data.summary#',productData[0]._source.description);
                   activeSummaryHtml = itemTitleHtml;
-        
+
                   var itemTitleHtml = item_features;
                   var fetureList = '';
                   for (let [i, features] of productData[0]._source.features.entries() ) {
@@ -1039,12 +1097,12 @@ function showCompareList(recetAdded=false)
                   var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
                   var itemTitleHtml = itemTitleHtml.replace('#data.features#',fetureList);
                   itemFeaturesHtml = itemTitleHtml;
-                  
+
                   if(recetAdded)
                   {
                     $("#myCompareList #listing .js-no-records").remove();
                     $("#myCompareList #listing div:first").removeClass("hide");
-          
+
                     if(JSON.parse(localStorage.getItem("savedCompared")).length == 1)
                     {
                       // console.log('compareHtml.find("#item_title_price1").html', compareHtml.find("#item_title_price1").html());
@@ -1078,15 +1136,18 @@ function showCompareList(recetAdded=false)
                     compareHtml.find("#item_sku1").append(itemSkuHtml)
                     compareHtml.find("#item_summary1").append(activeSummaryHtml)
                     compareHtml.find("#item_features1").append(itemFeaturesHtml)
-                    $('#myCompareList #listing').html(compareHtml.html());    
+                    $('#myCompareList #listing').html(compareHtml.html());
                   }
-
+                }
+                  else{
+                      console.log("Not found");
+                  }
                 }
               });
             }
           }
     } else {
-      // $("#myCompareList #listing div:first").addClass("hide"); 
+      // $("#myCompareList #listing div:first").addClass("hide");
       // compareHtml.append('<span class="js-no-records">No records found.</span>')
     }
 
@@ -1105,7 +1166,7 @@ function showCompareList(recetAdded=false)
       document.getElementById("comparedCount").innerHTML = compareValuesCount;
     }
     else{
-      document.getElementById("comparedCount").innerHTML = 0;    
+      document.getElementById("comparedCount").innerHTML = 0;
     }
   }
   else
@@ -1120,7 +1181,7 @@ function showCompareList(recetAdded=false)
         }
         else if(user_details == null)
         {
-          showItem = true;            
+          showItem = true;
         }
         if(showItem)
         {
@@ -1136,22 +1197,22 @@ function showCompareList(recetAdded=false)
     else{
       $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
     }
-    
+
     if(compareValuesCount)
     {
       document.getElementById("comparedCount").innerHTML = compareValuesCount;
     }
     else{
-      document.getElementById("comparedCount").innerHTML = 0;    
+      document.getElementById("comparedCount").innerHTML = 0;
     }
   }
 
   if(compareValuesCount == 0)
   {
-    $("#myCompareList #listing div:first").addClass("hide"); 
+    $("#myCompareList #listing div:first").addClass("hide");
     compareHtml.append('<span class="js-no-records">No records found.</span>')
   }
-  
+
 }
 
 function submitNewsLetterForm()
@@ -1174,11 +1235,117 @@ function submitNewsLetterForm()
         }
       }
     })
-  return false;  
+  return false;
 }
 
 function removeSpecialCharacters(str)
 {
-  str = str.replace(/[^a-zA-Z0-9\s,"-'`:&]/g, "");
-  return str;
+ str = str.replace(/[^a-zA-Z0-9\s,"-'`:&]/g, "");
+ return str;
 }
+
+
+/* get city , state and country name by id */
+async function getCountryStateCityById(id,type){
+  var resp = "";
+  await axios({
+      method: 'GET',
+      url: project_settings.city_country_state_api,
+      headers: {'Authorization': project_settings.product_api_token},
+      params: {
+          'id':id,
+          'type':type
+      }
+    })
+  .then(function (response) {
+    if(response.data != ''){
+        if(type == 1)
+        resp = response.data.country_name;
+        else if (type == 2)
+        resp = response.data.state_name;
+        else if (type == 3)
+        resp = response.data.city_name;
+        return resp;
+    }
+  })
+  .catch(function (error) {
+    // console.log("error",error);
+  });
+  // console.log("resp",resp);
+  return resp;
+}
+
+var returnAddressBookDetailById = async function(addressBookId) {
+	var returnData = null;
+	await axios({
+			method: 'GET',
+			url: project_settings.address_book_api_url+'/'+addressBookId,
+			headers: {'Authorization': project_settings.product_api_token},
+		})
+	.then(response => {
+		 returnData = response.data;
+		 return returnData
+	})
+	.catch({
+
+	})
+	return returnData;
+}
+
+/* Get Data of state and city by country and state id */
+async function getStateAndCityVal(countryVal,stateVal,dataFrom){
+    let data = {}
+    let returnData = ''
+    data['country_id'] = countryVal;
+    data['data_from'] = dataFrom
+    if(dataFrom == "country_code"){
+      data['type'] = 2;
+    }else if (dataFrom == "state_code") {
+      data['state_id'] = stateVal;
+      data['type'] = 3;
+    }
+    await axios({
+            method: 'GET',
+            url: project_settings.city_country_state_api,
+            headers: {'Authorization': project_settings.product_api_token},
+            params: data
+          })
+          .then(response => {
+              returnData = response;
+              return returnData;
+          }).catch({
+
+          })
+    return returnData;
+}
+
+$(document).ready(function(){
+  if( $('.js-phone')){
+    var cntkey=0;
+      $(document).on('keypress', '.js-phone', function (event)
+      {
+          cntkey=$(this).val().length;
+          phone_delemeter ='-'
+          if(event.which!=0)
+          {
+            if(event.which==8)	return true;
+            else if(((event.which>=48&&event.which<=57)||event.which==45)&&((phone_delemeter == '' && cntkey<10)||(phone_delemeter != '' && cntkey<12)))
+            {
+                if(event.which!=45&&(cntkey==3||cntkey==7))
+                {
+                    $(this).val($(this).val()+phone_delemeter);
+                    return true;
+                }
+                else if(event.which==45&&(cntkey==3||cntkey==7))	return true;
+                else if(event.which==45)	return false;
+                else	return true;
+            }
+            else
+            {
+              return false;
+            }
+          }
+      });
+  }
+
+})
