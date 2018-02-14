@@ -52,6 +52,10 @@ body {
     margin-left: 0px;
 }
 
+.product-showcase.row {
+    display: inline;
+}
+
 #c99215 {
     border-top-width: 2px;
     border-right-width: 2px;
@@ -96,8 +100,26 @@ body {
     min-height: 20px;
 }
 
-.quick-view-left .product-big-image {
-    width: 405px !important;
+.breadcrumb ul li a, .breadcrumb ul li {
+    font-size: 14px;
+}
+
+.breadcrumb {
+    height: 40px !important;
+}
+
+.product-detail-tab .nav-tabs li.active a {
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+
+.product-detail-tab .nav-tabs li a {
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
 }
 </style>
 
@@ -113,7 +135,7 @@ body {
             <ul>
                 <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
                 </li>
-                <li><strong>#data.title# </strong>
+                <li><strong>#data.title#</strong>
                 </li>
             </ul>
         </div>
@@ -133,6 +155,9 @@ body {
                                     <li class="active"><a href="#js-place-order" aria-controls="js-place-order" role="tab" data-exist-sub-content="1"
                                         data-toggle="tab">Place Order</a>
                                     </li>
+                                    <li><a href="#js-request-quote" data-exist-sub-content="0" aria-controls="js-request-quote"
+                                        role="tab" data-toggle="tab">Request Quote</a>
+                                    </li>
                                     <li><a href="#js-request-info" data-exist-sub-content="0" aria-controls="js-request-info"
                                         role="tab" data-toggle="tab">Request Info</a>
                                     </li>
@@ -140,6 +165,10 @@ body {
                                 <div class="request-tab-content tab-content">
                                     <div class="tab-pane fade active in" id="js-place-order">
                                         <reusecomponent class="c192300">{{> productDetail id='placeOrder.partial' }}</reusecomponent>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="tab-pane fade in" id="js-request-quote">
+                                        <reusecomponent class="c192300">{{> productDetail id='requestQuote.partial' }}</reusecomponent>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="tab-pane fade" id="js-request-info">
