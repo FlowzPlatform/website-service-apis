@@ -51,7 +51,7 @@ RUN sed -i 's/# gzip_proxied any;/gzip_proxied any;/' /etc/nginx/nginx.conf
 RUN sed -i 's/# gzip_comp_level 6;/gzip_comp_level 6;/' /etc/nginx/nginx.conf
 RUN sed -i 's/# gzip_buffers 16 8k;/gzip_buffers 16 8k;/' /etc/nginx/nginx.conf
 RUN sed -i 's/# gzip_http_version 1.1;/gzip_http_version 1.1;/' /etc/nginx/nginx.conf
-RUN sed -i 's/# gzip_types/gzip_types/gzip_types/gzip_types' /etc/nginx/nginx.conf
+RUN sed -i 's/# gzip_types/gzip_types' /etc/nginx/nginx.conf
 
 
 WORKDIR /var/www/html
