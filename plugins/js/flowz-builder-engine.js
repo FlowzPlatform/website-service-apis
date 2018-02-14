@@ -27,30 +27,44 @@ try {
     }
   });
   var setValue = () => {
-    var $form = document.querySelector(class_g_form);
-    setRecursiveValues(data, entitys, $form)
     AWS.config.update({
       accessKeyId: configs.accesskey,
       secretAccessKey: configs.secretkey
     });
     AWS.config.region = 'us-west-2';
+    var $form = document.querySelector(class_g_form);
+    setRecursiveValues(data, entitys, $form)
   }
   var setRecursiveValues = (data, entitys, $form) => {
+    // console.log('...... setRecursiveValues :: ', data, entitys, $form)
     var clone_panel = $form.querySelector(class_g_form_panel).cloneNode(true)
-    for (var [index, item] of data.entries()) {
-      var $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
-      if (index > 0) {
-        $panels[$panels.length - 1].insertAdjacentHTML('afterend', clone_panel.outerHTML)
-      }
-      for (var [inx, entity] of entitys.entries()) {
-        $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
-        if (entity.customtype) {
-          if ($panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]')) {
-            setRecursiveValues(item[entity.name], entity.entity, $panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form))
-          }
-        } else {
-          if (item[entity.name] != undefined || item[entity.name] != null) {
-            $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = item[entity.name]
+    if (data != undefined) {
+      for (var [index, item] of data.entries()) {
+        var $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
+        if (index > 0) {
+          $panels[$panels.length - 1].insertAdjacentHTML('afterend', clone_panel.outerHTML)
+        }
+        for (var [inx, entity] of entitys.entries()) {
+          $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
+          if (entity.customtype) {
+            if ($panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]')) {
+              setRecursiveValues(item[entity.name], entity.entity, $panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form))
+            }
+          } else {
+            // console.log('entity:: ', entity)
+            if (entity.type == 'file') {
+              if (item[entity.name] != undefined || item[entity.name] != null) {
+                $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = []
+                var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(); 
+                var template = Handlebars.compile(source);
+                // $panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')
+                $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(template(item));
+              }
+            } else {
+              if (item[entity.name] != undefined || item[entity.name] != null) {
+                $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = item[entity.name]
+              }
+            }
           }
         }
       }
@@ -83,6 +97,7 @@ try {
                 err.push(element.name + ' - is required..!')
                 $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - is required..!')
               } else {
+                // console.log(element.name, ' >>> ', element.type)
                 if (element.type === 'text') {
                   if (result.property.regEx !== null && result.property.regEx !== undefined) {
                     let pttrn = new RegExp(result.property.regEx)
@@ -256,6 +271,24 @@ try {
                   } else {
                     $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
                   }
+                } else if (element.type === 'dropdown') {
+                  // console.log('>>>>', element.name, ' >>> ', element.type, result.property)
+                  let exist = false
+                  if (result.property.options.length != 0) {
+                    for (let i = 0; i < result.property.options.length; i++) {
+                      if (result.property.options[i] == val) {
+                        exist = true
+                      }
+                    }
+                  } else {
+                    exist = true
+                  }
+                  if (!exist) {
+                    err.push(element.name + ' - Please Select input!')
+                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Please Select input!')
+                  } else {
+                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
+                  }
                 } else {
                   $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
                 }
@@ -265,6 +298,7 @@ try {
         }
       }
     })
+    // console.log('ERROR:: ', err)
     if (err.length > 0) {
       return false
     } else {
@@ -274,7 +308,9 @@ try {
   var getValues = async() => {
     var $form = document.querySelector(class_g_form)
     var _tempdata = await getRecursiveValues($form, entitys, schemaarr)
+    console.log('............................ _tempdata:: ', _tempdata)
     if (_tempdata.msg) {
+      console.log('Validated..')
       parent.postMessage(_tempdata.data, "*");
     }
   }
@@ -282,39 +318,74 @@ try {
     var datas = [];
     var validarr = [];
     for (let [i, form] of $form.querySelectorAll(':scope >' + class_g_form_panel).entries()) {
-      var data = {}
+      var mdata = {}
       for (var [index, entity] of entitys.entries()) {
         if (entity.customtype) {
           if (form.querySelector('[attr-id="' + entity.name + '"]')) {
             var s = await getRecursiveValues(form.querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form), entity.entity, schema[index])
-            data[entity.name] = s.data
+            mdata[entity.name] = s.data
             validarr.push(s.msg)
           } else {
-            data[entity.name] = ''
+            mdata[entity.name] = ''
           }
         } else {
-          if (form.querySelector('[name="' + entity.name + '"]').type == 'file') {
-            let bucket = new AWS.S3({
-              params: {
-                Bucket: 'airflowbucket1/obexpense/expenses'
+          // console.log('.............', entity.name, form.querySelector('[name="' + entity.name + '"]'))
+          if (form.querySelector('[name="' + entity.name + '"]') !== null) {
+            if (form.querySelector('[name="' + entity.name + '"]').type != null && form.querySelector('[name="' + entity.name + '"]').type == 'file') {
+              let bucket = new AWS.S3({
+                params: {
+                  Bucket: 'airflowbucket1/obexpense/expenses'
+                }
+              });
+              let fileChooser = form.querySelector('[name="' + entity.name + '"]');
+              console.log('fileChooser', fileChooser, fileChooser.files)
+             
+              let filearr = []
+              for(let f = 0; f < fileChooser.files.length; f++) {
+                let file = fileChooser.files[f];
+                if (file) {
+                  let fileurl = await getFileUrl(file, f)
+                  console.log('fileurl multi............', fileurl)
+                  filearr.push(fileurl)
+                } else {
+                  filearr.push('')
+                } 
               }
-            });
-            let fileChooser = form.querySelector('[name="' + entity.name + '"]');
-            let file = fileChooser.files[0];
-            if (file) {
-              let fileurl = await getFileUrl(file)
-              data[entity.name] = fileurl
+              if (data !== undefined &&  data[i] != undefined && data[i][entity.name] !== undefined && data[i][entity.name].length > 0) {
+                for (let j of data[i][entity.name]) {
+                  filearr.push(j)
+                }
+              }
+              // console.log('data........', data[i][entity.name], filearr)
+              mdata[entity.name] = filearr
             } else {
-              data[entity.name] = ''
+              mdata[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
             }
           } else {
-            data[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
+            mdata[entity.name] = ''
           }
+          // if (form.querySelector('[name="' + entity.name + '"]').type == 'file') {
+          //   let bucket = new AWS.S3({
+          //     params: {
+          //       Bucket: 'airflowbucket1/obexpense/expenses'
+          //     }
+          //   });
+          //   let fileChooser = form.querySelector('[name="' + entity.name + '"]');
+          //   let file = fileChooser.files[0];
+          //   if (file) {
+          //     let fileurl = await getFileUrl(file)
+          //     data[entity.name] = fileurl
+          //   } else {
+          //     data[entity.name] = ''
+          //   }
+          // } else {
+          // }
         }
       }
-      validated = this.getValidate(data, schema, form)
+      validated = this.getValidate(mdata, schema, form)
+      // console.log('validated....', validated, validarr)
       validarr.push(validated)
-      datas.push(data)
+      datas.push(mdata)
     }
     let valid = true
     for (let i = 0; i < validarr.length; i++) {
@@ -327,7 +398,8 @@ try {
       msg: valid
     }
   }
-  var getFileUrl = (file) => {
+  var getFileUrl = (file, f) => {
+    // console.log('file', file)
     return new Promise((resolve, reject) => {
       let bucket = new AWS.S3({
         params: {
@@ -335,13 +407,14 @@ try {
         }
       });
       var params = {
-        Key: file.name,
+        Key: moment().valueOf().toString() + f + file.name,
         ContentType: file.type,
         Body: file
       };
       bucket.upload(params).on('httpUploadProgress', function(evt) {
       }).send(function(err, data) {
         if (err) {
+          console.log('>>>>>>>>>>>>>>>>>>>. File Error:: ', err)
           resolve('')
         }
         resolve(data.Location)
