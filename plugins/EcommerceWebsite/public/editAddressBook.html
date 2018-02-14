@@ -1,0 +1,1028 @@
+<html>
+<head>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<title></title>
+<script src='https://code.jquery.com/jquery-3.2.1.js'></script>
+<link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'/>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/theme.min.css' />
+<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js' crossorigin='anonymous'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
+<script src='https://cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' crossorigin='anonymous'></script>
+<script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-memory@8.0.9/dist/y-memory.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-webrtc@8.0.7/dist/y-webrtc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-indexeddb@8.1.9/dist/y-indexeddb.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
+<link rel='stylesheet' href='./main-files/main.css'/>
+<script src="./main-files/main.js"></script>
+<script src="./assets/client-plugins/client-cart.js"></script>
+
+</head>
+<body>
+<div id="app">
+<div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.navbar {
+    float: right;
+    width: 50%;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.navbar {
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    background-image: url("https://www.keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/back-bg.jpg");
+    background-position-x: center;
+    background-position-y: top;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background-attachment: fixed;
+}
+
+#c47368 {
+    display: none;
+}
+
+#c99549 {
+    display: none;
+}
+
+#c4046 {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: black;
+    border-right-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#c26340 {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: black;
+    border-right-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+#menu {
+    color: rgb(238, 238, 238);
+    height: 35px;
+}
+
+#menu ul, #menu li {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+}
+
+#menu ul {
+    height: 35px;
+}
+
+#menu li {
+    float: left;
+    display: inline;
+    position: relative;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    font-size: 13px;
+    line-height: normal;
+    font-family: Arial;
+}
+
+#menu li a {
+    color: rgb(204, 204, 204);
+}
+
+#menu a {
+    display: block;
+    line-height: 35px;
+    padding-top: 0px;
+    padding-right: 14px;
+    padding-bottom: 0px;
+    padding-left: 14px;
+    color: rgb(51, 51, 51);
+}
+
+#menu li:hover > a, #menu li a:hover {
+    color: rgb(255, 255, 255);
+}
+
+#menu input {
+    display: none;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    width: 80px;
+    height: 35px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#menu label {
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    font-size: 30px;
+    font-family: Arial;
+    display: none;
+    width: 35px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+}
+
+#menu label span {
+    font-size: 13px;
+    position: absolute;
+    left: 35px;
+}
+
+#menu ul.menus {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 180px;
+    background-image: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+    background-size: initial;
+    position: absolute;
+    z-index: 99;
+    display: none;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-color: rgb(204, 204, 204);
+    border-bottom-color: rgb(204, 204, 204);
+    border-left-color: rgb(204, 204, 204);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    border-top-width: initial;
+    border-top-style: none;
+    border-top-color: initial;
+    color: rgb(51, 51, 51);
+}
+
+#menu ul.menus a {
+    color: rgb(51, 51, 51);
+}
+
+#menu ul.menus li {
+    display: block;
+    width: 100%;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 12px;
+    line-height: normal;
+    font-family: Arial;
+    text-transform: none;
+}
+
+#menu li:hover ul.menus {
+    display: block;
+}
+
+#menu a.prett, #menu a.trigger2 {
+    padding-top: 0px;
+    padding-right: 27px;
+    padding-bottom: 0px;
+    padding-left: 14px;
+}
+
+#menu li:hover > a.prett, #menu a.prett:hover {
+    background-image: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+    background-size: initial;
+    color: rgb(51, 51, 51);
+}
+
+#menu a.prett::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-top-width: 6px;
+    border-right-width: 5px;
+    border-bottom-width: 6px;
+    border-left-width: 5px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(238, 238, 238);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    position: absolute;
+    top: 15px;
+    right: 9px;
+}
+
+#menu ul.menus a:hover {
+    background-image: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(186, 186, 186);
+    background-size: initial;
+}
+
+#menu a.trigger2::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-top-width: 5px;
+    border-right-width: 6px;
+    border-bottom-width: 5px;
+    border-left-width: 6px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: rgb(238, 238, 238);
+    position: absolute;
+    top: 13px;
+    right: 9px;
+}
+
+.ob-menu {
+    background-color: rgb(73, 78, 107) !important;
+}
+
+.row.header-search-col {
+    position: absolute;
+    width: 325px;
+    top: 25px;
+    left: 276px;
+}
+
+.row.header-search-col .col-lg-10, .row.header-search-col .col-lg-2 {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+.c574096 {
+    padding: 10px;
+    display: block;
+    min-height: 75px;
+}
+
+@media screen and (max-width: 600px) {
+    #menu {
+        position: relative;
+    }
+
+    #menu ul {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(131, 131, 131);
+        background-size: initial;
+        position: absolute;
+        top: 100%;
+        right: 0px;
+        left: 0px;
+        z-index: 3;
+        height: auto;
+        display: none;
+    }
+
+    #menu ul.menus {
+        width: 100%;
+        position: static;
+        border-top-width: initial;
+        border-right-width: initial;
+        border-bottom-width: initial;
+        border-left-width: initial;
+        border-top-style: none;
+        border-right-style: none;
+        border-bottom-style: none;
+        border-left-style: none;
+        border-top-color: initial;
+        border-right-color: initial;
+        border-bottom-color: initial;
+        border-left-color: initial;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+    }
+
+    #menu li {
+        display: block;
+        float: none;
+        width: auto;
+        text-align: left;
+    }
+
+    #menu li a {
+        color: rgb(255, 255, 255);
+    }
+
+    #menu li a:hover {
+        color: rgb(51, 51, 51);
+    }
+
+    #menu li:hover {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(186, 186, 186);
+        background-size: initial;
+        color: rgb(51, 51, 51);
+    }
+
+    #menu li:hover > a.prett, #menu a.prett:hover {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(186, 186, 186);
+        background-size: initial;
+        color: rgb(51, 51, 51);
+    }
+
+    #menu ul.menus a {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(186, 186, 186);
+        background-size: initial;
+    }
+
+    #menu ul.menus a:hover {
+        background-image: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(255, 255, 255);
+        background-size: initial;
+    }
+
+    #menu input, #menu label {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: block;
+    }
+
+    #menu input {
+        z-index: 4;
+    }
+
+    #menu input:checked + label {
+        color: white;
+    }
+
+    #menu input:checked ~ ul {
+        display: block;
+    }
+}
+
+.c574096 {padding:0px;    min-height: 1px;}
+.dropdown-toggle::after {display:none !important;}
+.nav>li>a:focus, .nav>li>a:hover {background-color: #c63928;}
+section.fdb-block.hmconts {overflow: inherit;vertical-align:  top;}
+.in-prod-main .in-prod-under {display: inline-block;}
+nav.navbar {border-radius: 0;padding: 0;min-height:  1px;    margin-bottom: 0px; background-color: #000;}
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background-color: #c63928 !important;color: #fff !important;}
+.nav .open .dropdown-menu {height: inherit !important;background-color: #000;}
+.nav .open .dropdown-menu li,
+.nav .open .dropdown-menu li a {width:100%;}
+.nav .open .dropdown-menu li a:hover {width:100%; background-color: #c63928;}
+.navbar-toggler {display: none;}
+</style>
+
+<script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
+<div>
+    <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
+    rel="stylesheet" type="text/css" />
+    <link href="./assets/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
+    rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
+    rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <div id="js-fix-header-controller">
+        <div class="ob-header">
+            <div class="main-logo-part">
+                <div class="ob-top-menu">
+                    <div class="container">
+                        <div class="slidemenu shop-menu">
+                            <ul class="header-loging">
+                                <li class="header-login-text"> <a href="index.html"> <span class="login-text">Home</span> </a>
+                                </li>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (0)</span> </a>
+                                </li>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
+                                </li>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="compare.html"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span> </a>
+                                </li>
+                                <li class="dropdown login-col header-login-text login-show hide"><a class="dropdown-toggle" href="login.html"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
+                                </li>
+                                <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
+                                    <ul
+                                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
+                                        <li><a href="myaccount.html">MY ACCOUNT</a>
+                                        </li>
+                                        <li><a href="changePassword.html">CHANGE PASSWORD</a>
+                                        </li>
+                                        <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
+                                        </li>
+                            </ul>
+                            </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ob-logo-block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/imgs/img_logo.png"/></a>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-right">
+                                <div class="support-col"> <a href="#"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
+                                </div>
+                                <div class="call-text"> <i></i><span>604 589 5268</span><em>Call Us: Speak with a Rep!</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row header-search-col">
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                <input placeholder="Search Products Here" type="text" name="search" />
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <input class="btn-search" type="button" title="Click to search" value="Search"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ob-menu ui-menu-nav menu-option-3">
+            <div class="container">
+                <div class="navbar2 navbar-default menu-box" role="navigation" id="mainmenu-nav">
+                    <div class="navbar-header2"> <a class="navbar-toggle"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<menucomponent>
+    <nav id="menu">
+        <navimenu class="c574096" menuid="default">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> 
+                    </button>
+                    <div class="collapse navbar-collapse" id="navigationDiv">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
+                            </li>
+                            <li class="nav-item"> <a class="nav-link" href="#">Link</a> 
+                            </li>
+                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Dropdown link </a> 
+                                <div
+                                class="dropdown-menu"> <a class="dropdown-item" href="#">Link 1</a>  <a class="dropdown-item" href="#">Link 2</a> 
+                                    <a
+                                    class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        </navimenu>
+    </nav>
+</menucomponent></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><div id="flowz_content"><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<div class="container main">
+    <div class="content-info-page">
+        <div class="innerpage row account-innerpage">
+            <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+                <div class="ob-account-right">
+                    <div class="breadcrumb">
+                        <ul>
+                            <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
+                            </li>
+                            <li><a href="#">My Account </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><a href="#">Address Book </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><strong>Edit new address</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ob-add-new-address">
+                        <h1 class="main-title">Edit new address</h1>
+                        <h2>contact information</h2>
+                        <div class="require-message">(Please Fill Your Contact information. Don't Forget To Save!)</div>
+                    </div>
+                    <div class="row">
+                        <reusecomponent class="c17829"><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+</style>
+
+
+
+<form name="address_book" id="address_book" method="post">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="radio js-isoffice" style="display: none;">
+                    <div id="addresstbook_isOffice" class="input" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
+                        <input id="addresstbook_is_office_0" name="is_office" value="1" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_0">Is Office</label>
+                        <input id="addresstbook_is_office_1" name="is_office" value="0" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_1">Is Home</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="firstName">Name<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Name"
+                    name="name" id="addresstbook_name"  data-toggle="tooltip" data-placement="bottom" title="Name" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">Address Type<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select js-address-type" id="addresstbook_address_type"
+                    name="address_type"   data-toggle="tooltip" data-placement="bottom" title="Address type" >
+                        <option value="" selected="selected">Select Address Type</option>
+                        <option value="billing">Billing</option>
+                        <option value="shipping">Shipping</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Email<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" placeholder="Enter Email " tabindex="1"
+                    name="email" id="addresstbook_email"   data-toggle="tooltip" data-placement="bottom" title="Email" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 1<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" placeholder="Enter Address 1" type="text" tabindex="1"
+                    id="addresstbook_street1" name="street1"   data-toggle="tooltip" data-placement="bottom" title="Address 1" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 2</label>
+                    <input class="input" placeholder="Enter Address 2" type="text"
+                    tabindex="1" id="addresstbook_street2" name="street2"   data-toggle="tooltip" data-placement="bottom" title="Address2" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">Country<span class="mandatory-field">*</span>
+                    </label>
+                    <input class="input" placeholder="Enter country" type="text" tabindex="1"
+                    id="addresstbook_country" name="country"   data-toggle="tooltip" data-placement="bottom" title="Country" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">State<span class="mandatory-field">*</span>
+                    </label>
+                    <input class="input" placeholder="Enter state" type="text" tabindex="1"
+                    id="addresstbook_state" name="state"   data-toggle="tooltip" data-placement="bottom" title="State" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label" for="country1">City<span class="mandatory-field">*</span>
+                    </label>
+                    <input class="input" placeholder="Enter city" type="text" tabindex="1"
+                    id="addresstbook_city" name="city"   data-toggle="tooltip" data-placement="bottom" title="City" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="postalcode">Postal Code <i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Postal Code"
+                    id="addresstbook_postalcode" name="postalcode"   data-toggle="tooltip" data-placement="bottom" title="Postal Code" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="phone">Phone<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Phone Number"
+                    id="addresstbook_phone" name="phone"   data-toggle="tooltip" data-placement="bottom" title="Phone Number" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="lastName">Mobile</label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Mobile Number"
+                    id="addresstbook_mobile" name="mobile"   data-toggle="tooltip" data-placement="bottom" title="Mobile Number" />
+                </div>
+            </div>
+        </div><span class="required-field pull-right">* Required Fields</span>
+        <div class="btn-box-main">
+            <input class="btn btn-default js_submit_address" type="submit" value="save"
+            tabindex="17" />
+            <input class="btn btn-default" type="reset" value="Reset" tabindex="18"
+            />
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript" src="./assets/client-plugins/client-address-book.js"></script>
+</reusecomponent>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div></p><!--/gm-editable-region--></div></div><div class="row"><div class="column col-md-12 col-sm-12 col-xs-12"><!--gm-editable-region--><p><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.newslatter {
+    margin-top: 10px !important;
+    margin-right: 25px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+}
+
+.news-box {
+    display: block !important;
+}
+.virtual-button {
+    background: #666;
+    text-align: center;
+    min-width: auto;
+    min-height: 39px;
+    padding: 8px;
+    color: #818792 !important;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-family: inherit;
+    min-height: auto !important;
+}
+.detail-popup-block  .virtual-button:hover {    background: #c51327  !important;
+    color: #fff !important;
+}
+.innerpage, .home-content > .container {
+    min-height: 700px;
+}
+</style>
+
+<div class="middle-footer">
+    <div class="container">
+        <div class="social-icon-box">
+            <div class="pull-left">
+                <ul class="list-unstyled footer-link">
+                    <li class="social-icon"><a href="https://www.facebook.com/KeyInnovations/" target="_blank"><i class="fb-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://twitter.com/KeyInnovations" target="_blank"><i class="twitter-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.pinterest.com/brandingproducts/" target="_blank"><i class="g-plus-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.linkedin.com/company/key-innovations-inc-" target="_blank"><i class="in-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.youtube.com/channel/UCQs3fbfBWmUGpw81jUaONpw" target="_blank"><i class="yt-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://www.instagram.com/key_innovations/" target="_blank"><i class="instagram-icon strip-icon"></i></a>
+                    </li>
+                    <li class="social-icon"><a href="https://plus.google.com/+Keypromo" target="_blank"><i class="gpl-icon strip-icon"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <p class="newslatter">GET DEALS AND IDEAS FROM US</p>
+                <form class="form-inline news-box" id="sunscribe_email"
+                metod="post" onsubmit="return submitNewsLetterForm();">
+                    <div class="form-group">
+                        <input class="required email form-control js-subscribe_email" type="email"
+                        name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
+                        required="true" />
+                    </div>
+                    <input class="btn btn-default news-letter-validation-submit-btn" type="submit"
+                    value="Subscribe" name="subscribe" />
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="bottom-footer">
+    <div class="container"><span class="pull-left">Powered by : <a href="#" target="_blank"><img src="https://keyinnovations.ca/bundles/officebraincustombundletheme/KeyInnovationTheme/images/officebeacon-light.png"/></a></span>
+        <span
+        class="col-xs-8 text-center">Copyright © 2017 Key Innovations Inc. All rights reserved</span>
+    </div>
+</div>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js"></script>
+</p><!--/gm-editable-region--></div></div>
+</div>
+<script src="./assets/client-plugins/client-slider-plugin.js"></script>
+<script src="./assets/client-plugins/client-popular-product-slider-plugin.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+
+</div>
+<script src="./../public/assets/client-plugins/global-variables-plugin.js"></script>
+<script src="./assets/client-plugins/flowz-builder-engine.js"></script>
+
+</body>
+</html>

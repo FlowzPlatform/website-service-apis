@@ -3,8 +3,9 @@
 let rp = require('request-promise');
 let password_length = 9;
 
-let email_url = process.env.EMAIL_URL || "http://172.16.61.20:3000/sendPassword"
-console.log(email_url)
+// let email_url = process.env.EMAIL_URL || "http://172.16.61.20:3000/sendPassword";
+let email_url = process.env.EMAIL_URL;
+
 class Service {
   constructor (options) {
     this.options = options || {};
@@ -23,11 +24,10 @@ class Service {
   async create (data, params) {
 
     return new Promise((resolve, reject) => {
-      console.log(this.randomPassword(password_length));
       let password = this.randomPassword(password_length);
       var options = {
         method: 'POST',
-        uri: 'http://ec2-54-88-11-110.compute-1.amazonaws.com/api/setup',
+        uri: process.env.REGISTER_URL,
         body: {
             email: data.email,
             password: password,
@@ -38,7 +38,6 @@ class Service {
      
     rp(options) 
         .then(function (parsedBody) {
-            console.log(parsedBody)
             if(parsedBody.code == 200){
                 let sendEmailOptions = {
                   method: 'POST',

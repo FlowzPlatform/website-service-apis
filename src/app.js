@@ -20,10 +20,20 @@ const appHooks = require('./app.hooks');
 
 const rethinkdb = require('./rethinkdb');
 
+
+const subscription = require('flowz-subscription')
+
 const app = feathers();
 
 //global.appRoot = path.join(path.join(__dirname, '..'), 'websites');
 global.appRoot = "/var/www/html/websites";
+
+app.use(function(req, res, next) {
+   this.apiHeaders = req.headers ;
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+});
 
 // Load app configuration
 app.configure(configuration(path.join(__dirname, '..')));
@@ -43,12 +53,17 @@ app.options('*', cors());
 app.configure(hooks());
 app.configure(rethinkdb);
 app.configure(rest());
-app.configure(socketio());
+app.configure(socketio(4032,{
+  wsEngine: 'uws',
+  origin: '*.flowz.com:*'
+}));
 
-// Configure other middleware (see `middleware/index.js`)
-app.configure(middleware);
+app.use(subscription.featherSubscription)
 // Set up our services (see `services/index.js`)
 app.configure(services);
+// Configure other middleware (see `middleware/index.js`)
+app.configure(middleware);
+
 // Configure a middleware for 404s and the error handler
 app.use(notFound());
 app.use(handler());
