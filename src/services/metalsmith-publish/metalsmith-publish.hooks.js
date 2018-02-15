@@ -47,9 +47,10 @@ function after_create_ms(hook) {
       // let replace_path = (hook.params.query.path).replace(/\\/g,'\/')
       // console.log('Replaced path: '+replace_path);
       //  shell.cd(replace_path);
-      //  shell.exec('pwd');
-      
-      let response = shell.exec('node ' + hook.params.query.path + '/public/assets/metalsmithPreview.js');
+        //  shell.exec('pwd');
+        // let deleteresponse=shell.exec('find ./public -maxdepth 1 -type f -iname \*.html -delete');
+      // console.log('deleteresponse',deleteresponse)
+      let response = shell.exec('node ' + hook.params.query.path + '/public/assets/metalsmithPublish.js');
       hook.result = 'Successfull executed MetalSmith';
 
       // shell.cd(hook.params.query.path +'/public/assets/');

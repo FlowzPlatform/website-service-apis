@@ -97,8 +97,31 @@ function after_send_repoToGit(hook) {
                   shell.exec('git push -u origin master -f');
 
                   if(process.env.NODE_ENV != 'development'){
-                    shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "209.50.52.154" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\'');
-                    shell.exec('curl -i -X POST -d \'[ "qaflowz.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "209.50.52.154" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://54.175.22.107/pretty/atomiadns.json/SetDnsRecords\''); 
+
+                    if(process.env.dnsServer1 != undefined){
+                      if(process.env.webrootServer == 'DEV'){
+                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                      } else if(process.env.webrootServer == 'QA') {
+                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                      } else if(process.env.webrootServer == 'PROD') {
+                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                      } else {
+                        console.log('No webrootServer server specified')
+                      }
+                    }
+
+                    if(process.env.dnsServer2 != undefined){
+                      if(process.env.webrootServer == 'DEV'){
+                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                      } else if(process.env.webrootServer == 'QA') {
+                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                      } else if(process.env.webrootServer == 'PROD') {
+                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                      } else {
+                        console.log('No webrootServer server specified')
+                      }
+                    }
+
                   }
                   
               }

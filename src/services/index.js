@@ -37,6 +37,12 @@ const registerWebsiteSubscriptions = require('./register-website-subscriptions/r
 const websiteUsers = require('./website-users/website-users.service.js');
 
 
+const metalsmithPublish = require('./metalsmith-publish/metalsmith-publish.service.js');
+
+
+const deletePublishFiles = require('./delete-publish-files/delete-publish-files.service.js');
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -71,4 +77,6 @@ module.exports = function () {
   app.configure(registerWebsiteSubscriptions);
   app.configure(websiteUsers);
   app.configure(adminOrders);
+  app.configure(metalsmithPublish);
+  app.configure(deletePublishFiles);
 };
