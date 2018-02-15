@@ -16,6 +16,14 @@ body {
     width: 100%;
 }
 
+.cell {
+    width: 8%;
+    display: table-cell;
+    height: 75px;
+    flex-grow: 1 !important;
+    flex-basis: 100% !important;
+}
+
 :root {
     margin-top: 0px;
 }
@@ -28,6 +36,13 @@ body {
     clear: both;
 }
 
+.heading {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
 .row {
     display: table;
     padding-top: 10px;
@@ -35,6 +50,12 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     width: 100%;
+}
+
+.cell {
+    height: 75px;
+    flex-grow: 1 !important;
+    flex-basis: 100% !important;
 }
 
 .gjs-am-file-uploader > form {
@@ -46,73 +67,381 @@ body {
 }
 
 body {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+}
+
+.container {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+#partner-logo {
+    display: block;
+    opacity: 1;
+}
+
+#c498117 {
+    width: 3080px;
+    left: 0px;
+    display: block;
+}
+
+#c498122 {
+    width: 154px;
+}
+
+#c498135 {
+    width: 154px;
+}
+
+#c498146 {
+    width: 154px;
+}
+
+#c498157 {
+    width: 154px;
+}
+
+#c498168 {
+    width: 154px;
+}
+
+#c498179 {
+    width: 154px;
+}
+
+#c498190 {
+    width: 154px;
+}
+
+#c498201 {
+    width: 154px;
+}
+
+#c498212 {
+    width: 154px;
+}
+
+#c498223 {
+    width: 154px;
+}
+
+.item > .cell {
+    width: 33.3%;
+    display: block;
+    height: auto;
+}
+
+#c7934 {
+    width: 1017px;
+    height: 466px;
+}
+
+#c392673 {
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+}
+
+#c117496 {
+    background-color: rgb(47, 105, 189);
+}
+
+#c4771 {
+    font-size: 16px;
+}
+
+#c4803 {
+    font-size: 16px;
+}
+
+#c4830 {
+    font-size: 16px;
+}
+
+#c4857 {
+    font-size: 16px;
+}
+
+#c4884 {
+    font-size: 16px;
+}
+
+#slider {
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    position: relative;
+    width: auto !important;
+}
+
+#slides {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    box-shadow: rgb(51, 51, 51) 2px 2px 4px, rgb(221, 221, 221) 1px 1px 0px inset;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.page img {
+    width: 100%;
+    height: 466px;
+}
+
+#overflow {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#slider input {
+    display: none;
+}
+
+#controls {
+    position: absolute;
+    width: 100%;
+    top: 216px;
+    left: 0px;
+    height: 50px;
+}
+
+#controls label {
+    display: none;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+#controls label:hover {
+    opacity: 0.8;
+}
+
+#slide1:checked ~ #controls label:nth-child(2), #slide2:checked ~ #controls label:nth-child(3), #slide3:checked ~ #controls label:nth-child(4), #slide4:checked ~ #controls label:nth-child(5), #slide5:checked ~ #controls label:nth-child(1) {
+    width: 0px;
+    height: 0px;
+    border-top-width: 20px;
+    border-top-style: solid;
+    border-top-color: transparent;
+    border-left-width: 20px;
+    border-left-style: solid;
+    border-left-color: rgb(51, 51, 51);
+    border-bottom-width: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    float: right;
+    margin-right: -30px;
+    display: block;
+}
+
+#slide1:checked ~ #controls label:nth-child(5), #slide2:checked ~ #controls label:nth-child(1), #slide3:checked ~ #controls label:nth-child(2), #slide4:checked ~ #controls label:nth-child(3), #slide5:checked ~ #controls label:nth-child(4) {
+    width: 0px;
+    height: 0px;
+    border-top-width: 20px;
+    border-top-style: solid;
+    border-top-color: transparent;
+    border-bottom-width: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    border-right-width: 20px;
+    border-right-style: solid;
+    border-right-color: rgb(51, 51, 51);
+    float: left;
+    display: block;
+    margin-left: -27px;
+}
+
+#slide1:checked ~ #slides .inner {
+    margin-left: 0px;
+}
+
+#slide2:checked ~ #slides .inner {
+    margin-left: -100%;
+}
+
+#slide3:checked ~ #slides .inner {
+    margin-left: -200%;
+}
+
+#slide4:checked ~ #slides .inner {
+    margin-left: -300%;
+}
+
+#slide5:checked ~ #slides .inner {
+    margin-left: -400%;
+}
+
+#active {
+    margin-top: 10px;
+    text-align: center;
+    vertical-align: middle;
+    padding-right: 3px;
+}
+
+#active label {
+    padding-top: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    width: 230px;
+    height: 53px;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(241, 241, 241);
+    display: table-cell;
+    cursor: pointer;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    line-height: 19px;
+    font-family: sans-serif;
+    font-size: small;
+}
+
+#active label:hover {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(196, 190, 190);
+}
+
+#slide1:checked ~ #active label:nth-child(1), #slide2:checked ~ #active label:nth-child(2), #slide3:checked ~ #active label:nth-child(3), #slide4:checked ~ #active label:nth-child(4), #slide5:checked ~ #active label:nth-child(5) {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(221, 221, 221);
+}
+
+#slides .inner {
+    transition-duration: 0.8s;
+    transition-timing-function: ease-in-out;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+.col-item .photo img {
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    width: 100%;
+}
+
+.col-item .info {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 1px;
+}
+
+.col-item:hover .info {
+    background-color: rgb(238, 238, 238);
+}
+
+.col-item .price {
+    float: left;
+    margin-top: 5px;
+}
+
+.col-item .price h5 {
+    line-height: 20px;
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
 }
 
-#c46113 {
-    margin-top: inherit;
-    margin-right: inherit;
-    margin-bottom: inherit;
-    margin-left: inherit;
+.col-item .info .rating {
+    color: rgb(119, 119, 119);
 }
 
-#c2471 {
-    background-color: rgb(255, 255, 255);
+.col-item .rating {
+    float: left;
+    font-size: 17px;
+    text-align: right;
+    line-height: 52px;
+    margin-bottom: 10px;
+    height: 52px;
 }
 
-.container {
-    width: 100%;
-}
-
-#c47368 {
-    display: none;
-}
-
-#c99549 {
-    display: none;
-}
-
-#c4046 {
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
+.col-item .separator {
+    border-top-width: 1px;
     border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: black;
-    border-right-color: black;
-    border-bottom-color: black;
-    border-left-color: black;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
+    border-top-color: rgb(225, 225, 225);
 }
 
-#c26340 {
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: black;
-    border-right-color: black;
-    border-bottom-color: black;
-    border-left-color: black;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
+.col-item .separator p {
+    line-height: 20px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.col-item .separator p i {
+    margin-right: 5px;
+}
+
+.col-item .btn-add {
+    width: 50%;
+    float: left;
+}
+
+.col-item .btn-details {
+    width: 50%;
+    float: left;
+    padding-left: 10px;
+}
+
+[data-slide="prev"] {
+    margin-right: 10px;
 }
 
 #menu {
@@ -211,15 +540,15 @@ body {
     overflow-y: hidden;
     width: 180px;
     background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
     background-repeat-x: initial;
     background-repeat-y: initial;
     background-attachment: initial;
-    background-position-x: initial;
-    background-position-y: initial;
     background-origin: initial;
     background-clip: initial;
     background-color: rgb(255, 255, 255);
-    background-size: initial;
     position: absolute;
     z-index: 99;
     display: none;
@@ -273,15 +602,15 @@ body {
 
 #menu li:hover > a.prett, #menu a.prett:hover {
     background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
     background-repeat-x: initial;
     background-repeat-y: initial;
     background-attachment: initial;
-    background-position-x: initial;
-    background-position-y: initial;
     background-origin: initial;
     background-clip: initial;
     background-color: rgb(255, 255, 255);
-    background-size: initial;
     color: rgb(51, 51, 51);
 }
 
@@ -308,15 +637,15 @@ body {
 
 #menu ul.menus a:hover {
     background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
     background-repeat-x: initial;
     background-repeat-y: initial;
     background-attachment: initial;
-    background-position-x: initial;
-    background-position-y: initial;
     background-origin: initial;
     background-clip: initial;
     background-color: rgb(186, 186, 186);
-    background-size: initial;
 }
 
 #menu a.trigger2::after {
@@ -340,61 +669,53 @@ body {
     right: 9px;
 }
 
-.ob-menu .container {
-    position: relative;
+.inner {
+    width: 500%;
 }
 
-.c12395 {
-    color: black;
-    width: 198px;
-    height: 68px;
+.inner::after {
+    display: block;
+    height: 0px;
+    clear: both;
 }
 
-div#js-fix-header-controller .main-logo-part {
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: 10px;
-    margin-right: 20px;
-    margin-bottom: 10px;
-    margin-left: 20px;
+.page {
+    float: left;
+    width: 20%;
 }
 
-div#js-fix-header-controller .row.header-search-col {
-    display: inline-block;
-    width: 430px;
-    vertical-align: middle;
-    margin-top: 12px !important;
-    margin-right: 0px !important;
-    margin-bottom: 0px !important;
-    margin-left: 50px !important;
+.c258325 {
+    display: block;
+    min-height: 50px;
 }
 
-div#js-fix-header-controller .slidemenu.shop-menu {
-    display: inline-block;
-    vertical-align: middle;
-    float: right;
-    margin-right: 10px;
-}
-
-div#js-fix-header-controller .slidemenu.shop-menu .login-show {
-    border-right-width: 0px;
-    border-right-style: initial;
-    border-right-color: initial;
-}
-
-div#js-fix-header-controller .row.header-search-col .col-lg-10, div#js-fix-header-controller .row.header-search-col .col-lg-2 {
-    padding-top: 0px;
+.ob-innovation {
+    padding-top: 15px;
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
 }
 
-.ob-menu ul li a {
-    color: rgb(0, 0, 0) !important;
+.c9982 {
+    color: black;
+    width: auto;
+    max-width: 100%;
 }
 
-.ob-menu ul li a::after {
-    border-top-color: rgb(0, 0, 0) !important;
+div#slider #active {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .cell {
+        width: 100%;
+        display: block;
+    }
+
+    .cell {
+        width: 100%;
+        display: block;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -404,15 +725,15 @@ div#js-fix-header-controller .row.header-search-col .col-lg-10, div#js-fix-heade
 
     #menu ul {
         background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
         background-repeat-x: initial;
         background-repeat-y: initial;
         background-attachment: initial;
-        background-position-x: initial;
-        background-position-y: initial;
         background-origin: initial;
         background-clip: initial;
         background-color: rgb(131, 131, 131);
-        background-size: initial;
         position: absolute;
         top: 100%;
         right: 0px;
@@ -461,56 +782,56 @@ div#js-fix-header-controller .row.header-search-col .col-lg-10, div#js-fix-heade
 
     #menu li:hover {
         background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
         background-repeat-x: initial;
         background-repeat-y: initial;
         background-attachment: initial;
-        background-position-x: initial;
-        background-position-y: initial;
         background-origin: initial;
         background-clip: initial;
         background-color: rgb(186, 186, 186);
-        background-size: initial;
         color: rgb(51, 51, 51);
     }
 
     #menu li:hover > a.prett, #menu a.prett:hover {
         background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
         background-repeat-x: initial;
         background-repeat-y: initial;
         background-attachment: initial;
-        background-position-x: initial;
-        background-position-y: initial;
         background-origin: initial;
         background-clip: initial;
         background-color: rgb(186, 186, 186);
-        background-size: initial;
         color: rgb(51, 51, 51);
     }
 
     #menu ul.menus a {
         background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
         background-repeat-x: initial;
         background-repeat-y: initial;
         background-attachment: initial;
-        background-position-x: initial;
-        background-position-y: initial;
         background-origin: initial;
         background-clip: initial;
         background-color: rgb(186, 186, 186);
-        background-size: initial;
     }
 
     #menu ul.menus a:hover {
         background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
         background-repeat-x: initial;
         background-repeat-y: initial;
         background-attachment: initial;
-        background-position-x: initial;
-        background-position-y: initial;
         background-origin: initial;
         background-clip: initial;
         background-color: rgb(255, 255, 255);
-        background-size: initial;
     }
 
     #menu input, #menu label {
@@ -547,134 +868,402 @@ div#js-fix-header-controller .row.header-search-col .col-lg-10, div#js-fix-heade
     <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
     type="text/css" />
 </div>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-rel="stylesheet" crossorigin="anonymous" />
-<div>
-    <link href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/css/base.css"
-    rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
-    rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
-    rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" type="text/css" href="./assets/css/promobilia.css"
-    />
-    <div id="js-fix-header-controller">
-        <div class="main-logo-part"><a href="index.html"><img class="c12395" src="http://www.aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/logo.png?v=0.0.1"/></a>
-        </div>
-        <div class="row header-search-col">
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <input placeholder="Search Products Here" type="text" name="search" />
+<div class="ob-innovation">
+    <div class="container">
+        <slider class="c258325" image1="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner1.jpg"
+        image2="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner2.jpg"
+        image3="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner3.jpg"
+        image4="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner1.jpg"
+        image5="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner2.jpg">
+            <div id="slider">
+                <input type="radio" id="slide3" name="slider" />
+                <div id="slides">
+                    <div id="overflow">
+                        <div class="inner">
+                            <div class="page">
+                                <img id="c7934" src="http://placehold.it/1146x466" />
+                            </div>
+                            <div class="page">
+                                <img src="http://placehold.it/1146x466" />
+                            </div>
+                            <div class="page">
+                                <img src="http://placehold.it/1146x466" />
+                            </div>
+                            <div class="page">
+                                <img src="http://placehold.it/1146x466" />
+                            </div>
+                            <div class="page">
+                                <img src="http://placehold.it/1146x466" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="controls">
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                    <label for="slide3"></label>
+                    <label for="slide4"></label>
+                    <label for="slide5"></label>
+                </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <input class="btn-search" type="button" title="Click to search" value="Search"
-                onclick="location.reload(search.html);" />
+        </slider>
+    </div>
+    <div class="container">
+        <menucomponent></menucomponent>
+    </div>
+</div>
+<div class="container">
+    <div class="row item">
+        <div class="cell">
+            <img class="c9982" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/ournewproducts2018.jpg?v=0.0.1"
+            />
+        </div>
+        <div class="cell">
+            <img class="c9982" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/catalog2018.jpg?v=0.0.1"
+            />
+        </div>
+        <div class="cell">
+            <img class="c9982" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/fcd2018.jpg?v=0.0.1"
+            />
+        </div>
+    </div>
+    <div class="supplier-logo">
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1441736918_mood-pro-logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1441813046_zingline-logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1512040864_Otaria_Line_FCD_1.13.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1441737065_barware-logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1479988439_logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1479727262_Exclusively-AAkron.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1479746101_fcd.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1500271510_1484080331_FCDD_logo.png"/></a>
+        </div>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1480535138_Made_in_USA-globe.png"/></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="slider-wrapper js-editable">
+                <div class="heading"><a href="#"><h1>Specials</h1></a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-15610-translucent-red.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-15610-translucent-red.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-15610-translucent-red.jpg" alt="Mardi Gras Grip Pen, Full Color Digital"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                            Mardi Gras Grip Pen, Full Color Digital
+                        </a>
+                                        <div class="item-code">80-15610</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$0.52</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20305-neon-pink.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20305-neon-pink.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20305-neon-pink.jpg" alt="Nite Glow Pencil"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                            Nite Glow Pencil
+                                        </a>
+                                        <div class="item-code">20305</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$0.312</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20550-orange-to-bright-yellow_2.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20550-orange-to-bright-yellow_2.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/20550-orange-to-bright-yellow_2.jpg" alt="Mood Pencil with Black Eraser"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                            Mood Pencil with Black Eraser
+                                        </a>
+                                        <div class="item-code">20550</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$0.260</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="slidemenu shop-menu">
-            <ul class="header-loging">
-                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
-                </li>
-                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="compare.html"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span> </a>
-                </li>
-                <li class="dropdown login-col header-login-text login-show hide"><a class="dropdown-toggle" href="login.html"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
-                </li>
-                <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
-                    <ul
-                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
-                        <li><a href="myaccount.html">MY ACCOUNT</a>
-                        </li>
-                        <li><a href="changePassword.html">CHANGE PASSWORD</a>
-                        </li>
-                        <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
-                        </li>
-            </ul>
-            </li>
-            </ul>
-            <div class="clearfix"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div class="slider-wrapper js-editable">
+                <div class="heading"><a href="#"><h1>Closeouts</h1></a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/44335-white.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/44335-white.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/44335-white.jpg" alt="TRACK IT Tag"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                TRACK IT Tag
+                                                </a>
+                                        <div class="item-code">44335</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$4.52</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/43310-lime-green_7.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/43310-lime-green_7.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/43310-lime-green_7.jpg" alt="Fold-Away Absorbent Towel"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                Fold-Away Absorbent Towel
+                                                </a>
+                                        <div class="item-code">43310</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$4.05</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/71114-yellow-green.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/71114-yellow-green.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/71114-yellow-green.jpg" alt="14 oz. Mood Hurricane Cup"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                14 oz. Mood Hurricane Cup
+                                                </a>
+                                        <div class="item-code">71114</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$1.55</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <div class="slider-wrapper js-editable">
+                <div class="heading"><a href="/en_us/search?tag_name=Top+Sellers&tag_id%5B%5D=top-sellers"><h1>Top Sellers</h1></a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-44700.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-44700.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/80-44700.jpg" alt="Cube Shape Portable Speakers, Full Color Digital - Closeout"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                Cube Shape Portable Speakers, Full Color Digital - Closeout
+                                                </a>
+                                        <div class="item-code">80-44700 - Closeout</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$4.990</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/89152-closeout.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/89152-closeout.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/89152-closeout.jpg" alt="Carabineer Led Flashlight - Closeout"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                Carabineer Led Flashlight - Closeout
+                                                </a>
+                                        <div class="item-code">89152-Closeout</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$2.29</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap" id="product-row-530">
+                    <div class="pro-box">
+                        <div class="pro-image product-details-boxs530 5">
+                            <div class="product-img-blk"><a href="#"><img class="img-responsive center-block" src="http://images.officebrain.com/migration-api-hidden-new/web/images/5/64000-blank-yellow.jpg" data-original="http://images.officebrain.com/migration-api-hidden-new/web/images/5/64000-blank-yellow.jpg" data-thumb-url="http://images.officebrain.com/migration-api-hidden-new/web/images/5/64000-blank-yellow.jpg" alt="Golf Tees, Bulk - Closeout"/></a>
+                            </div>
+                            <div class="cont-papapapap">
+                                <div class="cont-cont">
+                                    <div class="cont-cont-undr"><a class="item-title" href="#" title="Product Detail">
+                                                Golf Tees, Bulk - Closeout
+                                                </a>
+                                        <div class="item-code">64000-BLANK - Closeout</div>
+                                        <div class="product-aslow">As Low As</div>
+                                        <div class="item-price">$0.09</div>
+                                        <div class="pro-button">
+                                            <ul class="js-shop-option">
+                                                <li><a class="js-btn-compare-product" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Compare Product"><i class="fa fa-retweet fa-fw"></i></a>
+                                                </li>
+                                                <li><a class="js-btn-wish-list" href="javascript:void(0);" data-toggle="tooltip"
+                                                    data-placement="top" data-product-id="530" data-culture-product-id="530"
+                                                    data-product-slug="mardi-gras-grip-pen-full-color-digital" data-original-title="Favorite List"><i class="fa fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div><a href="#"><div class="upper-add-div"></div></a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<menucomponent>
-    <nav id="menu">
-        <div class="ob-menu">
-            <div class="container">
-                <ul>
-                    <li><a class="prett">PRODUCTS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">BRANDS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">CATLOG</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">SERVICE</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">TOOLS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="prett">PROMOTIONS</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a>OUTLET</a>
-                    </li>
-                    <li><a class="prett">ABOUT</a>
-                        <ul class="menus">
-                            <li><a href="#">Drop Menu 1</a>
-                            </li>
-                            <li><a href="#">Drop Menu 2</a>
-                            </li>
-                            <li><a href="#">Drop Menu 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</menucomponent>

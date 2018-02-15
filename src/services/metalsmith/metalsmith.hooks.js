@@ -49,7 +49,7 @@ function after_create_ms(hook) {
       //  shell.cd(replace_path);
       //  shell.exec('pwd');
       
-      let response = shell.exec('node ' + hook.params.query.path + '/public/assets/metalsmith.js');
+      let response = shell.exec('node ' + hook.params.query.path + '/public/assets/metalsmithPreview.js');
       hook.result = 'Successfull executed MetalSmith';
 
       // shell.cd(hook.params.query.path +'/public/assets/');

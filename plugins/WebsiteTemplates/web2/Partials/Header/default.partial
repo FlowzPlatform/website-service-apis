@@ -547,6 +547,8 @@ div#js-fix-header-controller .row.header-search-col .col-lg-10, div#js-fix-heade
     <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
     type="text/css" />
 </div>
+<script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"
+defer="defer"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 rel="stylesheet" crossorigin="anonymous" />
 <div>

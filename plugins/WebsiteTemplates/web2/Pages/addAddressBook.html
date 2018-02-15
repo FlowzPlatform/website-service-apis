@@ -7,10 +7,6 @@ body {
     margin: 0;
 }
 
-#c15459 {
-    font-size: 16px;
-}
-
 .row {
     display: table;
     padding-top: 10px;
@@ -18,6 +14,10 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     width: 100%;
+}
+
+:root {
+    margin-top: 0px;
 }
 
 :root {
@@ -37,10 +37,21 @@ body {
     min-height: 325px !important;
 }
 
-.fdb-block {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(238, 238, 238);
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.c17829 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
 }
 </style>
 
@@ -48,14 +59,33 @@ body {
 
 
 <div class="cssImports"></div>
-<section class="fdb-block">
-    <div class="container">
-        <div class="row">
-            <div class="col col-sm-10 col-md-8 text-left">
-                <p class="text-h3" id="c15459">Far far away, behind the word mountains, far from the countries Vokalia
-                    and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-                    right at the coast of the Semantics, a large language ocean.</p>
+<div class="container main">
+    <div class="content-info-page">
+        <div class="innerpage row account-innerpage">
+            <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+                <div class="ob-account-right">
+                    <div class="breadcrumb">
+                        <ul>
+                            <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
+                            </li>
+                            <li><a href="#">My Account </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><a href="#">Address Book </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><strong>Add new address</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ob-add-new-address">
+                        <h1 class="main-title"><i class="fa fa-pencil-square-o"></i>add new address</h1>
+                        <h2>contact information</h2>
+                        <div class="require-message">Please fill in your Contact Information. Don't forget to save!</div>
+                    </div>
+                    <div class="row">
+                        <reusecomponent class="c17829">{{> addressBook id='addAddress.partial' }}</reusecomponent>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
+</div>
