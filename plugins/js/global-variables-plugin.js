@@ -2,7 +2,7 @@ var globalVariables = [];
 var brandName;
 
 var userEmail = '';
-var projectName = '';
+var projectID = '';
 var configDataUrl = '';
 
 var baseURL = 'https://api.flowzcluster.tk/serverapi';
@@ -17,9 +17,9 @@ async function getProjectInfo() {
     await $.getJSON( "./assets/project-details.json", function( data ) {  
         var configData = data;
         userEmail = data[0].projectOwner;
-        projectName = data[0].projectName;
+        projectID = data[0].projectID;
 
-        configDataUrl = baseURL + "/project-configuration/" + projectName;
+        configDataUrl = baseURL + "/project-configuration/" + projectID;
     });
 
     getConfigData();
