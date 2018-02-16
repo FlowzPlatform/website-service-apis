@@ -67,8 +67,15 @@ class Service {
 
               
               
+            } else {
+                const dirTree = require('directory-tree');
+                const tree = dirTree(appRoot+"/"+params.query.website);
+                if(!tree)
+                {
+                    return Promise.resolve({code : 204 , message: "website "+params.query.website+" not found"})
+                }
+                return Promise.resolve(tree)
             }
-            //console.log('!!!!!!!:',tree.children)
             // return Promise.resolve(tree)
         }
     }
