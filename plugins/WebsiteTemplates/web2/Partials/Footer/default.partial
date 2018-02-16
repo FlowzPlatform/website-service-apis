@@ -7,11 +7,6 @@ body {
     margin: 0;
 }
 
-#c138461 {
-    width: auto;
-    height: 30px;
-}
-
 .row {
     display: table;
     padding-top: 10px;
@@ -55,6 +50,11 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
+}
+
+#c138461 {
+    width: auto;
+    height: 30px;
 }
 
 #c498117 {
@@ -229,7 +229,7 @@ body {
     </div>
 </div>
 <div class="bottom-footer">
-    <div class="container"><span class="pull-left">Powered by : <a class="footer_logo" href="#"><img id="c138461"  src="./assets/images/footer_logo.png"/></a></span>
+    <div class="container"><span class="pull-left">Powered by : <a class="footer_logo" href="#"><img id="c138461" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/footer_logo.png"/></a></span>
         <span
         class="col-xs-8 text-center">Copyright © 2017 Flowz. All rights reserved</span>
     </div>
