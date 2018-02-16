@@ -451,10 +451,19 @@ function dataSaveToLocal(type,product_id,show_msg=true){
     else{
       window.yList.share.wishList.push(recentAddedInWishlist)
     }
+    var addedTo = "";
+    if(type == 1)
+    {
+      addedTo = " to wishlist";
+    }
+    else if(type == 3)
+    {
+      addedTo = " to compare list";
+    }
 
     if(show_msg != false) {
       // updateShoppingLocalCount(JSON.parse(localStorage.getItem(decideLocalStorageKey)).length , type);
-      showSuccessMessage("item successfully added");
+      showSuccessMessage("item successfully added"+addedTo);
     }
   }
 }
@@ -563,10 +572,28 @@ function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
       }
       if(show_msg != false) {
         if(response_data.status == 200) {
-          showSuccessMessage(response_data.message)
+          var addedTo = "";
+          if(type == 1)
+          {
+            addedTo = " to wishlist";
+          }
+          else if(type == 3)
+          {
+            addedTo = " to compare list";
+          }
+          showSuccessMessage(response_data.message+addedTo)
         }
         else{
-          showErrorMessage(response_data.message)
+          var alreadyAddedIn = "";
+          if(type == 1)
+          {
+            alreadyAddedIn = " in wishlist";
+          }
+          else if(type == 3)
+          {
+            alreadyAddedIn = " in compare list";
+          }
+          showErrorMessage(response_data.message+alreadyAddedIn)
         }
       }
     }
@@ -741,6 +768,25 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
   // var found = array.some(function (el) {
   //   return el.product_id == product_id;
   // });
+  var addedTo = "";
+  if(type == 1)
+  {
+    addedTo = " to wishlist";
+  }
+  else if(type == 3)
+  {
+    addedTo = " to compare list";
+  }
+
+  var alreadyAddedIn = "";
+  if(type == 1)
+  {
+    alreadyAddedIn = " in wishlist";
+  }
+  else if(type == 3)
+  {
+    alreadyAddedIn = " in compare list";
+  }
 
   if (!found)
   {
@@ -760,11 +806,11 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
     }
 
     if(show_msg != false) {
-      showSuccessMessage("Item added successfully");
+      showSuccessMessage("Item added successfully"+addedTo);
     }
   }else{
     if(show_msg != false) {
-      showErrorMessage("Item already exist");
+      showErrorMessage("Item already exist"+ alreadyAddedIn);
     }
   }
   return array
@@ -855,7 +901,7 @@ function hideAlertBar(){
 }
 function showPageAjaxLoading(){
 	if (!$('.widget-box-overlay').length) {
-		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="'+website_settings.BaseURL+'assets/preloader.gif"></div>');
+		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
 	}
 }
 function hidePageAjaxLoading(){
@@ -928,7 +974,7 @@ function showWishList(recetAdded=false)
             {
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,                
+                url: project_settings.product_api_url+"?_id="+prodId,
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -1083,7 +1129,7 @@ function showCompareList(recetAdded=false)
 
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,                                
+                url: project_settings.product_api_url+"?_id="+prodId,
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -1378,5 +1424,14 @@ $(document).ready(function(){
       });
   }
 
+  if($(".datepicker-color").length > 0){
+    $(document).on("click", '.datepicker-color', function(){
+        $(this).prev('input').focus()
+    });
+  }
+
 })
+
+
+
 localStorage.setItem("vOneLocalStorage", user_id);

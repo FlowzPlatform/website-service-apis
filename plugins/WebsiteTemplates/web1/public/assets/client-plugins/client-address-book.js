@@ -47,7 +47,7 @@ $(function() {
         wrapper: "ul",
         submitHandler: function(form) {
             let formObj = $(form);
-            console.log("formObj",formObj);
+            // console.log("formObj",formObj);
             if(addressBookId != null){
               methodType = "PATCH"
               url = project_settings.address_book_api_url+"/"+addressBookId;

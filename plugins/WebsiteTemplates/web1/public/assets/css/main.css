@@ -6,3 +6,15 @@
     border-radius: 5px;
     box-shadow: 1px 1px;
 }
+.address-book-link {
+	margin-left: 10px;
+}
+#payForm .btn.payment-btn {
+    margin-right: 10px;
+    font-family: 'Roboto Condensed',sans-serif !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 26px;
+    display: inline-block;
+    height: 37px;
+}
