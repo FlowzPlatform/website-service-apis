@@ -18,9 +18,6 @@ const emailSubscribers = require('./email-subscribers/email-subscribers.service.
 
 const publishSurge = require('./publish-surge/publish-surge.service.js');
 const copyWebsite = require('./copy-website/copy-website.service.js');
-const requestQuote = require('./request-quote/request-quote.service.js');
-const emailTemplate = require('./email-template/email-template.service.js');
-
 
 const colorTable = require('./color-table/color-table.service.js');
 const cloneWebsite = require('./clone-website/clone-website.service.js');
@@ -69,8 +66,6 @@ module.exports = function () {
 
   app.configure(addressBook);
   app.configure(emailSubscribers);
-  app.configure(requestQuote);
-  app.configure(emailTemplate);
   app.configure(changeCityStateCountry);
   app.configure(myOrders);
   app.configure(colorTable);

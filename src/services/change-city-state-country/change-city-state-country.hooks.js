@@ -80,8 +80,7 @@ async function fetchDatafromCountry(hook,table)
         if(hook.params.query.data_from == 'country_code'){
           // console.log("hook.params.query",hook.params.query.country_data);
           // console.log("table==>>",table);
-          r.db('product_service_api').table(table)
-          //r.table(table)
+          r.table(table)
             .filter(function(fc){
                 return r.expr(hook.params.query.country_data).contains(fc("country_code"))
               }).run(connection , function(error , cursor){
@@ -106,8 +105,8 @@ async function fetchDatafromState(hook,table)
                 countryId = parseInt(hook.params.query.country_id)
             }
 
-            r.db("product_service_api").table("tbl_state").innerJoin(
-              r.db("product_service_api").table("tbl_country").filter({
+            r.table("tbl_state").innerJoin(
+              r.table("tbl_country").filter({
                 "id": countryId
               }),function(tbl_state, tbl_country){
                 return tbl_state("country_code").eq(tbl_country("country_code"))
@@ -125,31 +124,53 @@ async function fetchDatafromState(hook,table)
 
 async function fetchDatafromCity(hook,table)
 {
-  return new Promise ((resolve , reject) =>{
+   return new Promise ((resolve , reject) =>{
 
-      /* fetch data of city by state id and country id */
-      if(hook.params.query.data_from == 'state_code'){
-          let stateId = '';
-          if(hook.params.query.state_id != ''){
-              stateId = parseInt(hook.params.query.state_id)
-          }
-          //console.log("stateId",stateId);
-          r.db("product_service_api").table("tbl_city").innerJoin(
-            r.db("product_service_api").table("tbl_state").filter({
-              "id": stateId
-            }),function(tbl_city, tbl_state){
-              return tbl_city("admin_code1").eq(tbl_state("state_code"))
-            }).without([{right: 'id'}]).zip()
-            .run(connection , function(error , cursor){
-                  if (error) throw error;
-                  cursor.toArray(function(err, result) {
-                      if (err) throw err;
-                      resolve(result)
-                  });
-            })
-      }
-  })
+       /* fetch data of city by state id and country id */
+       if(hook.params.query.data_from == 'state_code'){
+           let stateId = '';
+           if(hook.params.query.state_id != ''){
+               stateId = parseInt(hook.params.query.state_id)
+           }
+           console.log("stateId",stateId);
+           if(stateId != "")
+           {
+             r.table("tbl_state").filter(r.row("id").eq(stateId)).run(connection, function(error , cursor){
+               if (error) throw error;
+               cursor.toArray(function(err, result) {
+                   if (err) throw err;
 
+                   // console.log('result',result)
+                   r.table("tbl_city").filter(r.row("admin_code1").eq(result[0].state_code)).run(connection, function(error , cursor){
+                     if (error) throw error;
+                     cursor.toArray(function(err, result1) {
+                       if (err) throw err;
+
+                     // console.log('result11',result)
+                     resolve(result1)
+                     })
+                   })
+               });
+             })
+           }
+           else{
+             resolve(stateId)
+           }
+           // r.db("product_service_api").table("tbl_city").innerJoin(
+           //   r.db("product_service_api").table("tbl_state").filter({
+           //     "id": stateId
+           //   }),function(tbl_city, tbl_state){
+           //     return tbl_city("admin_code1").eq(tbl_state("state_code"))
+           //   }).without([{right: 'id'}]).zip()
+           //   .run(connection , function(error , cursor){
+           //         if (error) throw error;
+           //         cursor.toArray(function(err, result) {
+           //             if (err) throw err;
+           //             resolve(result)
+           //         });
+           //   })
+       }
+   })
 }
 
 async function fetchDataById(hook,table)
@@ -157,8 +178,7 @@ async function fetchDataById(hook,table)
     return new Promise ((resolve , reject) =>{
       let id = parseInt(hook.params.query.id)
       // console.log("id",id);
-      r.db('product_service_api').table(table)
-
+      r.table(table)
         .get(id).run(connection , function(error , cursor){
             if (error) throw error;
             resolve(cursor)
