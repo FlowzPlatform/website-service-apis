@@ -2,11 +2,11 @@ var globalVariables = [];
 var brandName;
 
 var userEmail = '';
-var projectName = '';
+var projectID = '';
 var configDataUrl = '';
 
-var baseURL = 'http://api.flowzcluster.tk/serverapi';
-var socketHost = 'http://ws.flowzcluster.tk:4032';
+var baseURL = 'https://api.flowzcluster.tk/serverapi';
+var socketHost = 'https://ws.flowzcluster.tk:4032';
 
 $(document).ready(function() {
     getProjectInfo();
@@ -17,9 +17,9 @@ async function getProjectInfo() {
     await $.getJSON( "./assets/project-details.json", function( data ) {  
         var configData = data;
         userEmail = data[0].projectOwner;
-        projectName = data[0].projectName;
+        projectID = data[0].projectID;
 
-        configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
+        configDataUrl = baseURL + "/project-configuration/" + projectID;
     });
 
     getConfigData();
@@ -28,7 +28,7 @@ async function getProjectInfo() {
 async function getConfigData () {
 
     await $.getJSON( configDataUrl , function( data ) {  
-        var configData = data.data[0].configData;
+        var configData = data.configData;
         globalVariables = configData[1].projectSettings[1].GlobalVariables;
     }); 
 

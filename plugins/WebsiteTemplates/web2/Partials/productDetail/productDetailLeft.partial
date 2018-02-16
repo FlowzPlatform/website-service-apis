@@ -124,6 +124,10 @@ body {
 #image-test {
     display: none;
 }
+
+.quick-view-left .product-big-image {
+    width: 400px;
+}
 </style>
 
 

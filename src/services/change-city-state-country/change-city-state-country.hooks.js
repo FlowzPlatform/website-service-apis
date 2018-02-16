@@ -81,6 +81,7 @@ async function fetchDatafromCountry(hook,table)
           // console.log("hook.params.query",hook.params.query.country_data);
           // console.log("table==>>",table);
           r.db('product_service_api').table(table)
+          //r.table(table)
             .filter(function(fc){
                 return r.expr(hook.params.query.country_data).contains(fc("country_code"))
               }).run(connection , function(error , cursor){
@@ -148,6 +149,7 @@ async function fetchDatafromCity(hook,table)
             })
       }
   })
+
 }
 
 async function fetchDataById(hook,table)
@@ -156,6 +158,7 @@ async function fetchDataById(hook,table)
       let id = parseInt(hook.params.query.id)
       // console.log("id",id);
       r.db('product_service_api').table(table)
+
         .get(id).run(connection , function(error , cursor){
             if (error) throw error;
             resolve(cursor)

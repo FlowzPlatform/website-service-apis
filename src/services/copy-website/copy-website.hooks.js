@@ -49,16 +49,20 @@ function after_copy_website(hook) {
       let templateName = hook.data.templateName;
 
       let response = '';
-      if (!shell.which('git')) {
-        shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
-        shell.exit(1);
-      } else {
+      // if (!shell.which('git')) {
+      //   shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
+      //   shell.exit(1);
+      // } else {
 
-        console.log('cp -rf ' + config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/* ' + config.path + projectPath + '/');
-        // response = shell.cp('-Rf', config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/*', config.path + projectPath + '/');
-        response = shell.exec('cp -rf ' + config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/* ' + config.path + projectPath + '/');
+      //   console.log('cp -rf ' + config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/* ' + config.path + projectPath + '/');
+      //   // response = shell.cp('-Rf', config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/*', config.path + projectPath + '/');
+      //   response = shell.exec('cp -rf ' + config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/* ' + config.path + projectPath + '/');
 
-      }
+      // }
+
+      response = shell.exec('cp -rf ' + config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/* ' + config.path + projectPath + '/');
+
+      
       hook.result = response;
       resolve(hook)
             

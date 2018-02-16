@@ -58,51 +58,9 @@ module.exports = {
 };
 
 findAllOrders = async hook => {
-  if(hook.params.query.owner_id == undefined &&  hook.params.query.setting_id == undefined &&  hook.params.query.website_id == undefined &&  hook.params.query.user_id == undefined) {
-    hook.result = {status:400, message: "Please pass user id or owner id or setting id"}
-  }else if(hook.params.query.user_id != undefined){
-    await r.table(table)
-    .filter(r.row("user_id").eq(hook.params.query.user_id))
-    .run(connection , function(error , cursor){
-      if (error) throw error;
-      cursor.toArray(function(err, result) {
-        if (err) throw err;
-        hook.result = result;
-      })
-    })
-  }
-  else if(hook.params.query.owner_id != undefined){
-    await r.table(table)
-    .filter(r.row("owner_id").eq(hook.params.query.owner_id))
-    .run(connection , function(error , cursor){
-      if (error) throw error;
-      cursor.toArray(function(err, result) {
-        if (err) throw err;
-        hook.result = result;
-      })
-    })
-  }
-  else if(hook.params.query.setting_id != undefined){
-    await r.table(table)
-    .filter(r.row("setting_id").eq(hook.params.query.setting_id))
-    .run(connection , function(error , cursor){
-      if (error) throw error;
-      cursor.toArray(function(err, result) {
-        if (err) throw err;
-        hook.result = result;
-      })
-    })
-  }
-  else if(hook.params.query.website_id != undefined){
-    await r.table(table)
-    .filter(r.row("website_id").eq(hook.params.query.website_id))
-    .run(connection , function(error , cursor){
-      if (error) throw error;
-      cursor.toArray(function(err, result) {
-        if (err) throw err;
-        hook.result = result;
-      })
-    })
+  if(hook.params.query.owner_id == undefined &&  hook.params.query.setting_id == undefined &&  hook.params.query.website_id == undefined &&  hook.params.query.user_id == undefined) 
+  {
+    hook.result = {status:400, message: "Please pass user id or owner id or setting id or website_id"}
   }
 }
 

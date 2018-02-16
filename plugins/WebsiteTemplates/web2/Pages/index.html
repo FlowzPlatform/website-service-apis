@@ -16,12 +16,6 @@ body {
     width: 100%;
 }
 
-.cell {
-    width: 8%;
-    display: table-cell;
-    height: 75px;
-}
-
 :root {
     margin-top: 0px;
 }
@@ -48,12 +42,6 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     width: 100%;
-}
-
-.cell {
-    width: 8%;
-    display: table-cell;
-    height: 75px;
 }
 
 .gjs-am-file-uploader > form {
@@ -189,8 +177,6 @@ body {
     background-position-x: initial;
     background-position-y: initial;
     background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
@@ -310,8 +296,6 @@ body {
     background-position-x: initial;
     background-position-y: initial;
     background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
@@ -332,8 +316,6 @@ body {
     background-position-x: initial;
     background-position-y: initial;
     background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
@@ -345,8 +327,6 @@ body {
     background-position-x: initial;
     background-position-y: initial;
     background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
@@ -541,8 +521,6 @@ body {
     background-position-x: initial;
     background-position-y: initial;
     background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
@@ -603,8 +581,6 @@ body {
     background-position-x: initial;
     background-position-y: initial;
     background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
@@ -638,8 +614,6 @@ body {
     background-position-x: initial;
     background-position-y: initial;
     background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
@@ -704,18 +678,6 @@ div#slider #active {
     display: none !important;
 }
 
-@media (max-width: 768px) {
-    .cell {
-        width: 100%;
-        display: block;
-    }
-
-    .cell {
-        width: 100%;
-        display: block;
-    }
-}
-
 @media screen and (max-width: 600px) {
     #menu {
         position: relative;
@@ -726,8 +688,6 @@ div#slider #active {
         background-position-x: initial;
         background-position-y: initial;
         background-size: initial;
-        background-repeat-x: initial;
-        background-repeat-y: initial;
         background-attachment: initial;
         background-origin: initial;
         background-clip: initial;
@@ -783,8 +743,6 @@ div#slider #active {
         background-position-x: initial;
         background-position-y: initial;
         background-size: initial;
-        background-repeat-x: initial;
-        background-repeat-y: initial;
         background-attachment: initial;
         background-origin: initial;
         background-clip: initial;
@@ -797,8 +755,6 @@ div#slider #active {
         background-position-x: initial;
         background-position-y: initial;
         background-size: initial;
-        background-repeat-x: initial;
-        background-repeat-y: initial;
         background-attachment: initial;
         background-origin: initial;
         background-clip: initial;
@@ -811,8 +767,6 @@ div#slider #active {
         background-position-x: initial;
         background-position-y: initial;
         background-size: initial;
-        background-repeat-x: initial;
-        background-repeat-y: initial;
         background-attachment: initial;
         background-origin: initial;
         background-clip: initial;
@@ -824,8 +778,6 @@ div#slider #active {
         background-position-x: initial;
         background-position-y: initial;
         background-size: initial;
-        background-repeat-x: initial;
-        background-repeat-y: initial;
         background-attachment: initial;
         background-origin: initial;
         background-clip: initial;
@@ -856,16 +808,27 @@ div#slider #active {
 
 
 
-<div class="cssImports"></div>
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
+    type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    />
+</div>
 <div class="ob-innovation">
     <div class="container">
-        <slider class="c258325" image1="http://www.aakronline.com/images/uploads/banner_images/thumb_d009dae4b5bc6da008b9bfa334eaad6de046584e.jpg"
-        image2="http://www.aakronline.com/images/uploads/banner_images/thumb_d009dae4b5bc6da008b9bfa334eaad6de046584e.jpg"
-        image3="http://www.aakronline.com/images/uploads/banner_images/thumb_d009dae4b5bc6da008b9bfa334eaad6de046584e.jpg"
-        image4="http://www.aakronline.com/images/uploads/banner_images/thumb_4eee3c772dc8203cb35daad72c04c2bfeb4e6691.jpg"
-        image5="http://www.aakronline.com/images/uploads/banner_images/thumb_227f5006f13e1301f7601763f340385fac89fc3b.jpg">
+        <slider class="c258325" image1="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner1.jpg"
+        image2="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner2.jpg"
+        image3="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner3.jpg"
+        image4="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner1.jpg"
+        image5="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/banner2.jpg">
             <div id="slider">
-                <input type="radio" id="slide3" name="slider" />
+                <input id="slide3" name="slider" type="radio" />
                 <div id="slides">
                     <div id="overflow">
                         <div class="inner">
@@ -902,38 +865,38 @@ div#slider #active {
     </div>
 </div>
 <div class="container">
-    <div class="row item">
-        <div class="cell">
-            <img class="c9982" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/ournewproducts2018.jpg?v=0.0.1"
+    <div class="row">
+        <div class="col-md-4">
+            <img class="c9982" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/ournewproducts2018.jpg?v=0.0.1"
             />
         </div>
-        <div class="cell">
-            <img class="c9982" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/catalog2018.jpg?v=0.0.1"
+        <div class="col-md-4">
+            <img class="c9982" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/catalog2018.jpg?v=0.0.1"
             />
         </div>
-        <div class="cell">
-            <img class="c9982" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/fcd2018.jpg?v=0.0.1"
+        <div class="col-md-4">
+            <img class="c9982" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/fcd2018.jpg?v=0.0.1"
             />
         </div>
     </div>
     <div class="supplier-logo">
-        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1441736918_mood-pro-logo.png"/></a>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1441736918_mood-pro-logo.png"/></a>
         </div>
-        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1441813046_zingline-logo.png"/></a>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1441813046_zingline-logo.png"/></a>
         </div>
-        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1512040864_Otaria_Line_FCD_1.13.png"/></a>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1512040864_Otaria_Line_FCD_1.13.png"/></a>
         </div>
-        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1441737065_barware-logo.png"/></a>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1441737065_barware-logo.png"/></a>
         </div>
-        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1479988439_logo.png"/></a>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1479988439_logo.png"/></a>
         </div>
-        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1479727262_Exclusively-AAkron.png"/></a>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1479727262_Exclusively-AAkron.png"/></a>
         </div>
-        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1479746101_fcd.png"/></a>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1479746101_fcd.png"/></a>
         </div>
-        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1500271510_1484080331_FCDD_logo.png"/></a>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1500271510_1484080331_FCDD_logo.png"/></a>
         </div>
-        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://www.aakronline.com/images/uploads/product-tag/featured-icon/1480535138_Made_in_USA-globe.png"/></a>
+        <div class="item"><a class="index-help-block" href="#" data-toggle="tooltip" data-placement="top"><img class="img-responsive" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/1480535138_Made_in_USA-globe.png"/></a>
         </div>
     </div>
     <div class="row">
