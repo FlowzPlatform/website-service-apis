@@ -5,10 +5,12 @@ let fs = require('fs');
 let _ = require('lodash');
 let rimraf = require('rimraf');
 let shell = require('shelljs');
-
 class Service {
     constructor(options) {
         this.options = options || {};
+    }
+    setup(app) {
+        this.app = app
     }
 
     find(params) {
@@ -19,11 +21,44 @@ class Service {
         }else{
             const dirTree = require('directory-tree');
             const tree = dirTree(appRoot+"/"+params.query.website);
+            
             if(!tree)
             {
                 return Promise.resolve({code : 204 , message: "website "+params.query.website+" not found"})
             }
-            return Promise.resolve(tree)
+
+            if (params.query.subscriptionId != undefined) 
+            {
+            return new Promise((resolve , reject)=>{
+                let subTree = tree;
+                let arr_id = []
+                this.app.service("project-configuration").find({ query: { subscriptionId: params.query.subscriptionId } }).then(function (response) {
+                    for (let index = 0; index < response.data.length; index++) {
+                        arr_id.push(response.data[index].id)
+                    }
+                    
+                    if (arr_id.length > 0) {
+                        for (let i = 0; i < tree.children.length; i++) {
+                            let myIndex = _.findIndex(arr_id, function (o) {
+                                return o == tree.children[i].name
+                            });
+                            
+                            if (myIndex == -1) {
+                                tree.children.splice(i, 1)
+                                i--;
+                            }
+                        }
+                    }
+                    else {
+                        tree.children = []
+                    }
+                    resolve(tree)
+
+                }).catch(function (err) {
+                    resolve(tree)
+                })
+            })
+            }
         }
     }
 
@@ -81,23 +116,11 @@ class Service {
             fs.stat(params.query.filename, function(err, stats) {
                 if (!err) {
                     if (stats.isFile()) {
-                        // console.log('Stats%%%%%%%%%', stats);
-                        // console.log('To Delete FileName :', params.query.filename);
                         shell.rm(params.query.filename);      
-                        resolve(params.query.filename.replace(/\//g, "\\"));                
-                        // fs.unlink(params.query.filename, function(err) {
-                        //     err ? reject(err) : resolve(params.query.filename.replace(/\//g, "\\"))
-                        // });
-                        
+                        resolve(params.query.filename.replace(/\//g, "\\"));
                     } else {
-                        // console.log('Stats%%%%%%%%%', stats);
-                        // console.log('To Delete FolderName :', params.query.filename);
                         shell.rm('-rf', params.query.filename);
                         resolve(params.query.filename.replace(/\//g, "\\"));
-                        // shell.rm(params.query.filename);
-                        // rimraf(params.query.filename, function(err) {
-                        //     err ? reject(err) : resolve(params.query.filename.replace(/\//g, "\\"))
-                        // });
                     }
                 } else {
                     reject(err)
