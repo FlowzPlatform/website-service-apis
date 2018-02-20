@@ -28,9 +28,20 @@ const myOrders = require('./my-orders/my-orders.service.js');
 
 const shippingEstimator = require('./shipping-estimator/shipping-estimator.service.js');
 
+const deleteService = require('./delete-service/delete-service.service.js');
+
 const adminOrders = require('./admin-orders/admin-orders.service.js');
 
 const registerWebsiteSubscriptions = require('./register-website-subscriptions/register-website-subscriptions.service.js');
+
+const websiteUsers = require('./website-users/website-users.service.js');
+
+
+const metalsmithPublish = require('./metalsmith-publish/metalsmith-publish.service.js');
+
+
+const deletePublishFiles = require('./delete-publish-files/delete-publish-files.service.js');
+
 
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
@@ -62,6 +73,10 @@ module.exports = function () {
 
   app.configure(cloneWebsite);
   app.configure(saveMenu);
+  app.configure(deleteService);
   app.configure(registerWebsiteSubscriptions);
+  app.configure(websiteUsers);
   app.configure(adminOrders);
+  app.configure(metalsmithPublish);
+  app.configure(deletePublishFiles);
 };

@@ -58,7 +58,7 @@ module.exports = {
 };
 
 findAllOrders = async hook => {
-  if(hook.params.query.owner_id == undefined &&  hook.params.query.setting_id == undefined &&  hook.params.query.website_id == undefined &&  hook.params.query.user_id == undefined)
+  if(hook.params.query.owner_id == undefined &&  hook.params.query.setting_id == undefined &&  hook.params.query.website_id == undefined &&  hook.params.query.user_id == undefined) 
   {
     hook.result = {status:400, message: "Please pass user id or owner id or setting id or website_id"}
   }

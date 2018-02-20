@@ -59,10 +59,9 @@ app.configure(socketio(4032,{
 }));
 
 app.use(subscription.featherSubscription)
-
-// Configure other middleware (see `middleware/index.js`)
 // Set up our services (see `services/index.js`)
 app.configure(services);
+// Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);
 
 // Configure a middleware for 404s and the error handler
