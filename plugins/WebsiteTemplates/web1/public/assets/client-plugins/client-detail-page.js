@@ -304,15 +304,15 @@ if(pid != null) {
                                   // change
                                   let city = await getCountryStateCityById(returnData.city,3);
                                   replaceAddressHtml += city+",";
-                                  
+
                                   let state = await getCountryStateCityById(returnData.state,2);
                                   replaceAddressHtml += state+",";
-                                  
-                                  let country = await getCountryStateCityById(returnData.country,1);     
+
+                                  let country = await getCountryStateCityById(returnData.country,1);
                                   $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').html('Select Carrier <span class="caret"></span>');
-                                //   $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').attr('data-value','');                             
+                                //   $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').attr('data-value','');
                                   replaceAddressHtml += country
-                                  // END -Change                    
+                                  // END -Change
 
                                   if(returnData.postalcode != undefined ){
                                     replaceAddressHtml += "-"+returnData.postalcode+"<br>";
@@ -344,7 +344,7 @@ if(pid != null) {
                                         // "email": "shippotle@goshippo.com",//optional
                                         "validate": true//optional
                                     };
-                                    
+
                                     var addressTo  = {
                                         // "name": returnData.name,
                                         // "street1": "500 to 598 1st St",//returnData.street1,
@@ -359,11 +359,11 @@ if(pid != null) {
                                     // console.log("addressTo",addressTo);
 
                                     $(document).off('click', '#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li').on('click','#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li', function (e) {
-                                        // if(e.handled !== true) 
+                                        // if(e.handled !== true)
                                         {
                                             showPageAjaxLoading()
                                             var thisObj = $(this);
-                                            
+
                                             let attr = $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value');
 
                                             if (typeof attr !== typeof undefined && attr !== false) {
@@ -372,11 +372,12 @@ if(pid != null) {
                                             }
                                             getShippingRate('#js_shipping_method_detail_'+shippigCounter,thisObj,addressFrom,addressTo,shipping_details);
                                         }
-                                    });  
+                                    });
                                     $("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").removeClass("hide");
                                 // END -Change
-                                  
+
                                   $("#js_shipping_addresses_"+shippigCounter).removeClass("hide");
+                                  $(activetab).find("#datetimepicker1").datepicker({format: 'mm/dd/yyyy',minDate: new Date()});
                               }
                           })
                           .catch(error => {
@@ -495,6 +496,7 @@ if(pid != null) {
     });
   }
   hidePageAjaxLoading()
+
   $('.ob-product-gallery .product-big-image-thumbnails').bxSlider({
         mode: 'vertical',
         slideWidth:100,
@@ -908,7 +910,7 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                     {
                         let rateDetails = result.data.rates[ratekey];
 
-                        rateHtml +='<li data-service="'+rateDetails.servicelevel.name+'" data-value="'+rateDetails.amount+'" data-transit-time=""><a href="javascript:void(0)">'+rateDetails.servicelevel.name+' '+rateDetails.currency+' '+rateDetails.amount+'</a></li>';
+                        rateHtml +='<li data-service="'+rateDetails.servicelevel.name+'" data-value="'+rateDetails.amount+'" data-transit-time="'+rateDetails.estimated_days+'"><a href="javascript:void(0)">'+rateDetails.servicelevel.name+' '+rateDetails.currency+' '+rateDetails.amount+'</a></li>';
                     }
                 }
                 else{
@@ -1112,6 +1114,15 @@ $(document).on("click","#js_tab_list",function(){
     autoCounter();
 });
 
+$(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
+     let thisObj = $(this);
+     let transitTime = thisObj.data("transit-time")
+    //  alert(transitTime)
+     let shipCounter = thisObj.closest(".js_shipping_method_detail").data("shipping-counter")
+     let parentObj = $(activetab+" #js_shipping_method_detail_"+shipCounter)
+     setdate(parentObj,activetab,transitTime)
+})
+
 $(document).on("change",activetab + ".js_add_imprint_location_request_quote",function(){
     let print_pos_id = $(this).attr("id");
     let printPos = $(this).attr("value");
@@ -1184,3 +1195,28 @@ $(document).on("click", activetab + ' .js_request_quote_qty_remove', function(){
     let colorCbId = $(this).closest('a').attr("data-id");
     $(activetab).find("#"+colorCbId).prop("checked",false).trigger("change");
 });
+
+function setdate(parentObj,activetab,transitTime=0){
+  if($(activetab).find(parentObj).find('.shipping-datepicker').length > 0){
+      let date = new Date();
+      let startDate = date;
+      let endDate = "";
+      let count = 0;
+      let noOfDaysToAdd = 0
+
+      if(transitTime > 0 && transitTime !=''){
+          noOfDaysToAdd = noOfDaysToAdd + parseInt(transitTime);
+      }
+
+      while(count < noOfDaysToAdd){
+        endDate = new Date(startDate.setDate(startDate.getDate() + 1));
+        if(endDate.getDay() != 0 && endDate.getDay() != 6){
+            count++;
+        }
+      }
+      let setDate = new Date(endDate.getFullYear(),endDate.getMonth(),endDate.getDate())
+      $(activetab).find(parentObj).find("#datetimepicker1").datepicker("setDate", setDate);
+      $(activetab).find(parentObj).find("#datetimepicker1").datepicker('option', 'minDate', setDate, );
+
+  }
+}

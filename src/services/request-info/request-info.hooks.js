@@ -84,6 +84,8 @@ function beforeCreateRequestInfo(hook){
                   deletedUid: null,
                   guestUserInfo:guest_info,
                   website_id: hook.data.website_id,
+                  website_name: hook.data.websiteName,
+                  owner_id: hook.data.owner_id
               });
               // console.log("&&&",hook.data.product_data);
               hook.data = obj
