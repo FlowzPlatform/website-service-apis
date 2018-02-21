@@ -680,6 +680,7 @@ $(document).on('click', '.js-remove-wishlist', function(e) {
         else {
           deleteFromDatabase(1,product_id,user_id)
         }
+        showSuccessMessage("Product(s) have been successfully removed from wishlist.");        
         hidePageAjaxLoading();
 
       }, 300);
@@ -702,6 +703,7 @@ $(document).on('click', '.js-remove-compare', function(e) {
       else {
         deleteFromDatabase(3,product_id,user_id)
       }
+      showSuccessMessage("Product(s) have been successfully removed from compare list.");              
       hidePageAjaxLoading();
 
     }, 300);
@@ -921,6 +923,7 @@ function hidePageAjaxLoading(){
 
 function showWishList(recetAdded=false)
 {
+  showPageAjaxLoading()
   var listHtml = $('#myWishList .js-list').html()
   var wishlistValuesCount = 0;
   if(user_details != null){
@@ -984,7 +987,8 @@ function showWishList(recetAdded=false)
             {
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,
+                // url: project_settings.product_api_url+"?_id="+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description",                
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -1069,10 +1073,12 @@ function showWishList(recetAdded=false)
       $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
     }
   }
+  hidePageAjaxLoading()
 }
 
 function showCompareList(recetAdded=false)
 {
+  showPageAjaxLoading()  
   var compareHtml = $('#myCompareList #listing')
   var compareValuesCount = 0;
 
@@ -1103,6 +1109,7 @@ function showCompareList(recetAdded=false)
   if($("#myCompareList").length > 0)
   {
     // console.log('compare_values',compare_values)
+    $('#myCompareList #listing').addClass('hide');
     var productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
     var productData;
     var itemTitleHtml='';
@@ -1139,7 +1146,8 @@ function showCompareList(recetAdded=false)
 
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,
+                // url: project_settings.product_api_url+"?_id="+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description,features",
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -1299,7 +1307,7 @@ function showCompareList(recetAdded=false)
     $("#myCompareList #listing div:first").addClass("hide");
     compareHtml.append('<span class="js-no-records">No records found.</span>')
   }
-
+  hidePageAjaxLoading()  
 }
 
 function submitNewsLetterForm()
@@ -1441,6 +1449,5 @@ $(document).ready(function(){
   }
 
 })
-
 
 localStorage.setItem("vOneLocalStorage", user_id);
