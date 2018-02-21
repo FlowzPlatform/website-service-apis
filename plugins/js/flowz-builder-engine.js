@@ -32,7 +32,6 @@ try {
       secretAccessKey: configs.secretkey
     });
     AWS.config.region = 'us-west-2';
-    // console.log()
     var $form = document.querySelector(class_g_form);
     setRecursiveValues(data, entitys, $form)
   }
@@ -52,8 +51,19 @@ try {
               setRecursiveValues(item[entity.name], entity.entity, $panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form))
             }
           } else {
-            if (item[entity.name] != undefined || item[entity.name] != null) {
-              $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = item[entity.name]
+            // console.log('entity:: ', entity)
+            if (entity.type == 'file') {
+              if (item[entity.name] != undefined || item[entity.name] != null) {
+                $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = []
+                var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(); 
+                var template = Handlebars.compile(source);
+                // $panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')
+                $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(template(item));
+              }
+            } else {
+              if (item[entity.name] != undefined || item[entity.name] != null) {
+                $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = item[entity.name]
+              }
             }
           }
         }
@@ -298,8 +308,9 @@ try {
   var getValues = async() => {
     var $form = document.querySelector(class_g_form)
     var _tempdata = await getRecursiveValues($form, entitys, schemaarr)
-    // console.log('............................ _tempdata:: ', _tempdata)
+    console.log('............................ _tempdata:: ', _tempdata)
     if (_tempdata.msg) {
+      console.log('Validated..')
       parent.postMessage(_tempdata.data, "*");
     }
   }
@@ -307,15 +318,15 @@ try {
     var datas = [];
     var validarr = [];
     for (let [i, form] of $form.querySelectorAll(':scope >' + class_g_form_panel).entries()) {
-      var data = {}
+      var mdata = {}
       for (var [index, entity] of entitys.entries()) {
         if (entity.customtype) {
           if (form.querySelector('[attr-id="' + entity.name + '"]')) {
             var s = await getRecursiveValues(form.querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form), entity.entity, schema[index])
-            data[entity.name] = s.data
+            mdata[entity.name] = s.data
             validarr.push(s.msg)
           } else {
-            data[entity.name] = ''
+            mdata[entity.name] = ''
           }
         } else {
           // console.log('.............', entity.name, form.querySelector('[name="' + entity.name + '"]'))
@@ -327,19 +338,31 @@ try {
                 }
               });
               let fileChooser = form.querySelector('[name="' + entity.name + '"]');
-              let file = fileChooser.files[0];
-              if (file) {
-                let fileurl = await getFileUrl(file)
-                // console.log('fileurl............', fileurl)
-                data[entity.name] = fileurl
-              } else {
-                data[entity.name] = ''
+              console.log('fileChooser', fileChooser, fileChooser.files)
+             
+              let filearr = []
+              for(let f = 0; f < fileChooser.files.length; f++) {
+                let file = fileChooser.files[f];
+                if (file) {
+                  let fileurl = await getFileUrl(file, f)
+                  console.log('fileurl multi............', fileurl)
+                  filearr.push(fileurl)
+                } else {
+                  filearr.push('')
+                } 
               }
+              if (data !== undefined &&  data[i] != undefined && data[i][entity.name] !== undefined && data[i][entity.name].length > 0) {
+                for (let j of data[i][entity.name]) {
+                  filearr.push(j)
+                }
+              }
+              // console.log('data........', data[i][entity.name], filearr)
+              mdata[entity.name] = filearr
             } else {
-              data[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
+              mdata[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
             }
           } else {
-            data[entity.name] = ''
+            mdata[entity.name] = ''
           }
           // if (form.querySelector('[name="' + entity.name + '"]').type == 'file') {
           //   let bucket = new AWS.S3({
@@ -359,10 +382,10 @@ try {
           // }
         }
       }
-      validated = this.getValidate(data, schema, form)
-      console.log('validated....', validated, validarr)
+      validated = this.getValidate(mdata, schema, form)
+      // console.log('validated....', validated, validarr)
       validarr.push(validated)
-      datas.push(data)
+      datas.push(mdata)
     }
     let valid = true
     for (let i = 0; i < validarr.length; i++) {
@@ -375,7 +398,8 @@ try {
       msg: valid
     }
   }
-  var getFileUrl = (file) => {
+  var getFileUrl = (file, f) => {
+    // console.log('file', file)
     return new Promise((resolve, reject) => {
       let bucket = new AWS.S3({
         params: {
@@ -383,7 +407,7 @@ try {
         }
       });
       var params = {
-        Key: file.name,
+        Key: moment().valueOf().toString() + f + file.name,
         ContentType: file.type,
         Body: file
       };
