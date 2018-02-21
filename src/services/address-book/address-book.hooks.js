@@ -85,7 +85,7 @@ checkIsDefault = async hook =>{
   return new Promise ((resolve , reject) =>{
     // console.log(hook.data)
     r.table('userAddressBook')
-      .filter({'user_id':hook.data.user_id,'is_address':hook.data.is_address,'address_type':hook.data.address_type,'is_default':'1','deleted_at':false})
+      .filter({'user_id':hook.data.user_id,'is_address':hook.data.is_address,'address_type':hook.data.address_type,'is_default':'1','deleted_at':false,'website_id':hook.data.website_id})
       .run(connection , function(error , cursor){
           if (error) throw error;
           cursor.toArray(function(err, result) {
@@ -115,7 +115,7 @@ beforPatchAddressBook = async hook =>{
               // console.log("isdefault",isDefault);
               if(isDefault.length > 0){
                   let oldDefaultObj = isDefault[0];
-                  r.db('product_service_api').table('userAddressBook').get(oldDefaultObj.id).update({'is_default': "0",'updated_at':new Date()}).run(connection)
+                  r.table('userAddressBook').get(oldDefaultObj.id).update({'is_default': "0",'updated_at':new Date()}).run(connection)
               }
            }
            hook.data.updated_at = new Date();

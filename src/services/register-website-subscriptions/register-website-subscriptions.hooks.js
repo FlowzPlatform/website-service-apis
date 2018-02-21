@@ -63,12 +63,12 @@ function after_register_website(hook) {
       let registerAppModule = {
         'address-book': ['create', 'get', 'find', 'patch'],
         'request-info': ['create', 'get', 'find'],
-        'my-orders': ['create', 'get', 'find'],
+        'myOrders': ['create', 'get', 'find'],
         'request-quote': ['create', 'get', 'find']
       }
 
       subscription_1.moduleResource.registerAppModule = registerAppModule;
-      subscription_1.moduleResource.appRoles = ['guest', 'registered'];
+      subscription_1.moduleResource.appRoles = ['anonymous', 'registered'];
       subscription_1.registeredAppModulesRole();
 
       resolve(hook);
