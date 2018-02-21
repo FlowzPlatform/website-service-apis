@@ -88,10 +88,10 @@ body {
     aria-multiselectable="true">
         <div class="panel-heading open" role="tab">
             <h2 class="panel-title heading-block js-section-number">Shipping Method
-            </h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="#blank-Shipping-method-quote"
+            </h2><a class="js-add-class tab-quantity collapsed" data-toggle="collapse" data-parent="#blank-Shipping-method-quote"
             href="#Shipping-method-col" aria-expanded="true"><i class="caret-icon"></i></a>
         </div>
-        <div class="panel-collapse collapse in" id="Shipping-method-col" role="tabpanel">
+        <div class="panel-collapse collapse" id="Shipping-method-col" role="tabpanel">
             <div class="panel-body js-shippingMethod-section">
                 <div class="shipping-method">
                     <div class="col-xs-12 shipping-method-select">
