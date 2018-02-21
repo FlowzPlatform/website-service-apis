@@ -87,7 +87,7 @@ try {
           element = {
             value: event[key],
             name: key,
-            type: Array.isArray(newSchema[i]) ? 'customtype' : newSchema[i].type
+            type: newSchema[i].customtype === undefined ? 'customtype' : newSchema[i].type
           }
           if (element.type === 'customtype') {
             var inndervalidate = self.getValidate(event[key], newSchema[i], form.querySelector(class_g_form))

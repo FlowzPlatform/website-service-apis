@@ -5,19 +5,25 @@ var userEmail = '';
 var projectID = '';
 var configDataUrl = '';
 
-var baseURL = 'https://api.flowzcluster.tk/serverapi';
-var socketHost = 'https://ws.flowzcluster.tk:4032';
+// var baseURL = 'https://api.flowzcluster.tk/serverapi';
+// var socketHost = 'https://ws.flowzcluster.tk:4032';
 
-$(document).ready(function() {
-    getProjectInfo();
-    ImpletementSocekt();
+var baseURL = '';
+var socketHost = '';
+
+$(document).ready(async function() {
+    await getProjectInfo();
+    ImplementSocket();
 });
 
 async function getProjectInfo() {
-    await $.getJSON( "./assets/project-details.json", function( data ) {  
+    await $.getJSON( "./../assets/project-details.json", function( data ) {  
         var configData = data;
         userEmail = data[0].projectOwner;
         projectID = data[0].projectID;
+
+        baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+        socketHost = 'https://ws.' + data[0].domainkey + ':4032';
 
         configDataUrl = baseURL + "/project-configuration/" + projectID;
     });
@@ -92,7 +98,7 @@ async function updateGlobalVariables () {
     }
 }
 
-function ImpletementSocekt() {
+function ImplementSocket() {
   var socket = io(socketHost);
   var client = feathers()
       .configure(feathers.hooks())
