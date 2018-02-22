@@ -1,7 +1,7 @@
-var callApiUrl = project_settings.shopping_api_url;
-$("#js-cart_data").addClass("hide");
-
 document.addEventListener("DOMContentLoaded", function(event){
+  var callApiUrl = project_settings.shopping_api_url;
+  $("#js-cart_data").addClass("hide");
+
   if(user_details != null && $('#js-cart_data').length > 0){
     showCart();
   }

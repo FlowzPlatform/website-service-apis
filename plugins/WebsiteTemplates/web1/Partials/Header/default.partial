@@ -565,8 +565,21 @@ nav.navbar {
 
 
 <script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-memory@8.0.9/dist/y-memory.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-webrtc@8.0.7/dist/y-webrtc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-indexeddb@8.1.9/dist/y-indexeddb.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"></script>
+<script src="./main-files/main.js"></script>
+<script src="./assets/client-plugins/client-cart.js"></script>
 <div>
-    <link href=" http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/distributor/css/base.css"
+    <link rel='stylesheet' href='./main-files/main.css'/>
+    <link href="http://res.cloudinary.com/flowz/raw/upload/v1518760683/websites/distributor/css/base.css"
     rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
@@ -608,7 +621,7 @@ nav.navbar {
                 <div class="ob-logo-block">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/imgs/img_logo.png"/></a>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="http://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png"/></a>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-right">
                                 <div class="support-col"> <a href="mailto:admin@flowz.com"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>

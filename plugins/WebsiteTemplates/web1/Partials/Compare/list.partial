@@ -188,6 +188,7 @@ span.color {
     position: relative;
     vertical-align: top;
     width: 225px;
+    min-width: 225px;
 }
 
 .ob-product-compare .table-responsive {
@@ -229,7 +230,7 @@ span.color {
                                 <a class="delete-block js-remove-compare" data-id="#data.id#" href="javascript:void(0);" data-placement="left" data-toggle="tooltip" data-original-title="Remove"><i class="fa  fa-times-circle fa-fw"></i></a>
                                 <a href="#data.product_link#">
                                     <img class="img-responsive compare_img mb-4" src="#data.image#" alt="product image" />
-                                
+
                                     <h5 class="productTitle"><strong>#data.title#</strong></h5>
                                 </a>
                                 <hr/>
@@ -271,4 +272,3 @@ span.color {
         </div>
     </div>
 </div>
-<script src="./assets/client-plugins/client-wishlist.js"></script>

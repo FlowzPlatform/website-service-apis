@@ -41,6 +41,9 @@ const metalsmithPublish = require('./metalsmith-publish/metalsmith-publish.servi
 
 
 const deletePublishFiles = require('./delete-publish-files/delete-publish-files.service.js');
+const requestQuote = require('./request-quote/request-quote.service.js');
+const emailTemplate = require('./email-template/email-template.service.js');
+
 
 
 module.exports = function () {
@@ -79,4 +82,6 @@ module.exports = function () {
   app.configure(adminOrders);
   app.configure(metalsmithPublish);
   app.configure(deletePublishFiles);
+  app.configure(requestQuote);
+  app.configure(emailTemplate);
 };

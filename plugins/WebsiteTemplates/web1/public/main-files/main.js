@@ -1,18 +1,4 @@
 /* Add your custom JavaScript/jQuery functions here. It will be automatically included in every page. */
-// var project_settings = function () {
-//   var tmp = null;
-//   $.ajax({
-//       'async': false,
-//       'type': "GET",
-//       'global': false,
-//       'dataType': 'json',
-//       'url': "./assets/project_settings.json",
-//       'success': function (data) {
-//           tmp = data.project_settings;
-//       }
-//   });
-//   return tmp;
-// }();
 
 var website_info = function () {
   var tmp = null;
@@ -32,7 +18,6 @@ var website_info = function () {
 var website_settings = website_info[0];
 var project_settings = website_settings.project_settings;
 
-// console.log("project_settings",project_settings)
 
 async function getProductDetailById(id) {
       var returnData = null;
@@ -54,21 +39,6 @@ async function getProductDetailById(id) {
     	return returnData;
 }
 
-// function getProductDetailByIdCallBack(callback,id) {
-//     var data;
-//     $.ajax({
-//         url: project_settings.product_api_url+id,
-//         type: 'GET',
-//         dataType: 'json',
-//         headers: {'Authorization' : project_settings.product_api_token},
-//         success: function (resp) {
-//             data = resp;
-//             callback(data);
-//             return data;
-//         },
-//         error: function () {}
-//     });
-// }
 
 Y({
   db: {
@@ -339,49 +309,89 @@ var init = function() {
     document.getElementById("cartCount").innerHTML = JSON.parse(localStorage.getItem("savedCart")).length ;
   }
 
+  let myarr = [];
   // Auto sugession for search in header
-  $('input[name="search"]').autocomplete({
-      source: function( request, response ) {
-        var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": project_settings.search_api_url,
-              "method": "POST",
-              "headers": {
-                "authorization": project_settings.search_api_auth_token,
-                "content-type": "application/json",
-                "cache-control": "no-cache",
-                "postman-token": "0fe82014-49ea-eca8-1432-1f3b9fffc910"
-              },
-              "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"product_name\": \" "+ request.term +" \"\n        }\n      }\n    }\n  }\n}\u0001"
-            }
-
-            $.ajax(settings).done(function (data) {
-              //console.log(data);
-              response(data.hits.hits)
+  $('input[name="search"]').keyup(function(){
+      let val = $('input[name="search"]').val();
+      let settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": project_settings.search_api_url,
+        "method": "POST",
+        "headers": {
+          "authorization": project_settings.search_api_auth_token,
+          "content-type": "application/json",
+          "cache-control": "no-cache",
+          "postman-token": "0fe82014-49ea-eca8-1432-1f3b9fffc910"
+        },
+        "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword\": \" "+ val +" \"\n        }\n      }\n    }\n  }\n}\u0001"
+      }
+      $.ajax(settings).done(function (data) {
+          $.each(data.hits.hits,  function( index, value ) {
+            value._source.search_keyword.forEach(function(item,index) {
+              myarr.push(item);
             });
+          });
+      });
+  });
 
-      },
-      select: function( event, ui ) {
-        // console.log('ui.item', ui.item._source.product_name)
-        $('input[name="search"]').val(ui.item._source.product_name);
-        return false;
-      }
-    }).autocomplete("instance" )._renderItem = function( ul, item ) {
-      	return $( "<li>" )
-          .append( "<div>" + item._source.product_name + "</div>" )
-          .appendTo( ul );
-    };
+  $('input[name="search"]').autocomplete({
+    source: myarr
+  });
 
-    $('.header-search-col').find('.btn-search').click(function(){
-      if($.trim($('input[name="search"]').val()) != '') {
-               window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + $('input[name="search"]').val()
-      }
-      else {
-        window.location.href = website_settings.BaseURL+'search.html';
-      }
-      return false;
-    })
+  $('.header-search-col').find('.btn-search').click(function(){
+    if($.trim($('input[name="search"]').val()) != '') {
+      window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + $('input[name="search"]').val()
+    }
+    else {
+      window.location.href = website_settings.BaseURL+'search.html';
+    }
+    return false;
+  })
+
+
+  // $('input[name="search"]').autocomplete({
+  //     source: function( request, response ) {
+  //       var settings = {
+  //             "async": true,
+  //             "crossDomain": true,
+  //             "url": project_settings.search_api_url,
+  //             "method": "POST",
+  //             "headers": {
+  //               "authorization": project_settings.search_api_auth_token,
+  //               "content-type": "application/json",
+  //               "cache-control": "no-cache",
+  //               "postman-token": "0fe82014-49ea-eca8-1432-1f3b9fffc910"
+  //             },
+  //             "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"product_name\": \" "+ request.term +" \"\n        }\n      }\n    }\n  }\n}\u0001"
+  //           }
+  //
+  //           $.ajax(settings).done(function (data) {
+  //             //console.log(data);
+  //             response(data.hits.hits)
+  //           });
+  //
+  //     },
+  //     select: function( event, ui ) {
+  //       // console.log('ui.item', ui.item._source.product_name)
+  //       $('input[name="search"]').val(ui.item._source.product_name);
+  //       return false;
+  //     }
+  //   }).autocomplete("instance" )._renderItem = function( ul, item ) {
+  //     	return $( "<li>" )
+  //         .append( "<div>" + item._source.product_name + "</div>" )
+  //         .appendTo( ul );
+  //   };
+  //
+  //   $('.header-search-col').find('.btn-search').click(function(){
+  //     if($.trim($('input[name="search"]').val()) != '') {
+  //              window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + $('input[name="search"]').val()
+  //     }
+  //     else {
+  //       window.location.href = website_settings.BaseURL+'search.html';
+  //     }
+  //     return false;
+  //   })
 }
 
 //add in to Compare, Wishlist and Cart
@@ -451,10 +461,19 @@ function dataSaveToLocal(type,product_id,show_msg=true){
     else{
       window.yList.share.wishList.push(recentAddedInWishlist)
     }
+    var addedTo = "";
+    if(type == 1)
+    {
+      addedTo = " to wishlist";
+    }
+    else if(type == 3)
+    {
+      addedTo = " to compare list";
+    }
 
     if(show_msg != false) {
       // updateShoppingLocalCount(JSON.parse(localStorage.getItem(decideLocalStorageKey)).length , type);
-      showSuccessMessage("item successfully added");
+      showSuccessMessage("item successfully added"+addedTo);
     }
   }
 }
@@ -563,10 +582,28 @@ function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
       }
       if(show_msg != false) {
         if(response_data.status == 200) {
-          showSuccessMessage(response_data.message)
+          var addedTo = "";
+          if(type == 1)
+          {
+            addedTo = " to wishlist";
+          }
+          else if(type == 3)
+          {
+            addedTo = " to compare list";
+          }
+          showSuccessMessage(response_data.message+addedTo)
         }
         else{
-          showErrorMessage(response_data.message)
+          var alreadyAddedIn = "";
+          if(type == 1)
+          {
+            alreadyAddedIn = " in wishlist";
+          }
+          else if(type == 3)
+          {
+            alreadyAddedIn = " in compare list";
+          }
+          showErrorMessage(response_data.message+alreadyAddedIn)
         }
       }
     }
@@ -643,6 +680,7 @@ $(document).on('click', '.js-remove-wishlist', function(e) {
         else {
           deleteFromDatabase(1,product_id,user_id)
         }
+        showSuccessMessage("Product(s) have been successfully removed from wishlist.");        
         hidePageAjaxLoading();
 
       }, 300);
@@ -665,6 +703,7 @@ $(document).on('click', '.js-remove-compare', function(e) {
       else {
         deleteFromDatabase(3,product_id,user_id)
       }
+      showSuccessMessage("Product(s) have been successfully removed from compare list.");              
       hidePageAjaxLoading();
 
     }, 300);
@@ -741,6 +780,25 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
   // var found = array.some(function (el) {
   //   return el.product_id == product_id;
   // });
+  var addedTo = "";
+  if(type == 1)
+  {
+    addedTo = " to wishlist";
+  }
+  else if(type == 3)
+  {
+    addedTo = " to compare list";
+  }
+
+  var alreadyAddedIn = "";
+  if(type == 1)
+  {
+    alreadyAddedIn = " in wishlist";
+  }
+  else if(type == 3)
+  {
+    alreadyAddedIn = " in compare list";
+  }
 
   if (!found)
   {
@@ -760,11 +818,11 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
     }
 
     if(show_msg != false) {
-      showSuccessMessage("Item added successfully");
+      showSuccessMessage("Item added successfully"+addedTo);
     }
   }else{
     if(show_msg != false) {
-      showErrorMessage("Item already exist");
+      showErrorMessage("Item already exist"+ alreadyAddedIn);
     }
   }
   return array
@@ -819,7 +877,7 @@ function showErrorMessage(error_message) {
 			$(this).animate({marginTop: "+=50"}, 100, null)
 		});
 	} else {
-    $('body').prepend('<div class="container"><div class="alert alert-danger" style="margin-top:-50px;"><a data-dismiss="alert" class="close" href="javascript:void(0)">&times;</a><strong>Alert!</strong> <span>'+ error_message+'</span></div><div class="clr"></div></div>');
+    $('body').prepend('<div class="container"><div class="alert alert-danger" style="margin-top:-50px;"><a data-dismiss="alert" class="close" href="javascript:void(0)">&times;</a><span>'+ error_message+'</span></div><div class="clr"></div></div>');
 		$('.alert-danger').animate({marginTop: "+=50"}, 100, null);
 	}
 	setTimeout("hideAlertBar();", 15000);
@@ -837,9 +895,9 @@ function showSuccessMessage(success_message,url=null) {
 	}
 	else {
 		if( $('#modal-table').is(":visible") && $('#modal-table .modal-content').length>0 ){
-			$('body').prepend('<div class="container"><div class="alert alert-success" style="margin-top:-50px;"><a data-dismiss="alert" class="close" type="button">&times;</a><strong>Success!</strong> <span>'+ success_message+'</span></div><div class="clr"></div></div>');
+			$('body').prepend('<div class="container"><div class="alert alert-success" style="margin-top:-50px;"><a data-dismiss="alert" class="close" type="button">&times;</a> <span>'+ success_message+'</span></div><div class="clr"></div></div>');
 		} else {
-			$('body').prepend('<div class="container"><div class="alert alert-success" style="margin-top:-50px;"><a data-dismiss="alert" class="close" type="button">&times;</a><strong>Success!</strong> <span>'+ success_message+'</span></div><div class="clr"></div></div>');
+			$('body').prepend('<div class="container"><div class="alert alert-success" style="margin-top:-50px;"><a data-dismiss="alert" class="close" type="button">&times;</a> <span>'+ success_message+'</span></div><div class="clr"></div></div>');
 		}
 		$('.alert-success').animate({marginTop: "+=50"}, 100, null);
 	}
@@ -855,7 +913,7 @@ function hideAlertBar(){
 }
 function showPageAjaxLoading(){
 	if (!$('.widget-box-overlay').length) {
-		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="'+website_settings.BaseURL+'assets/preloader.gif"></div>');
+		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
 	}
 }
 function hidePageAjaxLoading(){
@@ -865,6 +923,7 @@ function hidePageAjaxLoading(){
 
 function showWishList(recetAdded=false)
 {
+  showPageAjaxLoading()
   var listHtml = $('#myWishList .js-list').html()
   var wishlistValuesCount = 0;
   if(user_details != null){
@@ -928,7 +987,8 @@ function showWishList(recetAdded=false)
             {
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,                
+                // url: project_settings.product_api_url+"?_id="+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description",                
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -1013,10 +1073,12 @@ function showWishList(recetAdded=false)
       $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
     }
   }
+  hidePageAjaxLoading()
 }
 
 function showCompareList(recetAdded=false)
 {
+  showPageAjaxLoading()  
   var compareHtml = $('#myCompareList #listing')
   var compareValuesCount = 0;
 
@@ -1047,6 +1109,7 @@ function showCompareList(recetAdded=false)
   if($("#myCompareList").length > 0)
   {
     // console.log('compare_values',compare_values)
+    $('#myCompareList #listing').addClass('hide');
     var productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
     var productData;
     var itemTitleHtml='';
@@ -1083,7 +1146,8 @@ function showCompareList(recetAdded=false)
 
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,                                
+                // url: project_settings.product_api_url+"?_id="+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description,features",
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", project_settings.vid);
@@ -1243,7 +1307,7 @@ function showCompareList(recetAdded=false)
     $("#myCompareList #listing div:first").addClass("hide");
     compareHtml.append('<span class="js-no-records">No records found.</span>')
   }
-
+  hidePageAjaxLoading()  
 }
 
 function submitNewsLetterForm()
@@ -1378,5 +1442,12 @@ $(document).ready(function(){
       });
   }
 
+  if($(".datepicker-color").length > 0){
+    $(document).on("click", '.datepicker-color', function(){
+        $(this).prev('input').focus()
+    });
+  }
+
 })
+
 localStorage.setItem("vOneLocalStorage", user_id);

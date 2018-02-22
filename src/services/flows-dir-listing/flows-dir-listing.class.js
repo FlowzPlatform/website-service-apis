@@ -89,6 +89,9 @@ class Service {
             return new Promise((resolve, reject) => {
                 if(!fs.existsSync(data.foldername)) {
                     fs.mkdir(data.foldername, function(err) {
+                         if(!err && data.folderType == 'preview') {
+                            shell.exec('ln -s ' + data.folderBasePath + '/public/assets ' + data.foldername + '/assets');
+                        }
                     err ? reject(err) : resolve(data)
                     });    
                 } else {

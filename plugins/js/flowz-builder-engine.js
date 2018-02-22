@@ -55,7 +55,7 @@ try {
             if (entity.type == 'file') {
               if (item[entity.name] != undefined || item[entity.name] != null) {
                 $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = []
-                var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(); 
+                var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html();
                 var template = Handlebars.compile(source);
                 // $panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')
                 $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(template(item));
@@ -87,7 +87,7 @@ try {
           element = {
             value: event[key],
             name: key,
-            type: Array.isArray(newSchema[i]) ? 'customtype' : newSchema[i].type
+            type: newSchema[i].customtype === undefined ? 'customtype' : newSchema[i].type
           }
           if (element.type === 'customtype') {
             var inndervalidate = self.getValidate(event[key], newSchema[i], form.querySelector(class_g_form))
@@ -339,7 +339,7 @@ try {
               });
               let fileChooser = form.querySelector('[name="' + entity.name + '"]');
               console.log('fileChooser', fileChooser, fileChooser.files)
-             
+
               let filearr = []
               for(let f = 0; f < fileChooser.files.length; f++) {
                 let file = fileChooser.files[f];
@@ -349,7 +349,7 @@ try {
                   filearr.push(fileurl)
                 } else {
                   filearr.push('')
-                } 
+                }
               }
               if (data !== undefined &&  data[i] != undefined && data[i][entity.name] !== undefined && data[i][entity.name].length > 0) {
                 for (let j of data[i][entity.name]) {
@@ -478,12 +478,12 @@ try {
         return [parseInt(m[1], 16),parseInt(m[2], 16),parseInt(m[3], 16) ]
     }
 
-    var color1 = hex_to_RGB(color1) 
-    var color2 = hex_to_RGB(color2) 
-    var color3 = hex_to_RGB(color3) 
-    var color4 = hex_to_RGB(color4) 
-    var color5 = hex_to_RGB(color5) 
-    var color6 = hex_to_RGB(color6) 
+    var color1 = hex_to_RGB(color1)
+    var color2 = hex_to_RGB(color2)
+    var color3 = hex_to_RGB(color3)
+    var color4 = hex_to_RGB(color4)
+    var color5 = hex_to_RGB(color5)
+    var color6 = hex_to_RGB(color6)
 
     var colors = new Array(
     color1,
@@ -494,7 +494,7 @@ try {
     color6);
 
     var step = 0;
-    //color table indices for: 
+    //color table indices for:
     // current color left
     // next color left
     // current color right
@@ -506,9 +506,9 @@ try {
 
     function updateGradient()
     {
-    
+
         if ( $===undefined ) return;
-        
+
         var c0_0 = colors[colorIndices[0]];
         var c0_1 = colors[colorIndices[1]];
         var c1_0 = colors[colorIndices[2]];
@@ -528,19 +528,19 @@ try {
         $('#gradient').css({
         background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
             background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
-        
+
         step += gradientSpeed;
         if ( step >= 1 )
         {
             step %= 1;
             colorIndices[0] = colorIndices[1];
             colorIndices[2] = colorIndices[3];
-            
+
             //pick two new target color indices
             //do not pick the same as the current one
             colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
             colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
-            
+
         }
     }
 
@@ -553,7 +553,7 @@ catch (err){
 
 // Navbar Plugins JS
 try{
-    var JSON;
+    var menuJson;
 
     $(document).ready(function(){
         var menuJsonName = './assets/' + $('.customMenu').attr('menuId') + '.json';
@@ -564,15 +564,33 @@ try{
             async: true,
             dataType: 'json',
             success: function(data) {
-                JSON = {
+                menuJson = {
                     "menu": data
                 };
+
+                var topLevelUl = true;
+                $("#navigationDiv").html(makeUL(menuJson.menu, topLevelUl, true));
+
+                $('.navbar a.dropdown-toggle').on('click', function(e) {
+                    var $el = $(this);
+                    var $parent = $(this).offsetParent(".dropdown-menu");
+                    $(this).parent("li").toggleClass('open');
+
+                    if(!$parent.parent().hasClass('nav')) {
+                        $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+                    }
+
+                    $('.nav li.open').not($(this).parents("li")).removeClass("open");
+
+                  //  return false;
+                });
             }
         });
 
+        /*
         $(function() {
             var topLevelUl = true;
-            $("#navigationDiv").html(makeUL(JSON.menu, topLevelUl, true));
+            $("#navigationDiv").html(makeUL(menuJson.menu, topLevelUl, true));
 
             $('.navbar a.dropdown-toggle').on('click', function(e) {
                 var $el = $(this);
@@ -588,10 +606,10 @@ try{
                 return false;
             });
 
-        });
+        }); */
     });
 
-    
+
 
     function makeUL(lst, topLevelUl, rootLvl) {
         var html = [];
@@ -726,7 +744,7 @@ try {
         },
     dataType: 'json',
     success: function (data) {
-        rawData = data.hits.hits; 
+        rawData = data.hits.hits;
         productData = rawData;
     }
     });
@@ -884,7 +902,7 @@ try{
     });
 
     async function getProjectInfo() {
-        await $.getJSON( "./assets/project-details.json", function( data ) {  
+        await $.getJSON( "./assets/project-details.json", function( data ) {
             var configData = data;
             userEmail = data[0].projectOwner;
             projectName = data[0].projectName;
@@ -896,12 +914,12 @@ try{
 
     async function getConfigData () {
 
-        await $.getJSON( configDataUrl , function( data ) {  
+        await $.getJSON( configDataUrl , function( data ) {
             var configData = data.data[0].configData;
             // globalVariables = configData[1].projectSettings[1].GlobalVariables;
             paymentgateways=configData[1].projectSettings[1].PaymentGateways
             ProjectbaseURL=configData[0].repoSettings[0].BaseURL;
-        }); 
+        });
         Paymentgateways();
     }
 
@@ -914,157 +932,10 @@ try{
             }
         }
         $('paymentgateway').replaceWith(paymentbuttons);
-            
+
     }
 }
 catch (err) {
     console.log('Error in Payment Module: ', err);
 }
 // Payment JS Ends
-
-// dataField JS
-const dfGroup = Vue.component('datafieldgroup', {
-    template: `<div class="grid">
-            <template v-for="item in items"><div class="item"><div class="item-content"><slot :text="item"></slot></div></div></template>
-          </div>`,
-    props: ['data_schema', 'data_api', 'draggable'],
-    computed: {},
-    data: function() {
-        return {
-            items: []
-        }
-    },
-    created() {
-        //alert(11);
-        let self = this;
-
-        var r = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/; //http://www.regular-expressions.info/examples.html
-
-        var a = this,data_api;
-
-        var dataApiHost = a.match(r);
-
-        let socketClient = io(dataApiHost);
-        let apiClient = feathers()
-            .configure(feathers.hooks())
-            .configure(feathers.socketio(socketClient));
-
-        let schemaVal = this.data_schema.split(":");
-        let connString = $.trim(schemaVal[0]);
-        let schemaName = $.trim(schemaVal[1]);
-
-        ///let apiDataService = apiClient.service('connectiondata/' + connString + '?schemaname=' + schemaName);
-        let apiDataService = apiClient.service('person-data');
-
-        apiDataService.on("created", async function(data) {
-            self.items.push(data);
-        });
-        apiDataService.on("updated", async function(data) {
-            let arrIndex = self.search(data.email);
-            self.items[arrIndex] = data;
-        });
-
-
-    },
-    mounted() {
-        this.getData()
-    },
-    watch: {
-        items: function(val) {}
-    },
-    updated() {
-        var grid = new Muuri('.grid', {
-            dragEnabled: this.draggable
-        });
-    },
-    methods: {
-        getData() {
-            let self = this;
-            if (this.data_schema != undefined) {
-                if (this.data_schema.length > 0) {
-                    this.data_schema;
-                    let schemaVal = this.data_schema.split(":");
-                    let connString = $.trim(schemaVal[0]);
-                    let schemaName = $.trim(schemaVal[1]);
-                    let apiUrl = 'http://172.16.230.86:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
-                    $.getJSON(apiUrl, function(data) {
-                        self.items = data;
-                    });
-                } else {
-                    $.getJSON(this.data_api, function(data) {
-                        self.items = data;
-                    });
-                }
-            } else {
-                $.getJSON(this.data_api, function(data) {
-                    self.items = data;
-                });
-            }
-        },
-        search(searchEmail) {
-            for (let i = 0; i < this.items.length; i++) {
-                if (this.items[i].email == searchEmail) {
-                    return i;
-                }
-            }
-        }
-    }
-});
-
-const Table = Vue.component('datafieldtable', {
-    template: `
-            <Table :columns="columns1" ata="data1"></Table>
-            `,
-    props: ['column_value', 'data_api'],
-    computed: {},
-    data: function() {
-        return {
-            columns1: [],
-            data1: []
-        }
-    },
-    mounted() {
-        this.getData()
-    },
-    methods: {
-        getData() {
-            let self = this;
-            let arr_column = []
-            var str = this.column_value;
-            var res = str.split(",");
-            for (let index = 0; index < res.length; index++) {
-                let data = {
-                    "title": res[index],
-                    "key": res[index]
-                }
-                arr_column.push(data)
-            }
-            self.columns1 = arr_column;
-            $.getJSON(this.data_api, function(data) {
-                self.data1 = data;
-            });
-
-        }
-    }
-});
-
-
-const dfList = Vue.component('datafieldlist', {
-    template: '<div><div v-for="item in items"><slot :text="item"></slot></div></div>',
-    props: ['items']
-});
-
-const dfText = Vue.component('datafieldtext', {
-    template: '<h3>{{text}}</h3>',
-    props: ['text']
-});
-
-new Vue({
-    el: '#app',
-    components: {
-        dfGroup,
-        dfList,
-        dfText
-    }
-})
-// dataField js ends

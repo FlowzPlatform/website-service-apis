@@ -83,7 +83,8 @@ async function fetchDatafromCountry(hook,table)
           r.table(table)
             .filter(function(fc){
                 return r.expr(hook.params.query.country_data).contains(fc("country_code"))
-              }).run(connection , function(error , cursor){
+              }).orderBy('country_name')
+              .run(connection , function(error , cursor){
                     if (error) throw error;
                     cursor.toArray(function(err, result) {
                         if (err) throw err;
@@ -111,6 +112,7 @@ async function fetchDatafromState(hook,table)
               }),function(tbl_state, tbl_country){
                 return tbl_state("country_code").eq(tbl_country("country_code"))
               }).without([{right: 'id'}]).zip()
+              .orderBy('state_name')
               .run(connection , function(error , cursor){
                     if (error) throw error;
                     cursor.toArray(function(err, result) {
@@ -141,7 +143,7 @@ async function fetchDatafromCity(hook,table)
                    if (err) throw err;
 
                    // console.log('result',result)
-                   r.table("tbl_city").filter(r.row("admin_code1").eq(result[0].state_code)).run(connection, function(error , cursor){
+                   r.table("tbl_city").filter(r.row("admin_code1").eq(result[0].state_code)).orderBy('city_name').run(connection, function(error , cursor){
                      if (error) throw error;
                      cursor.toArray(function(err, result1) {
                        if (err) throw err;
