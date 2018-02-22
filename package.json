@@ -47,7 +47,7 @@
     "feathers-rethinkdb": "^0.4.3",
     "feathers-socketio": "^2.0.0",
     "file-loader": "^1.1.5",
-    "flowz-subscription": "^0.1.5",
+    "flowz-subscription": "^0.1.8",
     "handlebars": "^4.0.11",
     "helmet": "^3.6.1",
     "lodash": "^4.17.4",
