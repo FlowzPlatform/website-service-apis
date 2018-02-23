@@ -1,5 +1,4 @@
-
-        <div class="in-prod-main">
+<div class="in-prod-main">
             <h1 class="heading">Branded Products That Build Relationships With Your Brand</h1>
             <div class="in-prod-under">
                 <div class="in-prod-main">
@@ -19,7 +18,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603011/websites/images/1490051371_bags2.png" alt=""></a></div>
+                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305487/websites/images/1490051371_bags2.png" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href="#" data-item-type="product-category">Bags</a></div>
                                 <div class="pro-cat">
@@ -47,7 +46,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490051413_beverage4.PNG" alt=""></a></div>
+                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305410/websites/images/1490051413_beverage4.PNG" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href="#" data-item-type="product-category">Drinkware</a></div>
                                 <div class="pro-cat">
@@ -61,7 +60,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518602887/websites/images/1490052317_food.png" alt=""></a></div>
+                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305572/websites/images/1490052317_food.png" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href="#" data-item-type="product-category">Food &amp; wine</a></div>
                                 <div class="pro-cat">
@@ -117,7 +116,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603012/websites/images/1490057468_office.png" alt=""></a></div>
+                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305794/websites/images/1490057468_office.png" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href="#" data-item-type="product-category">Office</a></div>
                                 <div class="pro-cat">
@@ -131,7 +130,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603011/websites/images/1490057507_travel.png" alt=""></a></div>
+                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305704/websites/images/1490057507_travel.png" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href="#" data-item-type="product-category">Other</a></div>
                                 <div class="pro-cat">
@@ -159,7 +158,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603011/websites/images/1490057043_tools.png" alt=""></a></div>
+                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305759/websites/images/1490057043_tools.png" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href="#" data-item-type="product-category">Tools &amp; auto</a></div>
                                 <div class="pro-cat">

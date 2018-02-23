@@ -579,7 +579,7 @@ nav.navbar {
 <script src="./assets/client-plugins/client-cart.js"></script>
 <div>
     <link rel='stylesheet' href='./main-files/main.css'/>
-    <link href="http://res.cloudinary.com/flowz/raw/upload/v1518760683/websites/distributor/css/base.css"
+    <link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/base.css"
     rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />

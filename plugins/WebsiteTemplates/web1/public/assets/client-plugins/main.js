@@ -16,15 +16,16 @@ var website_info = function () {
 }();
 
 var website_settings = website_info[0];
+//console.log("website_settings",website_settings);
 var project_settings = website_settings.project_settings;
 
-
+// console.log("website_settings",website_settings);
 async function getProductDetailById(id) {
       var returnData = null;
     	await axios({
     			method: 'GET',
     			url: project_settings.product_api_url+"?_id="+id,
-    			headers: {'vid' : project_settings.vid},
+    			headers: {'vid' : website_settings.Projectvid.vid},
     		})
     	.then(response => {
          productData = response.data;
@@ -268,8 +269,6 @@ var init = function() {
     }
   }
 
-  showWishList();
-  showCompareList();
   let type;
   // login-logout start
   if(user_details != null){
@@ -308,6 +307,9 @@ var init = function() {
   if(localStorage.getItem("savedCart") != null && user_id != null){
     document.getElementById("cartCount").innerHTML = JSON.parse(localStorage.getItem("savedCart")).length ;
   }
+
+  showWishList();
+  showCompareList();
 
   let myarr = [];
   // Auto sugession for search in header
@@ -680,6 +682,7 @@ $(document).on('click', '.js-remove-wishlist', function(e) {
         else {
           deleteFromDatabase(1,product_id,user_id)
         }
+        showSuccessMessage("Product(s) have been successfully removed from wishlist.");
         hidePageAjaxLoading();
 
       }, 300);
@@ -702,6 +705,7 @@ $(document).on('click', '.js-remove-compare', function(e) {
       else {
         deleteFromDatabase(3,product_id,user_id)
       }
+      showSuccessMessage("Product(s) have been successfully removed from compare list.");
       hidePageAjaxLoading();
 
     }, 300);
@@ -918,9 +922,9 @@ function hidePageAjaxLoading(){
 	$('.widget-box-overlay').remove();
 }
 
-
 function showWishList(recetAdded=false)
 {
+  showPageAjaxLoading()
   var listHtml = $('#myWishList .js-list').html()
   var wishlistValuesCount = 0;
   if(user_details != null){
@@ -950,6 +954,7 @@ function showWishList(recetAdded=false)
   var productData;
   if($("#myWishList").length > 0)
   {
+    $('#myWishList .listing').addClass('hide');
     if (typeof(listHtml) !== "undefined" && wishlist_values != "" ) {
         for (item in wishlist_values)
         {
@@ -984,10 +989,11 @@ function showWishList(recetAdded=false)
             {
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,
+                // url: project_settings.product_api_url+"?_id="+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description",
                 async: false,
                 beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("vid", project_settings.vid);
+                  xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
                 },
                 dataType: 'json',
                 success: function (data) {
@@ -1069,10 +1075,12 @@ function showWishList(recetAdded=false)
       $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
     }
   }
+  hidePageAjaxLoading()
 }
 
 function showCompareList(recetAdded=false)
 {
+  showPageAjaxLoading()
   var compareHtml = $('#myCompareList #listing')
   var compareValuesCount = 0;
 
@@ -1103,6 +1111,7 @@ function showCompareList(recetAdded=false)
   if($("#myCompareList").length > 0)
   {
     // console.log('compare_values',compare_values)
+    $('#myCompareList #listing').addClass('hide');
     var productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
     var productData;
     var itemTitleHtml='';
@@ -1139,10 +1148,11 @@ function showCompareList(recetAdded=false)
 
               $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+prodId,
+                // url: project_settings.product_api_url+"?_id="+prodId,
+                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description,features",
                 async: false,
                 beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("vid", project_settings.vid);
+                  xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
                 },
                 dataType: 'json',
                 success: function (data)
@@ -1299,7 +1309,7 @@ function showCompareList(recetAdded=false)
     $("#myCompareList #listing div:first").addClass("hide");
     compareHtml.append('<span class="js-no-records">No records found.</span>')
   }
-
+  hidePageAjaxLoading()
 }
 
 function submitNewsLetterForm()
@@ -1441,6 +1451,5 @@ $(document).ready(function(){
   }
 
 })
-
 
 localStorage.setItem("vOneLocalStorage", user_id);

@@ -10,7 +10,7 @@ if(pid != null) {
           async: false,
           dataType: 'json',
            headers: {
-                'vid' : project_settings.vid
+                'vid' : website_settings.Projectvid.vid
             },
           success: function (data) {
               if(data.hits.hits.length > 0)
@@ -61,7 +61,7 @@ if(pid != null) {
 			  async: false,
 			  dataType: 'json',
 			   headers: {
-				    'vid' : project_settings.vid
+				    'vid' : website_settings.Projectvid.vid
 				},
 			  success: function (data) {
           hidePageAjaxLoading();
@@ -495,8 +495,13 @@ if(pid != null) {
     });
   }
   hidePageAjaxLoading()
-
-
+   $('.ob-product-gallery .product-big-image-thumbnails').bxSlider({
+         mode: 'vertical',
+         slideWidth:100,
+         minSlides: 2,
+         pager:false,
+         slideMargin:7
+   });
   $('.product-gallery').zoom({ on:'click' });
   $(".product-thumb-img-anchar").on('click', function () {
         $('.product-gallery').trigger('zoom.destroy');
@@ -541,7 +546,7 @@ if(pid != null) {
                   cache: false,
                   dataType: 'json',
                   // headers: {"Authorization": project_settings.product_api_token},
-                  headers: {"vid": project_settings.vid},
+                  headers: {"vid": website_settings.Projectvid.vid},
                   success: function(response){
                     hidePageAjaxLoading()
                       if(response.length > 0 && response[0].id != '' ){
@@ -1209,17 +1214,7 @@ function setdate(parentObj,activetab,transitTime=0){
       }
       let setDate = new Date(endDate.getFullYear(),endDate.getMonth(),endDate.getDate())
       $(activetab).find(parentObj).find("#datetimepicker1").datepicker("setDate", setDate);
-      $(activetab).find(parentObj).find("#datetimepicker1").datepicker('option', 'minDate', setDate, );
+      $(activetab).find(parentObj).find("#datetimepicker1").datepicker('option', 'minDate', setDate);
 
   }
 }
-
-document.addEventListener("DOMContentLoaded", function(event){
-  $('.ob-product-gallery .product-big-image-thumbnails').bxSlider({
-        mode: 'vertical',
-        slideWidth:100,
-        minSlides: 2,
-        pager:false,
-        slideMargin:7
-  });
-})

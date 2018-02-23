@@ -87,7 +87,7 @@ async function paynow() {
 	   method: 'post',
 	   url: 'http://api.flowzcluster.tk/crm/payment',
 	   data : {
-			   "settingId" : "5a398717-df05-45b7-aaa2-020b23107c57",
+			   "settingId" : website_settings.CrmSettingId,
 			   "gateway": paymentGatewayId,					//auth //paypal
 			   "id" : invoice.data.InvoiceID,
 			   "amount" :400,
@@ -126,7 +126,7 @@ async function paynow() {
 						 user_info['email'] = user_details['email']
 						 user_info['fullname'] = user_details['fullname']
 
-						 let userDetails = {"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID'],"setting_id": "5a398717-df05-45b7-aaa2-020b23107c57","products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
+						 let userDetails = {"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID'],"setting_id": website_settings.CrmSettingId,"products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
 						//  console.log("userDetails",userDetails);
 						 axios({
 								method: 'POST',
@@ -231,7 +231,7 @@ async function addInvoice() {
 			  method: 'post',
 			  url: 'http://api.flowzcluster.tk/crm/invoice',
 			  data: {
-				"settingId" : "5a398717-df05-45b7-aaa2-020b23107c57",
+				"settingId" : website_settings.CrmSettingId,
 				"user" : user_details.email,
 				"Name" : user_details.fullname,
 				"EmailAddress" : user_details.email,

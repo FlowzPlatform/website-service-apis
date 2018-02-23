@@ -15,7 +15,7 @@ $.ajax({
           url: project_settings.product_api_url+"?_id="+response_data[key].product_id,
           async: false,
           beforeSend: function (xhr) {
-            xhr.setRequestHeader ("vid", project_settings.vid);
+            xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
           },
           dataType: 'json',
           success: function (data) {
@@ -78,7 +78,7 @@ $.ajax({
       $(newHtml).insertAfter(".js-replace-products");
       $(".js-checkout-grand-total").html("$"+grand_total);
       $(".checkout_product_list").find('tbody tr:first').remove();
-      
+
     }
   }
 });
