@@ -88,7 +88,7 @@ function after_revert_commit(hook) {
         } else {
           shell.cd( config.path + userDetailId + '/' + repoName );
 
-          shell.exec('git checkout ' + commitSHA + ' .');         
+          shell.exec('git checkout ' + commitSHA);         
         }
         resolve(hook)
     })
