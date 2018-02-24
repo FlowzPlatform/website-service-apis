@@ -8,7 +8,7 @@ $(document).ready(function(){
        axios({
            method: 'GET',
            url: project_settings.color_swatch_filter_api+attribute_name,
-           headers: {'Authorization': project_settings.product_api_token,'vid': website_settings.Projectvid.vid},
+           headers: {'Authorization': userToken,'vid': website_settings.Projectvid.vid},
          })
        .then(response => {
         $.each(response.data.aggregations.group_by_attributes.buckets, async function( index, value ) {

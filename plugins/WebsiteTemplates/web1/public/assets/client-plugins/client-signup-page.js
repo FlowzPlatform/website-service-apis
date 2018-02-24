@@ -1,4 +1,4 @@
-if(getCookie('loginTokenKey') != null) {
+if(user_id != null) {
 	window.location = "index.html";
 }
 

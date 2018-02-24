@@ -1,20 +1,4 @@
-if(getCookie('loginTokenKey') != null) {
-	// let wishlistKey = decide_localStorage_key(1);
-	// if (localStorage.getItem(wishlistKey) != null) {
-	// 	wishlist_values = JSON.parse(localStorage.getItem("savedWishlist"));
-	// 	for (item in wishlist_values){
-	// 		dataSaveToDatabase(wishlist_values[item]['type'],wishlist_values[item]['product_id'],user_id,false);
-	// 	}
-	// }
-
-	// let compareKey = decide_localStorage_key(3);
-	// if (localStorage.getItem(compareKey) != null) {
-	// 	compare_values = JSON.parse(localStorage.getItem("savedCompared"));
-	// 	for (item in compare_values){
-	// 		dataSaveToDatabase(compare_values[item]['type'],compare_values[item]['product_id'],user_id,false);
-	// 	}
-	// }
-
+if(user_id != null) {
 	window.location = "index.html";
 }
 
@@ -38,7 +22,7 @@ $('.email-submit').on('click',function(){
 			$(".logout-show").removeClass('hide');
 			$('.username-text').text('Welcome');
 
-			document.cookie = "loginTokenKey=" + result.logintoken;
+			document.cookie = "auth_token=" + result.logintoken;
 
 			var user_details = function () {
 				var tmp = null;

@@ -1,5 +1,6 @@
 var grand_total=0.00;
 var total_qty=0;
+showPageAjaxLoading()
 
 $.ajax({
   type : 'GET',
@@ -78,7 +79,11 @@ $.ajax({
       $(newHtml).insertAfter(".js-replace-products");
       $(".js-checkout-grand-total").html("$"+grand_total);
       $(".checkout_product_list").find('tbody tr:first').remove();
-
+      $('.js-hide-div').removeClass("js-hide-div");
+      hidePageAjaxLoading()      
     }
+  },
+  error: function(err){
+    hidePageAjaxLoading()
   }
 });

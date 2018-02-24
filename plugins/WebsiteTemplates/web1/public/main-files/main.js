@@ -98,7 +98,7 @@ Y({
 })
 
 if(getParameterByName('token')) {
-  document.cookie = "loginTokenKey="+getParameterByName('token');
+  document.cookie = "auth_token="+getParameterByName('token');
 }
 
 function getParameterByName(name, url) {
@@ -128,7 +128,8 @@ function getCookie(name) {
 }
 
 let user_id = user_details = null;
-let userToken = getCookie('loginTokenKey');
+let userToken = getCookie('auth_token');
+
 if(userToken != null) {
     var user_details = function () {
       var tmp = null;
@@ -272,17 +273,20 @@ var init = function() {
   let type;
   // login-logout start
   if(user_details != null){
-   $(".logout-show").removeClass('hide');
-   $('.username-text').text('welcome '+user_details.fullname);
- }
- else {
-   document.cookie = 'loginTokenKey=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-   $(".login-show").removeClass('hide');
-   $('.username-text').text('');
- }
+    $(".logout-show").removeClass('hide');
+    $('.username-text').text('welcome '+user_details.fullname);
+  }
+  else {
+     document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+     $(".login-show").removeClass('hide');
+     $('.username-text').text('');
+   }
 
  $('.login-text-check').on('click',function() {
-   document.cookie = 'loginTokenKey=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  //  delete_cookie("auth_token",window.location.hostname)
+  //  delete_cookie("user_id",window.location.hostname)
+   document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+   document.cookie = 'user_id=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
    location.reload();
  });
   // login-logout end
@@ -308,8 +312,31 @@ var init = function() {
     document.getElementById("cartCount").innerHTML = JSON.parse(localStorage.getItem("savedCart")).length ;
   }
 
-  showWishList();
-  showCompareList();
+  if($("#myWishList").length > 0)
+  {
+    showPageAjaxLoading();
+    setTimeout(function()
+    {
+      showWishList();
+      hidePageAjaxLoading();
+    }, 300);
+  }
+  else{
+    showWishList();
+  }
+
+  if($("#myCompareList").length > 0)
+  {
+    showPageAjaxLoading();
+    setTimeout(function()
+    {
+      showCompareList();
+      hidePageAjaxLoading();      
+    }, 300);
+  }
+  else{
+    showCompareList();
+  }	
 
   let myarr = [];
   // Auto sugession for search in header
@@ -552,6 +579,7 @@ function deleteFromLocal(type,product_id){
       document.getElementById("comparedCount").innerHTML =  window.yList.share.compareList._content.length;
     }
   }
+  hidePageAjaxLoading();    
 }
 
 function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
@@ -659,7 +687,7 @@ function deleteFromDatabase(type,id,user_id){
             }
           }
         }
-
+        hidePageAjaxLoading();      
       }
       $(".product-"+id).remove();
     }
@@ -683,7 +711,6 @@ $(document).on('click', '.js-remove-wishlist', function(e) {
           deleteFromDatabase(1,product_id,user_id)
         }
         showSuccessMessage("Product(s) have been successfully removed from wishlist.");
-        hidePageAjaxLoading();
 
       }, 300);
   }
@@ -706,7 +733,6 @@ $(document).on('click', '.js-remove-compare', function(e) {
         deleteFromDatabase(3,product_id,user_id)
       }
       showSuccessMessage("Product(s) have been successfully removed from compare list.");
-      hidePageAjaxLoading();
 
     }, 300);
   }
@@ -924,7 +950,6 @@ function hidePageAjaxLoading(){
 
 function showWishList(recetAdded=false)
 {
-  showPageAjaxLoading()
   var listHtml = $('#myWishList .js-list').html()
   var wishlistValuesCount = 0;
   if(user_details != null){
@@ -1075,12 +1100,10 @@ function showWishList(recetAdded=false)
       $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
     }
   }
-  hidePageAjaxLoading()
 }
 
 function showCompareList(recetAdded=false)
 {
-  showPageAjaxLoading()
   var compareHtml = $('#myCompareList #listing')
   var compareValuesCount = 0;
 
@@ -1309,7 +1332,6 @@ function showCompareList(recetAdded=false)
     $("#myCompareList #listing div:first").addClass("hide");
     compareHtml.append('<span class="js-no-records">No records found.</span>')
   }
-  hidePageAjaxLoading()
 }
 
 function submitNewsLetterForm()
@@ -1442,12 +1464,6 @@ $(document).ready(function(){
             }
           }
       });
-  }
-
-  if($(".datepicker-color").length > 0){
-    $(document).on("click", '.datepicker-color', function(){
-        $(this).prev('input').focus()
-    });
   }
 
 })

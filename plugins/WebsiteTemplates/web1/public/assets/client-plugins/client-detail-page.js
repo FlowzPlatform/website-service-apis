@@ -480,6 +480,7 @@ if(pid != null) {
                     $(this).prepend("<i>"+sectionCount+"</i>&nbsp;");
                   }
                 });
+                $('.js-hide-div').removeClass("js-hide-div");
             }
             else{
               hidePageAjaxLoading()
@@ -1108,6 +1109,10 @@ $(document).on("click","#js_tab_list",function(){
     //$(activetab).find('#js_shipping_method').find(".shipping-scroll").addClass('hide');
     autoCounter();
 });
+
+$(document).on("click",activetab+" .datepicker-color",function(){
+    $(this).prev('input').focus()
+})
 
 $(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
      let thisObj = $(this);

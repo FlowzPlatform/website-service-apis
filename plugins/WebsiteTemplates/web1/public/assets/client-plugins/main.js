@@ -98,7 +98,7 @@ Y({
 })
 
 if(getParameterByName('token')) {
-  document.cookie = "loginTokenKey="+getParameterByName('token');
+  document.cookie = "auth_token="+getParameterByName('token');
 }
 
 function getParameterByName(name, url) {
@@ -128,7 +128,7 @@ function getCookie(name) {
 }
 
 let user_id = user_details = null;
-let userToken = getCookie('loginTokenKey');
+let userToken = getCookie('auth_token');
 if(userToken != null) {
     var user_details = function () {
       var tmp = null;
@@ -276,13 +276,13 @@ var init = function() {
    $('.username-text').text('welcome '+user_details.fullname);
  }
  else {
-   document.cookie = 'loginTokenKey=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+   document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
    $(".login-show").removeClass('hide');
    $('.username-text').text('');
  }
 
  $('.login-text-check').on('click',function() {
-   document.cookie = 'loginTokenKey=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+   document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
    location.reload();
  });
   // login-logout end

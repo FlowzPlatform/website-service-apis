@@ -415,13 +415,14 @@ async function getStateAndCityData(form,countryVal,stateVal,cityVal,dataFrom,cla
          options.append(new Option(state.state_name,state.id));
       })
       doSelection('state',stateVal)
+      form.find('.'+className).prev('.loadinggif').remove();
     }else if (dataFrom == "state_code") {
       $.each(response.data,function(key,city){
          options.append(new Option(city.city_name,city.id));
       })
       doSelection('city',cityVal)
+      form.find('.'+className).prev('.loadinggif').remove();
     }
-    form.find('.'+className).prev('.loadinggif').remove();
 }
 
 function doSelection(element,value)
