@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function(event){
-  var callApiUrl = project_settings.shopping_api_url;
   $("#js-cart_data").addClass("hide");
 
   if(user_details != null && $('#js-cart_data').length > 0){
@@ -9,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event){
   {
     $.ajax({
       type : 'GET',
-      url : callApiUrl+'?user_id='+user_id+'&type=2&website_id='+website_settings['projectID'],
+      url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2&website_id='+website_settings['projectID'],
       dataType : 'json',
       success : function(response_data) {
         if (response_data!= "") {
@@ -52,7 +51,7 @@ function showCart()
     response_data = response_data.data
   // $.ajax({
     // type : 'GET',
-    // url : callApiUrl+'?user_id='+user_id+'&type=2',
+    // url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2',
     // dataType : 'json',
     // success : function(response_data) {
       if (response_data!= "") {
@@ -327,7 +326,7 @@ $(document).on('click', '.js-btn-delete-cart-list', function(e) {
     showPageAjaxLoading()
     $.ajax({
       type : 'DELETE',
-      url : callApiUrl+'/'+id,
+      url : project_settings.shopping_api_url+'/'+id,
       dataType : 'json',
       success : function(response_data) {
 

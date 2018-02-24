@@ -1,5 +1,5 @@
-if(getCookie('loginTokenKey') != null) {
-	window.location = "index.html";
+if(user_id == null) {
+    window.location = "index.html";
 }
 $(document).ready(function() {
 	$("#success_url").val(website_settings.BaseURL+"socialDashboard.html");
@@ -29,7 +29,7 @@ $('.login-submit').on('click',function(){
 			$(".logout-show").removeClass('hide');
 			$('.username-text').text('welcome');
 
-			document.cookie = "loginTokenKey=" + result.logintoken;
+			document.cookie = "auth_token=" + result.logintoken;
 
 			var user_details = function () {
 				var tmp = null;

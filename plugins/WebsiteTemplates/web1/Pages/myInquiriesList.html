@@ -1,0 +1,104 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.common-title {
+    height: 18px;
+    margin-top: 7px;
+    border: 0px;
+}
+
+.title-heading {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    color: rgb(64, 64, 64);
+    float: left;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.padding-top25 {
+    padding-top: 25px;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<script src="./assets/client-plugins/request-quote-list.js"></script>
+<div class="container ob-account-right padding-top25">
+    <div class="common-title">
+        <h3 class="title-heading">Request to Quote List</h3>
+    </div>
+    <div class="my-quote-detail-table table-responsive">
+        <table class="table table-striped" id="request-quote-list">
+            <tr class="myquote-cheader" align="center">
+                <th>ID</th>
+                <th>Item Name</th>
+                <th>Created Date</th>
+                <th>Action</th>
+            </tr>
+            <tr class="request-quote-data" id="row-#data.index#" align="center">
+                <td><a href="javascript:void(0);">#data.index#</a>
+                </td>
+                <td>#data.itemName#</td>
+                <td>#data.date#</td>
+                <td class="my-quote-edit-delete">
+                    <div class="fa-hover"><a class="js_open_modal_req_info_detail" data-original-title="View Detail"
+                        data-toggle="tooltip" data-placement="top" target="_blank" href="myInquiriesDetail.html?id=#data.id#"><i class="fa fa-eye"></i></a>
+                        <a
+                        class="js_delete_btn" data-original-title="Delete" href="javascript:void(0)"
+                        data-toggle="tooltip" data-placement="top"><i class="fa fa-trash-o"></i>
+                            </a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
