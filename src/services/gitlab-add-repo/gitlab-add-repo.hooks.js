@@ -70,7 +70,8 @@ function after_send_repoToGit(hook) {
           method: 'POST',
           uri: config.gitLabUrl + '/api/v4/projects',
           body: {
-            name: nameOfRepo
+            name: nameOfRepo,
+            visibility: 'public'
           },
           headers: {
               'PRIVATE-TOKEN': config.gitLabToken
