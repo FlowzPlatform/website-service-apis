@@ -35,7 +35,7 @@ function showOrders()
     url : project_settings.myorders_api_url+'?user_id='+user_id+"&website_id="+website_settings['projectID'],
   })
   .then(async response_data => {
-    if (response_data!= "") {
+    if (response_data.data.total > 0 ) {
       showPageAjaxLoading()
       var response_data2 = response_data.data
 
@@ -288,7 +288,7 @@ function showOrders()
         orderInfoReplace = orderInfoReplace.replace('#data.order_date#',response_data1.created_at);
         orderInfoReplace = orderInfoReplace.replace('#data.payment_type#',response_data1.payment_via);
         orderInfoReplace = orderInfoReplace.replace('#data.quantity#',response_data1.quantity);
-        orderInfoReplace = orderInfoReplace.replace('#data.payment_status#','-');
+        orderInfoReplace = orderInfoReplace.replace('#data.payment_status#','Success');
         orderInfoReplace = orderInfoReplace.replace('#data.total_price#',response_data1.total);
 
         finalHtml1 = orderInfoReplace
@@ -311,17 +311,10 @@ function showOrders()
       }
       hidePageAjaxLoading()
     }
-    else if(response_data == '')
+    else
     {
       hidePageAjaxLoading()
-      $('#js-cart_data').html("<hr> No records found.")
-      $("#js-cart_data").removeClass('hide');
-    }
-    else if(response_data.status=='error')
-    {
-      hidePageAjaxLoading()
-      $('#js-cart_data').html("<hr> Error.")
-      $("#js-cart_data").removeClass('hide');
+      $('.ob-my-quote-section').html("<hr> No records found.")
     }
 
   })

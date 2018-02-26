@@ -274,7 +274,9 @@ var init = function() {
   // login-logout start
   if(user_details != null){
     $(".logout-show").removeClass('hide');
-    $('.username-text').text('welcome '+user_details.fullname);
+    let userName = 'user'
+    if(user_details.fullname != undefined ) userName = user_details.fullname
+    $('.username-text').text('welcome '+userName);
   }
   else {
      document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
