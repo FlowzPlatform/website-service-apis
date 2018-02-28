@@ -33,6 +33,7 @@ try {
     });
     AWS.config.region = 'us-west-2';
     var $form = document.querySelector(class_g_form);
+    // console.log('schemaarr', schemaarr)
     setRecursiveValues(data, entitys, $form)
   }
   var setRecursiveValues = (data, entitys, $form) => {
@@ -46,7 +47,7 @@ try {
         }
         for (var [inx, entity] of entitys.entries()) {
           $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
-          if (entity.customtype) {
+          if (entity.hasOwnProperty('customtype') && entity.customtype) {
             if ($panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]')) {
               setRecursiveValues(item[entity.name], entity.entity, $panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form))
             }
@@ -55,9 +56,10 @@ try {
             if (entity.type == 'file') {
               if (item[entity.name] != undefined || item[entity.name] != null) {
                 $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = []
-                var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html();
+                var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(); 
                 var template = Handlebars.compile(source);
                 // $panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')
+                console.log('item >>>>>>>>', item)
                 $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(template(item));
               }
             } else {
@@ -87,13 +89,14 @@ try {
           element = {
             value: event[key],
             name: key,
-            type: newSchema[i].customtype === undefined ? 'customtype' : newSchema[i].type
+            // type: newSchema[i].customtype ? 'customtype' : newSchema[i].type
+            type: Array.isArray(newSchema[i]) ? 'customtype' : newSchema[i].type
           }
           if (element.type === 'customtype') {
             var inndervalidate = self.getValidate(event[key], newSchema[i], form.querySelector(class_g_form))
           } else {
             if (result.property.optional === false) {
-              if (val === '' || val === null || val === undefined) {
+              if (val === '' || val === null || val === undefined || (Array.isArray(val) && val.length === 0)) {
                 err.push(element.name + ' - is required..!')
                 $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - is required..!')
               } else {
@@ -339,7 +342,7 @@ try {
               });
               let fileChooser = form.querySelector('[name="' + entity.name + '"]');
               console.log('fileChooser', fileChooser, fileChooser.files)
-
+             
               let filearr = []
               for(let f = 0; f < fileChooser.files.length; f++) {
                 let file = fileChooser.files[f];
@@ -349,7 +352,7 @@ try {
                   filearr.push(fileurl)
                 } else {
                   filearr.push('')
-                }
+                } 
               }
               if (data !== undefined &&  data[i] != undefined && data[i][entity.name] !== undefined && data[i][entity.name].length > 0) {
                 for (let j of data[i][entity.name]) {

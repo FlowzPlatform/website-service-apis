@@ -58,25 +58,27 @@ async function updateGlobalVariables () {
                 var _varValue = globalVariables[i].variableValue;
                 if(($('body [data-global-id="' + _varId + '"]').length > 0)){
 
-                    if(globalVariables[i].isImageUrl == true){
-                        $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
-                    } else {
-                        var getImageData = await $.ajax({
-                          url:'./assets/' + _varValue,
-                          method: 'GET',
-                          type: 'HEAD',
-                          async: true,
-                          error: function(err)
-                          {
-                            return false;
-                          },
-                          success: function(res)
-                          {
-                            $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
-                            return true;
-                          }
-                        });
-                    }
+                    $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
+
+                    // if(globalVariables[i].isImageUrl == true){
+                    //     $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
+                    // } else {
+                    //     var getImageData = await $.ajax({
+                    //       url:'./assets/' + _varValue,
+                    //       method: 'GET',
+                    //       type: 'HEAD',
+                    //       async: true,
+                    //       error: function(err)
+                    //       {
+                    //         return false;
+                    //       },
+                    //       success: function(res)
+                    //       {
+                    //         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
+                    //         return true;
+                    //       }
+                    //     });
+                    // }
                   
                 } 
                 break;
@@ -127,25 +129,27 @@ function ImplementSocket() {
                     var _varValue = globalVariables[i].variableValue;
                     if(($('body [data-global-id="' + _varId + '"]').length > 0)){
 
-                        if(globalVariables[i].isImageUrl == true){
-                            $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
-                        } else {
-                            var getImageData = await $.ajax({
-                            url:'./assets/' + _varValue,
-                            method: 'GET',
-                            type: 'HEAD',
-                            async: true,
-                            error: function(err)
-                            {
-                                return false;
-                            },
-                            success: function(res)
-                            {
-                                $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
-                                return true;
-                            }
-                            });
-                        }
+                        $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
+
+                        // if(globalVariables[i].isImageUrl == true){
+                        //     $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
+                        // } else {
+                        //     var getImageData = await $.ajax({
+                        //     url:'./assets/' + _varValue,
+                        //     method: 'GET',
+                        //     type: 'HEAD',
+                        //     async: true,
+                        //     error: function(err)
+                        //     {
+                        //         return false;
+                        //     },
+                        //     success: function(res)
+                        //     {
+                        //         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
+                        //         return true;
+                        //     }
+                        //     });
+                        // }
                     
                     } 
                     break;
