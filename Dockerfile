@@ -65,4 +65,4 @@ CMD service nginx start && npm start
 #RUN a2enmod vhost_alias
 #RUN service apache2 restart
 
-EXPOSE 80 3032 4032
+EXPOSE 80 3032 4032 443
