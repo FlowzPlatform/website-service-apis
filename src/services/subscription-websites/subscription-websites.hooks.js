@@ -44,7 +44,7 @@ async function after_create_ms(hook) {
     }
   })
   .then((res)=>{
-    console.log('res.data.length-------------',res.data.length)
+    console.log('!!!!!!!res.data',res.data)
     let result=[]
     for(let i=0;i<res.data.length;i++){
       var temp={
