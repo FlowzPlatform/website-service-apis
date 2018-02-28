@@ -110,7 +110,8 @@ beforPatchAddressBook = async hook =>{
              let user_id = cursor.user_id;
              let is_address = cursor.is_address;
              let address_type = cursor.address_type;
-              obj = {'data':{'user_id': user_id,'is_address': is_address,'address_type': address_type}}
+             let website_id = cursor.website_id;
+              obj = {'data':{'user_id': user_id,'is_address': is_address,'address_type': address_type,'website_id':website_id}}
               let isDefault = await checkIsDefault(obj);
               // console.log("isdefault",isDefault);
               if(isDefault.length > 0){
