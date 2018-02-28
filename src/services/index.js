@@ -50,6 +50,10 @@ const configdataHistory = require('./configdata-history/configdata-history.servi
 
 
 
+const subscriptionWebsites = require('./subscription-websites/subscription-websites.service.js');
+
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -89,4 +93,5 @@ module.exports = function () {
   app.configure(requestQuote);
   app.configure(emailTemplate);
   app.configure(configdataHistory);
+  app.configure(subscriptionWebsites);
 };
