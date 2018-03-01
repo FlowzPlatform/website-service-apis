@@ -79,7 +79,6 @@ body {
                     </li>
                 </ul>
                 <div class="request-tab-content tab-content">
-                    <form id="place_order_form">
                         <div class="tab-pane fade in active" id="Decoration">
                             <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
                             <div
@@ -100,7 +99,6 @@ body {
         	            </div>
         	        </div>
         	    </div>
-        	    </form>
        	 </div>
     </div>
 </div>

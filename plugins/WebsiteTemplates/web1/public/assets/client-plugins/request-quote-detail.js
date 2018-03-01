@@ -2,7 +2,7 @@ if (user_id == null ) {
   window.location = 'login.html';
 }
 
-$(document).ready(function(){ 
+$(document).ready(function(){
   detailRequestQuote();
 });
 
@@ -13,7 +13,7 @@ function detailRequestQuote() {
   var imprintSectionHtml = $(".js-imprint-information").wrap('<p>');
   var colorSectionHtml = $(".js-color-info");
   var shippingSectionHtml = $(".js-shipping-info").wrap('<p>');
- 
+
   //console.log("url", callApiUrl+'?id='+quoteId+'&user_id='+user_id+'&website_id='+website_settings['projectID']);
   //console.log("HTML", quoteDetailHtml);
   showPageAjaxLoading()
@@ -28,7 +28,7 @@ function detailRequestQuote() {
     if (quote_data!= "") {
       //  project_settings.product_api_image_url
       let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+quote_data.product_id;
-    
+
       // Start - Color Information
       colorRaw = '';
       if(typeof quote_data.color != "undefined" || quote_data.color!='') {
@@ -50,7 +50,7 @@ function detailRequestQuote() {
       if(typeof quote_data.shipping_method != "undefined")
       {
         var shipping_detail = quote_data.shipping_method.shipping_detail;
-      
+
         for(var shippingKey in shipping_detail)
         {
           var shippingHtml1 = shippingSectionHtml.html();
@@ -63,7 +63,7 @@ function detailRequestQuote() {
           // var shippingHtml1 = shippingHtml1.replace("#data.ship_account#",' ')
           shippingHtml1 = shippingHtml1.replace("#data.onHandDate#",shipping_details.on_hand_date)
           shippingHtml1 = shippingHtml1.replace(/#data.shippingCharge#/g,shipping_details.shipping_charge);
-          
+
           shippingHtmlReplace += shippingHtml1;
           console.log('shippingHtmlReplace',shippingHtmlReplace);
         }
@@ -71,7 +71,7 @@ function detailRequestQuote() {
       quoteDetailHtml.find(".js-shipping-info").unwrap().html(shippingHtmlReplace)
 
       // END - Shipping Information
-      
+
       //Imprint Information
       imprintHtml = '';
       if(typeof quote_data.imprint != "undefined")
@@ -101,8 +101,8 @@ function detailRequestQuote() {
       }
       //END - Imprint Information
      quoteDetailHtml.find(".js-imprint-information").unwrap().html(imprintHtml)
-     
-    
+
+
     var detailHtmlReplace = quoteDetailHtml.html();
     var detailHtmlReplace = detailHtmlReplace.replace(/#data.product_link#/g,detailLink);
     var detailHtmlReplace = detailHtmlReplace.replace(/#data.imageUrl#/g, project_settings.product_api_image_url+productData.default_image);

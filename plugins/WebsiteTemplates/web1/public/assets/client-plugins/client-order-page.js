@@ -131,7 +131,7 @@ function showOrders()
           }
 
           imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
-          imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.charges#/g,charges);
+          imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
 
           if(typeof product_details.special_instruction != "undefined")
           {
@@ -160,7 +160,7 @@ function showOrders()
 
               for (var color_quantity in shipping_info.color_quantity) {
                 quantityHtml += "<tr class='grey-bottom-border'>";
-                quantityHtml += "<td><span class='shipping_color' data-color='"+color_quantity+"' style='border:#CCC 2px solid;background-color:red;height:30px;width:30px;float:left;'></span></td>";
+                quantityHtml += "<td>"+color_quantity+"</td>";
                 quantityHtml += "<td>"+shipping_info.color_quantity[color_quantity]+"</td>";
                 quantityHtml += "</tr>";
               }
@@ -174,15 +174,19 @@ function showOrders()
               var shippingHtml1 = shippingHtml1.replace("#data.shipping_count#",shippingKeyCount)
               var shippingHtml1 = shippingHtml1.replace("#data.shipping_method#",shipping_details.shipping_method)
               var shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'')
-              var shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",shipping_details.on_hand_date)
-              var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,shipping_details.shipping_charge);
+              var shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",formatDate(shipping_details.on_hand_date,project_settings.format_date))
 
-              //change
               if(shipping_details.shipping_charge != "")
               {
+                var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,shipping_details.shipping_charge);
+              
                 product_shipping_charge_total = product_shipping_charge_total + parseFloat(shipping_details.shipping_charge);
-                product_shipping_charges = product_shipping_charges + + parseFloat(shipping_details.shipping_charge);
+                product_shipping_charges = product_shipping_charges + parseFloat(shipping_details.shipping_charge);
               }
+              else{
+                var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,"0.00");
+              }
+              //change
               // alert(product_shipping_charges)
 
               // $(".js-shipping-"+response_data[key].id).find(".js-product_total_shipping_charge").html(product_shipping_charges);
@@ -210,19 +214,19 @@ function showOrders()
           // END - Shipping Section
 
           let subTotalInfoHtmlReplace = subTotalInfoHtml;
-          subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace(/#data.charges#/g,charges);
+          subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
           subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace('#data.quantitye#',product_details.total_qty);
           subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace('#data.unit_price#',product_details.unit_price);
           var total = parseFloat(product_details.total_qty)*parseFloat(product_details.unit_price);
           total_display = total.toFixed(project_settings.price_decimal);
           subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace(/#data.total#/g, total_display);
-          subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace(/#data.tax#/g,tax);
+          subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace(/#data.tax#/g,tax.toFixed(project_settings.price_decimal));
 
           var sub_total = total + charges + tax + product_shipping_charges;
           sub_total_display = sub_total.toFixed(project_settings.price_decimal);
 
           subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace(/#data.subtotal#/g, sub_total_display);
-          subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace("#data.total_shipping_charges#", product_shipping_charges);
+          subTotalInfoHtmlReplace = subTotalInfoHtmlReplace.replace("#data.total_shipping_charges#", product_shipping_charges.toFixed(project_settings.price_decimal));
 
           product_total = product_total + total;
           product_additional_charge_total = product_additional_charge_total + charges;
@@ -285,9 +289,9 @@ function showOrders()
 
         let orderInfoReplace = orderInfo;
         orderInfoReplace = orderInfoReplace.replace(/#data.order_id#/g,response_data1.invoice_number);
-        orderInfoReplace = orderInfoReplace.replace('#data.order_date#',response_data1.created_at);
+        orderInfoReplace = orderInfoReplace.replace('#data.order_date#',formatDate(response_data1.created_at,project_settings.format_date));
         orderInfoReplace = orderInfoReplace.replace('#data.payment_type#',response_data1.payment_via);
-        orderInfoReplace = orderInfoReplace.replace('#data.quantity#',response_data1.quantity);
+        orderInfoReplace = orderInfoReplace.replace('#data.quantity#',response_data1.products.length);
         orderInfoReplace = orderInfoReplace.replace('#data.payment_status#','Success');
         orderInfoReplace = orderInfoReplace.replace('#data.total_price#',response_data1.total);
 
@@ -308,6 +312,12 @@ function showOrders()
         //   console.log('finalHtml1',finalHtml1)
         // }
         // return false;
+        let sectionCount = 0;
+        
+        $('#displayblock-'+response_data1.invoice_number).find( ".js-section-number" ).each(function( index ) {
+          sectionCount = sectionCount + 1;
+          $(this).html(sectionCount);
+        });
       }
       hidePageAjaxLoading()
     }

@@ -2256,3 +2256,42 @@ html{line-height:1.5;font-family:"Roboto", sans-serif;font-weight:normal;color:r
 div#ResultList .sweet-loading,
 div#ResultCard .sweet-loading {position: absolute;z-index: 1;top: 30%;left: 50%;}
 .pro-ject .rbc.rbc-resultlist > .card {min-height: 570px;}
+.woops h1.main-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0;
+}
+
+.woops .search_block_main_content .input-group .form-control {
+    border: 1px solid #e6e6e6;
+    padding: 6px;
+    margin:  0;
+    height: 24px;
+    line-height: 10px;
+}
+
+.woops .search_block_main_content .input-group-btn {}
+
+.woops .search_block_main_content .input-group-btn .fa {
+    width: 34px;
+    right: 35px;
+    background: #e51937 !important;
+    color: #FFF !important;
+    border-radius: 0 !important;
+    text-decoration: none;
+    box-shadow: none !important;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    vertical-align:  middle;
+    line-height: 0;
+}
+.woops .data-not-found {
+    width: 135%;
+    margin-left: -35%;
+}
+
+button.fa-search.fa-fw.search_icon.fa{
+	width : 33px;
+}

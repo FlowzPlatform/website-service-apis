@@ -25,7 +25,7 @@ function listRequestQuote(){
         var listHtmlReplace = quoteHtml.replace(/#data.index#/g, key+1);
       //  var listHtmlReplace = listHtmlReplace.replace(/#data.totalComment#/g, 0);
         var listHtmlReplace = listHtmlReplace.replace(/#data.itemName#/g, quote_datas[key].product_description.product_name);
-        var listHtmlReplace = listHtmlReplace.replace(/#data.date#/g, quote_datas[key].created_at);
+        var listHtmlReplace = listHtmlReplace.replace(/#data.date#/g, formatDate(quote_datas[key].created_at,project_settings.format_date));
         var listHtmlReplace = listHtmlReplace.replace(/#data.id#/, quote_datas[key].id);
         $(listHtmlReplace).insertAfter("#request-quote-list tr:first");
         hidePageAjaxLoading()

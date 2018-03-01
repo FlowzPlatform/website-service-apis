@@ -92,7 +92,8 @@ function showCart()
                 var listHtmlReplace = listHtmlReplace.replace('#data.order_type#',response_data[key].order_type);
                 if(typeof response_data[key].special_instruction != "undefined")
                 {
-                  var listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#',response_data[key].special_instruction);
+                  let special_instruction = nl2br(response_data[key].special_instruction);
+                  var listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#',special_instruction);
                 }
                 else{
                   var listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#','-');
@@ -103,7 +104,7 @@ function showCart()
                 var total = parseFloat(response_data[key].total_qty)*parseFloat(response_data[key].unit_price);
                 total_display = total.toFixed(project_settings.price_decimal);
                 var listHtmlReplace = listHtmlReplace.replace(/#data.total#/g, total_display);
-                var listHtmlReplace = listHtmlReplace.replace(/#data.tax#/g,tax);
+                var listHtmlReplace = listHtmlReplace.replace(/#data.tax#/g,tax.toFixed(project_settings.price_decimal));
 
                 let additional_charges_list = '';
                 if(typeof response_data[key].charges != "undefined")
@@ -116,7 +117,7 @@ function showCart()
                 }
 
                 var listHtmlReplace = listHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
-                var listHtmlReplace = listHtmlReplace.replace(/#data.charges#/g,charges);
+                var listHtmlReplace = listHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
 
 
                 //change // var listHtmlReplace = listHtmlReplace.replace("#data.shipping_charges#",shipping_charges);
@@ -178,7 +179,7 @@ function showCart()
 
                     for (var color_quantity in shipping_info.color_quantity) {
                       quantityHtml += "<tr class='grey-bottom-border'>";
-                      quantityHtml += "<td><span class='shipping_color' data-color='"+color_quantity+"' style='border:#CCC 2px solid;background-color:red;height:30px;width:30px;float:left;'></span></td>";
+                      quantityHtml += "<td>"+color_quantity+"</td>";
                       quantityHtml += "<td>"+shipping_info.color_quantity[color_quantity]+"</td>";
                       quantityHtml += "</tr>";
                     }
@@ -193,16 +194,20 @@ function showCart()
                     var shippingHtml1 = shippingHtml1.replace("#data.shipping_method#",shipping_details.shipping_method)
                     var shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'')
                     var shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",shipping_details.on_hand_date)
-                    var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,shipping_details.shipping_charge);
-
+                    
                     //change
                     if(shipping_details.shipping_charge != "")
                     {
+                      var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,shipping_details.shipping_charge);
+
                       product_shipping_charge_total = product_shipping_charge_total + parseFloat(shipping_details.shipping_charge);
-                      product_shipping_charges = product_shipping_charges + + parseFloat(shipping_details.shipping_charge);
+                      product_shipping_charges = product_shipping_charges + parseFloat(shipping_details.shipping_charge);
+                    }
+                    else{
+                      var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,"0.00");
                     }
                     // alert(product_shipping_charges)
-                    $(".js-shipping-"+response_data[key].id).find(".js-product_total_shipping_charge").html(product_shipping_charges);
+                    $(".js-shipping-"+response_data[key].id).find(".js-product_total_shipping_charge").html(product_shipping_charges.toFixed(project_settings.price_decimal));
 
                     //END - change
 
@@ -227,7 +232,7 @@ function showCart()
                 var sub_total = total + charges + tax + product_shipping_charges;
                 sub_total_display = sub_total.toFixed(project_settings.price_decimal);
                 var listHtmlReplace = listHtmlReplace.replace(/#data.subtotal#/g, sub_total_display);
-                var listHtmlReplace = listHtmlReplace.replace("#data.total_shipping_charges#", product_shipping_charges);
+                var listHtmlReplace = listHtmlReplace.replace("#data.total_shipping_charges#", product_shipping_charges.toFixed(project_settings.price_decimal));
 
                 product_total = product_total + total;
                 product_additional_charge_total = product_additional_charge_total + charges;
@@ -356,16 +361,16 @@ $(document).on('click', '.js-btn-delete-cart-list', function(e) {
             shippingChargeTotal = shippingChargeTotal + parseFloat($( this ).html());
           });
 
-          $(".js-cart-total").html(replaceTotal)
+          $(".js-cart-total").html(replaceTotal.toFixed(project_settings.price_decimal))
           // var additional_charges = parseFloat(additinalChargeTotal).toFixed(project_settings.price_decimal);;
           // var shipping_charges = parseFloat(shippingChargeTotal).toFixed(project_settings.price_decimal);;
 
           var tax = parseFloat($('.js-tax').html());
-          ($('.js-additional-charges').html(additinalChargeTotal));
-          ($('.js-shipping-charges').html(shippingChargeTotal));
+          $('.js-additional-charges').html(additinalChargeTotal.toFixed(project_settings.price_decimal));
+          $('.js-shipping-charges').html(shippingChargeTotal.toFixed(project_settings.price_decimal));
 
           var grand_total = replaceTotal + additinalChargeTotal + shippingChargeTotal + tax;
-          $(".js-grand-total").html(grand_total)  ;
+          $(".js-grand-total").html(grand_total.toFixed(project_settings.price_decimal))  ;
           hidePageAjaxLoading()
         }
       }

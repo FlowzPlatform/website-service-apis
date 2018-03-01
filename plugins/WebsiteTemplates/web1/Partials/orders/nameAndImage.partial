@@ -37,7 +37,7 @@ body {
     <tr>
         <td colspan="3">
             <div class="track-order-billing-address">
-                <h3 class="pull-left">Product Summary 1</h3>
+                <h3 class="pull-left">Product Summary <span class="js-section-number"></span></h3>
             </div>
         </td>
     </tr>
