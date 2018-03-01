@@ -52,13 +52,26 @@ module.exports = {
   }
 };
 
-beforeFind = async hook => {
-  if(hook.params.query.deleted_at == "false"){
-      hook.params.query.deleted_at = false;
-  }
-  if(hook.params.query.email != undefined && hook.params.query.email !=""){
-    hook.params.query.email = {$search: hook.params.query.email}
-  }
+beforeFind = hook => {
+    if(hook.params.query.deleted_at == "false"){
+        hook.params.query.deleted_at = false;
+    }
+    // console.log("++",hook.params.query);
+    if(hook.params.query.terms != undefined && hook.params.query.terms !=""){
+      hook.params.query.$or = [
+        {
+          email:  {
+            $search : hook.params.query.terms
+          }
+        },
+        {
+          name: {
+            $search : hook.params.query.terms
+          }
+        }
+      ]
+      delete hook.params.query.terms
+    }
 }
 
 beforeCreateAddressBook = async hook => {
