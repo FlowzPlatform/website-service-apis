@@ -95,7 +95,7 @@ body {
             <div class="panel-body js-shippingMethod-section">
                 <div class="shipping-method">
                     <div class="col-xs-12 shipping-method-select">
-                        <div class="radio-but col-lg-4 col-md-6 col-sm-5 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 radio-but">
                             <input class="js_select_shipping_type" type="radio" name="request_quote_shipping_type"
                             value="standard" />
                             <label class="lbl">Standard Shipping</label>

@@ -48,10 +48,6 @@ body {
 <div class="product-section-box">
     <div class="detail-popup-block">
         <ul>
-            <li>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#shipping-estimator" class="js_open_modal_shipping_estimator"><i class="strip estimator-strip"></i> Shipping Estimator
-			</a>
-            </li>
             <li id="ob_virtual_list">
                 <div id="ob-virtualmarketingcart">
                     <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"

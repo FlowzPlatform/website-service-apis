@@ -23,7 +23,7 @@ $(function() {
           }
   			},
   			messages: {
-          "username":"Please enter name.",
+          "name":"Please enter name.",
           "address_type":"Please select address type.",
           "email":{
             required:"Please enter email",
@@ -65,9 +65,9 @@ $(function() {
                   success: function(response){
                       if(response.id != undefined && response.id != '' ){
                         if(addressBookId != null){
-                          showSuccessMessage("Your address book is updated successfully..","addressBookList.html");
+                          showSuccessMessage("Your address is updated successfully..","addressBookList.html");
                         }else{
-                          showSuccessMessage("Your address book is saved successfully..","addressBookList.html");
+                          showSuccessMessage("Your address is saved successfully..","addressBookList.html");
                         }
                           return false;
                       }
@@ -118,6 +118,7 @@ $(function() {
 
     if($(".js_address_book_list").find('.account-address-block').length > 0)
     {
+        showPageAjaxLoading();
         let addressBookHtml = $(".js_address_book_list").html();
 
         axios({
@@ -132,18 +133,18 @@ $(function() {
              }
           })
         .then(async response => {
-            let countryName
             if(response.data != undefined  && response.data.total > 0){
               // console.log("response.data=>>>",response.data);
               // return false;
               let generateHtml =   await generateHtmlFunc(response.data.data , addressBookHtml) ;
                 $(".js_address_book_list").html(generateHtml)
             }else{
-                $(".js_address_book_list").html('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h1 class="main-title">Not found</h1></div>')
+                $(".js_address_book_list").html('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h1 class="main-title">Address not available</h1></div>')
             }
-
+            hidePageAjaxLoading();
         })
         .catch(error => {
+          hidePageAjaxLoading();          
           // console.log('Error fetching and parsing data', error);
         });
 
@@ -161,7 +162,7 @@ $(function() {
               data: {"is_default": '1'}
             }).then(function(response) {
                 if(response.data != undefined){
-                   showSuccessMessage("Default Address Book is Updated Successfully","addressBookList.html");
+                   showSuccessMessage("Default Address is Updated Successfully","addressBookList.html");
                    return false
                 }
             });
@@ -178,7 +179,7 @@ $(function() {
               data: {"deleted_at": true}
             }).then(function(response) {
                 if(response.data != undefined){
-                   showSuccessMessage("Address Book is deleted successfully.","addressBookList.html");
+                   showSuccessMessage("Address is deleted successfully.","addressBookList.html");
                    return false
                 }
             });
@@ -332,37 +333,36 @@ $(function() {
 
 
 async function generateHtmlFunc(req , addressBookHtml){
-  return new Promise (function (resolve , reject){
-    var replaceAdddressBookHtml=''
-    $.each(req, async function(key,data){
-          let addressBookHtml1 = "";
-          let address = data.street1;
+  var replaceAdddressBookHtml=''
+  for(let [key,data] of req.entries()) {
+  // $.each(req, async function(key,data){
+        let addressBookHtml1 = "";
+        let address = data.street1;
 
-          if(data.street2 != undefined && data.street2 != ''){
-              address += ",<br>"+data.street2;
-          }
-          address += ",<br>"+ await getCountryStateCityById(data.city,3);
-          address += ","+await getCountryStateCityById(data.state,2);
-          address += ","+data.postalcode;
-          address += "<br>"+ await getCountryStateCityById(data.country,1);
-          addressBookHtml1 = addressBookHtml.replace("#data.name#",data.name)
-          addressBookHtml1 = addressBookHtml1.replace("#data.phone#",data.phone)
-          addressBookHtml1 = addressBookHtml1.replace("#data.email#",data.email)
-          addressBookHtml1 = addressBookHtml1.replace("#data.addressType#",data.address_type)
-          if(data.is_default == '1'){
-            addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","address-active")
-          }else{
-            addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","is-default")
-          }
-          addressBookHtml1 = addressBookHtml1.replace("#data.addressType#",data.address_type)
-          addressBookHtml1 = addressBookHtml1.replace(/#data.id#/g,data.id)
-          replaceAdddressBookHtml += addressBookHtml1.replace("#data.address#",address)
-          // console.log("replaceAdddressBookHtml+++");
-      })
-      setTimeout(() => {
-          resolve(replaceAdddressBookHtml);
-      }, 3000);
-  })
+        if(data.street2 != undefined && data.street2 != ''){
+            address += ",<br>"+data.street2;
+        }
+        address += ",<br>"+ await getCountryStateCityById(data.city,3);
+        address += ","+await getCountryStateCityById(data.state,2);
+        address += ","+data.postalcode;
+        address += "<br>"+ await getCountryStateCityById(data.country,1);
+        addressBookHtml1 = addressBookHtml.replace("#data.name#",data.name)
+        addressBookHtml1 = addressBookHtml1.replace("#data.phone#",data.phone)
+        addressBookHtml1 = addressBookHtml1.replace("#data.email#",data.email)
+        addressBookHtml1 = addressBookHtml1.replace("#data.addressType#",data.address_type)
+        if(data.is_default == '1'){
+          addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","address-active")
+        }else{
+          addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","is-default")
+        }
+        addressBookHtml1 = addressBookHtml1.replace("#data.addressType#",data.address_type)
+        addressBookHtml1 = addressBookHtml1.replace(/#data.id#/g,data.id)
+        replaceAdddressBookHtml += addressBookHtml1.replace("#data.address#",address)
+        // console.log("replaceAdddressBookHtml+++");
+    // })
+    }
+    $('.js-hide-div').removeClass("js-hide-div");
+    return replaceAdddressBookHtml;
 }
 
 /*  Get country Data from project_settings */

@@ -426,6 +426,10 @@ nav.navbar {
     display: none;
 }
 
+.navbar-dark.customMenu {
+    min-height: 1px;
+    height: initial;
+}
 
 @media screen and (max-width: 600px) {
     #menu {
@@ -588,7 +592,7 @@ nav.navbar {
 <script src="./main-files/main.js"></script>
 <script src="./assets/client-plugins/client-cart.js"></script>
 <div>
-    <link rel='stylesheet' href='./main-files/main.css'/>
+    <link rel="stylesheet" href="./main-files/main.css" />
     <link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/base.css"
     rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
@@ -615,15 +619,16 @@ nav.navbar {
                                 <li class="dropdown login-col header-login-text login-show hide"><a class="dropdown-toggle" href="login.html"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
                                 </li>
                                 <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
-                                    <ul class="dropdown-menu dropdown-menu-arrow user-dropdown">
+                                    <ul
+                                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
                                         <li><a href="myaccount.html">MY ACCOUNT</a>
                                         </li>
                                         <li><a href="changePassword.html">CHANGE PASSWORD</a>
                                         </li>
                                         <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
                                         </li>
-                                    </ul>
-                                </li>
+                            </ul>
+                            </li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>

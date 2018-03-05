@@ -256,6 +256,10 @@ if(pid != null) {
                     let shippingAddressHml = $(activetab).find(".shipping-method #js_shipping_method").html();
                     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
                     $(".shipping-method #js_shipping_method").html(shippingAddressHml)
+
+                    let setActivetab = activetab.replace("#","")
+                    $(activetab).find(".js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker1");
+
                     let addressBookHtml = $(activetab).find("#js_shipping_addresses_"+shippigCounter+" p").html();
 
                     $(activetab).find(".shipping-method #js_shipping_method").removeClass("hide");
@@ -269,7 +273,7 @@ if(pid != null) {
                   			minLength: 2,
                   			limit: 10,
                   			remote: {
-                  			url : ShipAddUrl+'&email=%QUERY',
+                  			url : ShipAddUrl+'&terms=%QUERY',
                   				filter: function (data) {
                   					if(user_id == null){
                               window.location = "login.html";
@@ -284,6 +288,7 @@ if(pid != null) {
                   				}
                   			}
                   		}).on('typeahead:selected', function (obj, datum) {
+                          showPageAjaxLoading();
                     			let counter = $(obj.currentTarget).data('counter');
                     			let addressBookId = datum.id;
                           axios({
@@ -377,10 +382,21 @@ if(pid != null) {
                                 // END -Change
 
                                   $("#js_shipping_addresses_"+shippigCounter).removeClass("hide");
-                                  $(activetab).find("#datetimepicker1").datepicker({format: 'mm/dd/yyyy',minDate: new Date()});
+                                  $(activetab).find(".js_rq_ship_handdate").datepicker({
+                                      changeMonth: true,
+                                      changeYear: true,
+                                      format: 'mm/dd/yyyy',
+                                      minDate: new Date(),
+                                      onSelect: function(dateText, inst) {
+                                          let date = $(this).val();
+                                          $(activetab).find(".js_rq_ship_handdate").val(date);
+                                      }
+                                  });
                               }
+                              hidePageAjaxLoading();
                           })
                           .catch(error => {
+                            hidePageAjaxLoading();
                             // console.log('Error fetching and parsing data', error);
                           });
                   		});
@@ -476,6 +492,7 @@ if(pid != null) {
 
                 let sectionCount = 0;
                 $( "#place_order_form .js-section-number" ).each(function( index ) {
+                // $( activetab+" .js-section-number" ).each(function( index ) {
                   if($(this).closest('.panel-group').css('display') != 'none'){
                     sectionCount = sectionCount + 1;
                     $(this).prepend("<i>"+sectionCount+"</i>&nbsp;");
@@ -746,7 +763,7 @@ if(pid != null) {
             if (typeof get_shipping_method === typeof undefined ) {
                 get_shipping_method = "";
             }
-	    let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_handdate").val();
+	           let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_handdate").val();
             let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
 
             // return false;
@@ -779,10 +796,12 @@ if(pid != null) {
                     dataType : 'json',
                     success : function(response_data) {
                         if(response_data.status == 200) {
-                            showSuccessMessage("Product added to cart","cartPage.html");
+                            hidePageAjaxLoading()
+                            showSuccessMessage("Product is added to cart","cartPage.html");
                             return false;
                         }
                         else if(response_data.status == 400) {
+                            hidePageAjaxLoading()
                             showSuccessMessage(response_data.message);
                             return false;
                         }
@@ -808,10 +827,12 @@ if(pid != null) {
                     dataType : 'json',
                     success : function(response_data) {
                         if(response_data!= "") {
+                            hidePageAjaxLoading()
                             showSuccessMessage("Request Quote Save Sucessfully","thankYou.html");
                             return false;
                         }
                         else if(response_data.status == 400) {
+                            hidePageAjaxLoading()
                             showSuccessMessage(response_data.message);
                             return false;
                         }
@@ -1215,9 +1236,11 @@ function setdate(parentObj,activetab,transitTime=0){
             count++;
         }
       }
+      // console.log("endDate",endDate);
       let setDate = new Date(endDate.getFullYear(),endDate.getMonth(),endDate.getDate())
-      $(activetab).find(parentObj).find("#datetimepicker1").datepicker("setDate", setDate);
-      $(activetab).find(parentObj).find("#datetimepicker1").datepicker('option', 'minDate', setDate);
+      let setActivetab = activetab.replace("#","")
+      $(activetab).find(parentObj).find(activetab+"_datetimepicker1").datepicker("setDate", setDate);
+      $(activetab).find(parentObj).find(activetab+"_datetimepicker1").datepicker('option', 'minDate', setDate);
 
   }
 }

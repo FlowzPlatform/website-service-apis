@@ -75,7 +75,6 @@ body {
         <div role="tabpanel">
             <div class="tabbable">
                 <div class="request-tab-content tab-content">
-                    <form id="request_quote_form">
                         <div class="tab-pane fade in active">
                             <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
                             <div
@@ -97,7 +96,6 @@ body {
                     </div>
                 </div>
             </div>
-            </form>
         </div>
     </div>
 </div>

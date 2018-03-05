@@ -18,7 +18,7 @@
         "shopping_api_url": "https://api.flowzcluster.tk/serverapi/shoppingCart",
         "request_info_api_url": "https://api.flowzcluster.tk/serverapi/request-info",
         "address_book_api_url": "https://api.flowzcluster.tk/serverapi/address-book",
-	"user_account_api_url": "https://api.flowzcluster.tk/serverapi/website-users",
+	       "user_account_api_url": "https://api.flowzcluster.tk/serverapi/website-users",
         "charges": ["setup_charge","pms_charge"],
         "price_decimal": 2,
         "email_subscribe_api_url": "https://api.flowzcluster.tk/serverapi/emailSubscribers",
@@ -33,6 +33,7 @@
         "carrier_account": {"ups":"17bd3f6701a44108b5487370fb93224d","fedex":"de32f747140c459f8b02dd6c0bfab0e8"},
         "request_quote_api_url": "https://api.flowzcluster.tk/serverapi/request-quote",
         "crm_payment_url":"https://api.flowzcluster.tk/crm/payment",
-        "crm_invoice_url":"https://api.flowzcluster.tk/crm/invoice"
+        "crm_invoice_url":"https://api.flowzcluster.tk/crm/invoice",
+        "format_date": "m/d/Y"
       }
 }

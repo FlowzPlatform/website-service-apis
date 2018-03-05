@@ -19,3 +19,7 @@
     height: 37px;
 }
 .js-hide-div{visibility: hidden;}
+#address_book .radio label{
+    min-width: 100px;
+    font-size: 14px;
+}
