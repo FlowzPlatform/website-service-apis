@@ -119,6 +119,7 @@ body {
 
 #menu ul {
     height: 35px;
+    display: block;
 }
 
 #menu li {
