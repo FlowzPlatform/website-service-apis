@@ -38,6 +38,8 @@ function before_create_ms(hook) {
 
 async function after_create_ms(hook) {
 
+  console.log('Subscription ID: ', hook.params.headers.subscriptionid);
+
   await hook.app.service('project-configuration').find({
     query:{
       subscriptionId:hook.params.headers.subscriptionid

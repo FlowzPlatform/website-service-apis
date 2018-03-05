@@ -146,15 +146,55 @@ function after_commit_repo(hook) {
     return new Promise((resolve, reject) => {
         let nameOfRepo = hook.data.repoName;
         let userDetailId = hook.data.userDetailId;
+        let isRevertedCommit = true;
 
         if (!shell.which('git')) {
             shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
             shell.exit(1);
         } else {
+          // if(isRevertedCommit == true){
+          //   shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
+
+          //   shell.exec('git status');
+          //   shell.exec('git remote -v');
+
+          //   let tempBranchName = 'commit_' + new Date().getTime();
+
+          //   shell.exec('git checkout -b ' + tempBranchName);
+
+          //   shell.exec('git add .');
+
+          //   shell.exec('git commit -m "' + hook.data.commitMessage + '"');
+
+          //   shell.exec('git checkout master');
+
+          //   shell.exec('git merge ' + tempBranchName);
+
+          //   shell.exec('git branch -d ' + tempBranchName);
+
+          //   shell.exec('git push -u origin master --force');
+
+          //   shell.echo('New Commit Pushed to GitLab server');
+          // } else {
+          //   shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
+
+          //   shell.exec('git status');
+          //   shell.exec('git remote -v');
+
+          //   shell.exec('git add .');
+
+          //   shell.exec('git commit -m "' + hook.data.commitMessage + '"');
+
+          //   shell.exec('git push -u origin master --force');
+
+          //   shell.echo('New Commit Pushed to GitLab server');
+          // }
+          
             shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
 
             shell.exec('git status');
             shell.exec('git remote -v');
+
             shell.exec('git add .');
 
             shell.exec('git commit -m "' + hook.data.commitMessage + '"');
