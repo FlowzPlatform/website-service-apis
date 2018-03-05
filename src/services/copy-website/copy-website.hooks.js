@@ -60,11 +60,21 @@ function after_copy_website(hook) {
 
       // }
 
-      response = shell.exec('cp -rf ' + config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/* ' + config.path + projectPath + '/');
+      shell.exec('cp -rf ' + config.basePath + 'plugins/WebsiteTemplates/' + templateName + '/* ' + config.path + projectPath + '/', function(code, stdout, stderr){
+        console.log('Exit Code: ', code);
+        console.log('Program output:', stdout);
+        console.log('Program stderr:', stderr);
+
+        hook.result = [{
+          code: code,
+          otuput: stdout,
+          error: stderr
+        }];
+        resolve(hook)
+      });
 
       
-      hook.result = response;
-      resolve(hook)
+      
             
     })
 }
