@@ -17,7 +17,7 @@ $(document).ready(async function() {
 });
 
 async function getProjectInfo() {
-    await $.getJSON( "./../assets/project-details.json", function( data ) {  
+    await $.getJSON( "./assets/project-details.json", function( data ) {  
         var configData = data;
         userEmail = data[0].projectOwner;
         projectID = data[0].projectID;
