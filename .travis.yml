@@ -32,10 +32,10 @@ jobs:
             docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
             docker build -t flowz_service_api_backend_flowz:staging .;
             docker tag flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER $DOCKER_USERNAME/flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER;
-            docker tag flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
+            docker tag flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER $DOCKER_USERNAME/flowz_service_api_backend_flowz:staging;
             docker images;
             docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER;
-            docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
+            docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:staging;
         else
             docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
             docker build -t flowz_service_api_backend_flowz:qa .;
