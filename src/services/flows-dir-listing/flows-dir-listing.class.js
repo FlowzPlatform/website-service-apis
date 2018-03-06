@@ -133,6 +133,7 @@ class Service {
     }
 
     remove(id, params) {
+        console.log("params", params)
         return new Promise((resolve, reject) => {
             fs.stat(params.query.filename, function(err, stats) {
                 if (!err) {

@@ -12,6 +12,10 @@ class Service {
     this.options = options || {};
   }
 
+  setup(app) {
+        this.app = app
+    }
+
   find (params) {
     return Promise.resolve([]);
   }
@@ -39,42 +43,14 @@ class Service {
   }
 
   remove(id, params) {
-        return new Promise((resolve, reject) => {
-            fs.stat(params.query.filename, function(err, stats) {
-                if (!err) {
-                    if (stats.isFile()) {
-                        // console.log('Stats%%%%%%%%%', stats);
-                        // console.log('To Delete FileName :', params.query.filename);
-                        shell.rm(params.query.filename);      
-                        resolve(params.query.filename.replace(/\//g, "\\"));                
-                        // fs.unlink(params.query.filename, function(err) {
-                        //     err ? reject(err) : resolve(params.query.filename.replace(/\//g, "\\"))
-                        // });
-                        
-                    } else {
-                        // console.log('Stats%%%%%%%%%', stats);
-                        // console.log('To Delete FolderName :', params.query.filename);
-                        shell.rm('-rf', params.query.filename);
-                        resolve(params.query.filename.replace(/\//g, "\\"));
-                        // shell.rm(params.query.filename);
-                        // rimraf(params.query.filename, function(err) {
-                        //     err ? reject(err) : resolve(params.query.filename.replace(/\//g, "\\"))
-                        // });
-                    }
-                } else {
-                    reject(err)
-                }
-            });
-
-
-        }).then(content => {
-            console.log(content);
-            return content;
-        }).catch(err => {
-            console.error(err);
-            return err;
-        });
+    console.log("params..........................--------",params)
+    this.app.service("flows-dir-listing").remove('',params).then(function (response) {
+      console.log("response",response)
+    }).catch(function (err) {
+        console.log(err)
+      })
     }
+ 
 }
 
 module.exports = function (options) {
