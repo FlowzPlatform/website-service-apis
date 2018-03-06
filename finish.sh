@@ -12,6 +12,13 @@ then
       ENV_ID=`curl -u ""$RANCHER_USER":"$RANCHER_PASS"" -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' "http://rancher.flowz.com:8080/v2-beta/projects?name=Develop" | jq '.data[].id' | tr -d '"'`
       echo $ENV_ID
   }
+elif [ "$TRAVIS_BRANCH" = "staging" ]
+then
+    {
+      echo "call $TRAVIS_BRANCH branch"
+      ENV_ID=`curl -u ""$RANCHER_USER":"$RANCHER_PASS"" -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' "http://rancher.flowz.com:8080/v2-beta/projects?name=Staging" | jq '.data[].id' | tr -d '"'`
+      echo $ENV_ID
+  }  
 else
   {
       echo "call $TRAVIS_BRANCH branch"
@@ -42,7 +49,7 @@ echo "waiting for service to upgrade "
           "\"upgrading\"" )
               echo "still upgrading"
               echo -n "."
-              sleep 3
+              sleep 60
               continue ;;
           *)
               die "unexpected upgrade state" ;;
