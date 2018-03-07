@@ -9,6 +9,7 @@ branches:
   only:
   - master
   - develop
+  - staging
   - QA
 
 jobs:
@@ -27,6 +28,14 @@ jobs:
             docker images;
             docker tag flowz_service_api_backend_flowz:dev $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
             docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
+        elif [ ${TRAVIS_BRANCH} = "staging" ]; then
+            docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+            docker build -t flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER .;
+            docker tag flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER $DOCKER_USERNAME/flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER;
+            docker tag flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER $DOCKER_USERNAME/flowz_service_api_backend_flowz:staging;
+            docker images;
+            docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER;
+            docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:staging;
         else
             docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
             docker build -t flowz_service_api_backend_flowz:qa .;
