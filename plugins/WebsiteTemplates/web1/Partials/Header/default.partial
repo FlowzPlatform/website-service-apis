@@ -140,7 +140,7 @@ body {
 
 #menu ul {
     height: 35px;
-    display:block;
+    display: block;
 }
 
 #menu li {

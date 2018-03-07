@@ -29,7 +29,7 @@ $.ajax({
               productHtml.find(".js-checkout-description").html(response_data[key].special_instruction);
             }
 
-            productHtml.find(".js-checkout-unit-price").html("$"+response_data[key].unit_price);
+            productHtml.find(".js-checkout-unit-price").html("$"+parseFloat(response_data[key].unit_price).toFixed(project_settings.price_decimal));
             productHtml.find(".js-checkout-qty").html(response_data[key].total_qty);
 
             // charges
