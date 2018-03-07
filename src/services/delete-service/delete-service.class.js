@@ -11,7 +11,9 @@ class Service {
   constructor (options) {
     this.options = options || {};
   }
-
+  setup(app) {
+      this.app = app
+  }
   find (params) {
     return Promise.resolve([]);
   }
@@ -39,12 +41,15 @@ class Service {
   }
 
  remove(id, params) {
-    console.log("params..........................--------",params)
-    this.app.service("flows-dir-listing").remove('',params).then(function (response) {
-      console.log("response",response)
-    }).catch(function (err) {
-        console.log(err)
+   return new Promise((resolve , reject)=>{
+      console.log("params..........................--------",params)
+      this.app.service("flows-dir-listing").remove('',params).then(function (response) {
+      resolve(response)
+      }).catch(function (err) {
+        resolve(err)
       })
+   })
+    
     }
 }
 
