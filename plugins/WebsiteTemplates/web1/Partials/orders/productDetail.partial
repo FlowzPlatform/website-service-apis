@@ -51,7 +51,7 @@ body {
                         </td>
                         <td>
                             <h4>#data.title#</h4>
-                            <h4>Item Number : <span>#data.sku#</span></h4>
+                            <h4>Item Code : <span>#data.sku#</span></h4>
                         </td>
                         <td></td>
                     </tr>

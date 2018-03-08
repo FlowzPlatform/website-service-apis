@@ -142,7 +142,7 @@ body {
                                     <div class="option-body">
                                         <div class="row select-quntity-col js_qty_box">
                                             <div class="col-lg-4 col-md-6 col-sm-4 col-xs-12" data-size-id="0"><span>Quantity : </span>
-                                                <input class="js_request_quote_shipping_qty_box js_request_quote_qty"
+                                                <input class="js_request_quote_shipping_qty_box js_request_quote_qty" readonly="readonly" 
                                                 type="text" value="#data.quantity#" />
                                             </div>
                                         </div>

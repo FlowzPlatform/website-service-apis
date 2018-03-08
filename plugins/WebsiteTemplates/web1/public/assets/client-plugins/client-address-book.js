@@ -133,16 +133,16 @@ $(function() {
              }
           })
         .then(async response => {
-        	 if(response.data != undefined  && response.data.total > 0){
-                 // console.log("response.data=>>>",response.data);
-                 // return false;
-                   let generateHtml =   await generateHtmlFunc(response.data.data , addressBookHtml) ;
-                   $(".js_address_book_list").html(generateHtml);
-                   $('.js-hide-div').removeClass("js-hide-div");
-               }else{
-                   $(".js_address_book_list").html('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h1 class="main-title">Address not available</h1></div>');
-                   $('.js-hide-div').removeClass("js-hide-div");
-              }
+            if(response.data != undefined  && response.data.total > 0){
+              // console.log("response.data=>>>",response.data);
+              // return false;
+                let generateHtml =   await generateHtmlFunc(response.data.data , addressBookHtml) ;
+                $(".js_address_book_list").html(generateHtml);
+                $('.js-hide-div').removeClass("js-hide-div");
+            }else{
+                $(".js_address_book_list").html('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h1 class="main-title">Address not available</h1></div>');
+                $('.js-hide-div').removeClass("js-hide-div");
+            }
             hidePageAjaxLoading();
         })
         .catch(error => {
@@ -363,7 +363,6 @@ async function generateHtmlFunc(req , addressBookHtml){
         // console.log("replaceAdddressBookHtml+++");
     // })
     }
-    //$('.js-hide-div').removeClass("js-hide-div");
     return replaceAdddressBookHtml;
 }
 
@@ -437,4 +436,3 @@ function doSelection(element,value)
     $('select[name*="'+element+'"]').parent('span').find(".checkout-holder").text(selectedtext)
   }
 }
-

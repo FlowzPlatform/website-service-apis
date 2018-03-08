@@ -119,11 +119,11 @@ if(pid != null) {
                                   $.each(element.price_range,function(index,element2){
                                     // console.log("in each condition");
                                     if(element2.qty.lte != undefined){
-                                       priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content">' + '$ ' + element2.price + '</div></div>';
+                                       priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content">' + '$ ' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                                      }
                                      else
                                      {
-                                     	priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content">' + '$ ' + element2.price + '</div></div>';
+                                     	priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content">' + '$ ' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                                      }
                                   	});
                                   $(".quantity-table-col").html(priceRang);
@@ -288,7 +288,7 @@ if(pid != null) {
                   				}
                   			}
                   		}).on('typeahead:selected', function (obj, datum) {
-                          showPageAjaxLoading();
+                          		showPageAjaxLoading();
                     			let counter = $(obj.currentTarget).data('counter');
                     			let addressBookId = datum.id;
                           axios({
@@ -492,7 +492,6 @@ if(pid != null) {
 
                 let sectionCount = 0;
                 $( "#place_order_form .js-section-number" ).each(function( index ) {
-                // $( activetab+" .js-section-number" ).each(function( index ) {
                   if($(this).closest('.panel-group').css('display') != 'none'){
                     sectionCount = sectionCount + 1;
                     $(this).prepend("<i>"+sectionCount+"</i>&nbsp;");
@@ -633,7 +632,7 @@ if(pid != null) {
           $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js-color-div-append").html(replaceColorHtml)
 
           $.each(imprint_color_val.imprint_color,function(key,imprintColor){
-            dropDownColorHtml += "<li data-value='"+imprintColor+"'><a href='javascript:void(0);'>"+imprintColor+"</a></li>"
+            dropDownColorHtml += "<li data-value='"+imprintColor+"' data-printpos='"+dataAttributes.position+"'><a href='javascript:void(0);'>"+imprintColor+"</a></li>"
           })
           $("#js_imprint_request_quote_box_"+dataAttributes.position).find(".js_select_color_from_list").html(dropDownColorHtml)
           $("#js_imprint_request_quote_box_"+dataAttributes.position).find('.js-color-div-append').removeClass('hide');
@@ -642,8 +641,11 @@ if(pid != null) {
     $(document).on("click",".js_select_color_from_list li",function(){
         let color_name = $(this).parent().parent().find('button').data('value');
         let color_no = $(this).parent('ul').data('color-no');
-        let method_name = $(this).closest('.js-printposition-section').find('.imprint-method-select button').data('dropval');
-        let position_name = $(this).closest('.js-printposition-section').find('.imprint-method-select button').data('printpos');
+        let print_pos = $(this).data("printpos")
+        // let method_name = $(this).closest('.js-printposition-section').find('.imprint-method-select button').data('dropval');
+        // let position_name = $(this).closest('.js-printposition-section').find('.imprint-method-select button').data('printpos');
+        let method_name = $(this).closest('#js_imprint_request_quote_box_'+print_pos).find('.imprint-method-select button').data('dropval');
+        let position_name = $(this).closest('#js_imprint_request_quote_box_'+print_pos).find('.imprint-method-select button').data('printpos');
         $('#js_selected_color_id_'+position_name+'_'+method_name+'_'+color_no).val(color_name);
     });
 
@@ -670,6 +672,7 @@ if(pid != null) {
         }else{
           $("#js_imprint_request_quote_box_"+dataAttributes.printpos).find(".imprint-color-select").html(productHtmlPrintPosColor);
         }
+        $("#js_imprint_request_quote_box_"+dataAttributes.printpos).append("<input type='hidden' id='js_max_selection_color_"+dataAttributes.printpos+"' value='"+dataAttributes.maxImprintColor+"'>")
      });
 
 
@@ -763,7 +766,7 @@ if(pid != null) {
             if (typeof get_shipping_method === typeof undefined ) {
                 get_shipping_method = "";
             }
-	           let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_handdate").val();
+	    let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+shipping_counter+" .js_rq_ship_handdate").val();
             let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
 
             // return false;
@@ -847,7 +850,7 @@ if(pid != null) {
                 return false;
             }
             else if(unit_price==0) {
-                showErrorMessage('Select valid color and quantity.');
+                showErrorMessage('Quantity should be equal to or greater than the minimum quantity.');
                 return false;
             }
             else if(typeof shipping_type == 'undefined') {
@@ -863,7 +866,8 @@ if(pid != null) {
       /* Virtual tool */
       let virtualButtonHtml = $("#ob_virtual_list").html();
       virtualButtonHtml1 = virtualButtonHtml.replace("#data.sku#",get_product_details.sku)
-      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",get_product_details.supplier_id)
+      // virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",get_product_details.supplier_id)
+      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",5)
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
       $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
@@ -890,7 +894,7 @@ if(pid != null) {
       }
 });
 
-//change
+
 function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_details)
 {
     var qty = 0;
@@ -1069,7 +1073,7 @@ let returnDefaultBillingInfo = async function fetchDefaultBillingInfo() {
     let returnData = null;
       await axios({
               method: 'GET',
-              url: project_settings.address_book_api_url+'?address_type=billing&user_id='+user_id+'&deleted_at=false&is_address=1&is_default=1',
+              url: project_settings.address_book_api_url+'?address_type=billing&website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&is_default=1',
               headers: {'Authorization': project_settings.product_api_token},
           })
       .then(async response => {
@@ -1127,6 +1131,7 @@ $(document).on("click","#js_tab_list",function(){
     //console.log($(activetab).find('#js_shipping_method').find(".shipping-scroll").html())
     //$(activetab).find('#js_shipping_method').find(".shipping-scroll").addClass('hide');
     autoCounter();
+
 });
 
 $(document).on("click",activetab+" .datepicker-color",function(){
@@ -1187,9 +1192,11 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         Quantity = '<div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_'+id+'"><div class="color-input" style="background-color:'+hexCodeBgColor+'" title="'+$(this).val()+'"><br></div><div class="selector-quantity js-quantity-section"><div class="selector-btn"><div class="sp-minus"><a data-multi="-1" href="javascript:void(0)" class="js-quantity-selector">-</a></div>'+
         '<div class="selector-input"> <input type="text" value="0" class="selector-input js_request_quote_qty js_request_quote_nosize_qty" ></div><div class="sp-plus"><a data-multi="1" href="javascript:void(0)" class="js-quantity-selector">+</a></div></div><div class="clearfix"></div></div><a href="javascript:void(0)" data-toggle="tooltip" class="js_request_quote_qty_remove remove-qty" data-id="'+id+'">'+
         '<i class="fa fa-trash-o"></i></a></div>';
-        // console.log("Quantity",Quantity);
-        // $(activetab).find('.checkbox_colors').find('#'+id).attr('checked',true);
-        // console.log("+++++++++++++++++++++++++",$(this).prop("checked"));
+
+        // let quanatityHtml = $(activetab+" .js_request_quote_qty_box").html()
+        // quanatityHtml = quanatityHtml.replace(/#data.colorIdKey#/g,id)
+        // quanatityHtml = quanatityHtml.replace(/#data.colorName#/g,$(this).val())
+
         $(this).prop("checked",true);
         if($(activetab).find("#js_request_quote_qty_box").html() !=""){
             $(activetab).find("#js_request_quote_qty_box").append(Quantity);
@@ -1236,7 +1243,6 @@ function setdate(parentObj,activetab,transitTime=0){
             count++;
         }
       }
-      // console.log("endDate",endDate);
       let setDate = new Date(endDate.getFullYear(),endDate.getMonth(),endDate.getDate())
       let setActivetab = activetab.replace("#","")
       $(activetab).find(parentObj).find(activetab+"_datetimepicker1").datepicker("setDate", setDate);
@@ -1244,6 +1250,173 @@ function setdate(parentObj,activetab,transitTime=0){
 
   }
 }
+
+function validateForm(data,activetab){
+  let requiredSection = {}
+  let errorMsg = {}
+  let returnData = {}
+  requiredSection['color'] = "color"
+  requiredSection['imprint'] = "printPosition"
+  requiredSection['shipping_method'] = "shippingMethod"
+  requiredSection['special_instruction'] = "specialInstruction"
+  console.log("data",data);
+  $.each(requiredSection,function(fld,section){
+      switch (section) {
+          case 'color':
+            let colorError = colorValidation(fld,section,data)
+            if(!isEmpty(colorError)) {
+                // errorMsg.push(colorError)
+                for (let prop in colorError) {
+                  if (colorError.hasOwnProperty(prop)) {
+                    errorMsg[prop] = colorError[prop];
+                  }
+                }
+            }
+            break;
+          case 'printPosition':
+            let printPosError = printPosValidation(fld,section,data)
+            // console.log("printPosError",printPosError);
+            if(!isEmpty(printPosError)) {
+              // errorMsg.push(printPosError)//errorMsg[section] = printPosError//[section]
+                for (let prop in printPosError) {
+                  if (printPosError.hasOwnProperty(prop)) {
+                    errorMsg[prop] = printPosError[prop];
+                  }
+                }
+            }
+            break;
+          // case 'shippingMethod':
+          //    let shippingError = shippingValidation(fld,section,data)
+          //    if(!isEmpty(shippingError)) {
+          //      //errorMsg.push(shippingError)
+          //        for (let prop in shippingError) {
+          //          if (shippingError.hasOwnProperty(prop)) {
+          //            errorMsg[prop] = shippingError[prop];
+          //          }
+          //        }
+          //    }
+          //    break;
+          case 'specialInstruction':
+            let dataErr = {}
+            let errorLog = {}
+            if(isEmpty(data[fld])){
+              dataErr[fld] = "Please select special instruction."
+              // errorLog[section] = dataErr
+              errorMsg[section] = dataErr
+              // errorMsg.push(errorLog)
+            }
+      }
+  })
+  if(!isEmpty(errorMsg)){
+      returnData["status"] = "error"
+      returnData['error_data'] = errorMsg
+  }else{
+      returnData["status"] = "success"
+  }
+  // alert(activetab)
+  return returnData;
+}
+
+function colorValidation(fld,section,value){
+    let errorLog = {}
+    let color = {}
+    if(isEmpty(value[fld])){
+        color[fld] = "Please select at-least one color";
+        errorLog[section] = color
+    }
+    else if (!isEmpty(value[fld])) {
+        let quantityArr = {}
+        $.each(value[fld],function(colorName,quantity){
+            if(quantity <= 0 || quantity == ''){
+                quantityArr[colorName] = "Please enter quantity."
+            }
+        })
+        if(!isEmpty(quantityArr)) errorLog['quantity'] = quantityArr
+        else{
+              let minQty = '';
+              // Find Minimum Qty from price range
+              $.each(get_product_details.pricing, function(index,element){
+                if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
+                  let priceRangeArry = []
+                    $.each(element.price_range,function(index,element2){
+                        if(element2.qty.lte != undefined) priceRangeArry.push(parseInt(element2.qty.lte))
+                        if(element2.qty.gte != undefined) priceRangeArry.push(parseInt(element2.qty.gte))
+                    })
+                    if(priceRangeArry != ""){
+                        minQty = Math.min.apply(Math,priceRangeArry);
+                    }
+                }
+             })
+
+             if(minQty != "" && minQty > 0){
+                if(value.total_qty < minQty){
+                    errorLog['quantity'] = "Quantity should be equal to or greater than the minimum quantity."
+                }
+             }
+        }
+    }
+    // console.log("errorLog - Color",errorLog);
+    return errorLog
+}
+
+function printPosValidation(fld,section,value){
+    let errorLog = {}
+    if(isEmpty(value[fld])){
+        let printPos = {}
+        printPos[fld] = "Please Select at-least one Print Position";
+        errorLog[section] = printPos
+    }else{
+        let imprintArr = {}
+        $.each(value[fld],function(key,imprint_data){
+              let printPos = {}
+              let print_position = replaceWithUnderscore(imprint_data.imprint_position_name)
+              let maxColorSelection = $('#js_max_selection_color_'+print_position).val()
+              if( imprint_data.imprint_method_name == undefined ){
+                  printPos['imprint_method'] = "Please select imprint method"
+                  imprintArr[section+'-'+print_position] = printPos
+              }
+              else if (imprint_data.no_of_color == undefined || imprint_data.no_of_color <=0 ) {
+                  if(maxColorSelection > 0 ){
+                      printPos['no_of_color'] = "Please select number of colors."
+                      imprintArr[section+'-'+print_position] = printPos
+                  }
+              }
+              else if (isEmpty(imprint_data.selected_colors)) {
+                    if(maxColorSelection > 0 ){
+                        printPos['selected_colors'] = "Please select imprint color."
+                        imprintArr[section+'-'+print_position] = printPos
+                    }
+              }
+              // console.log("&&&&",imprintArr);
+              // console.log("+++++++++++++++++++");
+        })
+        if(!isEmpty(imprintArr)) errorLog = imprintArr
+    }
+    // console.log("errorLog print pos",errorLog);
+    return errorLog
+}
+
+function shippingValidation(fld,section,value){
+  let errorLog = {}
+  // console.log("value[fld]",value[fld]);
+  if(value[fld].shipping_type){
+      let shippingLog = {}
+      shippingLog[fld] = "Please select shipping method.";
+      errorLog[section] = shippingLog
+  }
+
+  return errorLog
+}
+
+function isEmpty(myObject) {
+    for(let key in myObject) {
+        if (myObject.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 function loadBxSlider(){
   $('.ob-product-gallery .product-big-image-thumbnails').bxSlider({
