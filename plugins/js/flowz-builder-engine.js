@@ -556,7 +556,7 @@ catch (err){
 
 // Navbar Plugins JS
 try{
-    var menuJson;
+    var menuData;
 
     $(document).ready(function(){
         var menuJsonName = './assets/' + $('.customMenu').attr('menuId') + '.json';
@@ -567,12 +567,12 @@ try{
             async: true,
             dataType: 'json',
             success: function(data) {
-                menuJson = {
+                menuData = {
                     "menu": data
                 };
 
                 var topLevelUl = true;
-                $("#navigationDiv").html(makeUL(menuJson.menu, topLevelUl, true));
+                $("#navigationDiv").html(makeUL(menuData.menu, topLevelUl, true));
 
                 $('.navbar a.dropdown-toggle').on('click', function(e) {
                     var $el = $(this);
@@ -585,34 +585,13 @@ try{
 
                     $('.nav li.open').not($(this).parents("li")).removeClass("open");
 
-                  //  return false;
+                    return false;
                 });
             }
         });
-
-        /*
-        $(function() {
-            var topLevelUl = true;
-            $("#navigationDiv").html(makeUL(menuJson.menu, topLevelUl, true));
-
-            $('.navbar a.dropdown-toggle').on('click', function(e) {
-                var $el = $(this);
-                var $parent = $(this).offsetParent(".dropdown-menu");
-                $(this).parent("li").toggleClass('open');
-
-                if(!$parent.parent().hasClass('nav')) {
-                    $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
-                }
-
-                $('.nav li.open').not($(this).parents("li")).removeClass("open");
-
-                return false;
-            });
-
-        }); */
     });
 
-
+    
 
     function makeUL(lst, topLevelUl, rootLvl) {
         var html = [];

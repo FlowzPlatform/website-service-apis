@@ -866,7 +866,8 @@ if(pid != null) {
       /* Virtual tool */
       let virtualButtonHtml = $("#ob_virtual_list").html();
       virtualButtonHtml1 = virtualButtonHtml.replace("#data.sku#",get_product_details.sku)
-      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",get_product_details.supplier_id)
+      // virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",get_product_details.supplier_id)
+      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",5)
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
       $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
