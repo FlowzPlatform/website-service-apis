@@ -124,3 +124,4 @@ body {
     </div>
 </div>
 <script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519210886/js/owl.carousel.js"></script>
+<script src="./assets/client-plugins/bootbox.min.js"></script>
