@@ -54,6 +54,10 @@ const subscriptionWebsites = require('./subscription-websites/subscription-websi
 
 
 
+const branchList = require('./branch-list/branch-list.service.js');
+
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -94,4 +98,5 @@ module.exports = function () {
   app.configure(emailTemplate);
   app.configure(configdataHistory);
   app.configure(subscriptionWebsites);
+  app.configure(branchList);
 };
