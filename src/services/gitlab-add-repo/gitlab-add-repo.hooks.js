@@ -192,18 +192,31 @@ function after_commit_repo(hook) {
           
             shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
 
+            shell.exec('git checkout -b ' + hook.data.branchName);
+
             shell.exec('git status');
-            shell.exec('git remote -v');
 
             shell.exec('git add .');
 
             shell.exec('git commit -m "' + hook.data.commitMessage + '"');
 
-            shell.exec('git push -u origin master --force');
+            shell.exec('git push -u origin ' + hook.data.branchName + ' --force', function(code, stdout, stderr) {
 
-            shell.echo('New Commit Pushed to GitLab server');
+              console.log('Exit Code: ', code);
+              console.log('Program output:', stdout);
+              console.log('Program stderr:', stderr);
+
+              hook.result = [{
+                code: code,
+                otuput: stdout,
+                error: stderr
+              }];
+
+              resolve(hook);
+            });
+
         }
-        resolve(hook)
+        
     })
 }
 
