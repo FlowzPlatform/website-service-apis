@@ -170,7 +170,7 @@ function showOrders()
               var shippingHtml1 = shippingHtml.replace("#data.color_quantity#",quantityHtml)
               var shipping_details = shipping_info.shipping_detail;
 
-              var shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#",shipping_details.shipping_carrier)
+              var shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#",shipping_details.shipping_carrier.toUpperCase())
               var shippingHtml1 = shippingHtml1.replace("#data.shipping_count#",shippingKeyCount)
               var shippingHtml1 = shippingHtml1.replace("#data.shipping_method#",shipping_details.shipping_method)
               var shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'')

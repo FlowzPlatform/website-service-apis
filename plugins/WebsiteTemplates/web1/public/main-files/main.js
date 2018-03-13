@@ -201,8 +201,9 @@ function getCookie(name) {
 
 let user_id = user_details = null;
 let userToken = getCookie('auth_token');
+let userFrontId = getCookie('user_id');
 
-if(userToken != null) {
+if(userToken != null && userFrontId != null) {
     var user_details = function () {
       var tmp = null;
       $.ajax({
@@ -309,7 +310,7 @@ var init = function() {
             return tmp;
           }();
 
-          if(typeof wishlist_values.length !== "undefined")
+          if(wishlist_values !== null)
           {
             var recentAddedInWishlist = [];
 
@@ -346,7 +347,7 @@ var init = function() {
         }();
         // console.log('compare_values.length',compare_values.length)
         // console.log('compare_values',compare_values)
-        if(typeof compare_values.length !== "undefined")
+        if(compare_values !== null)
         {
           var recentAddedInComparelist = [];
 

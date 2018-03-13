@@ -65,9 +65,9 @@ $(function() {
                   success: function(response){
                       if(response.id != undefined && response.id != '' ){
                         if(addressBookId != null){
-                          showSuccessMessage("Your address is updated successfully..","addressBookList.html");
+                          showSuccessMessage("Your address is updated successfully.","addressBookList.html");
                         }else{
-                          showSuccessMessage("Your address is saved successfully..","addressBookList.html");
+                          showSuccessMessage("Your address is saved successfully.","addressBookList.html");
                         }
                           return false;
                       }
@@ -315,7 +315,7 @@ $(function() {
                       $(formObj.find('[name*="'+element+'"]')).parent('span').find(".checkout-holder").text(selectedtext)
                     }
 
-                    $('input:radio[name="'+element+'"]').prop('checked', true);
+                    $('input:radio[name="'+element+'"][value="'+value+'"]').prop('checked', true);
                     if($(formObj.find('[name*="'+element+'"]')).parent('span').find(".checkout-holder").text() == "Shipping"){
                       $(".js-isoffice").show()
                     }

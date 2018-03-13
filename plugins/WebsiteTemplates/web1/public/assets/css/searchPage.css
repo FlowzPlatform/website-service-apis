@@ -32,8 +32,12 @@ margin-bottom: 15px;
     display: inline-block;
     max-height: 400px;
     height: auto;
-    margin: 0 7px 20px 8px;
-
+    margin: 0 0.5% 20px 0.5%;
+    max-width: inherit;
+    width: 24%;
+    -webkit-box-pack: start;
+    justify-content: start;
+    flex-grow: 0;
 }
 
 .css-omf3o4 a.css-s1k1y71 .card-image {
