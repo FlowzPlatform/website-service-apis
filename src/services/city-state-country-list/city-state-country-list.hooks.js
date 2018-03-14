@@ -1,14 +1,6 @@
 const config = require("config");
-
-let mongoDBName = config.get("mongodb").db;
-let ServerName = config.get("mongodb").host;
-let mongoPort = config.get("mongodb").port;
-
-let mongoUsername = config.get("mongodb").username;
-let mongoPassword = config.get("mongodb").password;
-
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://"+mongoUsername+":"+mongoPassword+"@"+ServerName+":"+mongoPort+"/"+mongoDBName);
+mongoose.connect(config.get('mongoDBConnection'));
 
 var db = mongoose.connection;
 

@@ -14,12 +14,5 @@
         "port": "RDB_PORT"
       }
     ]
-  },
-  "mongodb": {
-    "db": "closeoutpromo",
-    "username": "obdev2",
-    "password": "123456789",
-    "host": "ds133311.mlab.com",
-    "port": "33311"
   }
 } 
