@@ -28,10 +28,6 @@ WORKDIR /opt/app
 ADD . /opt/app
 RUN npm install
 
-# ssl certificate add
-ADD cert /etc/ssl/cert
-ADD privkey /etc/ssl/privkey
-
 
 # make websites and plugins folder
 RUN mkdir /var/www/html/websites
@@ -64,8 +60,7 @@ RUN npm install
 WORKDIR /opt/app
 CMD service nginx start && npm start
 
-RUN a2enmod ssl
-RUN service nginx restart
+
 #RUN a2enmod rewrite
 #RUN a2enmod vhost_alias
 #RUN service apache2 restart
