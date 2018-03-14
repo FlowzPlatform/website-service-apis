@@ -64,9 +64,11 @@ RUN npm install
 WORKDIR /opt/app
 CMD service nginx start && npm start
 
-RUN a2enmod rewrite
-RUN a2enmod ssl
+#RUN a2enmod rewrite
+#RUN a2enmod ssl
+
 RUN service nginx restart
+
 #RUN a2enmod rewrite
 #RUN a2enmod vhost_alias
 #RUN service apache2 restart
