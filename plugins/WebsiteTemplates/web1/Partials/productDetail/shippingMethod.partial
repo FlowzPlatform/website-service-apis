@@ -109,7 +109,7 @@ body {
                         data-shipping-counter="#data.counter#">
                             <div class="option-head"><a href="javascript:void(0);">Shipping Address #data.counter#</a>
                             </div>
-                            <div class="option-body js-shippingMethod--data-counter--section" id="c19663">
+                            <div class="option-body js-shippingMethod-#data.counter#-section" id="c19663">
                                 <div class="shipping-address">
                                     <div class="ship-add-tit">Select a Shipping address from your address book or enter a new address.</div>
                                     <div class="ship-add-parts">
@@ -173,7 +173,7 @@ body {
                                     <div class="selection-common-box">
                                         <div class="dropdown dropdown_size">
                                             <button class="btn dropdown-toggle js_rq_ship_shippingmethod" type="button"
-                                            id="shipping_method_std_button_210288_0" data-toggle="dropdown" aria-expanded="true">Select Method<span class="caret"></span>
+                                            id="shipping_method_std_button_210288_0" data-toggle="dropdown" aria-expanded="true"><span class="imprint-lbl-method">Select Method</span><span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu js_rq_ship_shipmethod_ul js_set_selected_value"
                                             id="shipping_method_std_dropdown_210288_0" role="menu" aria-labelledby="dropdownMenu17"

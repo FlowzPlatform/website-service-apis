@@ -132,24 +132,28 @@ if(pid != null) {
     		        }
 
                 // product colors
-                if(productDetails.attributes.colors != undefined){
-                  var listHtmlColor1 = '';
-                  var productHtmlColor = '';
-                  let listHtmlColor = $('.checkbox_colors').html();
-                  if(activetab!=undefined){
-                      $(activetab).find('#js_request_quote_qty_box').html('');
-                  }
+                if(productDetails.attributes.colors != undefined && productDetails.attributes.colors.length > 0) {
+                    var listHtmlColor1 = '';
+                    var productHtmlColor = '';
+                    let listHtmlColor = $('.checkbox_colors').html();
+                    if(activetab!=undefined){
+                        $(activetab).find('#js_request_quote_qty_box').html('');
+                    }
 
-                  $.each(productDetails.attributes.colors, function(index_color,element_color){
-                     let colorVal = element_color.toLowerCase();
-                     colorVal = colorVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
-                     listHtmlColor1 = listHtmlColor.replace(/#data.colorList#/g,element_color);
-                     listHtmlColor1 = listHtmlColor1.replace(/#data.colorID#/g,colorVal);
-                     listHtmlColor1 = listHtmlColor1.replace(/#data.colorVal#/g,element_color);
-                     listHtmlColor1 = listHtmlColor1.replace(/#data.colorHexCode#/g,element_color);
-                     productHtmlColor +=listHtmlColor1;
-                     $(".checkbox_colors").html(productHtmlColor);
-                  });
+                    $.each(productDetails.attributes.colors, function(index_color,element_color){
+                        let colorVal = element_color.toLowerCase();
+                        colorVal = colorVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
+                        listHtmlColor1 = listHtmlColor.replace(/#data.colorList#/g,element_color);
+                        listHtmlColor1 = listHtmlColor1.replace(/#data.colorID#/g,colorVal);
+                        listHtmlColor1 = listHtmlColor1.replace(/#data.colorVal#/g,element_color);
+                        listHtmlColor1 = listHtmlColor1.replace(/#data.colorHexCode#/g,element_color);
+                        productHtmlColor += listHtmlColor1;
+                        $(".checkbox_colors").html(productHtmlColor);
+                    });
+                }
+                else {
+                    $(".checkbox_colors").html("<span class='red'>There is no color for this product.</span>");
+                    $("#decoration-Decoration-Print-position-block, #Shipping-method-col, #js_request_quote_instruction, .place-order-submit").addClass('hide');
                 }
 
                 // product print position
@@ -187,15 +191,6 @@ if(pid != null) {
                     });
                     $(".print-checkbox").html(productHtmlPrintPos);
                 }
-                // Request info section
-
-                // if($("#js_tab_list").find("li.active").find('a').attr("href") == "#js-request-info"){
-                //     let formId = $(".request-tab-content").find(".tab-pane.active").find("form").attr("id");
-                //     $("#"+formId+"_product_id").val(pid);
-                //     $("#"+formId+"_api_url").val(project_settings.product_api_url);
-                //     // $("#"+formId+"_api_token").val(project_settings.product_api_token);
-                //     $(".request-tab-content").find("#js-place-order").addClass("hide");
-                // }
 
                 //Shipping Section
                 let shippigCounter = parseInt($(".js_request_quote_shipping_counter").val());
@@ -203,23 +198,12 @@ if(pid != null) {
                     $(".shipping-method #js_shipping_method").addClass("hide");
                 }
 
-                $(".js_select_shipping_type").on("click",function(){
+                $(".js_select_shipping_type").on("change",function(){
                     if (user_id == null ) {
                       window.location = 'login.html';
                       return false;
                     }
-                    // let colors_qty = [];
-                    //
-                    // $('.js_color_checkbox:checked').each(function() {
-                    //     let color_name = $(this).attr('id');
-                    //     let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
-                    //     if(qty == 0){
-                    //       showErrorMessage("Please enter quantity.")
-                    //       return false;
-                    //     }
-                    //     colors_qty[color_name] = qty;
-                    //     colors_qty.push({color_name:qty})
-                    // });
+
                     let colors_qty = {};
                     let colors_hex_code = {};
                     $('.js_color_checkbox:checked').each(function() {
@@ -255,7 +239,7 @@ if(pid != null) {
                     $(".js_shipping_qty_box_main").html(replaceQtyHtml);
                     let shippingAddressHml = $(activetab).find(".shipping-method #js_shipping_method").html();
                     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
-                    $(".shipping-method #js_shipping_method").html(shippingAddressHml)
+                    $(activetab).find(".shipping-method #js_shipping_method").html(shippingAddressHml)
 
                     let setActivetab = activetab.replace("#","")
                     $(activetab).find(".js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker1");
@@ -276,8 +260,8 @@ if(pid != null) {
                   			url : ShipAddUrl+'&terms=%QUERY',
                   				filter: function (data) {
                   					if(user_id == null){
-                              window.location = "login.html";
-                              return false;
+                                        window.location = "login.html";
+                                        return false;
                   					}
                   					return $.map(data.data, function (data) {
                   						return {
@@ -537,8 +521,6 @@ if(pid != null) {
     });
     // END QUANTITY PRICE TABLE END
 
-    //requestInfoconsole.log("=====",user_details);
-
     $(document).on('click','.js_submit_info', async function (e) {
             let formObj = $(this).closest('form');
             let product_data = await getProductDetailById(pid)
@@ -597,7 +579,7 @@ if(pid != null) {
         if ( thisObj.parent().parent().find('button').hasClass('dropdown-toggle') ){ // set button text only if it is available
          let buttonObj = thisObj.parent().parent().find('button');
          let selectedVal = thisObj.find('a').text();
-         buttonObj.html(selectedVal+'<span class="caret"></span>');
+         buttonObj.html('<span class="imprint-lbl-method">'+selectedVal+'</span><span class="caret"></span>');
          let dataAttributes = thisObj.data();
          $.each(dataAttributes,function(dataKey,dataValue){
            buttonObj.attr('data-'+dataKey,dataValue);
@@ -622,6 +604,8 @@ if(pid != null) {
               imprint_color_val[key] = val;
           })
         }
+
+          //imprint_color_val.imprint_color = ["Green","Red","White","Blue"] // Static imprint color
 
           for(let i=1;i<=dataAttributes.value;i++){
             colorHtml1 = colorHtml.replace(/#data.printPositionName#/g,printPosition)
@@ -800,12 +784,13 @@ if(pid != null) {
                     success : function(response_data) {
                         if(response_data.status == 200) {
                             hidePageAjaxLoading()
-                            showSuccessMessage("Product is added to cart","cartPage.html");
+                            //showSuccessMessage("Product is added to cart","cartPage.html");
+                            window.location.href = "cartPage.html"
                             return false;
                         }
                         else if(response_data.status == 400) {
                             hidePageAjaxLoading()
-                            showSuccessMessage(response_data.message);
+                            showErrorMessage(response_data.message);
                             return false;
                         }
                     }
@@ -831,12 +816,13 @@ if(pid != null) {
                     success : function(response_data) {
                         if(response_data!= "") {
                             hidePageAjaxLoading()
-                            showSuccessMessage("Request Quote Save Sucessfully","thankYou.html");
+//                            showSuccessMessage("Request Quote Save Sucessfully","thankYou.html");
+                            window.location.href = "thankYou.html"
                             return false;
                         }
                         else if(response_data.status == 400) {
                             hidePageAjaxLoading()
-                            showSuccessMessage(response_data.message);
+                            showErrorMessage(response_data.message);
                             return false;
                         }
                     }
@@ -871,25 +857,27 @@ if(pid != null) {
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
       $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
-      // replaceColorNameWithHexaCodes();
       if(user_id == null){
-        if($("#js-place-order").length > 0){
-          $("#js_tab_list li").find('a[href="#js-place-order"]').parent('li').remove()
-          $("#js-place-order").remove()
-        }
+        // if($("#js-place-order").length > 0){
+        //   $("#js_tab_list li").find('a[href="#js-place-order"]').parent('li').remove()
+        //   $("#js-place-order").remove()
+        // }
 
-        if($("#js-request-quote").length > 0){
-          $("#js_tab_list li").find('a[href="#js-request-quote"]').parent('li').remove()
-          $("#js-request-quote").remove()
-        }
+        // if($("#js-request-quote").length > 0){
+        //   $("#js_tab_list li").find('a[href="#js-request-quote"]').parent('li').remove()
+        //   $("#js-request-quote").remove()
+        // }
 
-        if($("#js-request-info").length > 0){
-          $("#js_tab_list li").find('a[href="#js-request-info"]').parent("li").addClass("active")
-          $("#js-request-info").addClass("in active")
-          $("#js-request-info .no-tag").parent('div').remove();
-        }
+        // if($("#js-request-info").length > 0){
+        //   $("#js_tab_list li").find('a[href="#js-request-info"]').parent("li").addClass("active")
+        //   $("#js-request-info").addClass("in active")
+        //   $("#js-request-info .no-tag").parent('div').remove();
+        // }
 
-      }else{
+        $(".place-order-submit").remove();
+        $(".request-quote-submit").remove();
+      }
+      else {
           $('#js_tab_list li.active').trigger('click');
       }
 });
@@ -945,7 +933,7 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                 hidePageAjaxLoading()
             }
         });
-        $(parentObj+" .js_rq_ship_shippingmethod").html('Select Method <span class="caret"></span>');
+        $(parentObj+" .js_rq_ship_shippingmethod").html('<span class="imprint-lbl-method">Select Method</span> <span class="caret"></span>');
     }
     else{
         $(parentObj+" .js_rq_ship_shipmethod_ul").html('');
@@ -1184,36 +1172,36 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
 });
 
 $(document).on("change", activetab + ' .js_color_checkbox',function(){
+    if(user_id == null) {
+        window.location = "login.html";
+        return false;
+    }
+
     let id = $(this).attr("id");
 
     if($(this).is(":checked")) {
-        var hexCodeBgColor = $(this).parent().css('background-color')
-        // console.log("hexCodeBgColor",hexCodeBgColor);
+        var hexCodeBgColor = $(this).parent().css('background-color');
         Quantity = '<div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_'+id+'"><div class="color-input" style="background-color:'+hexCodeBgColor+'" title="'+$(this).val()+'"><br></div><div class="selector-quantity js-quantity-section"><div class="selector-btn"><div class="sp-minus"><a data-multi="-1" href="javascript:void(0)" class="js-quantity-selector">-</a></div>'+
         '<div class="selector-input"> <input type="text" value="0" class="selector-input js_request_quote_qty js_request_quote_nosize_qty" ></div><div class="sp-plus"><a data-multi="1" href="javascript:void(0)" class="js-quantity-selector">+</a></div></div><div class="clearfix"></div></div><a href="javascript:void(0)" data-toggle="tooltip" class="js_request_quote_qty_remove remove-qty" data-id="'+id+'">'+
         '<i class="fa fa-trash-o"></i></a></div>';
 
-        // let quanatityHtml = $(activetab+" .js_request_quote_qty_box").html()
-        // quanatityHtml = quanatityHtml.replace(/#data.colorIdKey#/g,id)
-        // quanatityHtml = quanatityHtml.replace(/#data.colorName#/g,$(this).val())
-
         $(this).prop("checked",true);
-        if($(activetab).find("#js_request_quote_qty_box").html() !=""){
+        if($(activetab).find("#js_request_quote_qty_box").html() !="") {
             $(activetab).find("#js_request_quote_qty_box").append(Quantity);
-        }else{
+        }
+        else {
             $(activetab).find("#js_request_quote_qty_box").html(Quantity);
         }
 
-        if($(activetab+' .js-quantity-section.collapse').length > 0 ){
-					$(activetab+' .js-quantity-section').addClass('in');
-					$(activetab+' .js-quantity-section').css('height','');
-					$(activetab+' .js-quantity-section').parent().find('.js-add-class').removeClass('collapsed');
-				}
+        if($(activetab+' .js-quantity-section.collapse').length > 0) {
+            $(activetab+' .js-quantity-section').addClass('in');
+            $(activetab+' .js-quantity-section').css('height','');
+            $(activetab+' .js-quantity-section').parent().find('.js-add-class').removeClass('collapsed');
+        }
     }
-    else{
-        if($(activetab).find("#js_request_quote_qty_box_"+id).length > 0){
+    else {
+        if($(activetab).find("#js_request_quote_qty_box_"+id).length > 0) {
             $(activetab).find("#js_request_quote_qty_box_"+id).remove();
-            // $(activetab).find('.checkbox_colors').find('#'+id).attr('checked',false);
             $(this).prop("checked",false);
             $(activetab).find('.js_rq_shipping_quantity').filter('[data-color-id="'+id+'"]').remove();
         }
@@ -1427,3 +1415,18 @@ function loadBxSlider(){
         slideMargin:7
   });
 }
+
+$(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosize_qty',function(){
+    let colors_qty = {};
+    $('.js_color_checkbox:checked').each(function() {
+        let colorName = $(this).val();
+        let color_name = $(this).attr('id');
+        let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+        colors_qty[colorName] = qty;
+    });
+
+    $('.js_shipping_qty_box_main .js_request_quote_shipping_qty_box').each(function(i) {
+        let colorName = $(this).closest('.js_rq_shipping_quantity').data('color-id');
+        $(this).val(colors_qty[colorName]);
+    });
+});

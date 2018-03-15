@@ -60,9 +60,9 @@ body {
     aria-multiselectable="true">
         <div class="panel-heading open" role="tab">
             <h2 class="panel-title heading-block js-section-number ">Print Position</h2><a class="js-add-class tab-quantity collapsed" data-toggle="collapse" data-parent="#decoration-Decoration-Print-position"
-            href="#decoration-Decoration-Print-position-block" aria-expanded="true"><i class="caret-icon"></i></a>
+            href="#decoration-Decoration-Print-position-block" aria-expanded="false"><i class="caret-icon"></i></a>
         </div>
-        <div class="panel-collapse collapse" id="decoration-Decoration-Print-position-block"
+        <div class="panel-collapse collapse in" id="decoration-Decoration-Print-position-block"
         role="tabpanel">
             <div class="panel-body js-printPosition-section">
                 <div class="print-position">

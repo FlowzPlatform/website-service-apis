@@ -24,6 +24,7 @@ const cloneWebsite = require('./clone-website/clone-website.service.js');
 
 const saveMenu = require('./save-menu/save-menu.service.js');
 const changeCityStateCountry = require('./change-city-state-country/change-city-state-country.service.js');
+const cityStateCountryList = require('./city-state-country-list/city-state-country-list.service.js');
 const myOrders = require('./my-orders/my-orders.service.js');
 
 const shippingEstimator = require('./shipping-estimator/shipping-estimator.service.js');
@@ -82,6 +83,7 @@ module.exports = function () {
   app.configure(addressBook);
   app.configure(emailSubscribers);
   app.configure(changeCityStateCountry);
+  app.configure(cityStateCountryList);
   app.configure(myOrders);
   app.configure(colorTable);
   app.configure(shippingEstimator);
