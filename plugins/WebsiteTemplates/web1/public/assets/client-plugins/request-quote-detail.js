@@ -31,7 +31,7 @@ function detailRequestQuote() {
 
       // Start - Color Information
       colorRaw = '';
-      if(typeof quote_data.color != "undefined" && quote_data.color!='') {
+      if(typeof quote_data.color != "undefined" && quote_data.color.length>0) {
         for (var color_quantity in quote_data.color) {
           var colorSection = colorSectionHtml.html();
           colorSection = colorSection.replace("#data.color#",color_quantity)
