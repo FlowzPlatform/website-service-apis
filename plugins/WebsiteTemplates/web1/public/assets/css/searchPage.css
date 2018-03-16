@@ -110,6 +110,7 @@ select.css-evf80z {
 }
 
 .css-1pzkls5 + label {
+    height: inherit;
     padding-left: 29px;
 }
 .css-1pzkls5 + label::before {
@@ -131,4 +132,42 @@ a.css-qdgy3w {
 }
 .css-z378f .rheostat-progress {
     background-color: #0e406b;
+}
+
+.css-z0rtg8 .icon button {
+    background-color: #0e406c;
+    border: 0;
+    font-size: 18px;
+    padding: 7px;
+    margin: 0 3px;
+    color: #fff;
+}
+
+
+.css-z0rtg8 .icon .product-info {
+    width: 100%;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.css-z0rtg8 .icon .product-price {
+    float: left !important;
+    width: 100%;
+    font-size: 21px;
+}
+
+.css-z0rtg8 .icon .product-info > a {
+    color: #0e406b;
+    font-size: 15px;
+    max-height: 47px;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    height: 47px;
+}
+a.card-item.css-4z0n4u1 > .card-image {
+    border: solid 1px #ccc;
+}
+.header-loging li a{
+    color: #ffffff;
 }

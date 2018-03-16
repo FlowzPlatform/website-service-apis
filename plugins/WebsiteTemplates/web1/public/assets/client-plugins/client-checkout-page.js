@@ -24,7 +24,7 @@ $.ajax({
             productData = rawData;
             productHtml.find(".js-checkout-image").attr('src',project_settings.product_api_image_url+productData[0]._source.default_image);
             productHtml.find(".js-checkout-product-name").html(productData[0]._source.product_name);
-            if(typeof response_data[key].special_instruction != "undefined")
+            if(typeof response_data[key].special_instruction != "undefined" && response_data[key].special_instruction!='')
             {
               productHtml.find(".js-checkout-description").html(response_data[key].special_instruction);
             }

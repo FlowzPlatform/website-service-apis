@@ -1,5 +1,7 @@
 /* Add your custom JavaScript/jQuery functions here. It will be automatically included in every page. */
 
+let user_id = user_details = null;
+
 var website_info = function () {
   var tmp = null;
   $.ajax({
@@ -166,6 +168,9 @@ Y({
 
   $(document).ready(function() {
     init();
+    if(user_id != null) {
+      $('.fullname-word').text(user_details.fullname);
+    }
   })
 })
 
@@ -199,7 +204,6 @@ function getCookie(name) {
   return (value != null) ? unescape(value[1]) : null;
 }
 
-let user_id = user_details = null;
 let userToken = getCookie('auth_token');
 let userFrontId = getCookie('user_id');
 
@@ -214,8 +218,8 @@ if(userToken != null && userFrontId != null) {
           'success': function (res) {
               tmp = res.data;
               user_id = tmp._id;
-          }
-      });
+            }
+        });
       return tmp;
     }();
 }
@@ -269,6 +273,23 @@ function validateEmail(sEmail) {
   }
 }
 
+function getUserInfo(){
+  var userDetail = {};
+  $.ajax({
+    'async': false,
+    'type': "GET",
+    'url': project_settings.user_account_api_url+'?userEmail='+user_details.email+'&websiteId='+website_settings['projectID'],
+    'success': function (response) {
+      if( response.data.length > 0){
+        userDetail = response.data[0];
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+    }
+  });
+  return userDetail;  
+}
+
 let wishlist_values = "";
 
 let compare_values = "";
@@ -281,8 +302,10 @@ $(document).on("click", ".smooth-scroll", function(event){event.preventDefault()
 var init = function() {
   if(user_details != null)
   {
-    showPageAjaxLoading();
-
+    if($("#myWishList").length > 0 || $("#myCompareList").length > 0)
+    {
+      showPageAjaxLoading();
+    }  
     setTimeout(function()
     {
       let values = window.yList.share.wishListRegister._content;
@@ -359,8 +382,20 @@ var init = function() {
         }
         // console.log('window.yList.share.compareListRegister',window.yList.share.compareListRegister)
       }
-      hidePageAjaxLoading();
+      if($("#myWishList").length > 0 || $("#myCompareList").length > 0)
+      {
+        hidePageAjaxLoading();
+      }
     }, 300);
+
+    if(user_id!=null) {
+      let userDetail = {};
+      let userinfo = getUserInfo();
+      if(userinfo!=''){
+        userDetail = userinfo;
+      }
+      user_details = Object.assign(user_details, userDetail); 
+    }
   }
 
   let type;
@@ -527,8 +562,13 @@ $(document).on('click', '.js-add-to-wishlist', function(e) {
 
 $(document).on('click', '.js-add-to-cart', function(e) {
   e.preventDefault();
-  let product_id = $(this).data('id');
-  location.href = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_id; // 2 for Cart
+  if (user_id == null ) {
+    location.href = website_settings.BaseURL+'login.html';
+  }
+  else {
+    let product_id = $(this).data('id');
+    location.href = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_id; // 2 for Cart
+  }
 });
 
 $(document).on('click', '.js-add-to-compare', function(e) {
@@ -1254,7 +1294,6 @@ function showCompareList(recetAdded=false)
     let activeSummary = $('.js-list #item_summary').html();
     let item_features = $('.js-list #item_features').html();
 
-    // if (typeof(compareHtml.html()) !== "undefined" && compare_values != null) {
     if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) {
           for (item in compare_values)
           {

@@ -90,14 +90,13 @@ function showCart()
 
                 var listHtmlReplace = listHtmlReplace.replace('#data.description#',productData.description);
                 var listHtmlReplace = listHtmlReplace.replace('#data.order_type#',response_data[key].order_type);
-                if(typeof response_data[key].special_instruction != "undefined")
+
+                if(typeof response_data[key].special_instruction != "undefined" && response_data[key].special_instruction !='')
                 {
-                  let special_instruction = nl2br(response_data[key].special_instruction);
-                  var listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#',special_instruction);
+                  var listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#',"<div class='estimate-row heading'><span>Special Instructions</span></div><div><p>#data.special_instruction#</p></div>");
                 }
-                else{
-                  var listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#','-');
-                }
+                let special_instruction = nl2br(response_data[key].special_instruction);
+                var listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#',special_instruction);
 
                 var listHtmlReplace = listHtmlReplace.replace('#data.quantitye#',response_data[key].total_qty);
                 var listHtmlReplace = listHtmlReplace.replace('#data.unit_price#',parseFloat(response_data[key].unit_price).toFixed(project_settings.price_decimal));
@@ -116,7 +115,13 @@ function showCart()
                   }
                 }
 
-                var listHtmlReplace = listHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
+                if(additional_charges_list != '') {
+                  var listHtmlReplace = listHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
+                }
+                else {
+                  var listHtmlReplace = listHtmlReplace.replace(/#data.additional_charges_list#/g,"N/A");
+                }
+                
                 var listHtmlReplace = listHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
 
 
@@ -189,11 +194,26 @@ function showCart()
                     var shippingHtml1 = shippingHtml.replace("#data.color_quantity#",quantityHtml)
                     var shipping_details = shipping_info.shipping_detail;
 
-                    var shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#",shipping_details.shipping_carrier.toUpperCase())
-                    var shippingHtml1 = shippingHtml1.replace("#data.shipping_count#",shippingKeyCount)
-                    var shippingHtml1 = shippingHtml1.replace("#data.shipping_method#",shipping_details.shipping_method)
-                    var shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'')
-                    var shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",shipping_details.on_hand_date)
+                    if(shipping_details.shipping_carrier == '' && shipping_details.shipping_method == '' && shipping_details.on_hand_date == '') {
+                      shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#","N/A");
+                    }
+                    else {
+                      if(shipping_details.shipping_carrier != '') {
+                        shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#","<span>Shipping Carrier: </span> #data.shipping_carrier# <br />");
+                      }
+                      shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#",shipping_details.shipping_carrier.toUpperCase());
+                      shippingHtml1 = shippingHtml1.replace("#data.shipping_count#",shippingKeyCount);
+                      if(shipping_details.shipping_method != '') {
+                        shippingHtml1 = shippingHtml1.replace("#data.shipping_method#","<span>Method: </span> #data.shipping_method# <br />");
+                      }
+                      shippingHtml1 = shippingHtml1.replace("#data.shipping_method#",shipping_details.shipping_method);
+                      shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'')
+                      if(shipping_details.on_hand_date != '') {
+                        shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#","<span>In Hand Date: </span> #data.on_hand_date#");
+                      }
+                      shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",shipping_details.on_hand_date);
+                    }
+                    
                     
                     //change
                     if(shipping_details.shipping_charge != "")
@@ -266,8 +286,13 @@ function showCart()
                           }
                   });
              }
-                $(".js-product-"+response_data[key].id).find(".js_imprint_info").html(imprintHtml);
-
+                if(imprintHtml != '') {
+                  $(".js-product-"+response_data[key].id).find(".js_imprint_info").html(imprintHtml);
+                }
+                else {
+                  $(".js-product-"+response_data[key].id).find(".js_imprint_info").html('N/A');
+                }
+                
                 $( shippingHtmlReplace ).insertAfter( ".js-product-"+response_data[key].id );
               // }
             // });

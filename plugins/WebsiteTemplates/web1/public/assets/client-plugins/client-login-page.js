@@ -46,20 +46,6 @@ $('.login-submit').on('click',function(){
 				return tmp;
 			}();
 
-			// let wishlistKey = decide_localStorage_key(1);
-			// if (localStorage.getItem(wishlistKey) != null) {
-			//   for (item in wishlist_values){
-			// 	dataSaveToDatabase(wishlist_values[item]['type'],wishlist_values[item]['product_id'],user_id,false);
-			//   }
-			// }
-
-			// let compareKey = decide_localStorage_key(3);
-			// if (localStorage.getItem(compareKey) != null) {
-			//   for (item in compare_values){
-			// 	dataSaveToDatabase(compare_values[item]['type'],compare_values[item]['product_id'],user_id,false);
-			//   }
-			// }
-
 			//redirect to previous page.
 			if(document.referrer.trim() != '') {
 				if (document.referrer.indexOf(website_settings.BaseURL) >= 0)
