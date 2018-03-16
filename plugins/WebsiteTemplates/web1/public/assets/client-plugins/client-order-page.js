@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event){
-showOrders();
+  $('.js-main-address-block').addClass("hide");
+  showOrders();
 })
 
 function showOrders()
@@ -133,7 +134,7 @@ function showOrders()
           imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
           imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
 
-          if(typeof product_details.special_instruction != "undefined")
+          if(typeof product_details.special_instruction != "undefined" && product_details.special_instruction != '')
           {
             imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace('#data.special_instruction#',product_details.special_instruction);
           }
@@ -319,10 +320,13 @@ function showOrders()
           $(this).html(sectionCount);
         });
       }
+      $('.js-main-address-block').removeClass("hide");
+      
       hidePageAjaxLoading()
     }
     else
     {
+      $('.js-main-address-block').removeClass("hide");
       hidePageAjaxLoading()
       $('.ob-my-quote-section').html("<hr> No records found.")
     }

@@ -31,17 +31,14 @@ function detailRequestQuote() {
 
       // Start - Color Information
       colorRaw = '';
-      if(typeof quote_data.color != "undefined" || quote_data.color!='') {
+      if(typeof quote_data.color != "undefined" && quote_data.color!='') {
         for (var color_quantity in quote_data.color) {
-          //console.log('colorSectionHtml', colorSectionHtml)
           var colorSection = colorSectionHtml.html();
-          //console.log('colorSection', colorSection)
           colorSection = colorSection.replace("#data.color#",color_quantity)
           colorSection = colorSection.replace("#data.totalQty#",quote_data.color[color_quantity])
           colorRaw += colorSection;
         }
       }
-      console.log('colorRaw', colorRaw)
       quoteDetailHtml.find(".js-color-info").html(colorRaw)
       // END - Color Information
 
@@ -54,7 +51,6 @@ function detailRequestQuote() {
         for(var shippingKey in shipping_detail)
         {
           var shippingHtml1 = shippingSectionHtml.html();
-          console.log('shippingHtml1',shippingHtml1);
           var shipping_info = shipping_detail[shippingKey];
           var shipping_details = shipping_info.shipping_detail;
 
@@ -65,7 +61,6 @@ function detailRequestQuote() {
           shippingHtml1 = shippingHtml1.replace(/#data.shippingCharge#/g,shipping_details.shipping_charge);
 
           shippingHtmlReplace += shippingHtml1;
-          console.log('shippingHtmlReplace',shippingHtmlReplace);
         }
       }
       quoteDetailHtml.find(".js-shipping-info").unwrap().html(shippingHtmlReplace)
@@ -104,13 +99,13 @@ function detailRequestQuote() {
 
 
     var detailHtmlReplace = quoteDetailHtml.html();
-    var detailHtmlReplace = detailHtmlReplace.replace(/#data.product_link#/g,detailLink);
-    var detailHtmlReplace = detailHtmlReplace.replace(/#data.imageUrl#/g, project_settings.product_api_image_url+productData.default_image);
-    var detailHtmlReplace = detailHtmlReplace.replace(/#data.title#/g, productData.product_name);
-    var detailHtmlReplace = detailHtmlReplace.replace(/#data.itemCode#/g, productData.sku);
-    var detailHtmlReplace = detailHtmlReplace.replace(/#data.shippingCharge#/g, 0);
-    var detailHtmlReplace = detailHtmlReplace.replace(/#data.zipCode#/g, 0);
-    var detailHtmlReplace = detailHtmlReplace.replace(/#data.onHandDate#/g, 0);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.product_link#",detailLink);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.imageUrl#", project_settings.product_api_image_url+productData.default_image);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.title#", productData.product_name);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.itemCode#", productData.sku);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.shippingCharge#", 0);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.zipCode#", 0);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.onHandDate#", 0);
 
     if(quote_data.special_instruction != "" || quote_data.special_instruction.length>0)
     {
@@ -119,6 +114,36 @@ function detailRequestQuote() {
     else{
       var detailHtmlReplace = detailHtmlReplace.replace(/#data.specialInstruction#/g,'N/A');
     }
+
+    // My acccount Info
+    var myAccountInfo = quote_data.user_info;
+
+    var fullname = (myAccountInfo['fullname'])? myAccountInfo['fullname'] : ''; 
+    var firstname = (myAccountInfo['firstname'])? myAccountInfo['firstname'] : ''; 
+    var lastname = (myAccountInfo['lastname']) ? myAccountInfo['lastname'] : ''; 
+    var address1 = (myAccountInfo['address1']) ? myAccountInfo['address1'] : ''; 
+    var address2 = (myAccountInfo['address2']) ? myAccountInfo['address2'] : ''; 
+    var country = (myAccountInfo['country']) ? myAccountInfo['country'] : '';
+    var state = (myAccountInfo['state']) ? myAccountInfo['state']  : '';
+    var city = (myAccountInfo['city']) ? myAccountInfo['city'] : '';
+    var postalcode = (myAccountInfo['postalcode']) ? myAccountInfo['postalcode'] : '';
+    var phone = (myAccountInfo['phone']) ? myAccountInfo['phone'] : '';
+    var mobile = (myAccountInfo['mobile']) ? myAccountInfo['mobile'] : '';
+    var email = (myAccountInfo['email']) ? myAccountInfo['email'] : '';
+    var userEmail = (myAccountInfo['userEmail']) ? myAccountInfo['userEmail'] : '';
+
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.fullname#", fullname);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.firstname#", firstname);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.lastname#", lastname);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.address1#", address1);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.address2#", address2);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.country#", country);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.state#", state);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.city#", city);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.postalcode#", postalcode);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.phone#", phone);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.mobile#", mobile);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.email#", email);
 
   //  console.log("detailHtmlReplace", detailHtmlReplace);
     $("#quote-detail").html(detailHtmlReplace);

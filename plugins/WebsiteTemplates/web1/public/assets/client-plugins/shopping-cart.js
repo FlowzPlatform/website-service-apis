@@ -154,7 +154,7 @@ async function paynow() {
 	if ( $( "#payForm .js-error-msg" ).length ) {
 		$("#payForm .js-error-msg").html('');
 	}
-	if(typeof error.response.data.message != "undefined")
+	if(typeof error.response.data.message != "undefined" && error.response.data.message!='')
 	{
 		$(".panel-body").append("<ul class='js-error-msg'><li style='color: red;'>"+error.response.data.message+"</li></ul>");
 	}

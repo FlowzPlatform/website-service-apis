@@ -114,7 +114,7 @@ body {
                                 
                                 
 
-                                <div class="estimate-detail product-section-box">
+                        <div class="estimate-detail product-section-box">
                             <div class="estimate-tag-block border-bottom">
 								<h3>Product Summary</h3>
 								<div class="js-color-info">
@@ -149,8 +149,6 @@ body {
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <div class="estimate-row">
-                                                <div>Shipper Account: <span>--</span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -178,20 +176,19 @@ body {
                             <div class="panel-body address-req-info">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
-                                        <h4>AAkronLine  Admin</h4>
-                                        <p>AAkronLine
-                                            <br/>8, Indianola, Ave.
-                                            <br/>,14001
-                                            <br/>
+                                        <h4>#data.fullname#</h4>
+                                        <p>#data.firstname#  #data.lastname#
+                                            <br/>#data.address1#  #data.address2#
+                                            <br/>#data.postalcode#  #data.city#
+                                            <br/>#data.state#  #data.country#
                                         </p>
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
                                         <div class="req-info-add-block">
                                             <ul>
-                                                <li><i class="fa fa-phone"></i>716-542-5483</li>
-                                                <li><i class="fa fa-envelope"></i>admin@aakronline.com</li>
-                                                <li><i class="fa fa-print"></i>716-542-3362</li>
-                                                <li><i class="fa fa-globe"></i>http://www.aakronline.com</li>
+                                                <li><i class="fa fa-phone"></i>#data.phone#</li>
+                                                <li><i class="fa fa-envelope"></i>#data.email#</li>
+                                                <li><i class="fa fa-mobile"></i>#data.mobile#</li>
                                             </ul>
                                         </div>
                                     </div>
