@@ -163,7 +163,7 @@ $(document).ready(function(){
                 // product print position
                 var value_split_method = [];
                  if(hasImprintData == undefined){
-                   $('#'+activetab+'-Print-position').hide();
+                   $('#'+setActivetab+'-Print-position').hide();
                  }
 
                   if(productDetails.imprint_data != undefined){
@@ -983,7 +983,7 @@ $(document).on("click","#js_tab_list",function(){
 
     if(hasImprintData == undefined){
         // $(activetab).find('#decoration-Decoration-Print-position').hide();
-        $(activetab).find('#'+activetab+'-Print-position').hide();
+	$('#'+setActivetab+'-Print-position').hide();
     }
 
     $(activetab +' .js-section-errors').remove();
