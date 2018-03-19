@@ -86,7 +86,7 @@ function detailRequestQuote() {
             for(var selected_color in imprint_info.selected_colors)
             {
               let colorCount = parseInt(selected_color)+1;
-              colorHtml += "<div>Colour"+colorCount+": "+"<span>"+imprint_info.selected_colors[selected_color]+"</span></div>";
+              colorHtml += "<div>Color"+colorCount+": "+"<span>"+imprint_info.selected_colors[selected_color]+"</span></div>";
             }
           }
           imprintSectionHtml1 = imprintSectionHtml1.replace("#data.imprintColors#",colorHtml)

@@ -118,7 +118,7 @@ body {
                                                                     <div class="estimate-tag-block js-imprint-information">
                                                                        <div class="estimate-row">Print Position: <span>#data.print_position#</span></div>
                                                                        <div class="estimate-row">Imprint Method: <span>#data.imprint_method#</span></div>
-                                                                       <div class="estimate-row">How many colours: <span>#data.howmany_colors#</span></div>
+                                                                       <div class="estimate-row">How many colors: <span>#data.howmany_colors#</span></div>
                                                                        <div class="estimate-row">#data.colours#</div>
                                                                     </div>
                                                                   </td>
