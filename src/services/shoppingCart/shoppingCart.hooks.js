@@ -94,7 +94,7 @@ findAllShoppingKartData = async hook => {
     hook.result = {status:400, message: "type is invalid. Please select type 1 for wislist, type 2 for cart or type 3 for compared product"}
   }else if(table != false){
     await r.table(table)
-    .filter(r.row("user_id").eq(hook.params.query.user_id).and(r.row("type").eq(hook.params.query.type)))
+    .filter(r.row("user_id").eq(hook.params.query.user_id).and(r.row("type").eq(hook.params.query.type)).and(r.row("website_id").eq(hook.params.query.website_id)))
     .run(connection , function(error , cursor){
       if (error) throw error;
       cursor.toArray(function(err, result) {

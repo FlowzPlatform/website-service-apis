@@ -92,29 +92,26 @@ body {
                                                                            <tr>
                                                                               <td>
                                                                                 <div class="quantity-table">
-        <div class="quantity-table-title">
-            <div class="table-heading js-product-price-unit" data-product-price-unit="each">Quantity</div>
-            <div class="table-content">Price</div>
-        </div>
-        <div class="quantity-table-disc">
-            <div class="quantity-table-col owl-theme" id="c204962">
-                <div class="owl-wrapper-outer">
-                    <ul class="owl-wrapper" id="c204970">
-                        <li class="owl-item" id="c204974"></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                    <div class="quantity-table-title">
+                                                                                        <div class="table-heading js-product-price-unit" data-product-price-unit="each">Quantity</div>
+                                                                                        <div class="table-content">Price</div>
+                                                                                    </div>
+                                                                                    <div class="quantity-table-disc">
+                                                                                        <div class="quantity-table-col owl-theme" id="c204962">
+                                                                                            <div class="owl-wrapper-outer">
+                                                                                                <ul class="owl-wrapper" id="c204970">
+                                                                                                    <li class="owl-item" id="c204974"></li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                               </td>
                                                                            </tr>
                                                                         </tbody>
                                                                      </table>
                                                                      <div class="estimate-tag-block">
-                                                                        <div class="estimate-row heading"><span>Special Instructions</span></div>
-                                                                        <div>
-                                                                           <p>#data.special_instruction#</p>
-                                                                        </div>
+                                                                        #data.special_instruction#
                                                                      </div>
                                                                   </td>
                                                                   <td class="estimate-detail js_imprint_info">
@@ -152,7 +149,11 @@ body {
                                                                        		#data.color_quantity#
                                                                   </td>
                                                                   <td class="border-right-none">#data.address_book#</td>
-                                                                  <td><span>Shipping Carrier: </span> #data.shipping_carrier# <br><span>Method: </span> #data.shipping_method# <br> #data.ship_account#  <span>In Hand Date: </span> #data.on_hand_date#
+                                                                  <td>
+                                                                    #data.shipping_carrier#
+                                                                    #data.shipping_method#
+                                                                    #data.ship_account#
+                                                                    #data.on_hand_date#
                                                                   </td>
                                                                   <td class="text-center">$ #data.shipping_charges#</td>
                                                                </tr>

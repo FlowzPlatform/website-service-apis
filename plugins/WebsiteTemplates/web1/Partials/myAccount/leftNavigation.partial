@@ -37,26 +37,26 @@ body {
     class="filter-search">
         <div class="my-account-left filter-search">
             <div class="panel-heading">
-                <h4 class="panel-title"><span class="profile-pic"><img class="list_img img-responsive" alt="profile-pic"/></span><span>Mr. Martin Johnson</span><i class="fa fa-tachometer"></i></h4>
+                <h4 class="panel-title"><span class="profile-pic hide"><img class="list_img img-responsive" alt="profile-pic"/></span><span class="fullname-word"></span><i class="fa fa-tachometer"></i></h4>
             </div>
             <ul>
-                <li><a class="ui-link active" href="#"><i class="fa fa-user"></i>My Account Info</a>
+                <li><a class="ui-link active" href="myaccount.html"><i class="fa fa-user"></i>My Account Info</a>
                 </li>
-                <li><a class="ui-link" href="#"><i class="fa fa-edit"></i>Address Book</a>
+                <li><a class="ui-link" href="addressBookList.html"><i class="fa fa-edit"></i>Address Book</a>
                 </li>
-                <li><a class="ui-link" href="#"><i class="fa fa-lock"></i>Change Password</a>
+                <li><a class="ui-link" href="changePassword.html"><i class="fa fa-lock"></i>Change Password</a>
                 </li>
-                <li><a class="ui-link" href="#"><i class="fa fa-file-text"></i>My Orders</a>
+                <li><a class="ui-link" href="myOrderList.html"><i class="fa fa-file-text"></i>My Orders</a>
                 </li>
-                <li><a class="ui-link" href="#"><i class="fa fa-truck"></i>Track My Orders</a>
+                <li class="hide"><a class="ui-link" href="#"><i class="fa fa-truck"></i>Track My Orders</a>
                 </li>
-                <li><a class="ui-link" href="#"><i class="fa fa-heart"></i>My Wishlist</a>
+                <li class="hide"><a class="ui-link" href="#"><i class="fa fa-heart"></i>My Wishlist</a>
                 </li>
-                <li><a class="ui-link" href="#"><i class="fa fa-joomla"></i>My Artwork</a>
+                <li class="hide"><a class="ui-link" href="#"><i class="fa fa-joomla"></i>My Artwork</a>
                 </li>
-                <li><a class="ui-link" href="#"><i class="fa fa-share-alt"></i>Socials</a>
+                <li class="hide"><a class="ui-link" href="#"><i class="fa fa-share-alt"></i>Socials</a>
                 </li>
-                <li><a class="ui-link" href="#"><i class="fa fa-power-off" aria-hidden="true"></i>Sign Out</a>
+                <li class="hide"><a class="ui-link" href="#"><i class="fa fa-power-off" aria-hidden="true"></i>Sign Out</a>
                 </li>
             </ul>
         </div>
