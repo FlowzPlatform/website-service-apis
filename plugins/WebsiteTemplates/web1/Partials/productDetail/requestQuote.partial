@@ -76,20 +76,20 @@ body {
             <div class="tabbable">
                 <div class="request-tab-content tab-content">
                         <div class="tab-pane fade in active">
-                            <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
-                            <div
-                            class="clearfix"></div>
-                        <reusecomponent class="c487287">{{> productDetail id='colours.partial' }}</reusecomponent>
+                        <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
                         <div class="clearfix"></div>
-                        <reusecomponent class="c632793">{{> productDetail id='quantity.partial' }}</reusecomponent>
-                        <div class="clearfix"></div>
-                        <reusecomponent class="c4238">{{> productDetail id='printPosition.html' }}</reusecomponent>
-                        <div class="clearfix"></div>
-                        <reusecomponent class="c71062">{{> productDetail id='shippingMethod.partial' }}</reusecomponent>
-                        <div
-                        class="clearfix"></div>
-                <reusecomponent class="c9193">{{> productDetail id='specialInfo.partial' }}</reusecomponent>
-                <div class="clearfix"></div>
+                        <div class="js_set_active_tab">
+                          <reusecomponent class="c487287">{{> productDetail id='colours.partial' }}</reusecomponent>
+                          <div class="clearfix"></div>
+                          <reusecomponent class="c632793">{{> productDetail id='quantity.partial' }}</reusecomponent>
+                          <div class="clearfix"></div>
+                          <reusecomponent class="c4238">{{> productDetail id='printPosition.html' }}</reusecomponent>
+                          <div class="clearfix"></div>
+                          <reusecomponent class="c71062">{{> productDetail id='shippingMethod.partial' }}</reusecomponent>
+                          <div class="clearfix"></div>
+                          <reusecomponent class="c9193">{{> productDetail id='specialInfo.partial' }}</reusecomponent>
+                        </div>
+                          <div class="clearfix"></div>
                 <div class="product-section-box">
                     <div class="text-right pull-right">
                         <button class="small-but btn-default request-quote-submit" type="button" data-attr="request-quote"><i class="fa fa-shopping-cart"></i>Request Quote</button>

@@ -61,91 +61,85 @@ body {
 }
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="http://res.cloudinary.com/flowz/raw/upload/v1515673729/builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
 <div class="container">
     <div class="innerpage row">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <h1 class="main-title"><i class="fa fa-user"></i> Account Information</h1>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 pull-right"></div>
-        </div>
-        <div class="col-lg-12">
-            <h3 class="user-title">Hello, <span class="fullname-word"></span>!</h3>
-            <p class="mb-4">From your My Account Information you have the ability to view a snapshot
-                of your recent account activity and update your account information. Select
-                a link below to view or edit information.</p>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="acc-dashboard">
-                    <ul>
-                        <li class="orders"><span class="order-cnt">0</span>
-                            <a href="myOrderList.html">
-                                <div class="orders-count"><i class="info-order acc-info"></i>
-                                    <p>Orders</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cartlist"><span class="cartlist-cnt">0</span>
-                            <a href="cartPage.html">
-                                <div class="cartlist-count"><i class="info-cartlist acc-info"></i>
-                                    <p>Cartlist</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="wishlist"><span class="wishlist-cnt">0</span>
-                            <a href="wishList.html">
-                                <div class="wishlist-count"><i class="info-wishlist acc-info"></i>
-                                    <p>Wishlist</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="compare"><span class="compare-cnt">0</span>
-                            <a href="compare.html">
-                                <div class="compare-count"><i class="info-compare acc-info"></i>
-                                    <p>Compare</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+	<reusecomponent class="c46972">{{> myAccount id='leftNavigation.partial' }}</reusecomponent>
+        <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+            <div class="ob-account-right">
+                <div class="ob-main-address-block">
+			<div class="row">
+			    <div class="col-lg-6 col-md-6 col-sm-6">
+				<h1 class="main-title"><i class="fa fa-user"></i> Account Information</h1>
+			    </div>
+			    <div class="col-lg-6 col-md-6 col-sm-6 pull-right"></div>
+			</div>
+			<div class="col-lg-12">
+			    <h3 class="user-title">Hello, <span class="fullname-word"></span>!</h3>
+			    <p class="mb-4">From your My Account Information you have the ability to view a snapshot
+				of your recent account activity and update your account information. Select
+				a link below to view or edit information.</p>
+			</div>
+			<div class="row">
+			    <div class="col-lg-12">
+				<div class="acc-dashboard">
+				    <ul>
+				        <li class="orders"><span class="order-cnt">0</span>
+				            <a href="myOrderList.html">
+				                <div class="orders-count">
+				                    <p>Orders</p>
+				                </div>
+				            </a>
+				        </li>
+				        <li class="cartlist"><span class="cartlist-cnt">0</span>
+				            <a href="cartPage.html">
+				                <div class="cartlist-count">
+				                    <p>Cartlist</p>
+				                </div>
+				            </a>
+				        </li>
+				        <li class="wishlist"><span class="wishlist-cnt">0</span>
+				            <a href="wishList.html">
+				                <div class="wishlist-count">
+				                    <p>Wishlist</p>
+				                </div>
+				            </a>
+				        </li>
+				        <li class="compare"><span class="compare-cnt">0</span>
+				            <a href="compare.html">
+				                <div class="compare-count">
+				                    <p>Compare</p>
+				                </div>
+				            </a>
+				        </li>
+				    </ul>
+				</div>
+			    </div>
+			    <div class="col-lg-6">
+				<div class="account-address-block">
+				    <div class="address-inner-block">
+				        <div class="address-title-block">
+				            <h4><span class="username-word"></span></h4>
+				            <div class="pull-right address-edit-del-block">
+				                <ul>
+				                    <li><a class="ui-link" href="myaccountEdit.html" data-toggle="tooltip" data-placement="top"
+				                        data-original-title="Edit"><i class="fa fa-edit"></i></a>
+				                    </li>
+				                </ul>
+				            </div>
+				        </div>
+				        <div class="address-contact-info-block">
+				            <ul>
+				                <li><i class="fa fa-envelope"></i><a href="mailto:"><span class="email-word"></span></a>
+				                </li>
+				            </ul>
+				        </div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		</div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="account-address-block">
-                    <div class="address-inner-block">
-                        <div class="address-title-block">
-                            <h4><span class="username-word"></span></h4>
-                            <div class="pull-right address-edit-del-block">
-                                <ul>
-                                    <li><a class="ui-link" href="myaccountEdit.html" data-toggle="tooltip" data-placement="top"
-                                        data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="address-contact-info-block">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i><a href="mailto:"><span class="email-word"></span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <script src="./assets/client-plugins/client-myaccount-page.js"></script>

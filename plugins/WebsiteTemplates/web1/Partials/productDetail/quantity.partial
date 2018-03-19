@@ -37,14 +37,14 @@ body {
 
 
 <div class="product-section-box">
-    <div class="panel-group" id="Order-decoration-Quantity" role="tablist"
+    <div class="panel-group" id="#activetab#-Quantity" role="tablist"
     aria-multiselectable="true">
         <div class="panel-heading product-section-box open" role="tab">
             <h2 class="panel-title heading-block js-section-number">Quantity</h2>
-            <a class="caret-icon js-add-class tab-quantity collapsed" data-toggle="collapse" data-parent="#Order-decoration-Quantity" href="#Order-decoration-Quantity-block"
+            <a class="caret-icon js-add-class tab-quantity collapsed" data-toggle="collapse" data-parent="##activetab#-Quantity" href="##activetab#-Quantity-block"
             aria-expanded="true"><i class="caret-icon"></i></a>
         </div>
-        <div class="panel-collapse collapse js-quantity-section" id="Order-decoration-Quantity-block"
+        <div class="panel-collapse collapse js-quantity-section" id="#activetab#-Quantity-block"
         role="tabpanel">
             <div class="panel-body">
                 <div class="quantity-table additional-table">
@@ -53,7 +53,7 @@ body {
                             <div class="color-input" title="#data.colorName#">
                                 <br/>
                             </div>
-                            <div class="selector-quantity js-quantity-section in">
+                            <div class="selector-quantity js-quantity-section">
                                 <div class="selector-btn">
                                     <div class="sp-minus"><a class="js-quantity-selector" data-multi="-1" href="javascript:void(0)">-</a>
                                     </div>
