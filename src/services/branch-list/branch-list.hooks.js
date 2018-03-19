@@ -92,6 +92,8 @@ function after_checkout_branch(hook) {
           console.log('Called revert');
           shell.cd( config.path + userDetailId + '/' + repoName );
 
+          shell.exec('git stash');
+
           shell.exec('git checkout ' + branchName);         
           shell.exec('git status');
         }
