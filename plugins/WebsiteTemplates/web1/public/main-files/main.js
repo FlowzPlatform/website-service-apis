@@ -892,13 +892,16 @@ function updateShoppingLocalCount(count , type) {
 
 function updateShoppingDatabaseCount(type, operation) {
   if (type == 1) {
-    document.getElementById("wishlistCount").innerHTML = eval(parseInt(document.getElementById("wishlistCount").innerHTML)+operation+1);
+    let wishCount = eval(parseInt(document.getElementById("wishlistCount").innerHTML)+operation+1);
+    document.getElementById("wishlistCount").innerHTML = Math.max(0, wishCount);
   }
   if(type == 2){
-    document.getElementById("cartCount").innerHTML = eval(parseInt(document.getElementById("cartCount").innerHTML)+operation+1);
+    let cartCount = eval(parseInt(document.getElementById("cartCount").innerHTML)+operation+1);
+    document.getElementById("cartCount").innerHTML = Math.max(0, cartCount);
   }
   if(type == 3){
-    document.getElementById("comparedCount").innerHTML = eval(parseInt(document.getElementById("comparedCount").innerHTML)+operation+1);
+    let compareCount = eval(parseInt(document.getElementById("comparedCount").innerHTML)+operation+1);
+    document.getElementById("comparedCount").innerHTML = Math.max(0, compareCount);
   }
 }
 

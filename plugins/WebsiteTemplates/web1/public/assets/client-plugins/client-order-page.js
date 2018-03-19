@@ -107,7 +107,7 @@ function showOrders()
                 for(var selected_color in imprint_info.selected_colors)
                 {
                   let colorCount = parseInt(selected_color)+1;
-                  colorHtml += "<div>Colour"+colorCount+": "+"<span>"+imprint_info.selected_colors[selected_color]+"</span></div>";
+                  colorHtml += "<div>Color"+colorCount+": "+"<span>"+imprint_info.selected_colors[selected_color]+"</span></div>";
                 }
               }
 
