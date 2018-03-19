@@ -465,7 +465,7 @@ $(document).ready(function(){
        productHtmlPrintPosColor += listHtmlPrintPosColor1;
         if(dataAttributes.maxImprintColor > 0){
           for(let i=1;i<=dataAttributes.maxImprintColor;i++){
-             imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+'Colour</a></li>'
+             imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+'Color</a></li>'
           }
           parentObj.find(".imprint-color-select").html(productHtmlPrintPosColor);
           parentObj.find(".js_set_selected_value_col").html(imprintColor);
@@ -626,12 +626,17 @@ $(document).ready(function(){
                       // console.log("flds",flds);
                       switch (section) {
                         case 'quantity':
-                          $.each(flds, function( field, value) {
-                            field = replaceWithUnderscore(field)
-                            $(activetab+' .js-add-class').addClass('collapsed');
-                            let setActivetab = activetab.replace(/\#/g, '');
-                            $(activetab+' #js_request_quote_qty_box_'+setActivetab+'_'+field+' .js-'+section+'-section').append('<div class="red js-section-errors">'+value+'</div>');
-                          });
+                          if(typeof flds == 'object'){
+                            $.each(flds, function( field, value) {
+                              field = replaceWithUnderscore(field)
+                              $(activetab+' .js-add-class').addClass('collapsed');
+                              let setActivetab = activetab.replace(/\#/g, '');
+                              $(activetab+' #js_request_quote_qty_box_'+setActivetab+'_'+field+' .js-'+section+'-section').append('<div class="red js-section-errors">'+value+'</div>');
+                            });
+                          }else{
+                            $("#"+setActivetab+"-Quantity-block").append('<div class="red js-section-errors">'+flds+'</div>')
+                          }
+
                           break;
                         default:
                           $.each(flds, function( field, value) {
@@ -983,7 +988,7 @@ $(document).on("click","#js_tab_list",function(){
 
     if(hasImprintData == undefined){
         // $(activetab).find('#decoration-Decoration-Print-position').hide();
-	$('#'+setActivetab+'-Print-position').hide();
+        $('#'+setActivetab+'-Print-position').hide();
     }
 
     $(activetab +' .js-section-errors').remove();
@@ -1376,6 +1381,9 @@ function colorValidation(fld,section,value){
 
 function printPosValidation(fld,section,value){
     let errorLog = {}
+    if(hasImprintData == undefined){
+        return errorLog
+    }
     if(isEmpty(value[fld])){
         let printPos = {}
         printPos[fld] = "Please Select at-least one Print Position";

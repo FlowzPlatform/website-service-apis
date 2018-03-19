@@ -52,7 +52,7 @@ body {
 
 
 <div class="product-section-box">
-    <h2 class="heading-block js-section-number">Colours </h2>
+    <h2 class="heading-block js-section-number">Colors </h2>
     <div class="checkbox_colors js-color-section">
         <div class="checkbox_color" style="background-color:#data.colorHexCode#">
             <input class="js_color_checkbox" type="checkbox" name="col1" id="#data.tabID#_#data.colorID#"

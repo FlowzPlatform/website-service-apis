@@ -146,7 +146,7 @@ function showCart()
                       for(var selected_color in imprint_info.selected_colors)
                       {
                         let colorCount = parseInt(selected_color)+1;
-                        colorHtml += "<div>Colour"+colorCount+": "+"<span>"+imprint_info.selected_colors[selected_color]+"</span></div>";
+                        colorHtml += "<div>Color"+colorCount+": "+"<span>"+imprint_info.selected_colors[selected_color]+"</span></div>";
                       }
                     }
 
@@ -195,6 +195,9 @@ function showCart()
                     var shipping_details = shipping_info.shipping_detail;
 
                     if(shipping_details.shipping_carrier == '' && shipping_details.shipping_method == '' && shipping_details.on_hand_date == '') {
+                      shippingHtml1 = shippingHtml1.replace("#data.shipping_method#",'');
+                      shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'');
+                      shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",'');
                       shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#","N/A");
                     }
                     else {
