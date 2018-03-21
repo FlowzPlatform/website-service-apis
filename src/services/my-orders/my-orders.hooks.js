@@ -62,6 +62,19 @@ findAllOrders = async hook => {
   {
     hook.result = {status:400, message: "Please pass user id or owner id or setting id or website_id"}
   }
+  else{
+    await r.table(table)
+    .filter(r.row("user_id").eq(hook.params.query.user_id).and(r.row("website_id").eq(hook.params.query.website_id)))
+    .orderBy(r.desc('created_at'))
+    .run(connection , function(error , cursor){
+      if (error) throw error;
+      cursor.toArray(function(err, result) {
+        if (err) throw err;
+        hook.result = {data:result,total: result.length};
+        
+    });
+    })
+  }
 }
 
 function beforeSubmitOrder(hook){
