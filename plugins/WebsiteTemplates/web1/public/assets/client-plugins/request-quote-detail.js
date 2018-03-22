@@ -31,7 +31,7 @@ function detailRequestQuote() {
 
       // Start - Color Information
       colorRaw = '';
-      if(typeof quote_data.color != "undefined" && quote_data.color.length>0) {
+      if(quote_data.color!='') {
         for (var color_quantity in quote_data.color) {
           var colorSection = colorSectionHtml.html();
           colorSection = colorSection.replace("#data.color#",color_quantity)
@@ -39,6 +39,7 @@ function detailRequestQuote() {
           colorRaw += colorSection;
         }
       }
+
       quoteDetailHtml.find(".js-color-info").html(colorRaw)
       // END - Color Information
 

@@ -89,7 +89,6 @@ $(function() {
                   data: formObj.serialize()+'&userId='+user_id,
                   cache: false,
                   dataType: 'json',
-                  headers: {"Authorization": project_settings.product_api_token},
                   success: function(response){
                       if(response.id != undefined && response.id != '' ){
                           showSuccessMessage("Your user account is updated successfully..","myaccount.html");
@@ -127,7 +126,6 @@ $(function() {
     axios({
         method: 'GET',
         url: project_settings.user_account_api_url+'/'+user_id,
-        headers: {'Authorization': project_settings.product_api_token},
       })
     .then(response => {
         if(response.data != undefined ){
@@ -205,7 +203,6 @@ function getCountryData(countryId=0){
       axios({
           method: 'GET',
           url: project_settings.city_country_state_api,
-          headers: {'Authorization': project_settings.product_api_token},
           params: {
               'country_data':countryList,
               'data_from' : 'country_code',

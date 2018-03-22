@@ -39,7 +39,7 @@ body {
         <td>Submit Quote</td>
         <td>#data.total_quantity#</td>
         <td>-</td>
-        <td class="unit-price text-right">$ #data.grand_total#</td>
+        <td class="unit-price text-right">$#data.grand_total#</td>
         <td class="my-track-all-btn">
             <div class="fa-hover"><a class="js_preview_order" data-toggle="tooltip" data-placement="top"
                 data-original-title="View"><i class="fa fa-eye"></i></a>

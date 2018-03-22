@@ -61,7 +61,6 @@ $(function() {
                   data: formObj.serialize()+'&user_id='+user_id+'&website_id='+website_settings['projectID']+'&websiteName='+website_settings['websiteName']+'&owner_id='+website_settings['UserID']+'&culture='+project_settings.default_culture+'&is_address=1',
                   cache: false,
                   dataType: 'json',
-                  headers: {"Authorization": project_settings.product_api_token},
                   success: function(response){
                       if(response.id != undefined && response.id != '' ){
                         if(addressBookId != null){
@@ -124,7 +123,6 @@ $(function() {
         axios({
             method: 'GET',
             url: project_settings.address_book_api_url,
-            headers: {'Authorization': project_settings.product_api_token},
             params: {
               "user_id":user_id,
               "is_address":'1',
@@ -160,7 +158,6 @@ $(function() {
             axios({
               method: 'PATCH',
               url: project_settings.address_book_api_url+'/'+addressBookId,
-              headers: {'Authorization': project_settings.product_api_token},
               data: {"is_default": '1'}
             }).then(function(response) {
                 if(response.data != undefined){
@@ -177,7 +174,6 @@ $(function() {
             axios({
               method: 'PATCH',
               url: project_settings.address_book_api_url+'/'+addressBookId,
-              headers: {'Authorization': project_settings.product_api_token},
               data: {"deleted_at": true}
             }).then(function(response) {
                 if(response.data != undefined){
@@ -211,7 +207,6 @@ $(function() {
           // axios({
           //     method: 'GET',
           //     url: project_settings.city_country_state_api,
-          //     headers: {'Authorization': project_settings.product_api_token},
           //     params: data
           //   })
           // .then(response => {
@@ -262,7 +257,6 @@ $(function() {
           // axios({
           //     method: 'GET',
           //     url: project_settings.city_country_state_api,
-          //     headers: {'Authorization': project_settings.product_api_token},
           //     params: data
           //   })
           // .then(response => {
@@ -300,7 +294,6 @@ $(function() {
         axios({
             method: 'GET',
             url: project_settings.address_book_api_url+'/'+addressBookId,
-            headers: {'Authorization': project_settings.product_api_token},
           })
         .then(response => {
             if(response.data != undefined ){
@@ -378,7 +371,6 @@ function getCountryData(countryId=0){
       axios({
           method: 'GET',
           url: project_settings.city_country_state_api,
-          headers: {'Authorization': project_settings.product_api_token},
           params: {
               'country_data':countryList,
               'data_from' : 'country_code',

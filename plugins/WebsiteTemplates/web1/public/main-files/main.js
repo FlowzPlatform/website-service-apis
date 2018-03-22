@@ -1,6 +1,7 @@
 /* Add your custom JavaScript/jQuery functions here. It will be automatically included in every page. */
 
 let user_id = user_details = null;
+let timeStamp = Math.floor(Date.now() / 1000);
 
 var website_info = function () {
   var tmp = null;
@@ -9,7 +10,7 @@ var website_info = function () {
       'type': "GET",
       'global': false,
       'dataType': 'json',
-      'url': "./assets/project-details.json",
+      'url': "./assets/project-details.json?t="+timeStamp,
       'success': function (data) {
           tmp = data;
       }
@@ -1528,7 +1529,6 @@ async function getCountryStateCityById(id,type){
   await axios({
       method: 'GET',
       url: project_settings.city_country_state_api,
-      headers: {'Authorization': project_settings.product_api_token},
       params: {
           'id':id,
           'type':type
@@ -1557,7 +1557,6 @@ var returnAddressBookDetailById = async function(addressBookId) {
 	await axios({
 			method: 'GET',
 			url: project_settings.address_book_api_url+'/'+addressBookId,
-			headers: {'Authorization': project_settings.product_api_token},
 		})
 	.then(response => {
 		 returnData = response.data;
@@ -1584,7 +1583,6 @@ async function getStateAndCityVal(countryVal,stateVal,dataFrom){
     await axios({
             method: 'GET',
             url: project_settings.city_country_state_api,
-            headers: {'Authorization': project_settings.product_api_token},
             params: data
           })
           .then(response => {

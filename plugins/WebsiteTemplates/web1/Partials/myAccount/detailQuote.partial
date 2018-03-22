@@ -85,10 +85,10 @@ body {
 </style>
 
 
-<div class="container padding-top25">
-    <div class="common-title">
+<div class="padding-top25">
+   <!-- <div class="common-title">
         <h3 class="title-heading">Request to Quote Detail</h3>
-    </div>
+    </div> -->
     <div class="force-overflow">
         <div class="panel-group">
             <div class="panel panel-default info-block">

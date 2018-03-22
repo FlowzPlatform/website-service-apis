@@ -1350,7 +1350,6 @@ async function getCountryStateCityById(id,type){
   await axios({
       method: 'GET',
       url: project_settings.city_country_state_api,
-      headers: {'Authorization': project_settings.product_api_token},
       params: {
           'id':id,
           'type':type
@@ -1379,7 +1378,6 @@ var returnAddressBookDetailById = async function(addressBookId) {
 	await axios({
 			method: 'GET',
 			url: project_settings.address_book_api_url+'/'+addressBookId,
-			headers: {'Authorization': project_settings.product_api_token},
 		})
 	.then(response => {
 		 returnData = response.data;
@@ -1406,7 +1404,6 @@ async function getStateAndCityVal(countryVal,stateVal,dataFrom){
     await axios({
             method: 'GET',
             url: project_settings.city_country_state_api,
-            headers: {'Authorization': project_settings.product_api_token},
             params: data
           })
           .then(response => {

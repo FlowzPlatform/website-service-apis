@@ -112,7 +112,7 @@ body {
                             value="standard" />
                             <label class="lbl">Standard Shipping</label>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 radio-but hide">
+                        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 radio-but">
                             <input class="js_select_shipping_type" type="radio" name="request_quote_shipping_type"
                             value="split" />
                             <label class="lbl">Split Shipping</label>
@@ -150,10 +150,10 @@ body {
                                 <reusecomponent class="c21612">{{> productDetail id='addressBox.partial' }}</reusecomponent>
                             </div>
                             <div class="js_shipping_qty_box_main" data-shipping-counter="#data.counter#">
-                                <div class="optional-panel size-selection-col js_rq_shipping_quantity"
+                                <div class="optional-panel size-selection-col js_rq_shipping_quantity #data.extraclass#"
                                 data-color-id="#data.color#">
                                     <div class="option-head"><a class="pull-right" href="javascript:void(0);">
-                                                <span class="swatch" title="#data.color#" style="background-color:#data.colorhexcode#;border:2px #ddd solid!important;"></span>
+                                                <span class="swatch" title="#data.color#" style='#data.colorhexcode#;border:2px #ddd solid!important;'></span>
                                                 <span class="pull-right">Selected Quantity : <total>#data.quantity#<total></total></total></span></a>
                                     </div>
                                     <div class="option-body">

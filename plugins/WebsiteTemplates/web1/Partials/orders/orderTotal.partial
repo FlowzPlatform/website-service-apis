@@ -38,27 +38,27 @@ body {
             <table class="total-amount-block pull-right">
                 <tr>
                     <td>Total</td>
-                    <td>$ <span class="js-cart-total">#data.grand_total#</span>
+                    <td>$<span class="js-cart-total">#data.grand_total#</span>
                     </td>
                 </tr>
                 <tr>
                     <td>Additional Charges</td>
-                    <td>$ <span class="js-additional-charges">#data.charges#</span>
+                    <td>$<span class="js-additional-charges">#data.charges#</span>
                     </td>
                 </tr>
                 <tr>
                     <td>Shipping Charge</td>
-                    <td>$ <span class="js-shipping-charges">#data.shipping_charges#</span>
+                    <td>$<span class="js-shipping-charges">#data.shipping_charges#</span>
                     </td>
                 </tr>
                 <tr>
                     <td>Tax</td>
-                    <td>$ <span class="js-tax">#data.tax#</span>
+                    <td>$<span class="js-tax">#data.tax#</span>
                     </td>
                 </tr>
                 <tr class="grand-total">
                     <td>Grand Total</td>
-                    <td class="total-price js_check_complete" data-complete="1">$ <span class="js-grand-total">#data.grand_total_with_tax#</span>
+                    <td class="total-price js_check_complete" data-complete="1">$<span class="js-grand-total">#data.grand_total_with_tax#</span>
                     </td>
                 </tr>
             </table>

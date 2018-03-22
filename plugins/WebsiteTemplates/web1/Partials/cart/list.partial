@@ -66,8 +66,8 @@ body {
                                           <td>#data.sku#</td>
                                           <td>#data.product_name#</td>
                                           <td>#data.quantitye#</td>
-                                          <td>$ #data.unit_price#</td>
-                                          <td class="border-right-none js-total">$ #data.total# </td>
+                                          <td>$#data.unit_price#</td>
+                                          <td class="border-right-none js-total">$#data.total# </td>
                                        </tr>
                                        <tr class="cart-size-quan js_view_item_details" style="display: none">
                                           <td colspan="6">
@@ -123,7 +123,7 @@ body {
                                                                     </div>
                                                                   </td>
                                                                   <td>#data.additional_charges_list#</td>
-                                                                  <td class="border-right-none">$ #data.charges#</td>
+                                                                  <td class="border-right-none">$#data.charges#</td>
                                                                </tr>
                                                             </tbody>
                                                          </table>
@@ -155,7 +155,7 @@ body {
                                                                     #data.ship_account#
                                                                     #data.on_hand_date#
                                                                   </td>
-                                                                  <td class="text-center">$ #data.shipping_charges#</td>
+                                                                  <td class="text-center">$#data.shipping_charges#</td>
                                                                </tr>
                                                             </tbody>
                                                          </table>
@@ -166,14 +166,14 @@ body {
                                           </td>
                                        </tr>
                                        <tr class="order-item-subtotal js-shipping-#data.product_id#">
-                                          <td>Total : $ #data.total#</td>
-                                          <td>Additional Charges : $ <b class="js-product_additional_charge">#data.charges#</b></td>
-                                          <td>Shipping Charge : $ <b class="js-product_total_shipping_charge">#data.total_shipping_charges#</b></td>
+                                          <td>Total : $#data.total#</td>
+                                          <td>Additional Charges : $<b class="js-product_additional_charge">#data.charges#</b></td>
+                                          <td>Shipping Charge : $<b class="js-product_total_shipping_charge">#data.total_shipping_charges#</b></td>
                                           <td>
-                                             Tax : $ #data.tax#
+                                             Tax : $#data.tax#
                                           </td>
                                           <td colspan="2">
-                                             Sub Total :<span>$ #data.subtotal#</span>
+                                             Sub Total :<span>$#data.subtotal#</span>
                                           </td>
                                        </tr>
                                     </tbody>

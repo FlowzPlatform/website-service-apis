@@ -126,7 +126,7 @@ function showOrders()
           {
             for(let charge_list in product_details.charges)
             {
-              additional_charges_list += capitalize(charge_list)+": $ "+product_details.charges[charge_list];
+              additional_charges_list += capitalize(charge_list)+": $"+product_details.charges[charge_list];
               charges = charges+parseFloat(product_details.charges[charge_list]);
             }
           }
@@ -158,7 +158,7 @@ function showOrders()
               var shippingKeyCount = parseInt(shippingKey)+1;
               var shipping_info = shipping_detail[shippingKey];
               var quantityHtml = '<table class="size-quantity-table">';
-
+              quantityHtml += '<thead><tr><th>Color</th><th class="border-right-none">Quantity</th></tr></thead>';
               for (var color_quantity in shipping_info.color_quantity) {
                 quantityHtml += "<tr class='grey-bottom-border'>";
                 quantityHtml += "<td>"+color_quantity+"</td>";
