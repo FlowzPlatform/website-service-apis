@@ -58,23 +58,25 @@ module.exports = {
 };
 
 findAllOrders = async hook => {
-  if(hook.params.query.owner_id == undefined &&  hook.params.query.setting_id == undefined &&  hook.params.query.website_id == undefined &&  hook.params.query.user_id == undefined) 
+  if(hook.params.query.owner_id == undefined &&  hook.params.query.setting_id == undefined &&  hook.params.query.website_id == undefined &&  hook.params.query.user_id == undefined)
   {
     hook.result = {status:400, message: "Please pass user id or owner id or setting id or website_id"}
   }
-  else{
-    await r.table(table)
-    .filter(r.row("user_id").eq(hook.params.query.user_id).and(r.row("website_id").eq(hook.params.query.website_id)))
-    .orderBy(r.desc('created_at'))
-    .run(connection , function(error , cursor){
-      if (error) throw error;
-      cursor.toArray(function(err, result) {
-        if (err) throw err;
-        hook.result = {data:result,total: result.length};
-        
-    });
-    })
-  }
+
+  hook.params.query.$sort = { created_at: -1}
+  // else{
+  //   await r.table(table)
+  //   .filter(r.row("user_id").eq(hook.params.query.user_id).and(r.row("website_id").eq(hook.params.query.website_id)))
+  //   .orderBy(r.desc('created_at'))
+  //   .run(connection , function(error , cursor){
+  //     if (error) throw error;
+  //     cursor.toArray(function(err, result) {
+  //       if (err) throw err;
+  //       hook.result = {data:result,total: result.length};
+  //
+  //   });
+  //   })
+  // }
 }
 
 function beforeSubmitOrder(hook){
