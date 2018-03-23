@@ -1,4 +1,12 @@
+if (user_id == null ) {
+  window.location = 'login.html';
+}
+
 document.addEventListener("DOMContentLoaded", function(event){
+  if( admin_role_flag == 1 ){
+      $(".main-title").html('<i class="fa fa-file-text"></i> Received Order List')
+      $(".js_is_admin").removeClass("hide")
+  }
   $('.js-main-address-block').addClass("hide");
   showOrders();
 })
@@ -29,11 +37,17 @@ function showOrders()
   // var productHtml = $(".js-order-product-info").parent().html();
   // alert(productHtml)
   let finalHtml1 = '';
-
+  let orderApiUrl = project_settings.myorders_api_url+'?user_id='+user_id+"&website_id="+website_settings['projectID']
+  let view_colspan = 7
+  if( admin_role_flag == 1 ){
+      orderApiUrl = project_settings.myorders_api_url+"?website_id="+website_settings['projectID']
+      view_colspan = 10
+  }
+  //alert(admin_role_flag)
 
   axios({
     method: 'GET',
-    url : project_settings.myorders_api_url+'?user_id='+user_id+"&website_id="+website_settings['projectID'],
+    url : orderApiUrl,
   })
   .then(async response_data => {
     if (response_data.data.total > 0 ) {
@@ -77,9 +91,9 @@ function showOrders()
 
         for (var product_key in response_data1.products) {
           let product_details = response_data1.products[product_key]
-          // console.log('product_details',product_details.product_id)
 
           let productData = await getProductDetailById(product_details.product_id)
+
           // console.log('productData',productData)
           let imgSkuReplace = img_sku.replace('#data.sku#',productData.sku);
 
@@ -180,7 +194,7 @@ function showOrders()
               if(shipping_details.shipping_charge != "")
               {
                 var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,shipping_details.shipping_charge);
-              
+
                 product_shipping_charge_total = product_shipping_charge_total + parseFloat(shipping_details.shipping_charge);
                 product_shipping_charges = product_shipping_charges + parseFloat(shipping_details.shipping_charge);
               }
@@ -289,15 +303,19 @@ function showOrders()
         orderTotalSectionReplace = orderTotalSectionReplace.replace('#data.grand_total_with_tax#',grand_total);
 
         let orderInfoReplace = orderInfo;
-        orderInfoReplace = orderInfoReplace.replace(/#data.order_id#/g,response_data1.invoice_number);
+        orderInfoReplace = orderInfoReplace.replace(/#data.order_id#/g,response_data1.id);
         orderInfoReplace = orderInfoReplace.replace('#data.order_date#',formatDate(response_data1.created_at,project_settings.format_date));
         orderInfoReplace = orderInfoReplace.replace('#data.payment_type#',response_data1.payment_via);
         orderInfoReplace = orderInfoReplace.replace('#data.quantity#',response_data1.products.length);
         orderInfoReplace = orderInfoReplace.replace('#data.payment_status#','Success');
         orderInfoReplace = orderInfoReplace.replace('#data.total_price#',response_data1.total);
+        if( admin_role_flag == 1 ){
+            orderInfoReplace = orderInfoReplace.replace('#data.user_name#',response_data1.user_info.fullname);
+            orderInfoReplace = orderInfoReplace.replace('#data.user_email#',response_data1.user_info.email);
+        }
 
         finalHtml1 = orderInfoReplace
-        finalHtml1 += "<tr class='track-order-view-block click-track-order js-view-order-detail' id='displayblock-"+response_data1.invoice_number+"' style='display:none;'><td colspan='7'>";
+        finalHtml1 += "<tr class='track-order-view-block click-track-order js-view-order-detail' id='displayblock-"+response_data1.invoice_number+"' style='display:none;'><td colspan='"+view_colspan+"'>";
         finalHtml1 += billingHtmlReplace
         finalHtml1 += finalHtml
         finalHtml1 += orderTotalSectionReplace
@@ -314,14 +332,14 @@ function showOrders()
         // }
         // return false;
         let sectionCount = 0;
-        
+
         $('#displayblock-'+response_data1.invoice_number).find( ".js-section-number" ).each(function( index ) {
           sectionCount = sectionCount + 1;
           $(this).html(sectionCount);
         });
       }
       $('.js-main-address-block').removeClass("hide");
-      
+
       hidePageAjaxLoading()
     }
     else

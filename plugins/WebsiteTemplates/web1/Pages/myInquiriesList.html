@@ -45,7 +45,7 @@ body {
 
 a{
     background-color: transparent;
-}    
+}
 </style>
 
 
@@ -68,15 +68,18 @@ a{
                                     <thead>
                                         <tr class="myquote-cheader" align="center">
                                             <th>ID</th>
+                                            <th class="js_is_admin hide">User Name</th>
+                                            <th class="js_is_admin hide">User Email</th>
                                             <th>Item Name</th>
                                             <th>Created Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>    
+                                    <tbody>
                                         <tr class="request-quote-data" id="row-#data.index#" align="center">
-                                            <td><a href="javascript:void(0);">#data.index#</a>
-                                            </td>
+                                            <td><a href="javascript:void(0);">#data.index#</a></td>
+                                            <td class="js_is_admin hide">#data.userName#</td>
+                                            <td class="js_is_admin hide">#data.userEmail#</td>
                                             <td>#data.itemName#</td>
                                             <td>#data.date#</td>
                                             <td class="my-quote-edit-delete">
@@ -88,7 +91,7 @@ a{
                                                 </div>
                                             </td>
                                         </tr>
-                                    </tbody>    
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

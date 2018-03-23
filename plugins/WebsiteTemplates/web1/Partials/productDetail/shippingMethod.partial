@@ -126,7 +126,7 @@ body {
                         data-shipping-counter="#data.counter#">
                             <div class="option-head"><a href="javascript:void(0);">Shipping Address #data.counter#</a>
                             </div>
-                            <div class="option-body js-shippingMethod-#data.counter#-section" id="c19663">
+                            <div class="option-body js-shippingMethod-section" id="c19663">
                                 <div class="shipping-address">
                                     <div class="ship-add-tit">Select a Shipping address from your address book or enter a new address.</div>
                                     <div class="ship-add-parts">
@@ -140,16 +140,15 @@ body {
                                 <div class="search-mail-block">
                                     <div class="search-col">
                                         <input class="auto_complete_shipping_email" type="text" name="auto_complete_shipping_email"
-                                        placeholder="Please enter a name or email address from your address book"
-                                        data-counter="#data.counter#" />
+                                        placeholder="Please enter a name or email address from your address book" />
                                         <input type="submit" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="shipping-scroll hide" id="js_shipping_addresses_#data.counter#">
+                            <div class="shipping-scroll hide js_shipping_addresses">
                                 <reusecomponent class="c21612">{{> productDetail id='addressBox.partial' }}</reusecomponent>
                             </div>
-                            <div class="js_shipping_qty_box_main" data-shipping-counter="#data.counter#">
+                            <div class="js_shipping_qty_box_main">
                                 <div class="optional-panel size-selection-col js_rq_shipping_quantity #data.extraclass#"
                                 data-color-id="#data.color#">
                                     <div class="option-head"><a class="pull-right" href="javascript:void(0);">
@@ -175,8 +174,7 @@ body {
                                             _id="dropdownMenu16" data-toggle="dropdown" aria-expanded="true">Select Carrier<span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu js_select_shipping_carrier_method js_set_selected_value"
-                                            role="menu" aria-labelledby="dropdownMenu17" data-call-from="std"
-                                            data-shipping-counter="#data.counter#" data-request-type="request_order">
+                                            role="menu" aria-labelledby="dropdownMenu17" data-call-from="std" data-request-type="request_order">
                                                 <li data-value="ups"><a href="javascript:void(0)">UPS</a>
                                                 </li>
                                                 <li data-value="fedex"><a href="javascript:void(0)">FEDEX</a>
@@ -193,8 +191,7 @@ body {
                                             data-toggle="dropdown" aria-expanded="true"><span class="imprint-lbl-method">Select Method</span><span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu js_rq_ship_shipmethod_ul js_set_selected_value"
-                                            role="menu" aria-labelledby="dropdownMenu17"
-                                            data-shipping-counter="#data.counter#"></ul>
+                                            role="menu" aria-labelledby="dropdownMenu17"></ul>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +199,7 @@ body {
                                 <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 ship-col-left">
                                     <p>In Hand Date :</p>
                                     <div class="input-append date input-group date-block shipping-datepicker">
-                                        <input class="form-control js_rq_ship_handdate" type="text" readonly="readonly" data-shipping-counter="#data.counter#" id="datetimepicker1"/>
+                                        <input class="form-control js_rq_ship_handdate" type="text" readonly="readonly"/>
                                         <span class="add-on input-group-addon datepicker-color"> <i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
