@@ -64,11 +64,11 @@ body {
                 <div class="ob-account-right">
                     <div class="breadcrumb breadcrumbs-under" id="breadcrumbs">
                         <ul>
-                            <li><a href="http://172.16.61.112/key_innovation_web_client/web/app_dev.php/en_ca/">Home</a>
+                            <li><a href="index.html">Home</a>
                                 <i
                                 class="fa fa-angle-right fa-fw"></i>
                             </li>
-                            <li><a href="http://172.16.61.112/key_innovation_web_client/web/app_dev.php/en_ca/my-account/info">My Account</a>
+                            <li><a href="myaccount.html">My Account</a>
                                 <i
                                 class="fa fa-angle-right fa-fw"></i>
                             </li>
@@ -90,6 +90,8 @@ body {
                                             <tr class="mytrackc">
                                                 <th>Order ID</th>
                                                 <th>Order Date</th>
+                                                <th class="js_is_admin hide">User Name</th>
+                                                <th class="js_is_admin hide">User Email</th>
                                                 <th>Payment Type</th>
                                                 <th>Total Items</th>
                                                 <th>Payment Status</th>
@@ -99,10 +101,12 @@ body {
                                             <tr class="js-order-info">
                                                 <td>#data.order_id#</td>
                                                 <td>#data.order_date#</td>
+                                                <td class="js_is_admin hide">#data.user_name#</td>
+                                                <td class="js_is_admin hide">#data.user_email#</td>
                                                 <td>#data.payment_type#</td>
                                                 <td>#data.quantity#</td>
                                                 <td>#data.payment_status#</td>
-                                                <td class="unit-price text-right">$ #data.total_price#</td>
+                                                <td class="unit-price text-right">$#data.total_price#</td>
                                                 <td class="my-track-all-btn">
                                                     <div class="fa-hover"><a class="js_preview_order" data-call="displayblock-#data.order_id#" data-toggle="tooltip"
                                                         data-placement="top" data-original-title="View" data-order-id="#data.order_id#"><i class="fa fa-eye"></i></a>

@@ -4,211 +4,130 @@
                 <div class="in-prod-main">
                     <div class="in-prod-under">
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603027/websites/images/1490051271_awards.PNG" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="Awareness"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603027/websites/images/1490051271_awards.PNG" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Awards &amp; awareness</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="Awareness"' data-item-type="product-category">Awards &amp; awareness</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Bracelets</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Coins</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Clocks</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Frames-picture</a></li>
+                                        <li><a href='search.html?SearchSensor="BRACELETS"' data-item-type="category-product-list">Bracelets</a></li>
+                                        <li><a href='search.html?SearchSensor="earth day"' data-item-type="category-product-list">Earth Day</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305487/websites/images/1490051371_bags2.png" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="bags"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305487/websites/images/1490051371_bags2.png" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Bags</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="bags"' data-item-type="product-category">Bags</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Tags</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Pouches</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Coolers</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Backpacks</a></li>
+                                        <li><a href='search.html?SearchSensor="Insulated Bags"' data-item-type="category-product-list">Insulated Bags</a></li>
+                                        <li><a href='search.html?SearchSensor="RPET BAGS"' data-item-type="category-product-list">RPET BAGS</a></li>
+                                        <li><a href='search.html?SearchSensor="Backpacks"' data-item-type="category-product-list">Backpacks</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603026/websites/images/1490051467_evolutiondecospread.jpg" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="Drinkware"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305410/websites/images/1490051413_beverage4.PNG" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Clothing</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="Drinkware"' data-item-type="product-category">Drinkware</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Vests</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Shirts</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Sweaters</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Hoodies</a></li>
+                                        <li><a href='search.html?SearchSensor="COASTERS"' data-item-type="category-product-list">Coasters</a></li>
+                                        <li><a href='search.html?SearchSensor="Coffee Mugs"' data-item-type="category-product-list">Coffee</a></li>
+                                        <li><a href='search.html?SearchSensor="Plastic Mason Jars"' data-item-type="category-product-list">Plastic Mason Jars</a></li>
+                                        <li><a href='search.html?SearchSensor="Education"' data-item-type="category-product-list">Education</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305410/websites/images/1490051413_beverage4.PNG" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="summer fun"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052081_fun.jpg" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Drinkware</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="summer fun"' data-item-type="product-category">Fun &amp; outdoor</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Coasters</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Beverages</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Coffee</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Jars</a></li>
+                                        <li><a href='search.html?SearchSensor="game day"' data-item-type="category-product-list">Garden supplies</a></li>
+                                        <li><a href='search.html?SearchSensor="basketball"' data-item-type="category-product-list">basket ball</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305572/websites/images/1490052317_food.png" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="Golf Packs/Kits"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052125_golf.jpg" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Food &amp; wine</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="Golf Packs/Kits"' data-item-type="product-category">Golf &amp; sport</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Breath fresheners</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Candy</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Cans</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Gum</a></li>
+                                        <li><a href='search.html?SearchSensor="GOLF PENCILS"' data-item-type="category-product-list">GOLF PENCILS</a></li>
+                                        <li><a href='search.html?SearchSensor="Golf Packs/Kits"' data-item-type="category-product-list">Golf Packs/Kits</a></li>
+                                        <li><a href='search.html?SearchSensor="sport"' data-item-type="category-product-list">Golf kits</a></li>
+                                        <li><a href='search.html?SearchSensor="Tees"' data-item-type="category-product-list">Tees (golf)</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052081_fun.jpg" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="all"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305704/websites/images/1490057507_travel.png" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Fun &amp; outdoor</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="all"' data-item-type="product-category">Other</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Garden supplies</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Umbrellas</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Picnic baskets</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Flying discs</a></li>
+                                        <li><a href='search.html?SearchSensor="bottle opener"' data-item-type="category-product-list">Openers</a></li>
+                                        <li><a href='search.html?SearchSensor="hand fans"' data-item-type="category-product-list">Hand Fans</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052125_golf.jpg" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="Tech Industry"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603010/websites/images/1490056747_tech.png" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Golf &amp; sport</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="Tech Industry"' data-item-type="product-category">Tech Industry</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Divot tools</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Markers</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Golf kits</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Tees (golf)</a></li>
+                                        <li><a href='search.html?SearchSensor="Smart Wallet"' data-item-type="category-product-list">Smart Wallet</a></li>
+                                        <li><a href='search.html?SearchSensor="Phone Accessories"' data-item-type="category-product-list">Phone accessories</a></li>
+                                        <li><a href='search.html?SearchSensor="Ear Buds"' data-item-type="category-product-list">Ear Buds</a></li>
+                                        <li><a href='search.html?SearchSensor="Power Banks"' data-item-type="category-product-list">Power Banks</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056671_home.jpg" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="AUTOMOTIVE"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305759/websites/images/1490057043_tools.png" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Home &amp; kitchen</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="AUTOMOTIVE"' data-item-type="product-category">Automotive</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Containers</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Candles</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Utensils</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Blankets</a></li>
+                                        <li><a href='search.html?SearchSensor="Full Color Digital Direct"' data-item-type="category-product-list">Full Color Digital Direct</a></li>
+                                        <li><a href='search.html?SearchSensor="FLASHLIGHTS"' data-item-type="category-product-list">Flashlights</a></li>
+                                        <li><a href='search.html?SearchSensor="KEY FOBS"' data-item-type="category-product-list">KEY FOBS</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305794/websites/images/1490057468_office.png" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="fire prevention"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056898_tradeshow.jpg" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Office</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="fire prevention"' data-item-type="product-category">Tradeshow &amp; events</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Cases</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Desk organizers</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Openers</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Mats</a></li>
+                                        <li><a href='search.html?SearchSensor="flashlights"' data-item-type="category-product-list">Flash Lights</a></li>
+                                        <li><a href='search.html?SearchSensor="badge holders"' data-item-type="category-product-list">Badge holders</a></li>
+                                        <li><a href='search.html?SearchSensor="blingyards"' data-item-type="category-product-list">Blingyards</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305704/websites/images/1490057507_travel.png" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="safety"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056982_FITNESS-PRODUCTS-Banner-for-website2.jpg" alt=""></a></div>
                             <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Other</a></div>
+                                <div class="pro-title"><a href='search.html?SearchSensor="safety"' data-item-type="product-category">Wellness &amp; safety</a></div>
                                 <div class="pro-cat">
                                     <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Boxes</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Ornaments</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Door knockers</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Hangers</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603010/websites/images/1490056747_tech.png" alt=""></a></div>
-                            <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Technology</a></div>
-                                <div class="pro-cat">
-                                    <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Wallets</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Phone accessories</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Power supplies/inverters</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Stands</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305759/websites/images/1490057043_tools.png" alt=""></a></div>
-                            <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Tools &amp; auto</a></div>
-                                <div class="pro-cat">
-                                    <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Buckets</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Automotive kits</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Flashlights</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Carabiners</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056898_tradeshow.jpg" alt=""></a></div>
-                            <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Tradeshow &amp; events</a></div>
-                                <div class="pro-cat">
-                                    <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Flags</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Displays</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Badge holders</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Lanyards</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056982_FITNESS-PRODUCTS-Banner-for-website2.jpg" alt=""></a></div>
-                            <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Wellness &amp; safety</a></div>
-                                <div class="pro-cat">
-                                    <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Dispensers</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Reflectors</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Armbands</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Strobe lights</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="in-box-cont">
-                            <div class="right-part"><a href="#"><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056861_pens.jpg" alt=""></a></div>
-                            <div class="left-part">
-                                <div class="pro-title"><a href="#" data-item-type="product-category">Writing &amp; stationery</a></div>
-                                <div class="pro-cat">
-                                    <ul>
-                                        <li><a href="#" data-item-type="category-product-list">Seed paper</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Paper</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Diaries</a></li>
-                                        <li><a href="#" data-item-type="category-product-list">Money-play</a></li>
+                                        <li><a href='search.html?SearchSensor="Reflective Items"' data-item-type="category-product-list">Reflective Items</a></li>
+                                        <li><a href='search.html?SearchSensor="flashlights"' data-item-type="category-product-list">Strobe lights</a></li>
                                     </ul>
                                 </div>
                             </div>

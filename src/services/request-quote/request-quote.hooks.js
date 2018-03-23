@@ -7,7 +7,9 @@ let mailService = require("../../common/mail.js");
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [
+      hook => beforeFindRequestQuote(hook)
+    ],
     get: [],
     create: [
       hook => beforeInsertRequestQuote(hook)
@@ -22,7 +24,7 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      hook => before_get_email_template(hook) 
+      hook => before_get_email_template(hook)
     ],
     update: [],
     patch: [],
@@ -39,6 +41,16 @@ module.exports = {
     remove: []
   }
 };
+
+
+beforeFindRequestQuote = async hook => {
+
+    if(hook.params.query.owner_id == undefined &&  hook.params.query.website_id == undefined &&  hook.params.query.user_id == undefined)
+    {
+      hook.result = {status:400, message: "Please pass user id or owner id or setting id or website_id"}
+    }
+    hook.params.query.$sort = { created_at: -1}
+}
 
 function beforeInsertRequestQuote(hook){
       hook.data.created_at = new Date();

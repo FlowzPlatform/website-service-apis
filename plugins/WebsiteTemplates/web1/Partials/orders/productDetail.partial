@@ -75,7 +75,7 @@ body {
                             </div>
                         </td>
                         <td>#data.additional_charges_list#</td>
-                        <td class="border-right-none">$ #data.charges#</td>
+                        <td class="border-right-none">$#data.charges#</td>
                     </tr>
                 </table>
                 <table class="cart-item-view product-quantity-list">
@@ -96,18 +96,18 @@ body {
 -
                             <br/>
                         </td>
-                        <td>$ #data.shipping_charges#</td>
+                        <td>$#data.shipping_charges#</td>
                     </tr>
                 </table>
                 <table width="100%">
                     <tr class="order-item-subtotal">
-                        <td>Total : $ #data.total#</td>
-                        <td>Additional Charges : $ #data.charges#</td>
-                        <td>Shipping Charge : $ #data.shipping_charges#</td>
-                        <td>Tax : $ #data.tax#</td>
+                        <td>Total : $#data.total#</td>
+                        <td>Additional Charges : $#data.charges#</td>
+                        <td>Shipping Charge : $#data.shipping_charges#</td>
+                        <td>Tax : $#data.tax#</td>
                     </tr>
                     <tr class="order-subtotal">
-                        <td class="text-right" colspan="6">Sub Total : <span>$ #data.subtotal#</span>
+                        <td class="text-right" colspan="6">Sub Total : <span>$#data.subtotal#</span>
                         </td>
                     </tr>
                 </table>
@@ -117,7 +117,7 @@ body {
                             <table class="total-amount-block pull-right">
                                 <tr>
                                     <td>Total</td>
-                                    <td>$ 31825.00</td>
+                                    <td>$31825.00</td>
                                 </tr>
                                 <tr>
                                     <td>Additional Charges</td>
@@ -125,15 +125,15 @@ body {
                                 </tr>
                                 <tr>
                                     <td>Shipping Charge</td>
-                                    <td>$ 412.62</td>
+                                    <td>$412.62</td>
                                 </tr>
                                 <tr>
                                     <td>Tax</td>
-                                    <td>$ 4137.25</td>
+                                    <td>$4137.25</td>
                                 </tr>
                                 <tr class="grand-total">
                                     <td>Grand Total</td>
-                                    <td class="total-price js_check_complete">$ 36374.87</td>
+                                    <td class="total-price js_check_complete">$36374.87</td>
                                 </tr>
                             </table>
                         </td>

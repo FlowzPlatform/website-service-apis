@@ -28,7 +28,7 @@ $("#change_pass_form").submit(function(event){
 				showSuccessMessage(result.message,website_settings.BaseURL+"index.html");
 			},
 			error: function(err) {
-				showErrorMessage('internal server error');
+				showErrorMessage('old password does not match.');
 			}
 		});
 	}
