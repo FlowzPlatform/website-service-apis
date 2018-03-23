@@ -1,3 +1,7 @@
+if (user_id == null ) {
+  window.location = 'login.html';
+}
+
 $('.fullname-word').text(user_details.fullname);
 
 $.ajax({

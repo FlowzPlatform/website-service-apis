@@ -1,6 +1,7 @@
 /* Add your custom JavaScript/jQuery functions here. It will be automatically included in every page. */
 
 let user_id = user_details = null;
+let timeStamp = Math.floor(Date.now() / 1000);
 
 var website_info = function () {
   var tmp = null;
@@ -9,7 +10,7 @@ var website_info = function () {
       'type': "GET",
       'global': false,
       'dataType': 'json',
-      'url': "./assets/project-details.json",
+      'url': "./assets/project-details.json?t="+timeStamp,
       'success': function (data) {
           tmp = data;
       }
@@ -170,6 +171,10 @@ Y({
     init();
     if(user_id != null) {
       $('.fullname-word').text(user_details.fullname);
+      if($(".my-account-left").length > 0){
+          $(".my-account-left .js_my_inquiry").html('<i class="fa fa-share-alt"></i> Received Inquiries List')
+          $(".my-account-left .js_my_order").html('<i class="fa fa-file-text"></i> Received Order List')
+      }
     }
   })
 })
@@ -224,29 +229,27 @@ if(userToken != null && userFrontId != null) {
     }();
 }
 
-// localStorage.setItem("vOneLocalStorage", user_id);
+let admin_role_flag = 0;
 
-//Website owner details
-// let userOwnerToken = getCookie('auth_token');
-// if(userOwnerToken != null) {
-//     var user_owner_details = function () {
-//       var tmp = null;
-//       $.ajax({
-//           'async': false,
-//           'type': "POST",
-//           'url': project_settings.user_detail_api,
-//           'headers': {"Authorization": userOwnerToken},
-//           'success': function (res) {
-//               tmp = res.data;
-//               user_owner_id = tmp._id;
-//           }
-//       });
-//       return tmp;
-//     }();
-// }
+if (user_id != null ) {
+      if(user_details.package != undefined && !isEmpty(user_details.package)){
+          console.log("user_details",user_details);
+          $.ajax({
+            'async': false,
+            'type': "GET",
+            'url': project_settings.projcet_configuration_api_url+"/"+website_settings['projectID'],
+            'success': function (response) {
+                console.log("website response",response);
+                //console.log("subscriptionId",response.subscriptionId);
+                if(user_details.package[response.subscriptionId] != undefined && user_details.package[response.subscriptionId].role == "admin"){
+                      admin_role_flag = 1;
+                }
+              }
+          });
+      }
+}
 
-// console.log("user_owner_details",user_owner_details)
-//Website owner details
+//alert(admin_role_flag)
 
 function $_GET(param) {
 	var vars = {};
@@ -287,7 +290,7 @@ function getUserInfo(){
     error: function(jqXHR, textStatus, errorThrown) {
     }
   });
-  return userDetail;  
+  return userDetail;
 }
 
 let wishlist_values = "";
@@ -305,7 +308,7 @@ var init = function() {
     if($("#myWishList").length > 0 || $("#myCompareList").length > 0)
     {
       showPageAjaxLoading();
-    }  
+    }
     setTimeout(function()
     {
       let values = window.yList.share.wishListRegister._content;
@@ -394,7 +397,7 @@ var init = function() {
       if(userinfo!=''){
         userDetail = userinfo;
       }
-      user_details = Object.assign(user_details, userDetail); 
+      user_details = Object.assign(user_details, userDetail);
     }
   }
 
@@ -1528,7 +1531,6 @@ async function getCountryStateCityById(id,type){
   await axios({
       method: 'GET',
       url: project_settings.city_country_state_api,
-      headers: {'Authorization': project_settings.product_api_token},
       params: {
           'id':id,
           'type':type
@@ -1557,7 +1559,6 @@ var returnAddressBookDetailById = async function(addressBookId) {
 	await axios({
 			method: 'GET',
 			url: project_settings.address_book_api_url+'/'+addressBookId,
-			headers: {'Authorization': project_settings.product_api_token},
 		})
 	.then(response => {
 		 returnData = response.data;
@@ -1584,7 +1585,6 @@ async function getStateAndCityVal(countryVal,stateVal,dataFrom){
     await axios({
             method: 'GET',
             url: project_settings.city_country_state_api,
-            headers: {'Authorization': project_settings.product_api_token},
             params: data
           })
           .then(response => {
@@ -1725,3 +1725,12 @@ function formatDate(date,format) {
   }
   return formatdate
 };
+
+function isEmpty(myObject) {
+    for(let key in myObject) {
+        if (myObject.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
+}

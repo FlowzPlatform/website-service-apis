@@ -53,7 +53,7 @@ body {
             <td><span>Shipping Carrier: </span> #data.shipping_carrier#
                 <br/><span>Method: </span> #data.shipping_method#
                 <br/><span>In Hand Date: </span> #data.on_hand_date#</td>
-            <td class="text-center">$ #data.shipping_charges#</td>
+            <td class="text-center">$#data.shipping_charges#</td>
         </tr>
     </tbody>
 

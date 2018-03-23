@@ -63,7 +63,7 @@ body {
                 </div>
             </td>
             <td>#data.additional_charges_list#</td>
-            <td class="border-right-none">$ #data.charges#</td>
+            <td class="border-right-none">$#data.charges#</td>
         </tr>
     </tbody>    
 </table>

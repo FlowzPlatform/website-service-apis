@@ -35,14 +35,28 @@ let activeSubtab = '';
 let listHtmlPrintPosMethod = '';
 let imprint_method_select;
 let hasImprintData;
+let shippingAddressHtmlTemplate = '';
+let shippingAddressColorQtyAreaHtmlTemplate = '';
+let addressBookHtmlTemplate = '';
+let selectedShippingType = '';
 
-$(document).ready(function(){
+$(document).ready( async function(){
+  if(pid == null) {
+      hidePageAjaxLoading();
+      window.location = "error404.html";
+      return false;
+  }
+
   let value_split = [];
   let productData = {};
 
   activetab = $('.js_product_detail_tabs').find('#js_tab_list > li.active > a').attr('href');
   activeSubtab = $(activetab).find('#js_sub_tab_list > li.active > a').attr('href');
   activetab = (activeSubtab!=undefined) ? activeSubtab : activetab;
+
+  shippingAddressHtmlTemplate = $(activetab).find(".shipping-method #js_shipping_method").html();
+  shippingAddressColorQtyAreaHtmlTemplate = $(activetab).find(".js_shipping_qty_box_main").html();
+  addressBookHtmlTemplate = ''
 
   let colors = '';
   let Quantity = '';
@@ -53,22 +67,27 @@ $(document).ready(function(){
 
   let setActivetab = activetab.replace(/\#/g, '');
 
-  if(pid != null) {
-        $.ajax({
-			  type: 'GET',
-			  url: project_settings.product_api_url+"?_id="+pid,
-			  async: false,
-			  dataType: 'json',
-			   headers: {
-				    'vid' : website_settings.Projectvid.vid
-				},
-			  success: function (data) {
-          hidePageAjaxLoading();
-          // var colorQtyHtml = $(".js_shipping_qty_box_main").html();
-	  // product name , sku, default images
-          if(data.hits.hits.length > 0){
-                  productData = data;
-                  var productDetails = productData.hits.hits[0]._source;
+        // $.ajax({
+			  // type: 'GET',
+			  // url: project_settings.product_api_url+"?_id="+pid,
+			  // async: false,
+			  // dataType: 'json',
+			  //  headers: {
+				//     'vid' : website_settings.Projectvid.vid
+				// },
+			  // success: function (data) {
+          // hidePageAjaxLoading();
+	         // product name , sku, default images
+          // if(data.hits.hits.length > 0){
+          // console.log("get_product_details",get_product_details);
+                  if(get_product_details == null ){
+                      hidePageAjaxLoading()
+                      // console.log("Authentication is failed to fetch product information.");
+                      window.location = "error404.html";
+                      return false;
+                  }
+                  // productData = data;
+                  var productDetails = get_product_details;
                   // console.log("productDetails==>>",productDetails);
                 	ProductName = removeSpecialCharacters(productDetails.product_name);
                 	ProductImage = productDetails.default_image;
@@ -123,11 +142,11 @@ $(document).ready(function(){
                                   $.each(element.price_range,function(index,element2){
                                     // console.log("in each condition");
                                     if(element2.qty.lte != undefined){
-                                       priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content">' + '$ ' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
+                                       priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                                      }
                                      else
                                      {
-                                     	priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content">' + '$ ' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
+                                     	priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                                      }
                                   	});
                                   $(".quantity-table-col").html(priceRang);
@@ -144,6 +163,8 @@ $(document).ready(function(){
                         $(activetab).find('#js_request_quote_qty_box').html('');
                     }
 
+                    let colorsHexVal = await replaceColorSwatchWithHexaCodes(productDetails.attributes.colors,"color");
+                     //console.log("colorsHexVal",colorsHexVal);
                     $.each(productDetails.attributes.colors, function(index_color,element_color){
                         let colorVal = element_color.toLowerCase();
                         colorVal = colorVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
@@ -151,14 +172,20 @@ $(document).ready(function(){
                         listHtmlColor1 = listHtmlColor1.replace(/#data.colorID#/g,colorVal);
                         listHtmlColor1 = listHtmlColor1.replace(/#data.colorVal#/g,element_color);
                         listHtmlColor1 = listHtmlColor1.replace(/#data.colorHexCode#/g,element_color);
+                        let element_color_style = "background-color:"+element_color+";"
+                        if(colorsHexVal != null && colorsHexVal[element_color] != undefined){
+                            if(typeof colorsHexVal[element_color].hexcode != 'undefined'){
+                                element_color_style = "background-color:"+colorsHexVal[element_color].hexcode+";"
+                            }
+                            else if (typeof colorsHexVal[element_color].file != 'undefined') {
+                                element_color_style = "background-image:url("+colorsHexVal[element_color].file.url+");"
+                            }
+                        }
+                        listHtmlColor1 = listHtmlColor1.replace(/#data.colorCodeStyle#/g,element_color_style);
                         productHtmlColor += listHtmlColor1;
                         $(".checkbox_colors").html(productHtmlColor);
                     });
-                }
-                //else {
-                //    $(".checkbox_colors").html("<span class='red'>There is no color for this product.</span>");
-                    //$("#"+setActivetab+"-Print-position-block, #"+setActivetab+"-Shipping-method-col, #"+setActivetab+" #js_request_quote_instruction, .place-order-submit").addClass('hide');
-                // }
+                  }
 
                 // product print position
                 var value_split_method = [];
@@ -197,7 +224,7 @@ $(document).ready(function(){
                 }
 
                 //Shipping Section
-                let shippigCounter = parseInt($(".js_request_quote_shipping_counter").val());
+                let shippigCounter = parseInt($(activetab+" .js_request_quote_shipping_counter").val());
                 if(shippigCounter <= 0 ){
                     $(".shipping-method #js_shipping_method").addClass("hide");
                 }
@@ -240,7 +267,7 @@ $(document).ready(function(){
 
                 if(productDetails.imprint_data instanceof Array || productDetails.shipping instanceof Array) {
                     $('.product-shipping-label').removeClass('hide');
-                    if(productData.hits.hits[0]._source.imprint_data instanceof Array) {
+                    if(productDetails.imprint_data instanceof Array) {
                         production_days = productDetails.imprint_data[0].production_days+" "+productDetails.imprint_data[0].production_unit;
                         setup_charge = productDetails.imprint_data[0].setup_charge;
                         if(typeof production_days !== "undefined" && production_days != '') {
@@ -296,23 +323,13 @@ $(document).ready(function(){
                 // });
                 $('.js-hide-div').removeClass("js-hide-div");
                 setTimeout(loadBxSlider(),5000)
-            }
-            else{
-              hidePageAjaxLoading()
-                // console.log("Authentication is failed to fetch product information.");
-                window.location = "error404.html";
-                return false;
-            }
-			  },
-        error: function(err){
-          hidePageAjaxLoading()
-            // console.log("this type of url not present");
-        }
-    });
-  }
-  hidePageAjaxLoading()
-
-
+			  // },
+        // error: function(err){
+        //   hidePageAjaxLoading()
+        //     // console.log("this type of url not present");
+        // }
+    // });
+   hidePageAjaxLoading()
 
   $('.product-gallery').zoom({ on:'click' });
   $(".product-thumb-img-anchar").on('click', function () {
@@ -355,7 +372,6 @@ $(document).ready(function(){
                   data: {'product_id':pid,'product_data':product_data,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']},
                   cache: false,
                   dataType: 'json',
-                  // headers: {"Authorization": project_settings.product_api_token},
                   headers: {"vid": website_settings.Projectvid.vid},
                   success: function(response){
                     hidePageAjaxLoading()
@@ -372,19 +388,21 @@ $(document).ready(function(){
     });
 
     $(document).on('click','.js-quantity-selector',function(e){
+      let newVal = '';
       let $button = $(this);
       let oldValue = $button.closest('.selector-quantity').find("input.selector-input").val();
       if ($button.text() == "+") {
-          let newVal = parseFloat(oldValue) + 1;
+          newVal = parseFloat(oldValue) + 1;
       } else {
           // Don't allow decrementing below zero
           if (oldValue > 0) {
-              let newVal = parseFloat(oldValue) - 1;
+              newVal = parseFloat(oldValue) - 1;
           } else {
               newVal = 0;
           }
       }
       $button.closest('.selector-quantity').find("input.selector-input").val(newVal);
+      $(activetab + ' .js-quantity-section .js_request_quote_nosize_qty').trigger('blur');
     });
 
      $(document).on("click",".js_set_selected_value li",function(){
@@ -401,11 +419,11 @@ $(document).ready(function(){
        }
      });
 
-     $(document).on("click",".js_set_selected_value_col li",function(){
+     $(document).on("click",".js_set_selected_value_col li",async function(){
         let thisObj = $(this);
         let dataAttributes = thisObj.data();
         let parentObj = thisObj.closest("#js_imprint_request_quote_box_"+dataAttributes.position)
-        let colorHtml = "<div class='row choose-variation js_select_color_boxes'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title js_color_title pull-left' data-type='standard'>Standard</div></div></div><input type='hidden' id='js_selected_color_id_#data.printPositionName#_#data.imprintId#_#data-printColor#' data-type='standard' /><div class='relative-col'><div class='row color-selection-block selection-common-box'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title hidden-lg hidden-md hidden-sm'>Standard</div><div class='selection-color-box'><div class='dropdown dropdown_size color-select-box'><button class='btn dropdown-toggle' aria-expanded='true' data-toggle='dropdown' type='button'>Select Color <span class='caret'></span></button><ul class='dropdown-menu js_select_color_from_list js_set_selected_value' role='menu' aria-labelledby='dropdownMenu_1' data-imprint-id='#data.imprintId#' data-color-no='#data.printColor#' data-type='standard'><li data-value='#data.imprintColor#'>#data.imprintColor#</li></ul></div></div></div></div></div>";
+        let colorHtml = "<div class='row choose-variation js_select_color_boxes'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title js_color_title pull-left' data-type='standard'>Standard</div></div></div><input type='hidden' id='js_selected_color_id_#data.printPositionName#_#data.imprintId#_#data-printColor#' data-type='standard' /><div class='relative-col'><div class='row color-selection-block'><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='print-title hidden-lg hidden-md hidden-sm'>Standard</div><div class='selection-color-box'><i class='select-color-icon'></i><div class='dropdown dropdown_size color-select-box'><button class='btn dropdown-toggle' aria-expanded='true' data-toggle='dropdown' type='button'>Select Color <span class='caret'></span></button><ul class='dropdown-menu js_select_color_from_list js_set_selected_value' role='menu' aria-labelledby='dropdownMenu_1' data-imprint-id='#data.imprintId#' data-color-no='#data.printColor#' data-type='standard'><li data-value='#data.imprintColor#'>#data.imprintColor#</li></ul></div></div></div></div></div>";
         let replaceColorHtml = '';
         let dropDownColorHtml = '';
         let imprintData = parentObj.find(".js_select_method").parent('div').find("button").data();
@@ -419,7 +437,7 @@ $(document).ready(function(){
           })
         }
 
-          //imprint_color_val.imprint_color = ["Green","Red","White","Blue"] // Static imprint color
+          //imprint_color_val.imprint_color = ["Process Blue","Reflex Blue","Pantone Yellow","Pms 340","Pms 354","Pantone Orange","Pantone Purple"] // Static imprint color
 
           for(let i=1;i<=dataAttributes.value;i++){
             colorHtml1 = colorHtml.replace(/#data.printPositionName#/g,printPosition)
@@ -429,8 +447,16 @@ $(document).ready(function(){
           }
           parentObj.find(".js-color-div-append").html(replaceColorHtml)
 
+          let imprintColorsHexVal = await replaceColorSwatchWithHexaCodes(imprint_color_val.imprint_color,"imprintcolor");
+          // console.log("imprintColorsHexVal",imprintColorsHexVal);
           $.each(imprint_color_val.imprint_color,function(key,imprintColor){
-            dropDownColorHtml += "<li data-value='"+imprintColor+"' data-printpos='"+dataAttributes.position+"'><a href='javascript:void(0);'>"+imprintColor+"</a></li>"
+            let imprintColorHexKey = imprintColor
+            if(imprintColorsHexVal != null && imprintColorsHexVal[imprintColor] != undefined ){
+                if(typeof imprintColorsHexVal[imprintColor].hexcode != 'undefined'){
+                    imprintColorHexKey = imprintColorsHexVal[imprintColor].hexcode
+                }
+            }
+            dropDownColorHtml += "<li data-value='"+imprintColor+"' data-printpos='"+dataAttributes.position+"'><a href='javascript:void(0);'><span style='background-color:"+imprintColorHexKey+";'></span>"+imprintColor+"</a></li>"
           })
           parentObj.find(".js_select_color_from_list").html(dropDownColorHtml)
           parentObj.find('.js-color-div-append').removeClass('hide');
@@ -441,8 +467,6 @@ $(document).ready(function(){
         let color_no = $(this).parent('ul').data('color-no');
         let print_pos = $(this).data("printpos")
         let parentObj = $(this).closest('#js_imprint_request_quote_box_'+print_pos)
-        // let method_name = $(this).closest('.js-printposition-section').find('.imprint-method-select button').data('dropval');
-        // let position_name = $(this).closest('.js-printposition-section').find('.imprint-method-select button').data('printpos');
         let method_name = parentObj.find('.imprint-method-select button').data('dropval');
         let position_name = parentObj.find('.imprint-method-select button').data('printpos');
         parentObj.find('#js_selected_color_id_'+position_name+'_'+method_name+'_'+color_no).val(color_name);
@@ -497,7 +521,7 @@ $(document).ready(function(){
               total_qty = total_qty + qty;
               colors_qty[colorName] = qty;
           });
-          // console.log("colors_qty+++++++++++",colors_qty);
+          //console.log("colors_qty+++++++++++",colors_qty);
 
           let imprint_position = [];
           $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
@@ -549,7 +573,7 @@ $(document).ready(function(){
           let shipping_details = [];
           let shipping_counter = parseInt($(activetab+" .js_request_quote_shipping_counter").val());
           for(let i = 1 ;i<=shipping_counter;i++){
-              let selected_address_id = $(activetab).find("#js_shipping_addresses_"+i+" #shippingAddressId_"+i).val();
+              let selected_address_id = $(activetab).find("#js_shipping_method_detail_"+i+" .js_shipping_addresses .shippingAddressId ").val();
               let shipping_address = ''
               // if(selected_address_id == undefined)
               // {
@@ -578,7 +602,7 @@ $(document).ready(function(){
               if (typeof get_shipping_method === typeof undefined ) {
                   get_shipping_method = "";
               }
-              
+
               let shipping_colors_qty = {};
               $(activetab+" #js_shipping_method_detail_"+i+" .js_shipping_qty_box_main .js_rq_shipping_quantity ").each(function() {
             	  let colorName = $(this).data('color-id');
@@ -596,7 +620,7 @@ $(document).ready(function(){
           }
           let shipping_method = ''
           if(shipping_details.length > 0 || shipping_type != undefined ) shipping_method = {'shipping_detail':shipping_details,"shipping_type":shipping_type};
-          
+
           let data = {};
           data['product_id'] = pid;
           data['user_id'] = user_id;
@@ -682,11 +706,11 @@ $(document).ready(function(){
                   user_info['id'] = user_details['_id'];
                   user_info['email'] = user_details['email'];
                   user_info['fullname'] = user_details['fullname'];
-                  user_info['userEmail'] = (user_details['userEmail'])? user_details['firstname'] : ''; 
-                  user_info['firstname'] = (user_details['firstname'])? user_details['firstname'] : ''; 
-                  user_info['lastname'] = (user_details['lastname'])? user_details['lastname'] : ''; 
-                  user_info['address1'] = (user_details['address1'])? user_details['address1'] : ''; 
-                  user_info['address2'] = (user_details['address2'])? user_details['address2'] : ''; 
+                  user_info['userEmail'] = (user_details['userEmail'])? user_details['firstname'] : '';
+                  user_info['firstname'] = (user_details['firstname'])? user_details['firstname'] : '';
+                  user_info['lastname'] = (user_details['lastname'])? user_details['lastname'] : '';
+                  user_info['address1'] = (user_details['address1'])? user_details['address1'] : '';
+                  user_info['address2'] = (user_details['address2'])? user_details['address2'] : '';
                   user_info['country'] = (user_details['country'])? await getCountryStateCityById(user_details['country'],1) : '';
                   user_info['state'] = (user_details['state'])? await getCountryStateCityById(user_details['state'],2) : '';
                   user_info['city'] = (user_details['city'])? await getCountryStateCityById(user_details['city'],3) : '';
@@ -764,7 +788,7 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
         let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
         total_qty = total_qty + qty;
     });*/
-    
+
     let total_qty = 0;
     $(activetab+" #js_shipping_method_detail_"+shippigCounter+" .js_shipping_qty_box_main .js_rq_shipping_quantity ").each(function() {
   	  total_qty = parseInt(total_qty) + parseInt($(this).find(".js_request_quote_shipping_qty_box").val());
@@ -791,9 +815,24 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
 
                         rateHtml +='<li data-service="'+rateDetails.servicelevel.name+'" data-value="'+rateDetails.amount+'" data-transit-time="'+rateDetails.estimated_days+'"><a href="javascript:void(0)">'+rateDetails.servicelevel.name+' '+rateDetails.currency+' '+rateDetails.amount+'</a></li>';
                     }
+                    $(parentObj).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
                 }
                 else{
-                    rateHtml = '<li><a href="javascript:void(0)">Shipping Details Invalid</a></li>'
+                    rateHtml = '<li><a href="javascript:void(0)">Product shipping detail is missing</a></li>'
+
+                    let quantity= total_qty;
+                    let quantity_in_carton = shipping_details.shipping_qty_per_carton
+                    if(quantity_in_carton != 0)
+                    {
+                        var noOfBox = Math.ceil(quantity/quantity_in_carton);
+                    }
+
+                    if(noOfBox > 50)
+                    {
+                        let max_qty = shipping_qty_per_carton*50
+                        $(parentObj).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").append('<div class="red js-section-errors">Maximum '+max_qty+' quantities are allowed.</div>')
+                    }
+
                     /*if(result.data.address_to.validation_results.is_valid == false) {
                        $(parentObj).find(".js-shippingMethod-"+shippigCounter+"-section").append('<div class="red js-section-errors">'+result.data.address_to.validation_results.messages[0].text+'</div>')
                     }*/
@@ -861,54 +900,74 @@ function replaceWithUnderscore(value){
 }
 
 
-function replaceColorSwatchWithHexaCodes(){
-  //var data = { 'colors': colors };
-  var all_colors = [];
-  $( ".js_color_checkbox" ).each(function( index,colorCheckbox ) {
-    all_colors.push($( this ).data("hex-code"))
-  });
-
-  var data = {'colorname':all_colors};
-  //var data = {'colorname':all_colors,'skip':0,'limit':all_colors.length};
-  $.ajax({
-    type : 'GET',
-    url : project_settings.color_table_api_url,
-    data : data,
-    dataType : 'json',
-    success : function(response_data) {
-      $( ".js_color_checkbox" ).each(function( index ) {
-        //var bgColor = $( this ).parent().css("background-color");
-        var bgColor = $( this ).data("hex-code");
-        var checkbox = $( this )
-
-        if(typeof response_data.data != 'undefined')
-        {
-          $.each(response_data.data, function( index, value ) {
-
-            if(typeof value.colorname != 'undefined')
-            {
-              if(value.colorname.toLowerCase() == bgColor.toLowerCase())
-              if(typeof value.hexcode != 'undefined')
-              {
-                checkbox.attr("data-hex-code",value.hexcode)
-                checkbox.parent().css('background-color',value.hexcode)
-                checkbox.parent().attr('title',value.colorname)
-              }
-            }
-          });
-        }
-
-        //console.log( index + ": " + $( this ).text() );
-      });
-      /*console.log(response_data);
-      return response_data;*/
+async function replaceColorSwatchWithHexaCodes(attribute_value,attribute_name){
+    let returnColorVal = null
+    if(attribute_value != undefined && attribute_value.length > 0) {
+      var data = {'colorname':attribute_value};
+      await axios({
+              method: 'GET',
+              url : project_settings.color_table_api_url+'?vid='+website_settings.Projectvid.vid+'&websiteid='+website_settings['projectID']+'&attribute_name='+attribute_name,
+              params: data,
+              dataType : 'json'
+            })
+            .then(response_data => {
+                if(response_data.data.data.length > 0 ) {
+                  let colorObj = {}
+                  $.each(response_data.data.data,function(key,val){
+                        colorObj[val.colorname] = val
+                  })
+                  // returnColorVal = response_data.data.data
+                  returnColorVal = colorObj
+                }
+                return returnColorVal;
+            })
+            .catch(function (error) {
+         			// 	console.log("error+++",error);
+            });
     }
-  })
+    return returnColorVal;
 }
 
-$(document).ready(function() {
-  replaceColorSwatchWithHexaCodes();
-})
+// function replaceColorSwatchWithHexaCodes(attribute_value,attribute_name){
+//   if(attribute_value != undefined && attribute_value.length > 0) {
+//       var data = {'colorname':attribute_value};
+//       //var data = {'colorname':all_colors,'skip':0,'limit':all_colors.length};
+//       $.ajax({
+//         type : 'GET',
+//         url : project_settings.color_table_api_url+'?vid=a40c858d-42f4-4d1e-9905-42a4a81ceca5&websiteid=2cfbe41a-f320-429e-add0-f0aaa4e61cfe&attribute_name='+attribute_name,
+//         data : data,
+//         dataType : 'json',
+//         success : function(response_data) {
+//           console.log("response_data",response_data);
+//           $( ".js_color_checkbox" ).each(function( index ) {
+//             //var bgColor = $( this ).parent().css("background-color");
+//             var bgColor = $( this ).data("hex-code");
+//             var checkboxObj = $( this )
+//             if(typeof response_data.data != 'undefined')
+//             {
+//               $.each(response_data.data, function( index, value ) {
+//
+//                 if(typeof value.colorname != 'undefined')
+//                 {
+//                   if(value.colorname.toLowerCase() == bgColor.toLowerCase())
+//                   {
+//                     if(typeof value.hexcode != 'undefined')
+//                     {
+//                         checkboxObj.attr("data-hex-code",value.hexcode)
+//                         checkboxObj.parent().css('background-color',value.hexcode)
+//                     }else if (typeof value.file != 'undefined') {
+//                         checkboxObj.parent().css('background-color','')
+//                         checkboxObj.parent().css("background-image",'url('+value.file.url+')')
+//                     }
+//                   }
+//                 }
+//               });
+//             }
+//           });
+//         }
+//       })
+//     }
+// }
 
 let returnshippingData = async function(selected_address_id) {
     let shipping_address = {}
@@ -935,7 +994,6 @@ let returnDefaultBillingInfo = async function fetchDefaultBillingInfo() {
       await axios({
               method: 'GET',
               url: project_settings.address_book_api_url+'?address_type=billing&website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&is_default=1',
-              headers: {'Authorization': project_settings.product_api_token},
           })
       .then(async response => {
             let billing_address = {}
@@ -999,7 +1057,7 @@ $(document).on("click","#js_tab_list",function(){
     $(activetab).find('.js_select_shipping_type').prop('checked',false);
     //console.log($(activetab).find('#js_shipping_method').find(".shipping-scroll").html())
     //$(activetab).find('#js_shipping_method').find(".shipping-scroll").addClass('hide');
-    
+
     if(get_product_details.attributes.colors == undefined || get_product_details.attributes.colors.length <= 0) {
         $(".checkbox_colors").html("<span class='red'>There is no color for this product.</span>");
         $("#"+setActivetab+"-Print-position-block, #"+setActivetab+"-Shipping-method-col, #"+setActivetab+" #js_request_quote_instruction").addClass('hide');
@@ -1010,11 +1068,8 @@ $(document).on("click","#js_tab_list",function(){
 });
 
 
-var shippingAddressStaticHtml = '';
-var addressBookStaticHtml = ''
-
 $(document).on("click",".split-add-new-address",function(){
-    
+
 	/*let colors_qty = {};
     let colors_hex_code = {};
     $('.js_color_checkbox:checked').each(function() {
@@ -1034,27 +1089,82 @@ $(document).on("click",".split-add-new-address",function(){
       showErrorMessage("Please select color.")
       return false;
     }
-    
-    let colorQtyHtml = $(".js_shipping_qty_box_main").html();
+
+    let shippingAddressColorQtyAreaHtml = $(".js_shipping_qty_box_main").html();
     let replaceQtyHtml = '';
     $.each(colors_qty,function(key,value){
-      colorQtyHtml1 = colorQtyHtml.replace(/#data.color#/g,key)
+      colorQtyHtml1 = shippingAddressColorQtyAreaHtml.replace(/#data.color#/g,key)
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,value)
       replaceQtyHtml += colorQtyHtml1
     })
     $(".js_shipping_qty_box_main").html(replaceQtyHtml);*/
-    let shippingAddressHml = shippingAddressStaticHtml;
+    let shippingAddressHml = shippingAddressHtmlTemplate;
 
-    shippigCounter = parseInt($(".js_request_quote_shipping_counter").val());
+    shippigCounter = parseInt($(activetab+" .js_request_quote_shipping_counter").val());
     shippigCounter = shippigCounter+1;
 
-    $(".js_request_quote_shipping_counter").val(shippigCounter);
+    $(activetab+" .js_request_quote_shipping_counter").val(shippigCounter);
+    
+    // As this is default address, we should not have delete button for default address    
+    shippingAddressHml = shippingAddressHml.replace(/#data.deletebutton#/g,'<span class="js-delete-address">Delete</span>');
     
     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
     $(activetab).find(".shipping-method #js_shipping_method").append(shippingAddressHml);
 
+    /* Handle Colors in newly added address started */
+    let colors_qty = {};
+    let colors_hex_code = {};
+    let colors_id_code = {};
+    $(activetab+' .js_color_checkbox:checked').each(function() {
+        let colorName = $(this).val();
+        let color_name = $(this).attr('id');
+        let hex_code = $(this).parent().attr("style");
+        let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+        if(qty == 0){
+//              showErrorMessage("Please enter quantity.")
+//              return false;
+        }
+        colors_qty[colorName] = qty;
+        colors_hex_code[colorName] = hex_code;
+        colors_id_code[colorName] = color_name;
+    });
+
+    if(colors_qty.length == 0){
+      showErrorMessage("Please select color.")
+      return false;
+    }
+
+    /* Handling colors started */
+    let shippingAddressColorQtyAreaHtml = shippingAddressColorQtyAreaHtmlTemplate;
+    let replaceQtyHtml = '';
+    $.each(colors_qty,function(key,value){
+      let alreadyAssignedQuantiy = 0;
+      colorQtyHtml1 = shippingAddressColorQtyAreaHtml.replace(/#data.color#/g,key)
+      colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
+      
+      // Deciding the quantity for new address started
+      $("."+colors_id_code[key]+" .js_request_quote_shipping_qty_box ").each(function(){
+    	  alreadyAssignedQuantiy = parseInt(alreadyAssignedQuantiy) + parseInt($(this).val());
+    	  remainingQuantity = (value-alreadyAssignedQuantiy);
+    	  if(remainingQuantity < 0){ remainingQuantity = 0 }
+      })      
+      colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,remainingQuantity)
+      // Deciding the quantity for new address ended
+    	  
+      colorQtyHtml1 = colorQtyHtml1.replace(/#data.extraclass#/g,colors_id_code[key])
+      replaceQtyHtml += colorQtyHtml1
+    })
+    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_qty_box_main").html(replaceQtyHtml);
+    /* Handling colors ended */
+
+    /* Handle Colors in newly added address ended */
+
+    let setActivetab = activetab.replace(/\#/g, '');
+    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker"+shippigCounter);
+
     $(".js_request_quote_shipping_qty_box").removeAttr('readonly');
+    attachDeleteEvent();
     attachAutoCompleteEvent();
 });
 
@@ -1064,16 +1174,18 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
       window.location = 'login.html';
       return false;
     }
-    
+
     if($(this).val() == 'standard')
     {
-        $(".split-add-new-address").addClass('hide');    	
+        $(".split-add-new-address").addClass('hide');
+        selectedShippingType = 'standard';
     }
     else if($(this).val() == 'split')
     {
-        $(".split-add-new-address").removeClass('hide');    	
+        $(".split-add-new-address").removeClass('hide');
+        selectedShippingType = 'split';
     }
-    
+
     // let colors_qty = [];
     //
     // $('.js_color_checkbox:checked').each(function() {
@@ -1088,17 +1200,21 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
     // });
     let colors_qty = {};
     let colors_hex_code = {};
+    let colors_id_code = {};
     $(activetab+' .js_color_checkbox:checked').each(function() {
         let colorName = $(this).val();
         let color_name = $(this).attr('id');
-        let hex_code = $(this).parent().css('background-color');
+        // let hex_code = $(this).parent().css('background-color');
+        let hex_code = $(this).parent().attr("style");
+        hex_code = hex_code.replace(/"/g, "'");
         let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
         if(qty == 0){
-              showErrorMessage("Please enter quantity.")
-              return false;
+//              showErrorMessage("Please enter quantity.")
+//              return false;
         }
         colors_qty[colorName] = qty;
         colors_hex_code[colorName] = hex_code;
+        colors_id_code[colorName] = color_name;
     });
 
     if(colors_qty.length == 0){
@@ -1106,52 +1222,65 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
       return false;
     }
 
-    shippigCounter = 0
-    shippigCounter = shippigCounter+1;
+    shippigCounter = 1;
 
     $(activetab+" .js_request_quote_shipping_counter").val(shippigCounter);
-    let colorQtyHtml = $(activetab).find(".js_shipping_qty_box_main").html();
+    /*if(shippingAddressColorQtyAreaHtmlTemplate == '')
+	{
+    	shippingAddressColorQtyAreaHtmlTemplate = $(activetab).find(".js_shipping_qty_box_main").html();
+	}
+
+    if(shippingAddressHtmlTemplate == '')
+	{
+    	shippingAddressHtmlTemplate = $(activetab).find(".shipping-method #js_shipping_method").html();
+	}*/
+
+    let shippingAddressHml = shippingAddressHtmlTemplate;
+    
+    // As this is default address, we should not have delete button for default address    
+    shippingAddressHml = shippingAddressHml.replace(/#data.deletebutton#/g,'');
+    
+    shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
+    $(activetab).find(".shipping-method #js_shipping_method").html(shippingAddressHml);
+
+    /* Handling colors started */
+    let shippingAddressColorQtyAreaHtml = shippingAddressColorQtyAreaHtmlTemplate;
     let replaceQtyHtml = '';
     $.each(colors_qty,function(key,value){
-      colorQtyHtml1 = colorQtyHtml.replace(/#data.color#/g,key)
+      colorQtyHtml1 = shippingAddressColorQtyAreaHtml.replace(/#data.color#/g,key)
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,value)
+      colorQtyHtml1 = colorQtyHtml1.replace(/#data.extraclass#/g,colors_id_code[key])
       replaceQtyHtml += colorQtyHtml1
     })
-    $(".js_shipping_qty_box_main").html(replaceQtyHtml);
-    if(shippingAddressStaticHtml == '')
-	{
-    	shippingAddressStaticHtml = $(activetab).find(".shipping-method #js_shipping_method").html();
-	}
-    let shippingAddressHml = shippingAddressStaticHtml;
-    shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
-    $(activetab).find(".shipping-method #js_shipping_method").html(shippingAddressHml)
+    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_qty_box_main").html(replaceQtyHtml);
+    /* Handling colors ended */
 
     //let setActivetab = activetab.replace("#","")
-    $(activetab).find(".js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker1");
+    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker"+shippigCounter);
 
-    if(addressBookStaticHtml == '')
+    if(addressBookHtmlTemplate == '')
     {
-    	addressBookStaticHtml = $(activetab).find("#js_shipping_addresses_"+shippigCounter+" p").html();
+    	addressBookHtmlTemplate = $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html();
     }
-    let addressBookHtml = addressBookStaticHtml;
+    let addressBookHtml = addressBookHtmlTemplate;
 
     $(activetab).find(".shipping-method #js_shipping_method").removeClass("hide");
-    
+
     if($(this).val() == 'standard')
     {
-        $(".split-add-new-address").addClass('hide');  
-        $(".js_request_quote_shipping_qty_box").attr('readonly'); 
+        $(".split-add-new-address").addClass('hide');
+        $(".js_request_quote_shipping_qty_box").attr('readonly');
         $(".js_request_quote_shipping_qty_box").css("cursor", "not-allowed");
     }
     else if($(this).val() == 'split')
     {
-        $(".split-add-new-address").removeClass('hide'); 
-        $(".js_request_quote_shipping_qty_box").removeAttr('readonly'); 
+        $(".split-add-new-address").removeClass('hide');
+        $(".js_request_quote_shipping_qty_box").removeAttr('readonly');
         $(".js_request_quote_shipping_qty_box").css("cursor", "auto");
-        
+
     }
-    
+
     attachAutoCompleteEvent();
 });
 
@@ -1167,7 +1296,7 @@ $(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
     //  alert(transitTime)
      let shipCounter = thisObj.closest(".js_shipping_method_detail").data("shipping-counter")
      let parentObj = $(activetab+" #js_shipping_method_detail_"+shipCounter)
-     setdate(parentObj,activetab,transitTime)
+     setdate(shipCounter,parentObj,activetab,transitTime)
 })
 
 $(document).on("change",activetab + ".js_add_imprint_location_request_quote",function(){
@@ -1215,10 +1344,14 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
     let id = $(this).attr("id");
 
     if($(this).is(":checked")) {
-        var hexCodeBgColor = $(this).parent().css('background-color');
-        Quantity = '<div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_'+id+'"><div class="color-input" style="background-color:'+hexCodeBgColor+'" title="'+$(this).val()+'"><br></div><div class="selector-quantity js-quantity-section"><div class="selector-btn"><div class="sp-minus"><a data-multi="-1" href="javascript:void(0)" class="js-quantity-selector">-</a></div>'+
-        '<div class="selector-input"> <input type="text" value="0" class="selector-input js_request_quote_qty js_request_quote_nosize_qty" ></div><div class="sp-plus"><a data-multi="1" href="javascript:void(0)" class="js-quantity-selector">+</a></div></div><div class="clearfix"></div></div><a href="javascript:void(0)" data-toggle="tooltip" class="js_request_quote_qty_remove remove-qty" data-id="'+id+'">'+
-        '<i class="fa fa-trash-o"></i></a></div>';
+        // var hexCodeBgColor = $(this).parent().css('background-color');
+        let hexCodeBgColor = $(this).parent().attr("style");
+        // Quantity = '<div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_'+id+'"><div class="color-input" style="'+hexCodeBgColor+'" title="'+$(this).val()+'"><br></div><div class="selector-quantity js-quantity-section"><div class="selector-btn"><div class="sp-minus"><a data-multi="-1" href="javascript:void(0)" class="js-quantity-selector">-</a></div>'+
+        // '<div class="selector-input"> <input type="text" value="0" class="selector-input js_request_quote_qty js_request_quote_nosize_qty" ></div><div class="sp-plus"><a data-multi="1" href="javascript:void(0)" class="js-quantity-selector">+</a></div></div><div class="clearfix"></div></div><a href="javascript:void(0)" data-toggle="tooltip" class="js_request_quote_qty_remove remove-qty" data-id="'+id+'">'+
+        // '<i class="fa fa-trash-o"></i></a></div>';
+
+        Quantity = "<div class='quntity-count js_color_wise_qty' id='js_request_quote_qty_box_"+id+"'><div class='color-input' style='"+hexCodeBgColor+"' title='"+$(this).val()+"'><br></div><div class='selector-quantity js-quantity-section'><div class='selector-btn'><div class='sp-minus'><a data-multi='-1' href='javascript:void(0)' class='js-quantity-selector'>-</a></div>"+
+        "<div class='selector-input'> <input type='text' value='0' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
 
         $(this).prop("checked",true);
         if($(activetab).find("#js_request_quote_qty_box").html() !=""){
@@ -1232,12 +1365,31 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
 					$(activetab+' .js-quantity-section').css('height','');
 					$(activetab+' .js-quantity-section').parent().find('.js-add-class').removeClass('collapsed');
 				}
+
+        // START -> If address is visible, if user checks one more color, then add that color with address
+        let colorName = $(this).val();
+        let color_name = $(this).attr('id');
+        let hex_code = $(this).parent().attr("style");
+        let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+
+        let shippingAddressColorQtyAreaHtml = shippingAddressColorQtyAreaHtmlTemplate;
+        let replaceQtyHtml = '';
+        colorQtyHtml1 = shippingAddressColorQtyAreaHtml.replace(/#data.color#/g,colorName)
+        colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,hex_code)
+        colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,qty)
+        colorQtyHtml1 = colorQtyHtml1.replace(/#data.extraclass#/g,id)
+
+        $(activetab).find('.js_shipping_method_detail').each(function(i) {
+        	$(this).find(".js_shipping_qty_box_main").append(colorQtyHtml1);
+        });
+        // END -> If address is visible, if user checks one more color, then add that color with address
     }
     else{
         if($(activetab).find("#js_request_quote_qty_box_"+id).length > 0){
             $(activetab).find("#js_request_quote_qty_box_"+id).remove();
             $(this).prop("checked",false);
             $(activetab).find('.js_rq_shipping_quantity').filter('[data-color-id="'+id+'"]').remove();
+            $(activetab).find('.'+id).remove();
         }
     }
 });
@@ -1247,7 +1399,7 @@ $(document).on("click", activetab + ' .js_request_quote_qty_remove', function(){
     $(activetab).find("#"+colorCbId).prop("checked",false).trigger("change");
 });
 
-function setdate(parentObj,activetab,transitTime=0){
+function setdate(shipCounter,parentObj,activetab,transitTime=0){
   if($(activetab).find(parentObj).find('.shipping-datepicker').length > 0){
       let date = new Date();
       let startDate = date;
@@ -1267,8 +1419,8 @@ function setdate(parentObj,activetab,transitTime=0){
       }
       let setDate = new Date(endDate.getFullYear(),endDate.getMonth(),endDate.getDate())
       // let setActivetab = activetab.replace("#","")
-      $(activetab).find(parentObj).find(activetab+"_datetimepicker1").datepicker("setDate", setDate);
-      $(activetab).find(parentObj).find(activetab+"_datetimepicker1").datepicker('option', 'minDate', setDate);
+      $(activetab).find(parentObj).find(activetab+"_datetimepicker"+shipCounter).datepicker("setDate", setDate);
+      $(activetab).find(parentObj).find(activetab+"_datetimepicker"+shipCounter).datepicker('option', 'minDate', setDate);
 
   }
 }
@@ -1427,15 +1579,16 @@ function shippingValidation(fld,section,value){
   }else{
       let shippingArr = {}
       let arrKey = 1
+	  let splitShippingColorQuantity = {};
       $.each(value[fld].shipping_detail,function(key,shippingData){
           let section1 = section+'-'+arrKey
           let shippingVal = {}
-          if(shippingData.selected_address_id == undefined){
+          if(shippingData.selected_address_id == undefined && false){
               shippingVal['selected_address_id'] = "Please select shipping address."
               shippingArr[section1] = shippingVal
           }
 
-          else if(!isEmpty(shippingData.shipping_detail)){
+          else if(!isEmpty(shippingData.shipping_detail) && false){
               if(shippingData.shipping_detail.shipping_carrier == '') {
                   shippingVal['shipping_carrier'] = "Select shipping carrier."
                   shippingArr[section1] = shippingVal
@@ -1448,12 +1601,44 @@ function shippingValidation(fld,section,value){
                 shippingArr[section1] = shippingVal
               }
           }
+          else if(!isEmpty(shippingData.color_quantity)){
+        	  let splitShippingAddressQuantity = 0;
+    		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
+    			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
+    			  if(splitShippingColorQuantity[colorkey] != undefined)
+    			  {
+        			  splitShippingColorQuantity[colorkey] = parseInt(splitShippingColorQuantity[colorkey]) + parseInt(colorvalue)
+    			  }
+    			  else
+    			  {
+    				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
+    			  }
+    		  });
+    		  if(splitShippingAddressQuantity <= 0)
+    		  {
+                  shippingVal['shipping_method'] = "All colors cant not have 0 quantity in address."
+                  shippingArr[section1] = shippingVal
+    		  }
+    	  }
           arrKey = arrKey + 1
       })
+      if(value['color'] != undefined)
+      {
+    	  $.each(value['color'],function(colorkey,colorvalue){
+			  if(splitShippingColorQuantity[colorkey] != undefined)
+			  {
+    			 if(splitShippingColorQuantity[colorkey] != colorvalue)
+    			 {
+    				 let shippingLog = {}
+    			      shippingLog[fld] = "The total quantity of color "+colorkey+" for all split shipping address must be exact "+colorvalue;
+    			      errorLog[section] = shippingLog
+    			 }
+			  }
+		  });
+      }
 
       if(!isEmpty(shippingArr)) errorLog = shippingArr
   }
-
   return errorLog
 }
 
@@ -1487,12 +1672,36 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     });
 
     $('.js_shipping_qty_box_main .js_request_quote_shipping_qty_box').each(function(i) {
-        let colorName = $(this).closest('.js_rq_shipping_quantity').data('color-id');
-        $(this).val(colors_qty[colorName]);
+    	if(selectedShippingType == 'standard')
+    	{
+            let colorName = $(this).closest('.js_rq_shipping_quantity').data('color-id');
+            $(this).val(colors_qty[colorName]);    		
+    	}
     });
 });
 
-
+function attachDeleteEvent(){
+	if ($(activetab).find(".js-delete-address").length > 0){
+		$(activetab + ' .js-delete-address').unbind('click');
+		$(activetab + ' .js-delete-address').off('click');
+		$(document).on("click", activetab + ' .js-delete-address',function(){
+			let shippingCounter = $(activetab+" .js_request_quote_shipping_counter").val();
+			let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
+			
+			// First remove the current address
+			$(activetab + ' #js_shipping_method_detail_'+currentAddressCounter).remove();
+			
+			// Now shift the other addresses one step up
+			for(i=(currentAddressCounter+1);i<=shippingCounter;i++)
+			{
+				console.log($(activetab + ' #js_shipping_method_detail_'+i));
+				$(activetab + ' #js_shipping_method_detail_'+i).attr('id','js_shipping_method_detail_'+(i-1))
+				$(activetab + ' #js_shipping_method_detail_'+(i-1)).data('shipping-counter',(i-1))
+				$(activetab + ' #js_shipping_method_detail_'+(i-1)+' .option-head a' ).html('Shipping Address '+(i-1))
+			}
+		});
+	}	
+}
 function attachAutoCompleteEvent(){
 	 if ($(activetab).find(".auto_complete_shipping_email").length > 0)
 	    {
@@ -1519,13 +1728,12 @@ function attachAutoCompleteEvent(){
 	        }
 	      }).on('typeahead:selected', function (obj, datum) {
 	              showPageAjaxLoading();
-	          let counter = $(obj.currentTarget).data('counter');
+	          let counter = $(obj.currentTarget).closest('.js_shipping_method_detail').data('shipping-counter');
 	          let shippigCounter = counter;
 	          let addressBookId = datum.id;
 	          axios({
 	              method: 'GET',
 	              url: project_settings.address_book_api_url+'/'+addressBookId,
-	              headers: {'Authorization': project_settings.product_api_token},
 	            })
 	          .then(async response => {
 	              if(response.data != undefined ){
@@ -1559,16 +1767,16 @@ function attachAutoCompleteEvent(){
 	                  if(returnData.mobile != undefined ){
 	                    replaceAddressHtml += "M: "+returnData.mobile+"<br>";
 	                  }
-	                  replaceAddressHtml += '<input name="shippingAddressId_'+shippigCounter+'" id="shippingAddressId_'+shippigCounter+'" value="'+returnData.id+'" type="hidden">';
-	                  addressBookHtml = addressBookStaticHtml;
-	                  
+	                  replaceAddressHtml += '<input class="shippingAddressId" name="shippingAddressId" value="'+returnData.id+'" type="hidden">';
+	                  addressBookHtml = addressBookHtmlTemplate;
+
 	                  if(addressBookHtml.indexOf("#data.address#")!= -1){
 	                      addressBookHtml = addressBookHtml.replace(/#data.address#/g,replaceAddressHtml);
-	                      $(activetab).find("#js_shipping_addresses_"+shippigCounter+" p").html(addressBookHtml);
+	                      $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html(addressBookHtml);
 	                  }else{
-	                      $(activetab).find("#js_shipping_addresses_"+shippigCounter+" p").html(replaceAddressHtml)
+	                      $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html(replaceAddressHtml)
 	                  }
-	                  $(activetab).find("#js_shipping_addresses_"+shippigCounter).removeClass("hide");
+	                  $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses").removeClass("hide");
 	                // change
 	                    let shipping_details = get_product_details.shipping[0];
 	                    if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
@@ -1617,15 +1825,15 @@ function attachAutoCompleteEvent(){
 	                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").removeClass("hide");
 	                // END -Change
 
-	                  $(activetab).find("#js_shipping_addresses_"+shippigCounter).removeClass("hide");
-	                  $(activetab).find(".js_rq_ship_handdate").datepicker({
+	                  $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses").removeClass("hide");
+	                  $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").datepicker({
 	                      changeMonth: true,
 	                      changeYear: true,
 	                      format: 'mm/dd/yyyy',
 	                      minDate: new Date(),
 	                      onSelect: function(dateText, inst) {
 	                          let date = $(this).val();
-	                          $(activetab).find(".js_rq_ship_handdate").val(date);
+	                          $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").val(date);
 	                      }
 	                  });
 	              }

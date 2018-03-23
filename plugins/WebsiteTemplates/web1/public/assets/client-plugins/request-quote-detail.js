@@ -14,12 +14,16 @@ function detailRequestQuote() {
   var colorSectionHtml = $(".js-color-info");
   var shippingSectionHtml = $(".js-shipping-info").wrap('<p>');
 
+  let quote_api_url = project_settings.request_quote_api_url+'?id='+quoteId+'&user_id='+user_id+'&website_id='+website_settings['projectID']
+  if(admin_role_flag == 1){
+      quote_api_url = project_settings.request_quote_api_url+'?id='+quoteId+'&website_id='+website_settings['projectID']
+  }
   //console.log("url", callApiUrl+'?id='+quoteId+'&user_id='+user_id+'&website_id='+website_settings['projectID']);
   //console.log("HTML", quoteDetailHtml);
   showPageAjaxLoading()
   axios({
       method: 'GET',
-      url : callApiUrl+'?id='+quoteId+'&user_id='+user_id+'&website_id='+website_settings['projectID'],
+      url : quote_api_url,
     })
   .then(response_data => {
     let quote_data = response_data.data.data[0];
@@ -31,7 +35,7 @@ function detailRequestQuote() {
 
       // Start - Color Information
       colorRaw = '';
-      if(typeof quote_data.color != "undefined" && quote_data.color.length>0) {
+      if(quote_data.color!='') {
         for (var color_quantity in quote_data.color) {
           var colorSection = colorSectionHtml.html();
           colorSection = colorSection.replace("#data.color#",color_quantity)
@@ -39,6 +43,7 @@ function detailRequestQuote() {
           colorRaw += colorSection;
         }
       }
+
       quoteDetailHtml.find(".js-color-info").html(colorRaw)
       // END - Color Information
 
@@ -118,11 +123,11 @@ function detailRequestQuote() {
     // My acccount Info
     var myAccountInfo = quote_data.user_info;
 
-    var fullname = (myAccountInfo['fullname'])? myAccountInfo['fullname'] : ''; 
-    var firstname = (myAccountInfo['firstname'])? myAccountInfo['firstname'] : ''; 
-    var lastname = (myAccountInfo['lastname']) ? myAccountInfo['lastname'] : ''; 
-    var address1 = (myAccountInfo['address1']) ? myAccountInfo['address1'] : ''; 
-    var address2 = (myAccountInfo['address2']) ? myAccountInfo['address2'] : ''; 
+    var fullname = (myAccountInfo['fullname'])? myAccountInfo['fullname'] : '';
+    var firstname = (myAccountInfo['firstname'])? myAccountInfo['firstname'] : '';
+    var lastname = (myAccountInfo['lastname']) ? myAccountInfo['lastname'] : '';
+    var address1 = (myAccountInfo['address1']) ? myAccountInfo['address1'] : '';
+    var address2 = (myAccountInfo['address2']) ? myAccountInfo['address2'] : '';
     var country = (myAccountInfo['country']) ? myAccountInfo['country'] : '';
     var state = (myAccountInfo['state']) ? myAccountInfo['state']  : '';
     var city = (myAccountInfo['city']) ? myAccountInfo['city'] : '';

@@ -46,8 +46,9 @@ body {
                 </li>
                 <li><a class="ui-link" href="changePassword.html"><i class="fa fa-lock"></i>Change Password</a>
                 </li>
-                <li><a class="ui-link" href="myOrderList.html"><i class="fa fa-file-text"></i>My Orders</a>
+                <li><a class="ui-link js_my_order" href="myOrderList.html"><i class="fa fa-file-text"></i>My Orders</a>
                 </li>
+                <li><a class="ui-link js_my_inquiry" href="myInquiriesList.html"><i class="fa fa-share-alt"></i>My Sent Inquiries</a></li>
                 <li class="hide"><a class="ui-link" href="#"><i class="fa fa-truck"></i>Track My Orders</a>
                 </li>
                 <li class="hide"><a class="ui-link" href="#"><i class="fa fa-heart"></i>My Wishlist</a>

@@ -34,15 +34,15 @@ body {
 
 <table class="js-order-item-subtotal" width="100%">
     <tr class="order-item-subtotal">
-        <td>Total : $ #data.total#</td>
-        <td>Additional Charges : $ <b class="js-product_additional_charge">#data.charges#</b>
+        <td>Total : $#data.total#</td>
+        <td>Additional Charges : $<b class="js-product_additional_charge">#data.charges#</b>
         </td>
-        <td>Shipping Charge : $ <b class="js-product_total_shipping_charge">#data.total_shipping_charges#</b>
+        <td>Shipping Charge : $<b class="js-product_total_shipping_charge">#data.total_shipping_charges#</b>
         </td>
-        <td>Tax : $ #data.tax#</td>
+        <td>Tax : $#data.tax#</td>
     </tr>
     <tr class="order-subtotal">
-        <td class="text-right" colspan="6">Sub Total : <span>$ #data.subtotal#</span>
+        <td class="text-right" colspan="6">Sub Total : <span>$#data.subtotal#</span>
         </td>
     </tr>
 </table>

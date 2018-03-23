@@ -77,52 +77,52 @@ function showCart()
                 // rawData = data.hits.hits;
                 // productData = rawData;
 
-                var listHtmlReplace = listHtml.replace('#data.image#',project_settings.product_api_image_url+productData.default_image);
+                let listHtmlReplace = listHtml.replace('#data.image#',project_settings.product_api_image_url+productData.default_image);
                 // let detailLink = project_settings.base_url+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productData[0]._id;
                 let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+response_data[key].product_id;
-                var listHtmlReplace = listHtmlReplace.replace(/#data.product_link#/g,detailLink);
-                var listHtmlReplace = listHtmlReplace.replace(/#data.id#/g,response_data[key].id);
-                var listHtmlReplace = listHtmlReplace.replace(/#data.product_id#/g,response_data[key].id);
-                var listHtmlReplace = listHtmlReplace.replace('#data.product_name#',productData.product_name);
-                var listHtmlReplace = listHtmlReplace.replace('#data.sku#',productData.sku);
-                var listHtmlReplace = listHtmlReplace.replace('#data.price#',parseFloat(productData.price_1).toFixed(project_settings.price_decimal));
-                var listHtmlReplace = listHtmlReplace.replace('#data.currency#',productData.currency);
+                listHtmlReplace = listHtmlReplace.replace(/#data.product_link#/g,detailLink);
+                listHtmlReplace = listHtmlReplace.replace(/#data.id#/g,response_data[key].id);
+                listHtmlReplace = listHtmlReplace.replace(/#data.product_id#/g,response_data[key].id);
+                listHtmlReplace = listHtmlReplace.replace('#data.product_name#',productData.product_name);
+                listHtmlReplace = listHtmlReplace.replace('#data.sku#',productData.sku);
+                listHtmlReplace = listHtmlReplace.replace('#data.price#',parseFloat(productData.price_1).toFixed(project_settings.price_decimal));
+                listHtmlReplace = listHtmlReplace.replace('#data.currency#',productData.currency);
 
-                var listHtmlReplace = listHtmlReplace.replace('#data.description#',productData.description);
-                var listHtmlReplace = listHtmlReplace.replace('#data.order_type#',response_data[key].order_type);
+                listHtmlReplace = listHtmlReplace.replace('#data.description#',productData.description);
+                listHtmlReplace = listHtmlReplace.replace('#data.order_type#',response_data[key].order_type);
 
                 if(typeof response_data[key].special_instruction != "undefined" && response_data[key].special_instruction !='')
                 {
-                  var listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#',"<div class='estimate-row heading'><span>Special Instructions</span></div><div><p>#data.special_instruction#</p></div>");
+                  listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#',"<div class='estimate-row heading'><span>Special Instructions</span></div><div><p>#data.special_instruction#</p></div>");
                 }
                 let special_instruction = nl2br(response_data[key].special_instruction);
-                var listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#',special_instruction);
+                listHtmlReplace = listHtmlReplace.replace('#data.special_instruction#',special_instruction);
 
-                var listHtmlReplace = listHtmlReplace.replace('#data.quantitye#',response_data[key].total_qty);
-                var listHtmlReplace = listHtmlReplace.replace('#data.unit_price#',parseFloat(response_data[key].unit_price).toFixed(project_settings.price_decimal));
+                listHtmlReplace = listHtmlReplace.replace('#data.quantitye#',response_data[key].total_qty);
+                listHtmlReplace = listHtmlReplace.replace('#data.unit_price#',parseFloat(response_data[key].unit_price).toFixed(project_settings.price_decimal));
                 var total = parseFloat(response_data[key].total_qty)*parseFloat(response_data[key].unit_price);
                 total_display = total.toFixed(project_settings.price_decimal);
-                var listHtmlReplace = listHtmlReplace.replace(/#data.total#/g, total_display);
-                var listHtmlReplace = listHtmlReplace.replace(/#data.tax#/g,tax.toFixed(project_settings.price_decimal));
+                listHtmlReplace = listHtmlReplace.replace(/#data.total#/g, total_display);
+                listHtmlReplace = listHtmlReplace.replace(/#data.tax#/g,tax.toFixed(project_settings.price_decimal));
 
                 let additional_charges_list = '';
                 if(typeof response_data[key].charges != "undefined")
                 {
                   for(let charge_list in response_data[key].charges)
                   {
-                    additional_charges_list += capitalize(charge_list)+": $ "+response_data[key].charges[charge_list];
+                    additional_charges_list += capitalize(charge_list)+": $"+response_data[key].charges[charge_list];
                     charges = charges+parseFloat(response_data[key].charges[charge_list]);
                   }
                 }
 
                 if(additional_charges_list != '') {
-                  var listHtmlReplace = listHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
+                  listHtmlReplace = listHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
                 }
                 else {
-                  var listHtmlReplace = listHtmlReplace.replace(/#data.additional_charges_list#/g,"N/A");
+                  listHtmlReplace = listHtmlReplace.replace(/#data.additional_charges_list#/g,"N/A");
                 }
                 
-                var listHtmlReplace = listHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
+                listHtmlReplace = listHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
 
 
                 //change // var listHtmlReplace = listHtmlReplace.replace("#data.shipping_charges#",shipping_charges);
@@ -161,13 +161,13 @@ function showCart()
 
                 if(typeof response_data[key].shipping_method.shipping_type != "undefined")
                 {
-                  var listHtmlReplace = listHtmlReplace.replace('#data.shipping_type#',response_data[key].shipping_method.shipping_type);
+                  listHtmlReplace = listHtmlReplace.replace('#data.shipping_type#',response_data[key].shipping_method.shipping_type);
                 }
                 else{
-                  var listHtmlReplace = listHtmlReplace.replace('#data.shipping_type#',"-");
+                  listHtmlReplace = listHtmlReplace.replace('#data.shipping_type#',"-");
                 }
 
-                var listHtmlReplace = listHtmlReplace.replace('#data.cart_id#',response_data[key].id);
+                listHtmlReplace = listHtmlReplace.replace('#data.cart_id#',response_data[key].id);
 
                 // Shipping Section
                 if(typeof response_data[key].shipping_method != "undefined")
@@ -181,7 +181,7 @@ function showCart()
                     var shippingKeyCount = parseInt(shippingKey)+1;
                     var shipping_info = shipping_detail[shippingKey];
                     var quantityHtml = '<table class="size-quantity-table">';
-
+                    quantityHtml += '<thead><tr><th>Color</th><th class="border-right-none">Quantity</th></tr></thead>'; 
                     for (var color_quantity in shipping_info.color_quantity) {
                       quantityHtml += "<tr class='grey-bottom-border'>";
                       quantityHtml += "<td>"+color_quantity+"</td>";
@@ -254,8 +254,8 @@ function showCart()
                 // END - Shipping Section
                 var sub_total = total + charges + tax + product_shipping_charges;
                 sub_total_display = sub_total.toFixed(project_settings.price_decimal);
-                var listHtmlReplace = listHtmlReplace.replace(/#data.subtotal#/g, sub_total_display);
-                var listHtmlReplace = listHtmlReplace.replace("#data.total_shipping_charges#", product_shipping_charges.toFixed(project_settings.price_decimal));
+                listHtmlReplace = listHtmlReplace.replace(/#data.subtotal#/g, sub_total_display);
+                listHtmlReplace = listHtmlReplace.replace("#data.total_shipping_charges#", product_shipping_charges.toFixed(project_settings.price_decimal));
 
                 product_total = product_total + total;
                 product_additional_charge_total = product_additional_charge_total + charges;
@@ -278,11 +278,11 @@ function showCart()
                                $.each(element.price_range,function(index,element2){
                                  // console.log("in each condition");
                                  if(element2.qty.lte != undefined){
-                                    priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content">' + '$ ' + element2.price + '</div></div>';
+                                    priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content">' + '$' + element2.price + '</div></div>';
                                   }
                                   else
                                   {
-                                    priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content">' + '$ ' + element2.price + '</div></div>';
+                                    priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content">' + '$' + element2.price + '</div></div>';
                                   }
                                  });
                                $(".js-product-"+response_data[key].id).find(".quantity-table-col").html(priceRang);

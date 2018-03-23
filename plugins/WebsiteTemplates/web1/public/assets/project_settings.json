@@ -25,7 +25,7 @@
         "projcet_configuration_api_url": "https://api.flowzqa.tk/serverapi/project-configuration",
         "myorders_api_url": "https://api.flowzqa.tk/serverapi/myOrders",
         "country_data": [{"id": 233,"name": "USA","short_name": "US"},{"id": 105,"name": "India","short_name": "IN"}],
-        "city_country_state_api": "https://api.flowzqa.tk/serverapi/change-city-state-country",
+        "city_country_state_api": "https://api.flowzqa.tk/serverapi/city-state-country-list",
         "color_table_api_url": "https://api.flowzqa.tk/serverapi/color-table",
         "color_swatch_filter_api": "https://api.flowzqa.tk/pdmnew/filters/",
         "shipping_estimator_api_url": "https://api.flowzqa.tk/serverapi/shipping-estimator",
