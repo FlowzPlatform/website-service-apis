@@ -315,7 +315,7 @@ function showOrders()
         }
 
         finalHtml1 = orderInfoReplace
-        finalHtml1 += "<tr class='track-order-view-block click-track-order js-view-order-detail' id='displayblock-"+response_data1.invoice_number+"' style='display:none;'><td colspan='"+view_colspan+"'>";
+        finalHtml1 += "<tr class='track-order-view-block click-track-order js-view-order-detail' id='displayblock-"+response_data1.id+"' style='display:none;'><td colspan='"+view_colspan+"'>";
         finalHtml1 += billingHtmlReplace
         finalHtml1 += finalHtml
         finalHtml1 += orderTotalSectionReplace
@@ -333,7 +333,7 @@ function showOrders()
         // return false;
         let sectionCount = 0;
 
-        $('#displayblock-'+response_data1.invoice_number).find( ".js-section-number" ).each(function( index ) {
+        $('#displayblock-'+response_data1.id).find( ".js-section-number" ).each(function( index ) {
           sectionCount = sectionCount + 1;
           $(this).html(sectionCount);
         });

@@ -2,11 +2,23 @@ if (user_id == null ) {
   window.location = 'login.html';
 }
 
-$('.fullname-word').text(user_details.fullname);
+//$('.fullname-word').text(user_details.fullname);
+let userName = 'user'
+if(admin_role_flag == 1){
+   userName = 'Admin'
+}
 
+if(user_details.fullname != undefined ) userName = user_details.fullname
+$('.fullname-word').text(userName);
+
+
+let orderApiUrl = project_settings.myorders_api_url+'?user_id='+user_id+"&website_id="+website_settings['projectID']
+if( admin_role_flag == 1 ){
+  orderApiUrl = project_settings.myorders_api_url+"?website_id="+website_settings['projectID']
+}
 $.ajax({
 	type : 'GET',
-	url : project_settings.myorders_api_url+'?user_id='+user_id+'&website_id='+website_settings['projectID'],
+	url : orderApiUrl,
 	success : function(response_data) {
 		if (response_data!= "") {
 			if (typeof response_data.total !== 'undefined') {

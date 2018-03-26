@@ -133,6 +133,11 @@ body {
                                 <div class="js-shipping-info">
                                     <div class="row">
 										<h3>Shipping Method : #data.shippingMethod#</h3>
+										<div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="estimate-row">
+                                                <div>#data.address_book#</div>
+                                            </div>
+                                        </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <div class="estimate-row">Shipping Charge: <span>#data.shippingCharge#</span>
                                             </div>
