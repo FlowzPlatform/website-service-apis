@@ -59,7 +59,7 @@ Y({
       wishListRegister: 'Array',
       compareListRegister: 'Array'
   }
-  }).then(function (y) {
+}).then(function (y) {
   window.yList = y
   // whenever content changes, make sure to reflect the changes in the DOM
   y.share.wishList.observe(function (event) {
@@ -171,7 +171,7 @@ Y({
     init();
     if(user_id != null) {
       $('.fullname-word').text(user_details.fullname);
-      if($(".my-account-left").length > 0){
+      if($(".my-account-left").length > 0 && admin_role_flag == 1 ){
           $(".my-account-left .js_my_inquiry").html('<i class="fa fa-share-alt"></i> Received Inquiries List')
           $(".my-account-left .js_my_order").html('<i class="fa fa-file-text"></i> Received Order List')
       }
@@ -233,13 +233,13 @@ let admin_role_flag = 0;
 
 if (user_id != null ) {
       if(user_details.package != undefined && !isEmpty(user_details.package)){
-          console.log("user_details",user_details);
+          //console.log("user_details",user_details);
           $.ajax({
             'async': false,
             'type': "GET",
             'url': project_settings.projcet_configuration_api_url+"/"+website_settings['projectID'],
             'success': function (response) {
-                console.log("website response",response);
+                // console.log("website response",response);
                 //console.log("subscriptionId",response.subscriptionId);
                 if(user_details.package[response.subscriptionId] != undefined && user_details.package[response.subscriptionId].role == "admin"){
                       admin_role_flag = 1;
@@ -303,12 +303,14 @@ $(document).on("click", ".smooth-scroll", function(event){event.preventDefault()
 
 
 var init = function() {
+
   if(user_details != null)
   {
     if($("#myWishList").length > 0 || $("#myCompareList").length > 0)
     {
       showPageAjaxLoading();
     }
+
     setTimeout(function()
     {
       let values = window.yList.share.wishListRegister._content;
@@ -402,10 +404,15 @@ var init = function() {
   }
 
   let type;
+  //console.log("user_details",user_details);
   // login-logout start
   if(user_details != null){
     $(".logout-show").removeClass('hide');
     let userName = 'user'
+    if(admin_role_flag == 1){
+       userName = 'Admin'
+    }
+
     if(user_details.fullname != undefined ) userName = user_details.fullname
     $('.username-text').text('welcome '+userName);
   }
@@ -510,50 +517,6 @@ var init = function() {
     }
     return false;
   })
-
-
-  // $('input[name="search"]').autocomplete({
-  //     source: function( request, response ) {
-  //       var settings = {
-  //             "async": true,
-  //             "crossDomain": true,
-  //             "url": project_settings.search_api_url,
-  //             "method": "POST",
-  //             "headers": {
-  //               "authorization": project_settings.search_api_auth_token,
-  //               "content-type": "application/json",
-  //               "cache-control": "no-cache",
-  //               "postman-token": "0fe82014-49ea-eca8-1432-1f3b9fffc910"
-  //             },
-  //             "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"product_name\": \" "+ request.term +" \"\n        }\n      }\n    }\n  }\n}\u0001"
-  //           }
-  //
-  //           $.ajax(settings).done(function (data) {
-  //             //console.log(data);
-  //             response(data.hits.hits)
-  //           });
-  //
-  //     },
-  //     select: function( event, ui ) {
-  //       // console.log('ui.item', ui.item._source.product_name)
-  //       $('input[name="search"]').val(ui.item._source.product_name);
-  //       return false;
-  //     }
-  //   }).autocomplete("instance" )._renderItem = function( ul, item ) {
-  //     	return $( "<li>" )
-  //         .append( "<div>" + item._source.product_name + "</div>" )
-  //         .appendTo( ul );
-  //   };
-  //
-  //   $('.header-search-col').find('.btn-search').click(function(){
-  //     if($.trim($('input[name="search"]').val()) != '') {
-  //              window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + $('input[name="search"]').val()
-  //     }
-  //     else {
-  //       window.location.href = website_settings.BaseURL+'search.html';
-  //     }
-  //     return false;
-  //   })
 }
 
 //add in to Compare, Wishlist and Cart
