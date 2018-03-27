@@ -59,6 +59,14 @@ const branchList = require('./branch-list/branch-list.service.js');
 
 
 
+const bannertype = require('./bannertype/bannertype.service.js');
+
+
+
+const banners = require('./banners/banners.service.js');
+
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -101,4 +109,6 @@ module.exports = function () {
   app.configure(configdataHistory);
   app.configure(subscriptionWebsites);
   app.configure(branchList);
+  app.configure(bannertype);
+  app.configure(banners);
 };
