@@ -291,7 +291,6 @@ async function fetchDefaultBillingInfo(id) {
     	await axios({
     			method: 'GET',
     			url: project_settings.address_book_api_url+'?address_type=billing&website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&is_default=1',
-    			headers: {'Authorization': project_settings.product_api_token},
     		})
     	.then(async response => {
 					let billing_address = {}

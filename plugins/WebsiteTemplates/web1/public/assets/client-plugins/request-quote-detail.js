@@ -25,7 +25,7 @@ function detailRequestQuote() {
       method: 'GET',
       url : quote_api_url,
     })
-  .then(response_data => {
+  .then(async response_data => {
     let quote_data = response_data.data.data[0];
     let productData = quote_data.product_description;
 
@@ -53,11 +53,28 @@ function detailRequestQuote() {
       {
         var shipping_detail = quote_data.shipping_method.shipping_detail;
 
+        console.log(quote_data);
         for(var shippingKey in shipping_detail)
         {
           var shippingHtml1 = shippingSectionHtml.html();
           var shipping_info = shipping_detail[shippingKey];
           var shipping_details = shipping_info.shipping_detail;
+          var selected_address_id = shipping_info.selected_address_id;
+
+          var quantityHtml = '<table class="size-quantity-table" style="margin-bottom:0px;">';
+          for (var color_quantity in shipping_info.color_quantity) {
+            quantityHtml += "<tr>";
+            quantityHtml += "<td>"+color_quantity+": </td>";
+            quantityHtml += "<td>"+shipping_info.color_quantity[color_quantity]+"</td>";
+            quantityHtml += "</tr>";
+          }
+
+          quantityHtml += "</table>";
+
+          shippingHtml1 = shippingHtml1.replace("#data.color_quantity#",quantityHtml)
+          
+          let replaceAddressHtml = await addressBookHtml(selected_address_id)
+          shippingHtml1 = shippingHtml1.replace("#data.address_book#",replaceAddressHtml)
 
           shippingHtml1 = shippingHtml1.replace("#data.shippingCarrier#",shipping_details.shipping_carrier)
           shippingHtml1 = shippingHtml1.replace("#data.shippingMethod#",shipping_details.shipping_method)

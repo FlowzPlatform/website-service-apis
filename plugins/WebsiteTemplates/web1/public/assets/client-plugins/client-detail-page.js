@@ -47,6 +47,8 @@ $(document).ready( async function(){
       return false;
   }
 
+  $('#js-request-info .js-section-number').addClass('no-tag');
+
   let value_split = [];
   let productData = {};
 
@@ -487,15 +489,16 @@ $(document).ready( async function(){
        listHtmlPrintPosColor1 = listHtmlPrintPosColor1.replace(/#data.printMethod#/g,dataAttributes.dropval);
        listHtmlPrintPosColor1 = listHtmlPrintPosColor1.replace(/#data.maxImprintColor#/g,dataAttributes.maxImprintColor);
        productHtmlPrintPosColor += listHtmlPrintPosColor1;
-        if(dataAttributes.maxImprintColor > 0){
-          for(let i=1;i<=dataAttributes.maxImprintColor;i++){
-             imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+'Color</a></li>'
-          }
-          parentObj.find(".imprint-color-select").html(productHtmlPrintPosColor);
-          parentObj.find(".js_set_selected_value_col").html(imprintColor);
-          parentObj.find('.imprint-color-select').show();
-        }else{
-          parentObj.find(".imprint-color-select").html(productHtmlPrintPosColor);
+        if(dataAttributes.maxImprintColor > 0) {
+            for(let i=1;i<=dataAttributes.maxImprintColor;i++){
+                imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+'Color</a></li>'
+            }
+            parentObj.find(".imprint-color-select").html(productHtmlPrintPosColor);
+            parentObj.find(".js_set_selected_value_col").html(imprintColor);
+            parentObj.find('.imprint-color-select').show();
+        }
+        else {
+            parentObj.find(".imprint-color-select").html(productHtmlPrintPosColor);
         }
         parentObj.append("<input type='hidden' id='js_max_selection_color_"+dataAttributes.printpos+"' value='"+dataAttributes.maxImprintColor+"'>")
      });
@@ -640,11 +643,21 @@ $(document).ready( async function(){
               // console.log("validateData",validateData);
               $(activetab+' .js-section-errors').remove();
               $.each(validateData.error_data,function(section,flds){
-                  if($(activetab+' .js-'+section+'-section')){
+            	  let jquery_section = ' .js-'+section+'-section';
+            	  if(section.indexOf('shippingMethod-') >= 0)
+            	  {
+            		  let counter = section.replace('shippingMethod-','');
+            		  jquery_section = ' #js_shipping_method_detail_'+counter+' .js-shippingMethod-section';
+            	  }
+            	  else if(section.indexOf('shippingMethod') >= 0)
+            	  {
+            		  jquery_section = ' .js-shippingMethod-section:first';
+            	  }
+                  if($(activetab+jquery_section)){
                     //console.log("flds",flds);
 //                    console.log("section",section);
-                      if( $(activetab+' .js-'+section+'-section').parents('.product-section-box').find('.collapse') ){
-                          $(activetab+' .js-'+section+'-section').parents('.product-section-box').find('.collapse').addClass('in');
+                      if( $(activetab+jquery_section).parents('.product-section-box').find('.collapse') ){
+                          $(activetab+jquery_section).parents('.product-section-box').find('.collapse').addClass('in');
                       }
                       // console.log("section",section);
                       // console.log("flds",flds);
@@ -655,7 +668,7 @@ $(document).ready( async function(){
                               field = replaceWithUnderscore(field)
                               $(activetab+' .js-add-class').addClass('collapsed');
                               let setActivetab = activetab.replace(/\#/g, '');
-                              $(activetab+' #js_request_quote_qty_box_'+setActivetab+'_'+field+' .js-'+section+'-section').append('<div class="red js-section-errors">'+value+'</div>');
+                              $(activetab+' #js_request_quote_qty_box_'+setActivetab+'_'+field+jquery_section).append('<div class="red js-section-errors">'+value+'</div>');
                             });
                           }else{
                             $("#"+setActivetab+"-Quantity-block").append('<div class="red js-section-errors">'+flds+'</div>')
@@ -664,7 +677,7 @@ $(document).ready( async function(){
                           break;
                         default:
                           $.each(flds, function( field, value) {
-                            $(activetab+' .js-'+section+'-section').append('<div class="red js-section-errors clearfix">'+value+'</div>');
+                            $(activetab+jquery_section).append('<div class="red js-section-errors clearfix">'+value+'</div>');
                           });
                       }
                   }
@@ -1107,7 +1120,7 @@ $(document).on("click",".split-add-new-address",function(){
     $(activetab+" .js_request_quote_shipping_counter").val(shippigCounter);
     
     // As this is default address, we should not have delete button for default address    
-    shippingAddressHml = shippingAddressHml.replace(/#data.deletebutton#/g,'<span class="js-delete-address">Delete</span>');
+    shippingAddressHml = shippingAddressHml.replace(/#data.deletebutton#/g,'<span class="js-delete-address css-delete-address pull-right">Delete</span>');
     
     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
     $(activetab).find(".shipping-method #js_shipping_method").append(shippingAddressHml);
@@ -1164,8 +1177,8 @@ $(document).on("click",".split-add-new-address",function(){
     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker"+shippigCounter);
 
     $(".js_request_quote_shipping_qty_box").removeAttr('readonly');
-    attachDeleteEvent();
-    attachAutoCompleteEvent();
+    attachDeleteEvent("#js_shipping_method_detail_"+shippigCounter);
+    attachAutoCompleteEvent("#js_shipping_method_detail_"+shippigCounter);
 });
 
 $(document).on("change",activetab+" .js_select_shipping_type",function(){
@@ -1177,12 +1190,12 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
 
     if($(this).val() == 'standard')
     {
-        $(".split-add-new-address").addClass('hide');
+        $(activetab + " .split-add-new-address").addClass('hide');
         selectedShippingType = 'standard';
     }
     else if($(this).val() == 'split')
     {
-        $(".split-add-new-address").removeClass('hide');
+        $(activetab + " .split-add-new-address").removeClass('hide');
         selectedShippingType = 'split';
     }
 
@@ -1269,19 +1282,19 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
 
     if($(this).val() == 'standard')
     {
-        $(".split-add-new-address").addClass('hide');
-        $(".js_request_quote_shipping_qty_box").attr('readonly');
-        $(".js_request_quote_shipping_qty_box").css("cursor", "not-allowed");
+        $(activetab + " .split-add-new-address").addClass('hide');
+        $(activetab + " .js_request_quote_shipping_qty_box").attr('readonly');
+        $(activetab + " .js_request_quote_shipping_qty_box").css("cursor", "not-allowed");
     }
     else if($(this).val() == 'split')
     {
-        $(".split-add-new-address").removeClass('hide');
-        $(".js_request_quote_shipping_qty_box").removeAttr('readonly');
-        $(".js_request_quote_shipping_qty_box").css("cursor", "auto");
+        $(activetab + " .split-add-new-address").removeClass('hide');
+        $(activetab + " .js_request_quote_shipping_qty_box").removeAttr('readonly');
+        $(activetab + " .js_request_quote_shipping_qty_box").css("cursor", "auto");
 
     }
 
-    attachAutoCompleteEvent();
+    attachAutoCompleteEvent("#js_shipping_method_detail_"+shippigCounter);
 });
 
 // Auto sugession for search of addressbook
@@ -1381,6 +1394,10 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
 
         $(activetab).find('.js_shipping_method_detail').each(function(i) {
         	$(this).find(".js_shipping_qty_box_main").append(colorQtyHtml1);
+        	if(selectedShippingType == 'split')
+        	{
+        		$(this).find(".js_request_quote_shipping_qty_box").removeAttr('readonly');        		
+        	}
         });
         // END -> If address is visible, if user checks one more color, then add that color with address
     }
@@ -1570,6 +1587,12 @@ function printPosValidation(fld,section,value){
 }
 
 function shippingValidation(fld,section,value){
+	/*console.log('FLD');
+	console.log(fld);
+	console.log('SECTION');
+	console.log(section);
+	console.log('VALUE');
+	console.log(value);*/
   let errorLog = {}
   // console.log("value[fld]",value[fld]);
   if(isEmpty(value[fld])){
@@ -1582,46 +1605,45 @@ function shippingValidation(fld,section,value){
 	  let splitShippingColorQuantity = {};
       $.each(value[fld].shipping_detail,function(key,shippingData){
           let section1 = section+'-'+arrKey
+          
+          let splitShippingAddressQuantity = 0;
+		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
+			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
+			  if(splitShippingColorQuantity[colorkey] != undefined)
+			  {
+    			  splitShippingColorQuantity[colorkey] = parseInt(splitShippingColorQuantity[colorkey]) + parseInt(colorvalue)
+			  }
+			  else
+			  {
+				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
+			  }
+		  });
+		  
           let shippingVal = {}
-          if(shippingData.selected_address_id == undefined && false){
+          if(shippingData.selected_address_id == undefined){
               shippingVal['selected_address_id'] = "Please select shipping address."
               shippingArr[section1] = shippingVal
           }
-
-          else if(!isEmpty(shippingData.shipping_detail) && false){
-              if(shippingData.shipping_detail.shipping_carrier == '') {
+          else if(!isEmpty(shippingData.color_quantity) && splitShippingAddressQuantity <= 0){
+        	  shippingVal['shipping_method'] = "All colors cant not have 0 quantity in address."
+              shippingArr[section1] = shippingVal
+    	  }
+          else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
                   shippingVal['shipping_carrier'] = "Select shipping carrier."
                   shippingArr[section1] = shippingVal
-              }
-              if(shippingData.shipping_detail.shipping_method == '') {
-                shippingVal['shipping_method'] = "Select shipping method."
-                shippingArr[section1] = shippingVal
-              }else if (shippingData.shipping_detail.shipping_charge == '') {
-                shippingVal['shipping_method'] = "Select shipping method."
-                shippingArr[section1] = shippingVal
-              }
           }
-          else if(!isEmpty(shippingData.color_quantity)){
-        	  let splitShippingAddressQuantity = 0;
-    		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
-    			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
-    			  if(splitShippingColorQuantity[colorkey] != undefined)
-    			  {
-        			  splitShippingColorQuantity[colorkey] = parseInt(splitShippingColorQuantity[colorkey]) + parseInt(colorvalue)
-    			  }
-    			  else
-    			  {
-    				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
-    			  }
-    		  });
-    		  if(splitShippingAddressQuantity <= 0)
-    		  {
-                  shippingVal['shipping_method'] = "All colors cant not have 0 quantity in address."
-                  shippingArr[section1] = shippingVal
-    		  }
-    	  }
+          else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_method == '') {
+                shippingVal['shipping_method'] = "Select shipping method."
+                shippingArr[section1] = shippingVal
+              }
+          else if (shippingData.shipping_detail.shipping_charge == '') {
+                shippingVal['shipping_method'] = "Select shipping method."
+                shippingArr[section1] = shippingVal
+              }
           arrKey = arrKey + 1
       })
+      console.log(value['color']);
+      console.log(splitShippingColorQuantity);
       if(value['color'] != undefined)
       {
     	  $.each(value['color'],function(colorkey,colorvalue){
@@ -1680,33 +1702,41 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     });
 });
 
-function attachDeleteEvent(){
-	if ($(activetab).find(".js-delete-address").length > 0){
-		$(activetab + ' .js-delete-address').unbind('click');
-		$(activetab + ' .js-delete-address').off('click');
+function attachDeleteEvent(parentDiv){
+	if ($(activetab).find(parentDiv + " .js-delete-address").length > 0){
+		
+		// Turn off old events which are attached
+		$(document).off("click", activetab + ' .js-delete-address');
+		
+		// Turn on new events
 		$(document).on("click", activetab + ' .js-delete-address',function(){
-			let shippingCounter = $(activetab+" .js_request_quote_shipping_counter").val();
-			let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
 			
-			// First remove the current address
-			$(activetab + ' #js_shipping_method_detail_'+currentAddressCounter).remove();
-			
-			// Now shift the other addresses one step up
-			for(i=(currentAddressCounter+1);i<=shippingCounter;i++)
-			{
-				console.log($(activetab + ' #js_shipping_method_detail_'+i));
-				$(activetab + ' #js_shipping_method_detail_'+i).attr('id','js_shipping_method_detail_'+(i-1))
-				$(activetab + ' #js_shipping_method_detail_'+(i-1)).data('shipping-counter',(i-1))
-				$(activetab + ' #js_shipping_method_detail_'+(i-1)+' .option-head a' ).html('Shipping Address '+(i-1))
+			let deleteConfirm = confirm("Are you sure you want to remove this address?");
+			if(deleteConfirm == true)
+			{				
+				let shippingCounter = $(activetab+" .js_request_quote_shipping_counter").val();
+				let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
+				
+				// First remove the current address
+				$(activetab + ' #js_shipping_method_detail_'+currentAddressCounter).remove();
+				
+				// Now shift the other addresses one step up
+				for(i=(currentAddressCounter+1);i<=shippingCounter;i++)
+				{
+					$(activetab + ' #js_shipping_method_detail_'+i).attr('id','js_shipping_method_detail_'+(i-1))
+					$(activetab + ' #js_shipping_method_detail_'+(i-1)).attr('data-shipping-counter',(i-1))
+					$(activetab + ' #js_shipping_method_detail_'+(i-1)+' .option-head a:first' ).html('Shipping Address '+(i-1))
+				}
+				$(activetab+" .js_request_quote_shipping_counter").val((shippigCounter-1));
 			}
 		});
 	}	
 }
-function attachAutoCompleteEvent(){
-	 if ($(activetab).find(".auto_complete_shipping_email").length > 0)
+function attachAutoCompleteEvent(parentDiv){
+	 if ($(activetab).find(parentDiv + " .auto_complete_shipping_email").length > 0)
 	    {
 	      var ShipAddUrl = project_settings.address_book_api_url+'?address_type=shipping&website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1';
-	      $(activetab).find(".auto_complete_shipping_email").typeahead({
+	      $(activetab).find(parentDiv + " .auto_complete_shipping_email").typeahead({
 	        name : 'sear',
 	        display:'value',
 	        minLength: 2,

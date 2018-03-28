@@ -90,6 +90,14 @@ body {
 	text-align: center;
 	cursor:pointer;
 }
+.css-delete-address{
+	cursor:pointer;
+}
+.css-delete-address:hover{
+	cursor:pointer;
+	color:red;
+	border-bottom:1px solid #ff0000;
+}
 </style>
 
 
@@ -125,6 +133,7 @@ body {
                         <div class="optional-panel in js_shipping_method_detail" id="js_shipping_method_detail_#data.counter#"
                         data-shipping-counter="#data.counter#">
                             <div class="option-head"><a href="javascript:void(0);">Shipping Address #data.counter#</a>
+                            #data.deletebutton#
                             </div>
                             <div class="option-body js-shippingMethod-section" id="c19663">
                                 <div class="shipping-address">

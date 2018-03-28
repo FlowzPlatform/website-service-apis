@@ -921,3 +921,75 @@ catch (err) {
     console.log('Error in Payment Module: ', err);
 }
 // Payment JS Ends
+
+
+
+// CustomSliderComponent
+try {
+  let $form = document.querySelectorAll('customslidercomponent.c-slider')
+  // console.log('.............................', $form)
+  setBanners($form)
+
+  async function setBanners($form) {
+    for (let [minx, item] of $form.entries()) {
+      let bannertype_id = $(item).attr('slidercustom')
+      let mSider = ''
+      if (bannertype_id != undefined && bannertype_id != '') {
+        let banners = await getBanners(bannertype_id)
+        if (banners.length > 0) {
+          if (banners.length == 1) {
+            if (banners[0].banner_linkurl == '') {
+              mSider += '<img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '">'
+            } else {
+              mSider += '<a href="' + banners[0].banner_linkurl + '" target="'+ banners[0].linkurl_target +'"><img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '"></a>'
+            }
+          } else {
+            mSider += '<div id="myCarousel' + minx + '" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'
+            for (let [inx, slide] of banners.entries()) {
+              if (inx == 0) {
+                mSider += '<li data-target="#myCarousel' + minx + '" data-slide-to="' + inx + '" class="active"></li>'
+              } else {
+                mSider += '<li data-target="#myCarousel' + minx + '" data-slide-to="' + inx + '"></li>'
+              }
+            }
+            mSider += '</ol><div class="carousel-inner">'
+            for (let [i, islide] of banners.entries()) {
+              if (i == 0) {
+                if (islide.banner_linkurl == '') {
+                  mSider += '<div class="item active"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: 100%; height: 400px"> </div>'
+                } else {
+                  mSider += '<div class="item active"> <a href="' + islide.banner_linkurl + '" target="'+ islide.linkurl_target +'"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: 100%; height: 400px"> </a> </div>'
+                }
+              } else {
+                if (islide.banner_linkurl == '') {
+                  mSider += '<div class="item"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: 100%; height: 400px"> </div>'
+                } else {
+                  mSider += '<div class="item"> <a href="' + islide.banner_linkurl + '" target="'+ islide.linkurl_target +'"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: 100%; height: 400px"> </a> </div>'
+                }
+              }
+            }
+            mSider += '</div><a class="left carousel-control" href="#myCarousel' + minx + '" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel' + minx + '" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span> </a></div>'
+          }
+        }
+      }
+      $(item).html(mSider)
+    }
+  }
+
+  async function getBanners (id) {
+    var baseURL = 'http://api.flowzcluster.tk/serverapi';
+    var socketHost = 'http://ws.flowzcluster.tk:4032';
+    let bannerUrl = baseURL + '/banners?banner_type=' + id + '&banner_status=true';
+    let resp = await $.getJSON( bannerUrl ).then(res => {
+      return res.data
+    }).catch(err => {
+      console.log('Error', err)
+      return []
+    })
+    return resp
+  }
+} 
+catch (err) {
+  console.log('Error in CustomSliderComponent Module: ', err)
+}
+// CustomSliderComponent JS
