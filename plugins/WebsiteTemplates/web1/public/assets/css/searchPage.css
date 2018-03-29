@@ -112,6 +112,7 @@ select.css-evf80z {
 .css-1pzkls5 + label {
     height: inherit;
     padding-left: 29px;
+    font-weight: normal;
 }
 .css-1pzkls5 + label::before {
     width: 16px !important;
@@ -170,4 +171,12 @@ a.card-item.css-4z0n4u1 > .card-image {
 }
 .header-loging li a{
     color: #ffffff;
+}
+
+.css-evf80z {
+   font-size: 14px;
+}
+
+.css-16j5nei0 {
+   font-size: 14px;
 }

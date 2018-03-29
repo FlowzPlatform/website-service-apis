@@ -851,6 +851,11 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                     }*/
                 }
                 $(parentObj+" .js_rq_ship_shipmethod_ul").html(rateHtml);
+                
+                // Change Shipping Details
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').trigger('click');
+        		$('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_handdate').val('');
+        		
                 hidePageAjaxLoading()
             },
             error: function(err) {
@@ -1348,6 +1353,27 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
     }
 });
 
+function changeShippingDetails(currentAddressCounter)
+{
+	let currentAddressShippingCarrier = $('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingcarrier .imprint-lbl-method').html();
+	
+	if(currentAddressShippingCarrier != undefined && currentAddressShippingCarrier != '')
+	{
+		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_select_shipping_carrier_method li').filter('[data-value="'+(currentAddressShippingCarrier.toLowerCase())+'"]').trigger('click');
+		
+		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingmethod').html('Select Method <span class="caret"></span>');
+		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_rq_ship_shippingmethod').trigger('click');
+		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_handdate').val('');
+	}
+	
+}
+function attachShippingDetailChangeEvent()
+{
+	$(document).off("change", activetab + ' .js_request_quote_shipping_qty_box').on("change", activetab + ' .js_request_quote_shipping_qty_box', function(){
+		let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
+		changeShippingDetails(currentAddressCounter)	
+	});
+}
 $(document).on("change", activetab + ' .js_color_checkbox',function(){
     if(user_id == null) {
         window.location = "login.html";
@@ -1398,6 +1424,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         	{
         		$(this).find(".js_request_quote_shipping_qty_box").removeAttr('readonly');        		
         	}
+        	attachShippingDetailChangeEvent();
         });
         // END -> If address is visible, if user checks one more color, then add that color with address
     }
@@ -1603,9 +1630,8 @@ function shippingValidation(fld,section,value){
       let shippingArr = {}
       let arrKey = 1
 	  let splitShippingColorQuantity = {};
-      $.each(value[fld].shipping_detail,function(key,shippingData){
-          let section1 = section+'-'+arrKey
-          
+      
+      $.each(value[fld].shipping_detail,function(key,shippingData){          
           let splitShippingAddressQuantity = 0;
 		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
 			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
@@ -1617,33 +1643,9 @@ function shippingValidation(fld,section,value){
 			  {
 				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
 			  }
-		  });
-		  
-          let shippingVal = {}
-          if(shippingData.selected_address_id == undefined){
-              shippingVal['selected_address_id'] = "Please select shipping address."
-              shippingArr[section1] = shippingVal
-          }
-          else if(!isEmpty(shippingData.color_quantity) && splitShippingAddressQuantity <= 0){
-        	  shippingVal['shipping_method'] = "All colors cant not have 0 quantity in address."
-              shippingArr[section1] = shippingVal
-    	  }
-          else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
-                  shippingVal['shipping_carrier'] = "Select shipping carrier."
-                  shippingArr[section1] = shippingVal
-          }
-          else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_method == '') {
-                shippingVal['shipping_method'] = "Select shipping method."
-                shippingArr[section1] = shippingVal
-              }
-          else if (shippingData.shipping_detail.shipping_charge == '') {
-                shippingVal['shipping_method'] = "Select shipping method."
-                shippingArr[section1] = shippingVal
-              }
-          arrKey = arrKey + 1
-      })
-      console.log(value['color']);
-      console.log(splitShippingColorQuantity);
+		  });	
+      })  
+
       if(value['color'] != undefined)
       {
     	  $.each(value['color'],function(colorkey,colorvalue){
@@ -1657,6 +1659,50 @@ function shippingValidation(fld,section,value){
     			 }
 			  }
 		  });
+      }
+      console.log(errorLog);
+      
+      if(isEmpty(errorLog))
+      {
+          $.each(value[fld].shipping_detail,function(key,shippingData){
+              let section1 = section+'-'+arrKey
+              
+              let splitShippingAddressQuantity = 0;
+    		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
+    			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
+    			  if(splitShippingColorQuantity[colorkey] != undefined)
+    			  {
+        			  splitShippingColorQuantity[colorkey] = parseInt(splitShippingColorQuantity[colorkey]) + parseInt(colorvalue)
+    			  }
+    			  else
+    			  {
+    				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
+    			  }
+    		  });
+    		  
+              let shippingVal = {}
+              if(!isEmpty(shippingData.color_quantity) && splitShippingAddressQuantity <= 0){
+            	  shippingVal['shipping_method'] = "All colors cant not have 0 quantity in address."
+                  shippingArr[section1] = shippingVal
+        	  }
+              else if(shippingData.selected_address_id == undefined){
+                  shippingVal['selected_address_id'] = "Please select shipping address."
+                  shippingArr[section1] = shippingVal
+              }
+              else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
+                      shippingVal['shipping_carrier'] = "Select shipping carrier."
+                      shippingArr[section1] = shippingVal
+              }
+              else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_method == '') {
+                    shippingVal['shipping_method'] = "Select shipping method."
+                    shippingArr[section1] = shippingVal
+                  }
+              else if (shippingData.shipping_detail.shipping_charge == '') {
+                    shippingVal['shipping_method'] = "Select shipping method."
+                    shippingArr[section1] = shippingVal
+                  }
+              arrKey = arrKey + 1
+          })
       }
 
       if(!isEmpty(shippingArr)) errorLog = shippingArr
@@ -1697,7 +1743,9 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     	if(selectedShippingType == 'standard')
     	{
             let colorName = $(this).closest('.js_rq_shipping_quantity').data('color-id');
-            $(this).val(colors_qty[colorName]);    		
+            $(this).val(colors_qty[colorName]);
+            // Trigger change event for updating shipping details
+            $(this).trigger('change');
     	}
     });
 });
@@ -1783,7 +1831,7 @@ function attachAutoCompleteEvent(parentDiv){
 	                  replaceAddressHtml += state+",";
 
 	                  let country = await getCountryStateCityById(returnData.country,1);
-	                  $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').html('Select Carrier <span class="caret"></span>');
+	                  changeShippingDetails(shippigCounter);
 	                //   $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').attr('data-value','');
 	                  replaceAddressHtml += country
 	                  // END -Change
