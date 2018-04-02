@@ -44,4 +44,8 @@ let beforeFind = function(hook) {
   if (hook.params.query.hasOwnProperty('banner_status') && hook.params.query.banner_status === 'true') {
     hook.params.query.banner_status = true
   }
+  if (hook.params.query && hook.params.query.$paginate) {
+    hook.params.paginate = hook.params.query.$paginate === 'false' || hook.params.query.$paginate === false;
+    delete hook.params.query.$paginate;
+  }
 }
