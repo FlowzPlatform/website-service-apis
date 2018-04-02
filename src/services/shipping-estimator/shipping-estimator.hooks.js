@@ -57,7 +57,7 @@ module.exports = {
 // }
 
 getShippingEstimator= async hook => {
-  console.log('hook.data',hook.data);
+  // console.log('hook.data',hook.data);
 
   var shippo = require('shippo')(hook.data.shipping_estimator_key);
   
@@ -86,7 +86,7 @@ getShippingEstimator= async hook => {
     var noOfBox = Math.ceil(quantity/quantity_in_carton);
   }
   
-  console.log('noOfBox',noOfBox);
+  // console.log('noOfBox',noOfBox);
   
   var totalWeightForShipping = 0;
   
@@ -110,52 +110,55 @@ getShippingEstimator= async hook => {
     carton_height = shipping_details.carton_height;
   }
   
-  if(noOfBox>1)
+  if(noOfBox < 51)
   {
-    total_quantity=quantity;
-    k=0;
-    while(total_quantity != 0)
+    if(noOfBox>1)
+    {
+      total_quantity=quantity;
+      k=0;
+      while(total_quantity != 0)
+      {
+        var instanceVal = {};
+        
+        if (total_quantity <= quantity_in_carton) {
+          weightArray = (total_quantity * unit_productWeight);
+          totalWeightForShipping = weightArray + totalWeightForShipping;
+          instanceVal['length'] = carton_length; //carton_length 
+          instanceVal['width'] = carton_width; //carton_width
+          instanceVal['height'] = carton_height; //carton_height
+          instanceVal['distance_unit'] = shipping_details.carton_size_unit.substring(0, 2).toLowerCase(); //carton_size_unit - inches
+          instanceVal['weight'] = weightArray; 
+          instanceVal['mass_unit'] = shipping_details.carton_weight_unit.substring(0, 2).toLowerCase(); //carton_weight_unit - LBS
+          instanceVal1.push(instanceVal)
+          
+          total_quantity = 0;
+        } else {
+          weightArray = cartonWeight;
+          total_quantity = total_quantity - quantity_in_carton;
+          instanceVal['length'] = carton_length; 
+          instanceVal['width'] = carton_width; 
+          instanceVal['height'] = carton_height; 
+          instanceVal['distance_unit'] = shipping_details.carton_size_unit.substring(0, 2).toLowerCase(); //carton_size_unit - inches
+          instanceVal['weight'] = weightArray; 
+          instanceVal['mass_unit'] = shipping_details.carton_weight_unit.substring(0, 2).toLowerCase(); //carton_weight_unit - LBS
+          instanceVal1.push(instanceVal)
+        }
+        k++;
+      }
+    }
+    else
     {
       var instanceVal = {};
-      
-      if (total_quantity <= quantity_in_carton) {
-        weightArray = (total_quantity * unit_productWeight);
-        totalWeightForShipping = weightArray + totalWeightForShipping;
-        instanceVal['length'] = carton_length; //carton_length 
-        instanceVal['width'] = carton_width; //carton_width
-        instanceVal['height'] = carton_height; //carton_height
-        instanceVal['distance_unit'] = shipping_details.carton_size_unit.substring(0, 2).toLowerCase(); //carton_size_unit - inches
-        instanceVal['weight'] = weightArray; 
-        instanceVal['mass_unit'] = shipping_details.carton_weight_unit.substring(0, 2).toLowerCase(); //carton_weight_unit - LBS
-        instanceVal1.push(instanceVal)
-        
-        total_quantity = 0;
-      } else {
-        weightArray = cartonWeight;
-        total_quantity = total_quantity - quantity_in_carton;
-        instanceVal['length'] = carton_length; 
-        instanceVal['width'] = carton_width; 
-        instanceVal['height'] = carton_height; 
-        instanceVal['distance_unit'] = shipping_details.carton_size_unit.substring(0, 2).toLowerCase(); //carton_size_unit - inches
-        instanceVal['weight'] = weightArray; 
-        instanceVal['mass_unit'] = shipping_details.carton_weight_unit.substring(0, 2).toLowerCase(); //carton_weight_unit - LBS
-        instanceVal1.push(instanceVal)
-      }
-      k++;
+      weightArray =  quantity * unit_productWeight;
+      totalWeightForShipping = weightArray;
+      instanceVal['length'] = carton_length; 
+      instanceVal['width'] = carton_width; 
+      instanceVal['height'] = carton_height; 
+      instanceVal['distance_unit'] = shipping_details.carton_size_unit.substring(0, 2).toLowerCase(); //carton_size_unit - inches
+      instanceVal['weight'] = weightArray; 
+      instanceVal['mass_unit'] = shipping_details.carton_weight_unit.substring(0, 2).toLowerCase(); //carton_weight_unit - LBS
+      instanceVal1.push(instanceVal)
     }
-  }
-  else
-  {
-    var instanceVal = {};
-    weightArray =  quantity * unit_productWeight;
-    totalWeightForShipping = weightArray;
-    instanceVal['length'] = carton_length; 
-    instanceVal['width'] = carton_width; 
-    instanceVal['height'] = carton_height; 
-    instanceVal['distance_unit'] = shipping_details.carton_size_unit.substring(0, 2).toLowerCase(); //carton_size_unit - inches
-    instanceVal['weight'] = weightArray; 
-    instanceVal['mass_unit'] = shipping_details.carton_weight_unit.substring(0, 2).toLowerCase(); //carton_weight_unit - LBS
-    instanceVal1.push(instanceVal)
   }
   
   // var addressFrom  = {
@@ -216,7 +219,7 @@ getShippingEstimator= async hook => {
     var setAddressFrom = hook.data.addressFrom;
     var setAddressTo = hook.data.addressTo;
     var setCarrierAccount = hook.data.carrier_account; 
-    console.log("setAddressTo",setAddressTo)
+    // console.log("setAddressTo",setAddressTo)
         return new Promise((resolve, reject) => {
           shippo.shipment.create({
             "address_from": setAddressFrom,
@@ -226,8 +229,8 @@ getShippingEstimator= async hook => {
           "carrier_accounts": [setCarrierAccount],
             "async": false
           }, function(err, shipment){
-            console.log("----------------------");
-            console.log(shipment);
+            // console.log("----------------------");
+            // console.log(shipment);
             resolve(shipment);
           });
         }).then(content => {
