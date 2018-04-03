@@ -131,19 +131,34 @@ function showCart()
                 //change // var listHtmlReplace = listHtmlReplace.replace("#data.shipping_charges#",shipping_charges);
 
                 //Imprint Information
-                imprintHtml = '';
+                let imprintHtml = '';
+                let print_position = '';
+                let imprint_method = '';
+                let howmany_colors = '';
                 if(typeof response_data[key].imprint != "undefined")
                 {
                   for (let [i,imprint_info] of response_data[key].imprint.entries())
                   {
                     var imprintSectionHtml1 = imprintSectionHtml;
 
-                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.print_position#",imprint_info.imprint_position_name)
-                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.imprint_method#",imprint_info.imprint_method_name)
-                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.howmany_colors#",imprint_info.no_of_color)
+                    if(typeof imprint_info.imprint_position_name != "undefined")
+                    {
+                      print_position = imprint_info.imprint_position_name;
+                    }
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.print_position#",print_position)
+                    
+                    if(typeof imprint_info.imprint_method_name != "undefined")
+                    {
+                      imprint_method = imprint_info.imprint_method_name;
+                    }
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.imprint_method#",imprint_method)
+                    
+                    if(typeof imprint_info.no_of_color != "undefined") {
+                      howmany_colors = imprint_info.no_of_color;
+                    }
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.howmany_colors#",howmany_colors)
 
                     colorHtml = '';
-
                     if(typeof imprint_info.selected_colors != "undefined")
                     {
                       for(var selected_color in imprint_info.selected_colors)

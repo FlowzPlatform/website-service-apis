@@ -1007,6 +1007,9 @@ function getProductDetailBysku(sku){
 })(jQuery);
 
 function showErrorMessage(error_message) {
+  error_message = error_message.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+      return letter.toUpperCase();
+  });
 	if ($('.alert-success').length){
 		$( ".alert-success").remove();
 	}
@@ -1023,6 +1026,9 @@ function showErrorMessage(error_message) {
 }
 
 function showSuccessMessage(success_message,url=null) {
+  success_message = success_message.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+      return letter.toUpperCase();
+  });
 	if($('.alert-danger').length) {
 		$( ".alert-danger").remove();
 	}
