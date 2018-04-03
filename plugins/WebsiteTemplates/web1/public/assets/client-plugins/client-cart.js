@@ -65,6 +65,9 @@ function showCart()
           var apiUrl = project_settings.product_api_url+'?_id=';
 
           let productData = await getProductDetailById(response_data[key].product_id)
+
+          if(productData != null)
+          {
             // $.ajax({
             //   type: 'GET',
             //   url: apiUrl+response_data[key].product_id,
@@ -167,8 +170,9 @@ function showCart()
                   listHtmlReplace = listHtmlReplace.replace('#data.shipping_type#',"-");
                 }
 
-                listHtmlReplace = listHtmlReplace.replace('#data.cart_id#',response_data[key].id);
-
+                listHtmlReplace = listHtmlReplace.replace(/#data.cart_id#/g,response_data[key].id);
+                listHtmlReplace = listHtmlReplace.replace('#data.edit_link#',website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+response_data[key].product_id+'&cid='+response_data[key].id);
+                
                 // Shipping Section
                 if(typeof response_data[key].shipping_method != "undefined")
                 {
@@ -299,6 +303,14 @@ function showCart()
                 $( shippingHtmlReplace ).insertAfter( ".js-product-"+response_data[key].id );
               // }
             // });
+          }
+          else{
+            if(key == 0)
+            {
+              $('#js-cart_data .js-listing').html('');
+            }
+            $("#cartCount").html(response_data.length-1);
+          }
         }
 
         grand_total = product_total + product_additional_charge_total + product_shipping_charge_total + product_tax_total;
