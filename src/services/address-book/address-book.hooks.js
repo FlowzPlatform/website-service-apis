@@ -1,5 +1,6 @@
 const config = require("config");
 const errors = require('feathers-errors');
+let _ = require('lodash');
 let rp = require('request-promise');
 let r = require('rethinkdb')
 let connection;
@@ -33,7 +34,9 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
+    find: [
+      hook => afterAddressFind(hook)
+    ],
     get: [],
     create: [],
     update: [],
@@ -58,6 +61,8 @@ beforeFind = hook => {
     }
 
     if(hook.params.query.terms != undefined && hook.params.query.terms !=""){
+      hook.params.address_type = hook.params.query.address_type;
+      delete hook.params.query.address_type;
       hook.params.query.$or = [
         {
           email:  {
@@ -72,6 +77,31 @@ beforeFind = hook => {
       ]
       delete hook.params.query.terms
     }
+}
+
+afterAddressFind = hook => {
+  if(typeof hook.params.address_type != "undefined")
+  {
+    let finalArray = [];
+    let finalCount = 0;
+    for (let [key, d] of hook.result.data.entries() ) {
+      let objArray = [];
+    
+      for (let [key1, d1] of d.address_type.entries() ) {
+        let obj = {};
+        obj['address_type'] = d1;
+        objArray.push(obj);
+      }
+    
+      let rs =_.filter(objArray, {'address_type':hook.params.address_type})
+      if(rs.length>0)
+      {
+        finalCount++;
+        finalArray.push(d)
+      }
+    }
+    hook.result = {'total':finalCount,'data':finalArray}
+  }
 }
 
 beforeCreateAddressBook = async hook => {
@@ -117,7 +147,6 @@ async function checkIsDefault(hook,address_type){
           .run(connection , function(error , cursor){
               if (error) throw error;
               cursor.toArray(function(err, result) {
-                console.log("cursor 123",result)
                   if (err) throw err;
                   resolve(result)
               });
@@ -128,7 +157,6 @@ async function checkIsDefault(hook,address_type){
             .run(connection , function(error , cursor){
                 if (error) throw error;
                 cursor.toArray(function(err, result) {
-                  // console.log("cursor",result)
                     if (err) throw err;
                     resolve(result)
                 });
@@ -144,8 +172,6 @@ beforPatchAddressBook = async hook =>{
         .get(hook.id)
         .run(connection , async function(error , cursor){
            if (error) throw error;
-          console.log("cursor.shipping_default",cursor.shipping_default);
-          console.log("cursor.billing_default",cursor.billing_default);
            if(hook.data.deleted_at == undefined )
            {
               let obj = '';
