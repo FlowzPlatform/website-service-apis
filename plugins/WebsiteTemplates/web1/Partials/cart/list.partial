@@ -42,8 +42,8 @@ body {
                               <th>Shipping : #data.shipping_type# </th>
                               <th>
                                 <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" class="js_view_order ui-link" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                <a data-original-title="Delete" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" class="js-btn-delete-cart-list  cart-product-delete-btn  " data-cart-id="#data.cart_id#"><i class="fa fa-trash-o"></i></a>
-                                <a href="#data.edit_link#" target="_blank" data-toggle="tooltip" data-placement="top" title="" class="ui-link" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+				                <a href="#data.edit_link#" target="_blank" data-toggle="tooltip" data-placement="top" title="" class="ui-link" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                                <a data-original-title="Delete" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" class="js-btn-delete-cart-list  cart-product-delete-btn  " data-cart-id="#data.cart_id#"><i class="fa fa-trash-o"></i></a>  
                               </th>
                            </tr>
                         </thead>

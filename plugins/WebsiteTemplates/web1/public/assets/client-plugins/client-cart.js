@@ -361,32 +361,32 @@ function showCart()
 async function addressBookHtml(id) {
 	if(id  != undefined )
 	{
-		// return new Promise (function (resolve , reject){
 	    let addressBookData = await returnAddressBookDetailById(id)
 	    // console.log("addressBookData",addressBookData);
-	    // returnAddressBookDetailById(shipping_info.selected_address_id).then(async function(addressBookData){
-	      let replaceAddressHtml = '';
-	      replaceAddressHtml += addressBookData.name+"<br>";
-	      if(addressBookData.street2 != undefined && addressBookData.street2 !=''){
-	        replaceAddressHtml += addressBookData.street1;
-	        replaceAddressHtml += ","+addressBookData.street2+",<br>";
-	      }
-	      else{
-	        replaceAddressHtml += addressBookData.street1+",<br>";
-	      }
-	      replaceAddressHtml += await getCountryStateCityById(addressBookData.city,3)+",";
-	      replaceAddressHtml += await getCountryStateCityById(addressBookData.state,2)+"<br>";
-	      replaceAddressHtml += await getCountryStateCityById(addressBookData.country,1);
-	      if(addressBookData.postalcode != undefined ){
-	        replaceAddressHtml += " - "+addressBookData.postalcode+"<br>";
-	      }
-	      replaceAddressHtml += "Email: "+addressBookData.email+"<br>";
-	      if(addressBookData.phone != undefined ){
-	        replaceAddressHtml += "T: "+addressBookData.phone;
-	      }
-	      if(addressBookData.mobile != undefined && addressBookData.mobile !=''){
-	        replaceAddressHtml += ",<br>M: "+addressBookData.mobile+"<br>";
-	      }
+        let replaceAddressHtml = '';
+        if(addressBookData != null) {
+            replaceAddressHtml += addressBookData.name+"<br>";
+            if(addressBookData.street2 != undefined && addressBookData.street2 !=''){
+              replaceAddressHtml += addressBookData.street1;
+              replaceAddressHtml += ","+addressBookData.street2+",<br>";
+            }
+            else{
+              replaceAddressHtml += addressBookData.street1+",<br>";
+            }
+            replaceAddressHtml += await getCountryStateCityById(addressBookData.city,3)+",";
+            replaceAddressHtml += await getCountryStateCityById(addressBookData.state,2)+"<br>";
+            replaceAddressHtml += await getCountryStateCityById(addressBookData.country,1);
+            if(addressBookData.postalcode != undefined ){
+              replaceAddressHtml += " - "+addressBookData.postalcode+"<br>";
+            }
+            replaceAddressHtml += "Email: "+addressBookData.email+"<br>";
+            if(addressBookData.phone != undefined ){
+              replaceAddressHtml += "T: "+addressBookData.phone;
+            }
+            if(addressBookData.mobile != undefined && addressBookData.mobile !=''){
+              replaceAddressHtml += ",<br>M: "+addressBookData.mobile+"<br>";
+            }
+        }
 	      return replaceAddressHtml;		
 	}
 }

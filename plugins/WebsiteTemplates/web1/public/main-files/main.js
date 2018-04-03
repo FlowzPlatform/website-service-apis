@@ -39,7 +39,7 @@ async function getProductDetailById(id) {
          }
     		 return returnData
     	})
-    	.catch({
+    	.catch(function (error){
 
     	})
     	return returnData;
@@ -1532,7 +1532,7 @@ var returnAddressBookDetailById = async function(addressBookId) {
 		 returnData = response.data;
 		 return returnData
 	})
-	.catch({
+	.catch(function (error){
 
 	})
 	return returnData;
@@ -1558,7 +1558,7 @@ async function getStateAndCityVal(countryVal,stateVal,dataFrom){
           .then(response => {
               returnData = response;
               return returnData;
-          }).catch({
+          }).catch(function (error){
 
           })
     return returnData;
