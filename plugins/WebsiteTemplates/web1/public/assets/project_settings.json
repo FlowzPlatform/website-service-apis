@@ -7,6 +7,7 @@
         "search_api_auth_token": "Basic NTk5MTQwNTU2YzcxZDEwMDFjMDIwNzI5OjEyMzQ1Ng==",
         "login_api": "https://api.flowzqa.tk/auth/api/login",
         "user_detail_api": "https://api.flowzqa.tk/auth/api/userdetails",
+	"user_detail_by_id":"https://api.flowzqa.tk/user/getuserdetails/",
         "change_password_api": "https://api.flowzqa.tk/auth/api/changepassword",
         "forgot_password_api": "https://api.flowzqa.tk/auth/api/forgetpassword",
         "social_auth_api": "https://api.flowzqa.tk/auth/",

@@ -3,10 +3,14 @@ if (user_id == null ) {
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
+  $(".breadcrumb li:last-child").html('<strong> My Orders </strong>')
+
   if( admin_role_flag == 1 ){
       $(".main-title").html('<i class="fa fa-file-text"></i> Received Order List')
+      $(".breadcrumb li:last-child").html('<strong> Received Order List </strong>')
       $(".js_is_admin").removeClass("hide")
   }
+  $(".breadcrumb li:last-child").removeClass("hide")
   $('.js-main-address-block').addClass("hide");
   showOrders();
 })

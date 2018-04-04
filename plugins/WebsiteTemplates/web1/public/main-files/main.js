@@ -52,7 +52,8 @@ Y({
   },
   connector: {
   name: 'webrtc',
-  room: 'wishList-example'+website_settings['projectID']
+  room: 'wishList-example'+website_settings['projectID']+website_settings.Projectvid.vid
+  // room: 'wishList-example'+website_settings['projectID']
   },
   sourceDir: null,
   share: {
@@ -519,6 +520,13 @@ var init = function() {
     }
     return false;
   })
+
+  $('input[name="search"]').keyup(function(event){
+        if(event.which==13){
+            $(this).closest('.header-search-col').find('.btn-search').trigger( "click" );
+            return false;
+        }
+    });
 }
 
 //add in to Compare, Wishlist and Cart
@@ -1007,9 +1015,7 @@ function getProductDetailBysku(sku){
 })(jQuery);
 
 function showErrorMessage(error_message) {
-  error_message = error_message.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-      return letter.toUpperCase();
-  });
+  error_message = error_message.charAt(0).toUpperCase() + error_message.slice(1).toLowerCase();
 	if ($('.alert-success').length){
 		$( ".alert-success").remove();
 	}
@@ -1026,9 +1032,7 @@ function showErrorMessage(error_message) {
 }
 
 function showSuccessMessage(success_message,url=null) {
-  success_message = success_message.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-      return letter.toUpperCase();
-  });
+  success_message = success_message.charAt(0).toUpperCase() + success_message.slice(1).toLowerCase();
 	if($('.alert-danger').length) {
 		$( ".alert-danger").remove();
 	}
@@ -1137,7 +1141,7 @@ function showWishList(recetAdded=false)
                   xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
                 },
                 dataType: 'json',
-                success: function (data) {
+                success: async function (data) {
                   rawData = data.hits.hits;
                   productData = rawData;
                   // console.log("productData.length",productData.length)
@@ -1159,14 +1163,24 @@ function showWishList(recetAdded=false)
                     listHtml1 = listHtml1.replace('#data.description#',productData[0]._source.description);
                   }
                   else{
-                    if(user_details != null){
-                      window.yList.share.wishListRegister.delete(parseInt(wishlist_values[item]))
+                    $(".product-"+prodId).remove();
+                    
+                    if(user_details != null)
+                    {
+                      if(typeof wishlist_values[item] != "undefined")
+                      {
+                        await deleteItemById(project_settings.shopping_api_url+'/'+wishlist_values[item].val.id);
+                      }
                     }
                     else{
-                      window.yList.share.wishList.delete(parseInt(wishlist_values[item]))
+                      // window.yList.share.wishList.delete(parseInt(item))
                     }
-                    $(".product-"+prodId).remove();
-                    deleteItemById(project_settings.shopping_api_url+'/'+wishlist_values[item].val.id);
+                    // if(user_details != null){
+                    //   window.yList.share.wishListRegister.delete(parseInt(item))
+                    // }
+                    // else{
+                    //   window.yList.share.wishList.delete(parseInt(item))
+                    // }
                   }
                   if(recetAdded)
                   {
@@ -1305,7 +1319,7 @@ function showCompareList(recetAdded=false)
                   xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
                 },
                 dataType: 'json',
-                success: function (data)
+                success: async function (data)
                 {
                   rawData = data.hits.hits;
                   productData = rawData;
@@ -1369,7 +1383,7 @@ function showCompareList(recetAdded=false)
                       $("tr#item_features1").append(itemFeaturesHtml)
                     }
                   }
-                  else if(item == 0)
+                  else if(item == 0 || compareValuesCount == 1)
                   {
                     $("#myCompareList #listing .js-no-records").remove();
                     $("#myCompareList #listing div:first").removeClass("hide");
@@ -1389,14 +1403,36 @@ function showCompareList(recetAdded=false)
                   }
                 }
                   else{
-                    if(user_details != null){
-                      window.yList.share.compareListRegister.delete(parseInt(compare_values[item]))
+                    $(".product-"+prodId).remove();
+                    if(user_details != null)
+                    {
+                      console.log(item)
+                      
+                      if(typeof compare_values[item] != "undefined")
+                      {
+                        await deleteItemById(project_settings.shopping_api_url+'/'+compare_values[item].val.id);
+                      }
+                      console.log('item deleted')
                     }
                     else{
-                      window.yList.share.compareList.delete(parseInt(compare_values[item]))
+                      // try {
+                      //   console.log('1')
+                      //   for(let i = 0; i < compare_values.length;) {
+                      //     // console.log(compare_values.length)
+                      //     // window.yList.share.compareList.delete(0)
+                      //   }
+                      //   console.log('2')                        
+                      // }catch(e){}                      
+                      // window.yList.share.compareList.delete(0)
+                      // $(".product-"+prodId).remove();
                     }
-                    $(".product-"+prodId).remove();
-                    deleteItemById(project_settings.shopping_api_url+'/'+compare_values[item].val.id);
+                    // if(user_details != null){
+                    //   window.yList.share.compareListRegister.delete(parseInt(item))
+                    // }
+                    // else{
+                    //   window.yList.share.compareList.delete(parseInt(item))
+                    // }
+                    // $(".product-"+prodId).remove();
                   }
                 }
               });
@@ -1709,7 +1745,7 @@ function isEmpty(myObject) {
     return true;
 }
 
-function deleteItemById(ajaxUrl)
+async function deleteItemById(ajaxUrl)
 {
   axios({
     method: 'DELETE',
@@ -1721,4 +1757,52 @@ function deleteItemById(ajaxUrl)
   .catch(function (error) {
     // console.log("error",error);
   });
+}
+
+async function getUserDetailById(userId) {
+      let returnData = null;
+    	await axios({
+    			method: 'GET',
+    			url: project_settings.user_detail_by_id+userId,
+    			headers: {'Authorization' : userToken},
+    		})
+    	.then(response => {
+          if(response.data.data.length > 0){
+              returnData = response.data.data[0];
+          }
+          return returnData
+    	})
+      .catch(function (error) {
+          //console.log("error",error.response);
+      });
+    	return returnData;
+}
+
+async function replaceColorSwatchWithHexaCodes(attribute_value,attribute_name){
+    let returnColorVal = null
+    if(attribute_value != undefined && attribute_value.length > 0) {
+      var data = {'colorname':attribute_value};
+      await axios({
+              method: 'GET',
+//              url : project_settings.color_table_api_url+'?vid=a40c858d-42f4-4d1e-9905-42a4a81ceca5&websiteid=2cfbe41a-f320-429e-add0-f0aaa4e61cfe&attribute_name='+attribute_name,
+              url : project_settings.color_table_api_url+'?vid='+website_settings.Projectvid.vid+'&websiteid='+website_settings['projectID']+'&attribute_name='+attribute_name,
+              params: data,
+              dataType : 'json'
+            })
+            .then(response_data => {
+                if(response_data.data.data.length > 0 ) {
+                  let colorObj = {}
+                  $.each(response_data.data.data,function(key,val){
+                        colorObj[val.colorname] = val
+                  })
+                  // returnColorVal = response_data.data.data
+                  returnColorVal = colorObj
+                }
+                return returnColorVal;
+            })
+            .catch(function (error) {
+         			// 	console.log("error+++",error);
+            });
+    }
+    return returnColorVal;
 }

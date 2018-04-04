@@ -83,11 +83,12 @@ async function paynow() {
 	let paymentGatewayId = $("#payment-gateway").val()
 
 	let billing_info = await fetchDefaultBillingInfo()
-						 if(billing_info == null || billing_info == ''){
-							 	showErrorMessage("Please add billing address")
-								return false;
-						 }
-						 
+	 if(billing_info == null || billing_info == ''){
+		 	hidePageAjaxLoading();
+		 	showErrorMessage("Please add billing address")
+			return false;
+	 }
+
 	let invoice = await addInvoice();
 	// console.log("Invoice response",invoice)
 
