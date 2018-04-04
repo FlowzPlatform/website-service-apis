@@ -8,7 +8,7 @@ $(function() {
     $('form#address_book').validate({
   			rules: {
           "name":"required",
-          "address_type": "required",
+          'address_type[]':"required",
           "email":{
             required:true,
             email: true
@@ -24,7 +24,7 @@ $(function() {
   			},
   			messages: {
           "name":"Please enter name.",
-          "address_type":"Please select address type.",
+          "address_type[]":"Please select address type(s).",
           "email":{
             required:"Please enter email",
             email: "Please enter valid email."
@@ -47,7 +47,6 @@ $(function() {
         wrapper: "ul",
         submitHandler: function(form) {
             let formObj = $(form);
-            // console.log("formObj",formObj);
             if(addressBookId != null){
               methodType = "PATCH"
               url = project_settings.address_book_api_url+"/"+addressBookId;
@@ -68,10 +67,11 @@ $(function() {
                         }else{
                           showSuccessMessage("Your address is saved successfully.","addressBookList.html");
                         }
-                          return false;
+                        return false;
                       }
                   },
                   error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("error")
                   }
             });
 
@@ -132,8 +132,6 @@ $(function() {
           })
         .then(async response => {
             if(response.data != undefined  && response.data.total > 0){
-              // console.log("response.data=>>>",response.data);
-              // return false;
                 let generateHtml =   await generateHtmlFunc(response.data.data , addressBookHtml) ;
                 $(".js_address_book_list").html(generateHtml);
                 $('.js-hide-div').removeClass("js-hide-div");
@@ -155,10 +153,12 @@ $(function() {
               showErrorMessage("This is already default address.");
               return false;
             }
+
             axios({
               method: 'PATCH',
+              dataType: 'json',
               url: project_settings.address_book_api_url+'/'+addressBookId,
-              data: {"is_default": '1'}
+              data: $(this).data('type')+'_default' + '=' + '1'
             }).then(function(response) {
                 if(response.data != undefined){
                    showSuccessMessage("Default Address is Updated Successfully","addressBookList.html");
@@ -302,10 +302,11 @@ $(function() {
                 $.each(addressBookDetail,function(element,value){
                     $(formObj.find('input[type="text"][name*="'+element+'"]')).val(value);
                     if(element == 'address_type'){
-                      $('option:selected', 'select[name="'+element+'"]').removeAttr('selected');
-                      $('select[name="'+element+'"]').find('option[value="'+value+'"]').attr("selected",true);
-                      let selectedtext = $('select[name="'+element+'"] option:selected').text()
-                      $(formObj.find('[name*="'+element+'"]')).parent('span').find(".checkout-holder").text(selectedtext)
+                      $('input:checkbox[name="'+element+'[]"][value=' + value.join('], [value=') + ']').prop("checked", true);
+                      // $('option:selected', 'select[name="'+element+'"]').removeAttr('selected');
+                      // $('select[name="'+element+'"]').find('option[value="'+value+'"]').attr("selected",true);
+                      // let selectedtext = $('select[name="'+element+'"] option:selected').text()
+                      // $(formObj.find('[name*="'+element+'"]')).parent('span').find(".checkout-holder").text(selectedtext)
                     }
 
                     $('input:radio[name="'+element+'"][value="'+value+'"]').prop('checked', true);
@@ -330,31 +331,45 @@ $(function() {
 async function generateHtmlFunc(req , addressBookHtml){
   var replaceAdddressBookHtml=''
   for(let [key,data] of req.entries()) {
-  // $.each(req, async function(key,data){
-        let addressBookHtml1 = "";
-        let address = data.street1;
+      let addressBookHtml1 = "";
+      let address = data.street1;
 
-        if(data.street2 != undefined && data.street2 != ''){
-            address += ",<br>"+data.street2;
-        }
-        address += ",<br>"+ await getCountryStateCityById(data.city,3);
-        address += ","+await getCountryStateCityById(data.state,2);
-        address += ","+data.postalcode;
-        address += "<br>"+ await getCountryStateCityById(data.country,1);
-        addressBookHtml1 = addressBookHtml.replace("#data.name#",data.name)
-        addressBookHtml1 = addressBookHtml1.replace("#data.phone#",data.phone)
-        addressBookHtml1 = addressBookHtml1.replace("#data.email#",data.email)
-        addressBookHtml1 = addressBookHtml1.replace("#data.addressType#",data.address_type)
-        if(data.is_default == '1'){
-          addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","address-active")
-        }else{
-          addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","is-default")
-        }
-        addressBookHtml1 = addressBookHtml1.replace("#data.addressType#",data.address_type)
-        addressBookHtml1 = addressBookHtml1.replace(/#data.id#/g,data.id)
-        replaceAdddressBookHtml += addressBookHtml1.replace("#data.address#",address)
-        // console.log("replaceAdddressBookHtml+++");
-    // })
+      if(data.street2 != undefined && data.street2 != ''){
+          address += ",<br>"+data.street2;
+      }
+      address += ",<br>"+ await getCountryStateCityById(data.city,3);
+      address += ","+await getCountryStateCityById(data.state,2);
+      address += ","+data.postalcode;
+      address += "<br>"+ await getCountryStateCityById(data.country,1);
+      addressBookHtml1 = addressBookHtml.replace("#data.name#",data.name)
+      addressBookHtml1 = addressBookHtml1.replace("#data.phone#",data.phone)
+      addressBookHtml1 = addressBookHtml1.replace("#data.email#",data.email)
+      // if(data.is_default == '1'){
+      //   addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","address-active")
+      // }else{
+      //   addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","is-default")
+      // }
+
+      let shippingTypeHtml = "";
+      $.each(data.address_type,function(key,val){
+        shippingTypeHtml = shippingTypeHtml+'<a href="javascript:void(0)" class="#'+val+'ActiveDefault#" data-id="'+data.id+'" data-type="'+val+'"><i class="fa fa-check-circle"></i>'+val+'</a>';
+      });
+
+      addressBookHtml1 = addressBookHtml1.replace("#data.addressTypeHtml#",shippingTypeHtml);
+      
+      if(data.shipping_default == '1'){
+        addressBookHtml1 = addressBookHtml1.replace("#shippingActiveDefault#","address-active")
+      }else{
+        addressBookHtml1 = addressBookHtml1.replace("#shippingActiveDefault#","is-default")
+      }
+      if(data.billing_default == '1'){
+        addressBookHtml1 = addressBookHtml1.replace("#billingActiveDefault#","address-active")
+      }else{
+        addressBookHtml1 = addressBookHtml1.replace("#billingActiveDefault#","is-default")
+      }
+
+      addressBookHtml1 = addressBookHtml1.replace(/#data.id#/g,data.id)
+      replaceAdddressBookHtml += addressBookHtml1.replace("#data.address#",address)
     }
     return replaceAdddressBookHtml;
 }
@@ -378,7 +393,6 @@ function getCountryData(countryId=0){
           }
         })
       .then(response => {
-          // console.log("response++++",response.data.length);
           if(response.data.length > 0){
             $.each(response.data,function(key,country){
               countryHtml += '<option value="'+country.id+'">'+country.country_name+'</option>'

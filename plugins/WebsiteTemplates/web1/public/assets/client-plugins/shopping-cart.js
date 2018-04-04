@@ -81,6 +81,13 @@ async function paynow() {
 	let expiryYear = $("#expiryYear").val();
 	let cvCode = $("#cvCode").val();
 	let paymentGatewayId = $("#payment-gateway").val()
+
+	let billing_info = await fetchDefaultBillingInfo()
+						 if(billing_info == null || billing_info == ''){
+							 	showErrorMessage("Please add billing address")
+								return false;
+						 }
+						 
 	let invoice = await addInvoice();
 	// console.log("Invoice response",invoice)
 
@@ -115,12 +122,6 @@ async function paynow() {
 				let product_response = await getCartProductDataByUser()
 				 if (product_response.data!= "") {
 					 var newHtml = "";
-
-						 let billing_info = await fetchDefaultBillingInfo()
-						 if(billing_info == null || billing_info == ''){
-							 	showErrorMessage("Please add billing address")
-								return false;
-						 }
 
 						 let user_info = {};
 						 user_info['id'] = user_details['_id']
@@ -290,7 +291,7 @@ async function fetchDefaultBillingInfo(id) {
       let returnData = null;
     	await axios({
     			method: 'GET',
-    			url: project_settings.address_book_api_url+'?address_type=billing&website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&is_default=1',
+    			url: project_settings.address_book_api_url+'?website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&billing_default=1',
     		})
     	.then(async response => {
 					let billing_address = {}

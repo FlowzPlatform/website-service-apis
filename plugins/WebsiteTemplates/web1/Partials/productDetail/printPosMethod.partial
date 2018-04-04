@@ -76,8 +76,8 @@ body {
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option imprint-color-select"><span class="question">How many colors are in design?</span>
                     <div class="selection-common-box pull-left">
-                        <div class="dropdown dropdown_size js_imprint_method_selectbox_-data-printPosition-_-data-printMethod-">
-                            <input class="js_max_selectable_color_-data-printPosition-_-data-printMethod-" type="hidden" value="#data.maxImprintColor#" />
+                        <div class="dropdown dropdown_size js_imprint_method_selectbox_#data-printPosition#_#data-printMethod#">
+                            <input class="js_max_selectable_color_#data-printPosition#_#data-printMethod#" type="hidden" value="#data.maxImprintColor#" />
                             <button class="btn dropdown-toggle" aria-expanded="true" data-toggle="dropdown"
                             id="dropdownMenu16" type="button">Select Color<span class="caret"></span>
                             </button>

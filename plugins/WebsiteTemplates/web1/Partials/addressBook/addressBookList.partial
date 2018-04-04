@@ -71,8 +71,7 @@ body {
                         </ul>
                     </div>
                     <div class="address-shipping-block js_address_type">
-                        <div class="checkbox"><a href="javascript:void(0)" class="#activeDefaultClass#" data-id="#data.id#"><i class="fa fa-check-circle"></i>#data.addressType#</a>
-                        </div>
+                        <div class="checkbox">#data.addressTypeHtml#</div>
                     </div>
                 </div>
             </div>

@@ -65,6 +65,9 @@ function showCart()
           var apiUrl = project_settings.product_api_url+'?_id=';
 
           let productData = await getProductDetailById(response_data[key].product_id)
+
+          if(productData != null)
+          {
             // $.ajax({
             //   type: 'GET',
             //   url: apiUrl+response_data[key].product_id,
@@ -128,19 +131,34 @@ function showCart()
                 //change // var listHtmlReplace = listHtmlReplace.replace("#data.shipping_charges#",shipping_charges);
 
                 //Imprint Information
-                imprintHtml = '';
+                let imprintHtml = '';
+                let print_position = '';
+                let imprint_method = '';
+                let howmany_colors = '';
                 if(typeof response_data[key].imprint != "undefined")
                 {
                   for (let [i,imprint_info] of response_data[key].imprint.entries())
                   {
                     var imprintSectionHtml1 = imprintSectionHtml;
 
-                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.print_position#",imprint_info.imprint_position_name)
-                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.imprint_method#",imprint_info.imprint_method_name)
-                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.howmany_colors#",imprint_info.no_of_color)
+                    if(typeof imprint_info.imprint_position_name != "undefined")
+                    {
+                      print_position = imprint_info.imprint_position_name;
+                    }
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.print_position#",print_position)
+                    
+                    if(typeof imprint_info.imprint_method_name != "undefined")
+                    {
+                      imprint_method = imprint_info.imprint_method_name;
+                    }
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.imprint_method#",imprint_method)
+                    
+                    if(typeof imprint_info.no_of_color != "undefined") {
+                      howmany_colors = imprint_info.no_of_color;
+                    }
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.howmany_colors#",howmany_colors)
 
                     colorHtml = '';
-
                     if(typeof imprint_info.selected_colors != "undefined")
                     {
                       for(var selected_color in imprint_info.selected_colors)
@@ -167,8 +185,9 @@ function showCart()
                   listHtmlReplace = listHtmlReplace.replace('#data.shipping_type#',"-");
                 }
 
-                listHtmlReplace = listHtmlReplace.replace('#data.cart_id#',response_data[key].id);
-
+                listHtmlReplace = listHtmlReplace.replace(/#data.cart_id#/g,response_data[key].id);
+                listHtmlReplace = listHtmlReplace.replace('#data.edit_link#',website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+response_data[key].product_id+'&cid='+response_data[key].id);
+                
                 // Shipping Section
                 if(typeof response_data[key].shipping_method != "undefined")
                 {
@@ -299,6 +318,14 @@ function showCart()
                 $( shippingHtmlReplace ).insertAfter( ".js-product-"+response_data[key].id );
               // }
             // });
+          }
+          else{
+            if(key == 0)
+            {
+              $('#js-cart_data .js-listing').html('');
+            }
+            $("#cartCount").html(response_data.length-1);
+          }
         }
 
         grand_total = product_total + product_additional_charge_total + product_shipping_charge_total + product_tax_total;
@@ -349,32 +376,32 @@ function showCart()
 async function addressBookHtml(id) {
 	if(id  != undefined )
 	{
-		// return new Promise (function (resolve , reject){
 	    let addressBookData = await returnAddressBookDetailById(id)
 	    // console.log("addressBookData",addressBookData);
-	    // returnAddressBookDetailById(shipping_info.selected_address_id).then(async function(addressBookData){
-	      let replaceAddressHtml = '';
-	      replaceAddressHtml += addressBookData.name+"<br>";
-	      if(addressBookData.street2 != undefined && addressBookData.street2 !=''){
-	        replaceAddressHtml += addressBookData.street1;
-	        replaceAddressHtml += ","+addressBookData.street2+",<br>";
-	      }
-	      else{
-	        replaceAddressHtml += addressBookData.street1+",<br>";
-	      }
-	      replaceAddressHtml += await getCountryStateCityById(addressBookData.city,3)+",";
-	      replaceAddressHtml += await getCountryStateCityById(addressBookData.state,2)+"<br>";
-	      replaceAddressHtml += await getCountryStateCityById(addressBookData.country,1);
-	      if(addressBookData.postalcode != undefined ){
-	        replaceAddressHtml += " - "+addressBookData.postalcode+"<br>";
-	      }
-	      replaceAddressHtml += "Email: "+addressBookData.email+"<br>";
-	      if(addressBookData.phone != undefined ){
-	        replaceAddressHtml += "T: "+addressBookData.phone;
-	      }
-	      if(addressBookData.mobile != undefined && addressBookData.mobile !=''){
-	        replaceAddressHtml += ",<br>M: "+addressBookData.mobile+"<br>";
-	      }
+        let replaceAddressHtml = '';
+        if(addressBookData != null) {
+            replaceAddressHtml += addressBookData.name+"<br>";
+            if(addressBookData.street2 != undefined && addressBookData.street2 !=''){
+              replaceAddressHtml += addressBookData.street1;
+              replaceAddressHtml += ","+addressBookData.street2+",<br>";
+            }
+            else{
+              replaceAddressHtml += addressBookData.street1+",<br>";
+            }
+            replaceAddressHtml += await getCountryStateCityById(addressBookData.city,3)+",";
+            replaceAddressHtml += await getCountryStateCityById(addressBookData.state,2)+"<br>";
+            replaceAddressHtml += await getCountryStateCityById(addressBookData.country,1);
+            if(addressBookData.postalcode != undefined ){
+              replaceAddressHtml += " - "+addressBookData.postalcode+"<br>";
+            }
+            replaceAddressHtml += "Email: "+addressBookData.email+"<br>";
+            if(addressBookData.phone != undefined ){
+              replaceAddressHtml += "T: "+addressBookData.phone;
+            }
+            if(addressBookData.mobile != undefined && addressBookData.mobile !=''){
+              replaceAddressHtml += ",<br>M: "+addressBookData.mobile+"<br>";
+            }
+        }
 	      return replaceAddressHtml;		
 	}
 }

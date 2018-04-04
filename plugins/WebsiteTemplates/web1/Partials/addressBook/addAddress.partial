@@ -75,14 +75,14 @@ body {
             </div>
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group inp-parts">
-                    <label class="checkout-label" for="country1">Address Type<span class="mandatory-field">*</span>
-                    </label>
-                    <select class="custom-select js-address-type" tabindex="1" id="addresstbook_address_type"
-                    name="address_type"   data-toggle="tooltip" data-placement="bottom" title="Address type" >
-                        <option value="" selected="selected">Select Address Type</option>
-                        <option value="billing">Billing</option>
-                        <option value="shipping">Shipping</option>
-                    </select>
+                    <label class="checkout-label" for="address_type">Address Type<span class="mandatory-field">*</span>
+                    </label><br />
+
+                    <input name="address_type[]" value="shipping" id="address_type_shipping" tabindex="1"  class="css-checkbox js-address-type" type="checkbox">
+                    <label for="address_type_shipping" class="css-label font-style-normal">Shipping</label>
+
+                    <input name="address_type[]" value="billing" id="address_type_billing" tabindex="1"  class="css-checkbox js-address-type" type="checkbox">
+                    <label for="address_type_billing" class="css-label font-style-normal">Billing</label>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
