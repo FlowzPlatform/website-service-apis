@@ -923,10 +923,9 @@ catch (err) {
 // Payment JS Ends
 
 
-
 // CustomSliderComponent
 try {
-  let $form = document.querySelectorAll('customslidercomponent.c-slider')
+  let $form = document.querySelectorAll('customslidercomponent')
   // console.log('.............................', $form)
   setBanners($form)
 
@@ -935,40 +934,117 @@ try {
       let bannertype_id = $(item).attr('slidercustom')
       let mSider = ''
       if (bannertype_id != undefined && bannertype_id != '') {
+        let checkBtype = await getBannerType(bannertype_id)
         let banners = await getBanners(bannertype_id)
+        console.log('banners', banners)
         if (banners.length > 0) {
-          if (banners.length == 1) {
-            if (banners[0].banner_linkurl == '') {
-              mSider += '<img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '">'
-            } else {
-              mSider += '<a href="' + banners[0].banner_linkurl + '" target="'+ banners[0].linkurl_target +'"><img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '"></a>'
-            }
-          } else {
-            mSider += '<div id="myCarousel' + minx + '" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'
+          if (checkBtype == 'brand_slider') {
+            // mSider += '<h1>Brand Slider</h1>'
+            // let allbanners = _.chunk(banners, 4)
+
+            // mSider += '<div class="container"><div class="row"><div class="span12"><div class="well"><div id="mybCarousel'+ minx +'" class="carousel slide"  style="margin-bottom: 0;"><ol class="carousel-indicators" style="right: 50%;top: auto; bottom: 0px;margin-right: -19px;">'
+            // for(let i = 0; i < allbanners.length; i++) {
+            //   if (i == 0) {
+            //     mSider += '<li data-target="#mybCarousel'+ minx +'" data-slide-to="'+ i +'" class="active"></li>'
+            //   } else {
+            //     mSider += '<li data-target="#mybCarousel'+ minx +'" data-slide-to="'+ i +'"></li>'
+            //   }
+            // }
+            // mSider += '</ol><div class="carousel-inner">'
+            // for(let j = 0; j < allbanners.length; j++) {
+            //   if (j == 0) {
+            //     mSider += '<div class="item active"><div class="row-fluid">'
+            //     for (let [iix, bslide] of allbanners[j].entries()) {
+            //       mSider += '<div class="span3"><a href="#" class="thumbnail"><img src="'+ bslide.banner_img +'" alt="'+ bslide.banner_name +'" style="max-width:100%;" /></a></div>'
+            //     }
+            //     mSider += '</div></div>'
+            //   } else {
+            //     mSider += '<div class="item"><div class="row-fluid">'
+            //     for (let [iix, bslide] of allbanners[j].entries()) {
+            //       mSider += '<div class="span3"><a href="#" class="thumbnail"><img src="'+ bslide.banner_img +'" alt="'+ bslide.banner_name +'" style="max-width:100%;" /></a></div>'
+            //     }
+            //     mSider += '</div></div>'
+            //   }
+            // }
+            // mSider += '</div><a class="left carousel-control" href="#mybCarousel'+ minx +'" data-slide="prev" style="background: #fff; color: #111">‹</a><a class="right carousel-control" href="#mybCarousel'+ minx +'" data-slide="next" style="background: #fff; color: #111">›</a></div></div></div></div></div>'
+            
+            // $(".left").click(function(){
+            //     $('#myCarousel' + minx).carousel("prev");
+            // });
+
+            // $('.carousel-control').click();
+            // console.log('mSider', mSider)
+            // $('#mybCarousel' + minx).carousel({
+            //     interval: 3000
+            // })
+
+            mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
             for (let [inx, slide] of banners.entries()) {
-              if (inx == 0) {
-                mSider += '<li data-target="#myCarousel' + minx + '" data-slide-to="' + inx + '" class="active"></li>'
-              } else {
-                mSider += '<li data-target="#myCarousel' + minx + '" data-slide-to="' + inx + '"></li>'
-              }
+              // console.log(slide.banner_img, banner_name)
+              mSider += '<div class="item" style="text-align: center;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
             }
-            mSider += '</ol><div class="carousel-inner">'
-            for (let [i, islide] of banners.entries()) {
-              if (i == 0) {
-                if (islide.banner_linkurl == '') {
-                  mSider += '<div class="item active"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: 100%; height: 400px"> </div>'
-                } else {
-                  mSider += '<div class="item active"> <a href="' + islide.banner_linkurl + '" target="'+ islide.linkurl_target +'"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: 100%; height: 400px"> </a> </div>'
-                }
+            mSider += '</div></div>'
+            // // console.log('mSider', mSider)
+            
+            //  $('.customer-logos').slick({
+            //     slidesToShow: 4,
+            //     slidesToScroll: 1,
+            //     autoplay: true,
+            //     autoplaySpeed: 1500,
+            //     arrows: false,
+            //     dots: false,
+            //     pauseOnHover: false,
+            //     responsive: [{
+            //         breakpoint: 768,
+            //         settings: {
+            //             slidesToShow: 4
+            //         }
+            //     }, {
+            //         breakpoint: 520,
+            //         settings: {
+            //             slidesToShow: 3
+            //         }
+            //     }]
+            // });
+          } else {
+            if (banners.length == 1) {
+              if (banners[0].banner_linkurl == '') {
+                mSider += '<img src="' + banners[0].banner_img + '" class="img-responsive" style="width: -webkit-fill-available;height:auto;" alt="' + banners[0].banner_name + '">'
               } else {
-                if (islide.banner_linkurl == '') {
-                  mSider += '<div class="item"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: 100%; height: 400px"> </div>'
-                } else {
-                  mSider += '<div class="item"> <a href="' + islide.banner_linkurl + '" target="'+ islide.linkurl_target +'"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: 100%; height: 400px"> </a> </div>'
-                }
+                mSider += '<a href="' + banners[0].banner_linkurl + '" target="'+ banners[0].linkurl_target +'"><img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '" style="width: -webkit-fill-available;height:auto;"></a>'
               }
+            } else {
+              mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
+              for (let [inx, slide] of banners.entries()) {
+                mSider += '<div class="item"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
+              }  
+              mSider += '</div></div>'
+              // mSider += '<div id="myCarousel' + minx + '" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'
+              // for (let [inx, slide] of banners.entries()) {
+              //   if (inx == 0) {
+              //     mSider += '<li data-target="#myCarousel' + minx + '" data-slide-to="' + inx + '" class="active"></li>'
+              //   } else {
+              //     mSider += '<li data-target="#myCarousel' + minx + '" data-slide-to="' + inx + '"></li>'
+              //   }
+              // }
+              // mSider += '</ol><div class="carousel-inner">'
+              // for (let [i, islide] of banners.entries()) {
+              //   if (i == 0) {
+              //     if (islide.banner_linkurl == '') {
+              //       mSider += '<div class="item active"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: -webkit-fill-available;height:auto;"> </div>'
+              //     } else {
+              //       mSider += '<div class="item active"> <a href="' + islide.banner_linkurl + '" target="'+ islide.linkurl_target +'"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+              //     }
+              //   } else {
+              //     if (islide.banner_linkurl == '') {
+              //       mSider += '<div class="item"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: -webkit-fill-available;height:auto;"> </div>'
+              //     } else {
+              //       mSider += '<div class="item"> <a href="' + islide.banner_linkurl + '" target="'+ islide.linkurl_target +'"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+              //     }
+              //   }
+              // }
+              // mSider += '</div><a class="left carousel-control" href="#myCarousel' + minx + '" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel' + minx + '" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span> </a></div>'
             }
-            mSider += '</div><a class="left carousel-control" href="#myCarousel' + minx + '" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel' + minx + '" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span> </a></div>'
           }
         }
       }
@@ -976,15 +1052,62 @@ try {
     }
   }
 
+
+setTimeout(function(){
+  var windowWidth = $(window).width();
+  $('.owlcarouselcat').css('width',windowWidth);
+  $(".owl-carousel1").owlCarousel({
+    autoPlay: true,
+    slideSpeed: 100,
+    stopOnHover : true,
+    navigation:true,
+    navigationText: ['<', '>'],
+    items : 8,
+    itemsDesktop: [1199, 4],
+    itemsDesktopSmall: [979, 4],
+    itemsTablet: [767, 2],
+    itemsMobile: [479, 2]
+  });
+  $(".owl-carousel2").owlCarousel({
+      autoPlay: true,
+      navigation : true, // Show next and prev buttons
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      navigationText: ['Prev', 'Next'],
+      items : 1, 
+      itemsDesktop : false,
+      itemsDesktopSmall : false,
+      itemsTablet: false,
+      itemsMobile : false
+ 
+  });
+},1000)
+
   async function getBanners (id) {
     var baseURL = 'http://api.flowzcluster.tk/serverapi';
-    var socketHost = 'http://ws.flowzcluster.tk:4032';
-    let bannerUrl = baseURL + '/banners?banner_type=' + id + '&banner_status=true';
+    // var baseURL = 'http://localhost:3032';
+    // var socketHost = 'http://ws.flowzcluster.tk:4032';
+    let bannerUrl = baseURL + '/banners?banner_type=' + id + '&banner_status=true&$paginate=false';
+    // let bannerUrl = 'http://localhost:3030/banners?banner_type=' + id + '&banner_status=true';
     let resp = await $.getJSON( bannerUrl ).then(res => {
-      return res.data
+      // console.log('res', res)
+      return res
     }).catch(err => {
       console.log('Error', err)
       return []
+    })
+    return resp
+  }
+
+  async function getBannerType (id) {
+    var baseURL = 'http://api.flowzcluster.tk/serverapi';
+    // var baseURL = 'http://localhost:3032';
+    let bannerTypeUrl = baseURL + '/bannertype/' + id;
+    let resp = await $.getJSON( bannerTypeUrl ).then(res => {
+      return res.bt_category
+    }).catch(err => {
+      console.log('Error', err)
+      return ''
     })
     return resp
   }

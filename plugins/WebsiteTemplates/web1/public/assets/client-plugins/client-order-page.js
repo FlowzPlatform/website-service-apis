@@ -92,7 +92,7 @@ function showOrders()
         for (var product_key in response_data1.products) {
           let product_details = response_data1.products[product_key]
 
-          let productData = await getProductDetailById(product_details.product_id)
+          let productData = product_details.product_description;//await getProductDetailById(product_details.product_id)
 
           // console.log('productData',productData)
           let imgSkuReplace = img_sku.replace('#data.sku#',productData.sku);

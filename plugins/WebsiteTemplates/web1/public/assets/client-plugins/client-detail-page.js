@@ -1,5 +1,5 @@
 var pid = getParameterByName('pid');
-
+var cid = getParameterByName('cid');
 
 if(pid != null) {
   var get_product_details = function () {
@@ -323,6 +323,210 @@ $(document).ready( async function(){
                 //     $(this).prepend("<i>"+sectionCount+"</i>&nbsp;");
                 //   }
                 // });
+
+                // Edit Cart Product  
+                if(user_details != null && cid != null)
+                {
+                    $.ajax({
+                    type : 'GET',
+                    //   url : project_settings.shopping_api_url+'/68260c4f-3c2d-442b-8949-097dc324715a',
+                    url : project_settings.shopping_api_url+'/'+cid,
+                    dataType : 'json',
+                    success : function(response_data) 
+                    {
+                        if (response_data!= "") 
+                        {
+                            var colorArray = $.map(response_data.color, function(value, index) {
+                                return [index];
+                            });
+
+                            // console.log(colorArray);
+
+                            $(activetab).find(".js_color_checkbox").each(function(){
+                                if($.inArray( $(this).val(), colorArray) != -1)
+                                {
+                                    let hexCodeBgColor = $(this).parent().attr("style");
+                                    let id = $(this).attr("id");
+                                    Quantity = "<div class='quntity-count js_color_wise_qty' id='js_request_quote_qty_box_"+id+"'><div class='color-input' style='"+hexCodeBgColor+"' title='"+$(this).val()+"'><br></div><div class='selector-quantity js-quantity-section'><div class='selector-btn'><div class='sp-minus'><a data-multi='-1' href='javascript:void(0)' class='js-quantity-selector'>-</a></div>"+
+                                    "<div class='selector-input'> <input type='text' value='"+response_data.color[$(this).val()]+"' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
+
+                                    $(this).prop("checked",true);
+                                    $(".js_add_imprint_location_request_quote").prop("checked",true);
+                                    
+                                    if($(activetab).find("#js_request_quote_qty_box").html() !=""){
+                                        $(activetab).find("#js_request_quote_qty_box").append(Quantity);
+                                    }else{
+                                        $(activetab).find("#js_request_quote_qty_box").html(Quantity);
+                                    }
+
+                                    if($(activetab+' .js-quantity-section.collapse').length > 0 ){
+                                        $(activetab+' .js-quantity-section').addClass('in');
+                                        $(activetab+' .js-quantity-section').css('height','');
+                                        $(activetab+' .js-quantity-section').parent().find('.js-add-class').removeClass('collapsed');
+                                    }
+                                }
+                            });
+
+                            $(activetab+"-Print-position-block").addClass("in");
+
+                            $(activetab).find(".js_add_imprint_location_request_quote").each(function(){
+                                $(this).prop("checked",false);
+                            });
+                            
+                            if(typeof response_data.imprint != "undefined")
+                            {
+                            for (let [i,imprint_info] of response_data.imprint.entries())
+                            {
+                                    let no_of_color = imprint_info.no_of_color;
+                                    let print_pos_id = replaceWithUnderscore(imprint_info.imprint_position_name)//"barrel";//$(this).attr("id");
+                                    // console.log(print_pos_id);
+                                    $("#"+print_pos_id).prop("checked",true);
+                                    
+                                    let printPos = imprint_info.imprint_position_name;//"BARREL";//$(this).attr("value");
+                                    // console.log(printPos);
+                                    
+                                    let printPosLower = replaceWithUnderscore(imprint_info.imprint_position_name);//"BARREL";//$(this).attr("value");
+                                    // console.log(printPosLower);
+                                    
+                                    let printMethod = replaceWithUnderscore(imprint_info.imprint_method_name);//"BARREL";//$(this).attr("value");
+                                    // console.log(printMethod);
+                                    
+                                    let listHtmlPrintPosMethod1 = '';
+                                    let productHtmlPrintPosMethod = '';
+                                    let select_imprint_method ='<li id="" data-dropval="" data-printpos="" data-full-color="" data-max-imprint-color="" data-method=""><a>Select method</a></li>';
+
+                                    // select_method_digital_full_color_process
+                                    if($(activetab).find('#'+print_pos_id).is(":checked")){
+                                        listHtmlPrintPosMethod1 = listHtmlPrintPosMethod.replace('#data.printPositionName#',printPos);
+                                        listHtmlPrintPosMethod1 = listHtmlPrintPosMethod1.replace('#printPosMethod#',print_pos_id);
+                                        listHtmlPrintPosMethod1 = listHtmlPrintPosMethod1.replace(/#printPosMethodId#/g,print_pos_id);
+                                        productHtmlPrintPosMethod += listHtmlPrintPosMethod1;
+                                        $.each(imprint_method_select, function(index_imprint_method,element_imprint_method){
+                                            if(element_imprint_method.imprint_position.includes(printPos) == true){
+                                                let dropVal;
+                                                let printposMini;
+                                                printposMini = replaceWithUnderscore(printPos);
+                                                dropVal = replaceWithUnderscore(element_imprint_method.imprint_method);
+                                                select_imprint_method += '<li id="select_method_'+dropVal+'" data-dropval="'+dropVal+'" data-printpos="'+printposMini+'" data-full-color="'+element_imprint_method.full_color+'" data-max-imprint-color="'+element_imprint_method.max_imprint_color_allowed+'" data-method="'+element_imprint_method.imprint_method+'"><a>'+ element_imprint_method.imprint_method +'</a></li>'
+                                            }
+                                        });
+
+                                        if($(activetab).find("#js_imprint_request_quote").length!=""){
+                                            $(activetab).find("#js_imprint_request_quote").append(productHtmlPrintPosMethod);
+                                            $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
+                                        }else{
+                                            $(activetab).find("#js_imprinjs_imprint_request_quotet_request_quote").html(productHtmlPrintPosMethod);
+                                            $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
+                                        }
+                                        $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find('.imprint-color-select').hide()
+                                            // alert(printPosLower)
+                                        $("#js_imprint_request_quote_box_"+printPosLower).find("#select_method_"+printMethod).click();
+
+                                        $( ".js_imprint_method_selectbox_"+printPosLower+"_"+printMethod+" ul li[data-value='"+no_of_color+"']" ).click();
+                                    }
+                                    else{
+                                        $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).remove();
+                                    }
+                                }
+                            }
+
+                            $(activetab).find('input[name=request_quote_shipping_type][value="'+response_data.shipping_method.shipping_type+'"]').click();//.prop("checked",true);
+
+                            // shippigCounter = parseInt($(activetab+" .js_request_quote_shipping_counter").val());
+                            // attachAutoCompleteEvent("#js_shipping_method_detail_"+shippigCounter);
+                            
+                            // $(activetab).find('.auto_complete_shipping_email').typeahead('setQuery','neelpatel@officebrain.com')
+                            
+                            
+                            // Shiiping Section
+                            var shipping_detail = response_data.shipping_method.shipping_detail;
+
+                            let iCnt = 2;
+                            for(let shippingKey in shipping_detail)
+                            {
+                                if(shippingKey>0)
+                                {
+                                    let appendId =  iCnt-1;
+                                    $('#js_shipping_method_detail_1')
+                                        .clone()
+                                        .attr('id', 'js_shipping_method_detail_' + iCnt)
+                                        .insertAfter("#js_shipping_method_detail_"+appendId);
+                                        $('#js_shipping_method_detail_' + iCnt).attr('data-shipping-counter',iCnt)    
+                                        $('#js_shipping_method_detail_' + iCnt+' .option-head:first').html('<a href="javascript:void(0);">Shipping Address '+iCnt+'</a><span class="js-delete-address css-delete-address pull-right">Delete</span>')
+                                        iCnt = iCnt + 1;
+                                }
+                            }
+                            $(activetab).find(".js_request_quote_shipping_counter").val(shipping_detail.length);
+                            
+                            for(let shippingKey in shipping_detail)
+                            {
+                                var i = parseInt(shippingKey)+1;
+                                var shipping_info = shipping_detail[shippingKey];
+
+                                var addressBookId = shipping_info.selected_address_id
+                                
+                                var shipping_carrier = shipping_info.shipping_detail.shipping_carrier;
+                                var shipping_method = shipping_info.shipping_detail.shipping_method;
+                                var ship_transittime = shipping_info.shipping_detail.ship_transittime;
+                                
+                                var shipping_charge = shipping_info.shipping_detail.shipping_charge;
+                                var on_hand_date = shipping_info.shipping_detail.on_hand_date;
+
+                                setSelectedAddress(addressBookId,i);
+                                let setActivetab = activetab.replace(/\#/g, '');
+
+                                for (let color_quantity in shipping_info.color_quantity) {    
+                                    let color_quantity_class = replaceWithUnderscore(color_quantity) 
+
+                                    $(activetab).find("#js_shipping_method_detail_"+i).find("."+setActivetab+"_"+color_quantity_class).find(".js_request_quote_shipping_qty_box").val(shipping_info.color_quantity[color_quantity]);
+
+                                    $(activetab).find("#js_shipping_method_detail_"+i).find("."+setActivetab+"_"+color_quantity_class).find("total").html(shipping_info.color_quantity[color_quantity]);
+
+                                    // alert(shipping_info.color_quantity[color_quantity]);
+                                }
+
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_request_quote_shipping_qty_box").val();
+                                
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").attr('data-value',shipping_carrier);
+
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").html('<span class="imprint-lbl-method">'+shipping_carrier.toUpperCase()+'</span> <span class="caret"></span>');
+                                
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-value',shipping_charge);
+
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").html('<span class="imprint-lbl-method">'+shipping_method+' '+shipping_charge+'</span> <span class="caret"></span>');
+
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-service',shipping_method);
+                                
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shipmethod_ul").html('<li data-service="'+shipping_method+'" data-value="'+shipping_charge+'" data-transit-time="'+ship_transittime+'"><a href="javascript:void(0)">'+shipping_method+' '+shipping_charge+'</a></li>');
+                                
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker"+i);
+                                
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").datepicker({
+                                    changeMonth: true,
+                                    changeYear: true,
+                                    format: 'mm/dd/yyyy',
+                                    minDate: new Date(),
+                                    onSelect: function(dateText, inst) {
+                                        let date = $(this).val();
+                                        $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").val(date);
+                                    }
+                                });
+
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").datepicker('setDate', on_hand_date);
+
+                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shipmethod_ul li:first").click();
+                                attachShippingDetailChangeEvent()
+                            }
+                            // END - Shipping Section
+
+                            
+                            $(activetab).find("#js_request_quote_instruction").val(response_data.special_instruction);
+                        }
+                    }
+                    })
+                }
+                // END - Edit Cart Product
+
                 $('.js-hide-div').removeClass("js-hide-div");
                 setTimeout(loadBxSlider(),5000)
 			  // },
@@ -600,6 +804,12 @@ $(document).ready( async function(){
                   get_shipping_charge = "";
               }
 
+              let get_transittime = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-transittime');
+
+              if (typeof get_transittime === typeof undefined ) {
+                get_transittime = "";
+              }
+
               let get_shipping_method = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-service');
 
               if (typeof get_shipping_method === typeof undefined ) {
@@ -617,8 +827,8 @@ $(document).ready( async function(){
               let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").val();
 
               let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
-
-              let shipping_detail = {"on_hand_date":get_in_hand_date,'ship_date':'',"ship_transittime": "","shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
+              
+              let shipping_detail = {"on_hand_date":get_in_hand_date,'ship_date':'',"ship_transittime": get_transittime,"shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
               shipping_details.push({'color_quantity':shipping_colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail,'shipping_address':user_shipping_address});
           }
           let shipping_method = ''
@@ -688,31 +898,45 @@ $(document).ready( async function(){
               }, 2000);
 
           }else{
-              console.log("success");
               if(ordertab == 'place-order'){
                   let order_type = $('#js_sub_tab_list li.active a').text().toLowerCase();
                   data['type'] = 2;
                   data['order_type'] = order_type;
-                  // return false;
-                  $.ajax({
-                      type : 'POST',
-                      url : project_settings.shopping_api_url,
-                      data : data,
-                      dataType : 'json',
-                      success : function(response_data) {
-                          if(response_data.status == 200) {
-                              hidePageAjaxLoading()
-                              //showSuccessMessage("Product is added to cart","cartPage.html");
-                              window.location.href = "cartPage.html"
-                              return false;
-                          }
-                          else if(response_data.status == 400) {
-                              hidePageAjaxLoading()
-                              showErrorMessage(response_data.message);
-                              return false;
-                          }
-                      }
-                  });
+                  
+                //   return false;
+                if(user_details != null && cid != null)
+                {  
+                    data['id'] = cid;
+                    var ajaxType = 'PUT';
+                    var ajaxURL = project_settings.shopping_api_url+'/'+cid;
+                }
+                else{
+                    var ajaxType = 'POST';
+                    var ajaxURL = project_settings.shopping_api_url;
+                } 
+
+                $.ajax({
+                    type : ajaxType,
+                    url : ajaxURL,
+                    data : data,
+                    dataType : 'json',
+                    success : function(response_data) {
+                        if(response_data.status == 200) {
+                            hidePageAjaxLoading()
+                            //showSuccessMessage("Product is added to cart","cartPage.html");
+                            window.location.href = "cartPage.html"
+                            return false;
+                        }
+                        else if(response_data.status == 400) {
+                            hidePageAjaxLoading()
+                            showErrorMessage(response_data.message);
+                            return false;
+                        }
+                    },
+                    error : function(error) {
+                        console.log('error',error)
+                    }
+                });
               }
               else{
                   let user_info = {};
@@ -829,6 +1053,7 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                         rateHtml +='<li data-service="'+rateDetails.servicelevel.name+'" data-value="'+rateDetails.amount+'" data-transit-time="'+rateDetails.estimated_days+'"><a href="javascript:void(0)">'+rateDetails.servicelevel.name+' '+rateDetails.currency+' '+rateDetails.amount+'</a></li>';
                     }
                     $(parentObj).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
+                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
                 }
                 else{
                     rateHtml = '<li><a href="javascript:void(0)">Product shipping detail is missing</a></li>'
@@ -842,8 +1067,9 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
 
                     if(noOfBox > 50)
                     {
-                        let max_qty = shipping_qty_per_carton*50
-                        $(parentObj).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").append('<div class="red js-section-errors">Maximum '+max_qty+' quantities are allowed.</div>')
+                        let max_qty = shipping_qty_per_carton*50;
+                        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
+                        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").append('<div class="red js-section-errors">Maximum '+max_qty+' quantities are allowed.</div>')
                     }
 
                     /*if(result.data.address_to.validation_results.is_valid == false) {
@@ -851,6 +1077,11 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                     }*/
                 }
                 $(parentObj+" .js_rq_ship_shipmethod_ul").html(rateHtml);
+                
+                // Change Shipping Details
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').trigger('click');
+        		$('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_handdate').val('');
+        		
                 hidePageAjaxLoading()
             },
             error: function(err) {
@@ -1348,6 +1579,27 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
     }
 });
 
+function changeShippingDetails(currentAddressCounter)
+{
+	let currentAddressShippingCarrier = $('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingcarrier .imprint-lbl-method').html();
+	
+	if(currentAddressShippingCarrier != undefined && currentAddressShippingCarrier != '')
+	{
+		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_select_shipping_carrier_method li').filter('[data-value="'+(currentAddressShippingCarrier.toLowerCase())+'"]').trigger('click');
+		
+		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingmethod').html('Select Method <span class="caret"></span>');
+		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_rq_ship_shippingmethod').trigger('click');
+		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_handdate').val('');
+	}
+	
+}
+function attachShippingDetailChangeEvent()
+{
+	$(document).off("change", activetab + ' .js_request_quote_shipping_qty_box').on("change", activetab + ' .js_request_quote_shipping_qty_box', function(){
+		let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
+		changeShippingDetails(currentAddressCounter)	
+	});
+}
 $(document).on("change", activetab + ' .js_color_checkbox',function(){
     if(user_id == null) {
         window.location = "login.html";
@@ -1398,6 +1650,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         	{
         		$(this).find(".js_request_quote_shipping_qty_box").removeAttr('readonly');        		
         	}
+        	attachShippingDetailChangeEvent();
         });
         // END -> If address is visible, if user checks one more color, then add that color with address
     }
@@ -1423,7 +1676,7 @@ function setdate(shipCounter,parentObj,activetab,transitTime=0){
       let endDate = "";
       let count = 0;
       let noOfDaysToAdd = 0
-
+      let setDate = "";  
       if(transitTime > 0 && transitTime !=''){
           noOfDaysToAdd = noOfDaysToAdd + parseInt(transitTime);
       }
@@ -1434,7 +1687,15 @@ function setdate(shipCounter,parentObj,activetab,transitTime=0){
             count++;
         }
       }
-      let setDate = new Date(endDate.getFullYear(),endDate.getMonth(),endDate.getDate())
+
+      if(endDate != "")
+      {
+        setDate = new Date(endDate.getFullYear(),endDate.getMonth(),endDate.getDate())
+      }
+      else{
+        setDate = date
+      }
+      
       // let setActivetab = activetab.replace("#","")
       $(activetab).find(parentObj).find(activetab+"_datetimepicker"+shipCounter).datepicker("setDate", setDate);
       $(activetab).find(parentObj).find(activetab+"_datetimepicker"+shipCounter).datepicker('option', 'minDate', setDate);
@@ -1603,9 +1864,8 @@ function shippingValidation(fld,section,value){
       let shippingArr = {}
       let arrKey = 1
 	  let splitShippingColorQuantity = {};
-      $.each(value[fld].shipping_detail,function(key,shippingData){
-          let section1 = section+'-'+arrKey
-          
+      
+      $.each(value[fld].shipping_detail,function(key,shippingData){          
           let splitShippingAddressQuantity = 0;
 		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
 			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
@@ -1617,33 +1877,9 @@ function shippingValidation(fld,section,value){
 			  {
 				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
 			  }
-		  });
-		  
-          let shippingVal = {}
-          if(shippingData.selected_address_id == undefined){
-              shippingVal['selected_address_id'] = "Please select shipping address."
-              shippingArr[section1] = shippingVal
-          }
-          else if(!isEmpty(shippingData.color_quantity) && splitShippingAddressQuantity <= 0){
-        	  shippingVal['shipping_method'] = "All colors cant not have 0 quantity in address."
-              shippingArr[section1] = shippingVal
-    	  }
-          else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
-                  shippingVal['shipping_carrier'] = "Select shipping carrier."
-                  shippingArr[section1] = shippingVal
-          }
-          else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_method == '') {
-                shippingVal['shipping_method'] = "Select shipping method."
-                shippingArr[section1] = shippingVal
-              }
-          else if (shippingData.shipping_detail.shipping_charge == '') {
-                shippingVal['shipping_method'] = "Select shipping method."
-                shippingArr[section1] = shippingVal
-              }
-          arrKey = arrKey + 1
-      })
-      console.log(value['color']);
-      console.log(splitShippingColorQuantity);
+		  });	
+      })  
+
       if(value['color'] != undefined)
       {
     	  $.each(value['color'],function(colorkey,colorvalue){
@@ -1657,6 +1893,50 @@ function shippingValidation(fld,section,value){
     			 }
 			  }
 		  });
+      }
+      console.log(errorLog);
+      
+      if(isEmpty(errorLog))
+      {
+          $.each(value[fld].shipping_detail,function(key,shippingData){
+              let section1 = section+'-'+arrKey
+              
+              let splitShippingAddressQuantity = 0;
+    		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
+    			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
+    			  if(splitShippingColorQuantity[colorkey] != undefined)
+    			  {
+        			  splitShippingColorQuantity[colorkey] = parseInt(splitShippingColorQuantity[colorkey]) + parseInt(colorvalue)
+    			  }
+    			  else
+    			  {
+    				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
+    			  }
+    		  });
+    		  
+              let shippingVal = {}
+              if(!isEmpty(shippingData.color_quantity) && splitShippingAddressQuantity <= 0){
+            	  shippingVal['shipping_method'] = "All colors cant not have 0 quantity in address."
+                  shippingArr[section1] = shippingVal
+        	  }
+              else if(shippingData.selected_address_id == undefined){
+                  shippingVal['selected_address_id'] = "Please select shipping address."
+                  shippingArr[section1] = shippingVal
+              }
+              else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
+                      shippingVal['shipping_carrier'] = "Select shipping carrier."
+                      shippingArr[section1] = shippingVal
+              }
+              else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_method == '') {
+                    shippingVal['shipping_method'] = "Select shipping method."
+                    shippingArr[section1] = shippingVal
+                  }
+              else if (shippingData.shipping_detail.shipping_charge == '') {
+                    shippingVal['shipping_method'] = "Select shipping method."
+                    shippingArr[section1] = shippingVal
+                  }
+              arrKey = arrKey + 1
+          })
       }
 
       if(!isEmpty(shippingArr)) errorLog = shippingArr
@@ -1697,7 +1977,9 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     	if(selectedShippingType == 'standard')
     	{
             let colorName = $(this).closest('.js_rq_shipping_quantity').data('color-id');
-            $(this).val(colors_qty[colorName]);    		
+            $(this).val(colors_qty[colorName]);
+            // Trigger change event for updating shipping details
+            $(this).trigger('change');
     	}
     });
 });
@@ -1760,119 +2042,133 @@ function attachAutoCompleteEvent(parentDiv){
 	              showPageAjaxLoading();
 	          let counter = $(obj.currentTarget).closest('.js_shipping_method_detail').data('shipping-counter');
 	          let shippigCounter = counter;
-	          let addressBookId = datum.id;
-	          axios({
-	              method: 'GET',
-	              url: project_settings.address_book_api_url+'/'+addressBookId,
-	            })
-	          .then(async response => {
-	              if(response.data != undefined ){
-	                  let returnData = response.data;
-	                  let replaceAddressHtml = '';
-	                  replaceAddressHtml += returnData.name+"<br>";
-	                  replaceAddressHtml += returnData.email+"<br>";
-	                  replaceAddressHtml += returnData.street1+"<br>,";
-	                  if(returnData.street2 != undefined){
-	                    replaceAddressHtml += returnData.street2+"<br>";
-	                  }
-	                  // change
-	                  let city = await getCountryStateCityById(returnData.city,3);
-	                  replaceAddressHtml += city+",";
-
-	                  let state = await getCountryStateCityById(returnData.state,2);
-	                  replaceAddressHtml += state+",";
-
-	                  let country = await getCountryStateCityById(returnData.country,1);
-	                  $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').html('Select Carrier <span class="caret"></span>');
-	                //   $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').attr('data-value','');
-	                  replaceAddressHtml += country
-	                  // END -Change
-
-	                  if(returnData.postalcode != undefined ){
-	                    replaceAddressHtml += "-"+returnData.postalcode+"<br>";
-	                  }
-	                  if(returnData.phone != undefined ){
-	                    replaceAddressHtml += "T: "+returnData.phone+",<br>";
-	                  }
-	                  if(returnData.mobile != undefined ){
-	                    replaceAddressHtml += "M: "+returnData.mobile+"<br>";
-	                  }
-	                  replaceAddressHtml += '<input class="shippingAddressId" name="shippingAddressId" value="'+returnData.id+'" type="hidden">';
-	                  addressBookHtml = addressBookHtmlTemplate;
-
-	                  if(addressBookHtml.indexOf("#data.address#")!= -1){
-	                      addressBookHtml = addressBookHtml.replace(/#data.address#/g,replaceAddressHtml);
-	                      $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html(addressBookHtml);
-	                  }else{
-	                      $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html(replaceAddressHtml)
-	                  }
-	                  $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses").removeClass("hide");
-	                // change
-	                    let shipping_details = get_product_details.shipping[0];
-	                    if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
-	                          $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
-	                    }
-	                    var addressFrom  = {
-	                        // "name": returnData.name,
-	                        // "street1": returnData.street1,
-	                        "city": shipping_details.fob_city,
-	                        "state": shipping_details.fob_state_code,
-	                        "zip": shipping_details.fob_zip_code,
-	                        "country": shipping_details.fob_country_code,
-	                        // "phone": "+1 555 341 9393",//optional
-	                        // "email": "shippotle@goshippo.com",//optional
-	                        "validate": true//optional
-	                    };
-
-	                    var addressTo  = {
-	                        // "name": returnData.name,
-	                        // "street1": "500 to 598 1st St",//returnData.street1,
-	                        "city": city,
-	                        "state": state,
-	                        "zip": returnData.postalcode,
-	                        "country": country,
-	                        // "phone": "+1 555 341 9393",//optional
-	                        // "email": "shippotle@goshippo.com",//optional
-	                        "validate": true//optional
-	                    };
-	                    // console.log("addressTo",addressTo);
-
-	                    $(document).off('click', '#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li').on('click','#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li', function (e) {
-	                        // if(e.handled !== true)
-	                        {
-	                            showPageAjaxLoading()
-	                            var thisObj = $(this);
-
-	                            let attr = $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value');
-
-	                            if (typeof attr !== typeof undefined && attr !== false) {
-	                                $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value','')
-	                                $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-service','')
-	                            }
-	                            getShippingRate('#js_shipping_method_detail_'+shippigCounter,thisObj,addressFrom,addressTo,shipping_details,shippigCounter);
-	                        }
-	                    });
-	                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").removeClass("hide");
-	                // END -Change
-
-	                  $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses").removeClass("hide");
-	                  $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").datepicker({
-	                      changeMonth: true,
-	                      changeYear: true,
-	                      format: 'mm/dd/yyyy',
-	                      minDate: new Date(),
-	                      onSelect: function(dateText, inst) {
-	                          let date = $(this).val();
-	                          $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").val(date);
-	                      }
-	                  });
-	              }
-	              hidePageAjaxLoading();
-	          })
-	          .catch(error => {
-	            hidePageAjaxLoading();
-	            // console.log('Error fetching and parsing data', error);
-	          });
+              let addressBookId = datum.id;
+              
+              setSelectedAddress(addressBookId,shippigCounter);
 	      });
 	    }
+}
+
+
+function setSelectedAddress(addressBookId,shippigCounter)
+{
+    axios({
+        method: 'GET',
+        url: project_settings.address_book_api_url+'/'+addressBookId,
+      })
+    .then(async response => {
+        if(response.data != undefined ){
+            let returnData = response.data;
+            let replaceAddressHtml = '';
+            replaceAddressHtml += returnData.name+"<br>";
+            replaceAddressHtml += returnData.email+"<br>";
+            replaceAddressHtml += returnData.street1+"<br>,";
+            if(returnData.street2 != undefined){
+              replaceAddressHtml += returnData.street2+"<br>";
+            }
+            // change
+            let city = await getCountryStateCityById(returnData.city,3);
+            replaceAddressHtml += city+",";
+
+            let state = await getCountryStateCityById(returnData.state,2);
+            replaceAddressHtml += state+",";
+
+            let country = await getCountryStateCityById(returnData.country,1);
+            if(cid == null)
+            {
+                changeShippingDetails(shippigCounter);
+            }
+            // if(cid == null)
+            // {
+            //     $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').html('Select Carrier <span class="caret"></span>');
+            // }
+          //   $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').attr('data-value','');
+            replaceAddressHtml += country
+            // END -Change
+
+            if(returnData.postalcode != undefined ){
+              replaceAddressHtml += "-"+returnData.postalcode+"<br>";
+            }
+            if(returnData.phone != undefined ){
+              replaceAddressHtml += "T: "+returnData.phone+",<br>";
+            }
+            if(returnData.mobile != undefined ){
+              replaceAddressHtml += "M: "+returnData.mobile+"<br>";
+            }
+            replaceAddressHtml += '<input class="shippingAddressId" name="shippingAddressId" value="'+returnData.id+'" type="hidden">';
+            addressBookHtml = addressBookHtmlTemplate;
+
+            if(addressBookHtml.indexOf("#data.address#")!= -1){
+                addressBookHtml = addressBookHtml.replace(/#data.address#/g,replaceAddressHtml);
+                $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html(addressBookHtml);
+            }else{
+                $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html(replaceAddressHtml)
+            }
+            $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses").removeClass("hide");
+          // change
+              let shipping_details = get_product_details.shipping[0];
+              if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
+                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
+              }
+              var addressFrom  = {
+                  // "name": returnData.name,
+                  // "street1": returnData.street1,
+                  "city": shipping_details.fob_city,
+                  "state": shipping_details.fob_state_code,
+                  "zip": shipping_details.fob_zip_code,
+                  "country": shipping_details.fob_country_code,
+                  // "phone": "+1 555 341 9393",//optional
+                  // "email": "shippotle@goshippo.com",//optional
+                  "validate": true//optional
+              };
+
+              var addressTo  = {
+                  // "name": returnData.name,
+                  // "street1": "500 to 598 1st St",//returnData.street1,
+                  "city": city,
+                  "state": state,
+                  "zip": returnData.postalcode,
+                  "country": country,
+                  // "phone": "+1 555 341 9393",//optional
+                  // "email": "shippotle@goshippo.com",//optional
+                  "validate": true//optional
+              };
+              // console.log("addressTo",addressTo);
+
+              $(document).off('click', '#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li').on('click','#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li', function (e) {
+                  // if(e.handled !== true)
+                  {
+                      showPageAjaxLoading()
+                      var thisObj = $(this);
+
+                      let attr = $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value');
+
+                      if (typeof attr !== typeof undefined && attr !== false) {
+                          $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value','')
+                          $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-service','')
+                      }
+                      getShippingRate('#js_shipping_method_detail_'+shippigCounter,thisObj,addressFrom,addressTo,shipping_details,shippigCounter);
+                  }
+              });
+              $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").removeClass("hide");
+          // END -Change
+
+            $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses").removeClass("hide");
+            $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                format: 'mm/dd/yyyy',
+                minDate: new Date(),
+                onSelect: function(dateText, inst) {
+                    let date = $(this).val();
+                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").val(date);
+                }
+            });
+        }
+        hidePageAjaxLoading();
+    })
+    .catch(error => {
+      hidePageAjaxLoading();
+      // console.log('Error fetching and parsing data', error);
+    });
 }
