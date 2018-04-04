@@ -1143,35 +1143,6 @@ function replaceWithUnderscore(value){
   return returnVal;
 }
 
-
-async function replaceColorSwatchWithHexaCodes(attribute_value,attribute_name){
-    let returnColorVal = null
-    if(attribute_value != undefined && attribute_value.length > 0) {
-      var data = {'colorname':attribute_value};
-      await axios({
-              method: 'GET',
-              url : project_settings.color_table_api_url+'?vid='+website_settings.Projectvid.vid+'&websiteid='+website_settings['projectID']+'&attribute_name='+attribute_name,
-              params: data,
-              dataType : 'json'
-            })
-            .then(response_data => {
-                if(response_data.data.data.length > 0 ) {
-                  let colorObj = {}
-                  $.each(response_data.data.data,function(key,val){
-                        colorObj[val.colorname] = val
-                  })
-                  // returnColorVal = response_data.data.data
-                  returnColorVal = colorObj
-                }
-                return returnColorVal;
-            })
-            .catch(function (error) {
-         			// 	console.log("error+++",error);
-            });
-    }
-    return returnColorVal;
-}
-
 // function replaceColorSwatchWithHexaCodes(attribute_value,attribute_name){
 //   if(attribute_value != undefined && attribute_value.length > 0) {
 //       var data = {'colorname':attribute_value};
@@ -1943,16 +1914,6 @@ function shippingValidation(fld,section,value){
   }
   return errorLog
 }
-
-function isEmpty(myObject) {
-    for(let key in myObject) {
-        if (myObject.hasOwnProperty(key)) {
-            return false;
-        }
-    }
-    return true;
-}
-
 
 function loadBxSlider(){
   $('.ob-product-gallery .product-big-image-thumbnails').bxSlider({

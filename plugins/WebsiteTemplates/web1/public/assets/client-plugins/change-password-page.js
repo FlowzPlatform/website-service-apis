@@ -2,6 +2,9 @@ if(user_id == null) {
 	window.location = "login.html";
 }
 
+$(".breadcrumb li:last-child").html('<strong>Change Password</strong>')
+$(".breadcrumb li:last-child").removeClass("hide")
+
 $("#change_pass_form").submit(function(event){
     event.preventDefault();
 	//var form_data = $(this).serializeArray();
