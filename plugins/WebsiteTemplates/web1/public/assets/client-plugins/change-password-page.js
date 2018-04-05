@@ -31,7 +31,8 @@ $("#change_pass_form").submit(function(event){
 				showSuccessMessage(result.message,website_settings.BaseURL+"index.html");
 			},
 			error: function(err) {
-				showErrorMessage('old password does not match.');
+				let errorMsg = err.responseText.replace('Error:','');
+				showErrorMessage(errorMsg.trim());
 			}
 		});
 	}
