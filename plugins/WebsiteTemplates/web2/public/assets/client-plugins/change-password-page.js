@@ -1,4 +1,4 @@
-if(getCookie('loginTokenKey') == null) {
+if(user_id == null) {
 	window.location = "login.html";
 }
 
@@ -12,7 +12,7 @@ $("#change_pass_form").submit(function(event){
 
 	if(new_pass === confirm_pass) {
 		var passDetails = {"oldpass":old_pass ,"newpass":new_pass};
-		let userToken = getCookie('loginTokenKey');
+		let userToken = getCookie('auth_token');
 
 		$.ajax({
 			type: 'POST',
@@ -24,11 +24,11 @@ $("#change_pass_form").submit(function(event){
 				"authorization": userToken,
 				'Content-Type': 'application/json'
 			},
-			success: function (result) {
-				showSuccessMessage(result.message,project_settings.base_url+"index.html");
+			success: function (result) {				
+				showSuccessMessage(result.message,website_settings.BaseURL+"index.html");
 			},
 			error: function(err) {
-				showErrorMessage('internal server error');
+				showErrorMessage('old password does not match.');
 			}
 		});
 	}
