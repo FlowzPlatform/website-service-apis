@@ -56,13 +56,13 @@ body {
 </style>
 
 <div class="product-section-box">
-    <div class="panel-group" id="decoration-Decoration-Print-position" role="tablist"
+    <div class="panel-group" id="#activetab#-Print-position" role="tablist"
     aria-multiselectable="true">
         <div class="panel-heading open" role="tab">
-            <h2 class="panel-title heading-block js-section-number ">Print Position</h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="#decoration-Decoration-Print-position"
-            href="#decoration-Decoration-Print-position-block" aria-expanded="true"><i class="caret-icon"></i></a>
+            <h2 class="panel-title heading-block js-section-number ">Print Position</h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="##activetab#-Print-position"
+            href="##activetab#-Print-position-block" aria-expanded="true"><i class="caret-icon"></i></a>
         </div>
-        <div class="panel-collapse collapse in" id="decoration-Decoration-Print-position-block"
+        <div class="panel-collapse collapse in" id="#activetab#-Print-position-block"
         role="tabpanel">
             <div class="panel-body js-printPosition-section">
                 <div class="print-position">
@@ -71,7 +71,7 @@ body {
                             <div class="print-checkbox">
                                 <div>
                                     <input class="css-checkbox js_add_imprint_location_request_quote" name="imprint_area"
-                                    id="#data.printPositionId#" type="checkbox" value="#data.printPositionVal#"
+                                    id="#data.printPositionId#" type="checkbox" value="#data.printPositionVal#" style="opacity:1"
                                     />
                                     <label class="css-label font-style-normal" for="#data.printPositionIdFor#">#data.printPosition#</label>
                                 </div>

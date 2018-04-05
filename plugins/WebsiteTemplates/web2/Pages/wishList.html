@@ -24,15 +24,6 @@ body {
     margin-top: 0px;
 }
 
-.row {
-    display: table;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    width: 100%;
-}
-
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
@@ -48,15 +39,6 @@ body {
     margin-left: 0px;
 }
 
-.innerpage.row.account-innerpage {
-    margin-top: 52px;
-    display: inline;
-}
-
-.product-wrap .pro-box .pro-desc {
-    display: inline-block;
-}
-
 .c67694 {
     display: block;
     width: 100%;
@@ -68,22 +50,29 @@ body {
 
 
 <div class="cssImports"></div>
-<div class="container" id="myWishList">
-    <div class="innerpage row account-innerpage">
-        <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
-            <div class="ob-myaccount-mywishlist">
-                <div class="myaccount-title">
-                    <h1 class="main-title">
-                  My WishList                        
-               </h1>
+<div class="container">
+    <div class="innerpage row">
+<div>
+   <reusecomponent>{{> myAccount id='leftNavigation.partial' }}</reusecomponent>
+</div>
+
+
+    <div id="myWishList">   
+        <div>
+            <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+                <div class="ob-myaccount-mywishlist">
+                    <div class="myaccount-title">
+                        <h1 class="main-title"><i class="fa fa-heart"></i>My WishList                        
+                </h1>
+                    </div>
                 </div>
-            </div>
-            <div class="myaccount-my-wishlist">
-                <div class="product-main-list-block">
-                    <div class="tab-pane active">
-                        <div class="ob-product-grid js-product-grid list-view" id="product-list-container">
-                            <div class="row">
-                                <reusecomponent class="c67694">{{> wishlist id='list.partial' }}</reusecomponent>
+                <div class="myaccount-my-wishlist">
+                    <div class="product-main-list-block">
+                        <div class="tab-pane active">
+                            <div class="ob-product-grid js-product-grid list-view" id="product-list-container">
+                                <div class="row" style="display:block">
+                                    <reusecomponent class="c67694">{{> wishlist id='list.partial' }}</reusecomponent>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,4 +80,5 @@ body {
             </div>
         </div>
     </div>
+</div>
 </div>

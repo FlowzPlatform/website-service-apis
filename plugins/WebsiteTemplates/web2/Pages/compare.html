@@ -48,11 +48,6 @@ body {
     margin-left: 0px;
 }
 
-.innerpage.row.account-innerpage {
-    margin-top: 52px;
-    display: inline;
-}
-
 .table td {
     text-align: center;
 }
@@ -105,13 +100,6 @@ span.color {
 .table-striped > tbody > tr:nth-of-type(2n+1) {
     background-color: transparent;
 }
-
-div#myCompareList .innerpage {
-    margin-top: 10px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-}
 </style>
 
 
@@ -120,14 +108,16 @@ div#myCompareList .innerpage {
 <div class="cssImports"></div>
 <div class="c90784">
     <div class="container" id="myCompareList">
-        <div class="innerpage">
-            <div class="row">
-                <div class="col-md-5">
-                    <h3>Compare Products</h3>
+        <div class="innerpage row">
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+                <h1 class="main-title"><i class="fa fa-random fa-fw"></i>PRODUCT COMPARE</h1>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 col-xs-12">
+                <div class="product-compare-top-navi"><a class="continue-shopping-btn" href="search.html">Continue Shopping<i class="fa fa-angle-double-right"></i></a>
                 </div>
             </div>
             <hr/>
-            <div class="row">
+            <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
                 <reusecomponent class="c93217">{{> Compare id='list.partial' }}</reusecomponent>
                 <div class="col-md-12"></div>
             </div>

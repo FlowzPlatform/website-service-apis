@@ -7,30 +7,8 @@ body {
     margin: 0;
 }
 
-.row {
-    display: table;
-    padding-top: 10px;
-    padding-right: 10px;
+.heading {
     padding-bottom: 10px;
-    padding-left: 10px;
-    width: 100%;
-}
-
-:root {
-    margin-top: 0px;
-}
-
-:root {
-    margin-top: 0px;
-}
-
-.row {
-    display: table;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    width: 100%;
 }
 
 .gjs-am-file-uploader > form {
@@ -48,90 +26,170 @@ body {
     margin-left: 0px;
 }
 
-#c147450 {
-    margin-top: inherit;
-    margin-right: inherit;
-    margin-bottom: inherit;
-    margin-left: inherit;
+#c87926 {
+    display: none;
 }
-
-.c147428 {
-    display: block;
-    width: 100%;
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    vertical-align: middle;
+.shopping-cart-itemlist img{
+    max-width:115px;
+    text-align:center;
+    margin:0 auto;
 }
-
-.checkout_product_list .table tr td, .checkout_product_list .table tr th {
-    text-align: center;
-    border-top-width: 1px !important;
-    border-right-width: 1px !important;
-    border-bottom-width: 1px !important;
-    border-left-width: 1px !important;
-    border-top-style: solid !important;
-    border-right-style: solid !important;
-    border-bottom-style: solid !important;
-    border-left-style: solid !important;
-    border-top-color: rgb(204, 204, 204) !important;
-    border-right-color: rgb(204, 204, 204) !important;
-    border-bottom-color: rgb(204, 204, 204) !important;
-    border-left-color: rgb(204, 204, 204) !important;
-    border-image-source: initial !important;
-    border-image-slice: initial !important;
-    border-image-width: initial !important;
-    border-image-outset: initial !important;
-    border-image-repeat: initial !important;
-}
-
-.checkout_product_list .table tr:last-child td {
-    border-top-width: 0px !important;
-    border-right-width: 0px !important;
-    border-bottom-width: 0px !important;
-    border-left-width: 0px !important;
-    border-top-style: initial !important;
-    border-right-style: initial !important;
-    border-bottom-style: initial !important;
-    border-left-style: initial !important;
-    border-top-color: initial !important;
-    border-right-color: initial !important;
-    border-bottom-color: initial !important;
-    border-left-color: initial !important;
-    border-image-source: initial !important;
-    border-image-slice: initial !important;
-    border-image-width: initial !important;
-    border-image-outset: initial !important;
-    border-image-repeat: initial !important;
-}
-
-.checkout_product_list .table tr.js-replace-products td:first-child {
-    text-align: left;
+.main-shopping-block thead tr th:nth-child(1),
+.main-shopping-block thead tr th:nth-child(2),
+.main-shopping-block thead tr th:nth-child(3){
+    width:22%;
 }
 </style>
 
 
 
 
-<div class="cssImports"></div>
-<div class="container">
-    <div class="innerpage row account-innerpage">
-        <div class="col-xs-12">
-            <h1 class="main-title"><i class="fa fa-credit-card"></i>Checkout</h1>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="checkout_product_list">
-                    <shoppingcart class="c147428" paypal="true" stripe="true" authorizedotnet="true">
-                        <div id="ShoppingCart_append"><i class="fa fa-shopping-cart"></i>
-                            <label id="c147450">Shopping Cart</label>
-                        </div>
-                    </shoppingcart>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="./assets/client-plugins/shopping-cart.js"></script>
-<script src="./assets/client-plugins/client-checkout-page.js"></script>
+<table class="main-shopping-block js_main_shopping_block js_deleted_product  ">
+                        <thead>
+                           <tr>
+                              <th class="product"></th>
+                              <th>Order type : #data.order_type# </th>
+                              <th>Shipping : #data.shipping_type# </th>
+                              <th style="text-align:center">
+                                <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" class="js_view_order ui-link" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                <a href="#data.edit_link#" target="_blank" data-toggle="tooltip" data-placement="top" title="" class="ui-link" data-original-title="Edit"><i class="fa fa-edit"></i></a>        
+                                <a data-original-title="Delete" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" class="js-btn-delete-cart-list  cart-product-delete-btn  " data-cart-id="#data.cart_id#"><i class="fa fa-trash-o"></i></a>
+                              </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td colspan="4">
+                                 <table class="shopping-cart-itemlist">
+                                    <thead>
+                                       <tr class="order-item-title">
+                                          <th>Product Image</th>
+                                          <th>Item Code</th>
+                                          <th>Product Name</th>
+                                          <th>Quantity</th>
+                                          <th>Unit Price</th>
+                                          <th class="border-right-none">Total</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td><a href="#data.product_link#"><img src="#data.image#" alt="" class="img-responsive"></a></td>
+                                          <td>#data.sku#</td>
+                                          <td>#data.product_name#</td>
+                                          <td>#data.quantitye#</td>
+                                          <td>$#data.unit_price#</td>
+                                          <td class="border-right-none js-total">$#data.total# </td>
+                                       </tr>
+                                       <tr class="cart-size-quan js_view_item_details" style="display: none">
+                                          <td colspan="6">
+                                             <table width="100%">
+                                                <tbody>
+                                                   <tr class="js-product-#data.product_id#">
+                                                      <td>
+                                                         <table class="cart-item-view">
+                                                            <thead>
+                                                               <tr>
+                                                                  <th class="table-size-box">Quantity</th>
+                                                                  <th class="table-desc">Imprint Information</th>
+                                                                  <th class="table-charge">Additional Charges</th>
+                                                                  <th class="border-right-none total-count">Charges</th>
+                                                               </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                               <tr>
+                                                                  <td>
+                                                                     <table class="size-quantity-table">
+                                                                        <tbody>
+                                                                           <tr>
+                                                                              <td>
+                                                                                <div class="quantity-table">
+                                                                                    <div class="quantity-table-title">
+                                                                                        <div class="table-heading js-product-price-unit" data-product-price-unit="each">Quantity</div>
+                                                                                        <div class="table-content">Price</div>
+                                                                                    </div>
+                                                                                    <div class="quantity-table-disc">
+                                                                                        <div class="quantity-table-col owl-theme" id="c204962">
+                                                                                            <div class="owl-wrapper-outer">
+                                                                                                <ul class="owl-wrapper" id="c204970">
+                                                                                                    <li class="owl-item" id="c204974"></li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                              </td>
+                                                                           </tr>
+                                                                        </tbody>
+                                                                     </table>
+                                                                     <div class="estimate-tag-block">
+                                                                        #data.special_instruction#
+                                                                     </div>
+                                                                  </td>
+                                                                  <td class="estimate-detail js_imprint_info">
+                                                                    <div class="estimate-tag-block js-imprint-information">
+                                                                       <div class="estimate-row">Print Position: <span>#data.print_position#</span></div>
+                                                                       <div class="estimate-row">Imprint Method: <span>#data.imprint_method#</span></div>
+                                                                       <div class="estimate-row">How many colors: <span>#data.howmany_colors#</span></div>
+                                                                       <div class="estimate-row">#data.colours#</div>
+                                                                    </div>
+                                                                  </td>
+                                                                  <td>#data.additional_charges_list#</td>
+                                                                  <td class="border-right-none">$#data.charges#</td>
+                                                               </tr>
+                                                            </tbody>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>
+                                                         <table class="product-quantity-list">
+                                                            <thead>
+                                                               <tr>
+                                                                  <th class="border-right-none item-list-number">
+                                                                     <div class="quantity-item">#data.shipping_count#</div>
+                                                                     Product Quantity
+                                                                  </th>
+                                                                  <th class="border-right-none">Shipping Address </th>
+                                                                  <th>Shipping</th>
+                                                                  <th class="border-right-none text-center total-count">Shipping Charge</th>
+                                                               </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                               <tr>
+                                                                  <td style="" class="border-right-none">
+                                                                       		#data.color_quantity#
+                                                                  </td>
+                                                                  <td class="border-right-none">#data.address_book#</td>
+                                                                  <td>
+                                                                    #data.shipping_carrier#
+                                                                    #data.shipping_method#
+                                                                    #data.ship_account#
+                                                                    #data.on_hand_date#
+                                                                  </td>
+                                                                  <td class="text-center">$#data.shipping_charges#</td>
+                                                               </tr>
+                                                            </tbody>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </td>
+                                       </tr>
+                                       <tr class="order-item-subtotal js-shipping-#data.product_id#">
+                                          <td>Total : $#data.total#</td>
+                                          <td>Additional Charges : $<b class="js-product_additional_charge">#data.charges#</b></td>
+                                          <td>Shipping Charge : $<b class="js-product_total_shipping_charge">#data.total_shipping_charges#</b></td>
+                                          <td>
+                                             Tax : $#data.tax#
+                                          </td>
+                                          <td colspan="2">
+                                             Sub Total :<span>$#data.subtotal#</span>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>

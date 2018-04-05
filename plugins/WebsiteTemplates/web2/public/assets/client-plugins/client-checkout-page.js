@@ -1,5 +1,6 @@
 var grand_total=0.00;
 var total_qty=0;
+showPageAjaxLoading()
 
 $.ajax({
   type : 'GET',
@@ -15,7 +16,7 @@ $.ajax({
           url: project_settings.product_api_url+"?_id="+response_data[key].product_id,
           async: false,
           beforeSend: function (xhr) {
-            xhr.setRequestHeader ("vid", project_settings.vid);
+            xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
           },
           dataType: 'json',
           success: function (data) {
@@ -23,12 +24,12 @@ $.ajax({
             productData = rawData;
             productHtml.find(".js-checkout-image").attr('src',project_settings.product_api_image_url+productData[0]._source.default_image);
             productHtml.find(".js-checkout-product-name").html(productData[0]._source.product_name);
-            if(typeof response_data[key].special_instruction != "undefined")
+            if(typeof response_data[key].special_instruction != "undefined" && response_data[key].special_instruction!='')
             {
               productHtml.find(".js-checkout-description").html(response_data[key].special_instruction);
             }
 
-            productHtml.find(".js-checkout-unit-price").html("$"+response_data[key].unit_price);
+            productHtml.find(".js-checkout-unit-price").html("$"+parseFloat(response_data[key].unit_price).toFixed(project_settings.price_decimal));
             productHtml.find(".js-checkout-qty").html(response_data[key].total_qty);
 
             // charges
@@ -78,7 +79,11 @@ $.ajax({
       $(newHtml).insertAfter(".js-replace-products");
       $(".js-checkout-grand-total").html("$"+grand_total);
       $(".checkout_product_list").find('tbody tr:first').remove();
-      
+      $('.js-hide-div').removeClass("js-hide-div");
+      hidePageAjaxLoading()
     }
+  },
+  error: function(err){
+    hidePageAjaxLoading()
   }
 });
