@@ -84,17 +84,18 @@ $(function() {
     /* End Add Address Book */
 
     /* for Address type start */
-   	if($('.js-address-type').val() == 'shipping'){
-   		$('.js-isoffice').show();
-   	}
+    if($('#address_type_shipping').prop('checked') == true){
+      $('.js-isoffice').show();
+    }
 
    	$(document).on('change', '.js-address-type', function(e) {
-  		if($(this).val() == 'shipping'){
+  		if($('#address_type_shipping').prop('checked') == true) {
   			$('.js-isoffice').show();
   			if(!$('.js-isoffice input[type="radio"]').is(':checked')){
   				$('.js-isoffice input[type="radio"]:first').prop('checked', true);
   			}
-  		}else{
+      }
+      else {
   			$('.js-isoffice').hide();
   		}
   	});
@@ -200,34 +201,8 @@ $(function() {
           let form = $(this).closest('form');
           let countryVal = form.find('.js-country').val();
           form.find('.js-state').val('');
-          // var data = {};
-	        // data['country_id'] = countryVal;
-	        // data['data_from'] = 'country_code';
-          // data['type'] = 2;
 
           form.find('.js-state').before('<div class="loadinggif"></div>');
-
-          // axios({
-          //     method: 'GET',
-          //     url: project_settings.city_country_state_api,
-          //     params: data
-          //   })
-          // .then(response => {
-          //      first = form.find('.js-state option:first');
-          //      form.find('.js-state').html("");
-          //      let options = form.find('.js-state');
-          //      options.append(first);
-          //
-          //      $.each(response.data,function(key,state){
-          //         options.append(new Option(state.state_name,state.id));
-          //      })
-          //      form.find('.js-state').change();
-          //      form.find('.js-state').find("option").first().click();
-          //      form.find('.js-state').prev('.loadinggif').remove();
-          // })
-          // .catch(error => {
-          //   form.find('.js-state').prev('.loadinggif').remove();
-          // });
 
           let response = await getStateAndCityVal(countryVal,"","country_code")
           first = form.find('.js-state option:first');
@@ -249,34 +224,8 @@ $(function() {
           let countryVal = form.find('.js-country').val();
           let stateVal = form.find('.js-state').val();
           form.find('.js-city').val('');
-          // var data = {};
-	        // data['country_id'] = countryVal;
-          // data['state_id'] = stateVal;
-	        // data['data_from'] = 'state_code';
-          // data['type'] = 3;
 
           form.find('.js-city').before('<div class="loadinggif"></div>');
-
-          // axios({
-          //     method: 'GET',
-          //     url: project_settings.city_country_state_api,
-          //     params: data
-          //   })
-          // .then(response => {
-          //      first = form.find('.js-city option:first');
-          //      form.find('.js-city').html("");
-          //      let options = form.find('.js-city');
-          //      options.append(first);
-          //      $.each(response.data,function(key,city){
-          //         options.append(new Option(city.city_name,city.id));
-          //      })
-          //      form.find('.js-city').find("option").first().click();
-          //      form.find('.js-city').prev('.loadinggif').remove();
-          // })
-          // .catch(error => {
-          //   // console.log('Error fetching and parsing data', error);
-          //   form.find('.js-city').prev('.loadinggif').remove();
-          // });
 
           let response = await getStateAndCityVal(countryVal,stateVal,"state_code")
 
@@ -306,16 +255,12 @@ $(function() {
                     $(formObj.find('input[type="text"][name*="'+element+'"]')).val(value);
                     if(element == 'address_type'){
                       $('input:checkbox[name="'+element+'[]"][value=' + value.join('], [value=') + ']').prop("checked", true);
-                      // $('option:selected', 'select[name="'+element+'"]').removeAttr('selected');
-                      // $('select[name="'+element+'"]').find('option[value="'+value+'"]').attr("selected",true);
-                      // let selectedtext = $('select[name="'+element+'"] option:selected').text()
-                      // $(formObj.find('[name*="'+element+'"]')).parent('span').find(".checkout-holder").text(selectedtext)
+                      if($('input:checkbox[name="'+element+'[]"][value=' + value.join('], [value=') + ']').val() == 'shipping') {
+                        $(".js-isoffice").show();
+                      }
                     }
 
                     $('input:radio[name="'+element+'"][value="'+value+'"]').prop('checked', true);
-                    if($(formObj.find('[name*="'+element+'"]')).parent('span').find(".checkout-holder").text() == "Shipping"){
-                      $(".js-isoffice").show()
-                    }
                 });
                 getCountryData(response.data.country)
                 getStateAndCityData(formObj,response.data.country,response.data.state,"",'country_code','js-state')
@@ -347,11 +292,6 @@ async function generateHtmlFunc(req , addressBookHtml){
       addressBookHtml1 = addressBookHtml.replace("#data.name#",data.name)
       addressBookHtml1 = addressBookHtml1.replace("#data.phone#",data.phone)
       addressBookHtml1 = addressBookHtml1.replace("#data.email#",data.email)
-      // if(data.is_default == '1'){
-      //   addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","address-active")
-      // }else{
-      //   addressBookHtml1 = addressBookHtml1.replace("#activeDefaultClass#","is-default")
-      // }
 
       let shippingTypeHtml = "";
       $.each(data.address_type,function(key,val){
