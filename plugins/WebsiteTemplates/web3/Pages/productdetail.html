@@ -52,19 +52,49 @@ body {
     margin-left: 0px;
 }
 
-.c304111 {
+.product-showcase.row {
+    display: inline;
+}
+
+#c99215 {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: black;
+    border-right-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.c22805 {
     display: block;
     width: 100%;
     min-height: 20px;
 }
 
-.col-12 {
+.c25962 {
     display: block;
     width: 100%;
     min-height: 20px;
 }
 
-.c199542 {
+.c152859 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c192300 {
     display: block;
     width: 100%;
     min-height: 20px;
@@ -75,73 +105,68 @@ body {
 
 
 <div class="cssImports"></div>
-<div class="product-detail-bg"></div>
-<div class="ob-product-detail-wrapper">
-    <div class="container main">
-        <div class="innerpage ob-product-detail-page">
-            <div class="title-block">
-                <div class="row" id="title">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
-                            <h1 class="heading-2">#data.product_name#<span>#data.sku#</span></h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
-                        <div class="breadcrumb">
-                            <ul>
-                                <li><a href="index.php">Home</a><i class="fa fa-angle-right fa-fw"></i>
-                                </li>
-                                <li><a href="product_category_view.php">All Products</a><i class="fa fa-angle-right fa-fw"></i>
-                                </li>
-                                <li><strong>#data.title#</strong>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<link href="./assets/css/detail-page.css" rel="stylesheet" crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css"
+/>
+<div class="container main js-hide-div">
+    <div class="innerpage ob-product-detail-page">
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
+                </li>
+                <li><strong>#data.title#</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="title-block" id="title">
+            <reusecomponent class="c313421">{{> productDetail id='titleSku.partial' }}</reusecomponent>
+        </div>
+        <div class="product-showcase row js-hide-div">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-left">
+                <reusecomponent class="c22805">{{> productDetail id='productDetailLeft.partial' }}</reusecomponent>
             </div>
-            <div class="product-showcase">
-                <div class="product-gallery-block">
-                    <div class="product-gallery-wrapper pull-left">
-                        <div class="quick-view-left">
-                            <div class="zoom product-lrg-image">
-                                <img class="zoom-img img-responsive" id="product_img" alt="Product image"
-                                />
-                            </div>
-                            <div class="product-thumbnails js-image-gallery">
-                                <div class="thumb-slider">
-                                    <div class="slide"><a class="product-thumb-anchar" href="javascript:void(0)"><img alt="product-image"/></a>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-right">
+                <div class="product-wrapper active" role="tabpanel">
+                    <div class="product-description product-detail-wrapper js_product_detail_tabs">
+                        <div role="tabpanel">
+                            <div class="tabbable">
+                                <ul class="nav nav-tabs bordred-tab" role="tablist" id="js_tab_list">
+                                    <li class="active"><a href="#js-place-order" aria-controls="js-place-order" role="tab" data-exist-sub-content="1"
+                                        data-toggle="tab">Place Order</a>
+                                    </li>
+                                    <li><a href="#js-request-quote" data-exist-sub-content="0" aria-controls="js-request-quote"
+                                        role="tab" data-toggle="tab">Request Quote</a>
+                                    </li>
+                                    <li><a href="#js-request-info" data-exist-sub-content="0" aria-controls="js-request-info"
+                                        role="tab" data-toggle="tab">Request Info</a>
+                                    </li>
+                                </ul>
+                                <div class="request-tab-content tab-content">
+                                    <div class="tab-pane fade active in" id="js-place-order">
+                                        <reusecomponent class="c192300">{{> productDetail id='placeOrder.partial' }}</reusecomponent>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <inpu type="hidden" id="var_img_clr_id" value="clr_"></inpu>
+                                    <div class="tab-pane fade in" id="js-request-quote">
+                                        <reusecomponent class="c192300">{{> productDetail id='requestQuote.partial' }}</reusecomponent>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="tab-pane fade" id="js-request-info">
+                                        <reusecomponent class="c152859">{{> productDetail id='requestInfoLayout.partial' }}</reusecomponent>
+                                        <div
+                                        class="clearfix"></div>
                                 </div>
                             </div>
-                            <input type="hidden" id="ob-virtual-product-status" value="0" />
-                            <div id="image-test"></div>
-                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <reusecomponent class="c304111">{{> productdetail id='productDetailAction.partial' }}</reusecomponent>
-                    <div
-                    class="clearfix"></div>
-                <div class="product-lightbox">
-                    <div class="lightbox-wrapper"><a class="close-but js-close-lightbox" href="javascript:void(0)"></a>
-                        <img
-                        class="img-responsive" alt="product-image" />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 product-detail-right-block">
-                    <reusecomponent class="c199542">{{> productdetail id='placeOrder.partial' }}</reusecomponent>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 product-detail-left-block">
-                    <reusecomponent class="col-12">{{> productdetail id='productDetailLeft.partial' }}</reusecomponent>
                 </div>
             </div>
         </div>
     </div>
+    <reusecomponent class="c25962">{{> productDetail id='productDetailBottom.partial' }}</reusecomponent>
 </div>
 </div>
+<script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519651971/websites/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519215927/websites/js/jquery.zoom.js"></script>
+<script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519215927/websites/js/jquery.elevatezoom.js"></script>
 <script type="text/javascript" src="./assets/client-plugins/client-detail-page.js"></script>

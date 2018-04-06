@@ -1,0 +1,20 @@
+/* Add your custom CSS styles here. It will be automatically included in every page. */
+.innerpage{margin:0!important}p{margin: 0 !important; padding: 0 !important;}.row{padding: 0 !important; margin: 0 !important;}.column{padding: 0 !important; margin: 0 !important;}body{font-size:14px !important;}
+.no-image {
+    background-color: #f2f2f2;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    box-shadow: 1px 1px;
+}
+.address-book-link {
+	margin-left: 10px;
+}
+#payForm .btn.payment-btn {
+    margin-right: 10px;
+    font-family: 'Roboto Condensed',sans-serif !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 26px;
+    display: inline-block;
+    height: 37px;
+}
