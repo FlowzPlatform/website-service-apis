@@ -41,6 +41,10 @@ body {
 .obv-virtualbrochurelibrary-main-div .row.obv-padding-top-50.obv-padding-bottom-15 {
     width: 1028px;
 }
+.virtual-button{
+    position: relative !important;
+    display: inline-block !important;
+}
 </style>
 
 

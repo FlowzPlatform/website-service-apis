@@ -37,24 +37,22 @@ body {
 
 
 <div class="product-section-box">
-    <div class="panel-group" id="Order-decoration-Quantity" role="tablist"
+    <div class="panel-group" id="#activetab#-Quantity" role="tablist"
     aria-multiselectable="true">
-        <div class="panel-heading product-section-box open" role="tab">
-            <h2 class="panel-title heading-block js-section-number">Quantity
-			          </h2><a class="caret-icon js-add-class tab-quantity" data-toggle="collapse"
-            data-parent="#Order-decoration-Quantity" href="#Order-decoration-Quantity-block"
-            aria-expanded="true"><i class="caret-icon"></i></a>
+        <div class="panel-heading product-section-box open" role="tab">            
+            <a class="caret-icon js-add-class tab-quantity collapsed" data-toggle="collapse" data-parent="##activetab#-Quantity" href="##activetab#-Quantity-block"
+            aria-expanded="true"><i class="caret-icon" style="display:none;"></i></a>
         </div>
-        <div class="panel-collapse collapse js-quantity-section in" id="Order-decoration-Quantity-block"
+        <div class="panel-collapse collapse js-quantity-section" id="#activetab#-Quantity-block"
         role="tabpanel">
             <div class="panel-body">
                 <div class="quantity-table additional-table">
                     <div id="js_request_quote_qty_box">
-                        <div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_green_camo_with_green_trim">
-                            <div class="color-input" title="Green Camo with Green Trim">
+                        <div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_#data.colorIdKey#">
+                            <div class="color-input" title="#data.colorName#">
                                 <br/>
                             </div>
-                            <div class="selector-quantity js-quantity-section in">
+                            <div class="selector-quantity js-quantity-section">
                                 <div class="selector-btn">
                                     <div class="sp-minus"><a class="js-quantity-selector" data-multi="-1" href="javascript:void(0)">-</a>
                                     </div>
@@ -66,8 +64,10 @@ body {
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
-                            </div><a class="js_request_quote_qty_remove remove-qty" href="javascript:void(0)"
-                            data-toggle="tooltip" data-id="green_camo_with_green_trim"><i class="fa fa-trash-o"></i></a>
+                            </div>
+                            <a class="js_request_quote_qty_remove remove-qty" href="javascript:void(0)" data-toggle="tooltip" data-id="#data.colorIdKey#">
+                              <i class="fa fa-trash-o"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

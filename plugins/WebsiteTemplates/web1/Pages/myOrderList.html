@@ -53,6 +53,12 @@ body {
     width: 100%;
     min-height: 20px;
 }
+
+.c12862 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
 </style>
 
 
@@ -62,19 +68,7 @@ body {
             <reusecomponent class="c46972">{{> myAccount id='leftNavigation.partial' }}</reusecomponent>
             <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
                 <div class="ob-account-right">
-                    <div class="breadcrumb breadcrumbs-under" id="breadcrumbs">
-                        <ul>
-                            <li><a href="index.html">Home</a>
-                                <i
-                                class="fa fa-angle-right fa-fw"></i>
-                            </li>
-                            <li><a href="myaccount.html">My Account</a>
-                                <i
-                                class="fa fa-angle-right fa-fw"></i>
-                            </li>
-                            <li>Order List</li>
-                        </ul>
-                    </div>
+                    <reusecomponent class="c12862">{{> myAccount id='breadCrumb.partial' }}</reusecomponent>
                     <div class="ob-main-address-block js-main-address-block">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">

@@ -1,4 +1,4 @@
-// console.log("Inside shop cart");
+console.log("Inside shop cart");
 
 var paypal_Check = $('ShoppingCart').attr('Paypal');
 var x_api_token_paypal = $('ShoppingCart').attr('x_api_token_paypal');
@@ -16,7 +16,7 @@ var x_api_login_authdotnet = $('ShoppingCart').attr('x_api_login_authdotnet');
 // var xmlhttp = new XMLHttpRequest();
 var btnId;
 
-var finalcode = '<div> <div> <div id="shopping_cart"> <div class="container"> <table id="cart" class="table table-hover table-condensed"> <thead> <tr> <th style="width:50%">Product</th> <th style="width:10%">Price</th> <th style="width:8%">Quantity</th> <th style="width:22%" class="text-center">Subtotal</th> </tr> </thead> <tbody> <tr class="js-replace-products"> <td data-th="Product"> <div class="row"> <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive js-checkout-image" /></div> <div class="col-sm-10"> <h4 class="nomargin js-checkout-product-name">Product 1</h4> <p class="js-checkout-description">Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> </div> </div> </td> <td data-th="Price" class="js-checkout-unit-price">$1.99</td> <td data-th="Quantity" class="js-checkout-qty"> <input type="text" readonly class="form-control text-center js-checkout-qty" value="1"> </td> <td data-th="Subtotal" class="text-center js-checkout-product-total">1.99</td> </tr> <tr class="visible-xs"> <td class="text-center"><strong class="js-checkout-grand-total">Total 1.99</strong></td> </tr> <tr> <td></td> <td colspan="2" class="hidden-xs"></td> <td class="hidden-xs text-center"><strong class="js-checkout-grand-total">Total $1.99</strong></td> </tr> <tr style="float:left;margin-top:30px;background: transparent;"> <td colspan="2" class="hidden-xs " style="border-top:none; float: right"></td> <td style="border-top:none; " id="btnPaypal"> <button id="paypal" class="no-image" onclick="gatewaybtnclick(this.id)"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/paypal.png" title="Click here to do payment using PayPal"/></button> </td> <td style="border-top:none;" id="btnStripe"> <button id="stripe" class="no-image" onclick="gatewaybtnclick(this.id)"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/stripe.png" title="Click here to do payment using Stripe"/></button> </td> <td style="border-top:none; " id="btnAuth"> <button id="auth" class="no-image" onclick="gatewaybtnclick(this.id)"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/authorize.png" title="Click here to do payment using Authorize.Net"/></button> <input type="hidden" value="" id="payment-gateway"></td> </tr> </tbody> </table> </div> </div> <div class="container" id="payment_detail" style="display: none"> <div class="row"> <div class="col-xs-12 col-md-4"> <div class="panel panel-default"> <div class="panel-heading"> <h3 class="panel-title"> Payment Details </h3> </div> <div class="panel-body"> <form role="form"> <div class="form-group"> SELECT CARD TYPE <i class="mandatory-field">*</i><select class="form-control" name="cardtype" id="cardType" style="margin-bottom: 15px"> <option name="" value="0">Select Card Type</option> <option name="Visa" value="Visa">Visa</option> <option name="MasterCard" value="MasterCard">MasterCard</option> <option name="RuPay" value="RuPay">RuPay</option> <option name="Maestro" value="Maestro">Maestro</option> <option name="American Express" value="American Express">American Express</option> </select> </div> <div class="form-group"> CARD NUMBER <i class="mandatory-field">*</i> <div> <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number" required autofocus/> </div> </div> <div class="row"> <div class="col-xs-7 col-md-7"> <div class="form-group"> <div>EXPIRY DATE <i class="mandatory-field">*</i></div> <div class="col-xs-6 col-lg-6 pl-ziro"> <input type="text" class="form-control" id="expiryMonth" placeholder="MM" required/> </div> <div class="col-xs-6 col-lg-6 pl-ziro"> <input type="text" class="form-control" id="expiryYear" placeholder="YY" required/> </div> </div> </div> <div class="col-xs-5 col-md-5 pull-right"> <div class="form-group"> CVV CODE <i class="mandatory-field">*</i><input type="password" class="form-control" id="cvCode" placeholder="CVV" required/> </div> </div> </div> </form> </div> </div> <ul class="nav nav-pills nav-stacked"> <li class="active"><a href="#"><span class="badge pull-right js-checkout-grand-total"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a> </li> </ul> <br/> <div> <button class="btn btn-success col-md-5 col-lg-5" onclick="backtocart()">Back</button> <div class="col-md-2 col-lg-2"></div> <button class="btn btn-success col-md-5 col-lg-5" onclick="paynow()">Pay Now</button> </div> </div> </div> </div> </div>';
+var finalcode = '<div> <div id="shopping_cart" class="js-hide-div"> <div class="container"> <table id="cart" class="table table-hover table-condensed"> <thead> <tr> <th style="width:50%">Product</th> <th style="width:10%">Price</th> <th style="width:8%">Quantity</th> <th style="width:22%" class="text-center">Amount</th> </tr> </thead> <tbody> <tr class="js-replace-products"> <td data-th="Product"> <div class="row"> <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive js-checkout-image" /></div> <div class="col-sm-10"> <h4 class="nomargin js-checkout-product-name">Product 1</h4> <p class="js-checkout-description">Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> </div> </div> </td> <td data-th="Price" class="js-checkout-unit-price">$1.99</td> <td data-th="Quantity" class="js-checkout-qty"> <input type="text" readonly class="form-control text-center js-checkout-qty" value="1"> </td> <td data-th="Subtotal" class="text-center js-checkout-product-total">1.99</td> </tr> <tr class="visible-xs"> <td class="text-center"><strong class="js-checkout-grand-total">Total 1.99</strong></td> </tr> <tr> <td></td> <td class="hidden-xs" colspan="2"><strong>Total Amount<strong></td> <td class="hidden-xs text-center"><strong class="js-checkout-grand-total">Total $1.99</strong></td> </tr> <tr style="float:left;margin-top:30px;background: transparent;"> <td colspan="2" class="hidden-xs " style="border-top:none; float: right"></td> <td style="border-top:none; " id="btnPaypal"> <button id="paypal" class="no-image" onclick="gatewaybtnclick(this.id)"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/paypal.png" title="Click here to do payment using PayPal"/></button> </td> <td style="border-top:none;" id="btnStripe"> <button id="stripe" class="no-image" onclick="gatewaybtnclick(this.id)"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/stripe.png" title="Click here to do payment using Stripe"/></button> </td> <td style="border-top:none; " id="btnAuth"> <button id="auth" class="no-image" onclick="gatewaybtnclick(this.id)"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/authorize.png" title="Click here to do payment using Authorize.Net"/></button> <input type="hidden" value="" id="payment-gateway"></td> </tr> </tbody> </table> </div> </div> <div class="container" id="payment_detail" style="display: none"> <form role="form" id="payForm" method="post"> <div class="row"> <div class="col-xs-12 col-md-4 col-lg-6"> <div class="panel panel-default"> <div class="panel-heading"> <h3 class="panel-title"> Payment Details </h3> </div> <div class="panel-body"> <div class="form-group"> SELECT CARD TYPE <i class="mandatory-field">*</i><select class="form-control" name="cardType" id="cardType" style="margin-bottom: 15px"> <option name="" value="">Select Card Type</option> <option name="Visa" value="Visa">Visa</option> <option name="MasterCard" value="MasterCard">MasterCard</option> <option name="RuPay" value="RuPay">RuPay</option> <option name="Maestro" value="Maestro">Maestro</option> <option name="American Express" value="American Express">American Express</option> </select> </div> <div class="form-group"> CARD NUMBER <i class="mandatory-field">*</i> <div> <input type="text" class="form-control" name="cardNumber" id="cardNumber" placeholder="Valid Card Number" required="true" autofocus/> </div> </div> <div class="row"> <div class="col-xs-7 col-md-7 pl-zero"> <div class="form-group"> <div>VALID THRU <i class="mandatory-field">*</i></div> <div class="col-xs-6 col-lg-6 pl-zero"> <input type="text" class="form-control" name="expiryMonth" id="expiryMonth" placeholder="MM" required="true"/> </div> <div class="col-xs-6 col-lg-6 pl-zero"> <input type="text" class="form-control" name="expiryYear" id="expiryYear" placeholder="YY" required="true"/> </div> </div> </div> <div class="col-xs-5 col-md-5 pull-right pr-zero"> <div class="form-group"> CVV CODE <i class="mandatory-field">*</i><input type="password" class="form-control" name="cvCode" id="cvCode" placeholder="CVV" aria-required="true" required="true"/> </div> </div> </div> </div> </div> <ul class="nav nav-pills nav-stacked"> <li class="active"><a href="#"><span class="badge pull-right js-checkout-grand-total"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a> </li> </ul> <br/> <div> <input type="submit" class="btn btn-success col-md-5 col-lg-5 payment-btn" value="Pay Now" /><button class="btn btn-success col-md-5 col-lg-5 payment-btn" onclick="backtocart();return false;">Back</button> </div> </div> </div> </form> </div> </div>';
 var resp;
 
 // console.log(finalcode);
@@ -39,6 +39,7 @@ if (auth_Check == "false" || auth_Check == undefined) {
 function backtocart() {
 	document.getElementById('shopping_cart').style = "display: block"
 	document.getElementById('payment_detail').style = "display: none"
+	return false;
 }
 
 
@@ -50,6 +51,28 @@ function gatewaybtnclick(clicked_id) {
 	$("#payment-gateway").val(clicked_id)
 }
 
+$('form#payForm').validate({
+	rules: {
+"cardType":"required",
+"cardNumber":"required",
+"expiryMonth":"required",
+"expiryYear":"required",
+"cvCode":"required",
+	},
+	messages: {
+	},
+errorElement: "li",
+errorPlacement: function(error, element) {
+error.appendTo(element.closest("div"));
+$(element).closest('div').find('ul').addClass('red')
+},
+errorLabelContainer: "#errors",
+wrapper: "ul",
+submitHandler: function(form) {
+	paynow();
+},
+});
+
 async function paynow() {
 	showPageAjaxLoading()
 	let cardType = $("#cardType").val();
@@ -58,17 +81,24 @@ async function paynow() {
 	let expiryYear = $("#expiryYear").val();
 	let cvCode = $("#cvCode").val();
 	let paymentGatewayId = $("#payment-gateway").val()
+
+	let billing_info = await fetchDefaultBillingInfo()
+						 if(billing_info == null || billing_info == ''){
+							 	showErrorMessage("Please add billing address")
+								return false;
+						 }
+
 	let invoice = await addInvoice();
 	// console.log("Invoice response",invoice)
 
   	await axios({
 	   method: 'post',
-	   url: 'http://api.flowzcluster.tk/crm/payment',
+	   url: project_settings.crm_payment_url,
 	   data : {
-			   "settingId" : "5a398717-df05-45b7-aaa2-020b23107c57",
+			   "settingId" : website_settings.CrmSettingId,
 			   "gateway": paymentGatewayId,					//auth //paypal
 			   "id" : invoice.data.InvoiceID,
-			   "amount" :400,
+			   "amount" : parseFloat(grand_total),
 			   "Name" : user_details.fullname,
 			   "type": cardType,						//change
 			   "cardNumber": cardNumber,//cardNumber,				//change
@@ -78,7 +108,9 @@ async function paynow() {
 		   }
    })
    .then(async function (response) {
-		 hidePageAjaxLoading();
+		if ( $( "#payForm .js-error-msg" ).length ) {
+			$("#payForm .js-error-msg").html('');
+		}
 		 		resp = response;
 			 let transaction_id;
 			 if(paymentGatewayId == "stripe" || paymentGatewayId == "paypal"){
@@ -91,18 +123,12 @@ async function paynow() {
 				 if (product_response.data!= "") {
 					 var newHtml = "";
 
-						 let billing_info = await fetchDefaultBillingInfo()
-						 if(billing_info == null || billing_info == ''){
-							 	showErrorMessage("Please add billing address")
-								return false;
-						 }
-
 						 let user_info = {};
 						 user_info['id'] = user_details['_id']
 						 user_info['email'] = user_details['email']
 						 user_info['fullname'] = user_details['fullname']
 
-						 let userDetails = {"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID'],"setting_id": "5a398717-df05-45b7-aaa2-020b23107c57","products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
+						 let userDetails = {"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID'],"setting_id": website_settings.CrmSettingId,"products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
 						//  console.log("userDetails",userDetails);
 						 axios({
 								method: 'POST',
@@ -112,20 +138,29 @@ async function paynow() {
 						.then(async response_data => {
 									// console.log("response_data",response_data);
 									let deletedData = await deleteCartDataByUser()
+									hidePageAjaxLoading();
 									showSuccessMessage("Your order is placed successfully.")
 									window.location = "orderSuccess.html";
 									return false;
 						})
 						.catch(function(err){
 								// console.log("err" , err);
+								hidePageAjaxLoading();
 								$('.error-message').removeClass('hide');
 						})
 					}
 			//  })
    })
    .catch(function (error) {
-		 	hidePageAjaxLoading();
-			// 	console.log("error+++",error);
+	if ( $( "#payForm .js-error-msg" ).length ) {
+		$("#payForm .js-error-msg").html('');
+	}
+	if(typeof error.response.data.message != "undefined" && error.response.data.message!='')
+	{
+		$(".panel-body").append("<ul class='js-error-msg'><li style='color: red;'>"+error.response.data.message+"</li></ul>");
+	}
+	hidePageAjaxLoading();
+	// 	console.log("error+++",error);
    });
  return resp;
 }
@@ -199,9 +234,9 @@ async function addInvoice() {
 	let resp;
 	await axios({
 			  method: 'post',
-			  url: 'http://api.flowzcluster.tk/crm/invoice',
+			  url: project_settings.crm_invoice_url,
 			  data: {
-				"settingId" : "5a398717-df05-45b7-aaa2-020b23107c57",
+				"settingId" : website_settings.CrmSettingId,
 				"user" : user_details.email,
 				"Name" : user_details.fullname,
 				"EmailAddress" : user_details.email,
@@ -256,8 +291,7 @@ async function fetchDefaultBillingInfo(id) {
       let returnData = null;
     	await axios({
     			method: 'GET',
-    			url: project_settings.address_book_api_url+'?address_type=billing&user_id='+user_id+'&deleted_at=false&is_address=1&is_default=1',
-    			headers: {'Authorization': project_settings.product_api_token},
+    			url: project_settings.address_book_api_url+'?website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&billing_default=1',
     		})
     	.then(async response => {
 					let billing_address = {}

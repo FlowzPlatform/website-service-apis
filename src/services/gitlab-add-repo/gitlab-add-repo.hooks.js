@@ -49,97 +49,97 @@ module.exports = {
 
 
 function before_send_repoToGit(hook) {
-  hook.result = hook.data;
+    hook.result = hook.data;
 }
 
 function before_commit_repo(hook) {
-  hook.result = hook.data;
+    hook.result = hook.data;
 }
 
 function before_remove_project(hook) {
-  hook.result = hook.data;
+    hook.result = hook.data;
 }
 
 
 function after_send_repoToGit(hook) {
-  return new Promise((resolve, reject) => {
-      let nameOfRepo = hook.params.query.nameOfRepo;
-      let userDetailId = hook.params.query.userDetailId;
-      // let username = 'fsaiyed';
-      var options = {
-          method: 'POST',
-          uri: config.gitLabUrl + '/api/v4/projects',
-          body: {
-            name: nameOfRepo,
-            visibility: 'public'
-          },
-          headers: {
-              'PRIVATE-TOKEN': config.gitLabToken
-          },
-          json: true
-      };
+    return new Promise((resolve, reject) => {
+        let nameOfRepo = hook.params.query.nameOfRepo;
+        let userDetailId = hook.params.query.userDetailId;
+        // let username = 'fsaiyed';
+        var options = {
+            method: 'POST',
+            uri: config.gitLabUrl + '/api/v4/projects',
+            body: {
+                name: nameOfRepo,
+                visibility: 'public'
+            },
+            headers: {
+                'PRIVATE-TOKEN': config.gitLabToken
+            },
+            json: true
+        };
 
-      rp(options)
-          .then(function(repos) {
-              if (!shell.which('git')) {
-                  shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
-                  shell.exit(1);
-              } else {
-                  shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
+        rp(options)
+            .then(function(repos) {
+                if (!shell.which('git')) {
+                    shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
+                    shell.exit(1);
+                } else {
+                    shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
 
-                  shell.exec('git init');
-                  shell.exec('git remote add origin ' + config.gitLabUrl + '/' + config.gitLabUsername + '/' + nameOfRepo +'.git');
-                  shell.exec('git remote -v');
+                    shell.exec('git init');
+                    shell.exec('git remote add origin ' + config.gitLabUrl + '/' + config.gitLabUsername + '/' + nameOfRepo + '.git');
+                    shell.exec('git remote -v');
 
-                  shell.exec('git status');
+                    shell.exec('git status');
 
-                  shell.exec('git add .');
-                  shell.exec('git commit -m "Initial commit"');
-                  shell.exec('git push -u origin master -f');
+                    shell.exec('git add .');
+                    shell.exec('git commit -m "Initial commit"');
+                    shell.exec('git push -u origin master -f');
 
-                  if(process.env.NODE_ENV != 'development'){
+                    if (process.env.NODE_ENV != 'development') {
 
-                    if(process.env.dnsServer1 != undefined && process.env.dnsServer1 != ''){
-                      if(process.env.webrootServer == 'DEV'){
-                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                      } else if(process.env.webrootServer == 'QA') {
-                        shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                      } else if(process.env.webrootServer == 'PROD') {
-                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                      } else if(process.env.webrootServer == 'STAGING') {
-                        shell.exec('curl -i -X POST -d \'[ "flowzdigital.com", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                      } else {
-                        console.log('No webrootServer server specified')
-                      }
+                        if (process.env.dnsServer1 != undefined && process.env.dnsServer1 != '') {
+                            if (process.env.webrootServer == 'DEV') {
+                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                            } else if (process.env.webrootServer == 'QA') {
+                                shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                            } else if (process.env.webrootServer == 'PROD') {
+                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                            } else if (process.env.webrootServer == 'STAGING') {
+                                shell.exec('curl -i -X POST -d \'[ "flowzdigital.com", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                            } else {
+                                console.log('No webrootServer server specified')
+                            }
+                        }
+
+                        if (process.env.dnsServer2 != undefined && process.env.dnsServer2 != '') {
+                            if (process.env.webrootServer == 'DEV') {
+                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                            } else if (process.env.webrootServer == 'QA') {
+                                shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                            } else if (process.env.webrootServer == 'PROD') {
+                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                            } else if (process.env.webrootServer == 'STAGING') {
+                                shell.exec('curl -i -X POST -d \'[ "flowzdigital.com", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                            } else {
+                                console.log('No webrootServer server specified')
+                            }
+                        }
+
                     }
 
-                    if(process.env.dnsServer2 != undefined && process.env.dnsServer2 != ''){
-                      if(process.env.webrootServer == 'DEV'){
-                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                      } else if(process.env.webrootServer == 'QA') {
-                        shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                      } else if(process.env.webrootServer == 'PROD') {
-                        shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                      } else if(process.env.webrootServer == 'STAGING') {
-                        shell.exec('curl -i -X POST -d \'[ "flowzdigital.com", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                      } else {
-                        console.log('No webrootServer server specified')
-                      }
-                    }
+                }
 
-                  }
-                  
-              }
+                hook.result = repos;
+                resolve(hook)
+            })
+            .catch(function(err) {
+                hook.result = err;
+                resolve(hook)
 
-              hook.result = repos;
-              resolve(hook)
-          })
-          .catch(function(err) {
-              hook.result = err;
-              resolve(hook)
-
-          });
-  })
+            });
+    })
 }
 
 
@@ -156,44 +156,44 @@ function after_commit_repo(hook) {
             shell.echo('Sorry, this script requires GIT CLI. Please install GIT CLI in your machine.');
             shell.exit(1);
         } else {
-          // if(isRevertedCommit == true){
-          //   shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
+            // if(isRevertedCommit == true){
+            //   shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
 
-          //   shell.exec('git status');
-          //   shell.exec('git remote -v');
+            //   shell.exec('git status');
+            //   shell.exec('git remote -v');
 
-          //   let tempBranchName = 'commit_' + new Date().getTime();
+            //   let tempBranchName = 'commit_' + new Date().getTime();
 
-          //   shell.exec('git checkout -b ' + tempBranchName);
+            //   shell.exec('git checkout -b ' + tempBranchName);
 
-          //   shell.exec('git add .');
+            //   shell.exec('git add .');
 
-          //   shell.exec('git commit -m "' + hook.data.commitMessage + '"');
+            //   shell.exec('git commit -m "' + hook.data.commitMessage + '"');
 
-          //   shell.exec('git checkout master');
+            //   shell.exec('git checkout master');
 
-          //   shell.exec('git merge ' + tempBranchName);
+            //   shell.exec('git merge ' + tempBranchName);
 
-          //   shell.exec('git branch -d ' + tempBranchName);
+            //   shell.exec('git branch -d ' + tempBranchName);
 
-          //   shell.exec('git push -u origin master --force');
+            //   shell.exec('git push -u origin master --force');
 
-          //   shell.echo('New Commit Pushed to GitLab server');
-          // } else {
-          //   shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
+            //   shell.echo('New Commit Pushed to GitLab server');
+            // } else {
+            //   shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
 
-          //   shell.exec('git status');
-          //   shell.exec('git remote -v');
+            //   shell.exec('git status');
+            //   shell.exec('git remote -v');
 
-          //   shell.exec('git add .');
+            //   shell.exec('git add .');
 
-          //   shell.exec('git commit -m "' + hook.data.commitMessage + '"');
+            //   shell.exec('git commit -m "' + hook.data.commitMessage + '"');
 
-          //   shell.exec('git push -u origin master --force');
+            //   shell.exec('git push -u origin master --force');
 
-          //   shell.echo('New Commit Pushed to GitLab server');
-          // }
-          
+            //   shell.echo('New Commit Pushed to GitLab server');
+            // }
+
             shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
 
             shell.exec('git checkout -b ' + hook.data.branchName);
@@ -206,21 +206,21 @@ function after_commit_repo(hook) {
 
             shell.exec('git push -u origin ' + hook.data.branchName + ' --force', function(code, stdout, stderr) {
 
-              console.log('Exit Code: ', code);
-              console.log('Program output:', stdout);
-              console.log('Program stderr:', stderr);
+                console.log('Exit Code: ', code);
+                console.log('Program output:', stdout);
+                console.log('Program stderr:', stderr);
 
-              hook.result = [{
-                code: code,
-                otuput: stdout,
-                error: stderr
-              }];
+                hook.result = [{
+                    code: code,
+                    otuput: stdout,
+                    error: stderr
+                }];
 
-              resolve(hook);
+                resolve(hook);
             });
 
         }
-        
+
     })
 }
 

@@ -1,0 +1,52 @@
+<style>
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+}
+
+.row {
+   display: table;
+   padding-top: 10px;
+   padding-right: 10px;
+   padding-bottom: 10px;
+   padding-left: 10px;
+   width: 100%;
+}
+
+:root {
+   margin-top: 0px;
+}
+
+.row {
+   display: table;
+   padding-top: 10px;
+   padding-right: 10px;
+   padding-bottom: 10px;
+   padding-left: 10px;
+   width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+   min-height: 325px !important;
+}
+</style>
+
+<div id="modal-table" data-keyboard="false" data-backdrop="static" tabindex="-1"
+class="modal fade model-popup-black">
+   <div class="modal-dialog">
+       <div class="modal-content"><a aria-label="Close" data-dismiss="modal" href="javascript:void(0);"
+           class="close">×</a>
+           <div class="modal-header">
+               <h1 class="modal-title"></h1>
+           </div>
+           <div class="modal-body">
+               <div class="row">
+                   <div class="col-sm-12 js_add_html"></div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>

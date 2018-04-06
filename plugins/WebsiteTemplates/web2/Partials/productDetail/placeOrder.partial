@@ -67,41 +67,94 @@ body {
     width: 100%;
     min-height: 20px;
 }
+.product-detail-tab .nav-tabs li a{
+    font-size:12px;
+    width:100%;
+    border-radius:0;
+    border:0px;
+}
+.product-detail-tab .nav-tabs li.active a{
+    border:0px;
+}
 </style>
-
+<div class="product-section-box">
+    <h2 class="heading-block no-tag">PRODUCT DESCRIPTION</h2>
+    <div>
+        <div class="tab-content responsive">
+            <div id="product_description">
+                <div class="product-rating-info-wrap safety-block product_description_text"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="active" role="tabpanel">
     <div class="product-detail-wrapper three-tab">
         <div role="tabpanel">
             <div class="tabbable">
-                <ul class="nav nav-tabs" role="tablist" id="js_sub_tab_list">
+                <ul class="nav nav-tabs" role="tablist" id="js_sub_tab_list" style="display:none">
                     <li class="active"><a href="#Decoration" aria-controls="Decoration" role="tab" data-toggle="tab">Decorative</a>
                     </li>
                 </ul>
                 <div class="request-tab-content tab-content">
-                    <form id="place_order_form">
                         <div class="tab-pane fade in active" id="Decoration">
-                            <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
-                            <div class="clearfix"></div>
-                            <reusecomponent class="c487287">{{> productDetail id='colours.partial' }}</reusecomponent>
-                            <div class="clearfix"></div>
-                            <reusecomponent class="c632793">{{> productDetail id='quantity.partial' }}</reusecomponent>
-                            <div class="clearfix"></div>
-                            <reusecomponent class="c4238">{{> productDetail id='printPosition.html' }}</reusecomponent>
-                            <div class="clearfix"></div>
-                            <reusecomponent class="c71062">{{> productDetail id='shippingMethod.partial' }}</reusecomponent>
-                            <div class="clearfix"></div>
-                            <reusecomponent class="c9193">{{> productDetail id='specialInfo.partial' }}</reusecomponent>
-                            <div class="clearfix"></div>
-                            <div class="product-section-box">
-                                <div class="text-right pull-right">
-                                    <button class="small-but btn-default place-order-submit" type="button" data-attr="place-order"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                        <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
+                        <div class="clearfix"></div>
+                        <div class="place-order-btn" style="margin-top:10px">
+                            <h2>Place order - Decoration</h2>
+                        </div>
+                        <div class="clearfix"></div>
+                         <section class="fdb-block">
+                            <div>
+                                <div class="row">
+                                    <div>
+                                        <div class="product-detail-tab">
+                                            <div role="tabpanel">
+                                                <ul class="nav nav-tabs bordred-tab responsive" id="myTab" style="margin-bottom:0">
+                                                    <li role="presentation" class="product_description_label Color-Selection hide active"><a href="#Color-Selection" aria-controls="product-description" role="tab" data-toggle="tab" style="min-width:inherit; width:100%;">Color Selection</a></li>
+                                                    <li role="presentation" class="imprint-info-label Imprint-Method hide"><a href="#Imprint-Method" aria-controls="imprint-information" role="tab" data-toggle="tab" style="min-width:inherit; width:100%;">Imprint-Method</a></li>
+                                                    <li role="presentation" class="product-shipping-label product-shipping hide"><a href="#product-shipping1" aria-controls="production-shipping" role="tab" data-toggle="tab" style="min-width:inherit; width:100%;">Shipping</a></li>          
+                                                    
+                                                </ul>
+                                            <div class="tab-content responsive js_set_active_tab">
+                                                <div role="tabpanel" class="tab-pane active" id="Color-Selection">
+                                                    <reusecomponent class="c487287">{{> productDetail id='colours.partial' }}</reusecomponent>
+                                                    <div class="clearfix"></div>
+                                                    <reusecomponent class="c632793">{{> productDetail id='quantity.partial' }}</reusecomponent>
+                                                </div>
+
+                                                <div role="tabpanel" class="tab-pane" id="Imprint-Method">
+                                                    <reusecomponent class="c4238">{{> productDetail id='printPosition.html' }}</reusecomponent>
+                                                </div>
+
+                                                <div role="tabpanel" class="tab-pane" id="product-shipping1">
+                                                    <reusecomponent class="c71062">{{> productDetail id='shippingMethod.partial' }}</reusecomponent>
+                                                    <div class="clearfix"></div>
+                                                    <reusecomponent class="c9193">{{> productDetail id='specialInfo.partial' }}</reusecomponent>
+                                                    <div class="product-section-box">
+        	                                            <div class="text-right pull-right">
+        	                                                <button class="small-but btn-default place-order-submit" type="button"  data-attr="place-order"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+        	                                            </div>
+        	                                        </div>
+                                                </div>
+                                            
+                                            </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+                        </section>
+                        <div class="clearfix"></div>
+
+                         
+                       
+      	                <div class="clearfix"></div>
+        	        
+        	    </div>
+       	 </div>
     </div>
+</div>
+</div>
 </div>

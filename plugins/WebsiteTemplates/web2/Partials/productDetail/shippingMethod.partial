@@ -7,7 +7,7 @@ body {
     margin: 0;
 }
 
-#c13128 {
+#c32226 {
     background-color: #data.colorhexcode#;
     border: 2px #ddd solid!important;
 }
@@ -67,48 +67,66 @@ body {
     min-height: 20px;
 }
 
-.option-head {
-    min-height: 45px;
+.option-head
+{
+    min-height:45px;
 }
-
-.option-head .swatch {
+.option-head .swatch
+{
     width: 30px;
     height: 30px;
     float: left;
     margin-bottom: 5px;
 }
+.split-add-new-address {
+	background: #4d4d4d;
+	color: #fff;
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	padding: 7px 20px;
+	width: 100%;
+	float: left;
+	text-align: center;
+	cursor:pointer;
+}
+.css-delete-address{
+	cursor:pointer;
+}
+.css-delete-address:hover{
+	cursor:pointer;
+	color:red;
+	border-bottom:1px solid #ff0000;
+}
+.search-mail-block .search-col span{
+    width:100%;
+}
 </style>
 
 
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
+<div class="cssImports"></div>
 <script type="text/javascript" src="./assets/client-plugins/typeahead.min.js"></script>
 <div class="product-section-box">
-    <div class="panel-group" id="blank-Shipping-method-quote" role="tablist"
+    <div class="panel-group" id="#activetab#-Shipping-method" role="tablist"
     aria-multiselectable="true">
         <div class="panel-heading open" role="tab">
             <h2 class="panel-title heading-block js-section-number">Shipping Method
-            </h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="#blank-Shipping-method-quote"
-            href="#Shipping-method-col" aria-expanded="true"><i class="caret-icon"></i></a>
+            </h2><a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="##activetab#-Shipping-method"
+            href="##activetab#-Shipping-method-col" aria-expanded="true"><i class="caret-icon"></i></a>
         </div>
-        <div class="panel-collapse collapse in" id="Shipping-method-col" role="tabpanel">
+        <div class="panel-collapse collapse in" id="#activetab#-Shipping-method-col" role="tabpanel">
             <div class="panel-body js-shippingMethod-section">
                 <div class="shipping-method">
                     <div class="col-xs-12 shipping-method-select">
-                        <div class="radio-but col-lg-4 col-md-6 col-sm-5 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 radio-but">
                             <input class="js_select_shipping_type" type="radio" name="request_quote_shipping_type"
                             value="standard" />
                             <label class="lbl">Standard Shipping</label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 radio-but">
+                            <input class="js_select_shipping_type" type="radio" name="request_quote_shipping_type"
+                            value="split" />
+                            <label class="lbl">Split Shipping</label>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -118,37 +136,41 @@ body {
                         <div class="optional-panel in js_shipping_method_detail" id="js_shipping_method_detail_#data.counter#"
                         data-shipping-counter="#data.counter#">
                             <div class="option-head"><a href="javascript:void(0);">Shipping Address #data.counter#</a>
+                            #data.deletebutton#
                             </div>
-                            <div class="option-body js-shippingMethod--data-counter--section" id="c19663">
+                            <div class="option-body js-shippingMethod-section" id="c19663">
                                 <div class="shipping-address">
                                     <div class="ship-add-tit">Select a Shipping address from your address book or enter a new address.</div>
-                                    <div
-                                    class="ship-add-parts"><a class="btn" data-placement="top" data-toggle="tooltip" href="addAddressBook.html"
-                                        data-original-title="Add New Address" target="_blank">
+                                    <div class="ship-add-parts">
+                                        <a class="btn" data-placement="top" data-toggle="tooltip" href="addAddressBook.html" data-original-title="Add New Address" target="_blank">
                                             Add New Address
                                         </a>
-                                </div>
+                                        <a class="btn address-book-link" data-placement="top" data-toggle="tooltip" href="addressBookList.html" data-original-title="Address Book List" target="_blank">
+                                            Address Book List
+                                        </a>
+                                    </div>
                                 <div class="search-mail-block">
                                     <div class="search-col">
                                         <input class="auto_complete_shipping_email" type="text" name="auto_complete_shipping_email"
-                                        placeholder="Please enter a name or email address from your address book"
-                                        data-counter="#data.counter#" />
+                                        placeholder="Please enter a name or email address from your address book" />
                                         <input type="submit" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="shipping-scroll hide" id="js_shipping_addresses_#data.counter#">
+                            <div class="shipping-scroll hide js_shipping_addresses">
                                 <reusecomponent class="c21612">{{> productDetail id='addressBox.partial' }}</reusecomponent>
                             </div>
-                            <div class="js_shipping_qty_box_main" data-shipping-counter="#data.counter#">
-                                <div class="optional-panel size-selection-col js_rq_shipping_quantity"
+                            <div class="js_shipping_qty_box_main">
+                                <div class="optional-panel size-selection-col js_rq_shipping_quantity #data.extraclass#"
                                 data-color-id="#data.color#">
-                                    <div class="option-head"><a class="pull-right" href="javascript:void(0);"><span class="swatch" id="c13128"  title="#data.color#"></span><span class="pull-right">Selected Quantity : <total>#data.quantity#<total></total></total></span></a>
+                                    <div class="option-head"><a class="pull-right" href="javascript:void(0);">
+                                                <span class="swatch" title="#data.color#" style='#data.colorhexcode#;border:2px #ddd solid!important;'></span>
+                                                <span class="pull-right">Selected Quantity : <total>#data.quantity#<total></total></total></span></a>
                                     </div>
                                     <div class="option-body">
                                         <div class="row select-quntity-col js_qty_box">
                                             <div class="col-lg-4 col-md-6 col-sm-4 col-xs-12" data-size-id="0"><span>Quantity : </span>
-                                                <input class="js_request_quote_shipping_qty_box js_request_quote_qty"
+                                                <input class="js_request_quote_shipping_qty_box js_request_quote_qty" readonly="readonly"
                                                 type="text" value="#data.quantity#" />
                                             </div>
                                         </div>
@@ -161,11 +183,10 @@ body {
                                     <div class="selection-common-box">
                                         <div class="dropdown dropdown_size">
                                             <button class="btn dropdown-toggle js_rq_ship_shippingcarrier" type="button"
-                                            _id="dropdownMenu16" data-toggle="dropdown" aria-expanded="true" id="shipping_carrier_std_button_210288_0">Select Carrier<span class="caret"></span>
+                                            _id="dropdownMenu16" data-toggle="dropdown" aria-expanded="true">Select Carrier<span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu js_select_shipping_carrier_method js_set_selected_value"
-                                            role="menu" aria-labelledby="dropdownMenu17" data-call-from="std" data-productid="210288"
-                                            id="shipping_carrier_std_dropdown_210288" data-shipping-counter="0" data-request-type="request_order">
+                                            role="menu" aria-labelledby="dropdownMenu17" data-call-from="std" data-request-type="request_order">
                                                 <li data-value="ups"><a href="javascript:void(0)">UPS</a>
                                                 </li>
                                                 <li data-value="fedex"><a href="javascript:void(0)">FEDEX</a>
@@ -179,18 +200,30 @@ body {
                                     <div class="selection-common-box">
                                         <div class="dropdown dropdown_size">
                                             <button class="btn dropdown-toggle js_rq_ship_shippingmethod" type="button"
-                                            id="shipping_method_std_button_210288_0" data-toggle="dropdown" aria-expanded="true">Select Method<span class="caret"></span>
+                                            data-toggle="dropdown" aria-expanded="true"><span class="imprint-lbl-method">Select Method</span><span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu js_rq_ship_shipmethod_ul js_set_selected_value"
-                                            id="shipping_method_std_dropdown_210288_0" role="menu" aria-labelledby="dropdownMenu17"
-                                            data-shipping-counter="0"></ul>
+                                            role="menu" aria-labelledby="dropdownMenu17"></ul>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 ship-col-left">
+                                    <p>In Hand Date :</p>
+                                    <div class="input-append date input-group date-block shipping-datepicker">
+                                        <input class="form-control js_rq_ship_handdate" type="text" readonly="readonly"/>
+                                        <span class="add-on input-group-addon datepicker-color"> <i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <span class="split-add-new-address hide" data-placement="top" data-toggle="tooltip" data-original-title="Add New Address" target="_blank">
+                                            Add New Address For Spliting
+                                        </span>
+
             </div>
         </div>
     </div>

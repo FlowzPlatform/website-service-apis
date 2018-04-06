@@ -1,4 +1,4 @@
-if(getCookie('loginTokenKey') != null) {
+if(user_id != null) {
 	window.location = "index.html";
 }
 
@@ -37,6 +37,9 @@ $('.user-signup').on('click',function() {
 				window.location = "login.html";
 			},
 			error: function(err) {
+				if(err.responseText != '') {
+					$('.error-message').find('.red').html(err.responseText);
+				}
 				$('.error-message').removeClass('hide');
 			}
 		});

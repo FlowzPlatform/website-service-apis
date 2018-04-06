@@ -115,4 +115,5 @@ function getProductDetailById(productId,productApi,token) {
 
 function before_all_service(hook) {
    module.exports.apiHeaders = this.apiHeaders;
+   hook.params.query.$sort = { createAt: -1}
 }
