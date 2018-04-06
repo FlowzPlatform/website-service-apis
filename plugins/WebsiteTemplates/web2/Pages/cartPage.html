@@ -2,11 +2,12 @@
 * {
     box-sizing: border-box;
 }
-
 body {
     margin: 0;
 }
-
+.innerpage.row {
+    padding: 0px 0 40px 0px !important;
+}
 .row {
     display: table;
     padding-top: 10px;
@@ -15,15 +16,12 @@ body {
     padding-left: 10px;
     width: 100%;
 }
-
 :root {
     margin-top: 0px;
 }
-
 :root {
     margin-top: 0px;
 }
-
 .row {
     display: table;
     padding-top: 10px;
@@ -32,30 +30,22 @@ body {
     padding-left: 10px;
     width: 100%;
 }
-
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
-
 * {
     box-sizing: border-box;
 }
-
 body {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
 }
-
 .c108233 {
     display: block;
     width: 100%;
     min-height: 20px;
-}
-
-.container {
-    padding-top: 10px;
 }
 </style>
 
@@ -64,7 +54,7 @@ body {
 
 <div class="cssImports"></div>
 <div class="container">
-    <div class="row innerpage">
+    <div class="innerpage row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
@@ -88,37 +78,37 @@ body {
                                 <td>
                                     <table class="total-amount-block pull-right js-cart-amount">
                                         <tr>
-                                            <td>Total</td>
-                                            <td>$ <span class="js-cart-total">#data.grand_total#</span>
+                                            <td>SUB Total</td>
+                                            <td>$<span class="js-cart-total">#data.grand_total#</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Additional Charges</td>
-                                            <td>$ <span class="js-additional-charges">#data.charges#</span>
+                                            <td>$<span class="js-additional-charges">#data.charges#</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Shipping Charge</td>
-                                            <td>$ <span class="js-shipping-charges">#data.shipping_charges#</span>
+                                            <td>$<span class="js-shipping-charges">#data.shipping_charges#</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Tax</td>
-                                            <td>$ <span class="js-tax">#data.tax#</span>
+                                            <td>$<span class="js-tax">#data.tax#</span>
                                             </td>
                                         </tr>
                                         <tr class="grand-total">
-                                            <td>Grand Total</td>
-                                            <td class="total-price js_check_complete" data-complete="1">$ <span class="js-grand-total">#data.grand_total_with_tax#</span>
+                                            <td>Cart Total</td>
+                                            <td class="total-price js_check_complete" data-complete="1">$<span class="js-grand-total">#data.grand_total_with_tax#</span>
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
                             <tr>
-                                <td><a class="proceed-checkout-btn js_proceed_checkout mb-4" href="checkOut.html">Proceed to checkout</a>
+                                <td><a class="proceed-checkout-btn js_proceed_checkout mb-4" href="checkOut.html" style="font-size:15px !important;">Proceed to checkout</a>
                                     <a
-                                    class="continue-shop-btn mb-4" href="search.html">Continue Shopping</a>
+                                    class="continue-shop-btn mb-4" href="search.html" style="font-size:15px !important;">Continue Shopping</a>
                                 </td>
                             </tr>
                         </table>

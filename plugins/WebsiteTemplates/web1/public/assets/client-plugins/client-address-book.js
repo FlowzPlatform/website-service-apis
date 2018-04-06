@@ -3,6 +3,9 @@ if (user_id == null ) {
 }
 
 $(function() {
+  $(".breadcrumb li:last-child").html('<strong>Address Book</strong>')
+  $(".breadcrumb li:last-child").removeClass("hide")
+
     let addressBookId = getParameterByName("id");
     // Add Contact Book
     $('form#address_book').validate({
@@ -142,7 +145,7 @@ $(function() {
             hidePageAjaxLoading();
         })
         .catch(error => {
-          hidePageAjaxLoading();          
+          hidePageAjaxLoading();
           // console.log('Error fetching and parsing data', error);
         });
 
@@ -356,7 +359,7 @@ async function generateHtmlFunc(req , addressBookHtml){
       });
 
       addressBookHtml1 = addressBookHtml1.replace("#data.addressTypeHtml#",shippingTypeHtml);
-      
+
       if(data.shipping_default == '1'){
         addressBookHtml1 = addressBookHtml1.replace("#shippingActiveDefault#","address-active")
       }else{

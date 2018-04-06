@@ -1,91 +1,103 @@
 <style>
-* {
-    box-sizing: border-box;
+
+html {
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
 
-body {
+h5 {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
     margin: 0;
 }
-
-:root {
-    margin-top: 0px;
+.card {
+    width:25%;
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
 
-:root {
-    margin-top: 0px;
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
 }
 
-.clearfix {
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.card-text {
     clear: both;
+    margin-top: .5em;
+    color: rgba(0, 0, 0, .68);
 }
 
-.gjs-am-file-uploader > form {
-    min-height: 325px !important;
+.card-footer {
+    font-size: 1em;
+    position: static;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: .75em 1em;
+    color: rgba(0, 0, 0, .4);
+    border-top: 1px solid rgba(0, 0, 0, .05) !important;
+    background: #fff;
 }
 
-* {
-    box-sizing: border-box;
+
+.meta {
+    font-size: 1em;
+    color: rgba(0, 0, 0, .4);
 }
 
-body {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
+.meta a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .4);
 }
 
-#productImage {
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 5px;
+.meta a:hover {
+    color: rgba(0, 0, 0, .87);
 }
 
-h4 {
-    padding-top: 1%;
+a.item-title:hover {
+    color: rgb(238, 46, 78) !important;
 }
 
-#comment {
-    margin-top: 5%;
+.pro-box:hover .fa{
+    color: gray;
 }
 
-button.remove {
-    float: right;
-    margin-top: 1%;
-}
-
-.col-sm-12.col-md-6.col-lg-4.col-xs-12.product-wrap.js-product-box.product--data-id- {
-    cursor: pointer;
-}
 </style>
 
-
-
-
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
-<div class="js-list hide">
-    <div class="col-sm-12 col-xs-12 product-wrap js-product-box product--data-id-">
-        <div class="pro-box">
-            <div class="pro-image box01">
-                <div class="product-img-blk"><a class="item-title js-product-title" href="#data.product_link#"><img class="img-responsive center-block" src="#data.image#"/></a>
+<div class="container">
+<div class="js-list hide row">
+    <div class="col-sm-6 col-md-4 col-lg-4 mt-4 js-product-box product-#data-id#">
+        <div class="pro-box card" style="width:100%; padding:0px; min-height:423px; max-height:423px">
+            <div>
+                <div><a class="item-title js-product-title" href="#data.product_link#"><img class="img-responsive center-block" style="display:block; margin-right:auto; margin-top:14px; margin-bottom:0px;" src="#data.image#"/></a>
                 </div>
             </div>
-            <div class="pro-desc"><a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
-                <div
-                class="item-code">Item Number : #data.sku#</div>
-            <div class="item-price">#data.currency# #data.price#</div>
-            <div class="list-quantity-block">
-                <p><b>Description :</b>
-#data.description#</p>
+            <div class="pro-desc card-block" style="width:100%"><a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
+                <div class="item-code">Item Code : #data.sku#</div>
+                <div class="item-price">#data.currency# #data.price#</div>
+                <div class="list-quantity-block">                
                 <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
@@ -97,5 +109,5 @@ button.remove {
     </div>
 </div>
 </div>
+</div>
 <div class="listing"></div>
-<script src="./assets/client-plugins/client-wishlist.js"></script>

@@ -53,71 +53,89 @@ body {
     border-bottom-style: solid;
     border-bottom-color: rgb(238, 238, 238);
 }
+
+.fdb-box.fdb-touch input[type="text"] {
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+}
+
+.innerpage {
+    margin-top: 0px;    
+    padding: 0px;
+    margin-left:25%;
+}
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+.btn {
+    background: #ee4a4e;
+}
 </style>
 
 
 
 
-<div class="cssImports"></div>
+<div class="cssImports">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+</div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-/>
-<link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/froala_blocks.css"
-/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-/>
-<link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/froala_blocks.css"
 />
 <section class="fdb-block">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-7 col-md-5 text-center">
-                <div class="fdb-box fdb-touch">
-                    <div class="row">
-                        <div class="col">
-                            <h1>Register</h1>
+        <div class="innerpage">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-7 col-md-5 text-center">
+                    <div class="fdb-box fdb-touch">
+                        <div class="row">
+                            <div class="col">
+                                <h1>Register</h1>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mt-4">
-                            <input class="form-control fullname" type="text" placeholder="Full Name"
-                            name="fullname" required="true" />
+                        <div class="row">
+                            <div class="col mt-4">
+                                <input class="form-control fullname" type="text" placeholder="Full Name"
+                                name="fullname" required="true" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col">
-                            <input class="form-control useremail" type="email" placeholder="Email"
-                            name="useremail" required="true" />
+                        <div class="row mt-4">
+                            <div class="col">
+                                <input class="form-control useremail" type="email" placeholder="Email"
+                                name="useremail" required="true" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col">
-                            <input class="form-control mb-1 userpass" type="password" placeholder="Password"
-                            name="userpass" required="true" />
+                        <div class="row mt-4">
+                            <div class="col">
+                                <input class="form-control mb-1 userpass" type="password" placeholder="Password"
+                                name="userpass" required="true" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col">
-                            <input class="form-control mb-1 userpass2" type="password" placeholder="Confirm Password"
-                            name="userpass2" required="true" />
-                            <p class="text-right"><a href="login.html">Already have an account?</a>
-                            </p>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <input class="form-control mb-1 userpass2" type="password" placeholder="Confirm Password"
+                                name="userpass2" required="true" />
+                                <p class="text-right"><a href="login.html">Already have an account?</a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col">
-                            <button class="btn user-signup" type="button">Submit</button>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <button class="btn user-signup" type="button">Submit</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-4 error-message hide">
-                        <div class="col red">Please enter valid data</div>
+                        <div class="row mt-4 error-message hide">
+                            <div class="col red">Please enter valid data</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<script src="./../assets/client-plugins/client-signup-page.js"></script>
+<script src="./assets/client-plugins/client-signup-page.js"></script>
