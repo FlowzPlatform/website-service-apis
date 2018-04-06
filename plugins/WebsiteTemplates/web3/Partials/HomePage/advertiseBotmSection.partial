@@ -1,0 +1,111 @@
+ <style>
+ 	p.title{
+		 margin:0 auto;
+	 }
+ </style>
+ 
+ <section class="shopdept" style="margin-top: 0;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-sm-6 col-xs-12 weeklyad">
+				<a href="javascript:void(0);">
+					<img src="http://res.cloudinary.com/flowz/image/upload/v1522994880/websites/images/weeklyad.png" class="img-responsive">
+				</a>
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-12 monthlyad">
+				<a href="javascript:void(0);">
+					<img src="http://res.cloudinary.com/flowz/image/upload/v1522994880/websites/images/monthlyad.png" class="img-responsive">
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="Product-tshirt">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 section-tshirt text-center">
+				<p class="title">T-Shirts - One of the most popular ways to advertise!</p>
+				<h4>FREE UPS Ground Shipping on every order</h4>
+			</div>
+			<div class="col-md-3 col-sm-3 col-xs-3">
+				<img src="http://res.cloudinary.com/flowz/image/upload/v1522996287/websites/images/whytshirts.png" class="img-responsive" alt="why promotional t-shirts">
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-6">
+				<img src="http://res.cloudinary.com/flowz/image/upload/v1522996287/websites/images/tshirts-md.png" class="img-responsive" alt="promotional t-shirts">
+			</div>
+			<div class="col-md-3 col-sm-3 col-xs-3">
+				<img src="http://res.cloudinary.com/flowz/image/upload/v1522996287/websites/images/recycledtshirt.png" class="img-responsive" alt="recycled promotional t-shirts">
+			</div>
+		</div>	
+	</div>
+</section>
+<hr>
+<section class="orgBrandBlock">
+	  	<div class="container">
+			<div class="row">
+	      		<div class="col-sm-12 text-center">
+	                <p class="title">These Organizations Trust Us</p>
+	                <div class="OrganizationLogoBlock">
+	                	<div class="col-md-2 col-sm-2 col-xs-2">
+	           	    		<img src="http://res.cloudinary.com/flowz/image/upload/v1522996688/websites/images/brand-01.jpg" alt="brand-name" class="img-responsive">
+	                    </div>
+	                    <div class="col-md-2 col-sm-2 col-xs-2">
+	                    	<img src="http://res.cloudinary.com/flowz/image/upload/v1522996688/websites/images/brand-02.jpg" alt="brand-name" class="img-responsive">
+	                    </div>
+	                    <div class="col-md-2 col-sm-2 col-xs-2">
+	                    	<img src="http://res.cloudinary.com/flowz/image/upload/v1522996688/websites/images/brand-03.jpg" alt="brand-name" class="img-responsive">
+	                    </div>
+	                    <div class="col-md-2 col-sm-2 col-xs-2">
+	                    	<img src="http://res.cloudinary.com/flowz/image/upload/v1522996688/websites/images/brand-04.jpg" alt="brand-name" class="img-responsive">
+	                    </div>
+	                    <div class="col-md-2 col-sm-2 col-xs-2">
+	                    	<img src="http://res.cloudinary.com/flowz/image/upload/v1522996688/websites/images/brand-05.jpg" alt="brand-name" class="img-responsive">
+	                    </div>
+	                    <div class="col-md-2 col-sm-2 col-xs-2">
+	                   		<img src="http://res.cloudinary.com/flowz/image/upload/v1522996688/websites/images/brand-06.jpg" alt="brand-name" class="img-responsive"> 
+	                	</div>
+	                </div>
+	  			</div>
+	    	</div>
+		</div>
+	</section>
+<hr>
+	<section class="promotips">
+		<div class="container">
+	    	<div class="row">
+	    		<div class="col-sm-12 section-tips text-center">
+					<h2>Business Tips, Promo Ideas &amp; More</h2>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<h3>Understanding The Significance Of Product Samples</h3>
+						<p>
+							Date: March 6, 2018<br>
+						For years, product samples have been performing marketing wonders for advertisers across the globe! A product sample has the ability to do what very few other marketing tactics can ? offer prospective customers with an opportunity to physically and personally experience the product.</p>
+						<a href="javascript:void(0);" target="_blank">Read More</a>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<h3>5 Mistakes To Avoid While Ordering Embroidered Apparel</h3>
+						<p>
+							Date: March 13, 2018<br>
+					Embroidered promotional products are desirable gifts people love to receive! Businesses usually rely on embroidered apparel as uniforms for employees or as gifts for cherished customers. One thing is for sure ? very few products can match the brand visibility offered by imprinted apparel!</p>
+						<a href="javascript:void(0);" target="_blank">Read More</a>
+					</div>
+				</div>
+	        </div>
+	    </div>        
+	</section>
+<hr>
+	<section class="poststeps">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 section-step text-center">
+					<p class="title">Post a Picture of Your Promo Direct Product!</p>
+					<h5>Show off your brand and be featured in our gallery. Receive a gift and be entered to win prizes.</h5>
+					<a href="javascript:void(0);" class="viewgallery" target="_blank">
+	            		View Gallery
+	            	</a>
+				</div>
+			</div>
+		</div>
+	</section>

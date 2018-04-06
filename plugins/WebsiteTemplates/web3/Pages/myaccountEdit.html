@@ -1,0 +1,256 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+.input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding-top: 7px;
+    padding-right: 10px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(85, 76, 87);
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c2309 {
+    display: none;
+    width: 0px;
+    height: 0px;
+}
+
+#c2404 {
+    display: none;
+}
+
+#c2699 {
+    display: none;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<div class="container">
+    <div class="innerpage row">
+        <reusecomponent class="c46972">{{> myAccount id='leftNavigation.partial' }}</reusecomponent>
+        <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+        <div class="ob-main-address-block">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h1 class="main-title">Edit Account Info</h1>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 pull-right"></div>
+            </div>
+            <div class="js-get-form">
+                <div class="ob-account-info">
+                    <div class="row">
+                        <form class="fv-form fv-form-bootstrap" name="user_account" id="user_account" method="post" action="myaccount.html" id="edit_account_user" novalidate="novalidate">
+                            <div class="col-sm-12 col-md-9 col-lg-9 col-xs-12 edit-acc-info">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h2 class="upload-title mb-4">Personal Information</h2>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="required" for="ob_user_firstName">First Name</label><span class="red">*</span>
+                                            <input type="text" tabindex="1"
+                                            name="firstname" id="account_firstname" title="FirstName" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="required" for="ob_user_lastName">Last Name</label>
+                                            <input type="text" tabindex="2"
+                                            name="lastname" id="account_lastname" title="LastName" />
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12">
+                                        <div class="form-group inp-parts">
+                                            <label class="required" for="ob_user_email">Email Address</label><span class="red">*</span>
+                                            <input type="text" tabindex="3"
+                                            name="email" id="account_email" title="Email" />
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-4">
+                                        <h2 class="upload-title contact-info-title">Contact Information</h2>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="required" for="ob_user_street1">Address 1</label><span class="red">*</span>
+                                            <input type="text" tabindex="4"
+                                            name="address1" id="account_address1" title="Address 1" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="required" for="ob_user_street2">Address 2</label>
+                                            <input type="text" tabindex="5" name="address2" id="account_address2"
+                                            title="Address 2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="form-group inp-parts">
+                                            <label class="required" for="ob_user_countryId">Country</label><span class="red">*</span>
+                                            <select class="custom-select js-country"
+                                            tabindex="6" id="account_country" name="country" data-toggle="tooltip"
+                                            data-placement="bottom" title="Country">
+                                                <option value="" selected="selected">Select Country</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="form-group inp-parts">
+                                            <label class="required" for="ob_user_stateId">State</label><span class="red">*</span>
+                                            <select class="custom-select js-state"
+                                            tabindex="7" id="account_state" name="state" title="State">
+                                                <option value="" selected="selected">Select State</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="form-group inp-parts">
+                                            <label class="required" for="ob_user_cityId">City</label><span class="red">*</span>
+                                            <select class="custom-select js-city"
+                                            tabindex="8" id="account_city" name="city" title="City">
+                                                <option value="" selected="selected">Select city</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="form-group js-zipcode-validate">
+                                            <label class="required" for="ob_user_zipcode">Postal Code</label><span class="red">*</span>
+                                            <input type="text" tabindex="9"
+                                            id="account_postalcode" name="postalcode" title="Postal Code" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="required" for="ob_user_phone">Phone</label><span class="red">*</span>
+                                            <input class="js-phone" type="text"
+                                            tabindex="10" id="account_phone" name="phone" title="Phone Number" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="required" for="ob_user_mobile">Mobile</label>
+                                            <input class="js-phone" type="text" tabindex="11"
+                                            id="account_mobile" name="mobile" title="Mobile Number" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                    <span class="required-field">* Required Fields</span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="btn-box-main">
+                                    <input class="btn btn-default" type="submit" value="Save Changes" />
+                                    <input class="btn btn-default" type="reset" value="Reset" />
+                                </div>
+                            </div>
+                        </form>
+                        <!-- <form name="user_photo" method="post" action="editPhoto.html" novalidate="true" id="user_photo" enctype="multipart/form-data">
+                            <div class="col-sm-12 col-md-6 col-lg-5 col-xs-12 navbar-right">
+                                <h2 class="upload-title"><i class="fa fa-camera"></i>Upload Profile Photo</h2>
+                                <p>Select an image file on your computer</p>
+                                <div class="upload-photo-block">
+                                    <div class="upload-wrap-class">
+                                        <div class="upload-image">
+                                            <img class="profile-border js-profile-photo" src="profile-pic-full.jpg" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="upload-btn-block">
+                                    <p class="italic"></p>
+                                    <div class="btn-box-main">
+                                        <input class="profile-border js-upload-photo" type="file" id="user_photo_upload"
+                                        name="user_photo_upload" /><span>Upload a Photo</span>
+                                    </div>
+                                    <p class="italic">You can upload a jpg, jpeg, png and gif file</p>
+                                </div>
+                                <div class="red photo-error"></div>
+                            </div>
+                        </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="./assets/client-plugins/client-user-account.js" defer="defer"></script>

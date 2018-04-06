@@ -3,7 +3,7 @@
 }
 
 .innerpage {
-    margin: 0;
+    margin: 0 ;
 }
 
 .header-search-col {
@@ -12,4 +12,13 @@
 }
 .header-search-col form input[type="text"] {
     width: 72%;
+}
+.search-mail-block .search-col input[type="submit"]{
+    text-indent: -9999px;
+}
+.ob-product-detail-page .select-quntity-col input[type="text"] {
+    width: 75px;
+    line-height: 26px;
+    padding: 0 10px;
+    height: 26px;
 }
