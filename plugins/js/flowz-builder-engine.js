@@ -1016,7 +1016,7 @@ try {
             } else {
               mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
               for (let [inx, slide] of banners.entries()) {
-                mSider += '<div class="item"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
+                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
               }  
               mSider += '</div></div>'
               // mSider += '<div id="myCarousel' + minx + '" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'
