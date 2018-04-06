@@ -21,19 +21,41 @@ class Service {
   }
 
   create (data, params) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(data.filename, data.text, function(err) {
+    if(data.type){
+      return new Promise((resolve, reject) => {
+        if(!fs.existsSync(data.foldername)) {
+          fs.mkdir(data.foldername, function(err) {
             err ? reject(err) : resolve(data)
+          });
+        } else {
+          resolve(data);
+        }
+        
+      }).then(content => {
+          var filename = content.filename.replace(/^.*[\\\/]/, '')
+          const dirTree = require('directory-tree');
+          const filedetails = dirTree(content.filename);
+          return filedetails;
+      }).catch(err => {
+          console.error(err);
+          return err;
+      });
+    } else {
+      return new Promise((resolve, reject) => {
+        fs.writeFile(data.filename, data.text, function(err) {
+          err ? reject(err) : resolve(data)
         });
-    }).then(content => {
-        var filename = content.filename.replace(/^.*[\\\/]/, '')
-        const dirTree = require('directory-tree');
-        const filedetails = dirTree(content.filename);
-        return filedetails;
-    }).catch(err => {
-        console.error(err);
-        return err;
-    });
+      }).then(content => {
+          var filename = content.filename.replace(/^.*[\\\/]/, '')
+          const dirTree = require('directory-tree');
+          const filedetails = dirTree(content.filename);
+          return filedetails;
+      }).catch(err => {
+          console.error(err);
+          return err;
+      });
+      
+    }
   }
 
   update (id, data, params) {

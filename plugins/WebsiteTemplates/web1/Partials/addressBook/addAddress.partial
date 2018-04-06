@@ -53,7 +53,6 @@ body {
 
 
 <form name="address_book" id="address_book" method="post">
-    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="radio js-isoffice" style="display: none;">
@@ -74,7 +73,7 @@ body {
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <div class="form-group inp-parts">
+                <div class="form-group inp-parts address-checkbox">
                     <label class="checkout-label" for="address_type">Address Type<span class="mandatory-field">*</span>
                     </label><br />
 
@@ -160,14 +159,18 @@ body {
                     id="addresstbook_mobile" name="mobile"   data-toggle="tooltip" data-placement="bottom" title="Mobile Number" />
                 </div>
             </div>
-        </div><span class="required-field pull-right">* Required Fields</span>
-        <div class="btn-box-main">
-            <input class="btn btn-default js_submit_address" type="submit" value="save"
-            tabindex="17" />
-            <input class="btn btn-default" type="reset" value="Reset" tabindex="18"
-            />
+            <div class="row">
+                <div class="col-sm-6 col-xs-12 pull-right">
+                    <span class="required-field">* Required Fields</span>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="btn-box-main">
+                        <input class="btn btn-default js_submit_address" type="submit" value="save" tabindex="17" />
+                        <input class="btn btn-default" type="reset" value="Reset" tabindex="18" />
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 </form>
 
 <script type="text/javascript" src="./assets/client-plugins/client-address-book.js"></script>
