@@ -981,7 +981,7 @@ try {
             mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
             for (let [inx, slide] of banners.entries()) {
               // console.log(slide.banner_img, banner_name)
-              mSider += '<div class="item" style="text-align: center;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
+              mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
             }
             mSider += '</div></div>'
             // // console.log('mSider', mSider)
@@ -1016,7 +1016,7 @@ try {
             } else {
               mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
               for (let [inx, slide] of banners.entries()) {
-                mSider += '<div class="item"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
+                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
               }  
               mSider += '</div></div>'
               // mSider += '<div id="myCarousel' + minx + '" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'
@@ -1054,8 +1054,8 @@ try {
 
 
 setTimeout(function(){
-  var windowWidth = $(window).width();
-  $('.owlcarouselcat').css('width',windowWidth);
+  // var windowWidth = $(window).width();
+  // $('.owlcarouselcat').css('width',windowWidth);
   $(".owl-carousel1").owlCarousel({
     autoPlay: true,
     slideSpeed: 100,

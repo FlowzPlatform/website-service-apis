@@ -1806,3 +1806,41 @@ async function replaceColorSwatchWithHexaCodes(attribute_value,attribute_name){
     }
     return returnColorVal;
 }
+
+// if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
+// {
+//     alert('Opera');
+// }
+// else if(navigator.userAgent.indexOf("Chrome") != -1 )
+// {
+//     alert('Chrome');
+// }
+// else if(navigator.userAgent.indexOf("Safari") != -1)
+// {
+//     alert('Safari');
+// }
+// else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
+// {
+//       alert('Firefox');
+// }
+// else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+// {
+//     alert('IE'); 
+// }  
+// else 
+// {
+//     alert('unknown');
+// }
+
+if(navigator.userAgent.indexOf("Firefox") != -1 )
+{
+  // var db;
+  var request = indexedDB.open('wishList-example'+website_settings['projectID']+website_settings.Projectvid.vid);
+  request.onerror = function(event) {
+    alert("Your browser doesn't support a stable version of IndexedDB. Please use different browser for uninterrupted service.");
+  };
+  // request.onsuccess = function(event) {
+  //   // db = event.target.result;
+  //   console.log( 'onsuccess' + event.target )
+  // };
+}
