@@ -32,10 +32,9 @@ class Service {
         }
         
       }).then(content => {
-          var filename = content.filename.replace(/^.*[\\\/]/, '')
-          const dirTree = require('directory-tree');
-          const filedetails = dirTree(content.filename);
-          return filedetails;
+        const dirTree = require('directory-tree');
+        const folderdetails = dirTree(content.foldername);
+        return folderdetails;
       }).catch(err => {
           console.error(err);
           return err;
