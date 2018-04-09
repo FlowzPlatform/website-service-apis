@@ -1,0 +1,67 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+<table class="shopping-table-block js-order-total-section" width="100%">
+    <tr class="total-amount-block-bg">
+        <td>
+            <table class="total-amount-block pull-right">
+                <tr>
+                    <td>Total</td>
+                    <td>$<span class="js-cart-total">#data.grand_total#</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Additional Charges</td>
+                    <td>$<span class="js-additional-charges">#data.charges#</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Shipping Charge</td>
+                    <td>$<span class="js-shipping-charges">#data.shipping_charges#</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tax</td>
+                    <td>$<span class="js-tax">#data.tax#</span>
+                    </td>
+                </tr>
+                <tr class="grand-total">
+                    <td>Grand Total</td>
+                    <td class="total-price js_check_complete" data-complete="1">$<span class="js-grand-total">#data.grand_total_with_tax#</span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

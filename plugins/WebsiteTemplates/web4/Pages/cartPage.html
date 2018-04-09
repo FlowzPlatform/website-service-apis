@@ -1,0 +1,130 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.innerpage.row {
+    padding: 0px 0 40px 0px !important;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.c108233 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<div class="container">
+    <div class="innerpage row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                    <h1 class="main-title"><i class="fa fa-shopping-cart"></i>Shopping cart</h1>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12"><a class="continue-shopping-btn" href="search.html">Continue Shopping <i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="js-cart_data">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="main-shopping-cart-block">
+                    <div class="table-responsive">
+                        <table class="shopping-table-block">
+                            <tr>
+                                <td class="js-listing">
+                                    <reusecomponent class="c108233">{{> cart id='list.partial' }}</reusecomponent>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="total-amount-block pull-right js-cart-amount">
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>$<span class="js-cart-total">#data.grand_total#</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Additional Charges</td>
+                                            <td>$<span class="js-additional-charges">#data.charges#</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping Charge</td>
+                                            <td>$<span class="js-shipping-charges">#data.shipping_charges#</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tax</td>
+                                            <td>$<span class="js-tax">#data.tax#</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="grand-total">
+                                            <td>Grand Total</td>
+                                            <td class="total-price js_check_complete" data-complete="1">$<span class="js-grand-total">#data.grand_total_with_tax#</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a class="proceed-checkout-btn js_proceed_checkout mb-4" href="checkOut.html">Proceed to checkout</a>
+                                    <a
+                                    class="continue-shop-btn mb-4" href="search.html">Continue Shopping</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
