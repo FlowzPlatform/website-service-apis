@@ -2,7 +2,7 @@
 
 > Service for directory listing for FlowzBuilder
 
-## About
+## About this
 
 This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
 
