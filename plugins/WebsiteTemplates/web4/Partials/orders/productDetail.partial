@@ -1,0 +1,145 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#c124574 {
+    display: table-row;
+}
+
+#c124769 {
+    width: 30%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.heading {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+</style>
+
+
+
+<table>
+    <tr class="track-order-view-block click-track-order container-1 js-order-product-info js-product--data-product_id-">
+        <td colspan="7">
+            <div>
+                <table class="track-top-line" width="100%">
+                    <tr>
+                        <td colspan="3">
+                            <div class="track-order-billing-address">
+                                <h3 class="pull-left">Product Summary 1</h3>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="order-product-img">
+                            <img class="img-responsive" src="#data.image#" />
+                        </td>
+                        <td>
+                            <h4>#data.title#</h4>
+                            <h4>Item Code : <span>#data.sku#</span></h4>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table class="cart-item-view">
+                    <tr>
+                        <th>Special Instructions</th>
+                        <th>Imprint Information</th>
+                        <th class="table-charge">Additional Charges</th>
+                        <th class="border-right-none">Charges</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>#data.special_instruction#</p>
+                        </td>
+                        <td class="estimate-detail js_imprint_info">
+                            <div class="estimate-tag-block js-imprint-information">
+                                <div class="estimate-row heading">Print Position: #data.print_position#</div>
+                                <div class="estimate-row">Imprint Method: #data.imprint_method#</div>
+                                <div class="estimate-row">#data.colours#</div>
+                            </div>
+                        </td>
+                        <td>#data.additional_charges_list#</td>
+                        <td class="border-right-none">$#data.charges#</td>
+                    </tr>
+                </table>
+                <table class="cart-item-view product-quantity-list">
+                    <tr>
+                        <th class="item-list-number">
+                            <div class="quantity-item">#data.shipping_count#</div>Product Quantity</th>
+                        <th>Shipping Address</th>
+                        <th>Shipping</th>
+                        <th>Shipping Charge</th>
+                    </tr>
+                    <tr>
+                        <td class="border-right-none" id="c124769">#data.color_quantity#</td>
+                        <td class="border-right-none"></td>
+                        <td><span>Shipping Type: </span>#data.shipping_type#
+                            <br/><span>Shipping Carrier: </span>#data.shipping_carrier#
+                            <br/><span>Method: </span> #data.shipping_method#
+                            <br/><span>In Hand Date : #data.on_hand_date#</span>
+-
+                            <br/>
+                        </td>
+                        <td>$#data.shipping_charges#</td>
+                    </tr>
+                </table>
+                <table width="100%">
+                    <tr class="order-item-subtotal">
+                        <td>Total : $#data.total#</td>
+                        <td>Additional Charges : $#data.charges#</td>
+                        <td>Shipping Charge : $#data.shipping_charges#</td>
+                        <td>Tax : $#data.tax#</td>
+                    </tr>
+                    <tr class="order-subtotal">
+                        <td class="text-right" colspan="6">Sub Total : <span>$#data.subtotal#</span>
+                        </td>
+                    </tr>
+                </table>
+                <table class="shopping-table-block" width="100%">
+                    <tr class="total-amount-block-bg">
+                        <td>
+                            <table class="total-amount-block pull-right">
+                                <tr>
+                                    <td>Total</td>
+                                    <td>$31825.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Additional Charges</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping Charge</td>
+                                    <td>$412.62</td>
+                                </tr>
+                                <tr>
+                                    <td>Tax</td>
+                                    <td>$4137.25</td>
+                                </tr>
+                                <tr class="grand-total">
+                                    <td>Grand Total</td>
+                                    <td class="total-price js_check_complete">$36374.87</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
