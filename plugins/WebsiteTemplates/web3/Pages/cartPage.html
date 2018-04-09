@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+.innerpage.row {
+    padding: 0px 0 40px 0px !important;
+}
+
 .row {
     display: table;
     padding-top: 10px;
@@ -58,32 +62,15 @@ body {
 
 
 
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-</div>
-<div class="inner-content-wrapper ob-shopping-cart-page shopping-cart-wrapp">
-    <div class="container">
-        <div class="row ob-main-artwork">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="upload-artwork-banner">
-                            <h1>cart</h1><span class="mycart">Check out all details before you proceed next</span>
-                            <div
-                            class="show-product"><span class="wishlist-message-con">You have currently</span><span class="wishlist-count"
-                                id="cartCount">15</span>
-                                <p class="add-content">Products in your cart</p>
-                        </div>
-                    </div>
+<div class="cssImports"></div>
+<div class="container">
+    <div class="innerpage row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                    <h1 class="main-title"><i class="fa fa-shopping-cart"></i>Shopping cart</h1>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12"><a class="continue-shopping-btn" href="search.html">Continue Shopping <i class="fa fa-angle-double-right"></i></a>
                 </div>
             </div>
         </div>
@@ -102,27 +89,27 @@ body {
                                     <table class="total-amount-block pull-right js-cart-amount">
                                         <tr>
                                             <td>Total</td>
-                                            <td>$ <span class="js-cart-total">#data.grand_total#</span>
+                                            <td>$<span class="js-cart-total">#data.grand_total#</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Additional Charges</td>
-                                            <td>$ <span class="js-additional-charges">#data.charges#</span>
+                                            <td>$<span class="js-additional-charges">#data.charges#</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Shipping Charge</td>
-                                            <td>$ <span class="js-shipping-charges">#data.shipping_charges#</span>
+                                            <td>$<span class="js-shipping-charges">#data.shipping_charges#</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Tax</td>
-                                            <td>$ <span class="js-tax">#data.tax#</span>
+                                            <td>$<span class="js-tax">#data.tax#</span>
                                             </td>
                                         </tr>
                                         <tr class="grand-total">
                                             <td>Grand Total</td>
-                                            <td class="total-price js_check_complete" data-complete="1">$ <span class="js-grand-total">#data.grand_total_with_tax#</span>
+                                            <td class="total-price js_check_complete" data-complete="1">$<span class="js-grand-total">#data.grand_total_with_tax#</span>
                                             </td>
                                         </tr>
                                     </table>
@@ -140,5 +127,4 @@ body {
             </div>
         </div>
     </div>
-</div>
 </div>

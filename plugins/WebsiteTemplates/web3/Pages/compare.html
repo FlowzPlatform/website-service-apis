@@ -48,10 +48,57 @@ body {
     margin-left: 0px;
 }
 
-.c309211 {
+.table td {
+    text-align: center;
+}
+
+.colors-list li {
+    display: inline;
+}
+
+span.color {
+    min-width: 15px;
+    min-height: 15px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(170, 170, 170);
+    border-right-color: rgb(170, 170, 170);
+    border-bottom-color: rgb(170, 170, 170);
+    border-left-color: rgb(170, 170, 170);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+.c90784 {
+    display: block;
+    min-height: 20px;
+}
+
+.c93217 {
     display: block;
     width: 100%;
     min-height: 20px;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: transparent;
 }
 </style>
 
@@ -59,29 +106,17 @@ body {
 
 
 <div class="cssImports"></div>
-<div class="inner-content-wrapper product-compare-page">
-    <div class="container ob-product-compare-page ob-product-compare-block"
-    id="myCompareList">
-        <div class="innerpage">
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                    <h1 class="main-title"><i class="fa fa-retweet fa-fw"></i> Product <span>Compare</span></h1>
-                    <p class="compare-text">Lorem ipsumte velit
-                        <br/>esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident.</p>
+<div class="c90784">
+    <div class="container" id="myCompareList">
+            <div class="innerpage row">
+                <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
+                        <h1 class="main-title"><i class="fa fa-retweet"></i>PRODUCT COMPARE</h1>
                 </div>
-                <div class="col-xs-12">
-                    <div class="product-compare-top-navi"><a class="add-btn gray" href="javascript:void(0)" data-toggle="modal"
-                        data-target="#email-to-friend"><i class="fa fa-envelope fa-fw"></i> Email to friend</a>
-                        <a
-                        class="add-btn gray" href="javascript:void(0)" data-toggle="modal" data-target="#print-comparision"><i class="fa fa-print fa-fw"></i> Print</a><a class="add-btn gray" href="javascript:void(0)"><i class="fa fa-file-pdf-o fa-fw"></i> Download PDF</a>
-                            <a
-                            class="continue-shopping-btn" href="product_category_view.php">Continue Shopping <i class="fa fa-angle-double-right"></i>
-                                </a>
-                    </div>
-                </div>
+                <hr/>
+                <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
+                <reusecomponent class="c93217">{{> Compare id='list.partial' }}</reusecomponent>
+                <div class="col-md-12"></div>
             </div>
-            <reusecomponent class="c309211">{{> compare id='list.partial' }}</reusecomponent>
         </div>
     </div>
 </div>

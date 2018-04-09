@@ -1,15 +1,381 @@
-  <link href="../public/assets/css/customgenumark.css" rel="stylesheet" crossorigin="anonymous"
-/>
-<script type="text/javascript" src="../public/assets/js/responsive-tabs.js"></script>
-<script type="text/javascript" src="../public/assets/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="../public/assets/js/jquery.fullpage.min.js"></script>
-<script type="text/javascript" src="../public/assets/js/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="../public/assets/js/jquery.zoom.js"></script>
-<script type="text/javascript" src="../public/assets/js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="../public/assets/js/bootstrap-multiselect.js"></script>
-<script type="text/javascript" src="../public/assets/js/slide-menu.js"></script>
+<style>
+* {
+    box-sizing: border-box;
+}
 
-<script type="text/javascript" src="../public/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="text/javascript" src="../public/assets/js/ion.rangeSlider.min.js"></script>
-<script type="text/javascript" src="../public/assets/js/script.js"></script>
-<script type="text/javascript" src="../public/assets/js/home.js"></script>
+body {
+    margin: 0;
+}
+
+#ik3cpfx {
+    margin: 0;
+}
+
+#io7rz1b {
+    margin: 0 auto;
+}
+
+#footerContactus {
+    max-width: 330px;
+}
+
+#in9vmph {
+    padding-left: 45px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+input[type="text"] {
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    font-size: 1rem;
+    font-family: sans-serif;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgba(0, 0, 0, 0.15);
+    border-right-color: rgba(0, 0, 0, 0.15);
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+    border-left-color: rgba(0, 0, 0, 0.15);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+ul.social-network {
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    display: inline;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin-left: 0px !important;
+}
+
+ul.social-network li {
+    display: inline;
+    margin-top: 0px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+
+.social-network a.icoRss:hover {
+    background-color: rgb(41, 41, 41);
+}
+
+.social-network a.icoFacebook:hover {
+    background-color: rgb(59, 89, 152);
+}
+
+.social-network a.icoTwitter:hover {
+    background-color: rgb(51, 204, 255);
+}
+
+.social-network a.icoGoogle:hover {
+    background-color: rgb(189, 53, 24);
+}
+
+.social-network a.icoVimeo:hover {
+    background-color: rgb(5, 144, 184);
+}
+
+.social-network a.icoLinkedin:hover {
+    background-color: rgb(0, 123, 183);
+}
+
+.social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i, .social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+    color: rgb(255, 255, 255);
+}
+
+.socialHoverClass, a.socialIcon:hover {
+    color: rgb(68, 188, 221);
+}
+
+.social-circle li a {
+    display: inline-block;
+    position: relative;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.social-circle li i {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.triggeredHover, .social-circle li a:hover i {
+    transform: rotate(360deg);
+    transition-duration: 0.2s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+.social-circle i {
+    color: rgb(0, 0, 0);
+    transition-duration: 0.8s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+a.socialMedCls {
+    background-color: rgb(211, 211, 211);
+}
+
+.row.mt-4.signup-message {
+    text-align: right;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+.signup{
+   width:350px !important;
+}
+</style>
+
+
+
+
+<footer>
+    <div class="footer-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12"><a href="/" class="fotlogo"><img src="http://res.cloudinary.com/flowz/image/upload/v1522924339/websites/images/pd_fot.png" class="img-responsive"/></a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                    <div class="signup">
+                        <form id="sunscribe_email" metod="post" onsubmit="return submitNewsLetterForm();"
+                        class="form-inline news-box">
+                            <p>Email sign-up for deals</p>
+                            <input id="signUpEmail" name="subscribe_email"
+                            placeholder="Enter email address" type="email" required="true" class="required email form-control js-subscribe_email"
+                            />
+                            <input type="submit" value="Sign Up" name="subscribe" class="signbtn news-letter-validation-submit-btn"
+                            />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <img src="http://res.cloudinary.com/flowz/image/upload/v1522924444/websites/images/fot-1rated.png"
+                    class="rated img-responsive" />
+                    <div class="footer-icon"><span>Connect with us</span><a target="_blank" rel="nofollow" href="https://www.facebook.com/PromoDirect"
+                        id="ik3cpfx"><img src="http://res.cloudinary.com/flowz/image/upload/v1522927885/websites/images/fb-fot.png" alt="Promo Direct Facebook" class="img-responsive"/></a>
+                        <a
+                        target="_blank" rel="nofollow" href="https://www.pinterest.com/promodirect/">
+                            <img src="http://res.cloudinary.com/flowz/image/upload/v1522927949/websites/images/pin-fot.png"
+                            alt="Promo Direct Pinterest" class="img-responsive" />
+                            </a><a target="_blank" rel="nofollow" href="https://twitter.com/promodirect"><img src="http://res.cloudinary.com/flowz/image/upload/v1522927973/websites/images/twt-fot.png" alt="Promo Direct Twitter" class="img-responsive"/></a>
+                            <a
+                            target="_blank" rel="nofollow" href="https://www.youtube.com/user/PromoDirectInc">
+                                <img src="http://res.cloudinary.com/flowz/image/upload/v1522927981/websites/images/yt-fot.png"
+                                alt="Promo Direct YouTube" class="img-responsive" />
+                                </a><a target="_blank" rel="nofollow" href="https://www.linkedin.com/company/promodirect"><img src="http://res.cloudinary.com/flowz/image/upload/v1522927892/websites/images/in-fot.png" alt="Promo Direct LinkedIn" class="img-responsive"/></a>
+                                <a
+                                target="_blank" rel="nofollow" href="https://www.snapchat.com/add/promodirect">
+                                    <img src="http://res.cloudinary.com/flowz/image/upload/v1522927957/websites/images/snapchat-fot.png"
+                                    alt="Promo Direct SnapChat" class="img-responsive" />
+                                    </a><a target="_blank" rel="nofollow" href="https://instagram.com/promodirect/"><img src="http://res.cloudinary.com/flowz/image/upload/v1522927941/websites/images/insta-fot.png" alt="Promo Direct Instagram" class="img-responsive"/></a>
+                                    <a
+                                    target="_blank" rel="nofollow" href="https://www.trustpilot.com/review/www.promodirect.com">
+                                        <img src="http://res.cloudinary.com/flowz/image/upload/v1522927967/websites/images/tp-fot.png"
+                                        alt="Promo Direct Trustpilot" class="img-responsive" />
+                                        </a>
+                                        <img src="http://res.cloudinary.com/flowz/image/upload/v1522925615/websites/images/trustpilot-fot.png"
+                                        alt="Trustpilot Logo" class="trustpilot img-responsive" />
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <table id="io7rz1b">
+                        <tbody>
+                            <tr>
+                                <td align="left">
+                                    <p class="title">Find out more</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top">
+                                    <div class="footer-info">
+                                        <ul>
+                                            <li><a href="javascript:void(0);" rel="nofollow">About Us</a>
+                                            </li>
+                                            <li><a href="javascript:void(0);">Contact Us</a>
+                                            </li>
+                                            <li><a href="javascript:void(0);">Help & FAQs</a>
+                                            </li>
+                                            <li><a href="javascript:void(0);">Customer Reviews</a>
+                                            </li>
+                                            <li><a href="javascript:void(0);">Our Customers</a>
+                                            </li>
+                                            <li><a href="javascript:void(0);">Low Price Guarantee<br/>Satisfaction Guaranteed</a>
+                                            </li>
+                                            <li><a href="javascript:void(0);">Free Artwork & Art Proof</a>
+                                            </li>
+                                            <li><a href="http://blog.promodirect.com/" target="_blank" rel="nofollow">Our Blog/Marketing Ideas</a>
+                                            </li>
+                                            <li><a href="javascript:void(0);" rel="nofollow">Privacy Policy</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <table id="footerContactus">
+                        <tbody>
+                            <tr>
+                                <td align="left" id="in9vmph">
+                                    <p class="title">Contact Us</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top">
+                                    <div class="contact-info">
+                                        <p class="clearfix"><span class="fcall"><span class="contact-details">
+											Give us a call<br/><span class="contactno">800-748-6150</span>
+                                            <br/>Monday-Friday: 6:30 am - 4:30 pm PST</span>
+                                            </span>
+                                        </p>
+                                        <p class="clearfix"><span class="femail"><span class="contact-details">
+											Send us an email<br/><a href="mailto:info@promodirect.com">info@promodirect.com</a></span></span>
+                                        </p>
+                                        <p class="clearfix"><span class="fchat"><span class="contact-details">
+											Live Chat<br/><a href="javascript:void(0);" target="_blank" onmouseover="" onmouseout="" id="l2stxtcd">
+												Go to live chat now
+											</a></span></span>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="payment">
+                        <img src="http://res.cloudinary.com/flowz/image/upload/v1522925711/websites/images/credit.png"
+                        class="img-responsive" />
+                    </div>
+                </div>
+                <div id="partner" class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="partner"><a href="https://sealinfo.verisign.com/splash?form_file=fdf/splash.fdf&dn=WWW.PROMODIRECT.COM&lang=en"
+                        target="_blank" rel="nofollow"><img src="http://res.cloudinary.com/flowz/image/upload/v1522925978/websites/images/verisign.png" alt="VerySign Secured Logo" class="img-responsive"/></a>
+                        <a
+                        href="//www.bbb.org/southern-nevada/business-reviews/product-sales-general/promo-direct-in-henderson-nv-90010276"
+                        target="_blank" rel="nofollow">
+                            <img src="http://res.cloudinary.com/flowz/image/upload/v1522925902/websites/images/bbb.png"
+                            alt="Accredited Business Logo" class="img-responsive" />
+                            </a><a href="javascript:void();"><img src="http://res.cloudinary.com/flowz/image/upload/v1522925957/websites/images/ppai-logo.jpg" alt="PPAI Logo" class="img-responsive"/></a>
+                            <a
+                            href="javascript:void();">
+                                <img src="http://res.cloudinary.com/flowz/image/upload/v1522925909/websites/images/asi-logo.jpg"
+                                alt="ASI Member Logo" class="img-responsive" />
+                                </a><a href="javascript:void();"><img src="http://res.cloudinary.com/flowz/image/upload/v1522925934/websites/images/dma-logo.jpg" alt="DMA logo" class="img-responsive"/></a>
+                                <a
+                                href="https://verify.authorize.net/anetseal/?pid=2cc7549f-efc8-4897-bfce-058c37a53881&rurl=http%3A//www.promodirect.com/"
+                                onmouseover="window.status='http://www.authorize.net/'; return true;" onmouseout="window.status=''; return true;"
+                                onclick="window.open('https://verify.authorize.net/anetseal/?pid=2cc7549f-efc8-4897-bfce-058c37a53881&rurl=http%3A//www.promodirect.com/','AuthorizeNetVerification','width=600,height=430,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes'); return false;"
+                                target="_blank">
+                                    <img src="http://res.cloudinary.com/flowz/image/upload/v1522925971/websites/images/verifiedmerchant.png"
+                                    alt="Verfied Merchant Logo" class="img-responsive" />
+                                    </a><a href="javascript:void();"><img src="http://res.cloudinary.com/flowz/image/upload/v1522925949/websites/images/gsa-logo.png" alt="GSA Logo" class="img-responsive"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="copyRight">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <p>© 2018 Promo Direct . All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 pull-right">
+                        <div class="bottom-right"><a href="javascript:void(0);" rel="nofollow">Feedback</a><span>|</span>
+                            <a
+                            href="javascript:void(0);">SiteMap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519210886/js/owl.carousel.js"></script>
+<script src="./assets/client-plugins/bootbox.min.js"></script>

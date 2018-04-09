@@ -2210,3 +2210,88 @@ html{line-height:1.5;font-family:"Roboto", sans-serif;font-weight:normal;color:r
     flex-grow: inherit;
     max-width: 100%;
   }
+
+
+
+
+
+.rbc.rbc-multilist .rbc-label {
+    font-size: 14px;
+}
+
+.rbc-bar-container.col.s12.col-xs-12 {
+    margin-bottom: -5px;
+    width: 90%;
+    margin-left: 13px;
+}
+.rbc-rangeslider-container.col.s12.col-xs-12 {
+    padding-bottom: 40px;
+    width: 100%;
+    margin-left: 20px;
+    float:  none;
+    display: inline-block;
+    max-width: 90%;
+}
+.rbc-resultcard .rbc.rbc-resultstats.col.s12.col-xs-12 {
+    width: auto;
+    font-size: 15px;
+}
+.rbc .rbc-resultcard-item .product-info {font-size: 15px;}
+.rbc .rbc-resultcard-item .product-price {    margin-top: -10px;}
+.rbc .rbc-resultcard-item__image {
+    background-size: contain !important;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#ResultCard .rbc.rbc-initialloader {
+    position: absolute;
+    top: 24%;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    font-size: 20px;
+}
+.pro-ject .row .rbc-title-active.rbc-rangelabels-active > h4.col.s12, 
+.pro-ject .row .rbc-placeholder-active.rbc-multilist > h4.col.s12 {font-size: 18px;border-bottom: solid 1px #ccc;padding-bottom: 10px;}
+div#ResultList .sweet-loading,
+div#ResultCard .sweet-loading {position: absolute;z-index: 1;top: 30%;left: 50%;}
+.pro-ject .rbc.rbc-resultlist > .card {min-height: 570px;}
+.woops h1.main-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0;
+}
+
+.woops .search_block_main_content .input-group .form-control {
+    border: 1px solid #e6e6e6;
+    padding: 6px;
+    margin:  0;
+    height: 24px;
+    line-height: 10px;
+}
+
+.woops .search_block_main_content .input-group-btn {}
+
+.woops .search_block_main_content .input-group-btn .fa {
+    width: 34px;
+    right: 35px;
+    background: #e51937 !important;
+    color: #FFF !important;
+    border-radius: 0 !important;
+    text-decoration: none;
+    box-shadow: none !important;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    vertical-align:  middle;
+    line-height: 0;
+}
+.woops .data-not-found {
+    width: 135%;
+    margin-left: -35%;
+}
+
+button.fa-search.fa-fw.search_icon.fa{
+	width : 33px;
+}

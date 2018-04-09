@@ -981,7 +981,7 @@ try {
             mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
             for (let [inx, slide] of banners.entries()) {
               // console.log(slide.banner_img, banner_name)
-              mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
+              mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
             }
             mSider += '</div></div>'
             // // console.log('mSider', mSider)
@@ -1016,7 +1016,7 @@ try {
             } else {
               mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
               for (let [inx, slide] of banners.entries()) {
-                mSider += '<div class="item"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
+                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
               }  
               mSider += '</div></div>'
               // mSider += '<div id="myCarousel' + minx + '" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'
@@ -1050,38 +1050,35 @@ try {
       }
       $(item).html(mSider)
     }
+    await startBanners()
   }
 
-
-setTimeout(function(){
-  // var windowWidth = $(window).width();
-  // $('.owlcarouselcat').css('width',windowWidth);
-  $(".owl-carousel1").owlCarousel({
-    autoPlay: true,
-    slideSpeed: 100,
-    stopOnHover : true,
-    navigation:true,
-    navigationText: ['<', '>'],
-    items : 8,
-    itemsDesktop: [1199, 4],
-    itemsDesktopSmall: [979, 4],
-    itemsTablet: [767, 2],
-    itemsMobile: [479, 2]
-  });
-  $(".owl-carousel2").owlCarousel({
+  function startBanners () {
+    $(".owl-carousel1").owlCarousel({
       autoPlay: true,
-      navigation : true, // Show next and prev buttons
+      slideSpeed: 100,
+      stopOnHover : true,
+      navigation:false,
+      // navigationText: ['<', '>'],
+      items : 8,
+      itemsDesktop: [1199, 4],
+      itemsDesktopSmall: [979, 4],
+      itemsTablet: [767, 2],
+      itemsMobile: [479, 2]
+    });
+    $(".owl-carousel2").owlCarousel({
+      autoPlay: true,
+      navigation : false, // Show next and prev buttons
       slideSpeed : 300,
       paginationSpeed : 400,
-      navigationText: ['Prev', 'Next'],
+      // navigationText: ['Prev', 'Next'],
       items : 1, 
       itemsDesktop : false,
       itemsDesktopSmall : false,
       itemsTablet: false,
       itemsMobile : false
- 
-  });
-},1000)
+    });  
+  }
 
   async function getBanners (id) {
     var baseURL = 'http://api.flowzcluster.tk/serverapi';
