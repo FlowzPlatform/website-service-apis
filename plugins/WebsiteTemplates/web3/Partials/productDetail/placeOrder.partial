@@ -96,7 +96,7 @@ body {
       	                <div class="clearfix"></div>
         	        <div class="product-section-box">
         	            <div class="text-right pull-right">
-        	                <button class="small-but btn-default place-order-submit" type="button"  data-attr="place-order"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+        	                <button class="small-but btn-default place-order-submit" type="button"  data-attr="place-order"><i class="fa fa-shopping-cart"></i> Add to cart</button>
         	            </div>
         	        </div>
         	    </div>

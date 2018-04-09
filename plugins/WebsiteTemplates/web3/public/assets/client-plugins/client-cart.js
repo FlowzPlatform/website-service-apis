@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(event){
     })
   }
   else{
-    $('#js-cart_data').html("<div class='col-sm-12 col-md-12 col-lg-12 col-xs-12'><div class='col-sm-6 col-md-6 col-lg-6 col-xs-12'>No records found.</div></div>")    
+    $('#js-cart_data').html("<div class='col-sm-12 col-md-12 col-lg-12 col-xs-12'><div class='col-sm-6 col-md-6 col-lg-6 col-xs-12'>No records found.</div></div>")
     $("#js-cart_data").removeClass('hide');
   }
 });
@@ -124,7 +124,7 @@ function showCart()
                 else {
                   listHtmlReplace = listHtmlReplace.replace(/#data.additional_charges_list#/g,"N/A");
                 }
-                
+
                 listHtmlReplace = listHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
 
 
@@ -146,13 +146,13 @@ function showCart()
                       print_position = "<span class='header-color'>Print Position: </span> "+imprint_info.imprint_position_name+" <br />";
                     }
                     imprintSectionHtml1 = imprintSectionHtml1.replace("#data.print_position#",print_position)
-                    
+
                     if(typeof imprint_info.imprint_method_name != "undefined" && imprint_info.imprint_method_name != "")
                     {
                       imprint_method = "<span class='header-color'>Imprint Method: </span> "+imprint_info.imprint_method_name+" <br />";
                     }
                     imprintSectionHtml1 = imprintSectionHtml1.replace("#data.imprint_method#",imprint_method)
-                    
+
                     if(typeof imprint_info.no_of_color != "undefined" && imprint_info.no_of_color != "") {
                       howmany_colors = "<span class='header-color'>How many colors: </span> "+imprint_info.no_of_color+" <br />";
                     }
@@ -186,7 +186,7 @@ function showCart()
 
                 listHtmlReplace = listHtmlReplace.replace(/#data.cart_id#/g,response_data[key].id);
                 listHtmlReplace = listHtmlReplace.replace('#data.edit_link#',website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+response_data[key].product_id+'&cid='+response_data[key].id);
-                
+
                 // Shipping Section
                 if(typeof response_data[key].shipping_method != "undefined")
                 {
@@ -199,7 +199,7 @@ function showCart()
                     var shippingKeyCount = parseInt(shippingKey)+1;
                     var shipping_info = shipping_detail[shippingKey];
                     var quantityHtml = '<table class="size-quantity-table">';
-                    quantityHtml += '<thead><tr><th>Color</th><th class="border-right-none">Quantity</th></tr></thead>'; 
+                    quantityHtml += '<thead><tr><th>Color</th><th class="border-right-none">Quantity</th></tr></thead>';
                     for (var color_quantity in shipping_info.color_quantity) {
                       quantityHtml += "<tr class='grey-bottom-border'>";
                       quantityHtml += "<td>"+color_quantity+"</td>";
@@ -234,8 +234,8 @@ function showCart()
                       }
                       shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",shipping_details.on_hand_date);
                     }
-                    
-                    
+
+
                     //change
                     if(shipping_details.shipping_charge != "")
                     {
@@ -302,7 +302,7 @@ function showCart()
                 else {
                   $(".js-product-"+response_data[key].id).find(".js-imprint-information").html('N/A');
                 }
-                
+
                 $( shippingHtmlReplace ).insertAfter( ".js-product-"+response_data[key].id );
               // }
             // });
@@ -395,7 +395,7 @@ async function addressBookHtml(id) {
               replaceAddressHtml += ",<br>M: "+addressBookData.mobile+"<br>";
             }
         }
-	      return replaceAddressHtml;		
+	      return replaceAddressHtml;
 	}
 }
 
@@ -407,14 +407,14 @@ $(document).on("click",".js_view_order",function () {
 
 $(document).on('click', '.js-btn-delete-cart-list', function(e) {
   e.preventDefault();
-  
+
   var id = $(this).data('cart-id');
   $(this).closest('.js_deleted_product').addClass('js-cart-'+id);
 
   bootbox.confirm("Are you sure want to delete?", function(confirmation)
-  { 
+  {
     if(confirmation)
-    {     
+    {
       showPageAjaxLoading()
       $.ajax({
         type : 'DELETE',
