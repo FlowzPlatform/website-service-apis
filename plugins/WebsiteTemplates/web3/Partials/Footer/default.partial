@@ -269,23 +269,23 @@ body {
                                 <td align="left" valign="top">
                                     <div class="footer-info">
                                         <ul>
-                                            <li><a href="#" rel="nofollow">About Us</a>
+                                            <li><a href="javascript:void(0);" rel="nofollow">About Us</a>
                                             </li>
-                                            <li><a href="#">Contact Us</a>
+                                            <li><a href="javascript:void(0);">Contact Us</a>
                                             </li>
-                                            <li><a href="#">Help & FAQs</a>
+                                            <li><a href="javascript:void(0);">Help & FAQs</a>
                                             </li>
-                                            <li><a href="#">Customer Reviews</a>
+                                            <li><a href="javascript:void(0);">Customer Reviews</a>
                                             </li>
-                                            <li><a href="#">Our Customers</a>
+                                            <li><a href="javascript:void(0);">Our Customers</a>
                                             </li>
-                                            <li><a href="#">Low Price Guarantee<br/>Satisfaction Guaranteed</a>
+                                            <li><a href="javascript:void(0);">Low Price Guarantee<br/>Satisfaction Guaranteed</a>
                                             </li>
-                                            <li><a href="#">Free Artwork & Art Proof</a>
+                                            <li><a href="javascript:void(0);">Free Artwork & Art Proof</a>
                                             </li>
                                             <li><a href="http://blog.promodirect.com/" target="_blank" rel="nofollow">Our Blog/Marketing Ideas</a>
                                             </li>
-                                            <li><a href="#" rel="nofollow">Privacy Policy</a>
+                                            <li><a href="javascript:void(0);" rel="nofollow">Privacy Policy</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -314,7 +314,7 @@ body {
 											Send us an email<br/><a href="mailto:info@promodirect.com">info@promodirect.com</a></span></span>
                                         </p>
                                         <p class="clearfix"><span class="fchat"><span class="contact-details">
-											Live Chat<br/><a href="#" target="_blank" onmouseover="" onmouseout="" id="l2stxtcd">
+											Live Chat<br/><a href="javascript:void(0);" target="_blank" onmouseover="" onmouseout="" id="l2stxtcd">
 												Go to live chat now
 											</a></span></span>
                                         </p>
@@ -367,9 +367,9 @@ body {
                         <p>© 2018 Promo Direct . All Rights Reserved.</p>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12 pull-right">
-                        <div class="bottom-right"><a href="#" rel="nofollow">Feedback</a><span>|</span>
+                        <div class="bottom-right"><a href="javascript:void(0);" rel="nofollow">Feedback</a><span>|</span>
                             <a
-                            href="#">SiteMap</a>
+                            href="javascript:void(0);">SiteMap</a>
                         </div>
                     </div>
                 </div>

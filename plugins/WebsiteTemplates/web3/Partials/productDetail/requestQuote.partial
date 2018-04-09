@@ -92,7 +92,7 @@ body {
                           <div class="clearfix"></div>
                 <div class="product-section-box">
                     <div class="text-right pull-right">
-                        <button class="small-but btn-default request-quote-submit" type="button" data-attr="request-quote"><i class="fa fa-shopping-cart"></i>Request Quote</button>
+                        <button class="small-but btn-default request-quote-submit" type="button" data-attr="request-quote"><i class="fa fa-shopping-cart"></i> Request Quote</button>
                     </div>
                 </div>
             </div>
