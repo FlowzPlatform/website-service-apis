@@ -1,5 +1,5 @@
-<div class="breadcrumb breadcrumbs-under" id="breadcrumbs">
-    <ul>
+<div id="breadcrumbs">
+    <ul class="breadcrumb breadcrumbs-under" >
         <li>
             <a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
         </li>
