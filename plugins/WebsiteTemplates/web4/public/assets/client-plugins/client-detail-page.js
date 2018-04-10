@@ -121,7 +121,7 @@ $(document).ready( async function(){
     		            // $.each(productDetails.images[0].images, function(index, element) {
                        for (let element of productDetails.images[0].images) {
     		              // var imageUrl = project_settings.product_api_image_url+productDetails.supplier_id+'/'+element.web_image;
-                          let imageUrl = project_settings.product_api_image_url+5+'/'+element.web_image;
+                          let imageUrl = project_settings.product_api_image_url+project_settings.supplier_id+'/'+element.web_image;
     		                  let color = element.color;
                           color = color.toLowerCase().replace(/\s/g, '-');
                           imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
@@ -324,7 +324,7 @@ $(document).ready( async function(){
                 //   }
                 // });
 
-                // Edit Cart Product  
+                // Edit Cart Product
                 if(user_details != null && cid != null)
                 {
                     $.ajax({
@@ -332,9 +332,9 @@ $(document).ready( async function(){
                     //   url : project_settings.shopping_api_url+'/68260c4f-3c2d-442b-8949-097dc324715a',
                     url : project_settings.shopping_api_url+'/'+cid,
                     dataType : 'json',
-                    success : function(response_data) 
+                    success : function(response_data)
                     {
-                        if (response_data!= "") 
+                        if (response_data!= "")
                         {
                             var colorArray = $.map(response_data.color, function(value, index) {
                                 return [index];
@@ -352,7 +352,7 @@ $(document).ready( async function(){
 
                                     $(this).prop("checked",true);
                                     $(".js_add_imprint_location_request_quote").prop("checked",true);
-                                    
+
                                     if($(activetab).find("#js_request_quote_qty_box").html() !=""){
                                         $(activetab).find("#js_request_quote_qty_box").append(Quantity);
                                     }else{
@@ -372,7 +372,7 @@ $(document).ready( async function(){
                             $(activetab).find(".js_add_imprint_location_request_quote").each(function(){
                                 $(this).prop("checked",false);
                             });
-                            
+
                             if(typeof response_data.imprint != "undefined")
                             {
                             for (let [i,imprint_info] of response_data.imprint.entries())
@@ -381,16 +381,16 @@ $(document).ready( async function(){
                                     let print_pos_id = replaceWithUnderscore(imprint_info.imprint_position_name)//"barrel";//$(this).attr("id");
                                     // console.log(print_pos_id);
                                     $("#"+print_pos_id).prop("checked",true);
-                                    
+
                                     let printPos = imprint_info.imprint_position_name;//"BARREL";//$(this).attr("value");
                                     // console.log(printPos);
-                                    
+
                                     let printPosLower = replaceWithUnderscore(imprint_info.imprint_position_name);//"BARREL";//$(this).attr("value");
                                     // console.log(printPosLower);
-                                    
+
                                     let printMethod = replaceWithUnderscore(imprint_info.imprint_method_name);//"BARREL";//$(this).attr("value");
                                     // console.log(printMethod);
-                                    
+
                                     let listHtmlPrintPosMethod1 = '';
                                     let productHtmlPrintPosMethod = '';
                                     let select_imprint_method ='<li id="" data-dropval="" data-printpos="" data-full-color="" data-max-imprint-color="" data-method=""><a>Select method</a></li>';
@@ -434,10 +434,10 @@ $(document).ready( async function(){
 
                             // shippigCounter = parseInt($(activetab+" .js_request_quote_shipping_counter").val());
                             // attachAutoCompleteEvent("#js_shipping_method_detail_"+shippigCounter);
-                            
+
                             // $(activetab).find('.auto_complete_shipping_email').typeahead('setQuery','neelpatel@officebrain.com')
-                            
-                            
+
+
                             // Shiiping Section
                             var shipping_detail = response_data.shipping_method.shipping_detail;
 
@@ -451,32 +451,32 @@ $(document).ready( async function(){
                                         .clone()
                                         .attr('id', 'js_shipping_method_detail_' + iCnt)
                                         .insertAfter("#js_shipping_method_detail_"+appendId);
-                                        $('#js_shipping_method_detail_' + iCnt).attr('data-shipping-counter',iCnt)    
+                                        $('#js_shipping_method_detail_' + iCnt).attr('data-shipping-counter',iCnt)
                                         $('#js_shipping_method_detail_' + iCnt+' .option-head:first').html('<a href="javascript:void(0);">Shipping Address '+iCnt+'</a><span class="js-delete-address css-delete-address pull-right">Delete</span>')
                                         iCnt = iCnt + 1;
                                 }
                             }
                             $(activetab).find(".js_request_quote_shipping_counter").val(shipping_detail.length);
-                            
+
                             for(let shippingKey in shipping_detail)
                             {
                                 var i = parseInt(shippingKey)+1;
                                 var shipping_info = shipping_detail[shippingKey];
 
                                 var addressBookId = shipping_info.selected_address_id
-                                
+
                                 var shipping_carrier = shipping_info.shipping_detail.shipping_carrier;
                                 var shipping_method = shipping_info.shipping_detail.shipping_method;
                                 var ship_transittime = shipping_info.shipping_detail.ship_transittime;
-                                
+
                                 var shipping_charge = shipping_info.shipping_detail.shipping_charge;
                                 var on_hand_date = shipping_info.shipping_detail.on_hand_date;
 
                                 setSelectedAddress(addressBookId,i);
                                 let setActivetab = activetab.replace(/\#/g, '');
 
-                                for (let color_quantity in shipping_info.color_quantity) {    
-                                    let color_quantity_class = replaceWithUnderscore(color_quantity) 
+                                for (let color_quantity in shipping_info.color_quantity) {
+                                    let color_quantity_class = replaceWithUnderscore(color_quantity)
 
                                     $(activetab).find("#js_shipping_method_detail_"+i).find("."+setActivetab+"_"+color_quantity_class).find(".js_request_quote_shipping_qty_box").val(shipping_info.color_quantity[color_quantity]);
 
@@ -486,21 +486,21 @@ $(document).ready( async function(){
                                 }
 
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_request_quote_shipping_qty_box").val();
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").attr('data-value',shipping_carrier);
 
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").html('<span class="imprint-lbl-method">'+shipping_carrier.toUpperCase()+'</span> <span class="caret"></span>');
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-value',shipping_charge);
 
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").html('<span class="imprint-lbl-method">'+shipping_method+' '+shipping_charge+'</span> <span class="caret"></span>');
 
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-service',shipping_method);
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shipmethod_ul").html('<li data-service="'+shipping_method+'" data-value="'+shipping_charge+'" data-transit-time="'+ship_transittime+'"><a href="javascript:void(0)">'+shipping_method+' '+shipping_charge+'</a></li>');
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker"+i);
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").datepicker({
                                     changeMonth: true,
                                     changeYear: true,
@@ -519,7 +519,7 @@ $(document).ready( async function(){
                             }
                             // END - Shipping Section
 
-                            
+
                             $(activetab).find("#js_request_quote_instruction").val(response_data.special_instruction);
                         }
                     }
@@ -711,7 +711,8 @@ $(document).ready( async function(){
       let virtualButtonHtml = $("#ob_virtual_list").html();
       virtualButtonHtml1 = virtualButtonHtml.replace("#data.sku#",get_product_details.sku)
       // virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",get_product_details.supplier_id)
-      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",5)
+      // virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",5)
+      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",project_settings.supplier_id)
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
       $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
@@ -827,7 +828,7 @@ $(document).ready( async function(){
               let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").val();
 
               let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
-              
+
               let shipping_detail = {"on_hand_date":get_in_hand_date,'ship_date':'',"ship_transittime": get_transittime,"shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
               shipping_details.push({'color_quantity':shipping_colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail,'shipping_address':user_shipping_address});
           }
@@ -902,10 +903,10 @@ $(document).ready( async function(){
                   let order_type = $('#js_sub_tab_list li.active a').text().toLowerCase();
                   data['type'] = 2;
                   data['order_type'] = order_type;
-                  
+
                 //   return false;
                 if(user_details != null && cid != null)
-                {  
+                {
                     data['id'] = cid;
                     var ajaxType = 'PUT';
                     var ajaxURL = project_settings.shopping_api_url+'/'+cid;
@@ -913,7 +914,7 @@ $(document).ready( async function(){
                 else{
                     var ajaxType = 'POST';
                     var ajaxURL = project_settings.shopping_api_url;
-                } 
+                }
 
                 $.ajax({
                     type : ajaxType,
@@ -1081,11 +1082,11 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                     }*/
                 }
                 $(parentObj+" .js_rq_ship_shipmethod_ul").html(rateHtml);
-                
+
                 // Change Shipping Details
                 $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').trigger('click');
         		$('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_handdate').val('');
-        		
+
                 hidePageAjaxLoading()
             },
             error: function(err) {
@@ -1324,10 +1325,10 @@ $(document).on("click",".split-add-new-address",function(){
     shippigCounter = shippigCounter+1;
 
     $(activetab+" .js_request_quote_shipping_counter").val(shippigCounter);
-    
-    // As this is default address, we should not have delete button for default address    
+
+    // As this is default address, we should not have delete button for default address
     shippingAddressHml = shippingAddressHml.replace(/#data.deletebutton#/g,'<span class="js-delete-address css-delete-address pull-right">Delete</span>');
-    
+
     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
     $(activetab).find(".shipping-method #js_shipping_method").append(shippingAddressHml);
 
@@ -1361,16 +1362,16 @@ $(document).on("click",".split-add-new-address",function(){
       let alreadyAssignedQuantiy = 0;
       colorQtyHtml1 = shippingAddressColorQtyAreaHtml.replace(/#data.color#/g,key)
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
-      
+
       // Deciding the quantity for new address started
       $("."+colors_id_code[key]+" .js_request_quote_shipping_qty_box ").each(function(){
     	  alreadyAssignedQuantiy = parseInt(alreadyAssignedQuantiy) + parseInt($(this).val());
     	  remainingQuantity = (value-alreadyAssignedQuantiy);
     	  if(remainingQuantity < 0){ remainingQuantity = 0 }
-      })      
+      })
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,remainingQuantity)
       // Deciding the quantity for new address ended
-    	  
+
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.extraclass#/g,colors_id_code[key])
       replaceQtyHtml += colorQtyHtml1
     })
@@ -1455,10 +1456,10 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
 	}*/
 
     let shippingAddressHml = shippingAddressHtmlTemplate;
-    
-    // As this is default address, we should not have delete button for default address    
+
+    // As this is default address, we should not have delete button for default address
     shippingAddressHml = shippingAddressHml.replace(/#data.deletebutton#/g,'');
-    
+
     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
     $(activetab).find(".shipping-method #js_shipping_method").html(shippingAddressHml);
 
@@ -1557,22 +1558,22 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
 function changeShippingDetails(currentAddressCounter)
 {
 	let currentAddressShippingCarrier = $('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingcarrier .imprint-lbl-method').html();
-	
+
 	if(currentAddressShippingCarrier != undefined && currentAddressShippingCarrier != '')
 	{
 		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_select_shipping_carrier_method li').filter('[data-value="'+(currentAddressShippingCarrier.toLowerCase())+'"]').trigger('click');
-		
+
 		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingmethod').html('Select Method <span class="caret"></span>');
 		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_rq_ship_shippingmethod').trigger('click');
 		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_handdate').val('');
 	}
-	
+
 }
 function attachShippingDetailChangeEvent()
 {
 	$(document).off("change", activetab + ' .js_request_quote_shipping_qty_box').on("change", activetab + ' .js_request_quote_shipping_qty_box', function(){
 		let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
-		changeShippingDetails(currentAddressCounter)	
+		changeShippingDetails(currentAddressCounter)
 	});
 }
 $(document).on("change", activetab + ' .js_color_checkbox',function(){
@@ -1623,7 +1624,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         	$(this).find(".js_shipping_qty_box_main").append(colorQtyHtml1);
         	if(selectedShippingType == 'split')
         	{
-        		$(this).find(".js_request_quote_shipping_qty_box").removeAttr('readonly');        		
+        		$(this).find(".js_request_quote_shipping_qty_box").removeAttr('readonly');
         	}
         	attachShippingDetailChangeEvent();
         });
@@ -1651,7 +1652,7 @@ function setdate(shipCounter,parentObj,activetab,transitTime=0){
       let endDate = "";
       let count = 0;
       let noOfDaysToAdd = 0
-      let setDate = "";  
+      let setDate = "";
       if(transitTime > 0 && transitTime !=''){
           noOfDaysToAdd = noOfDaysToAdd + parseInt(transitTime);
       }
@@ -1670,7 +1671,7 @@ function setdate(shipCounter,parentObj,activetab,transitTime=0){
       else{
         setDate = date
       }
-      
+
       // let setActivetab = activetab.replace("#","")
       $(activetab).find(parentObj).find(activetab+"_datetimepicker"+shipCounter).datepicker("setDate", setDate);
       $(activetab).find(parentObj).find(activetab+"_datetimepicker"+shipCounter).datepicker('option', 'minDate', setDate);
@@ -1839,10 +1840,10 @@ function shippingValidation(fld,section,value){
       let shippingArr = {}
       let arrKey = 1
 	  let splitShippingColorQuantity = {};
-      
-      $.each(value[fld].shipping_detail,function(key,shippingData){          
+
+      $.each(value[fld].shipping_detail,function(key,shippingData){
           let splitShippingAddressQuantity = 0;
-		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
+		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){
 			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
 			  if(splitShippingColorQuantity[colorkey] != undefined)
 			  {
@@ -1852,8 +1853,8 @@ function shippingValidation(fld,section,value){
 			  {
 				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
 			  }
-		  });	
-      })  
+		  });
+      })
 
       if(value['color'] != undefined)
       {
@@ -1870,14 +1871,14 @@ function shippingValidation(fld,section,value){
 		  });
       }
       console.log(errorLog);
-      
+
       if(isEmpty(errorLog))
       {
           $.each(value[fld].shipping_detail,function(key,shippingData){
               let section1 = section+'-'+arrKey
-              
+
               let splitShippingAddressQuantity = 0;
-    		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
+    		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){
     			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
     			  if(splitShippingColorQuantity[colorkey] != undefined)
     			  {
@@ -1888,7 +1889,7 @@ function shippingValidation(fld,section,value){
     				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
     			  }
     		  });
-    		  
+
               let shippingVal = {}
               if(!isEmpty(shippingData.color_quantity) && splitShippingAddressQuantity <= 0){
             	  shippingVal['shipping_method'] = "All colors cant not have 0 quantity in address."
@@ -1951,22 +1952,22 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
 
 function attachDeleteEvent(parentDiv){
 	if ($(activetab).find(parentDiv + " .js-delete-address").length > 0){
-		
+
 		// Turn off old events which are attached
 		$(document).off("click", activetab + ' .js-delete-address');
-		
+
 		// Turn on new events
 		$(document).on("click", activetab + ' .js-delete-address',function(){
-			
+
 			let deleteConfirm = confirm("Are you sure you want to remove this address?");
 			if(deleteConfirm == true)
-			{				
+			{
 				let shippingCounter = $(activetab+" .js_request_quote_shipping_counter").val();
 				let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
-				
+
 				// First remove the current address
 				$(activetab + ' #js_shipping_method_detail_'+currentAddressCounter).remove();
-				
+
 				// Now shift the other addresses one step up
 				for(i=(currentAddressCounter+1);i<=shippingCounter;i++)
 				{
@@ -1977,7 +1978,7 @@ function attachDeleteEvent(parentDiv){
 				$(activetab+" .js_request_quote_shipping_counter").val((shippigCounter-1));
 			}
 		});
-	}	
+	}
 }
 function attachAutoCompleteEvent(parentDiv){
 	 if ($(activetab).find(parentDiv + " .auto_complete_shipping_email").length > 0)
@@ -2008,7 +2009,7 @@ function attachAutoCompleteEvent(parentDiv){
 	          let counter = $(obj.currentTarget).closest('.js_shipping_method_detail').data('shipping-counter');
 	          let shippigCounter = counter;
               let addressBookId = datum.id;
-              
+
               setSelectedAddress(addressBookId,shippigCounter);
 	      });
 	    }

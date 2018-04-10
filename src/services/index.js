@@ -65,6 +65,8 @@ const bannertype = require('./bannertype/bannertype.service.js');
 
 const banners = require('./banners/banners.service.js');
 
+const commentRequest = require('./comment-request/comment-request.service.js');
+
 
 
 module.exports = function () {
@@ -111,4 +113,5 @@ module.exports = function () {
   app.configure(branchList);
   app.configure(bannertype);
   app.configure(banners);
+  app.configure(commentRequest);
 };

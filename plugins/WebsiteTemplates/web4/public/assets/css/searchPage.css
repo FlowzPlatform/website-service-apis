@@ -169,8 +169,9 @@ a.css-qdgy3w {
 a.card-item.css-4z0n4u1 > .card-image {
     border: solid 1px #ccc;
 }
+
 .header-loging li a{
-    color: #ffffff;
+    color: #3f3f3f;
 }
 
 .css-evf80z {
@@ -179,4 +180,10 @@ a.card-item.css-4z0n4u1 > .card-image {
 
 .css-16j5nei0 {
    font-size: 14px;
+}
+
+
+@media (min-width: 1200px) {
+.container {
+    width: 1200px !important;
 }

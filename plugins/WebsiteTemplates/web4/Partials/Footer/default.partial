@@ -169,7 +169,9 @@ body {
     margin-bottom: 0px !important;
     margin-left: 0px !important;
 }
-
+.newsletter-signup a {
+    color: white;
+}
 .news-box {
     display: block !important;
 }
@@ -355,7 +357,7 @@ body {
 
 
 
-<div class="newsletter-signup"><a href="signup.html">CLICK HERE</a> TO SIGN U8P FOR THE LATEST PCNA NEWS, UPDATES AND OFFERS</div>
+<div class="newsletter-signup"><a href="signup.html">CLICK HERE</a> TO SIGN UP FOR THE LATEST PCNA NEWS, UPDATES AND OFFERS</div>
 <div
 class="footer-brands">
     <div class="container">
@@ -434,8 +436,8 @@ class="footer-brands">
         <div class="container">
             <div class="clearfix">
                 <div class="pcna-logo">
-                    <a href="#" title="Polyconcept North America"> <img src="http://res.cloudinary.com/flowz/image/upload/v1523280403/websites/images/pcna_logo.svg" width="140" class="img-responsive">
-                    </a>
+                    <!-- a href="#" title="Polyconcept North America"> <img src="http://res.cloudinary.com/flowz/image/upload/v1523280403/websites/images/pcna_logo.svg" width="140" class="img-responsive">
+                    </a -->
                 </div>
                 <div id="footerMenu" class="bottom-links-wrapper">
                     <a href=" " title="About PCNA">About PCNA</a>

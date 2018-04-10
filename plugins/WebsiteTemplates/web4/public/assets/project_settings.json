@@ -20,6 +20,7 @@
 	"user_account_api_url": "https://api.flowzqa.tk/serverapi/website-users",
         "charges": ["setup_charge","pms_charge"],
         "price_decimal": 2,
+	"supplier_id": "5",
         "email_subscribe_api_url": "https://api.flowzqa.tk/serverapi/emailSubscribers",
         "projcet_configuration_api_url": "https://api.flowzqa.tk/serverapi/project-configuration",
         "myorders_api_url": "https://api.flowzqa.tk/serverapi/myOrders",
