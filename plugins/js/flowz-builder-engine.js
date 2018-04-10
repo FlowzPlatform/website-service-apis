@@ -925,12 +925,36 @@ catch (err) {
 
 // CustomSliderComponent
 try {
-  let $form = document.querySelectorAll('customslidercomponent')
-  // console.log('.............................', $form)
-  setBanners($form)
+
+  let baseURL = '';
+  let socketHost = '';
+  let projectID = '';
+  let userID = '';
+
+  $(document).ready(async function() {
+      await getProjectInfo();
+      await ImplementSocket();
+      let $form = document.querySelectorAll('customslidercomponent')
+      await setBanners($form)
+  });
+
+  async function getProjectInfo() {
+      await $.getJSON( "./assets/project-details.json", function( data ) {  
+          projectID = data[0].projectID;
+          // baseURL = 'http://localhost:3032'
+          // socketHost= 'http://localhost:4032'
+          // baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+          // socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+          userID = data[0].UserID
+          // configDataUrl = baseURL + "/project-configuration/" + projectID;
+      });
+  }
+
 
   async function setBanners($form) {
+    // console.log('1111111111111111111', typeof $form)
     for (let [minx, item] of $form.entries()) {
+      // console.log('minx::', minx)
       let bannertype_id = $(item).attr('slidercustom')
       let mSider = ''
       if (bannertype_id != undefined && bannertype_id != '') {
@@ -939,73 +963,12 @@ try {
         console.log('banners', banners)
         if (banners.length > 0) {
           if (checkBtype == 'brand_slider') {
-            // mSider += '<h1>Brand Slider</h1>'
-            // let allbanners = _.chunk(banners, 4)
-
-            // mSider += '<div class="container"><div class="row"><div class="span12"><div class="well"><div id="mybCarousel'+ minx +'" class="carousel slide"  style="margin-bottom: 0;"><ol class="carousel-indicators" style="right: 50%;top: auto; bottom: 0px;margin-right: -19px;">'
-            // for(let i = 0; i < allbanners.length; i++) {
-            //   if (i == 0) {
-            //     mSider += '<li data-target="#mybCarousel'+ minx +'" data-slide-to="'+ i +'" class="active"></li>'
-            //   } else {
-            //     mSider += '<li data-target="#mybCarousel'+ minx +'" data-slide-to="'+ i +'"></li>'
-            //   }
-            // }
-            // mSider += '</ol><div class="carousel-inner">'
-            // for(let j = 0; j < allbanners.length; j++) {
-            //   if (j == 0) {
-            //     mSider += '<div class="item active"><div class="row-fluid">'
-            //     for (let [iix, bslide] of allbanners[j].entries()) {
-            //       mSider += '<div class="span3"><a href="#" class="thumbnail"><img src="'+ bslide.banner_img +'" alt="'+ bslide.banner_name +'" style="max-width:100%;" /></a></div>'
-            //     }
-            //     mSider += '</div></div>'
-            //   } else {
-            //     mSider += '<div class="item"><div class="row-fluid">'
-            //     for (let [iix, bslide] of allbanners[j].entries()) {
-            //       mSider += '<div class="span3"><a href="#" class="thumbnail"><img src="'+ bslide.banner_img +'" alt="'+ bslide.banner_name +'" style="max-width:100%;" /></a></div>'
-            //     }
-            //     mSider += '</div></div>'
-            //   }
-            // }
-            // mSider += '</div><a class="left carousel-control" href="#mybCarousel'+ minx +'" data-slide="prev" style="background: #fff; color: #111">‹</a><a class="right carousel-control" href="#mybCarousel'+ minx +'" data-slide="next" style="background: #fff; color: #111">›</a></div></div></div></div></div>'
-            
-            // $(".left").click(function(){
-            //     $('#myCarousel' + minx).carousel("prev");
-            // });
-
-            // $('.carousel-control').click();
-            // console.log('mSider', mSider)
-            // $('#mybCarousel' + minx).carousel({
-            //     interval: 3000
-            // })
 
             mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
             for (let [inx, slide] of banners.entries()) {
-              // console.log(slide.banner_img, banner_name)
               mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
             }
             mSider += '</div></div>'
-            // // console.log('mSider', mSider)
-            
-            //  $('.customer-logos').slick({
-            //     slidesToShow: 4,
-            //     slidesToScroll: 1,
-            //     autoplay: true,
-            //     autoplaySpeed: 1500,
-            //     arrows: false,
-            //     dots: false,
-            //     pauseOnHover: false,
-            //     responsive: [{
-            //         breakpoint: 768,
-            //         settings: {
-            //             slidesToShow: 4
-            //         }
-            //     }, {
-            //         breakpoint: 520,
-            //         settings: {
-            //             slidesToShow: 3
-            //         }
-            //     }]
-            // });
           } else {
             if (banners.length == 1) {
               if (banners[0].banner_linkurl == '') {
@@ -1019,31 +982,6 @@ try {
                 mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
               }  
               mSider += '</div></div>'
-              // mSider += '<div id="myCarousel' + minx + '" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'
-              // for (let [inx, slide] of banners.entries()) {
-              //   if (inx == 0) {
-              //     mSider += '<li data-target="#myCarousel' + minx + '" data-slide-to="' + inx + '" class="active"></li>'
-              //   } else {
-              //     mSider += '<li data-target="#myCarousel' + minx + '" data-slide-to="' + inx + '"></li>'
-              //   }
-              // }
-              // mSider += '</ol><div class="carousel-inner">'
-              // for (let [i, islide] of banners.entries()) {
-              //   if (i == 0) {
-              //     if (islide.banner_linkurl == '') {
-              //       mSider += '<div class="item active"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: -webkit-fill-available;height:auto;"> </div>'
-              //     } else {
-              //       mSider += '<div class="item active"> <a href="' + islide.banner_linkurl + '" target="'+ islide.linkurl_target +'"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
-              //     }
-              //   } else {
-              //     if (islide.banner_linkurl == '') {
-              //       mSider += '<div class="item"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: -webkit-fill-available;height:auto;"> </div>'
-              //     } else {
-              //       mSider += '<div class="item"> <a href="' + islide.banner_linkurl + '" target="'+ islide.linkurl_target +'"> <img src="'+ islide.banner_img +'" alt="'+ islide.banner_name+'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
-              //     }
-              //   }
-              // }
-              // mSider += '</div><a class="left carousel-control" href="#myCarousel' + minx + '" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel' + minx + '" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span> </a></div>'
             }
           }
         }
@@ -1081,32 +1019,74 @@ try {
   }
 
   async function getBanners (id) {
-    var baseURL = 'http://api.flowzcluster.tk/serverapi';
+    // var baseURL = 'http://api.flowzcluster.tk/serverapi';
     // var baseURL = 'http://localhost:3032';
     // var socketHost = 'http://ws.flowzcluster.tk:4032';
-    let bannerUrl = baseURL + '/banners?banner_type=' + id + '&banner_status=true&$paginate=false';
-    // let bannerUrl = 'http://localhost:3030/banners?banner_type=' + id + '&banner_status=true';
-    let resp = await $.getJSON( bannerUrl ).then(res => {
-      // console.log('res', res)
-      return res
-    }).catch(err => {
-      console.log('Error', err)
+    if (baseURL != '') {
+      let bannerUrl = baseURL + '/banners?banner_type=' + id + '&banner_status=true&$paginate=false';
+      // console.log('bannerUrl::::', bannerUrl)
+      // let bannerUrl = 'http://localhost:3030/banners?banner_type=' + id + '&banner_status=true';
+      let resp = await $.getJSON( bannerUrl ).then(res => {
+        // console.log('res', res)
+        return res
+      }).catch(err => {
+        console.log('Error', err)
+        return []
+      })
+      return resp
+    } else {
       return []
-    })
-    return resp
+    }
   }
 
   async function getBannerType (id) {
-    var baseURL = 'http://api.flowzcluster.tk/serverapi';
+    // var baseURL = 'http://api.flowzcluster.tk/serverapi';
     // var baseURL = 'http://localhost:3032';
-    let bannerTypeUrl = baseURL + '/bannertype/' + id;
-    let resp = await $.getJSON( bannerTypeUrl ).then(res => {
-      return res.bt_category
-    }).catch(err => {
-      console.log('Error', err)
+    if (baseURL != '') {
+      let bannerTypeUrl = baseURL + '/bannertype/' + id;
+      // console.log('userID::', userID, 'projectID:::', projectID, bannerTypeUrl)
+      let resp = await $.getJSON( bannerTypeUrl ).then(res => {
+        if (res.status) {
+          return res.bt_category
+        } else{
+          return ''
+        }
+      }).catch(err => {
+        console.log('Error', err)
+        return ''
+      })
+      return resp
+    } else {
       return ''
-    })
-    return resp
+    }
+  }
+
+  function ImplementSocket() {
+    // socketHost= 'http://localhost:4032'
+    // console.log('socketHost::', socketHost)
+    if (socketHost != '') {
+      let socket = io(socketHost);
+      let client = feathers()
+          .configure(feathers.hooks())
+          .configure(feathers.socketio(socket));
+      let BannersService = client.service('banners');
+      let BannerTypeService = client.service('bannertype');
+
+      BannersService.on('updated', async function(data) {
+        // console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', data)
+        if (data.userId == userID) {
+          let $sform = document.querySelectorAll('customslidercomponent')
+          // console.log('$sform::', $sform)
+          await setBanners($sform)
+        }
+      })
+    }
+
+    // BannerTypeService.on('updated', async function(data) {
+    //   // if (data.) {
+
+    //   // }
+    // })
   }
 } 
 catch (err) {
