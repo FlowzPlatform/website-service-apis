@@ -1,0 +1,89 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<div class="container main">
+    <div class="content-info-page">
+        <div class="innerpage row account-innerpage">
+            <reusecomponent class="c46972">{{> myAccount id='leftNavigation.partial' }}</reusecomponent>
+            <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+                <div class="ob-account-right">
+                    <div class="breadcrumb">
+                        <ul>
+                            <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
+                            </li>
+                            <li><a href="myaccount.html">My Account </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><a href="addressBookList.html">Address Book </a><i class="fa fa-angle-right fa-fw"> </i>
+                            </li>
+                            <li><strong>Edit address</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ob-add-new-address">
+                        <h1 class="main-title">Edit address</h1>
+                        <div class="require-message">
+                            <span class="field-message">
+                                (Please fill in your Contact Information. Don't forget to save!)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <reusecomponent class="c17829">{{> addressBook id='addAddress.partial' }}</reusecomponent>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

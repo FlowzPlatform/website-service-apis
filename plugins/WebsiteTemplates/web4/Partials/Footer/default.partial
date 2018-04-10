@@ -1,0 +1,457 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#i5t2c8 {
+    width: auto;
+    height: 30px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+input[type="text"] {
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    font-size: 1rem;
+    font-family: sans-serif;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgba(0, 0, 0, 0.15);
+    border-right-color: rgba(0, 0, 0, 0.15);
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+    border-left-color: rgba(0, 0, 0, 0.15);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+ul.social-network {
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    display: inline;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin-left: 0px !important;
+}
+
+ul.social-network li {
+    display: inline;
+    margin-top: 0px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+
+.social-network a.icoRss:hover {
+    background-color: rgb(41, 41, 41);
+}
+
+.social-network a.icoFacebook:hover {
+    background-color: rgb(59, 89, 152);
+}
+
+.social-network a.icoTwitter:hover {
+    background-color: rgb(51, 204, 255);
+}
+
+.social-network a.icoGoogle:hover {
+    background-color: rgb(189, 53, 24);
+}
+
+.social-network a.icoVimeo:hover {
+    background-color: rgb(5, 144, 184);
+}
+
+.social-network a.icoLinkedin:hover {
+    background-color: rgb(0, 123, 183);
+}
+
+.social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i, .social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+    color: rgb(255, 255, 255);
+}
+
+.socialHoverClass, a.socialIcon:hover {
+    color: rgb(68, 188, 221);
+}
+
+.social-circle li a {
+    display: inline-block;
+    position: relative;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.social-circle li i {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.triggeredHover, .social-circle li a:hover i {
+    transform: rotate(360deg);
+    transition-duration: 0.2s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+.social-circle i {
+    color: rgb(0, 0, 0);
+    transition-duration: 0.8s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+a.socialMedCls {
+    background-color: rgb(211, 211, 211);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.newslatter {
+    margin-top: 10px !important;
+    margin-right: 25px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+}
+
+.news-box {
+    display: block !important;
+}
+
+.detail-popup-block .virtual-button:hover {
+    background-image: initial !important;
+    background-position-x: initial !important;
+    background-position-y: initial !important;
+    background-size: initial !important;
+    background-repeat-x: initial !important;
+    background-repeat-y: initial !important;
+    background-attachment: initial !important;
+    background-origin: initial !important;
+    background-clip: initial !important;
+    background-color: rgb(197, 19, 39) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.innerpage, .home-content > .container {
+    min-height: 700px;
+}
+
+.btn-success:active:hover {
+    color: rgb(255, 255, 255);
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(197, 19, 39);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(197, 19, 39);
+    border-right-color: rgb(197, 19, 39);
+    border-bottom-color: rgb(197, 19, 39);
+    border-left-color: rgb(197, 19, 39);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.newsletter-signup {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(64, 180, 229);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 20px;
+    padding-top: 15px;
+    padding-right: 35px;
+    padding-bottom: 15px;
+    padding-left: 35px;
+    text-align: center;
+}
+
+.footer-brands {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(249, 249, 249);
+    padding-top: 16px;
+    padding-right: 0px;
+    padding-bottom: 16px;
+    padding-left: 0px;
+}
+
+.footer-brands .footer-col:first-child {
+    margin-left: 0px;
+}
+
+.footer-brands .footer-col {
+    float: left;
+    width: 20%;
+}
+
+.footer-brands .footer-col h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+}
+
+.list-unstyled {
+    margin-bottom: 0px;
+    padding-left: 0px;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+}
+
+.footer-brands .footer-col ul li {
+    margin-top: 3px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.footer-brands .footer-col ul li a {
+    color: rgb(102, 102, 102);
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 12px;
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+}
+ .footer-brands .footer-col h3 img {
+    margin-right: 5px;
+    vertical-align: top;
+}
+ .footer-brands .footer-col .social-links ul {
+    margin: 0;
+}
+.footer-brands .footer-col .social-links ul li {
+    display: block;
+    float: left;
+    margin-right: 6px;
+}
+.bottom-links {
+    padding: 20px 0;
+}
+.bottom-links .pcna-logo {
+    float: left;
+    margin-right: 40px;
+    width: 170px;
+}
+.bottom-links-wrapper {
+    display: block !important;
+        padding: 15px 0 0;
+}
+.bottom-links-wrapper a {
+    color: #061f5c;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    float: left;
+    line-height: 14px;
+    margin: 3px 24px 3px 0;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+ .bottom-links-wrapper a:after {
+    background: #ccc;
+    content: "";
+    display: block;
+    width: 1px;
+    height: 11px;
+    position: absolute;
+    right: -14px;
+    top: 0;
+}
+</style>
+
+
+
+
+<div class="newsletter-signup"><a href="signup.html">CLICK HERE</a> TO SIGN U8P FOR THE LATEST PCNA NEWS, UPDATES AND OFFERS</div>
+<div
+class="footer-brands">
+    <div class="container">
+        <div class="clearfix">
+            <div class="footer-col">
+                <h3><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images/leeds-icon.svg" width="15"/>Leed's
+                    </h3>
+                <ul class="list-unstyled">
+                    <li><a href="" title="About Leed's">About Leed's</a>
+                    </li>
+                    <li><a href="" title="Ordering Information">Ordering Information</a>
+                    </li>
+                    <li><a href="" title="Decorating">Decorating</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images//bullet-icon.svg" width="15"/>Bullet
+                    </h3>
+                <ul class="list-unstyled">
+                    <li><a href="" title="About Bullet">About Bullet</a>
+                    </li>
+                    <li><a href="" title="Ordering Information">Ordering Information</a>
+                    </li>
+                    <li><a href="" title="Decorating">Decorating</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images//journalbooks-icon.svg" width="15"/>JournalBooks
+                    </h3>
+                <ul class="list-unstyled">
+                    <li><a title="About JournalBooks">About JournalBooks</a>
+                    </li>
+                    <li><a title="Ordering Information">Ordering Information</a>
+                    </li>
+                    <li><a title="Decorating">Decorating</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images//trimark-icon.svg" width="15"/>Trimark
+                    </h3>
+                <ul class="list-unstyled">
+                    <li><a href="" title="About Trimark">About Trimark</a>
+                    </li>
+                    <li><a href="" title="Ordering Information">Ordering Information</a>
+                    </li>
+                    <li><a href="" title="Decorating">Decorating</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col social">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <ul class="list-unstyled clearfix">
+                        <li><a id="pcnablogLink" target="_blank" href="" class="pcnablog"><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images//blog.svg" width="23" height="23"/></a>
+                        </li>
+                        <li><a id="facebookLink" target="_blank" href="" class="facebook"><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images//facebook.svg" width="23" height="23"/></a>
+                        </li>
+                        <li><a id="youtubeLink" target="_blank" href="" class="youtube"><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images//youtube.svg" width="23" height="23"/></a>
+                        </li>
+                        <li><a id="twitterLink" target="_blank" href="" class="twitter"><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images//twitter.svg" width="23" height="23"/></a>
+                        </li>
+                        <li><a id="googleplusLink" target="_blank" href="" class="googleplus"><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images//google-plus.svg" width="23" height="23"/></a>
+                        </li>
+                        <li><a id="linkedinLink" target="_blank" href="" class="linkedin"><img src="http://res.cloudinary.com/flowz/image/upload/v1523272778/websites/images//linkedin.svg" width="23" height="23"/></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="bottom-links">
+        <div class="container">
+            <div class="clearfix">
+                <div class="pcna-logo">
+                    <a href="#" title="Polyconcept North America"> <img src="http://res.cloudinary.com/flowz/image/upload/v1523280403/websites/images/pcna_logo.svg" width="140" class="img-responsive">
+                    </a>
+                </div>
+                <div id="footerMenu" class="bottom-links-wrapper">
+                    <a href=" " title="About PCNA">About PCNA</a>
+                    <a href=" " title="Compliance">Compliance</a>
+                    <a id="eCatalogsFooterLink" href=" " title="Sales Tools">Sales Tools</a>
+                    <a href=" " title="eCommerce Services">eCommerce Services</a>
+                    <a href="" title="Careers">Careers</a>
+                    <a href="" title="Press Room">Press Room</a>
+                    <a href="" title="Videos">Videos</a>
+                    <a href="" title="Legal">Legal</a>
+                    <a href="" title="Help">Help</a>
+                    </div>
+            </div>
+            <p class="copyright clearfix">© 2017 Polyconcept North
+                America. All Rights Reserved.</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519210886/js/owl.carousel.js"></script>
+    <script src="./assets/client-plugins/bootbox.min.js"></script>
