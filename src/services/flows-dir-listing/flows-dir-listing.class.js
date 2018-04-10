@@ -87,13 +87,12 @@ class Service {
     create(data, params) {
         console.log('data.socketListen : ',data.socketListen);
 
-        let socketListen = true;;
+        let socketListen = false;
 
-        if(data.socketListen == false) {
-            console.log('inside else..');
-            socketListen = false;    
+        if(data.socketListen == true) {
+            socketListen = true;    
         } else {
-            socketListen = true;
+            socketListen = false;
         }
 
         console.log('socketListen : ',socketListen);
