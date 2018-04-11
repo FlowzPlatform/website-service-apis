@@ -10,7 +10,7 @@ flex-direction: row !important;
 margin: 0;
 padding: 20px;
 }
-.css-1eyuddg.css-ywvnxe0 {position: relative;height: 100%;overflow: inherit;width: 23%;}
+.css-1eyuddg.css-ywvnxe0 {position: relative;height: 100%;overflow: inherit;width: 23%;z-index: 1;}
 .css-pw968m.css-pp2ows0 {
 width: 75%;
 margin-left: 3%;
