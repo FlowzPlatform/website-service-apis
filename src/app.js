@@ -57,9 +57,14 @@ app.options('*', cors());
 app.configure(hooks());
 app.configure(rethinkdb);
 app.configure(rest());
-app.configure(socketio(4032,{
+// app.configure(socketio(4032,{
+//   wsEngine: 'uws',
+//   origin: '*.flowz.com:*'
+// }));
+
+app.configure(socketio({
   wsEngine: 'uws',
-  origin: '*.flowz.com:*'
+  origin: '*.' + (process.env.domainKey ? 'localhost' : process.env.domainKey) + ':*'
 }));
 
 app.use(subscription.featherSubscription)
