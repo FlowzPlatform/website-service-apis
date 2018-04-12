@@ -7,9 +7,7 @@ module.exports = {
       hook => beforeFind(hook)
     ],
     get: [],
-    create: [
-      hook => beforeCreate(hook)
-    ],
+    create: [],
     update: [],
     patch: [],
     remove: []
@@ -35,10 +33,6 @@ module.exports = {
     remove: []
   }
 };
-
-let beforeCreate = function(hook) {
-  hook.data.createdAt = new Date()
-}
 
 let beforeFind = function(hook) {
   if (hook.params.query.hasOwnProperty('status') && hook.params.query.status === 'true') {

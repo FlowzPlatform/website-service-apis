@@ -161,6 +161,7 @@ a.socialMedCls {
 <link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/normalize.css" rel="stylesheet" type="text/css" />
 <link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/key-innovation.css" rel="stylesheet" type="text/css" />
 <link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/responsive.css" rel="stylesheet" type="text/css" />
+<link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/owl.carousel.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="./main-files/main.css" />
 <link rel="stylesheet" type="text/css" href="./assets/css/style.min.css" />
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css" />
@@ -212,7 +213,7 @@ a.socialMedCls {
 				<table>
                     <tbody><tr><td valign="middle">
 					<a href="index.html">
-						<img src="http://res.cloudinary.com/flowz/image/upload/v1522909611/websites/images/pd-logo.png" class="img-responsive" alt="Promo Direct">
+						<img src="http://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png" class="img-responsive" alt="Promo Direct">
 					</a>
 				</td></tr></tbody></table>
 			</div>
@@ -249,7 +250,30 @@ a.socialMedCls {
 		</div>
 	</div>
 </header>
-
+<div class="floatclear"></div>
+<header id="topNav" class="showOnDesktop">
+		<div class="container">
+			<nav class="mega-menu">
+				<ul class="nav nav-pills nav-main scroll-menu" id="topMain">
+					<li class="dropdown">
+						<a href="index.html">Home</a>
+					</li>
+					<li class="dropdown">
+						<a href="#">Bags</a>
+					</li>
+					<li class="dropdown">
+						<a href="#">Drinkware</a>
+					</li>
+					<li class="dropdown">
+						<a href="#">Technology</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" id="lasta">Writing</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
 <script type="text/javascript">
 	let timeout = 50;
 	let closetimer  = 0;

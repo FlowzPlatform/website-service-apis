@@ -741,3 +741,4 @@ a.btn-search{background: #4d4d4d;color: #fff;font-size: 16px;padding: 7px 20px;f
 input.btn.btn-default {background-color: #464646;text-transform: capitalize;}
 input.btn.btn-default:hover {color:#fff; background-color:#115095;border: 1px solid #2d2b2b;}
 .breadcrumb strong {font-weight: 700;color: #4e4f51;font-size: 15px;}
+header{position: relative;}
