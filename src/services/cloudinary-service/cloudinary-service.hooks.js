@@ -55,7 +55,6 @@ function after_get_images(hook) {
       });
 
       cloudinary.v2.api.resources({ next_cursor: hook.params.query.nextCursor }, function(error, result){
-        console.log(result);
         hook.result = result;
         resolve(hook)
       });      
