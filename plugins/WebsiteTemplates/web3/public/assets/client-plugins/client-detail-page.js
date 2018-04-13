@@ -2076,8 +2076,8 @@ function setSelectedAddress(addressBookId,shippigCounter)
                     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
               }
               var addressFrom  = {
-                  // "name": returnData.name,
-                  // "street1": returnData.street1,
+                  "name": shipping_details.fob_city,
+                  "street1": shipping_details.fob_city,
                   "city": shipping_details.fob_city,
                   "state": shipping_details.fob_state_code,
                   "zip": shipping_details.fob_zip_code,
@@ -2088,8 +2088,8 @@ function setSelectedAddress(addressBookId,shippigCounter)
               };
 
               var addressTo  = {
-                  // "name": returnData.name,
-                  // "street1": "500 to 598 1st St",//returnData.street1,
+                  "name": returnData.name,
+                  "street1": returnData.street1,//"500 to 598 1st St",//,
                   "city": city,
                   "state": state,
                   "zip": returnData.postalcode,
