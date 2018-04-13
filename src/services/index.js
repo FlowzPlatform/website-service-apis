@@ -69,6 +69,10 @@ const commentRequest = require('./comment-request/comment-request.service.js');
 
 
 
+const cloudinaryService = require('./cloudinary-service/cloudinary-service.service.js');
+
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -114,4 +118,5 @@ module.exports = function () {
   app.configure(bannertype);
   app.configure(banners);
   app.configure(commentRequest);
+  app.configure(cloudinaryService);
 };
