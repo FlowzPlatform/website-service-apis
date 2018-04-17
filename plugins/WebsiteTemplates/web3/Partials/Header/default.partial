@@ -161,6 +161,7 @@ a.socialMedCls {
 <link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/normalize.css" rel="stylesheet" type="text/css" />
 <link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/key-innovation.css" rel="stylesheet" type="text/css" />
 <link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/responsive.css" rel="stylesheet" type="text/css" />
+<link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/owl.carousel.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="./main-files/main.css" />
 <link rel="stylesheet" type="text/css" href="./assets/css/style.min.css" />
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css" />
@@ -173,11 +174,7 @@ a.socialMedCls {
 <header id="topHead" style="padding: 0;background-color: #000;z-index: 2;position: fixed;top:0;">
 	<div class="container container-fluid">
 		<div class="row">
-			<span class="toplink-left pull-left">
-				<a href="javascript:void(0);">Email Sign-Up For Deals</a> 
-				<a class="offer" href="javascript:void(0);">Get FREE Catalog</a>
-				<a class="offer1" href="javascript:void(0);" style="text-decoration: none !important;">Browsing History <span id="bhCount">0</span></a>
-			</span>
+			<span class="toplink-left pull-left"></span>
 			<div class="toplink-right" style="position: relative;">
                 <a href="javascript:void()" class="logout-show hide"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a><span></span>
                 <a href="javascript:void()" onmousemove="mopentime()" onmouseout="mclosetime()"  id="headerDropdown">My Account&nbsp;&nbsp;<img src="http://res.cloudinary.com/flowz/image/upload/v1522911067/websites/images/harrow_down.png"></a><span></span>
@@ -190,17 +187,14 @@ a.socialMedCls {
 						Favorites
 						(<span id="wishListCount">
 							0
-						</span>)  
+						</span>)
 					</a>
                     <a href="compare.html">
-						Compare (<span id="comparedCount"> 0 </span>)  
+						Compare (<span id="comparedCount"> 0 </span>)
 					</a>
-                    <a class="js_before_login login-text-check" href="javascript:;">Logout</a>
+                    <a class="js_before_login login-text-check" href="javascript:void(0);">Logout</a>
 				</div>
-				<a href="javascript:void()">About Us</a><span></span>
-				<a href="javascript:void()">Contact Us</a><span></span>
-				<a href="javascript:void()">Help</a><span></span>
-				<a href="cartPage.html" class="cart_img" id="cartCount">0</a>
+				<a href="cartPage.html" class="cart_img" id="cartCount" style="font-weight:bold;">0</a>
 			</div>
 		</div>
 	</div>
@@ -212,13 +206,12 @@ a.socialMedCls {
 				<table>
                     <tbody><tr><td valign="middle">
 					<a href="index.html">
-						<img src="http://res.cloudinary.com/flowz/image/upload/v1522909611/websites/images/pd-logo.png" class="img-responsive" alt="Promo Direct">
+						<img src="http://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png" class="img-responsive" alt="Promo Direct">
 					</a>
 				</td></tr></tbody></table>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-12">
 				<table><tbody><tr><td valign="middle">
-					<form action="/catalog/srhkeyword.cz" id="topSearch" method="get" name="SearchKeywordForm">
 						<div class="search input-group header-search-col">
 							<input class="searchinput" type="text" id="topkeyword" name="search" autocomplete="off" disableautocomplete="" placeholder="Search Products">
 							<div id="suggestdiv"></div>
@@ -228,28 +221,43 @@ a.socialMedCls {
 								</button>
 							</div>
 						</div>
-					</form>
 				</td></tr></tbody></table>
 			</div>
 			<div class="col-md-3 col-sm-3 col-xs-12" id="topright">
 				<table width="100%"><tbody><tr><td valign="middle">
 					<div id="topright-wrap">
-						<span class="tollfreetext">order online or call</span> 
+						<span class="tollfreetext">order online or call</span>
 						<span class="tollfreeno">1-800-748-6150</span>
 						<span class="time">Monday-Friday: 6:30 am - 4:30 pm PST</span>
 						<span class="experttalk">
-							<img src="http://res.cloudinary.com/flowz/image/upload/v1522912897/websites/images/chatIcon.png">&nbsp;&nbsp;Live Chat - 
+							<img src="http://res.cloudinary.com/flowz/image/upload/v1522912897/websites/images/chatIcon.png">&nbsp;&nbsp;Live Chat -
 							<a href="https://sa.live2support.com/ls3/l2schat14205-0-0.html" target="_blank" onclick="try{lswin('sid=14205','14205'); return false;} catch(l2se) { }" id="l2stxtcd" style="color: #0a6edb">
 								Go to live chat now
 							</a>
-						</span> 
+						</span>
 					</div>
 				</td></tr></tbody></table>
 			</div>
 		</div>
 	</div>
 </header>
-
+<div class="floatclear"></div>
+<header id="topNav" class="showOnDesktop">
+		<div class="container">
+        <nav menuId="evans" class="navbar mega-menu navbar-expand-sm bg-dark navbar-dark customMenu">
+          <button type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
+          class="navbar-toggler"> <span class="navbar-toggler-icon"></span>
+          </button>
+          <div id="navigationDiv" class="collapse navbar-collapse">
+          <ul class="navbar-nav nav nav-pills nav-main scroll-menu" id="topMain">
+           <li class="nav-item">
+           <a href="index.html" class="nav-link">HOME</a>
+           </li>
+          </ul>
+          </div>
+          </nav>
+		</div>
+	</header>
 <script type="text/javascript">
 	let timeout = 50;
 	let closetimer  = 0;
@@ -258,20 +266,20 @@ a.socialMedCls {
 	function mopentime(){
         opentimer = window.setTimeout("mopen()", opendelay);
 	}
-	
+
 	function mopen(id){
         if($("#headerDropdownBox").length > 0){
             mcancelclosetime();
             $("#headerDropdownBox").show();
         }
 	}
-	
+
 	function mclose(){
 		if($("#headerDropdownBox").length > 0){
 			$("#headerDropdownBox").hide();
 		}
 	}
-	
+
 	function mclosetime(){
         if(opentimer){
             window.clearTimeout(opentimer);

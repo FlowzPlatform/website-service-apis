@@ -620,9 +620,9 @@ try{
         }
         if (elem.title) {
             if (elem.children != undefined) {
-                html.push('<a class="dropdown-toggle" data-toggle="dropdown" href="' + elem.customSelect + '">' + elem.title + ' </a>');
+                html.push("<a class='dropdown-toggle' data-toggle='dropdown' href='" + elem.customSelect + "''>" + elem.title + " </a>");
             } else {
-                html.push('<a href="' + elem.customSelect + '">' + elem.title + ' </a>');
+                html.push("<a href='" + elem.customSelect + "'>" + elem.title + " </a>");
             }
         }
 
@@ -952,38 +952,51 @@ try {
 
 
   async function setBanners($form) {
-    // console.log('1111111111111111111', typeof $form)
     for (let [minx, item] of $form.entries()) {
-      // console.log('minx::', minx)
       let bannertype_id = $(item).attr('slidercustom')
       let mSider = ''
       if (bannertype_id != undefined && bannertype_id != '') {
         let checkBtype = await getBannerType(bannertype_id)
-        let banners = await getBanners(bannertype_id)
-        console.log('banners', banners)
-        if (banners.length > 0) {
-          if (checkBtype == 'brand_slider') {
+        if (Object.keys(checkBtype).length != 0 && checkBtype.status) {
+          let banners = await getBanners(bannertype_id)
+          console.log('banners', banners)
 
-            mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
-            for (let [inx, slide] of banners.entries()) {
-              mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
-            }
-            mSider += '</div></div>'
-          } else {
-            if (banners.length == 1) {
-              if (banners[0].banner_linkurl == '') {
-                mSider += '<img src="' + banners[0].banner_img + '" class="img-responsive" style="width: -webkit-fill-available;height:auto;" alt="' + banners[0].banner_name + '">'
-              } else {
-                mSider += '<a href="' + banners[0].banner_linkurl + '" target="'+ banners[0].linkurl_target +'"><img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '" style="width: -webkit-fill-available;height:auto;"></a>'
-              }
-            } else {
-              mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
+          if (banners.length > 0) {
+            if (checkBtype.bt_category == 'brand_slider') {
+              mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
               for (let [inx, slide] of banners.entries()) {
-                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
-              }  
+                if (slide.banner_linkurl == '') {
+                  mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
+                } else if(slide.linkurl_target == 'same') {
+                  mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"> </a> </div>'
+                } else {
+                  mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="'+ slide.linkurl_target +'"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"> </a> </div>'
+                }
+              }
               mSider += '</div></div>'
+            } else {
+              if (banners.length == 1) {
+                if (banners[0].banner_linkurl == '') {
+                  mSider += '<img src="' + banners[0].banner_img + '" class="img-responsive" style="width: -webkit-fill-available;height:auto;" alt="' + banners[0].banner_name + '">'
+                } else {
+                  mSider += '<a href="' + banners[0].banner_linkurl + '" target="'+ banners[0].linkurl_target +'"><img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '" style="width: -webkit-fill-available;height:auto;"></a>'
+                }
+              } else {
+                mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
+                for (let [inx, slide] of banners.entries()) {
+                  if(slide.banner_linkurl == '') {
+                    mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
+                  } else if (slide.linkurl_target == 'same') {
+                    mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+                  } else {
+                    mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="'+ slide.linkurl_target +'"> <img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+                  }
+                }  
+                mSider += '</div></div>'
+              }
             }
           }
+          
         }
       }
       $(item).html(mSider)
@@ -1019,13 +1032,9 @@ try {
   }
 
   async function getBanners (id) {
-    // var baseURL = 'http://api.flowzcluster.tk/serverapi';
-    // var baseURL = 'http://localhost:3032';
-    // var socketHost = 'http://ws.flowzcluster.tk:4032';
     if (baseURL != '') {
-      let bannerUrl = baseURL + '/banners?banner_type=' + id + '&banner_status=true&$paginate=false';
-      // console.log('bannerUrl::::', bannerUrl)
-      // let bannerUrl = 'http://localhost:3030/banners?banner_type=' + id + '&banner_status=true';
+      let bannerUrl = baseURL + '/banners?userId='+userID+'&banner_type=' + id + '&banner_status=true&$paginate=false';
+     
       let resp = await $.getJSON( bannerUrl ).then(res => {
         // console.log('res', res)
         return res
@@ -1040,30 +1049,79 @@ try {
   }
 
   async function getBannerType (id) {
-    // var baseURL = 'http://api.flowzcluster.tk/serverapi';
-    // var baseURL = 'http://localhost:3032';
     if (baseURL != '') {
       let bannerTypeUrl = baseURL + '/bannertype/' + id;
       // console.log('userID::', userID, 'projectID:::', projectID, bannerTypeUrl)
       let resp = await $.getJSON( bannerTypeUrl ).then(res => {
-        if (res.status) {
-          return res.bt_category
-        } else{
-          return ''
-        }
+        return res
       }).catch(err => {
         console.log('Error', err)
-        return ''
+        return {}
       })
       return resp
     } else {
-      return ''
+      return {}
     }
   }
 
+  async function updateBanners($sform, data, type) {
+    let banners = [];
+    let checkBtype = '';
+    if (type == 'bannertype') {
+      checkBtype = data
+      banners = await getBanners(data.id)
+    } else {
+      checkBtype = await getBannerType(data.banner_type)
+      banners = await getBanners(data.banner_type)
+    }
+    let mSider = ''
+    // console.log(checkBtype, banners, type)
+    if (Object.keys(checkBtype).length != 0 && checkBtype.status) {
+      if (banners.length > 0) {
+
+        if (checkBtype.bt_category == 'brand_slider') {
+          mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
+          for (let [inx, slide] of banners.entries()) {
+            if (slide.banner_linkurl == '') {
+              mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
+            } else if(slide.linkurl_target == 'same') {
+              mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"> </a> </div>'
+            } else {
+              mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="'+ slide.linkurl_target +'"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"> </a> </div>'
+            }
+          }
+          mSider += '</div></div>'
+        } else {
+          if (banners.length == 1) {
+            if (banners[0].banner_linkurl == '') {
+              mSider += '<img src="' + banners[0].banner_img + '" class="img-responsive" style="width: -webkit-fill-available;height:auto;" alt="' + banners[0].banner_name + '">'
+            } else {
+              mSider += '<a href="' + banners[0].banner_linkurl + '" target="'+ banners[0].linkurl_target +'"><img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '" style="width: -webkit-fill-available;height:auto;"></a>'
+            }
+          } else {
+            mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
+            for (let [inx, slide] of banners.entries()) {
+              if(slide.banner_linkurl == '') {
+                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
+              } else if (slide.linkurl_target == 'same') {
+                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+              } else {
+                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="'+ slide.linkurl_target +'"> <img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+              }
+            } 
+            mSider += '</div></div>'
+          }
+        }
+      
+      }
+    }
+    for (let item of $sform) {
+      $(item).html(mSider)
+    }
+    await startBanners()
+  }
+
   function ImplementSocket() {
-    // socketHost= 'http://localhost:4032'
-    // console.log('socketHost::', socketHost)
     if (socketHost != '') {
       let socket = io(socketHost);
       let client = feathers()
@@ -1073,20 +1131,57 @@ try {
       let BannerTypeService = client.service('bannertype');
 
       BannersService.on('updated', async function(data) {
-        // console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', data)
         if (data.userId == userID) {
-          let $sform = document.querySelectorAll('customslidercomponent')
-          // console.log('$sform::', $sform)
-          await setBanners($sform)
+          console.log('Updated......................Banners')
+          let $sform = $('customslidercomponent[slidercustom= '+data.banner_type+']')
+          if ($sform.length > 0) {
+            await updateBanners($sform, data, 'banners')
+          }
         }
       })
+
+      BannersService.on('created', async function(data) {
+        if (data.userId == userID) {
+          let $sform = $('customslidercomponent[slidercustom= '+data.banner_type+']')
+          if ($sform.length > 0) {
+            await updateBanners($sform, data)
+          }
+        }
+      })
+
+      BannersService.on('removed', async function(data) {
+        if (data.userId == userID) {
+          let $sform = $('customslidercomponent[slidercustom= '+data.banner_type+']')
+          if ($sform.length > 0) {
+            await updateBanners($sform, data)
+          }
+        }
+      })
+
+      BannerTypeService.on('updated', async function(data) {
+        if (data.userId == userID && data.website_id == projectID) {
+          console.log('Updated BannerType ::::::::::::::::::::: ')
+          let $sform = $('customslidercomponent[slidercustom= '+data.id+']')
+          if ($sform.length > 0) {
+            await updateBanners($sform, data, 'bannertype')
+          }
+        }
+      })
+
+      BannerTypeService.on('removed', async function(data) {
+        if (data.userId == userID && data.website_id == projectID) {
+          console.log('Removed BannerType ::::::::::::::::::::: ')
+          let $sform = $('customslidercomponent[slidercustom= '+data.id+']')
+          if ($sform.length > 0) {
+            for(let item of $sform) {
+              $(item).html('')
+            }
+          }
+        }
+      })
+
     }
 
-    // BannerTypeService.on('updated', async function(data) {
-    //   // if (data.) {
-
-    //   // }
-    // })
   }
 } 
 catch (err) {

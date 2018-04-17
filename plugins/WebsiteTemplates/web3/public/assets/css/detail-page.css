@@ -5,8 +5,8 @@
 .innerpage {
     margin: 0 ;
 }
-.quantity-table ul {
-    margin-top: -10px;
+.quantity-table-disc .owl-controls .owl-buttons div {
+    display: inline-block;
 }
 .header-search-col form input[type="text"] {
     width: 72%;

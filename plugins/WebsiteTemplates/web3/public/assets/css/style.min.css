@@ -734,10 +734,15 @@ table.reference td{padding:7px 5px;width:200px;border:1px solid #d4d4d4;vertical
 .pb-10{padding-bottom: 10px;}
 .mb-10{margin-bottom: 10px;}
 .ui-widget.ui-widget-content {border: 1px solid #c5c5c5;width: 400px !important;}
-.quantity-table-col{margin-top: -10px;}
 .continue-shop-btn:hover, .continue-shop-btn:focus {background: #115095;}
 .proceed-checkout-btn{    background: #115095;}
 a.btn-search{background: #4d4d4d;color: #fff;font-size: 16px;padding: 7px 20px;font-family: 'Roboto Condensed',sans-serif;font-weight: 700;text-transform: uppercase;width: auto;display: inline-block;height: auto;margin-bottom: 10px;}
 input.btn.btn-default {background-color: #464646;text-transform: capitalize;}
 input.btn.btn-default:hover {color:#fff; background-color:#115095;border: 1px solid #2d2b2b;}
 .breadcrumb strong {font-weight: 700;color: #4e4f51;font-size: 15px;}
+header{position: relative;}
+.shipping-option .input-group .form-control{z-index: 1;}
+#ui-datepicker-div{width: 271px !important;}
+.quantity-table-disc .owl-controls .owl-buttons div {display: inline-block;}
+.quantity-table .quantity-table-title {width: 23%!important;}
+.search_block_main_content .input-group{z-index: 1;}

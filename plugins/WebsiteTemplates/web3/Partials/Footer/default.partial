@@ -198,6 +198,15 @@ body {
 .signup{
    width:350px !important;
 }
+p.title {
+    margin: 0 auto;
+    border-bottom: 0px rgba(230,230,230,0.5);
+    background: transparent;
+    padding: 0px 0px;
+}
+#topNav.showOnDesktop{
+  z-index:1;
+}
 </style>
 
 
@@ -364,12 +373,10 @@ body {
             <div class="row">
                 <div class="copyRight">
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <p>© 2018 Promo Direct . All Rights Reserved.</p>
+                        <p>© 2018 Flowz . All Rights Reserved.</p>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12 pull-right">
-                        <div class="bottom-right"><a href="javascript:void(0);" rel="nofollow">Feedback</a><span>|</span>
-                            <a
-                            href="javascript:void(0);">SiteMap</a>
+                        <div class="bottom-right">
                         </div>
                     </div>
                 </div>
@@ -379,3 +386,4 @@ body {
 </footer>
 <script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519210886/js/owl.carousel.js"></script>
 <script src="./assets/client-plugins/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
