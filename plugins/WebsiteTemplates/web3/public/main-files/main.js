@@ -187,6 +187,11 @@ Y({
       $(".js_after_login").removeClass("hide")
       $(".js_before_login").addClass("hide")
     }
+
+    if(getParameterByName('SearchSensor')){
+        $('input[name="search"]').val(getParameterByName('SearchSensor').replace (/(^")|("$)/g, ''))
+    }
+
   })
 })
 
@@ -490,35 +495,71 @@ var init = function() {
     showCompareList();
   }
 
+  let total_hits;
   let myarr = [];
+  let result = [];
+
   // Auto sugession for search in header
   $('input[name="search"]').keyup(function(){
       let val = $('input[name="search"]').val();
+      let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Projectvid.password);
       let settings = {
         "async": true,
         "crossDomain": true,
-        "url": project_settings.search_api_url,
+        "url": project_settings.search_api_url + '?size=0',
         "method": "POST",
         "headers": {
-          "authorization": project_settings.search_api_auth_token,
+          //"authorization": project_settings.search_api_auth_token,
+          "Authorization" : "Basic " + auth,
           "content-type": "application/json",
           "cache-control": "no-cache",
           "postman-token": "0fe82014-49ea-eca8-1432-1f3b9fffc910"
         },
-        "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword\": \" "+ val +" \"\n        }\n      }\n    }\n  }\n}\u0001"
+        "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"search_keyword\"] \n}\u0001"
       }
+      // $.ajax(settings).done(function (data) {
+      //     total_hits = data.hits.total;
+      //     $.each(data.hits.hits,  function( index, value ) {
+      //       value._source.search_keyword.forEach(function(item,index) {
+      //         myarr.push(item);
+      //       });
+      //     });
+      // });
       $.ajax(settings).done(function (data) {
-          $.each(data.hits.hits,  function( index, value ) {
-            value._source.search_keyword.forEach(function(item,index) {
-              myarr.push(item);
-            });
-          });
+        total_hits = data.hits.total;
+          let settings1 = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": project_settings.search_api_url + '?from=1&size='+total_hits,
+                  "method": "POST",
+                  "headers": {
+                    "Authorization" : "Basic " + auth
+                  },
+                  "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"search_keyword\"] \n}\u0001"
+                }
+                $.ajax(settings1).done(function (data) {
+                    // console.log("data",data);
+                    $.each(data.hits.hits,  function( index, value ) {
+                      value._source.search_keyword.forEach(function(item,index) {
+                        myarr.push(item);
+                      });
+                    });
+                    result = _.uniq(myarr)
+                });
+              $('input[name="search"]').autocomplete({
+                  source: result,
+                  select: function( event, ui ) {
+                      var reportname = ui.item.value
+                      $('input[name="search"]').val(ui.item.value)
+                      $('input[name="search"]').closest('.header-search-col').find('.btn-search').trigger( "click" );
+                  }
+              });
       });
   });
 
-  $('input[name="search"]').autocomplete({
-    source: myarr
-  });
+  // $('input[name="search"]').autocomplete({
+  //   source: myarr
+  // });
 
   $('.header-search-col').find('.btn-search').click(function(){
     if($.trim($('input[name="search"]').val()) != '') {
@@ -820,7 +861,7 @@ $(document).on('click', '.js-remove-wishlist', function(e) {
   e.preventDefault();
   let product_id = $(this).data('id');
 
-  bootbox.confirm("Are you sure want to delete?", function(result)
+  bootbox.confirm("<h3 class='text-center'>Are you sure want to delete?</h3>", function(result)
     {
       if(result)
         {
@@ -843,7 +884,7 @@ $(document).on('click', '.js-remove-wishlist', function(e) {
 $(document).on('click', '.js-remove-compare', function(e) {
   e.preventDefault();
   let product_id = $(this).data('id');
-  bootbox.confirm("Are you sure want to delete?", function(result)
+  bootbox.confirm("<h3 class='text-center'>Are you sure want to delete?</h3>", function(result)
   {
     if(result)
       {
