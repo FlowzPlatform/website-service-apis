@@ -745,3 +745,4 @@ header{position: relative;}
 #ui-datepicker-div{width: 271px !important;}
 .quantity-table-disc .owl-controls .owl-buttons div {display: inline-block;}
 .quantity-table .quantity-table-title {width: 23%!important;}
+.search_block_main_content .input-group{z-index: 1;}
