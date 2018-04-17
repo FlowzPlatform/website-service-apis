@@ -1691,7 +1691,7 @@ $(document).ready(function(){
           }
       });
   }
-
+  
 })
 
 function nl2br (str, is_xhtml) {

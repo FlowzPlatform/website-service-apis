@@ -151,4 +151,81 @@ body {
     </aside>
     <div class="clearfix"></div>
     <reusecomponent class="c9910">{{> productDetail id='productDetailAction.partial' }}</reusecomponent>
+
+    <div class="product-section-box">
+        <div class="product-section-box" id="js-product-summary-container">
+            <div class="panel-group hide" id="Quantity-quote" role="tablist" aria-multiselectable="true">
+                <div class="panel-heading" role="tab">
+                    <h2 class="panel-title heading-block no-tag">Summary</h2>
+                    <a class="caret-icon js-add-class tab-quantity" data-toggle="collapse" data-parent="#Quantity-quote" href="#Quantity-quote-block" aria-expanded="true"><i class="caret-icon"></i></a>
+                </div>
+                <div id="Quantity-quote-block" class="panel-collapse collapse in" role="tabpanel">
+                    <div class="panel-body">
+                        <div class="estimate-detail" id="js_product_summary">
+                            <div class="estimate-tag-block js_summary_qty hide">
+                                <div class="estimate-row heading"><span>Quantity</span></div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="product-color-price-table" id="js_product_summary_qty"></table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="estimate-tag-block js_print_postion_location hide"></div>
+                            <div class="estimate-tag-block estimate-address-block js_summary_shipping_type hide">
+                                <div class="estimate-row heading"><span>Shipping Method</span></div>
+                                <div class="estimate-row ship_type">Shipping Type : <span></span></div>
+                                <div class="js_shipp_address_data hide"></div>
+                            </div>
+                        </div>
+                        <div class="js_special_inst estimate-detail hide">
+                            <div class="estimate-tag-block">
+                                <div class="estimate-row heading"><span>Special Instructions</span></div>
+                                <div class="js_summary_instruction" style="white-space: pre-wrap;"></div>
+                            </div>
+                        </div>
+                        <div class="jsTotal estimate-detail hide">
+                            <div class="js_product_summary_charges" id="js_product_summary_charges">
+                                <div class="estimate-tag-block js-additional-charges-summary hide">
+                                    <div class="estimate-row heading">
+                                        <span>Additional Charges</span>
+                                    </div>
+                                    <div class="estimate-row charge_type js-shipping-charge-summary hide">
+                                        Shipping Charge(s): <span class="text-uppercase">$0.00</span>
+                                    </div>
+                                    <div class="estimate-row charge_type js-total-tax-in-summary hide">
+                                        Total Tax: <span class="text-uppercase">$0.00</span>
+                                    </div>
+                                </div>
+                                <div class="estimate-total-block hide">
+                                    <div class="row">
+                                        <div class="col-lg-7 col-md-7 col-sm-7">
+                                            <table class="estimate-sub-table responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Quantity</th>
+                                                        <th>Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="total_quantity">0</td>
+                                                        <td class="total_price">$0.00</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-5 col-md-5 col-sm-5 estimate-sub-totle">
+                                            <h4>Total Price: </h4>
+                                            <h5 class="final_price">$0.00</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
