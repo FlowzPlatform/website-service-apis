@@ -69,6 +69,14 @@ const commentRequest = require('./comment-request/comment-request.service.js');
 
 
 
+const publishJobqueue = require('./publish-jobqueue/publish-jobqueue.service.js');
+
+
+
+const copyJobqueuePublishFiles = require('./copy-jobqueue-publish-files/copy-jobqueue-publish-files.service.js');
+
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -114,4 +122,6 @@ module.exports = function () {
   app.configure(bannertype);
   app.configure(banners);
   app.configure(commentRequest);
+  app.configure(publishJobqueue);
+  app.configure(copyJobqueuePublishFiles);
 };
