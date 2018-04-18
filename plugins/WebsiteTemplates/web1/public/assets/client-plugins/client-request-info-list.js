@@ -38,10 +38,17 @@ $(".tabbable ul li").on("click",function(){
                     inquiryHtml1 = inquiryHtml1.replace(/#data.date#/g, formatDate(dataVal.createAt,project_settings.format_date));
                     inquiryHtml1 = inquiryHtml1.replace(/#data.id#/g, dataVal.id);
                     if( admin_role_flag == 1 ){
-                        let userInfo = await getUserDetailById(dataVal.userId)
-                        if(userInfo != null){
-                            inquiryHtml1 = inquiryHtml1.replace(/#data.userName#/g, userInfo.fullname);
-                            inquiryHtml1 = inquiryHtml1.replace(/#data.userEmail#/g, userInfo.email);
+                        if(dataVal.userId != null ){
+                            let userInfo = await getUserDetailById(dataVal.userId)
+                            if(userInfo != null){
+                                inquiryHtml1 = inquiryHtml1.replace(/#data.userName#/g, userInfo.fullname);
+                                inquiryHtml1 = inquiryHtml1.replace(/#data.userEmail#/g, userInfo.email);
+                                inquiryHtml1 = inquiryHtml1.replace("#data.userType#", "Registered");
+                            }
+                        }else{
+                          inquiryHtml1 = inquiryHtml1.replace(/#data.userName#/g, dataVal.guestUserInfo.fullName);
+                          inquiryHtml1 = inquiryHtml1.replace(/#data.userEmail#/g, dataVal.guestUserInfo.email);
+                          inquiryHtml1 = inquiryHtml1.replace("#data.userType#", "Guest");
                         }
                     }
                     replaceHtml += inquiryHtml1
@@ -50,15 +57,17 @@ $(".tabbable ul li").on("click",function(){
                 $(activeTab).find(".my-inquiry-data:first").nextAll().removeClass("hide")
                 if( admin_role_flag == 1 ){
                   $(activeTab).find(".js_is_admin").removeClass("hide")
+                  $(activeTab).find(".js_is_admin1").removeClass("hide")
                 }
                 //console.log("replaceHtml",replaceHtml);
             }else{
-                $(activeTab).find(".my-inquiry-data:first").closest('tbody').append('<tr><td colspan="5">There are no Record(s)</td></tr>')
+              replaceHtml = '<tr class="my-inquiry-data"><td colspan="5">There are no Record(s)</td></tr>';
+              $(activeTab).find(".my-inquiry-data:first").closest('tbody').append(replaceHtml)
             }
             hidePageAjaxLoading();
         })
         .catch(function (error) {
-            console.log("error",error);
+            // console.log("error",error);
             hidePageAjaxLoading();
         });
     }else{
@@ -98,7 +107,8 @@ $(".tabbable ul li").on("click",function(){
                   $(activeTab).find(".js_is_admin").removeClass("hide")
                 }
           }else{
-              $(activeTab).find(".my-inquiry-data:first").closest('tbody').append('<tr><td colspan="5">There are no Record(s)</td></tr>')
+            replaceHtml = '<tr class="my-inquiry-data"><td colspan="5">There are no Record(s)</td></tr>';
+            $(activeTab).find(".my-inquiry-data:first").closest('tbody').append(replaceHtml)
           }
           hidePageAjaxLoading();
       })

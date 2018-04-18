@@ -187,10 +187,10 @@ a.socialMedCls {
 						Favorites
 						(<span id="wishListCount">
 							0
-						</span>)  
+						</span>)
 					</a>
                     <a href="compare.html">
-						Compare (<span id="comparedCount"> 0 </span>)  
+						Compare (<span id="comparedCount"> 0 </span>)
 					</a>
                     <a class="js_before_login login-text-check" href="javascript:void(0);">Logout</a>
 				</div>
@@ -212,7 +212,6 @@ a.socialMedCls {
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-12">
 				<table><tbody><tr><td valign="middle">
-					<form action="/catalog/srhkeyword.cz" id="topSearch" method="get" name="SearchKeywordForm">
 						<div class="search input-group header-search-col">
 							<input class="searchinput" type="text" id="topkeyword" name="search" autocomplete="off" disableautocomplete="" placeholder="Search Products">
 							<div id="suggestdiv"></div>
@@ -222,21 +221,20 @@ a.socialMedCls {
 								</button>
 							</div>
 						</div>
-					</form>
 				</td></tr></tbody></table>
 			</div>
 			<div class="col-md-3 col-sm-3 col-xs-12" id="topright">
 				<table width="100%"><tbody><tr><td valign="middle">
 					<div id="topright-wrap">
-						<span class="tollfreetext">order online or call</span> 
+						<span class="tollfreetext">order online or call</span>
 						<span class="tollfreeno">1-800-748-6150</span>
 						<span class="time">Monday-Friday: 6:30 am - 4:30 pm PST</span>
 						<span class="experttalk">
-							<img src="http://res.cloudinary.com/flowz/image/upload/v1522912897/websites/images/chatIcon.png">&nbsp;&nbsp;Live Chat - 
+							<img src="http://res.cloudinary.com/flowz/image/upload/v1522912897/websites/images/chatIcon.png">&nbsp;&nbsp;Live Chat -
 							<a href="https://sa.live2support.com/ls3/l2schat14205-0-0.html" target="_blank" onclick="try{lswin('sid=14205','14205'); return false;} catch(l2se) { }" id="l2stxtcd" style="color: #0a6edb">
 								Go to live chat now
 							</a>
-						</span> 
+						</span>
 					</div>
 				</td></tr></tbody></table>
 			</div>
@@ -246,25 +244,18 @@ a.socialMedCls {
 <div class="floatclear"></div>
 <header id="topNav" class="showOnDesktop">
 		<div class="container">
-			<nav class="mega-menu">
-				<ul class="nav nav-pills nav-main scroll-menu" id="topMain">
-					<li class="dropdown">
-						<a href="index.html">Home</a>
-					</li>
-					<li class="dropdown">
-						<a href="#">Bags</a>
-					</li>
-					<li class="dropdown">
-						<a href="#">Drinkware</a>
-					</li>
-					<li class="dropdown">
-						<a href="#">Technology</a>
-					</li>
-					<li class="dropdown">
-						<a href="#" id="lasta">Writing</a>
-					</li>
-				</ul>
-			</nav>
+        <nav menuId="evans" class="navbar mega-menu navbar-expand-sm bg-dark navbar-dark customMenu">
+          <button type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
+          class="navbar-toggler"> <span class="navbar-toggler-icon"></span>
+          </button>
+          <div id="navigationDiv" class="collapse navbar-collapse">
+          <ul class="navbar-nav nav nav-pills nav-main scroll-menu" id="topMain">
+           <li class="nav-item">
+           <a href="index.html" class="nav-link">HOME</a>
+           </li>
+          </ul>
+          </div>
+          </nav>
 		</div>
 	</header>
 <script type="text/javascript">
@@ -275,20 +266,20 @@ a.socialMedCls {
 	function mopentime(){
         opentimer = window.setTimeout("mopen()", opendelay);
 	}
-	
+
 	function mopen(id){
         if($("#headerDropdownBox").length > 0){
             mcancelclosetime();
             $("#headerDropdownBox").show();
         }
 	}
-	
+
 	function mclose(){
 		if($("#headerDropdownBox").length > 0){
 			$("#headerDropdownBox").hide();
 		}
 	}
-	
+
 	function mclosetime(){
         if(opentimer){
             window.clearTimeout(opentimer);

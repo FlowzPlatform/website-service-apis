@@ -560,7 +560,8 @@ $(document).ready( async function(){
     $(document).on('click','.js_submit_info', async function (e) {
             let formObj = $(this).closest('form');
             let product_data = await getProductDetailById(pid)
-            if(formObj.find("textarea[name='note']").val() == ''){
+            let instruction = formObj.find("textarea[name='note']").val()
+            if(instruction == ''){
               if($(".special-instruction-textarea").find('ul').length <= 0){
                 $("#js-request-info").find("textarea[name='note']").after('<ul class="red"><li>Please enter special instructions.</li></ul>');
               }
@@ -575,7 +576,7 @@ $(document).ready( async function(){
                   type: 'POST',
                   url: project_settings.request_info_api_url,
                   // data: {product_api_url:project_settings.product_api_url,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":"bb1e5568-f907-4583-9259-42019a2352cc"},
-                  data: {'product_id':pid,'product_data':product_data,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']},
+                  data: {'product_id':pid,'product_data':product_data,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']},
                   cache: false,
                   dataType: 'json',
                   headers: {"vid": website_settings.Projectvid.vid},

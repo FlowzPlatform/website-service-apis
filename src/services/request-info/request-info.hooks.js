@@ -69,7 +69,7 @@ function beforeCreateRequestInfo(hook){
               }
               obj.push({
                   userId: user_id,
-                  instruction: hook.data.form_data.note,
+                  instruction: hook.data.instruction,
                   productId: hook.data.product_id,
                   productInfo: productInfo,
                   commentInfo:null,

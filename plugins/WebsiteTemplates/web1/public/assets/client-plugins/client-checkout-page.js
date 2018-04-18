@@ -1,7 +1,10 @@
 var grand_total=0.00;
 var total_qty=0;
 showPageAjaxLoading()
-
+if(user_id == null) {
+  hidePageAjaxLoading()
+	window.location = "login.html";
+}
 $.ajax({
   type : 'GET',
   url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2&website_id='+website_settings['projectID'],
@@ -80,7 +83,7 @@ $.ajax({
       $(".js-checkout-grand-total").html("$"+grand_total);
       $(".checkout_product_list").find('tbody tr:first').remove();
       $('.js-hide-div').removeClass("js-hide-div");
-      hidePageAjaxLoading()      
+      hidePageAjaxLoading()
     }
   },
   error: function(err){
