@@ -1,4 +1,4 @@
-console.log("Inside shop cart");
+// console.log("Inside shop cart");
 
 var paypal_Check = $('ShoppingCart').attr('Paypal');
 var x_api_token_paypal = $('ShoppingCart').attr('x_api_token_paypal');
@@ -83,10 +83,11 @@ async function paynow() {
 	let paymentGatewayId = $("#payment-gateway").val()
 
 	let billing_info = await fetchDefaultBillingInfo()
-						 if(billing_info == null || billing_info == ''){
-							 	showErrorMessage("Please add billing address")
-								return false;
-						 }
+	 if(billing_info == null || billing_info == ''){
+		 	hidePageAjaxLoading();
+		 	showErrorMessage("Please add billing address")
+			return false;
+	 }
 
 	let invoice = await addInvoice();
 	// console.log("Invoice response",invoice)
@@ -128,7 +129,7 @@ async function paynow() {
 						 user_info['email'] = user_details['email']
 						 user_info['fullname'] = user_details['fullname']
 
-						 let userDetails = {"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID'],"setting_id": website_settings.CrmSettingId,"products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
+						 let userDetails = {"product_image_url": project_settings.product_api_image_url,"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID'],"setting_id": website_settings.CrmSettingId,"products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
 						//  console.log("userDetails",userDetails);
 						 axios({
 								method: 'POST',
