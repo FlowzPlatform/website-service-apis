@@ -8,12 +8,6 @@
 .quantity-table-disc .owl-controls .owl-buttons div {
     display: inline-block;
 }
-.quantity-table ul {
-    margin-top: 0px;
-}
-.quantity-table-col {
-    margin-top: 0px;
-}
 .header-search-col form input[type="text"] {
     width: 72%;
 }

@@ -33,6 +33,7 @@
         "request_quote_api_url": "https://api.flowzqa.tk/serverapi/request-quote",
         "crm_payment_url":"https://api.flowzqa.tk/crm/payment",
         "crm_invoice_url":"https://api.flowzqa.tk/crm/invoice",
-        "format_date": "m/d/Y"
+        "format_date": "m/d/Y",
+        "supplier_id" : 5
       }
 }

@@ -174,11 +174,7 @@ a.socialMedCls {
 <header id="topHead" style="padding: 0;background-color: #000;z-index: 2;position: fixed;top:0;">
 	<div class="container container-fluid">
 		<div class="row">
-			<span class="toplink-left pull-left">
-				<a href="javascript:void(0);">Email Sign-Up For Deals</a> 
-				<a class="offer" href="javascript:void(0);">Get FREE Catalog</a>
-				<a class="offer1" href="javascript:void(0);" style="text-decoration: none !important;">Browsing History <span id="bhCount">0</span></a>
-			</span>
+			<span class="toplink-left pull-left"></span>
 			<div class="toplink-right" style="position: relative;">
                 <a href="javascript:void()" class="logout-show hide"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a><span></span>
                 <a href="javascript:void()" onmousemove="mopentime()" onmouseout="mclosetime()"  id="headerDropdown">My Account&nbsp;&nbsp;<img src="http://res.cloudinary.com/flowz/image/upload/v1522911067/websites/images/harrow_down.png"></a><span></span>
@@ -196,12 +192,9 @@ a.socialMedCls {
                     <a href="compare.html">
 						Compare (<span id="comparedCount"> 0 </span>)  
 					</a>
-                    <a class="js_before_login login-text-check" href="javascript:;">Logout</a>
+                    <a class="js_before_login login-text-check" href="javascript:void(0);">Logout</a>
 				</div>
-				<a href="javascript:void()">About Us</a><span></span>
-				<a href="javascript:void()">Contact Us</a><span></span>
-				<a href="javascript:void()">Help</a><span></span>
-				<a href="cartPage.html" class="cart_img" id="cartCount">0</a>
+				<a href="cartPage.html" class="cart_img" id="cartCount" style="font-weight:bold;">0</a>
 			</div>
 		</div>
 	</div>
