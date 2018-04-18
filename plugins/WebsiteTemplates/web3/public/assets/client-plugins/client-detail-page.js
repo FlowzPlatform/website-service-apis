@@ -576,7 +576,7 @@ $(document).ready( async function(){
                   type: 'POST',
                   url: project_settings.request_info_api_url,
                   // data: {product_api_url:project_settings.product_api_url,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":"bb1e5568-f907-4583-9259-42019a2352cc"},
-                  data: {'product_id':pid,'product_data':product_data,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']},
+                  data: {'product_image_url' : project_settings.product_api_image_url,'product_id':pid,'product_data':product_data,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']},
                   cache: false,
                   dataType: 'json',
                   headers: {"vid": website_settings.Projectvid.vid},
@@ -961,6 +961,7 @@ $(document).ready( async function(){
                   data['website_id'] = website_settings['projectID'];
                   data['owner_id'] = website_settings['UserID'];
                   data['billing_info'] = await returnDefaultBillingInfo();
+                  data['product_image_url'] = project_settings.product_api_image_url;
 
                   $.ajax({
                       type : 'POST',
