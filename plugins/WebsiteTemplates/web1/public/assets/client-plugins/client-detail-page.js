@@ -1143,7 +1143,7 @@ $(document).ready( async function(){
                 data['website_id'] = website_settings['projectID'];
                 data['owner_id'] = website_settings['UserID'];
                 data['billing_info'] = await returnDefaultBillingInfo();
-
+                data['product_image_url'] = project_settings.product_api_image_url;
                 $.ajax({
                     type : 'POST',
                     url : project_settings.request_quote_api_url,
@@ -2532,7 +2532,7 @@ $(document).on("keyup", activetab + ' .js-specialInstruction-section textarea',f
 }); 
 
 function submitRequestInfo(productData,instruction,guestUserDetail){
-  let data = {'product_id':pid,'product_data':productData,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':guestUserDetail,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']};
+  let data = {'product_image_url':project_settings.product_api_image_url,'product_id':pid,'product_data':productData,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':guestUserDetail,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']};
   $.ajax({
         type: 'POST',
         url: project_settings.request_info_api_url,
