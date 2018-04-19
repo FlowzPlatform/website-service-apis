@@ -150,6 +150,10 @@ a{
     color: #fff;
     background-color: #00476c;
 }
+.header-search-col .col-lg-4, .header-search-col .col-lg-2 {
+    padding: 0px;
+}
+.advance-search-btn{margin-top: 28px;}
 </style>
 
 
