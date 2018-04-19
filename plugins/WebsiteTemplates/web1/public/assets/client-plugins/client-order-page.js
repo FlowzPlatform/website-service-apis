@@ -309,11 +309,11 @@ function showOrders()
         let orderInfoReplace = orderInfo;
         orderInfoReplace = orderInfoReplace.replace(/#data.order_id#/g,response_data1.id);
         if(response_data1.order_id != undefined){
-          orderInfoReplace = orderInfoReplace.replace("#data.order_id1#",response_data1.order_id);
-        }
-        else {
-           orderInfoReplace = orderInfoReplace.replace("#data.order_id1#",'-');
-        }
+            orderInfoReplace = orderInfoReplace.replace("#data.order_id1#",response_data1.order_id);
+          }
+          else {
+             orderInfoReplace = orderInfoReplace.replace("#data.order_id1#",'-');
+          }
         orderInfoReplace = orderInfoReplace.replace('#data.order_date#',formatDate(response_data1.created_at,project_settings.format_date));
         orderInfoReplace = orderInfoReplace.replace('#data.payment_type#',response_data1.payment_via);
         orderInfoReplace = orderInfoReplace.replace('#data.quantity#',response_data1.products.length);

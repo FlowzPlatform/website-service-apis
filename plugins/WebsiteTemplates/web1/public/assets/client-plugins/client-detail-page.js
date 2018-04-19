@@ -91,7 +91,7 @@ $(document).ready( async function(){
                   // productData = data;
                   var productDetails = get_product_details;
                   // console.log("productDetails==>>",productDetails);
-                	ProductName = removeSpecialCharacters(productDetails.product_name);
+                	ProductName = productDetails.product_name;
                 	ProductImage = productDetails.default_image;
                   ProductSku = productDetails.sku;
                   hasImprintData = productDetails.imprint_data;
@@ -1142,8 +1142,9 @@ $(document).ready( async function(){
                 data['product_description'] = get_product_details;
                 data['website_id'] = website_settings['projectID'];
                 data['owner_id'] = website_settings['UserID'];
-                data['billing_info'] = await returnDefaultBillingInfo();
                 data['product_image_url'] = project_settings.product_api_image_url;
+                data['billing_info'] = await returnDefaultBillingInfo();
+
                 $.ajax({
                     type : 'POST',
                     url : project_settings.request_quote_api_url,
@@ -2158,18 +2159,18 @@ function shippingValidation(fld,section,value){
                   shippingVal['selected_address_id'] = "Please select shipping address."
                   shippingArr[section1] = shippingVal
               }
-            //   else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
-            //           shippingVal['shipping_carrier'] = "Select shipping carrier."
-            //           shippingArr[section1] = shippingVal
-            //   }
-            //   else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_method == '') {
-            //         shippingVal['shipping_method'] = "Select shipping method."
-            //         shippingArr[section1] = shippingVal
-            //       }
-            //   else if (shippingData.shipping_detail.shipping_charge == '') {
-            //         shippingVal['shipping_method'] = "Select shipping method."
-            //         shippingArr[section1] = shippingVal
-            //       }
+              /*else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
+                      shippingVal['shipping_carrier'] = "Select shipping carrier."
+                      shippingArr[section1] = shippingVal
+              }
+              else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_method == '') {
+                    shippingVal['shipping_method'] = "Select shipping method."
+                    shippingArr[section1] = shippingVal
+                  }
+              else if (shippingData.shipping_detail.shipping_charge == '') {
+                    shippingVal['shipping_method'] = "Select shipping method."
+                    shippingArr[section1] = shippingVal
+                  }*/
               arrKey = arrKey + 1
           })
       }
