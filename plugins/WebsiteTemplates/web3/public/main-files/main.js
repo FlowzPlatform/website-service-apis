@@ -253,7 +253,7 @@ if (user_id != null ) {
           $.ajax({
             'async': false,
             'type': "GET",
-            'url': project_settings.projcet_configuration_api_url+"/"+website_settings['projectID'],
+            'url': project_settings.project_configuration_api_url+"/"+website_settings['projectID'],
             'success': function (response) {
                 // console.log("website response",response);
                 //console.log("subscriptionId",response.subscriptionId);
