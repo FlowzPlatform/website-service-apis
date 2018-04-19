@@ -10,24 +10,25 @@ flex-direction: row !important;
 margin: 0;
 padding: 20px;
 }
-.css-1eyuddg.css-ywvnxe0 {position: relative;height: 100%;overflow: inherit;width: 23%;}
+.css-1899x0w.css-8zdxdg0 {position: relative;height: 100%;overflow: inherit;width: 23%;z-index: 1;}
 .css-pw968m.css-pp2ows0 {
 width: 75%;
 margin-left: 3%;
 }
-.css-10sbjuw  ul.css-jwtvjw li {
-height: auto;
-display: inline-block;
-width: 100%;
-margin-bottom: 15px;
+.css-10sbjuw  ul.css-8wmgpq li {
+  height: auto;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 15px;
 }
-.css-10sbjuw h2.css-edensw.css-1jhjgj40 {font-size: 20px;padding: 6px 0;border-bottom:  solid 1px #ccc;color: #000;}
+.css-10sbjuw h2.css-edensw.e1hnx4sx0 {font-size: 20px;padding: 6px 0;border-bottom:  solid 1px #ccc;color: #000;}
 
-.css-1i386uu.css-1pa62rt0 .css-1b848co.css-pp2ows1 {
+.css-t1rrdp.e1hwwpu60 .css-1b848co.css-pp2ows1 {
+
     margin: 4px 8px !important;
 }
 .css-omf3o4 {margin-top:15px; justify-content: left;}
-.css-omf3o4 a.css-s1k1y71 {
+.css-omf3o4 a.e1cc0ogo1 {
     padding: 15px;
     display: inline-block;
     max-height: 400px;
@@ -40,22 +41,22 @@ margin-bottom: 15px;
     flex-grow: 0;
 }
 
-.css-omf3o4 a.css-s1k1y71 .card-image {
+.css-omf3o4 a.e1cc0ogo1 .card-image {
     width: 100%;
     display: inline-block;
 }
 
-.css-omf3o4 a.css-s1k1y71 article {
+.css-omf3o4 a.e1cc0ogo1 article {
     border-top: solid 1px #ccc;
     padding: 10px 0;
     width: 100%;
 }
 
-.css-omf3o4 a.css-s1k1y71 article .icon {
+.css-omf3o4 a.e1cc0ogo1 article .icon {
     text-align: center;
 }
 
-.css-omf3o4 a.css-s1k1y71 article .icon button {
+.css-omf3o4 a.e1cc0ogo1 article .icon button {
     background-color: #0e406c;
     border: 0;
     font-size: 18px;
@@ -64,16 +65,16 @@ margin-bottom: 15px;
     color: #fff;
 }
 
-.css-omf3o4 a.css-s1k1y71 article .icon .product-info {
+.css-omf3o4 a.e1cc0ogo1 article .icon .product-info {
     padding-top: 10px;
 }
 
-.css-omf3o4 a.css-s1k1y71 article .icon .product-info .product-price {
+.css-omf3o4 a.e1cc0ogo1 article .icon .product-info .product-price {
     width: 100%;
     font-size: 21px;
 }
 
-.css-omf3o4 a.css-s1k1y71 article .icon .product-info a {
+.css-omf3o4 a.e1cc0ogo1 article .icon .product-info a {
     color: #0e406b;
     font-size: 15px;
     max-height: 47px;
@@ -95,7 +96,7 @@ margin-bottom: 15px;
     fill: #fff;
     font-size: 26px;
 }
-.css-1i386uu.css-1pa62rt0 {
+.css-t1rrdp.e1hwwpu60{
     flex-direction: row;
     display: inline-block;
     width: 100%;
@@ -109,11 +110,12 @@ select.css-evf80z {
     float:  right;
 }
 
-.css-1pzkls5 + label {
+.css-cmj2qw + label {
     height: inherit;
     padding-left: 29px;
+    font-weight: normal;
 }
-.css-1pzkls5 + label::before {
+.css-cmj2qw + label::before {
     width: 16px !important;
     display: block;
     margin-right: 8px;
@@ -121,7 +123,7 @@ select.css-evf80z {
     height:  16px;
     top: 2px;
 }
-.css-1pzkls5:checked + label::after {
+.css-cmj2qw:checked + label::after {
     border-color: #000;
     position: absolute;
     top: 11px;
@@ -130,7 +132,7 @@ select.css-evf80z {
 a.css-qdgy3w {
     background-color: #0e406b;
 }
-.css-z378f .rheostat-progress {
+.css-9my1em .rheostat-progress {
     background-color: #0e406b;
 }
 
@@ -170,4 +172,55 @@ a.card-item.css-4z0n4u1 > .card-image {
 }
 .header-loging li a{
     color: #ffffff;
+}
+
+.css-evf80z {
+   font-size: 14px;
+}
+
+.ep3169p0 {
+   font-size: 14px;
+}
+a.css-1vy3jc0.e165j7gc0 {
+    font-size: 14px;
+}
+span.product-title {
+    word-break: normal;
+}
+
+.css-8zdxdg0 {
+    position: relative;
+}
+
+.search_block_main_content .fa {
+    font-size: 140px !important;
+    float: none !important;
+    color: #dedede !important;
+    text-shadow: 0 -1px 0 #b9b9b9;
+}
+
+.svg-inline--fa.fa-fw{
+    font-size: 18px !important;
+    float: initial !important;
+}
+
+.search_block_main_content .fa-search.fa-w-16.fa-fw.search_icon.trigger{
+    margin-top: 7px
+}
+.search_block_main_content .fa-search.fa-w-16.fa-fw.search_icon.trigger {
+    margin-top: 7px;
+    font-size: 15px;
+    background: transparent;
+    position: relative;
+    border: 0;
+    right: 33px;
+    width: 23px;
+    z-index: 3;
+    color: #157bea;
+}
+.search_block_main_content .fa-search.fa-w-16.fa-fw.search_icon.top_search {
+    font-size: 140px !important;
+}
+span.sku-title {
+    font-size: 15px;
 }
