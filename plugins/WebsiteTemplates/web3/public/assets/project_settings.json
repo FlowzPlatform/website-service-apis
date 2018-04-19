@@ -21,7 +21,7 @@
         "charges": ["setup_charge","pms_charge"],
         "price_decimal": 2,
         "email_subscribe_api_url": "https://api.flowzqa.tk/serverapi/emailSubscribers",
-        "projcet_configuration_api_url": "https://api.flowzqa.tk/serverapi/project-configuration",
+        "project_configuration_api_url": "https://api.flowzqa.tk/serverapi/project-configuration",
         "myorders_api_url": "https://api.flowzqa.tk/serverapi/myOrders",
         "country_data": [{"id": 233,"name": "USA","short_name": "US"},{"id": 105,"name": "India","short_name": "IN"}],
         "city_country_state_api":"http://api.flowzqa.tk/serverapi/city-state-country-list",

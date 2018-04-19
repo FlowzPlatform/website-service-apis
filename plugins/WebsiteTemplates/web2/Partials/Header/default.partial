@@ -140,7 +140,7 @@ a{
     background-color: #ee4a4e;
     width: auto;
 }
- .header-search-col i.fa.fa-search.fa-fw input {
+.header-search-col i.fa.fa-search.fa-fw input {
     border: 0;
     color: #FFF;
     background-color: #ee4a4e;
@@ -184,21 +184,144 @@ defer="defer"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
     rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />    
+    />
     <div id="js-fix-header-controller">
         <div class="ob-header">
             <div class="main-logo-part">
                 <div class="ob-logo-block">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="./assets/images/logo.png"/></a>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="http://res.cloudinary.com/flowz/image/upload/v1524048713/websites/sitelogo.jpg"/></a>
                             </div>
                             <div class="header-search-col" id="c383812">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="c383816">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="c383816">
                                     <input placeholder="Search Products Here" type="text" name="search" />
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="c383826"><i class="fa fa-search fa-fw"><input class=" btn-default btn-search buttonhover" type="button" title="Click to search" value="Search"/></i>
                                 </div>
+                                <div class="top-search-block"><form id="top_advance_search_form" name="product_advance_search" method="get" action="/en_us/search"><div class="dropdown top-advance-search advance-search-btn js-advance-search-btn-container"><a href="javascript:void(0);" class="dropdown-toggle js-advace-search-but ob-qa-advace-search-btn-1" data-toggle="dropdown" aria-expanded="false"><span class="js-advace-search-btn-1">Advanced Search</span></a><div class="dropdown-menu header-advace-search"><div class="js-dropdown-header-advance-search-model">
+
+
+
+
+
+
+
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 advance-search-col">
+    <button class="advace-close-but js-search-close-btn" data-toggle="dropdown">
+      <i class="fa fa-times"></i>
+    </button>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="input-colum">
+        <label>Keyword</label>
+        <div class="input-field form-group">
+          <input class="js-advance-search-submit" type="text" name="search_query" value="">
+        </div>
+      </div>
+    </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dropdown-colum">
+          <label>Select Category</label>
+          <select name="category_filter[]" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple" style="display: none;">
+              <option value="14215">12"X18" TRIANGULAR 8 MIL CHECKERED PENNANT STRINGS</option>
+              <option value="14213">12''X18" TRIANGULAR 4 MIL CHECKERED PENNANT STRINGS</option>
+              <option value="14034">ZIMBABWE</option>
+          </select>
+          <div class="btn-group mar_bot">
+            <button type="button" class="multiselect select_box btn btn-default" title="NONE SELECTED">NONE SELECTED</button>
+            <button class="dropdown-toggle select_box_caret2 btn btn-default" aria-expanded="false" data-toggle="dropdown" type="button"><span class="caret"></span></button>
+            <ul class="multiselect-container dropdown-menu">
+            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14215"> 12"X18" TRIANGULAR 8 MIL CHECKERED PENNANT STRINGS</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14213"> 12''X18" TRIANGULAR 4 MIL CHECKERED PENNANT STRINGS</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14574"> 2 STRIPE SOLID COLOR FLAGS</label></a></li>
+            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="13776"> 20' SECTIONAL FIBERGLASS FLAGPOLE</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14575"> 3 STRIPE SOLID COLOR FLAGS</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14741"> 3-STRIPE BUNTING</label></a></li>
+            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14542"> 3-STRIPE PLEATED FANS</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="13780"> 4" X 5" FLAGS ON 21" WIRE</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="13783"> 4" X 5" FLAGS ON 36" WIRE</label></a></li>
+            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="13784"> 5" X 8" FLAGS ON 36" WIRE</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14864"> 5-STRIPE &amp; STARS COTTON BUNTING</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14544"> 5-STRIPE &amp; STARS PLEATED FANS</label></a></li>
+            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14543"> 5-STRIPE PLEATED FANS</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14210"> 50 STAR PULLDOWN</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14745"> 6 FT DELUXE U.S. FLAG HOME SETS</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="15291"> A-FRAME SANDWICH BOARD</label></a></li>
+            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14438"> ABENAKI TRIBE FLAG</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14439"> ABSENTEE SHAWNEE TRIBE FLAG</label></a></li><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14640"> ACCIDENTS HALF DROP FEATHER FLAG</label></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="input-colum">
+        <label>ITEM CODE</label>
+        <div class="input-field form-group ob-qa-input-field form-group-sku">
+          <input class="js-advance-search-submit" type="text" name="sku" value="">						</div>
+      </div>
+    </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  <div class="input-colum two-colum pull-left">
+          <label>Min. Price</label>
+          <div class="input-field form-group ob-qa-input-field form-group-mp">
+            <input class="js-advance-search-submit" type="text" name="min_price" value="">							</div>
+        </div>
+
+                  <div class="space-col">-</div>
+        <div class="input-colum two-colum pull-right">
+          <label>Max. Price</label>
+          <div class="input-field form-group ob-qa-input-field form-group-mxp">
+            <input class="js-advance-search-submit" type="text" name="max_price" value="">							</div>
+        </div>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="input-colum">
+          <label>Quantity</label>
+          <div class="input-field form-group ob-qa-input-field form-group-Qty">
+            <input class="js-advance-search-submit" type="text" name="quantity" value="">							</div>
+        </div>
+      </div>
+
+
+
+
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dropdown-colum">
+          <label>Price valid Date</label>
+            <select name="price_valid_until[]" class="multi_category ob-qa-multi-select select-box btn btn-default-pv" multiple="multiple" style="display: none;">&gt;
+                                                  <option value="11-30-1999">11-30-1999</option>
+                                                      </select><div class="btn-group mar_bot"><button type="button" class="multiselect select_box btn btn-default" title="NONE SELECTED">NONE SELECTED</button><button class="dropdown-toggle select_box_caret2 btn btn-default" aria-expanded="false" data-toggle="dropdown" type="button"><span class="caret"></span></button><ul class="multiselect-container dropdown-menu"><li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="11-30-1999"> 11-30-1999</label></a></li></ul></div>
+          </div>
+      </div>
+
+
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dropdown-colum">
+          <label>MATERIAL</label>
+            <select name="material_filter[]" class="multi_category ob-qa-multi-select select-box btn btn-default-cy" multiple="multiple" style="display: none;">
+                <option value="Nylon">NYLON</option>
+                <option value="Polyester">POLYESTER</option>
+            </select>
+            <div class="btn-group mar_bot">
+              <button type="button" class="multiselect select_box btn btn-default" title="NONE SELECTED">NONE SELECTED</button>
+              <button class="dropdown-toggle select_box_caret2 btn btn-default" aria-expanded="false" data-toggle="dropdown" type="button"><span class="caret"></span></button>
+              <ul class="multiselect-container dropdown-menu">
+                <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="Nylon"> NYLON</label></a></li>
+                <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="Polyester"> POLYESTER</label></a></li>
+                <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="Knit Polyester"> KNIT POLYESTER</label></a></li>
+              </ul>
+            </div>
+        </div>
+      </div>
+
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="button-colum">
+        <div class="form-group">
+                  <input type="hidden" name="save_search_name" id="save_search_name" value="">
+                        <input type="submit" name="advance_search_product_mapping" value="SEARCH" class="save-button-link search-button pull-right ob-qa-search-button pull-right-srch">
+
+        </div>
+      </div>
+        </div>
+
+
+
+  </div>
+</div>
+</div></div></div></form></div>
                             </div>
                         </div>
                     </div>
@@ -214,8 +337,8 @@ defer="defer"></script>
                 <li class="nav-item"> <a class="nav-link" href="index.html">Link</a>
                 </li>
             </ul>
-            
-        </span>        
+
+        </span>
         <span style="vertical-align: middle;display: inline-block;">
                 <ul class="header-loging" style="margin:0px">
                     <li class="dropdown1 cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html" style="color:white"> <span class="fa fa-shopping-cart"></span> <span class="login-text">(<span id="cartCount">0</span>)</span> </a>
