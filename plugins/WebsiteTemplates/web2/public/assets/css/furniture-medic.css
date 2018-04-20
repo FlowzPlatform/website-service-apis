@@ -22,7 +22,8 @@ header.fixed-header.fixed-header-top .slidemenu .fa, .header-loging .login-text,
 .company-store-steps li.edit-step-inprocess a {color: #ee2e4e;}
 .company-store-steps li a:hover {color: #ee2e4e;}
 .company-store-steps li a:hover .edit-step:after {background: #ee2e4e;}
-.detail-popup-block > ul > li > a:hover {color: #fff; border: 1px #ee2e4e solid;background:#ee2e4e;}
+.detail-popup-block > ul > li > a:hover {color: #fff !important; border: 1px #ee2e4e solid !important;background:#ee2e4e !important;}
+.detail-popup-block > ul > li > div > a:hover {color: #fff !important; border: 1px #ee2e4e solid !important;background:#ee2e4e !important;}
 .small-but.btn-default:hover {color: #fff;background: #ee2e4e;border: 1px #ee2e4e solid;}
 .skuprice > div {color: #ee2e4e;}
 .skuprice span {color: #ee2e4e;}

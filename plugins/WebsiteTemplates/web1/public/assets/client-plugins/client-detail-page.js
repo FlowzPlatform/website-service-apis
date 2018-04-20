@@ -415,7 +415,7 @@ $(document).ready( async function(){
                                         }
                                     });
                                 }
-                                $("#js_product_summary_charges .total_price").html('$'+totalPrice.toFixed(project_settings.price_decimal));                               
+                                $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));                               
                             });
 
                             $(activetab+"-Print-position-block").addClass("in");
@@ -591,12 +591,12 @@ $(document).ready( async function(){
 
                             //summary for shipping charges
                             if(shipp_charge != 0.00) {
-                                $('.js-shipping-charge-summary').find('span').html("$"+shipp_charge.toFixed(project_settings.price_decimal));
+                                $('.js-shipping-charge-summary').find('span').html("$"+parseFloat(shipp_charge).toFixed(project_settings.price_decimal));
                                 $('.js-additional-charges-summary').removeClass('hide');
                                 $('.js-shipping-charge-summary').removeClass('hide');
                             }
                             let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
-                            $("#js_product_summary_charges .final_price").html('$'+final_price.toFixed(project_settings.price_decimal));
+                            $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 
                             //summary for special instruction
                             if(response_data.special_instruction != '') {
@@ -1662,7 +1662,7 @@ $(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
         }
      });
 
-     $('.js-shipping-charge-summary').find('span').html("$"+shippingCharge.toFixed(project_settings.price_decimal));
+     $('.js-shipping-charge-summary').find('span').html("$"+parseFloat(shippingCharge).toFixed(project_settings.price_decimal));
      $('.js-additional-charges-summary').removeClass('hide');
      $('.js-shipping-charge-summary').removeClass('hide');
 
@@ -1673,7 +1673,7 @@ $(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
      }
 
      let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
-     $("#js_product_summary_charges .final_price").html('$'+final_price.toFixed(project_settings.price_decimal));
+     $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 
      setdate(shipCounter,parentObj,activetab,transitTime)
 })
@@ -1757,6 +1757,99 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
         $('.js_print_postion_location').addClass('hide');
     }
 });
+
+
+//upload artwork section start
+$(document).on("click",activetab + ".js-upload-art-radio",function(){
+    $('.js-upload-art').removeClass('hide');
+    if(!$('.js-upload-email').hasClass('hide')) {
+        $('.js-upload-email').addClass('hide');
+    }
+});
+
+$(document).on("click",activetab + ".js-upload-email-radio",function(){
+    $('.js-upload-email').removeClass('hide');
+    if(!$('.js-upload-art').hasClass('hide')) {
+        $('.js-upload-art').addClass('hide');
+    }
+});
+
+$(document).on("click",activetab + ".js-upload-art-type-radio",function(){
+    $('.js-upload-art-type').removeClass('hide');
+    if(!$('.js-upload-email-type').hasClass('hide')) {
+        $('.js-upload-email-type').addClass('hide');
+    }
+});
+
+$(document).on("click",activetab + ".js-upload-email-type-radio",function(){
+    $('.js-upload-email-type').removeClass('hide');
+    if(!$('.js-upload-art-type').hasClass('hide')) {
+        $('.js-upload-art-type').addClass('hide');
+    }
+});
+
+$(document).on("click",activetab + ".js_add_logo",function(){
+    $(this).addClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', false);
+    $('#js_is_logo_'+posVal+'_2').removeClass('hide');
+});
+
+$(document).on("click",activetab + ".js_remove_logo",function(){
+    $('.js_add_logo').removeClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', true);
+    $('#js_is_logo_'+posVal+'_2').addClass('hide');
+});
+
+$(document).on("click",activetab + ".js_add_text",function(){
+    $(this).addClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_text_'+posVal+'_2 input[type=text]').attr('disabled', false);
+    $('#js_is_text_'+posVal+'_2').removeClass('hide');
+});
+
+$(document).on("click",activetab + ".js_remove_text",function(){
+    $('.js_add_text').removeClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_text_'+posVal+'_2 input[type=text]').attr('disabled', true);
+    $('#js_is_text_'+posVal+'_2').addClass('hide');
+});
+
+$(document).on("click",activetab + ".js_add_logo_type",function(){
+    $(this).addClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', false);
+    $('#js_is_logo_type_'+posVal+'_2').removeClass('hide');
+});
+
+$(document).on("click",activetab + ".js_remove_logo_type",function(){
+    $('.js_add_logo_type').removeClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', true);
+    $('#js_is_logo_type_'+posVal+'_2').addClass('hide');
+});
+
+$(document).on("click",activetab + ".js_add_text_type",function(){
+    $(this).addClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_text_type_'+posVal+'_2 input[type=text]').attr('disabled', false);
+    $('#js_is_text_type_'+posVal+'_2').removeClass('hide');
+});
+
+$(document).on("click",activetab + ".js_remove_text_type",function(){
+    $('.js_add_text_type').removeClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_text_type_'+posVal+'_2 input[type=text]').attr('disabled', true);
+    $('#js_is_text_type_'+posVal+'_2').addClass('hide');
+});
+
+$(document).on('change', '.js-upload-art-image', function(e) {
+    let id = $(this).closest('.js-img-global').find('img').attr('id');
+    readImgUrl(this,e,id);
+});
+//upload artwork section end
+
 
 function changeShippingDetails(currentAddressCounter)
 {
@@ -1887,7 +1980,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
             }
         });
     }
-    $("#js_product_summary_charges .total_price").html('$'+totalPrice.toFixed(project_settings.price_decimal));
+    $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
     
     //summary for shipping charges
     let shipp_charge = 0.00;
@@ -1895,7 +1988,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         let shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
     }
     let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
-    $("#js_product_summary_charges .final_price").html('$'+final_price.toFixed(project_settings.price_decimal));
+    $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
 $(document).on("click", activetab + ' .js_request_quote_qty_remove', function(){
@@ -2242,7 +2335,7 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
             }
         });
     }
-    $("#js_product_summary_charges .total_price").html('$'+totalPrice.toFixed(project_settings.price_decimal));
+    $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
     
     //summary for shipping charges
     let shipp_charge = 0.00;
@@ -2250,7 +2343,7 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
         let shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
     }
     let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
-    $("#js_product_summary_charges .final_price").html('$'+final_price.toFixed(project_settings.price_decimal));
+    $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
 function attachDeleteEvent(parentDiv){
@@ -2389,7 +2482,7 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
                 $("#js_shipp_address_details_"+shippigCounter+" .js_shipp_address_block span").html(appendAddress);
             }
             else {
-                $('.js_shipp_address_data').append('<div id="js_shipp_address_details_'+shippigCounter+'" class="js_shipp_address_details" style="padding-top: 10px;"><div class="estimate-row">Shipping Address <counter>'+shippigCounter+'</counter> :</div><div class="estimate-row js_shipp_address_block"><span>'+appendAddress+'</span></div><div class="estimate-row js_address_carrier_'+shippigCounter+' hide">Shipping Carrier : <span></span></div><div class="estimate-row js_address_method_'+shippigCounter+' hide">Method : <span></span></div><div class="estimate-row js_inhand_date_'+shippigCounter+' hide">In Hand Date : <span></span></div>');
+                $('.js_shipp_address_data').append('<div id="js_shipp_address_details_'+shippigCounter+'" class="js_shipp_address_details" style="padding-top: 10px;"><div class="estimate-row"><b>Shipping Address <counter>'+shippigCounter+'</counter> :</b></div><div class="estimate-row js_shipp_address_block"><span>'+appendAddress+'</span></div><div class="estimate-row js_address_carrier_'+shippigCounter+' hide">Shipping Carrier : <span></span></div><div class="estimate-row js_address_method_'+shippigCounter+' hide">Method : <span></span></div><div class="estimate-row js_inhand_date_'+shippigCounter+' hide">In Hand Date : <span></span></div>');
             }
 
             if(carrierData != null) {

@@ -458,8 +458,6 @@ var init = function() {
    }
 
  $('.login-text-check').on('click',function() {
-  //  delete_cookie("auth_token",window.location.hostname)
-  //  delete_cookie("user_id",window.location.hostname)
    document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
    document.cookie = 'user_id=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
    location.reload();
@@ -1573,7 +1571,7 @@ function showCompareList(recetAdded=false)
 
     if($('#myCompareList #listing .js-no-records').length == 0)
     {
-      compareHtml.append('<span class="js-no-records">No records found.</span>')
+      compareHtml.append('<span class="js-no-records">No records found.</span>')  
     }
     else{
       compareHtml.html('No records found.')
@@ -1926,7 +1924,7 @@ function sleep(ms) {
 
 async function printDiv(printDiv=true) {
   showPageAjaxLoading();
-  await sleep(300)
+  await sleep(300)  
   if(printDiv)
   {
     var originalContents = document.body.innerHTML;
@@ -1951,97 +1949,111 @@ async function printDiv(printDiv=true) {
       if (compare_values != null && compare_values.length > 0) {
             for (item in compare_values)
             {
-              var showItem = false;
-              if(user_details != null && user_id == compare_values[item].val.user_id)
+              if(item<4)
               {
-                showItem = true;
-              }
-              else if(user_details == null)
-              {
-                showItem = true;
-              }
-
-              if(showItem)
-              {
-                if(user_details != null){
-                  var prodId = window.yList.share.compareListRegister._content[item].val.product_id;
+                var showItem = false;
+                if(user_details != null && user_id == compare_values[item].val.user_id)
+                {
+                  showItem = true;
                 }
-                else{
-                  var prodId = window.yList.share.compareList._content[item].val.product_id;
+                else if(user_details == null)
+                {
+                  showItem = true;
                 }
 
-                $.ajax({
-                  type: 'GET',
-                  url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description,features",
-                  async: false,
-                  beforeSend: function (xhr) {
-                    xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
-                  },
-                  dataType: 'json',
-                  success: async function (data)
-                  {
-                    rawData = data.hits.hits;
-                    productData = rawData;
-                    if(productData.length >0){
-                    compareValuesCount = compareValuesCount+1;
+                if(showItem)
+                {
+                  if(user_details != null){
+                    var prodId = window.yList.share.compareListRegister._content[item].val.product_id;
+                  }
+                  else{
+                    var prodId = window.yList.share.compareList._content[item].val.product_id;
+                  }
 
-                    var itemTitleHtml = titleHtml;
-                    var itemTitleHtml = itemTitleHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
-
-                    var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
-                    productTitleHtml = itemTitleHtml;
-
-                    var itemPriceHtml = html;
-                    if(user_id == null){
-                      var itemPriceHtml = itemPriceHtml.replace('#data.price#',"");
-                    }else{
-                      var itemPriceHtml = itemPriceHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.price_1).toFixed(project_settings.price_decimal));
-                    }
-                    productPriceHtml = itemPriceHtml;
-
-                    var itemTitleHtml = item_sku;
-                    var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
-                    var itemTitleHtml = itemTitleHtml.replace('#data.sku#',productData[0]._source.sku);
-                    itemSkuHtml = itemTitleHtml;
-
-                    var itemTitleHtml = activeSummary;
-                    var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
-                    var itemTitleHtml = itemTitleHtml.replace('#data.summary#',productData[0]._source.description);
-                    activeSummaryHtml = itemTitleHtml;
-
-                    var itemTitleHtml = item_features;
-                    var fetureList = '';
-                    for (let [i, features] of productData[0]._source.features.entries() ) {
-                      fetureList += features.key+": "+features.value+"<br>";
-                    }
-                    var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
-                    var itemTitleHtml = itemTitleHtml.replace('#data.features#',fetureList);
-                    itemFeaturesHtml = itemTitleHtml;
-
-                    if(item == 0 || compareValuesCount == 1)
+                  $.ajax({
+                    type: 'GET',
+                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description,features",
+                    async: false,
+                    beforeSend: function (xhr) {
+                      xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
+                    },
+                    dataType: 'json',
+                    success: async function (data)
                     {
-                      $(compareHtml).find("#js-print_item_title").html("<td class='feature-block'></td>"+productTitleHtml)
-                      $(compareHtml).find("#js-print_item_price").html("<td class='feature-block'></td>"+productPriceHtml)
-                      $(compareHtml).find("#js-print_item_sku").html("<td class='feature-block'>ITEM CODE</td>"+itemSkuHtml)
-                      $(compareHtml).find("#js-print_item_summary").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
-                      $(compareHtml).find("#js-print_item_features").html("<td class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
-                      $('#print-comparision').html(compareHtml.html());
+                      rawData = data.hits.hits;
+                      productData = rawData;
+                      if(productData.length >0){
+                      compareValuesCount = compareValuesCount+1;
+                        
+                      var itemTitleHtml = titleHtml;
+                      var itemTitleHtml = itemTitleHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
+
+                      var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
+                      productTitleHtml = itemTitleHtml;
+                      
+                      var itemPriceHtml = html;
+                      if(user_id == null){
+                        var itemPriceHtml = itemPriceHtml.replace('#data.price#',"");
+                      }else{
+                        var itemPriceHtml = itemPriceHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.price_1).toFixed(project_settings.price_decimal));
+                      }
+                      productPriceHtml = itemPriceHtml;
+                      
+                      var itemTitleHtml = item_sku;
+                      var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
+                      var itemTitleHtml = itemTitleHtml.replace('#data.sku#',productData[0]._source.sku);
+                      itemSkuHtml = itemTitleHtml;
+
+                      var itemTitleHtml = activeSummary;
+                      var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
+                      var itemTitleHtml = itemTitleHtml.replace('#data.summary#',productData[0]._source.description);
+                      activeSummaryHtml = itemTitleHtml;
+
+                      var itemTitleHtml = item_features;
+                      var fetureList = '';
+                      for (let [i, features] of productData[0]._source.features.entries() ) {
+                        fetureList += features.key+": "+features.value+"<br>";
+                      }
+                      var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].val.id);
+                      var itemTitleHtml = itemTitleHtml.replace('#data.features#',fetureList);
+                      itemFeaturesHtml = itemTitleHtml;
+
+                      if(item == 0 || compareValuesCount == 1)
+                      {
+                        $(compareHtml).find("#js-print_item_title").html("<td class='feature-block'></td>"+productTitleHtml)
+                        $(compareHtml).find("#js-print_item_price").html("<td class='feature-block'></td>"+productPriceHtml)
+                        $(compareHtml).find("#js-print_item_sku").html("<td class='feature-block'>ITEM CODE</td>"+itemSkuHtml)
+                        $(compareHtml).find("#js-print_item_summary").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
+                        $(compareHtml).find("#js-print_item_features").html("<td class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
+                        $('#print-comparision').html(compareHtml.html());
+                      }
+                      else{
+                        $(compareHtml).find("#js-print_item_title").append(productTitleHtml)
+                        $(compareHtml).find("#js-print_item_price").append(productPriceHtml)
+                        $(compareHtml).find("#js-print_item_sku").append(itemSkuHtml)
+                        $(compareHtml).find("#js-print_item_summary").append(activeSummaryHtml)
+                        $(compareHtml).find("#js-print_item_features").append(itemFeaturesHtml)
+                        $('#print-comparision').html(compareHtml.html());
+                      }
                     }
-                    else{
-                      $(compareHtml).find("#js-print_item_title").append(productTitleHtml)
-                      $(compareHtml).find("#js-print_item_price").append(productPriceHtml)
-                      $(compareHtml).find("#js-print_item_sku").append(itemSkuHtml)
-                      $(compareHtml).find("#js-print_item_summary").append(activeSummaryHtml)
-                      $(compareHtml).find("#js-print_item_features").append(itemFeaturesHtml)
-                      $('#print-comparision').html(compareHtml.html());
                     }
-                  }
-                  }
-                });
+                  });
+                }
               }
-            }
+          }
       }
+
+      $('.js-print-html').find('td').each (function() {
+        $(this).css("border","1px solid gray");
+      });
+
+      $('.js-print-html').find('.img-block').find('img').each (function() {
+        $(this).css("display","block");
+        $(this).css("margin","0 auto");
+      });
+      
       document.body.innerHTML = $(".js-print-html").parent().html();
+      // console.log('document.body.innerHTML',document.body.innerHTML)
       window.print();
 
       document.body.innerHTML = originalContents;
@@ -2065,7 +2077,7 @@ $.validator.addMethod(
 
  $.validator.messages.multiemails
 );
-$(document).on('click','.send-friend-email',function (e)
+$(document).on('click','.send-friend-email',function (e) 
 {
   $('form#send_email_to_friend').validate({
     rules: {
@@ -2112,7 +2124,7 @@ $(document).on('click','.send-friend-email',function (e)
           else {
               var compare_values = window.yList.share.compareList._content;
           }
-
+          
           var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
           var productData;
           var itemTitleHtml=itemPriceHtml='';
@@ -2163,13 +2175,13 @@ $(document).on('click','.send-friend-email',function (e)
                       productJsonData['image'] = project_settings.product_api_image_url+productData[0]._source.default_image;
 
                       productJsonData['product_name'] = productData[0]._source.product_name;
-
+                      
                       if(user_id == null){
                         productJsonData['price'] = "";
                       }else{
                         productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.price_1).toFixed(project_settings.price_decimal);
                       }
-
+                      
                       productJsonData['sku'] = productData[0]._source.sku;
                       productJsonData['description'] = productData[0]._source.description;
 
@@ -2189,7 +2201,7 @@ $(document).on('click','.send-friend-email',function (e)
 
             var form_data= formObj.serializeArray();
             var emailToFriend = {};
-
+            
             for (var input in form_data){
               var name = form_data[input]['value'];
               emailToFriend[form_data[input]['name']] = name;
@@ -2207,7 +2219,7 @@ $(document).on('click','.send-friend-email',function (e)
                 // console.log("response_data",response_data)
                 $('#myModal').modal('toggle');
                 if(response_data!= "") {
-	                  $("#send_email_to_friend").find("input,textarea").val('');
+                  $("#send_email_to_friend").find("input,textarea").val('');
                     hidePageAjaxLoading()
                     showSuccessMessage("Email Sent Successfully.");
                     return false;
@@ -2228,7 +2240,7 @@ $(document).on('click','.send-friend-email',function (e)
 $(document).on('click', '.js-btn-delete-all-compare-product', async function(e) {
   e.preventDefault();
   showPageAjaxLoading();
-  await sleep(300)
+  await sleep(300)  
 
   var values = "";
   if(user_details != null)
@@ -2244,9 +2256,9 @@ $(document).on('click', '.js-btn-delete-all-compare-product', async function(e) 
           }
         }
       }
-      await sleep(500)
+      await sleep(500)  
       location.reload();
-
+           
     }catch(e){}
   }
   else{
@@ -2257,7 +2269,7 @@ $(document).on('click', '.js-btn-delete-all-compare-product', async function(e) 
       }
       // location.reload();
       hidePageAjaxLoading();
-    }catch(e){}
+    }catch(e){} 
   }
 });
 
@@ -2268,3 +2280,16 @@ $(document).ready(function(){
     $.src="https://v2.zopim.com/?5djwAvXR04Z6LOgDZK23L8hn7QXFldZY";z.t=+new Date;$.
     type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 })
+
+function readImgUrl(input,e,imgId) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('#'+imgId).attr('src', e.target.result);
+        if($('#'+imgId).hasClass( "hide" )) {
+          $('#'+imgId).removeClass('hide');
+        }
+      }
+      reader.readAsDataURL(input.files[0]);
+  }
+}

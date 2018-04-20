@@ -715,7 +715,7 @@ $(document).ready( async function(){
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",project_settings.supplier_id)
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
-      $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
+      $("#js_display_virtual").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
       $(document).ready(function(){
       $('.place-order-submit,.request-quote-submit').on('click', async function(event){
           showPageAjaxLoading()
