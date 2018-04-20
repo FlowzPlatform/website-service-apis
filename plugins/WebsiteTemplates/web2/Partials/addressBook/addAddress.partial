@@ -79,7 +79,7 @@ height: 66px;
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <div class="form-group inp-parts">
+                <div class="form-group inp-parts address-checkbox">
                     <label class="checkout-label" for="address_type">Address Type<span class="mandatory-field">*</span>
                     </label><br />
 
@@ -166,7 +166,7 @@ height: 66px;
                 </div>
             </div>
         </div><span class="required-field pull-right">* Required Fields</span>
-        <div class="btn-box-main">
+        <div class="btn-box-main pb-10">
             <input class="btn btn-default js_submit_address" type="submit" value="save"
             tabindex="17" />
             <input class="btn btn-default" type="reset" value="Reset" tabindex="18"

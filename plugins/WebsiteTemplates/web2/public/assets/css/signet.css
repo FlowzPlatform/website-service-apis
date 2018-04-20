@@ -439,7 +439,7 @@ upload-image { width: 100px; height: 100px }
 .detail-popup-block { padding-top: 10px }
 .detail-popup-block > ul { margin: 0 -4px }
 .detail-popup-block > ul > li { display: inline-block; width: 15.2%; margin: 4px; vertical-align: top; float: left }
-.detail-popup-block > ul > li > a { font-size: 12px; border: 1px #CCC solid; background: #FCFBF9; min-height: 77px; width: 100%; display: block; padding: 5px; text-align: center; line-height: 15px; color: #323e49; word-break: normal }
+.detail-popup-block > ul > li > a { font-size: 11px !important; border: 1px #CCC solid; background: #FCFBF9; min-height: 77px; width: 100%; display: block; padding: 5px; text-align: center; line-height: 15px; color: #323e49; word-break: normal;text-transform:uppercase; }
 .detail-popup-block > ul > li > a.virtual { border: 1px #ccc solid; background: #3c4043; min-height: 77px; width: 100%; display: block; padding: 5px; text-align: center; line-height: 25px; color: #fff; word-break: normal; font-size: 18px; font-family: HelveticaNeueLTStd55-Roman; }
 .detail-popup-block > ul > li > a.virtual:hover { color: #fff; border: 1px #ccc solid; }
 .detail-popup-block > ul > li > a:hover { color: #fff; border: 1px #009ca6 solid; background: #009ca6; }
@@ -3398,7 +3398,7 @@ transform:scale(1)
 .unsubscribe-text a:hover { color: #009ca6 }
 .inquiry-subshop a { text-decoration: none; color: inherit }
 .inquiry-subshop a:hover { color: inherit }
-.virtual-button { background: #666; text-align: center; min-width: 120px; min-height: 39px; padding: 8px; color: #fff; font-family: 'HelveticaNeueLTStd-Bd'; font-size: 16px; text-transform: uppercase; position: absolute; top: 0; left: 0 }
+.virtual-button { background: #666; text-align: center; min-width: 90px; min-height: 39px!important; padding: 8px; color: #fff; font-family: 'HelveticaNeueLTStd55-Roman'; font-size: 11px !important; text-transform: uppercase; position: absolute; top: 0; left: 0 }
 .virtual-button:focus, .virtual-button:hover { background: #009ca6; color: #fff }
 .virtual-button i { padding-right: 5px }
 .virtual-button:focus i, .virtual-button:hover i { color: #fff }
@@ -4762,3 +4762,4 @@ a.js_request_quote_qty_remove {float: left;margin-right: 10px;}
 img.js-logo{width:230px;height:91px;}
 .product-section-box .detail-popup-block i.strip.prodvideo { background: url(../images/Play-Video.png); background-repeat: no-repeat; background-position: 0 0; width: 32px; height: 25px; display: block; margin: 6px auto; margin-bottom: 5px;}
 .ui-widget.ui-widget-content {border: 1px solid #c5c5c5;width: 540px !important;}
+.pb-10{padding-bottom: 10px;}
