@@ -244,7 +244,7 @@ function getCookie(name) {
 let userToken = getCookie('auth_token');
 let userFrontId = getCookie('user_id');
 
-if(userToken != null && userFrontId != null) {
+if((userToken != null && userFrontId != null) || getParameterByName('token')) {
     var user_details = function () {
       var tmp = null;
       $.ajax({
@@ -255,6 +255,10 @@ if(userToken != null && userFrontId != null) {
           'success': function (res) {
               tmp = res.data;
               user_id = tmp._id;
+              if(getParameterByName('token')) {
+                document.cookie = "auth_token="+getParameterByName('token');
+                document.cookie = "user_id="+user_id;
+              }
             }
         });
       return tmp;

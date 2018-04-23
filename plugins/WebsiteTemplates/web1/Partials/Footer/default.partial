@@ -117,7 +117,7 @@ body {
         </div>
     </div>
 </div>
-<div class="bottom-footer">
+<div class="bottom-footer" id="js_display_virtual">
     <div class="container"><span class="pull-left">Powered by : <a href="#" class="footer_logo"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/footer_logo.png" style="width:auto;height:30px;"/></a></span>
         <span
         class="col-xs-8 text-center">Copyright &copy; 2017 Flowz. All rights reserved</span>
