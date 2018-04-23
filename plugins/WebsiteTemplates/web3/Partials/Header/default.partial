@@ -139,6 +139,18 @@ a.socialMedCls {
     background-color: rgb(211, 211, 211);
 }
 
+.navbar-collapse ul#menu li a {
+    padding: 14px 19.5px;
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    font-family: SourceSansPro_Regular;
+    line-height: 18px;
+    text-transform: uppercase;
+}
+
+
+
 </style>
 
 <script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
@@ -229,12 +241,6 @@ a.socialMedCls {
 						<span class="tollfreetext">order online or call</span>
 						<span class="tollfreeno">1-800-748-6150</span>
 						<span class="time">Monday-Friday: 6:30 am - 4:30 pm PST</span>
-						<span class="experttalk">
-							<img src="http://res.cloudinary.com/flowz/image/upload/v1522912897/websites/images/chatIcon.png">&nbsp;&nbsp;Live Chat -
-							<a href="https://sa.live2support.com/ls3/l2schat14205-0-0.html" target="_blank" onclick="try{lswin('sid=14205','14205'); return false;} catch(l2se) { }" id="l2stxtcd" style="color: #0a6edb">
-								Go to live chat now
-							</a>
-						</span>
 					</div>
 				</td></tr></tbody></table>
 			</div>

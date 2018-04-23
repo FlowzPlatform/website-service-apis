@@ -52,6 +52,32 @@ body {
 <div class="product-section-box">
     <div class="detail-popup-block">
         <ul>
+           		 <li>
+                  <a href="javascript:void(0)" data-toggle="modal" data-target="#shipping-estimator">
+                            <i class="strip estimator-strip"></i>
+                            Shipping Estimator
+                        </a>
+                    </li>
+                <li>
+                  <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-table">
+                            <i class="strip print-strip"></i>
+                            Print Product
+                        </a>
+                </li>
+                  <li>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#share-product">
+                            <i class="strip share-strip"></i>
+                            Share Product
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#play-video">
+                            <i class="strip play-strip"></i>
+                            Play Video
+                        </a>
+                    </li>       
+                  
+
             <li id="ob_virtual_list">
                 <div id="ob-virtualmarketingcart">
                     <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"
@@ -63,6 +89,7 @@ body {
                     <input class="ob-btvirtualloadcontent" id="c70827" type="button" />
                 </div>
             </li>
+            
         </ul>
         <div class="clearfix"></div>
     </div>

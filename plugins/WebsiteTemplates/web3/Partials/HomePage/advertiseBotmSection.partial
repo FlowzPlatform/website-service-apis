@@ -3,7 +3,7 @@
 		 margin:0 auto;
 	 }
  </style>
- 
+
  <section class="shopdept" style="margin-top: 0;">
 	<div class="container">
 		<div class="row">
@@ -38,7 +38,7 @@
 			<div class="col-md-3 col-sm-3 col-xs-3">
 				<img src="http://res.cloudinary.com/flowz/image/upload/v1522996287/websites/images/recycledtshirt.png" class="img-responsive" alt="recycled promotional t-shirts">
 			</div>
-		</div>	
+		</div>
 	</div>
 </section>
 <hr>
@@ -64,7 +64,7 @@
 	                    	<img src="http://res.cloudinary.com/flowz/image/upload/v1522996688/websites/images/brand-05.jpg" alt="brand-name" class="img-responsive">
 	                    </div>
 	                    <div class="col-md-2 col-sm-2 col-xs-2">
-	                   		<img src="http://res.cloudinary.com/flowz/image/upload/v1522996688/websites/images/brand-06.jpg" alt="brand-name" class="img-responsive"> 
+	                   		<img src="http://res.cloudinary.com/flowz/image/upload/v1522996688/websites/images/brand-06.jpg" alt="brand-name" class="img-responsive">
 	                	</div>
 	                </div>
 	  			</div>
@@ -93,19 +93,5 @@
 					</div>
 				</div>
 	        </div>
-	    </div>        
-	</section>
-<hr>
-	<section class="poststeps">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 section-step text-center">
-					<p class="title">Post a Picture of Your Promo Direct Product!</p>
-					<h5>Show off your brand and be featured in our gallery. Receive a gift and be entered to win prizes.</h5>
-					<a href="javascript:void(0);" class="viewgallery" target="_blank">
-	            		View Gallery
-	            	</a>
-				</div>
-			</div>
-		</div>
+	    </div>
 	</section>

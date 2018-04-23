@@ -7,10 +7,6 @@ body {
     margin: 0;
 }
 
-#js_tab_list {
-    display: none;
-}
-
 .row {
     display: table;
     padding-top: 10px;
@@ -56,28 +52,12 @@ body {
     margin-left: 0px;
 }
 
-.product-showcase.row {
-    display: inline;
+#js_tab_list {
+    display: none;
 }
 
-#c99215 {
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: black;
-    border-right-color: black;
-    border-bottom-color: black;
-    border-left-color: black;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
+.product-showcase.row {
+    display: inline;
 }
 
 .c22805 {
@@ -98,9 +78,14 @@ body {
     min-height: 20px;
 }
 
-.header-search-col{
-    width:-webkit-fill-available !important;
+.c6158 {
+    right: -152px;
 }
+
+.c6231 {
+    right: -155px;
+}
+.header-search-col { width: auto !important }
 </style>
 
 
@@ -111,22 +96,18 @@ body {
 />
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css"
 />
-<div class="js-wishlist-block ob-wishlist-block" style="right: -152px;">
-	<a href="javascript:void(0)" class="wishlist-btn isdrag" id="js-wishlist-btn"> <i class="fa fa-heart"></i> Add to Wishlist</a>
-	<div class="wishlist-form">
-    
+<div class="js-wishlist-block ob-wishlist-block c6158"><a href="javascript:void(0)" id="js-wishlist-btn" class="wishlist-btn isdrag"> <i class="fa fa-heart"></i> Add to Wishlist</a>
+    <div
+    class="wishlist-form">
         <div class="clearfix"></div>
-        
-	</div>
+</div>
 </div>
 <div class="clearfix"></div>
-<div class="js-compare-block ob-compare-block" style="right: -155px;">
-	<a href="javascript:void(0)" class="compare-btn isdrag" id="js-compare-btn"> <i class="fa fa-random"></i> Go to Compare</a>
-	<div class="compare-form">
-    
+<div class="js-compare-block ob-compare-block c6231"><a href="javascript:void(0)" id="js-compare-btn" class="compare-btn isdrag"> <i class="fa fa-random"></i> Go to Compare</a>
+    <div
+    class="compare-form">
         <div class="clearfix"></div>
-        
-	</div>
+</div>
 </div>
 <div class="container main js-hide-div">
     <div class="innerpage ob-product-detail-page">
@@ -146,11 +127,11 @@ body {
                 <reusecomponent class="c22805">{{> productDetail id='productDetailLeft.partial' }}</reusecomponent>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-right">
-                <div class="product-wrapper active" role="tabpanel">
+                <div role="tabpanel" class="product-wrapper active">
                     <div class="product-description product-detail-wrapper js_product_detail_tabs">
                         <div role="tabpanel">
                             <div class="tabbable">
-                                <ul class="nav nav-tabs bordred-tab" role="tablist" id="js_tab_list">
+                                <ul role="tablist" id="js_tab_list" class="nav nav-tabs bordred-tab">
                                     <li class="active"><a href="#js-place-order" aria-controls="js-place-order" role="tab" data-exist-sub-content="1"
                                         data-toggle="tab">Place Order</a>
                                     </li>
@@ -162,14 +143,14 @@ body {
                                     </li>
                                 </ul>
                                 <div class="request-tab-content tab-content">
-                                    <div class="tab-pane fade active in" id="js-place-order">
+                                    <div id="js-place-order" class="tab-pane fade active in">
                                         <reusecomponent class="c192300">{{> productDetail id='placeOrder.partial' }}</reusecomponent>
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div class="tab-pane fade in" id="js-request-quote">
+                                    <div id="js-request-quote" class="tab-pane fade in">
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div class="tab-pane fade" id="js-request-info">
+                                    <div id="js-request-info" class="tab-pane fade">
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
