@@ -941,10 +941,10 @@ try {
   async function getProjectInfo() {
       await $.getJSON( "./assets/project-details.json", function( data ) {  
           projectID = data[0].projectID;
-          baseURL = 'http://localhost:3032'
-          socketHost= 'http://localhost:4032'
-          // baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
-          // socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+          // baseURL = 'http://localhost:3032'
+          // socketHost= 'http://localhost:4032'
+          baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+          socketHost = 'https://ws.' + data[0].domainkey + ':4032';
           userID = data[0].UserID
           // configDataUrl = baseURL + "/project-configuration/" + projectID;
       });
