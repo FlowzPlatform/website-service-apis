@@ -65,12 +65,13 @@ function beforeentry(hook){
 
 function beforegetremove(hook){
   
-   console.log('inside remove')
+   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! inside remove')
   return new Promise(async (resolve,reject)=>{
 
   let id= hook.params.query.websiteid
 
-  q.findJob({ Websiteid: id, status:'waiting' }).then((jobs) => {
+  q.findJob({ Websiteid: id, status:'active'}).then((jobs) => {
+      console.log('-------------------JOBS:',jobs)
      q.cancelJob(jobs)
    }).catch(err => console.error(err))
 
