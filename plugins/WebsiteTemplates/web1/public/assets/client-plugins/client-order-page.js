@@ -211,8 +211,31 @@ function showOrders()
               // $(".js-shipping-"+response_data[key].id).find(".js-product_total_shipping_charge").html(product_shipping_charges);
 
               //END - change
+              // console.log("shipping_info",shipping_info.shipping_address);
+              //let replaceAddressHtml = await addressBookHtml(shipping_info.selected_address_id)
+              let replaceAddressHtml = '';
+              replaceAddressHtml += shipping_info.shipping_address.name+"<br>";
+              if(shipping_info.shipping_address.street2 != undefined && shipping_info.shipping_address.street2 !=''){
+                replaceAddressHtml += shipping_info.shipping_address.street1;
+                replaceAddressHtml += ","+shipping_info.shipping_address.street2+",<br>";
+              }
+              else{
+                replaceAddressHtml += shipping_info.shipping_address.street1+",<br>";
+              }
+              replaceAddressHtml += shipping_info.shipping_address.city+",";
+              replaceAddressHtml += shipping_info.shipping_address.state,2+"<br>";
+              replaceAddressHtml += shipping_info.shipping_address.country;
+              if(shipping_info.shipping_address.postalcode != undefined ){
+                replaceAddressHtml += " - "+shipping_info.shipping_address.postalcode+"<br>";
+              }
+              replaceAddressHtml += "Email: "+shipping_info.shipping_address.email+"<br>";
+              if(shipping_info.shipping_address.phone != undefined ){
+                replaceAddressHtml += "T: "+shipping_info.shipping_address.phone;
+              }
+              if(shipping_info.shipping_address.mobile != undefined && shipping_info.shipping_address.mobile !=''){
+                replaceAddressHtml += ",<br>M: "+shipping_info.shipping_address.mobile+"<br>";
+              }
 
-              let replaceAddressHtml = await addressBookHtml(shipping_info.selected_address_id)
               shippingHtml1 = shippingHtml1.replace("#data.address_book#",replaceAddressHtml)
               //  console.log("replaceAddressHtml replaceAddressHtmlreplaceAddressHtml " , replaceAddressHtml)
               // let replaceAddressHtml = addressBookHtml(shipping_info.selected_address_id).then(function(html){
