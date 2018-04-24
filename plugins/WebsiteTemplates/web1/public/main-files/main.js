@@ -212,7 +212,7 @@ Y({
 })
 
 if(getParameterByName('token')) {
-  document.cookie = "auth_token="+getParameterByName('token');
+  document.cookie = "user_auth_token="+getParameterByName('token');
 }
 
 function getParameterByName(name, url) {
@@ -241,7 +241,7 @@ function getCookie(name) {
   return (value != null) ? unescape(value[1]) : null;
 }
 
-let userToken = getCookie('auth_token');
+let userToken = getCookie('user_auth_token');
 let userFrontId = getCookie('user_id');
 
 if((userToken != null && userFrontId != null) || getParameterByName('token')) {
@@ -256,7 +256,7 @@ if((userToken != null && userFrontId != null) || getParameterByName('token')) {
               tmp = res.data;
               user_id = tmp._id;
               if(getParameterByName('token')) {
-                document.cookie = "auth_token="+getParameterByName('token');
+                document.cookie = "user_auth_token="+getParameterByName('token');
                 document.cookie = "user_id="+user_id;
               }
             }
@@ -456,16 +456,16 @@ var init = function() {
     $('.username-text').text('welcome '+userName);
   }
   else {
-     document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+     document.cookie = 'user_auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
      $(".login-show").removeClass('hide');
      $('.username-text').text('');
    }
 
- $('.login-text-check').on('click',function() {
-   document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-   document.cookie = 'user_id=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-   location.reload();
- });
+   $('.login-text-check').on('click',function() {
+     document.cookie = 'user_auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+     document.cookie = 'user_id=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+     window.location = window.location.href.split("?")[0];
+   });
   // login-logout end
 
   // Compare, whishlist and cart count in header
@@ -1100,7 +1100,7 @@ function showErrorMessage(error_message) {
     $('body').prepend('<div class="container"><div class="alert alert-danger" style="margin-top:-50px;"><a data-dismiss="alert" class="close" href="javascript:void(0)">&times;</a><span>'+ error_message+'</span></div><div class="clr"></div></div>');
 		$('.alert-danger').animate({marginTop: "+=50"}, 100, null);
 	}
-	setTimeout("hideAlertBar();", 7000);
+	setTimeout("hideAlertBar();", 5000);
 }
 
 function showSuccessMessage(success_message,url=null) {
@@ -1123,7 +1123,7 @@ function showSuccessMessage(success_message,url=null) {
 		$('.alert-success').animate({marginTop: "+=50"}, 100, null);
 	}
   if(url == null){
-      setTimeout("hideAlertBar();", 7000);
+      setTimeout("hideAlertBar();", 5000);
   }else{
       setTimeout("location.href = '"+url+"';",1500);
   }
@@ -1207,7 +1207,7 @@ function showWishList(recetAdded=false)
               $.ajax({
                 type: 'GET',
                 // url: project_settings.product_api_url+"?_id="+prodId,
-                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description",
+                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description",
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -1225,7 +1225,7 @@ function showWishList(recetAdded=false)
                     listHtml1 = listHtml1.replace(/#data.id#/g,wishlist_values[item].val.id);
                     listHtml1 = listHtml1.replace('#data.title#',productData[0]._source.product_name);
                     listHtml1 = listHtml1.replace('#data.sku#',productData[0]._source.sku);
-                    listHtml1 = listHtml1.replace('#data.price#',parseFloat(productData[0]._source.price_1).toFixed(project_settings.price_decimal));
+                    listHtml1 = listHtml1.replace('#data.price#',parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
                     listHtml1 = listHtml1.replace('#data.currency#',productData[0]._source.currency);
 
                     let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
@@ -1385,7 +1385,7 @@ function showCompareList(recetAdded=false)
               $.ajax({
                 type: 'GET',
                 // url: project_settings.product_api_url+"?_id="+prodId,
-                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description,features",
+                url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features",
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -1409,7 +1409,7 @@ function showCompareList(recetAdded=false)
                   if(user_id == null){
                     var itemTitleHtml = itemTitleHtml.replace('#data.price#',"");
                   }else{
-                    var itemTitleHtml = itemTitleHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.price_1).toFixed(project_settings.price_decimal));
+                    var itemTitleHtml = itemTitleHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
                   }
 
                   productHtml = itemTitleHtml;
@@ -1575,7 +1575,7 @@ function showCompareList(recetAdded=false)
 
     if($('#myCompareList #listing .js-no-records').length == 0)
     {
-      compareHtml.append('<span class="js-no-records">No records found.</span>')  
+      compareHtml.append('<span class="js-no-records">No records found.</span>')
     }
     else{
       compareHtml.html('No records found.')
@@ -1976,7 +1976,7 @@ async function printDiv(printDiv=true) {
 
                   $.ajax({
                     type: 'GET',
-                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description,features",
+                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features",
                     async: false,
                     beforeSend: function (xhr) {
                       xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -1999,7 +1999,7 @@ async function printDiv(printDiv=true) {
                       if(user_id == null){
                         var itemPriceHtml = itemPriceHtml.replace('#data.price#',"");
                       }else{
-                        var itemPriceHtml = itemPriceHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.price_1).toFixed(project_settings.price_decimal));
+                        var itemPriceHtml = itemPriceHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
                       }
                       productPriceHtml = itemPriceHtml;
                       
@@ -2163,7 +2163,7 @@ $(document).on('click','.send-friend-email',function (e)
 
                 $.ajax({
                   type: 'GET',
-                  url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,price_1,description,features",
+                  url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features",
                   async: false,
                   beforeSend: function (xhr) {
                     xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -2183,7 +2183,7 @@ $(document).on('click','.send-friend-email',function (e)
                       if(user_id == null){
                         productJsonData['price'] = "";
                       }else{
-                        productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.price_1).toFixed(project_settings.price_decimal);
+                        productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
                       }
                       
                       productJsonData['sku'] = productData[0]._source.sku;
@@ -2241,40 +2241,47 @@ $(document).on('click','.send-friend-email',function (e)
   }).form()
 });
 
-$(document).on('click', '.js-btn-delete-all-compare-product', async function(e) {
+$(document).on('click', '.js-btn-delete-all-compare-product',function(e) {
   e.preventDefault();
-  showPageAjaxLoading();
-  await sleep(300)  
 
-  var values = "";
-  if(user_details != null)
+  bootbox.confirm("Are you sure want to delete?",async function(result)
   {
-    values = window.yList.share.compareListRegister._content;
-    try {
-      for(let i = 0; i < values.length;i++) {
-        if(user_details != null && user_id == values[i].val.user_id)
-        {
-          if(typeof values[i] != "undefined")
-          {
-            await deleteItemById(project_settings.shopping_api_url+'/'+values[i].val.id);
+    if(result)
+    {
+      showPageAjaxLoading();
+      await sleep(300)  
+
+      var values = "";
+      if(user_details != null)
+      {
+        values = window.yList.share.compareListRegister._content;
+        try {
+          for(let i = 0; i < values.length;i++) {
+            if(user_details != null && user_id == values[i].val.user_id)
+            {
+              if(typeof values[i] != "undefined")
+              {
+                await deleteItemById(project_settings.shopping_api_url+'/'+values[i].val.id);
+              }
+            }
           }
-        }
+          await sleep(500)  
+          location.reload();
+              
+        }catch(e){}
       }
-      await sleep(500)  
-      location.reload();
-           
-    }catch(e){}
-  }
-  else{
-    values = window.yList.share.compareList._content;
-    try {
-      for(let i = 0; i < values.length;) {
-        await(window.yList.share.compareList.delete(0))
+      else{
+        values = window.yList.share.compareList._content;
+        try {
+          for(let i = 0; i < values.length;) {
+            await(window.yList.share.compareList.delete(0))
+          }
+          // location.reload();
+          hidePageAjaxLoading();
+        }catch(e){} 
       }
-      // location.reload();
-      hidePageAjaxLoading();
-    }catch(e){} 
-  }
+    }
+  });
 });
 
 $(document).ready(function(){
@@ -2297,3 +2304,53 @@ function readImgUrl(input,e,imgId) {
       reader.readAsDataURL(input.files[0]);
   }
 }
+
+function timeAgo(selector) {
+  var templates = {
+      prefix: "",
+      suffix: " ago",
+      seconds: "less than a minute",
+      minute: "about a minute",
+      minutes: "%d minutes",
+      hour: "about an hour",
+      hours: "about %d hours",
+      day: "a day",
+      days: "%d days",
+      month: "about a month",
+      months: "%d months",
+      year: "about a year",
+      years: "%d years"
+  };
+  var template = function (t, n) {
+      return templates[t] && templates[t].replace(/%d/i, Math.abs(Math.round(n)));
+  };
+
+  var timer = function (time) {
+      if (!time) return;
+      time = time.replace(/\.\d+/, ""); // remove milliseconds
+      time = time.replace(/-/, "/").replace(/-/, "/");
+      time = time.replace(/T/, " ").replace(/Z/, " UTC");
+      time = time.replace(/([\+\-]\d\d)\:?(\d\d)/, " $1$2"); // -04:00 -> -0400
+      time = new Date(time * 1000 || time);
+
+      var now = new Date();
+      var seconds = ((now.getTime() - time) * .001) >> 0;
+      var minutes = seconds / 60;
+      var hours = minutes / 60;
+      var days = hours / 24;
+      var years = days / 365;
+
+      return templates.prefix + (
+      seconds < 45 && template('seconds', seconds) || seconds < 90 && template('minute', 1) || minutes < 45 && template('minutes', minutes) || minutes < 90 && template('hour', 1) || hours < 24 && template('hours', hours) || hours < 42 && template('day', 1) || days < 30 && template('days', days) || days < 45 && template('month', 1) || days < 365 && template('months', days / 30) || years < 1.5 && template('year', 1) || template('years', years)) + templates.suffix;
+  };
+
+  var elements = document.getElementsByClassName('timeago');
+  for (var i in elements) {
+      var $this = elements[i];
+      if (typeof $this === 'object') {
+          $this.innerHTML = timer($this.getAttribute('title') || $this.getAttribute('datetime'));
+      }
+  }
+}
+// update time every minute
+setInterval(timeAgo, 60000);

@@ -47,7 +47,7 @@ $(document).ready( async function(){
       return false;
   }
 
-  $('#js-request-info .js-section-number').addClass('no-tag');
+  //$('#js-request-info .js-section-number').addClass('no-tag');
 
   let value_split = [];
   let productData = {};
@@ -378,7 +378,7 @@ $(document).ready( async function(){
                                         let colorName = $(this).val();
                                         let color_name = $(this).attr('id');
                                         let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
-                                        
+
                                         qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
 
                                         totalQty = totalQty + parseFloat(qty);
@@ -415,7 +415,7 @@ $(document).ready( async function(){
                                         }
                                     });
                                 }
-                                $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));                               
+                                $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
                             });
 
                             $(activetab+"-Print-position-block").addClass("in");
@@ -781,7 +781,7 @@ $(document).ready( async function(){
           parentObj.find(".js_select_color_from_list").html(dropDownColorHtml)
           parentObj.find('.js-color-div-append').removeClass('hide');
 
-            //summary for how many colors 
+            //summary for how many colors
             $('.js_print_postion_location').html('');
             $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
                 let positionName = $(this).val()
@@ -789,12 +789,12 @@ $(document).ready( async function(){
 
                 let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
                 let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
-    
+
                 var no_of_color = 0;
                 if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
                     no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
                 }
-    
+
                 let selColorsHtml = "";
                 if(no_of_color.length > 0) {
                     for(var k=1;k<=no_of_color;k++) {
@@ -935,7 +935,54 @@ $(document).ready( async function(){
                 if(selectedColor != "") selected_colors[k-1] = selectedColor
             }
 
-            var imprint_position_data = { 'imprint_position_name': positionName,'imprint_method_name': imprintMethodName,'no_of_color' : no_of_color,'selected_colors' : selected_colors };
+            let currentTab = $(activetab+' #js_request_quote_artwork_'+position_name+' li.active a').attr('href');
+            let art_type = $(activetab+' '+currentTab).attr('data-type');
+            
+            let art_url = [];
+            let art_thumb = [];
+            $(activetab+' '+currentTab+' .js-save-artwork-logo').each(function(i) {
+                if($(this).val().trim() != '') {
+                    art_url.push($(this).val());
+                    art_thumb.push($(this).prev('img').attr('src'));
+                }
+            });
+
+            let typeset = [];
+            $(activetab+' '+currentTab+' .js-art-text').each(function(i) {
+                if($(this).val().trim() != '') {
+                    typeset.push($(this).val());
+                }
+            });
+            
+            art_section = {};
+            if(art_url.length > 0) {
+                art_section.artwork = art_url;
+            }
+
+            if(art_thumb.length > 0) {
+                art_section.artwork_thumb = art_thumb;
+            }
+
+            if(typeset.length > 0) {
+                art_section.text = typeset;
+            }
+
+            if(art_url.length == 0 || typeset.length == 0) {
+                if(typeof $(activetab+' '+currentTab+' .js-upload-email-type-radio').prop('checked') != 'undefined' && $(activetab+' '+currentTab+' .js-upload-email-type-radio').prop('checked') == true) {
+                    art_section.art_text_email = 1;
+                }
+
+                if(typeof $(activetab+' '+currentTab+' .js-upload-email-radio').prop('checked') != 'undefined' && $(activetab+' '+currentTab+' .js-upload-email-radio').prop('checked') == true) {
+                    art_section.art_email = 1;
+                }
+            }
+
+            if(typeof $(activetab+' '+currentTab+' .js_artwork_instructions_text').val() != 'undefined' && $(activetab+' '+currentTab+' .js_artwork_instructions_text').val().trim() != '') {
+                art_section.art_instruction = $(activetab+' '+currentTab+' .js_artwork_instructions_text').val();
+            }
+
+            let imprint_position_data = { 'imprint_position_name': positionName, 'imprint_method_name': imprintMethodName, 'no_of_color' : no_of_color, 'selected_colors' : selected_colors };
+            imprint_position_data[art_type] = art_section;
             imprint_position.push(imprint_position_data);
         });
         // console.log("imprint_position",imprint_position);
@@ -1010,7 +1057,7 @@ $(document).ready( async function(){
             let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").val();
 
             let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
-            
+
             let shipping_detail = {"on_hand_date":get_in_hand_date,'ship_date':'',"ship_transittime": get_transittime,"shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
             shipping_details.push({'color_quantity':shipping_colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail,'shipping_address':user_shipping_address});
         }
@@ -1085,10 +1132,10 @@ $(document).ready( async function(){
                 let order_type = $('#js_sub_tab_list li.active a').text().toLowerCase();
                 data['type'] = 2;
                 data['order_type'] = order_type;
-                
+
             //   return false;
             if(user_details != null && cid != null)
-            {  
+            {
                 data['id'] = cid;
                 var ajaxType = 'PUT';
                 var ajaxURL = project_settings.shopping_api_url+'/'+cid;
@@ -1096,7 +1143,7 @@ $(document).ready( async function(){
             else{
                 var ajaxType = 'POST';
                 var ajaxURL = project_settings.shopping_api_url;
-            } 
+            }
 
             $.ajax({
                 type : ajaxType,
@@ -1173,7 +1220,7 @@ $(document).ready( async function(){
     })
 
     if(cid == null)
-    {    
+    {
       $('#js_tab_list li.active').trigger('click');
     }
 });
@@ -1277,8 +1324,11 @@ function autoCounter() {
     let sectionCount = 0;
     $(activetab).find( ".js-section-number" ).each(function( index ) {
         if($(this).closest('.panel-group').css('display') != 'none'){
+            let sectionHtml = $(this).html();
+            sectionHtml1 = sectionHtml.split("<i>")
+            $(this).html(sectionHtml1[0])
             sectionCount = sectionCount + 1;
-            $(this).prepend("<i>"+sectionCount+"</i>&nbsp;");
+            $(this).append("<i>"+sectionCount+"</i>&nbsp;");
         }
     });
 }
@@ -1293,7 +1343,8 @@ function calculate_setup_charge(imprint_position)
             let imprint_data = get_product_details.imprint_data;
             for(let item in imprint_data)
             {
-                let data_imprint_method = replaceWithUnderscore(imprint_data[item].imprint_method)
+                // let data_imprint_method = replaceWithUnderscore(imprint_data[item].imprint_method)
+                let data_imprint_method = imprint_data[item].imprint_method
                 let selected_imprint_method = imprint_position[imprint_position_val].imprint_method_name
                 if(data_imprint_method == selected_imprint_method)
                 {
@@ -1460,7 +1511,7 @@ $(document).on("click","#js_tab_list",function(){
     autoCounter();
     if(typeof cid == 'undefined' || cid == null) {
         $('#Quantity-quote-block').html('<div class="panel-body"> <div class="estimate-detail" id="js_product_summary"> <div class="estimate-tag-block js_summary_qty hide"> <div class="estimate-row heading"><span>Quantity</span></div> <div class="row"> <div class="col-sm-12"> <table class="product-color-price-table" id="js_product_summary_qty"></table> </div> </div> </div> <div class="estimate-tag-block js_print_postion_location hide"></div> <div class="estimate-tag-block estimate-address-block js_summary_shipping_type hide"> <div class="estimate-row heading"><span>Shipping Method</span></div> <div class="estimate-row ship_type">Shipping Type : <span>Standard Shipping</span></div> <div class="js_shipp_address_data hide"></div> </div> </div> <div class="js_special_inst estimate-detail hide"> <div class="estimate-tag-block"> <div class="estimate-row heading"><span>Special Instructions</span></div> <div class="js_summary_instruction" style="white-space: pre-wrap;"></div> </div> </div> <div class="jsTotal estimate-detail hide"> <div class="js_product_summary_charges" id="js_product_summary_charges"> <div class="estimate-tag-block js-additional-charges-summary hide"> <div class="estimate-row heading"> <span>Additional Charges</span> </div> <div class="estimate-row charge_type js-shipping-charge-summary hide"> Shipping Charge: <span class="text-uppercase">$ 0.00</span> </div> <div class="estimate-row charge_type js-total-tax-in-summary hide"> Total Tax: <span class="text-uppercase">$ 0.00</span> </div> </div> <div class="estimate-total-block hide"> <div class="row"> <div class="col-lg-7 col-md-7 col-sm-7"> <table class="estimate-sub-table responsive"> <thead> <tr> <th>Quantity</th> <th>Price</th> </tr> </thead> <tbody> <tr> <td class="total_quantity">0</td> <td class="total_price">$ 0.00</td> </tr> </tbody> </table> </div> <div class="col-lg-5 col-md-5 col-sm-5 estimate-sub-totle"> <h4>Total Price: </h4> <h5 class="final_price">$ 0.00</h5> </div> </div> </div> </div> </div> </div>');
-        
+
         $('#Quantity-quote').addClass('hide');
     }
 });
@@ -1514,17 +1565,17 @@ $(document).on("click",".split-add-new-address",function(){
         colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
         let colors_id_codeReplace = colors_id_code[key].replace(/#data.tabID#/g,setActivetab)
         remainingQuantity = 0;
-        
+
 	// Deciding the quantity for new address started
         $("."+colors_id_codeReplace+" .js_request_quote_shipping_qty_box ").each(function(){
             alreadyAssignedQuantiy = parseInt(alreadyAssignedQuantiy) + parseInt($(this).val());
             remainingQuantity = parseInt(value)-parseInt(alreadyAssignedQuantiy);
             if(remainingQuantity < 0){ remainingQuantity = 0 }
         })
-        
+
         colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,remainingQuantity)
         // Deciding the quantity for new address ended
-  
+
         colorQtyHtml1 = colorQtyHtml1.replace(/#data.extraclass#/g,colors_id_codeReplace)
         replaceQtyHtml += colorQtyHtml1
     })
@@ -1649,7 +1700,7 @@ $(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
      let transitTime = thisObj.data("transit-time")
      let shipCounter = thisObj.closest(".js_shipping_method_detail").data("shipping-counter")
      let parentObj = $(activetab+" #js_shipping_method_detail_"+shipCounter)
-     
+
      //summary for shipping address method
      $('.js_address_method_'+shipCounter).find('span').html($(this).find('a').text());
      $('#Quantity-quote, .js_address_method_'+shipCounter).removeClass('hide');
@@ -1789,20 +1840,33 @@ $(document).on("click",activetab + ".js-upload-email-type-radio",function(){
 });
 
 $(document).on("click",activetab + ".js_add_logo",function(){
+    let img_src = $(this).closest('.js-img-global').find('img').attr('src');
+    if(typeof img_src == 'undefined' || img_src == '') {
+        showErrorMessage("Please upload artwork.");
+        return false;
+    }
     $(this).addClass('hide');
     let posVal = $(this).attr('data-pos');
-    $('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', false);
+    //$('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', false);
     $('#js_is_logo_'+posVal+'_2').removeClass('hide');
 });
 
 $(document).on("click",activetab + ".js_remove_logo",function(){
     $('.js_add_logo').removeClass('hide');
     let posVal = $(this).attr('data-pos');
-    $('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', true);
+    //$('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', true);
+    $('#logo_show_'+posVal+'_2').attr('src','');
+    $('#logo_show_'+posVal+'_2').addClass('hide');
+    $('#logo_save_'+posVal+'_2').attr('value','');
     $('#js_is_logo_'+posVal+'_2').addClass('hide');
 });
 
 $(document).on("click",activetab + ".js_add_text",function(){
+    let text_val = $(this).closest('.js-text-global').find('.js-art-text').val();
+    if(typeof text_val == 'undefined' || text_val.trim() == '') {
+        showErrorMessage("Please enter text.");
+        return false;
+    }
     $(this).addClass('hide');
     let posVal = $(this).attr('data-pos');
     $('#js_is_text_'+posVal+'_2 input[type=text]').attr('disabled', false);
@@ -1812,25 +1876,39 @@ $(document).on("click",activetab + ".js_add_text",function(){
 $(document).on("click",activetab + ".js_remove_text",function(){
     $('.js_add_text').removeClass('hide');
     let posVal = $(this).attr('data-pos');
+    $('#js_is_text_'+posVal+'_2 input[type=text]').val('');
     $('#js_is_text_'+posVal+'_2 input[type=text]').attr('disabled', true);
     $('#js_is_text_'+posVal+'_2').addClass('hide');
 });
 
 $(document).on("click",activetab + ".js_add_logo_type",function(){
+    let img_src = $(this).closest('.js-img-global').find('img').attr('src');
+    if(typeof img_src == 'undefined' || img_src == '') {
+        showErrorMessage("Please upload artwork.");
+        return false;
+    }
     $(this).addClass('hide');
     let posVal = $(this).attr('data-pos');
-    $('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', false);
+    //$('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', false);
     $('#js_is_logo_type_'+posVal+'_2').removeClass('hide');
 });
 
 $(document).on("click",activetab + ".js_remove_logo_type",function(){
     $('.js_add_logo_type').removeClass('hide');
     let posVal = $(this).attr('data-pos');
-    $('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', true);
+    //$('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', true);
+    $('#logo_type_show_'+posVal+'_2').attr('src','');
+    $('#logo_type_show_'+posVal+'_2').addClass('hide');
+    $('#logo_type_save_'+posVal+'_2').attr('value','');
     $('#js_is_logo_type_'+posVal+'_2').addClass('hide');
 });
 
 $(document).on("click",activetab + ".js_add_text_type",function(){
+    let text_val = $(this).closest('.js-text-global').find('.js-art-text').val();
+    if(typeof text_val == 'undefined' || text_val.trim() == '') {
+        showErrorMessage("Please enter text.");
+        return false;
+    }
     $(this).addClass('hide');
     let posVal = $(this).attr('data-pos');
     $('#js_is_text_type_'+posVal+'_2 input[type=text]').attr('disabled', false);
@@ -1840,13 +1918,33 @@ $(document).on("click",activetab + ".js_add_text_type",function(){
 $(document).on("click",activetab + ".js_remove_text_type",function(){
     $('.js_add_text_type').removeClass('hide');
     let posVal = $(this).attr('data-pos');
+    $('#js_is_text_type_'+posVal+'_2 input[type=text]').val('');
     $('#js_is_text_type_'+posVal+'_2 input[type=text]').attr('disabled', true);
     $('#js_is_text_type_'+posVal+'_2').addClass('hide');
 });
 
-$(document).on('change', '.js-upload-art-image', function(e) {
+$(document).on('click', '.js-upload-art-image', function(e) {
     let id = $(this).closest('.js-img-global').find('img').attr('id');
-    readImgUrl(this,e,id);
+    let save_id = $(this).closest('.js-img-global').find('input[type=hidden]').attr('id');
+
+    cloudinary.openUploadWidget({
+        cloud_name: 'flowz',
+        api_key: '927244196696278',
+        upload_preset: 'ebvcoubx',
+        sources: ['local', 'camera', 'url', 'facebook'],
+        public_id: website_settings['projectID']+'/artwork/'+Date.now(),
+        multiple: false
+    },
+    function(error, result) {
+        console.log(error, result)
+        $("#"+id).attr('src',result[0].thumbnail_url);
+        if($('#'+id).hasClass( "hide" )) {
+            $('#'+id).removeClass('hide');
+        }
+        $("#"+save_id).attr('value',result[0].url);
+    });
+
+    //readImgUrl(this,e,id); // do not remove this comment.
 });
 //upload artwork section end
 
@@ -1854,22 +1952,22 @@ $(document).on('change', '.js-upload-art-image', function(e) {
 function changeShippingDetails(currentAddressCounter)
 {
 	let currentAddressShippingCarrier = $('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingcarrier .imprint-lbl-method').html();
-	
+
 	if(currentAddressShippingCarrier != undefined && currentAddressShippingCarrier != '')
 	{
 		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_select_shipping_carrier_method li').filter('[data-value="'+(currentAddressShippingCarrier.toLowerCase())+'"]').trigger('click');
-		
+
 		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingmethod').html('Select Method <span class="caret"></span>');
 		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_rq_ship_shippingmethod').trigger('click');
 		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_handdate').val('');
 	}
-	
+
 }
 function attachShippingDetailChangeEvent()
 {
 	$(document).off("change", activetab + ' .js_request_quote_shipping_qty_box').on("change", activetab + ' .js_request_quote_shipping_qty_box', function(){
 		let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
-		changeShippingDetails(currentAddressCounter)	
+		changeShippingDetails(currentAddressCounter)
 	});
 }
 $(document).on("change", activetab + ' .js_color_checkbox',function(){
@@ -1918,7 +2016,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         	$(this).find(".js_shipping_qty_box_main").append(colorQtyHtml1);
         	if(selectedShippingType == 'split')
         	{
-        		$(this).find(".js_request_quote_shipping_qty_box").removeAttr('readonly');        		
+        		$(this).find(".js_request_quote_shipping_qty_box").removeAttr('readonly');
         	}
         	attachShippingDetailChangeEvent();
         });
@@ -1942,7 +2040,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
             let colorName = $(this).val();
             let color_name = $(this).attr('id');
             let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
-            
+
             qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
 
             totalQty = totalQty + parseFloat(qty);
@@ -1981,7 +2079,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         });
     }
     $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
-    
+
     //summary for shipping charges
     let shipp_charge = 0.00;
     if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
@@ -2003,7 +2101,7 @@ function setdate(shipCounter,parentObj,activetab,transitTime=0){
       let endDate = "";
       let count = 0;
       let noOfDaysToAdd = 0
-      let setDate = "";  
+      let setDate = "";
       if(transitTime > 0 && transitTime !=''){
           noOfDaysToAdd = noOfDaysToAdd + parseInt(transitTime);
       }
@@ -2193,10 +2291,10 @@ function shippingValidation(fld,section,value){
       let shippingArr = {}
       let arrKey = 1
 	  let splitShippingColorQuantity = {};
-      
-      $.each(value[fld].shipping_detail,function(key,shippingData){          
+
+      $.each(value[fld].shipping_detail,function(key,shippingData){
           let splitShippingAddressQuantity = 0;
-		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
+		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){
 			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
 			  if(splitShippingColorQuantity[colorkey] != undefined)
 			  {
@@ -2206,8 +2304,8 @@ function shippingValidation(fld,section,value){
 			  {
 				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
 			  }
-		  });	
-      })  
+		  });
+      })
 
       if(value['color'] != undefined)
       {
@@ -2224,7 +2322,7 @@ function shippingValidation(fld,section,value){
 		  });
       }
       console.log(errorLog);
-      
+
       if(isEmpty(errorLog))
       {
           $.each(value[fld].shipping_detail,function(key,shippingData){
