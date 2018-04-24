@@ -69,9 +69,8 @@ function beforegetremove(hook){
   return new Promise(async (resolve,reject)=>{
 
   let id= hook.params.query.websiteid
-
-  q.findJob({ Websiteid: id, status:'active'}).then((jobs) => {
-      console.log('-------------------JOBS:',jobs)
+     q.findJob( q.r.row("status").eq('waiting').or(q.r.row("status").eq('active')).and(q.r.row("Websiteid").eq(id))).then((jobs) => {
+      console.log(jobs)
      q.cancelJob(jobs)
    }).catch(err => console.error(err))
 
@@ -80,21 +79,16 @@ function beforegetremove(hook){
 
 }
 
-
-
 function beforegetstatus(hook){
-   console.log('inside get status')
+   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! inside get status')
    return new Promise(async(resolve,reject)=>{
       let id= hook.params.query.websiteid
 
-     await q.findJob({ Websiteid: id,status:'waiting'}).then((jobs) => {
-         // console.log('jobs:', jobs)
+     await q.findJob(q.r.row("status").eq('waiting').or(q.r.row("status").eq('active')).and(q.r.row("Websiteid").eq(id))).then((jobs) => {
          if(jobs.length>0){
-            // console.log('####')
          hook.result={"data":'active'}
          }
       }).catch(err => console.error(err))
-      // console.log('hook.result',hook.result)
       resolve(hook)
      })
 }
