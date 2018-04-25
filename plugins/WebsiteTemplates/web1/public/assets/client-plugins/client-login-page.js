@@ -29,7 +29,7 @@ $('.login-submit').on('click',function(){
 			$(".logout-show").removeClass('hide');
 			$('.username-text').text('welcome');
 
-			document.cookie = "auth_token=" + result.logintoken;
+			document.cookie = "user_auth_token=" + result.logintoken;
 
 			var user_details = function () {
 				var tmp = null;

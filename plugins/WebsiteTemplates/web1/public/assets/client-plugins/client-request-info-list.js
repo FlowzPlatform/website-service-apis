@@ -13,6 +13,32 @@ $(document).ready(function(){
 
 });
 
+$(document).on("click", '.js-btn-comment-list', function(e){
+    let RequestId = $(".js_add_html").find("#js-request_info_id").val()
+    let message = $(".js_add_html").find("#js-comment_requestinfo").val()
+    let Module = $(".js_add_html").find("#js-module_name").val()
+    showPageAjaxLoading();
+    var data = {'RequestId':RequestId,'Module':Module,'message':message}
+    axios({
+        method: 'POST',
+        url : project_settings.comment_request_url,
+        'headers': {"Authorization": userToken},
+        data : data,
+        cache: false,
+        dataType : 'json'
+    }).then(async response_data => {
+        let msgCount = await getAddedComments(RequestId)
+        timeAgo()
+        $("#row-"+RequestId).find(".js-total_comments").html(msgCount);
+        hidePageAjaxLoading()
+    }).catch(function (error) {
+        console.log("error",error);
+        hidePageAjaxLoading()        
+    });
+});
+
+
+
 $(".tabbable ul li").on("click",function(){
     // request info listing
     showPageAjaxLoading();
@@ -36,6 +62,9 @@ $(".tabbable ul li").on("click",function(){
                     let inquiryHtml1 = inquiryHtml.replace(/#data.index#/g,key+1)
                     inquiryHtml1 = inquiryHtml1.replace(/#data.itemName#/g, dataVal.productInfo[0].product_name);
                     inquiryHtml1 = inquiryHtml1.replace(/#data.date#/g, formatDate(dataVal.createAt,project_settings.format_date));
+                    let msgCount = await getAddedComments(dataVal.id)
+
+                    inquiryHtml1 = inquiryHtml1.replace("#data.totalComments#", msgCount);
                     inquiryHtml1 = inquiryHtml1.replace(/#data.id#/g, dataVal.id);
                     if( admin_role_flag == 1 ){
                         if(dataVal.userId != null ){
@@ -91,6 +120,11 @@ $(".tabbable ul li").on("click",function(){
                     let inquiryHtml1 = inquiryHtml.replace(/#data.index#/g,key+1)
                     inquiryHtml1 = inquiryHtml1.replace(/#data.itemName#/g, dataVal.product_description.product_name);
                     inquiryHtml1 = inquiryHtml1.replace(/#data.date#/g, formatDate(dataVal.created_at,project_settings.format_date));
+
+                    let msgCount = await getAddedComments(dataVal.id)
+
+                    inquiryHtml1 = inquiryHtml1.replace("#data.totalComments#", msgCount);
+                    
                     inquiryHtml1 = inquiryHtml1.replace(/#data.id#/g, dataVal.id);
                     if( admin_role_flag == 1 ){
                         let userInfo = await getUserDetailById(dataVal.user_id)
@@ -135,8 +169,8 @@ function detailRequestQuote(thisObj){
     let infoId = thisObj.data("id")
     $('#modal-table').addClass('model-popup-black');
     $('#modal-table').addClass('request-info-popup-modal');
-    $("#modal-table").find(".modal-title").html('<i class="fa fa-question-circle"></i>View Request Quote')
-    $("#modal-table").find(".modal-body").addClass("modal-lg")
+    $("#modal-table").find(".modal-title").html('<i class="fa fa-question-circle"></i>View & Comment Request Quote')
+    $("#modal-table").find(".modal-dialog").addClass("modal-lg")
 
     axios({
         method: 'GET',
@@ -179,6 +213,10 @@ function detailRequestQuote(thisObj){
         }
 
         requestQuoteHtml = requestQuoteHtml.replace(/#data.createAt#/g,formatDate(requestQuoteData.created_at,project_settings.format_date))
+
+        requestQuoteHtml = requestQuoteHtml.replace(/#data.infoId#/g,requestQuoteData.id)
+        requestQuoteHtml = requestQuoteHtml.replace("#data.module#","request-quote")
+
         requestQuoteHtml = requestQuoteHtml.replace(/#data.id#/g,requestQuoteData.id)
         requestQuoteHtml = requestQuoteHtml.replace("#data.productImage#",project_settings.product_api_image_url+productData.default_image)
         requestQuoteHtml = requestQuoteHtml.replace("#data.productName#",productData.product_name)
@@ -306,6 +344,8 @@ function detailRequestQuote(thisObj){
         }
 
         $("#modal-table").find('.js-imprint-information').html(imprintSectionHtml)
+        await getAddedComments(infoId)
+        timeAgo()
         hidePageAjaxLoading();
         $('#modal-table').modal('show');
 
@@ -331,8 +371,9 @@ function detailRequestInfo(thisObj){
   let infoId = thisObj.data("id")
   $('#modal-table').addClass('model-popup-black');
   $('#modal-table').addClass('request-info-popup-modal');
-  $("#modal-table").find(".modal-title").html('<i class="fa fa-question-circle"></i>View Request Info')
-  $("#modal-table").find(".modal-body").addClass("modal-lg")
+  $("#modal-table").find(".modal-title").html('<i class="fa fa-question-circle"></i>View & Comment Request Info')
+  $("#modal-table").find(".modal-dialog").addClass("modal-lg")
+
   axios({
       method: 'GET',
       url : project_settings.request_info_api_url+"/"+infoId,
@@ -390,6 +431,7 @@ function detailRequestInfo(thisObj){
       let requestInfoHtml = $(".js_request_info_modal").html();
       requestInfoHtml = requestInfoHtml.replace(/#data.createAt#/g,formatDate(requestInfoData.createAt,project_settings.format_date))
       requestInfoHtml = requestInfoHtml.replace(/#data.infoId#/g,requestInfoData.id)
+      requestInfoHtml = requestInfoHtml.replace(/#data.module#/g,"request-info")
       requestInfoHtml = requestInfoHtml.replace("#data.productImage#",project_settings.product_api_image_url+productInfo.default_image)
       requestInfoHtml = requestInfoHtml.replace("#data.productName#",productInfo.product_name)
       requestInfoHtml = requestInfoHtml.replace("#data.productDescription#",productInfo.description)
@@ -405,7 +447,10 @@ function detailRequestInfo(thisObj){
       requestInfoHtml = requestInfoHtml.replace("#data.userContactInfo#",userContactInfoHtml)
 
       $(".js_add_html").html(requestInfoHtml)
+      await getAddedComments(infoId)
+      timeAgo()
       hidePageAjaxLoading();
+
       $('#modal-table').modal('show');
 
       // QUANTITY PRICE TABLE START
@@ -424,4 +469,48 @@ function detailRequestInfo(thisObj){
     hidePageAjaxLoading();
       console.log("error",error.response);
   })
+}
+
+async function getAddedComments(requestId)
+{
+    var msgCount = 0;
+    await axios({
+        method: 'GET',
+        url : project_settings.comment_request_url+"?RequestId="+requestId,
+        'headers': {"Authorization": userToken},
+    }).then(response_data => {
+        let getCommentHtml = $(".js_add_html").find(".js-request-comment-box li:first");
+        getCommentHtml.addClass('hide')
+        // $('.js-hide-div').removeClass("js-hide-div");
+        $(".js_add_html").find(".js-request-comment-box li").slice(1).remove()  
+        if(response_data.data.total>0)
+        {
+            if($(".js_add_html").html() != "")
+            {
+                let replaceCommentHtml = '';
+                for(let [key,comment_data] of response_data.data.data[0].message.entries()) {
+                    let commentHtml = getCommentHtml.html();
+                    commentHtml = commentHtml.replace("#data.createdBy#",comment_data.created_by);          
+                    // commentHtml = commentHtml.replace("#data.createdAt#",formatDate(comment_data.created_at,project_settings.format_date));
+                    
+                    commentHtml = commentHtml.replace("#data.createdAt#",'<time class="timeago" datetime="'+comment_data.created_at+'">'+comment_data.created_at+'</time>');
+
+                    commentHtml = commentHtml.replace("#data.message#",comment_data.message);
+                    replaceCommentHtml += "<li>"+commentHtml+"</li>";        
+                }
+                $(".js_add_html").find(".js-request-comment-box li:first").after(replaceCommentHtml)
+                $(".js_add_html").find("#js-comment_requestinfo").val('')
+                msgCount = response_data.data.data[0].message.length;
+                return msgCount
+            }
+            else{
+                msgCount = response_data.data.data[0].message.length;
+                return msgCount
+            }
+        }
+    })
+    .catch(function (error){
+
+    })
+    return msgCount
 }
