@@ -40,6 +40,15 @@ module.exports = {
     remove: []
   }
 };
+// function beforepatch(hook){
+//   console.log('+++++++++++++++++++++++++++beforeupdate')
+//    return new Promise(async (resolve,reject)=>{
+//       let status=hook.data.Status
+//        hook.result={data:status}   
+//       resolve(hook);
+//    })
+// }
+
 
 function beforeentry(hook){
   console.log('inside before create')
