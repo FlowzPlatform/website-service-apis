@@ -2,7 +2,7 @@
   "project_settings":
       {
         "product_api_url": "https://api.flowzqa.tk/pdmnew/pdm/US",
-        "product_api_image_url": "http://image.promoworld.ca/migration-api-hidden-new/web/images/",
+        "product_api_image_url": "http://e27d0994cc8268060291-6a6c757df8c9659eab2374a7e3405eda.r66.cf5.rackcdn.com/product_img/",
         "search_api_url": "https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdm1/_search",
         "search_api_auth_token": "Basic NTk5MTQwNTU2YzcxZDEwMDFjMDIwNzI5OjEyMzQ1Ng==",
         "login_api": "https://api.flowzqa.tk/auth/api/login",
@@ -21,7 +21,7 @@
         "charges": ["setup_charge","pms_charge"],
         "price_decimal": 2,
         "email_subscribe_api_url": "https://api.flowzqa.tk/serverapi/emailSubscribers",
-        "projcet_configuration_api_url": "https://api.flowzqa.tk/serverapi/project-configuration",
+        "project_configuration_api_url": "https://api.flowzqa.tk/serverapi/project-configuration",
         "myorders_api_url": "https://api.flowzqa.tk/serverapi/myOrders",
         "country_data": [{"id": 233,"name": "USA","short_name": "US"},{"id": 105,"name": "India","short_name": "IN"}],
         "city_country_state_api":"http://api.flowzqa.tk/serverapi/city-state-country-list",
@@ -33,6 +33,7 @@
         "request_quote_api_url": "https://api.flowzqa.tk/serverapi/request-quote",
         "crm_payment_url":"https://api.flowzqa.tk/crm/payment",
         "crm_invoice_url":"https://api.flowzqa.tk/crm/invoice",
-        "format_date": "m/d/Y"
+        "format_date": "m/d/Y",
+        "supplier_id" : 5
       }
 }

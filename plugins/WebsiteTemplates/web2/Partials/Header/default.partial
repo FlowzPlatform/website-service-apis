@@ -7,6 +7,56 @@ body {
     margin: 0;
 }
 
+#i6g3e3 {
+    display: none;
+}
+
+#ixt1tz {
+    display: none;
+}
+
+#i0kpgp {
+    display: none;
+}
+
+#ig34aa {
+    text-align: -webkit-center;
+}
+
+#navigationDiv {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#icqrfu {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#i7k231 {
+    margin: 0px;
+}
+
+#i6pxnz {
+    color: white;
+}
+
+#id86jo {
+    color: white;
+}
+
+#izqeod {
+    color: white;
+}
+
+#ikcv7z {
+    color: white;
+}
+
+#if8ie2 {
+    color: white;
+}
+
 .row {
     display: table;
     padding-top: 10px;
@@ -19,24 +69,7 @@ body {
 :root {
     margin-top: 0px;
 }
-.nav > li > a:focus, .nav > li > a:hover, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
-    background-color: rgb(198, 57, 40) !important;
-    color: rgb(255, 255, 255) !important;
-}
 
-.nav .open .dropdown-menu {
-    background-color: rgb(0, 0, 0);
-    height: inherit !important;
-}
-
-.nav .open .dropdown-menu li, .nav .open .dropdown-menu li a {
-    width: 100%;
-}
-
-.nav .open .dropdown-menu li a:hover {
-    width: 100%;
-    background-color: rgb(198, 57, 40);
-}
 :root {
     margin-top: 0px;
 }
@@ -76,6 +109,25 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
+}
+
+.nav > li > a:focus, .nav > li > a:hover, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color: rgb(198, 57, 40) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.nav .open .dropdown-menu {
+    background-color: rgb(0, 0, 0);
+    height: inherit !important;
+}
+
+.nav .open .dropdown-menu li, .nav .open .dropdown-menu li a {
+    width: 100%;
+}
+
+.nav .open .dropdown-menu li a:hover {
+    width: 100%;
+    background-color: rgb(198, 57, 40);
 }
 
 #c383812 {
@@ -118,37 +170,105 @@ body {
     margin-left: 6px;
 }
 
-.buttonhover:hover{
-    background:white;
+.buttonhover:hover {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: white;
 }
 
-.header-loging .dropdown-menu{
+.header-loging .dropdown-menu {
     top: 100% !important;
     left: auto !important;
 }
-a{
-    font-size:13px !important;
+
+a {
+    font-size: 13px !important;
 }
-.navbar-nav>li>a {
+
+.navbar-nav > li > a {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
 }
+
 .header-search-col i.fa.fa-search.fa-fw {
-    color: #fff;
+    color: rgb(255, 255, 255);
     padding-left: 5px;
     display: inline-block;
-    background-color: #ee4a4e;
+    background-color: rgb(238, 74, 78);
     width: auto;
 }
- .header-search-col i.fa.fa-search.fa-fw input {
-    border: 0;
-    color: #FFF;
-    background-color: #ee4a4e;
+
+.header-search-col i.fa.fa-search.fa-fw input {
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: initial;
+    border-right-style: initial;
+    border-bottom-style: initial;
+    border-left-style: initial;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    color: rgb(255, 255, 255);
+    background-color: rgb(238, 74, 78);
+    min-width: 105px;
 }
-.header-search-col i.fa.fa-search.fa-fw:hover input,
-.header-search-col i.fa.fa-search.fa-fw:hover {
-    color: #fff;
-    background-color: #00476c;
+
+.header-search-col i.fa.fa-search.fa-fw:hover input, .header-search-col i.fa.fa-search.fa-fw:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 71, 108);
+}
+
+.c37252 {
+    margin-bottom: 0px;
+    min-height: 40px;
+    height: 40px;
+}
+#contacts {
+    float: right;
+    }
+    #header #contacts li.tel {
+    font-size: 16px;
+}
+ #contacts li {
+    color: #000;
+    float: left;
+    font-weight: bold;
+    margin: 0 15px 0 0;
+    line-height: 19px;
+}
+ #contacts li.tel span {
+    color: #ed2525;
+}
+ #contacts li.tel span {
+    font-size: 18px;
+}
+#il8nd1 {
+    height: 32px !important;
+}
+
+.header-search-col .col-lg-4, .header-search-col .col-lg-2 {
+    padding: 0px;
+}
+.advance-search-btn{margin-top: 26px !important;}
+.header-search-col {width: auto; !important}
+div.header-search-col input[type=button] {
+    background: #ee4a4e;
+    color: white;
 }
 </style>
 
@@ -184,21 +304,172 @@ defer="defer"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
     rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />    
+    />
     <div id="js-fix-header-controller">
         <div class="ob-header">
             <div class="main-logo-part">
                 <div class="ob-logo-block">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="./assets/images/logo.png"/></a>
+                            <ul id="contacts">
+                        <li class="tel">Call us now on <span>
+                            1300 922 184</span></li>
+                    </ul>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="http://res.cloudinary.com/flowz/image/upload/v1524048713/websites/sitelogo.jpg"/></a>
                             </div>
-                            <div class="header-search-col" id="c383812">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="c383816">
+                            <div id="c383812" class="header-search-col">
+                                <div id="c383816" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <input placeholder="Search Products Here" type="text" name="search" />
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="c383826"><i class="fa fa-search fa-fw"><input class=" btn-default btn-search buttonhover" type="button" title="Click to search" value="Search"/></i>
+                                <div id="c383826" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <input type="button" title="Click to search" value="Search" class="btn-default btn-search buttonhover"/>
+
                                 </div>
+                                <div class="top-search-block">
+                                    <form id="top_advance_search_form" name="product_advance_search" method="get"
+                                    action="/en_us/search">
+                                        <div class="dropdown top-advance-search advance-search-btn js-advance-search-btn-container"><a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false"
+                                            class="dropdown-toggle js-advace-search-but ob-qa-advace-search-btn-1"><span class="js-advace-search-btn-1">Advanced Search</span></a>
+                                            <div
+                                            class="dropdown-menu header-advace-search">
+                                                <div class="js-dropdown-header-advance-search-model">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 advance-search-col">
+                                                            <button data-toggle="dropdown" class="advace-close-but js-search-close-btn"><i class="fa fa-times"></i>
+                                                            </button>
+                                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                                <div class="input-colum">
+                                                                    <label>Keyword</label>
+                                                                    <div class="input-field form-group">
+                                                                        <input type="text" name="search_query" value="" class="js-advance-search-submit"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                                <div class="dropdown-colum">
+                                                                    <label>Select Category</label>
+                                                                    <select name="category_filter[]" multiple="multiple"
+                                                                    class="multi_category ob-qa-multi-select-container dropdown-menu" id="i6g3e3">
+                                                                        <option value="14215">12"X18" TRIANGULAR 8 MIL CHECKERED PENNANT STRINGS</option>
+                                                                        <option value="14213">12''X18" TRIANGULAR 4 MIL CHECKERED PENNANT STRINGS</option>
+                                                                        <option value="14034">ZIMBABWE</option>
+                                                                    </select>
+                                                                    <div class="btn-group mar_bot">
+                                                                        <button type="button" title="NONE SELECTED" class="multiselect select_box btn btn-default">NONE SELECTED</button>
+                                                                        <button aria-expanded="false" data-toggle="dropdown"
+                                                                        type="button" class="dropdown-toggle select_box_caret2 btn btn-default"><span class="caret"></span>
+                                                                        </button>
+                                                                        <ul class="multiselect-container dropdown-menu">
+                                                                            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14215"/> 12"X18" TRIANGULAR 8 MIL CHECKERED PENNANT STRINGS</label></a>
+                                                                            </li>
+                                                                            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14213"/> 12''X18" TRIANGULAR 4 MIL CHECKERED PENNANT STRINGS</label></a>
+                                                                            </li>
+                                                                            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="14574"/> 2 STRIPE SOLID COLOR FLAGS</label></a>
+                                                                            </li>
+                                                                            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="13776"/> 20' SECTIONAL FIBERGLASS FLAGPOLE</label></a>
+                                                                            </li>
+
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                                <div class="input-colum">
+                                                                    <label>ITEM CODE</label>
+                                                                    <div class="input-field form-group ob-qa-input-field form-group-sku">
+                                                                        <input type="text" name="sku" value="" class="js-advance-search-submit"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                                <div class="input-colum two-colum pull-left">
+                                                                    <label>Min. Price</label>
+                                                                    <div class="input-field form-group ob-qa-input-field form-group-mp">
+                                                                        <input type="text" name="min_price" value="" class="js-advance-search-submit"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="space-col">-</div>
+                                                                <div class="input-colum two-colum pull-right">
+                                                                    <label>Max. Price</label>
+                                                                    <div class="input-field form-group ob-qa-input-field form-group-mxp">
+                                                                        <input type="text" name="max_price" value="" class="js-advance-search-submit"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                                <div class="input-colum">
+                                                                    <label>Quantity</label>
+                                                                    <div class="input-field form-group ob-qa-input-field form-group-Qty">
+                                                                        <input type="text" name="quantity" value="" class="js-advance-search-submit"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                                <div class="dropdown-colum">
+                                                                    <label>Price valid Date</label>
+                                                                    <select name="price_valid_until[]" multiple="multiple"
+                                                                    class="multi_category ob-qa-multi-select select-box btn btn-default-pv"
+                                                                    id="ixt1tz">>
+                                                                        <option value="11-30-1999">11-30-1999</option>
+                                                                    </select>
+                                                                    <div class="btn-group mar_bot">
+                                                                        <button type="button" title="NONE SELECTED" class="multiselect select_box btn btn-default">NONE SELECTED</button>
+                                                                        <button aria-expanded="false" data-toggle="dropdown"
+                                                                        type="button" class="dropdown-toggle select_box_caret2 btn btn-default"><span class="caret"></span>
+                                                                        </button>
+                                                                        <ul class="multiselect-container dropdown-menu">
+                                                                            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="11-30-1999"/> 11-30-1999</label></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                                <div class="dropdown-colum">
+                                                                    <label>MATERIAL</label>
+                                                                    <select name="material_filter[]" multiple="multiple" class="multi_category ob-qa-multi-select select-box btn btn-default-cy"
+                                                                    id="i0kpgp">
+                                                                        <option value="Nylon">NYLON</option>
+                                                                        <option value="Polyester">POLYESTER</option>
+                                                                    </select>
+                                                                    <div class="btn-group mar_bot">
+                                                                        <button type="button" title="NONE SELECTED" class="multiselect select_box btn btn-default">NONE SELECTED</button>
+                                                                        <button aria-expanded="false" data-toggle="dropdown"
+                                                                        type="button" class="dropdown-toggle select_box_caret2 btn btn-default"><span class="caret"></span>
+                                                                        </button>
+                                                                        <ul class="multiselect-container dropdown-menu">
+                                                                            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="Nylon"/> NYLON</label></a>
+                                                                            </li>
+                                                                            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="Polyester"/> POLYESTER</label></a>
+                                                                            </li>
+                                                                            <li><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" value="Knit Polyester"/> KNIT POLYESTER</label></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <div class="button-colum">
+                                                                    <div class="form-group">
+                                                                        <input type="hidden" name="save_search_name" id="save_search_name" value=""
+                                                                        />
+                                                                        <input type="submit" name="advance_search_product_mapping" value="SEARCH"
+                                                                        class="save-button-link search-button pull-right ob-qa-search-button pull-right-srch"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -207,38 +478,34 @@ defer="defer"></script>
         </div>
     </div>
 </div>
-<nav id="c383840" class="navbar navbar-expand-sm bg-dark navbar-dark customMenu" menuid="default" style="margin-bottom:0px; min-height:40px; height:40px;">
-    <div style="text-align:-webkit-center;">
-        <span class="collkapse navbar-collapse" id="navigationDiv" style="vertical-align: middle;display: inline-block;">
-            <ul class="navbar-nav">
-                <li class="nav-item"> <a class="nav-link" href="index.html">Link</a>
+</div>
+<nav id="c383840" menuid="default" menuId="default" class="navbar navbar-expand-sm bg-dark navbar-dark customMenu c37252">
+    <div id="ig34aa"><span id="navigationDiv" class="collkapse navbar-collapse"><ul class="navbar-nav"><li class="nav-item"> <a href="index.html" class="nav-link">Link</a></li></ul></span>
+        <span
+        id="icqrfu">
+            <ul class="header-loging" id="i7k231">
+                <li class="dropdown1 cart-popup header-login-text"><a href="cartPage.html" class="dropdown-toggle" id="i6pxnz"> <span class="fa fa-shopping-cart"></span> <span class="login-text">(<span id="cartCount">0</span>)</span> </a>
                 </li>
+                <li class="dropdown1 cart-popup header-login-text"><a href="wishList.html" class="dropdown-toggle" id="id86jo"> <span class="fa fa-heart"></span> <span class="login-text">(<span id="wishlistCount">0</span>)</span> </a>
+                </li>
+                <li class="dropdown1 cart-popup header-login-text"><a href="compare.html" class="dropdown-toggle" id="izqeod"> <span class="fa fa-random fa-fw"></span> <span class="login-text">(<span id="comparedCount">0</span>)</span> </a>
+                </li>
+                <li class="dropdown1 login-col header-login-text login-show hide"><a href="login.html" id="ikcv7z"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
+                </li>
+                <li class="dropdown1 login-col header-login-text logout-show hide"><a href="javascript:;" data-toggle="dropdown1" class="dropdown-toggle"
+                    id="if8ie2"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
+                    <ul
+                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
+                        <li><a href="myaccount.html">MY ACCOUNT</a>
+                        </li>
+                        <li><a href="changePassword.html">CHANGE PASSWORD</a>
+                        </li>
+                        <li><a href="javascript:;" class="login-text-check">LOGOUT</a>
+                        </li>
             </ul>
-            
-        </span>        
-        <span style="vertical-align: middle;display: inline-block;">
-                <ul class="header-loging" style="margin:0px">
-                    <li class="dropdown1 cart-popup header-login-text"><a class="dropdown-toggle" href="cartPage.html" style="color:white"> <span class="fa fa-shopping-cart"></span> <span class="login-text">(<span id="cartCount">0</span>)</span> </a>
-                    </li>
-                    <li class="dropdown1 cart-popup header-login-text"><a class="dropdown-toggle" href="wishList.html" style="color:white"> <span class="fa fa-heart"></span> <span class="login-text">(<span id="wishlistCount">0</span>)</span> </a>
-                    </li>
-                    <li class="dropdown1 cart-popup header-login-text"><a class="dropdown-toggle" href="compare.html" style="color:white"> <span class="fa fa-random fa-fw"></span> <span class="login-text">(<span id="comparedCount">0</span>)</span> </a>
-                    </li>
-                    <li class="dropdown1 login-col header-login-text login-show hide"><a class="" href="login.html" style="color:white"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
-                    </li>
-                    <li class="dropdown1 login-col header-login-text logout-show hide"><a class="dropdown-toggle" style="color:white" href="javascript:;" data-toggle="dropdown1"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
-                                    <ul
-                                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
-                                        <li><a href="myaccount.html">MY ACCOUNT</a>
-                                        </li>
-                                        <li><a href="changePassword.html">CHANGE PASSWORD</a>
-                                        </li>
-                                        <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
-                                        </li>
-                            </ul>
-                            </li>
-                </ul>
+            </li>
+            </ul>
             </span>
-        <div class="clearfix"></div>
+            <div class="clearfix"></div>
     </div>
 </nav>

@@ -217,6 +217,7 @@ function showCart()
                       shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'');
                       shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",'');
                       shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#","N/A");
+                      shippingHtml1 = shippingHtml1.replace("#data.shipping_count#",shippingKeyCount);
                     }
                     else {
                       if(shipping_details.shipping_carrier != '') {
@@ -411,7 +412,7 @@ $(document).on('click', '.js-btn-delete-cart-list', function(e) {
   var id = $(this).data('cart-id');
   $(this).closest('.js_deleted_product').addClass('js-cart-'+id);
 
-  bootbox.confirm("Are you sure want to delete?", function(confirmation)
+  bootbox.confirm("<h3 class='text-center'>Are you sure want to delete?</h3>", function(confirmation)
   {
     if(confirmation)
     {

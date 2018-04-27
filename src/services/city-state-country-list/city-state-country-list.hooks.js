@@ -1,7 +1,7 @@
 const config = require("config");
 var mongoose = require("mongoose");
 mongoose.connect(config.get('mongoDBConnection'));
-
+let _ = require('lodash');
 var db = mongoose.connection;
 
 // db.on("error", console.error.bind(console, "Connection error:"));
@@ -79,10 +79,10 @@ async function fetchDataById1(hook,table)
         var id = hook.params.query.id
       }
       else{
-        var id = parseInt(hook.params.query.id)      
+        var id = parseInt(hook.params.query.id)
       }
       // console.log("id",id);
-      
+
       db.collection(table).find( { id: id} ).toArray(function(err, items) {
         resolve(items[0])
       });
@@ -101,7 +101,7 @@ async function fetchDatafromCountry1(hook,table)
 async function fetchDatafromState1(hook,table)
 {
   return new Promise ((resolve , reject) =>{
-    
+
            /* fetch data of city by state id and country id */
            if(hook.params.query.data_from == 'country_code'){
                let stateId = '';
@@ -116,7 +116,7 @@ async function fetchDatafromState1(hook,table)
                     resolve(items)
                   })
                 })
-               }              
+               }
            }
        })
 }
@@ -124,7 +124,7 @@ async function fetchDatafromState1(hook,table)
 async function fetchDatafromCity1(hook,table)
 {
   return new Promise ((resolve , reject) =>{
-    
+
     if(hook.params.query.data_from == 'state_code'){
       let stateId = '';
       if(hook.params.query.state_id != ''){
@@ -135,7 +135,10 @@ async function fetchDatafromCity1(hook,table)
 
         db.collection("state").find( { id: { $in: [stateId] } } ).toArray(function(err, items) {
           db.collection("city").find( { admin_code1: { $in: [items[0].state_code] } } ).sort({"city_name":1}).toArray(function(err, items) {
-            resolve(items)
+            var result = _.map(_.uniqBy(items, 'city_name'), function (item) {
+                return item;
+            });
+            resolve(result)
           })
 
         })
@@ -143,7 +146,7 @@ async function fetchDatafromCity1(hook,table)
       else{
         resolve(stateId)
       }
-    } 
+    }
   })
 }
 

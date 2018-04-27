@@ -91,6 +91,114 @@ body {
                 </div>
             </div>
             <div class="js-color-div-append hide"></div>
+            <div class="more-option">
+                    <div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li><a href="#upload-tab-1" aria-controls="Upload-Artwork" role="tab" data-toggle="tab">Upload Artwork</a></li>
+                            <li><a href="#upload-tab-2" aria-controls="Typeset" role="tab" data-toggle="tab">Typeset</a></li>
+                            <li class="active"><a href="#upload-tab-3" aria-controls="Upload Artwork & Typeset" role="tab" data-toggle="tab">Upload Artwork & Typeset</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane" id="upload-tab-1">
+                                <div class="radiobox">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <span class="upload-logo pull-left"><input type="radio" value="" id="upload-logo" /><label for="upload-logo">Upload Logo</label></span>
+                                            <div class="input-group col-lg-3 col-md-4 col-sm-3 col-xs-6 pull-left">
+                                                <a href="" class="upload-button" data-toggle="modal" data-target="#select-logo-block"><i class="fa fa-upload"></i>Attach File</a>
+                                            </div>
+                                            <div class="contry-logo col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                <img src="http://res.cloudinary.com/flowz/image/upload/v1524050167/canada-log_eevxea.png" alt="Text" />
+                                                <span class="upload-logo">Canadalogo.jpg</span>
+                                            </div>
+                                            <div class="info-icons pull-right">
+                                                <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Add"><i class="fa fa-plus"></i></a>
+                                                <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <span class="upload-logo pull-left"><input type="radio" value="" id="send-via-email" /><label for="send-via-email">Send Artwork via Email</label></span>
+                                            <div class="note-col pull-left"><em class="pink">Note:</em> <i>Email yore artwork on <a href="mailto:demo@flowz.com">demo@flowz.com</a></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="upload-tab-2">
+                                <div class="radiobox">
+                                    <div class="other-option">
+                                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+                                            <label>Text 1</label>
+                                            <input type="text" name="text"  tabindex="1" class="input pull-left" placeholder="Hello canadian">
+                                        </div>
+                                        <div class="info-icons pull-right">
+                                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Add"><i class="fa fa-plus"></i></a>
+                                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="other-option">
+                                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+                                            <label>Instructions</label>
+                                            <textarea placeholder="Please fill your comments for typeset ..."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="note-col pull-left"><em class="pink">Note:</em> <i>Email yore artwork on <a href="mailto:demo@flowz.com">demo@flowz.com</a></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane active" id="upload-tab-3">
+                                <div class="radiobox">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <span class="upload-logo pull-left"><input type="radio" value="" id="upload-logo2" /><label for="upload-logo2">Upload Logo</label></span>
+                                            <div class="input-group col-lg-3 col-md-4 col-sm-3 col-xs-6 pull-left">
+                                                <a href="" class="upload-button" data-toggle="modal" data-target="#select-logo-block"><i class="fa fa-upload"></i>Attach File</a>
+                                            </div>
+                                            <div class="contry-logo col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                <img src="http://res.cloudinary.com/flowz/image/upload/v1524050167/canada-log_eevxea.png" alt="Text" />
+                                                <span class="upload-logo">Canadalogo.jpg</span>
+                                            </div>
+                                            <div class="info-icons pull-right">
+                                                <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Add"><i class="fa fa-plus"></i></a>
+                                                <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="other-option">
+                                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+                                            <label>Text 1</label>
+                                            <input type="text" name="text"  tabindex="1" class="input pull-left" placeholder="Hello canadian">
+                                        </div>
+                                        <div class="info-icons pull-right">
+                                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Add"><i class="fa fa-plus"></i></a>
+                                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="other-option">
+                                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+                                            <label>Instructions</label>
+                                            <textarea placeholder="Please fill your comments for typeset ..."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="note-col pull-left"><em class="pink">Note:</em> <i>Email yore artwork on <a href="mailto:demo@flowz.com">demo@flowz.com</a></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

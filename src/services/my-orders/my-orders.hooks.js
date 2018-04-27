@@ -79,6 +79,20 @@ findAllOrders = async hook => {
   // }
 }
 
-function beforeSubmitOrder(hook){
-    hook.data.created_at = new Date();
+async function beforeSubmitOrder(hook){
+  return  new Promise ((resolve , reject) =>{
+      // console.log("hook",hook);
+        r.table("my_orders").filter({'website_id':hook.data.website_id}).count()
+          .run(connection , async function(error , cursor){
+              if (error) throw error;
+              let count = cursor + 1;
+              // console.log("count",count);
+              let currentDate = new Date();
+              let website = hook.data.websiteName
+              hook.data.order_id = website.substr(0, 3)+'-'+currentDate.getFullYear()+'-'+count
+              hook.data.created_at = currentDate;
+              // console.log("hook",hook);
+              resolve(hook)
+          })
+  })
 }

@@ -18,3 +18,5 @@
 #address_book .address-checkbox label.font-style-normal{ padding-left: 5px;min-width: 85px;color: #333; }
 .no-padding {padding: 0px;}
 .radio.js-isoffice {padding-left: 7px;}
+.js_summary_imprint_location {padding: 15px 0;}
+.innerpage.row{min-height: 663px !important;display: inline-block;}

@@ -139,5 +139,6 @@
                 </div>
             </div>
         </div>
+        <reusecomponent class="c75667">{{> myInquiryList id='commentRequest.partial' }}</reusecomponent>
     </div>
 </div>

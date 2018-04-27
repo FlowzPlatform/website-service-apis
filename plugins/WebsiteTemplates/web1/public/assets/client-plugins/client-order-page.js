@@ -211,8 +211,31 @@ function showOrders()
               // $(".js-shipping-"+response_data[key].id).find(".js-product_total_shipping_charge").html(product_shipping_charges);
 
               //END - change
+              // console.log("shipping_info",shipping_info.shipping_address);
+              //let replaceAddressHtml = await addressBookHtml(shipping_info.selected_address_id)
+              let replaceAddressHtml = '';
+              replaceAddressHtml += shipping_info.shipping_address.name+"<br>";
+              if(shipping_info.shipping_address.street2 != undefined && shipping_info.shipping_address.street2 !=''){
+                replaceAddressHtml += shipping_info.shipping_address.street1;
+                replaceAddressHtml += ","+shipping_info.shipping_address.street2+",<br>";
+              }
+              else{
+                replaceAddressHtml += shipping_info.shipping_address.street1+",<br>";
+              }
+              replaceAddressHtml += shipping_info.shipping_address.city+",";
+              replaceAddressHtml += shipping_info.shipping_address.state,2+"<br>";
+              replaceAddressHtml += shipping_info.shipping_address.country;
+              if(shipping_info.shipping_address.postalcode != undefined ){
+                replaceAddressHtml += " - "+shipping_info.shipping_address.postalcode+"<br>";
+              }
+              replaceAddressHtml += "Email: "+shipping_info.shipping_address.email+"<br>";
+              if(shipping_info.shipping_address.phone != undefined ){
+                replaceAddressHtml += "T: "+shipping_info.shipping_address.phone;
+              }
+              if(shipping_info.shipping_address.mobile != undefined && shipping_info.shipping_address.mobile !=''){
+                replaceAddressHtml += ",<br>M: "+shipping_info.shipping_address.mobile+"<br>";
+              }
 
-              let replaceAddressHtml = await addressBookHtml(shipping_info.selected_address_id)
               shippingHtml1 = shippingHtml1.replace("#data.address_book#",replaceAddressHtml)
               //  console.log("replaceAddressHtml replaceAddressHtmlreplaceAddressHtml " , replaceAddressHtml)
               // let replaceAddressHtml = addressBookHtml(shipping_info.selected_address_id).then(function(html){
@@ -308,6 +331,12 @@ function showOrders()
 
         let orderInfoReplace = orderInfo;
         orderInfoReplace = orderInfoReplace.replace(/#data.order_id#/g,response_data1.id);
+        if(response_data1.order_id != undefined){
+            orderInfoReplace = orderInfoReplace.replace("#data.order_id1#",response_data1.order_id);
+          }
+          else {
+             orderInfoReplace = orderInfoReplace.replace("#data.order_id1#",'-');
+          }
         orderInfoReplace = orderInfoReplace.replace('#data.order_date#',formatDate(response_data1.created_at,project_settings.format_date));
         orderInfoReplace = orderInfoReplace.replace('#data.payment_type#',response_data1.payment_via);
         orderInfoReplace = orderInfoReplace.replace('#data.quantity#',response_data1.products.length);

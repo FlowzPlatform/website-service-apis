@@ -216,7 +216,7 @@ p.title {
     <div class="footer-bar">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12"><a href="/" class="fotlogo"><img src="http://res.cloudinary.com/flowz/image/upload/v1522924339/websites/images/pd_fot.png" class="img-responsive"/></a>
+                <div class="col-md-4 col-sm-4 col-xs-12">
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
                     <div class="signup">
@@ -320,12 +320,7 @@ p.title {
                                             </span>
                                         </p>
                                         <p class="clearfix"><span class="femail"><span class="contact-details">
-											Send us an email<br/><a href="mailto:info@promodirect.com">info@promodirect.com</a></span></span>
-                                        </p>
-                                        <p class="clearfix"><span class="fchat"><span class="contact-details">
-											Live Chat<br/><a href="javascript:void(0);" target="_blank" onmouseover="" onmouseout="" id="l2stxtcd">
-												Go to live chat now
-											</a></span></span>
+											Send us an email<br/><a href="mailto:demo@flowz.com">demo@flowz.com</a></span></span>
                                         </p>
                                     </div>
                                 </td>
@@ -373,12 +368,10 @@ p.title {
             <div class="row">
                 <div class="copyRight">
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <p>© 2018 Promo Direct . All Rights Reserved.</p>
+                        <p>© 2018 Flowz . All Rights Reserved.</p>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12 pull-right">
-                        <div class="bottom-right"><a href="javascript:void(0);" rel="nofollow">Feedback</a><span>|</span>
-                            <a
-                            href="javascript:void(0);">SiteMap</a>
+                        <div class="bottom-right">
                         </div>
                     </div>
                 </div>
@@ -388,3 +381,4 @@ p.title {
 </footer>
 <script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519210886/js/owl.carousel.js"></script>
 <script src="./assets/client-plugins/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>

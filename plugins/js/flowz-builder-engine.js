@@ -620,9 +620,9 @@ try{
         }
         if (elem.title) {
             if (elem.children != undefined) {
-                html.push('<a class="dropdown-toggle" data-toggle="dropdown" href="' + elem.customSelect + '">' + elem.title + ' </a>');
+                html.push("<a class='dropdown-toggle' data-toggle='dropdown' href='" + elem.customSelect + "''>" + elem.title + " </a>");
             } else {
-                html.push('<a href="' + elem.customSelect + '">' + elem.title + ' </a>');
+                html.push("<a href='" + elem.customSelect + "'>" + elem.title + " </a>");
             }
         }
 
@@ -950,59 +950,112 @@ try {
       });
   }
 
+  function S4() {
+      return (((1+Math.random())*0x10000)|0).toString(16).substring(1); 
+  }
 
-  async function setBanners($form) {
-    for (let [minx, item] of $form.entries()) {
+  function getUUID() {
+    let guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    return guid
+  }
+
+
+  async function setBanners($form, data) {
+    // console.log('$form:: ', $form)
+    for (let item of $form) {
+      $(item).closest(".row").css({"display": "flex"});
       let bannertype_id = $(item).attr('slidercustom')
+      let btype = $(item).attr('btype')
+      let aplay = $(item).attr('aplay')
+      let prebtn = $(item).attr('prev')
+      let nexbtn = $(item).attr('next')
+      let nav = $(item).attr('navigation')
+      let slidespeed = $(item).attr('slidespeed')
+      let pagination = $(item).attr('pagination')
+      let ditems = $(item).attr('ditems')
+
+      let bid = getUUID()
+      // console.log('\nbannertype_id', bannertype_id, '\nbtype', btype, '\nautoplay', aplay, '\nprebtn', prebtn, '\nnexbtn', nexbtn, '\nnavigation', nav, '\npagination', pagination, '\nslidespeed', slidespeed, '\nditems', ditems)
       let mSider = ''
       if (bannertype_id != undefined && bannertype_id != '') {
-        let checkBtype = await getBannerType(bannertype_id)
-        if (Object.keys(checkBtype).length != 0 && checkBtype.status) {
+        let checkBtype;
+        if (data != undefined) {
+          checkBtype = data
+        } else {
+          checkBtype = await getBannerType(bannertype_id)
+        }
+        // console.log('checkBtype::::', checkBtype)
+        if (Object.keys(checkBtype).length != 0 && checkBtype.status && checkBtype.website_id == projectID) {
           let banners = await getBanners(bannertype_id)
           console.log('banners', banners)
-
+          $(item).html('<div id="BannerSlider'+ bid +'" class="owl-carousel owl-theme"></div>')
+          let content = '';
           if (banners.length > 0) {
-            if (checkBtype.bt_category == 'brand_slider') {
-              mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
-              for (let [inx, slide] of banners.entries()) {
-                if (slide.banner_linkurl == '') {
-                  mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"></div>'
-                } else if(slide.linkurl_target == 'same') {
-                  mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"> </a> </div>'
-                } else {
-                  mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="'+ slide.linkurl_target +'"> <img src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'"> </a> </div>'
-                }
-              }
-              mSider += '</div></div>'
-            } else {
-              if (banners.length == 1) {
-                if (banners[0].banner_linkurl == '') {
-                  mSider += '<img src="' + banners[0].banner_img + '" class="img-responsive" style="width: -webkit-fill-available;height:auto;" alt="' + banners[0].banner_name + '">'
-                } else {
-                  mSider += '<a href="' + banners[0].banner_linkurl + '" target="'+ banners[0].linkurl_target +'"><img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '" style="width: -webkit-fill-available;height:auto;"></a>'
-                }
+
+            for (let [inx, slide] of banners.entries()) {
+              let img = slide.banner_img
+              let alt = slide.banner_name
+              if(slide.banner_linkurl == '') {
+                content += "<img style='display: block;width: 100%;height: auto;' src=\"" +img+ "\" alt=\"" +alt+ "\">"
               } else {
-                mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
-                for (let [inx, slide] of banners.entries()) {
-                  if(slide.banner_linkurl == '') {
-                    mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"><img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"></div>'
-                  } else if (slide.linkurl_target == 'same') {
-                    mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
-                  } else {
-                    mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="'+ slide.linkurl_target +'"> <img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
-                  }
-                }  
-                mSider += '</div></div>'
+                if (slide.linkurl_target == 'same') {
+                  content += "<a href="+ slide.banner_linkurl +"><img style='display: block;width: 100%;height: auto;' src=\"" +img+ "\" alt=\"" +alt+ "\"></a>"
+                } else {
+                  content += "<a href="+ slide.banner_linkurl +" target="+ slide.linkurl_target +"><img style='display: block;width: 100%;height: auto;' src=\"" +img+ "\" alt=\"" +alt+ "\"></a>"
+                }
               }
             }
+
+            $("#BannerSlider" + bid).html(content);
+
+            let bannerconfig = {
+              autoPlay: 5000
+            }
+            if (btype == 'brand') {
+              bannerconfig.items = 5
+              if (ditems != undefined && ditems != '') {
+                bannerconfig.items = ditems
+              }
+            } else {
+              bannerconfig.singleItem = true
+            }
+            if (aplay != undefined && aplay != '') {
+              bannerconfig.autoPlay = aplay
+            }
+            if (pagination != undefined) {
+              bannerconfig.pagination = true
+            } else {
+              bannerconfig.pagination = false
+            }
+            if (nav != undefined) {
+              bannerconfig.navigation = true
+              bannerconfig.navigationText = ['prev', 'next']
+              if (prebtn != undefined && prebtn != '') {
+                bannerconfig.navigationText[0] = prebtn 
+              }
+              if (nexbtn != undefined && nexbtn != '') {
+                bannerconfig.navigationText[1] = nexbtn 
+              }
+            } else {
+              bannerconfig.navigation = false
+            }
+            if (slidespeed != undefined && slidespeed != '') {
+              bannerconfig.slideSpeed = slidespeed
+            }
+            // console.log('bannerconfig', bannerconfig)
+            $("#BannerSlider" + bid).owlCarousel(bannerconfig);
           }
           
         }
       }
-      $(item).html(mSider)
+      // $(item).html(mSider)
     }
-    await startBanners()
+    // await startBanners()
   }
+
+  // function getBannerConfigs(type, attr) {
+
+  // } 
 
   function startBanners () {
     $(".owl-carousel1").owlCarousel({
@@ -1039,7 +1092,7 @@ try {
         // console.log('res', res)
         return res
       }).catch(err => {
-        console.log('Error', err)
+        console.log(':: Error :: ', err)
         return []
       })
       return resp
@@ -1055,7 +1108,7 @@ try {
       let resp = await $.getJSON( bannerTypeUrl ).then(res => {
         return res
       }).catch(err => {
-        console.log('Error', err)
+        console.log(':: Error :: ', err)
         return {}
       })
       return resp
@@ -1134,8 +1187,10 @@ try {
         if (data.userId == userID) {
           console.log('Updated......................Banners')
           let $sform = $('customslidercomponent[slidercustom= '+data.banner_type+']')
+          console.log($sform)
           if ($sform.length > 0) {
-            await updateBanners($sform, data, 'banners')
+            await setBanners($sform)
+            // await updateBanners($sform, data, 'banners')
           }
         }
       })
@@ -1144,7 +1199,8 @@ try {
         if (data.userId == userID) {
           let $sform = $('customslidercomponent[slidercustom= '+data.banner_type+']')
           if ($sform.length > 0) {
-            await updateBanners($sform, data)
+            await setBanners($sform)
+            // await updateBanners($sform, data)
           }
         }
       })
@@ -1153,7 +1209,8 @@ try {
         if (data.userId == userID) {
           let $sform = $('customslidercomponent[slidercustom= '+data.banner_type+']')
           if ($sform.length > 0) {
-            await updateBanners($sform, data)
+            await setBanners($sform)
+            // await updateBanners($sform, data)
           }
         }
       })
@@ -1163,7 +1220,8 @@ try {
           console.log('Updated BannerType ::::::::::::::::::::: ')
           let $sform = $('customslidercomponent[slidercustom= '+data.id+']')
           if ($sform.length > 0) {
-            await updateBanners($sform, data, 'bannertype')
+            await setBanners($sform, data)
+            // await updateBanners($sform, data, 'bannertype')
           }
         }
       })

@@ -91,7 +91,7 @@ $(document).ready( async function(){
                   // productData = data;
                   var productDetails = get_product_details;
                   // console.log("productDetails==>>",productDetails);
-                	ProductName = removeSpecialCharacters(productDetails.product_name);
+                	ProductName = productDetails.product_name;
                 	ProductImage = productDetails.default_image;
                   ProductSku = productDetails.sku;
                   hasImprintData = productDetails.imprint_data;
@@ -560,7 +560,8 @@ $(document).ready( async function(){
     $(document).on('click','.js_submit_info', async function (e) {
             let formObj = $(this).closest('form');
             let product_data = await getProductDetailById(pid)
-            if(formObj.find("textarea[name='note']").val() == ''){
+            let instruction = formObj.find("textarea[name='note']").val()
+            if(instruction == ''){
               if($(".special-instruction-textarea").find('ul').length <= 0){
                 $("#js-request-info").find("textarea[name='note']").after('<ul class="red"><li>Please enter special instructions.</li></ul>');
               }
@@ -575,7 +576,7 @@ $(document).ready( async function(){
                   type: 'POST',
                   url: project_settings.request_info_api_url,
                   // data: {product_api_url:project_settings.product_api_url,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":"bb1e5568-f907-4583-9259-42019a2352cc"},
-                  data: {'product_id':pid,'product_data':product_data,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']},
+                  data: {'product_image_url' : project_settings.product_api_image_url,'product_id':pid,'product_data':product_data,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']},
                   cache: false,
                   dataType: 'json',
                   headers: {"vid": website_settings.Projectvid.vid},
@@ -711,7 +712,7 @@ $(document).ready( async function(){
       let virtualButtonHtml = $("#ob_virtual_list").html();
       virtualButtonHtml1 = virtualButtonHtml.replace("#data.sku#",get_product_details.sku)
       // virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",get_product_details.supplier_id)
-      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",5)
+      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",project_settings.supplier_id)
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
       $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
@@ -960,6 +961,7 @@ $(document).ready( async function(){
                   data['website_id'] = website_settings['projectID'];
                   data['owner_id'] = website_settings['UserID'];
                   data['billing_info'] = await returnDefaultBillingInfo();
+                  data['product_image_url'] = project_settings.product_api_image_url;
 
                   $.ajax({
                       type : 'POST',
@@ -1065,7 +1067,7 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                         var noOfBox = Math.ceil(quantity/quantity_in_carton);
                     }
 
-                    if(noOfBox > 50)
+                    /*if(noOfBox > 50)
                     {
                         let max_qty = shipping_qty_per_carton*50;
                         $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
@@ -1074,7 +1076,7 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                     else{
                         $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
                         $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").append('<div class="red js-section-errors">Please try with less quantity.</div>')
-                    }
+                    }*/
 
                     /*if(result.data.address_to.validation_results.is_valid == false) {
                        $(parentObj).find(".js-shippingMethod-"+shippigCounter+"-section").append('<div class="red js-section-errors">'+result.data.address_to.validation_results.messages[0].text+'</div>')
@@ -1898,7 +1900,7 @@ function shippingValidation(fld,section,value){
                   shippingVal['selected_address_id'] = "Please select shipping address."
                   shippingArr[section1] = shippingVal
               }
-              else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
+              /*else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
                       shippingVal['shipping_carrier'] = "Select shipping carrier."
                       shippingArr[section1] = shippingVal
               }
@@ -1909,7 +1911,7 @@ function shippingValidation(fld,section,value){
               else if (shippingData.shipping_detail.shipping_charge == '') {
                     shippingVal['shipping_method'] = "Select shipping method."
                     shippingArr[section1] = shippingVal
-                  }
+                  }*/
               arrKey = arrKey + 1
           })
       }
@@ -2075,9 +2077,13 @@ function setSelectedAddress(addressBookId,shippigCounter)
               if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
                     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
               }
+
+              let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
+              let getStreet = await getStreetData(getLocation)
+
               var addressFrom  = {
-                  // "name": returnData.name,
-                  // "street1": returnData.street1,
+                  "name": shipping_details.fob_city,
+                  "street1": getStreet,
                   "city": shipping_details.fob_city,
                   "state": shipping_details.fob_state_code,
                   "zip": shipping_details.fob_zip_code,
@@ -2088,8 +2094,8 @@ function setSelectedAddress(addressBookId,shippigCounter)
               };
 
               var addressTo  = {
-                  // "name": returnData.name,
-                  // "street1": "500 to 598 1st St",//returnData.street1,
+                  "name": returnData.name,
+                  "street1": returnData.street1,//"500 to 598 1st St",//,
                   "city": city,
                   "state": state,
                   "zip": returnData.postalcode,
@@ -2136,4 +2142,38 @@ function setSelectedAddress(addressBookId,shippigCounter)
       hidePageAjaxLoading();
       // console.log('Error fetching and parsing data', error);
     });
+}
+
+async function getStreetLocation(ZipCode){
+   var resp = "";
+    await axios({
+        method: 'GET',
+        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&address={"+ZipCode+"}&sensor=true",
+        })
+    .then(async function (response) {
+        resp = response.data.results[0].geometry.location.lat+","+response.data.results[0].geometry.location.lng;
+        return resp;
+    })
+    .catch(function (error) {
+        // console.log("error",error);
+    });
+    return resp;
+}
+
+async function getStreetData(location){
+    var resp = "";
+    await axios({
+        method: 'GET',
+        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
+    })
+    .then(function (response1) {
+        console.log("response1",response1);
+        let resp1 = response1.data.results[0].formatted_address.split(",");
+        resp = resp1[0]
+        return resp;
+    })
+    .catch(function (error) {
+        // console.log("error",error);
+    })
+    return resp;
 }

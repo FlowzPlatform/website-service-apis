@@ -15,7 +15,7 @@ $("#change_pass_form").submit(function(event){
 
 	if(new_pass === confirm_pass) {
 		var passDetails = {"oldpass":old_pass ,"newpass":new_pass};
-		let userToken = getCookie('auth_token');
+		let userToken = getCookie('user_auth_token');
 
 		$.ajax({
 			type: 'POST',

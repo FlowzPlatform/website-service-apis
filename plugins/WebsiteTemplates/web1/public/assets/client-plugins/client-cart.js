@@ -217,6 +217,7 @@ function showCart()
                       shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'');
                       shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",'');
                       shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#","N/A");
+                      shippingHtml1 = shippingHtml1.replace("#data.shipping_count#",shippingKeyCount);
                     }
                     else {
                       if(shipping_details.shipping_carrier != '') {

@@ -47,7 +47,7 @@ $(document).ready( async function(){
       return false;
   }
 
-  $('#js-request-info .js-section-number').addClass('no-tag');
+  //$('#js-request-info .js-section-number').addClass('no-tag');
 
   let value_split = [];
   let productData = {};
@@ -91,7 +91,7 @@ $(document).ready( async function(){
                   // productData = data;
                   var productDetails = get_product_details;
                   // console.log("productDetails==>>",productDetails);
-                	ProductName = removeSpecialCharacters(productDetails.product_name);
+                	ProductName = productDetails.product_name;
                 	ProductImage = productDetails.default_image;
                   ProductSku = productDetails.sku;
                   hasImprintData = productDetails.imprint_data;
@@ -121,7 +121,7 @@ $(document).ready( async function(){
     		            // $.each(productDetails.images[0].images, function(index, element) {
                        for (let element of productDetails.images[0].images) {
     		              // var imageUrl = project_settings.product_api_image_url+productDetails.supplier_id+'/'+element.web_image;
-                          let imageUrl = project_settings.product_api_image_url+5+'/'+element.web_image;
+                          let imageUrl = project_settings.product_api_image_url+project_settings.supplier_id+'/'+element.web_image;
     		                  let color = element.color;
                           color = color.toLowerCase().replace(/\s/g, '-');
                           imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
@@ -324,7 +324,7 @@ $(document).ready( async function(){
                 //   }
                 // });
 
-                // Edit Cart Product  
+                // Edit Cart Product
                 if(user_details != null && cid != null)
                 {
                     $.ajax({
@@ -332,10 +332,13 @@ $(document).ready( async function(){
                     //   url : project_settings.shopping_api_url+'/68260c4f-3c2d-442b-8949-097dc324715a',
                     url : project_settings.shopping_api_url+'/'+cid,
                     dataType : 'json',
-                    success : function(response_data) 
+                    success : function(response_data)
                     {
-                        if (response_data!= "") 
+                        if (response_data!= "")
                         {
+                            let totalPrice = 0.00; //summary
+                            let shipp_charge = 0.00; //summary
+                            $("#js_tab_list li:first").click();
                             var colorArray = $.map(response_data.color, function(value, index) {
                                 return [index];
                             });
@@ -352,7 +355,7 @@ $(document).ready( async function(){
 
                                     $(this).prop("checked",true);
                                     $(".js_add_imprint_location_request_quote").prop("checked",true);
-                                    
+
                                     if($(activetab).find("#js_request_quote_qty_box").html() !=""){
                                         $(activetab).find("#js_request_quote_qty_box").append(Quantity);
                                     }else{
@@ -365,6 +368,54 @@ $(document).ready( async function(){
                                         $(activetab+' .js-quantity-section').parent().find('.js-add-class').removeClass('collapsed');
                                     }
                                 }
+
+                                //summary for color selection
+                                let totalQty = 0;
+                                if($(activetab+' .js_color_checkbox:checked').length > 0) {
+                                    $("#Quantity-quote, .js_summary_qty").removeClass('hide');
+                                    let qtyMerge = "";
+                                    $(activetab+' .js_color_checkbox:checked').each(function() {
+                                        let colorName = $(this).val();
+                                        let color_name = $(this).attr('id');
+                                        let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+
+                                        qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
+
+                                        totalQty = totalQty + parseFloat(qty);
+                                    });
+                                    $('#js_product_summary_qty').html(qtyMerge);
+
+                                    $(".total_quantity").html(totalQty);
+                                    $(".jsTotal, .estimate-total-block").removeClass('hide');
+                                }
+                                else {
+                                    $("#Quantity-quote, .js_summary_qty").addClass('hide');
+                                }
+
+                                //summary for total price
+                                var productDetails = get_product_details;
+                                if(productDetails.pricing != undefined){
+                                    let priceRang = '';
+                                    $.each(productDetails.pricing, function(index,element){
+                                        if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global")
+                                        {
+                                            $.each(element.price_range,function(index,element2){
+                                                if(element2.qty.lte != undefined) {
+                                                    if(totalQty >= element2.qty.gte && totalQty <= element2.qty.lte) {
+                                                        totalPrice = totalQty*parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if(totalQty >= element2.qty.gte) {
+                                                        totalPrice = totalQty*parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                                $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
                             });
 
                             $(activetab+"-Print-position-block").addClass("in");
@@ -372,7 +423,7 @@ $(document).ready( async function(){
                             $(activetab).find(".js_add_imprint_location_request_quote").each(function(){
                                 $(this).prop("checked",false);
                             });
-                            
+
                             if(typeof response_data.imprint != "undefined")
                             {
                             for (let [i,imprint_info] of response_data.imprint.entries())
@@ -381,19 +432,19 @@ $(document).ready( async function(){
                                     let print_pos_id = replaceWithUnderscore(imprint_info.imprint_position_name)//"barrel";//$(this).attr("id");
                                     // console.log(print_pos_id);
                                     $("#"+print_pos_id).prop("checked",true);
-                                    
+
                                     let printPos = imprint_info.imprint_position_name;//"BARREL";//$(this).attr("value");
                                     // console.log(printPos);
-                                    
+
                                     let printPosLower = replaceWithUnderscore(imprint_info.imprint_position_name);//"BARREL";//$(this).attr("value");
                                     // console.log(printPosLower);
-                                    
+
                                     let printMethod = replaceWithUnderscore(imprint_info.imprint_method_name);//"BARREL";//$(this).attr("value");
                                     // console.log(printMethod);
-                                    
+
                                     let listHtmlPrintPosMethod1 = '';
                                     let productHtmlPrintPosMethod = '';
-                                    let select_imprint_method ='<li id="" data-dropval="" data-printpos="" data-full-color="" data-max-imprint-color="" data-method=""><a>Select method</a></li>';
+                                    let select_imprint_method ='';
 
                                     // select_method_digital_full_color_process
                                     if($(activetab).find('#'+print_pos_id).is(":checked")){
@@ -419,10 +470,21 @@ $(document).ready( async function(){
                                             $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
                                         }
                                         $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find('.imprint-color-select').hide()
-                                            // alert(printPosLower)
                                         $("#js_imprint_request_quote_box_"+printPosLower).find("#select_method_"+printMethod).click();
 
                                         $( ".js_imprint_method_selectbox_"+printPosLower+"_"+printMethod+" ul li[data-value='"+no_of_color+"']" ).click();
+
+                                        if(typeof imprint_info.selected_colors != "undefined")
+                                        {
+                                            for (let [i,imprint_selected_colors] of imprint_info.selected_colors.entries())
+                                            {
+                                                let j = i+1;
+                                                $(activetab).find("#js_selected_color_id_"+printPosLower+"_"+printMethod+"_"+j).val(imprint_selected_colors);
+                                                $(activetab).find("#js_selected_color_id_"+printPosLower+"_"+printMethod+"_"+j).next().find(".color-select-box button").attr("data-printpos",printPosLower)
+                                                $(activetab).find("#js_selected_color_id_"+printPosLower+"_"+printMethod+"_"+j).next().find(".color-select-box button").attr("data-value",imprint_selected_colors)
+                                                $(activetab).find("#js_selected_color_id_"+printPosLower+"_"+printMethod+"_"+j).next().find(".color-select-box button").html('<span class="imprint-lbl-method">'+imprint_selected_colors+'</span><span class="caret"></span>')
+                                            }
+                                        }
                                     }
                                     else{
                                         $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).remove();
@@ -432,12 +494,6 @@ $(document).ready( async function(){
 
                             $(activetab).find('input[name=request_quote_shipping_type][value="'+response_data.shipping_method.shipping_type+'"]').click();//.prop("checked",true);
 
-                            // shippigCounter = parseInt($(activetab+" .js_request_quote_shipping_counter").val());
-                            // attachAutoCompleteEvent("#js_shipping_method_detail_"+shippigCounter);
-                            
-                            // $(activetab).find('.auto_complete_shipping_email').typeahead('setQuery','neelpatel@officebrain.com')
-                            
-                            
                             // Shiiping Section
                             var shipping_detail = response_data.shipping_method.shipping_detail;
 
@@ -451,56 +507,60 @@ $(document).ready( async function(){
                                         .clone()
                                         .attr('id', 'js_shipping_method_detail_' + iCnt)
                                         .insertAfter("#js_shipping_method_detail_"+appendId);
-                                        $('#js_shipping_method_detail_' + iCnt).attr('data-shipping-counter',iCnt)    
+                                        $('#js_shipping_method_detail_' + iCnt).attr('data-shipping-counter',iCnt)
                                         $('#js_shipping_method_detail_' + iCnt+' .option-head:first').html('<a href="javascript:void(0);">Shipping Address '+iCnt+'</a><span class="js-delete-address css-delete-address pull-right">Delete</span>')
                                         iCnt = iCnt + 1;
                                 }
                             }
                             $(activetab).find(".js_request_quote_shipping_counter").val(shipping_detail.length);
-                            
+
                             for(let shippingKey in shipping_detail)
                             {
                                 var i = parseInt(shippingKey)+1;
                                 var shipping_info = shipping_detail[shippingKey];
 
                                 var addressBookId = shipping_info.selected_address_id
-                                
+
                                 var shipping_carrier = shipping_info.shipping_detail.shipping_carrier;
                                 var shipping_method = shipping_info.shipping_detail.shipping_method;
                                 var ship_transittime = shipping_info.shipping_detail.ship_transittime;
-                                
+
                                 var shipping_charge = shipping_info.shipping_detail.shipping_charge;
                                 var on_hand_date = shipping_info.shipping_detail.on_hand_date;
 
-                                setSelectedAddress(addressBookId,i);
+                                carrierData = [];
+                                carrierData['shipping_carrier'] = shipping_carrier.toUpperCase();
+                                carrierData['shipping_method'] = shipping_method+' '+shipping_charge;
+                                carrierData['on_hand_date'] = on_hand_date;
+
+                                setSelectedAddress(addressBookId,i,carrierData);
                                 let setActivetab = activetab.replace(/\#/g, '');
 
-                                for (let color_quantity in shipping_info.color_quantity) {    
-                                    let color_quantity_class = replaceWithUnderscore(color_quantity) 
+                                for (let color_quantity in shipping_info.color_quantity) {
+                                    let color_quantity_class = replaceWithUnderscore(color_quantity)
 
                                     $(activetab).find("#js_shipping_method_detail_"+i).find("."+setActivetab+"_"+color_quantity_class).find(".js_request_quote_shipping_qty_box").val(shipping_info.color_quantity[color_quantity]);
 
                                     $(activetab).find("#js_shipping_method_detail_"+i).find("."+setActivetab+"_"+color_quantity_class).find("total").html(shipping_info.color_quantity[color_quantity]);
-
-                                    // alert(shipping_info.color_quantity[color_quantity]);
                                 }
 
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_request_quote_shipping_qty_box").val();
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").attr('data-value',shipping_carrier);
 
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").html('<span class="imprint-lbl-method">'+shipping_carrier.toUpperCase()+'</span> <span class="caret"></span>');
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-value',shipping_charge);
+                                shipp_charge = shipp_charge + parseFloat(shipping_charge);  //summary
 
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").html('<span class="imprint-lbl-method">'+shipping_method+' '+shipping_charge+'</span> <span class="caret"></span>');
 
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-service',shipping_method);
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shipmethod_ul").html('<li data-service="'+shipping_method+'" data-value="'+shipping_charge+'" data-transit-time="'+ship_transittime+'"><a href="javascript:void(0)">'+shipping_method+' '+shipping_charge+'</a></li>');
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker"+i);
-                                
+
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").datepicker({
                                     changeMonth: true,
                                     changeYear: true,
@@ -508,19 +568,41 @@ $(document).ready( async function(){
                                     minDate: new Date(),
                                     onSelect: function(dateText, inst) {
                                         let date = $(this).val();
-                                        $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").val(date);
+                                        let setShippingDate = $(this).attr("id");
+                                        $(activetab).find("#"+setShippingDate).val(date);
+
+                                        //summary for address inhand date
+                                        $('.js_inhand_date_'+i).find('span').html(date);
+                                        $('#Quantity-quote, .js_inhand_date_'+i).removeClass('hide');
                                     }
                                 });
 
                                 $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").datepicker('setDate', on_hand_date);
 
-                                $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shipmethod_ul li:first").click();
+                                // $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shipmethod_ul li:first").click();
+
+                                attachDeleteEvent("#js_shipping_method_detail_"+i);
                                 attachShippingDetailChangeEvent()
                             }
                             // END - Shipping Section
 
-                            
+
                             $(activetab).find("#js_request_quote_instruction").val(response_data.special_instruction);
+
+                            //summary for shipping charges
+                            if(shipp_charge != 0.00) {
+                                $('.js-shipping-charge-summary').find('span').html("$"+parseFloat(shipp_charge).toFixed(project_settings.price_decimal));
+                                $('.js-additional-charges-summary').removeClass('hide');
+                                $('.js-shipping-charge-summary').removeClass('hide');
+                            }
+                            let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
+                            $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+
+                            //summary for special instruction
+                            if(response_data.special_instruction != '') {
+                                $('.js_summary_instruction').html(response_data.special_instruction);
+                                $('#Quantity-quote, .js_special_inst').removeClass('hide');
+                            }
                         }
                     }
                     })
@@ -560,37 +642,27 @@ $(document).ready( async function(){
     $(document).on('click','.js_submit_info', async function (e) {
             let formObj = $(this).closest('form');
             let product_data = await getProductDetailById(pid)
-            if(formObj.find("textarea[name='note']").val() == ''){
+            let guestUserDetail = ''
+            let instruction = $(activetab).find("textarea[name='note']").val()
+            if(instruction == ''){
               if($(".special-instruction-textarea").find('ul').length <= 0){
-                $("#js-request-info").find("textarea[name='note']").after('<ul class="red"><li>Please enter special instructions.</li></ul>');
+                $(activetab).find("textarea[name='note']").after('<ul class="red"><li>Please enter special instructions.</li></ul>');
               }
               return false;
             }
             else if(user_details == null){
-              window.location = "login.html";
+              $('#modal-table').addClass('model-popup-black');
+              $('#modal-table').addClass('request-info-popup-modal');
+              $("#modal-table").find(".modal-title").html('Your Information')
+              let guestUserHtml = $(".js_guest_info").html()
+              $(".js_guest_info").html('')
+              $(".js_add_html").html(guestUserHtml)
+              $('#modal-table').modal('show');
+              // window.location = "login.html";
               return false;
             }
             showPageAjaxLoading()
-            $.ajax({
-                  type: 'POST',
-                  url: project_settings.request_info_api_url,
-                  // data: {product_api_url:project_settings.product_api_url,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":"bb1e5568-f907-4583-9259-42019a2352cc"},
-                  data: {'product_id':pid,'product_data':product_data,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']},
-                  cache: false,
-                  dataType: 'json',
-                  headers: {"vid": website_settings.Projectvid.vid},
-                  success: function(response){
-                    hidePageAjaxLoading()
-                      if(response.length > 0 && response[0].id != '' ){
-                          showSuccessMessage("Your request info is submitted successfully.");
-                          window.location = "thankYou.html";
-                          return false;
-                      }else{
-                        //console.log(response);
-                        return false;
-                      }
-                  }
-            });
+            submitRequestInfo(product_data,instruction,guestUserDetail)
     });
 
     $(document).on('click','.js-quantity-selector',function(e){
@@ -611,18 +683,59 @@ $(document).ready( async function(){
       $(activetab + ' .js-quantity-section .js_request_quote_nosize_qty').trigger('blur');
     });
 
-     $(document).on("click",".js_set_selected_value li",function(){
+    $(document).on("click",".js_set_selected_value li",function(){
         let thisObj = $(this);
-        if ( thisObj.parent().parent().find('button').hasClass('dropdown-toggle') ){ // set button text only if it is available
-         let buttonObj = thisObj.parent().parent().find('button');
-         let selectedVal = thisObj.find('a').text();
-         buttonObj.html('<span class="imprint-lbl-method">'+selectedVal+'</span><span class="caret"></span>');
-         let dataAttributes = thisObj.data();
-         $.each(dataAttributes,function(dataKey,dataValue){
-           buttonObj.attr('data-'+dataKey,dataValue);
-         });
-         thisObj.parent().parent().parent().find('.dropdown_size').removeClass('open');
-       }
+        if ( thisObj.parent().parent().find('button').hasClass('dropdown-toggle') ){
+            // set button text only if it is available
+            let buttonObj = thisObj.parent().parent().find('button');
+            let selectedVal = thisObj.find('a').text();
+            buttonObj.html('<span class="imprint-lbl-method">'+selectedVal+'</span><span class="caret"></span>');
+            let dataAttributes = thisObj.data();
+            $.each(dataAttributes,function(dataKey,dataValue){
+                buttonObj.attr('data-'+dataKey,dataValue);
+            });
+
+            thisObj.parent().parent().parent().find('.dropdown_size').removeClass('open');
+
+            //summary for imprint method
+            $('.js_print_postion_location').html('');
+            $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
+                let positionName = $(this).val();
+                let position_name = replaceWithUnderscore($(this).val());
+
+                let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
+                let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
+
+                var no_of_color = 0;
+                if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
+                    no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
+                }
+
+                let selColorsHtml = "";
+                if(no_of_color.length > 0) {
+                    for(var k=1;k<=no_of_color;k++) {
+                        let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
+                        if(selectedColor != "" && typeof selectedColor != "undefined") {
+                            selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+k+'">color'+k+' : <span>'+selectedColor+'</span></div><br>';
+                        }
+                    }
+                }
+
+                if(typeof imprintMethodName != 'undefined' && no_of_color != 0 && selColorsHtml != '') {
+                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br><br>'+selColorsHtml+'</div></div></div>');
+                }
+                else if(typeof imprintMethodName != 'undefined' && no_of_color != 0) {
+                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br></div></div></div>');
+                }
+                else if(typeof imprintMethodName != 'undefined') {
+                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div></div></div>');
+                }
+                else {
+                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div></div>');
+                }
+            });
+            $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
+        }
      });
 
      $(document).on("click",".js_set_selected_value_col li",async function(){
@@ -664,18 +777,97 @@ $(document).ready( async function(){
             }
             dropDownColorHtml += "<li data-value='"+imprintColor+"' data-printpos='"+dataAttributes.position+"'><a href='javascript:void(0);'><span style='background-color:"+imprintColorHexKey+";'></span>"+imprintColor+"</a></li>"
           })
+
           parentObj.find(".js_select_color_from_list").html(dropDownColorHtml)
           parentObj.find('.js-color-div-append').removeClass('hide');
+
+            //summary for how many colors
+            $('.js_print_postion_location').html('');
+            $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
+                let positionName = $(this).val()
+                let position_name = replaceWithUnderscore($(this).val());
+
+                let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
+                let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
+
+                var no_of_color = 0;
+                if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
+                    no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
+                }
+
+                let selColorsHtml = "";
+                if(no_of_color.length > 0) {
+                    for(var k=1;k<=no_of_color;k++) {
+                        let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
+                        if(selectedColor != "" && typeof selectedColor != "undefined") {
+                            selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+k+'">color'+k+' : <span>'+selectedColor+'</span></div><br>';
+                        }
+                    }
+                }
+
+                if(typeof imprintMethodName != 'undefined' && no_of_color != 0 && selColorsHtml != '') {
+                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br><br>'+selColorsHtml+'</div></div></div>');
+                }
+                else if(typeof imprintMethodName != 'undefined' && no_of_color != 0) {
+                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br></div></div></div>');
+                }
+                else if(typeof imprintMethodName != 'undefined') {
+                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div></div></div>');
+                }
+                else {
+                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div></div>');
+                }
+            });
+            $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
     });
 
     $(document).on("click",".js_select_color_from_list li",function(){
-        let color_name = $(this).parent().parent().find('button').data('value');
-        let color_no = $(this).parent('ul').data('color-no');
-        let print_pos = $(this).data("printpos")
+        let color_name = $(this).parent().parent().find('button').attr('data-value');
+        let color_no = $(this).parent('ul').attr('data-color-no');
+        let print_pos = $(this).attr("data-printpos")
         let parentObj = $(this).closest('#js_imprint_request_quote_box_'+print_pos)
-        let method_name = parentObj.find('.imprint-method-select button').data('dropval');
-        let position_name = parentObj.find('.imprint-method-select button').data('printpos');
+        let method_name = parentObj.find('.imprint-method-select button').attr('data-dropval');
+        let position_name = parentObj.find('.imprint-method-select button').attr('data-printpos');
         parentObj.find('#js_selected_color_id_'+position_name+'_'+method_name+'_'+color_no).val(color_name);
+
+        //summary for select color from list
+        $('.js_print_postion_location').html('');
+        $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
+            let positionName = $(this).val()
+            let position_name = replaceWithUnderscore($(this).val());
+
+            let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
+            let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
+
+            var no_of_color = 0;
+            if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
+                no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
+            }
+
+            let selColorsHtml = "";
+            if(no_of_color.length > 0) {
+                for(var k=1;k<=no_of_color;k++) {
+                    let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
+                    if(selectedColor != "" && typeof selectedColor != "undefined") {
+                        selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+k+'">color'+k+' : <span>'+selectedColor+'</span></div><br>';
+                    }
+                }
+            }
+
+            if(typeof imprintMethodName != 'undefined' && no_of_color != 0 && selColorsHtml != '') {
+                $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br><br>'+selColorsHtml+'</div></div></div>');
+            }
+            else if(typeof imprintMethodName != 'undefined' && no_of_color != 0) {
+                $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br></div></div></div>');
+            }
+            else if(typeof imprintMethodName != 'undefined') {
+                $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div></div></div>');
+            }
+            else {
+                $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div></div>');
+            }
+        });
+        $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
     });
 
      let select_how_colr = '';
@@ -711,220 +903,305 @@ $(document).ready( async function(){
       let virtualButtonHtml = $("#ob_virtual_list").html();
       virtualButtonHtml1 = virtualButtonHtml.replace("#data.sku#",get_product_details.sku)
       // virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",get_product_details.supplier_id)
-      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",5)
+      virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",project_settings.supplier_id)
       virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
       $("#ob_virtual_list").html(virtualButtonHtml1)
-      $(".bottom-footer").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
+      $("#js_display_virtual").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
 
-      $('.place-order-submit,.request-quote-submit').on('click', async function(event){
-          showPageAjaxLoading()
-          let ordertab = $(this).attr('data-attr');
-          let colors_qty = {};
-          let total_qty = 0;
-          $(activetab+' .js_color_checkbox:checked').each(function() {
-              let color_name = $(this).attr('id');
-              let colorName = $(this).val();
-              let qty = parseInt($(activetab).find("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
-              total_qty = total_qty + qty;
-              colors_qty[colorName] = qty;
-          });
-          //console.log("colors_qty+++++++++++",colors_qty);
+    $('.place-order-submit,.request-quote-submit').on('click', async function(event){
+        showPageAjaxLoading()
+        let ordertab = $(this).attr('data-attr');
+        let colors_qty = {};
+        let total_qty = 0;
+        $(activetab+' .js_color_checkbox:checked').each(function() {
+            let color_name = $(this).attr('id');
+            let colorName = $(this).val();
+            let qty = parseInt($(activetab).find("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+            total_qty = total_qty + qty;
+            colors_qty[colorName] = qty;
+        });
 
-          let imprint_position = [];
-          $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
-              let positionName = $(this).val()
-              let position_name = replaceWithUnderscore($(this).val());
-              let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").data('dropval');
-              let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").data('method');
-              let no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").data('value');
+        let imprint_position = [];
+        $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
+            let positionName = $(this).val()
+            let position_name = replaceWithUnderscore($(this).val());
+            let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").data('dropval');
+            let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").data('method');
+            let no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").data('value');
 
-              var selected_colors = {};
-              for(var k=1;k<=no_of_color;k++) {
-                  let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val()
-                  if(selectedColor != "") selected_colors[k-1] = selectedColor
-              }
+            var selected_colors = {};
+            for(var k=1;k<=no_of_color;k++) {
+                let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val()
+                if(selectedColor != "") selected_colors[k-1] = selectedColor
+            }
 
-              var imprint_position_data = { 'imprint_position_name': positionName,'imprint_method_name': imprintMethodName,'no_of_color' : no_of_color,'selected_colors' : selected_colors };
-              imprint_position.push(imprint_position_data);
-          });
-          // console.log("imprint_position",imprint_position);
-
-          // charges
-          let total_setup_charge = calculate_setup_charge(imprint_position)
-          let charges = {};
-          if(total_setup_charge > 0)
-          {
-              charges['setup_charge'] = total_setup_charge;
-          }
-          // END - charges
-          let special_instruction = $(activetab).find('#js_request_quote_instruction').val();
-          let unit_price = 0;
-          $(activetab).find('.quantity-table-disc li').each(function(i) {
-              let each_qty = $(this).find(".table-heading").text();
-
-              if(each_qty.indexOf("-") != -1) {
-                  let two_qty = each_qty.split("-");
-                  if(total_qty>=two_qty[0] && total_qty<=two_qty[1]) {
-                      unit_price = parseFloat($(this).find(".table-content").text().replace(/ /g,'').replace(/\$/g,''));
-                  }
-              }
-              else if(each_qty.indexOf("+") != -1) {
-                  let one_qty = parseFloat(each_qty.replace(/ /g,'').replace(/\+/g,''));
-                  if(total_qty>one_qty) {
-                      unit_price = parseFloat($(this).find(".table-content").text().replace(/ /g,'').replace(/\$/g,''));
-                  }
-              }
-          });
-
-          let shipping_type = $(activetab).find('input[name=request_quote_shipping_type]:checked').val();
-          let shipping_details = [];
-          let shipping_counter = parseInt($(activetab+" .js_request_quote_shipping_counter").val());
-          for(let i = 1 ;i<=shipping_counter;i++){
-              let selected_address_id = $(activetab).find("#js_shipping_method_detail_"+i+" .js_shipping_addresses .shippingAddressId ").val();
-              let shipping_address = ''
-              // if(selected_address_id == undefined)
-              // {
-              //     hidePageAjaxLoading()
-              //     showErrorMessage("Please Select Shipping Address.")
-              //     return false;
-              // }else{
-
-                  if(selected_address_id != undefined) shipping_address = await returnshippingData(selected_address_id);
-              // }
-              // alert($(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").length)
-              let shipping_carrier = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").attr('data-value');
-
-              if (typeof shipping_carrier === typeof undefined ) {
-                  shipping_carrier = "";
-              }
-
-              let get_shipping_charge = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-value');
-
-              if (typeof get_shipping_charge === typeof undefined ) {
-                  get_shipping_charge = "";
-              }
-
-              let get_transittime = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-transittime');
-
-              if (typeof get_transittime === typeof undefined ) {
-                get_transittime = "";
-              }
-
-              let get_shipping_method = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-service');
-
-              if (typeof get_shipping_method === typeof undefined ) {
-                  get_shipping_method = "";
-              }
-
-              let shipping_colors_qty = {};
-              $(activetab+" #js_shipping_method_detail_"+i+" .js_shipping_qty_box_main .js_rq_shipping_quantity ").each(function() {
-            	  let colorName = $(this).data('color-id');
-            	  let qty = $(this).find(".js_request_quote_shipping_qty_box").val();
-            	  shipping_colors_qty[colorName] = qty;
-	          });
-              // js_shipping_qty_box_main
-
-              let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").val();
-
-              let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
-              
-              let shipping_detail = {"on_hand_date":get_in_hand_date,'ship_date':'',"ship_transittime": get_transittime,"shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
-              shipping_details.push({'color_quantity':shipping_colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail,'shipping_address':user_shipping_address});
-          }
-          let shipping_method = ''
-          if(shipping_details.length > 0 || shipping_type != undefined ) shipping_method = {'shipping_detail':shipping_details,"shipping_type":shipping_type};
-
-          let data = {};
-          data['product_id'] = pid;
-          data['user_id'] = user_id;
-          data['color'] = colors_qty;
-          data['imprint'] = imprint_position;
-          data['charges'] = charges;
-          data['special_instruction'] = special_instruction;
-          data['total_qty'] = total_qty;
-          data['unit_price'] = unit_price;
-          data['shipping_method'] = shipping_method;
-          data['website_id'] = website_settings['projectID'];
-
-          let validateData = validateForm(data,activetab)
-          // console.log("validateData",validateData);
-          if(validateData.status == "error"){
-              hidePageAjaxLoading()
-              // console.log("validateData",validateData);
-              $(activetab+' .js-section-errors').remove();
-              $.each(validateData.error_data,function(section,flds){
-            	  let jquery_section = ' .js-'+section+'-section';
-            	  if(section.indexOf('shippingMethod-') >= 0)
-            	  {
-            		  let counter = section.replace('shippingMethod-','');
-            		  jquery_section = ' #js_shipping_method_detail_'+counter+' .js-shippingMethod-section';
-            	  }
-            	  else if(section.indexOf('shippingMethod') >= 0)
-            	  {
-            		  jquery_section = ' .js-shippingMethod-section:first';
-            	  }
-                  if($(activetab+jquery_section)){
-                    //console.log("flds",flds);
-//                    console.log("section",section);
-                      if( $(activetab+jquery_section).parents('.product-section-box').find('.collapse') ){
-                          $(activetab+jquery_section).parents('.product-section-box').find('.collapse').addClass('in');
-                      }
-                      // console.log("section",section);
-                      // console.log("flds",flds);
-                      switch (section) {
-                        case 'quantity':
-                          if(typeof flds == 'object'){
-                            $.each(flds, function( field, value) {
-                              field = replaceWithUnderscore(field)
-                              $(activetab+' .js-add-class').addClass('collapsed');
-                              let setActivetab = activetab.replace(/\#/g, '');
-                              $(activetab+' #js_request_quote_qty_box_'+setActivetab+'_'+field+jquery_section).append('<div class="red js-section-errors">'+value+'</div>');
-                            });
-                          }else{
-                            $("#"+setActivetab+"-Quantity-block").append('<div class="red js-section-errors">'+flds+'</div>')
-                          }
-
-                          break;
-                        default:
-                          $.each(flds, function( field, value) {
-                            $(activetab+jquery_section).append('<div class="red js-section-errors clearfix">'+value+'</div>');
-                          });
-                      }
-                  }
-              })
-
-              $('html, body').animate({
-                    scrollTop: ($('.js-section-errors:first').offset().top - 500)
-              }, 2000);
-
-          }else{
-              if(ordertab == 'place-order'){
-                  let order_type = $('#js_sub_tab_list li.active a').text().toLowerCase();
-                  data['type'] = 2;
-                  data['order_type'] = order_type;
-                  
-                //   return false;
-                if(user_details != null && cid != null)
-                {  
-                    data['id'] = cid;
-                    var ajaxType = 'PUT';
-                    var ajaxURL = project_settings.shopping_api_url+'/'+cid;
+            let currentTab = $(activetab+' #js_request_quote_artwork_'+position_name+' li.active a').attr('href');
+            let art_type = $(activetab+' '+currentTab).attr('data-type');
+            
+            let art_url = [];
+            let art_thumb = [];
+            $(activetab+' '+currentTab+' .js-save-artwork-logo').each(function(i) {
+                if($(this).val().trim() != '') {
+                    art_url.push($(this).val());
+                    art_thumb.push($(this).prev('img').attr('src'));
                 }
-                else{
-                    var ajaxType = 'POST';
-                    var ajaxURL = project_settings.shopping_api_url;
-                } 
+            });
+
+            let typeset = [];
+            $(activetab+' '+currentTab+' .js-art-text').each(function(i) {
+                if($(this).val().trim() != '') {
+                    typeset.push($(this).val());
+                }
+            });
+            
+            art_section = {};
+            if(art_url.length > 0) {
+                art_section.artwork = art_url;
+            }
+
+            if(art_thumb.length > 0) {
+                art_section.artwork_thumb = art_thumb;
+            }
+
+            if(typeset.length > 0) {
+                art_section.text = typeset;
+            }
+
+            if(art_url.length == 0 || typeset.length == 0) {
+                if(typeof $(activetab+' '+currentTab+' .js-upload-email-type-radio').prop('checked') != 'undefined' && $(activetab+' '+currentTab+' .js-upload-email-type-radio').prop('checked') == true) {
+                    art_section.art_text_email = 1;
+                }
+
+                if(typeof $(activetab+' '+currentTab+' .js-upload-email-radio').prop('checked') != 'undefined' && $(activetab+' '+currentTab+' .js-upload-email-radio').prop('checked') == true) {
+                    art_section.art_email = 1;
+                }
+            }
+
+            if(typeof $(activetab+' '+currentTab+' .js_artwork_instructions_text').val() != 'undefined' && $(activetab+' '+currentTab+' .js_artwork_instructions_text').val().trim() != '') {
+                art_section.art_instruction = $(activetab+' '+currentTab+' .js_artwork_instructions_text').val();
+            }
+
+            let imprint_position_data = { 'imprint_position_name': positionName, 'imprint_method_name': imprintMethodName, 'no_of_color' : no_of_color, 'selected_colors' : selected_colors };
+            imprint_position_data[art_type] = art_section;
+            imprint_position.push(imprint_position_data);
+        });
+        // console.log("imprint_position",imprint_position);
+
+        // charges
+        let total_setup_charge = calculate_setup_charge(imprint_position)
+        let charges = {};
+        if(total_setup_charge > 0)
+        {
+            charges['setup_charge'] = total_setup_charge;
+        }
+        // END - charges
+        let special_instruction = $(activetab).find('#js_request_quote_instruction').val();
+        let unit_price = 0;
+        $(activetab).find('.quantity-table-disc li').each(function(i) {
+            let each_qty = $(this).find(".table-heading").text();
+
+            if(each_qty.indexOf("-") != -1) {
+                let two_qty = each_qty.split("-");
+                if(total_qty>=two_qty[0] && total_qty<=two_qty[1]) {
+                    unit_price = parseFloat($(this).find(".table-content").text().replace(/ /g,'').replace(/\$/g,''));
+                }
+            }
+            else if(each_qty.indexOf("+") != -1) {
+                let one_qty = parseFloat(each_qty.replace(/ /g,'').replace(/\+/g,''));
+                if(total_qty>one_qty) {
+                    unit_price = parseFloat($(this).find(".table-content").text().replace(/ /g,'').replace(/\$/g,''));
+                }
+            }
+        });
+
+        let shipping_type = $(activetab).find('input[name=request_quote_shipping_type]:checked').val();
+        let shipping_details = [];
+        let shipping_counter = parseInt($(activetab+" .js_request_quote_shipping_counter").val());
+        for(let i = 1 ;i<=shipping_counter;i++){
+            let selected_address_id = $(activetab).find("#js_shipping_method_detail_"+i+" .js_shipping_addresses .shippingAddressId ").val();
+            let shipping_address = ''
+
+            if(selected_address_id != undefined) shipping_address = await returnshippingData(selected_address_id);
+            let shipping_carrier = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").attr('data-value');
+
+            if (typeof shipping_carrier === typeof undefined ) {
+                shipping_carrier = "";
+            }
+
+            let get_shipping_charge = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-value');
+
+            if (typeof get_shipping_charge === typeof undefined ) {
+                get_shipping_charge = "";
+            }
+
+            let get_transittime = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-transittime');
+
+            if (typeof get_transittime === typeof undefined ) {
+            get_transittime = "";
+            }
+
+            let get_shipping_method = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingmethod").attr('data-service');
+
+            if (typeof get_shipping_method === typeof undefined ) {
+                get_shipping_method = "";
+            }
+
+            let shipping_colors_qty = {};
+            $(activetab+" #js_shipping_method_detail_"+i+" .js_shipping_qty_box_main .js_rq_shipping_quantity ").each(function() {
+                let colorName = $(this).data('color-id');
+                let qty = $(this).find(".js_request_quote_shipping_qty_box").val();
+                shipping_colors_qty[colorName] = qty;
+            });
+            // js_shipping_qty_box_main
+
+            let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").val();
+
+            let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
+
+            let shipping_detail = {"on_hand_date":get_in_hand_date,'ship_date':'',"ship_transittime": get_transittime,"shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
+            shipping_details.push({'color_quantity':shipping_colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail,'shipping_address':user_shipping_address});
+        }
+        let shipping_method = ''
+        if(shipping_details.length > 0 || shipping_type != undefined ) shipping_method = {'shipping_detail':shipping_details,"shipping_type":shipping_type};
+
+        let data = {};
+        data['product_id'] = pid;
+        data['user_id'] = user_id;
+        data['color'] = colors_qty;
+        data['imprint'] = imprint_position;
+        data['charges'] = charges;
+        data['special_instruction'] = special_instruction;
+        data['total_qty'] = total_qty;
+        data['unit_price'] = unit_price;
+        data['shipping_method'] = shipping_method;
+        data['website_id'] = website_settings['projectID'];
+
+        let validateData = validateForm(data,activetab)
+        // console.log("validateData",validateData);
+        if(validateData.status == "error"){
+            hidePageAjaxLoading()
+            // console.log("validateData",validateData);
+            $(activetab+' .js-section-errors').remove();
+            $.each(validateData.error_data,function(section,flds){
+                let jquery_section = ' .js-'+section+'-section';
+                if(section.indexOf('shippingMethod-') >= 0)
+                {
+                    let counter = section.replace('shippingMethod-','');
+                    jquery_section = ' #js_shipping_method_detail_'+counter+' .js-shippingMethod-section';
+                }
+                else if(section.indexOf('shippingMethod') >= 0)
+                {
+                    jquery_section = ' .js-shippingMethod-section:first';
+                }
+                if($(activetab+jquery_section)){
+                //console.log("flds",flds);
+//                    console.log("section",section);
+                    if( $(activetab+jquery_section).parents('.product-section-box').find('.collapse') ){
+                        $(activetab+jquery_section).parents('.product-section-box').find('.collapse').addClass('in');
+                    }
+                    // console.log("section",section);
+                    // console.log("flds",flds);
+                    switch (section) {
+                    case 'quantity':
+                        if(typeof flds == 'object'){
+                        $.each(flds, function( field, value) {
+                            field = replaceWithUnderscore(field)
+                            $(activetab+' .js-add-class').addClass('collapsed');
+                            let setActivetab = activetab.replace(/\#/g, '');
+                            $(activetab+' #js_request_quote_qty_box_'+setActivetab+'_'+field+jquery_section).append('<div class="red js-section-errors">'+value+'</div>');
+                        });
+                        }else{
+                        $("#"+setActivetab+"-Quantity-block").append('<div class="red js-section-errors">'+flds+'</div>')
+                        }
+
+                        break;
+                    default:
+                        $.each(flds, function( field, value) {
+                        $(activetab+jquery_section).append('<div class="red js-section-errors clearfix">'+value+'</div>');
+                        });
+                    }
+                }
+            })
+
+            $('html, body').animate({
+                scrollTop: ($('.js-section-errors:first').offset().top - 500)
+            }, 2000);
+
+        }else{
+            if(ordertab == 'place-order'){
+                let order_type = $('#js_sub_tab_list li.active a').text().toLowerCase();
+                data['type'] = 2;
+                data['order_type'] = order_type;
+
+            //   return false;
+            if(user_details != null && cid != null)
+            {
+                data['id'] = cid;
+                var ajaxType = 'PUT';
+                var ajaxURL = project_settings.shopping_api_url+'/'+cid;
+            }
+            else{
+                var ajaxType = 'POST';
+                var ajaxURL = project_settings.shopping_api_url;
+            }
+
+            $.ajax({
+                type : ajaxType,
+                url : ajaxURL,
+                data : data,
+                dataType : 'json',
+                success : function(response_data) {
+                    if(response_data.status == 200) {
+                        hidePageAjaxLoading()
+                        //showSuccessMessage("Product is added to cart","cartPage.html");
+                        window.location.href = "cartPage.html"
+                        return false;
+                    }
+                    else if(response_data.status == 400) {
+                        hidePageAjaxLoading()
+                        showErrorMessage(response_data.message);
+                        return false;
+                    }
+                },
+                error : function(error) {
+                    console.log('error',error)
+                }
+            });
+            }
+            else{
+                let user_info = {};
+                user_info['id'] = user_details['_id'];
+                user_info['email'] = user_details['email'];
+                user_info['fullname'] = user_details['fullname'];
+                user_info['userEmail'] = (user_details['userEmail'])? user_details['firstname'] : '';
+                user_info['firstname'] = (user_details['firstname'])? user_details['firstname'] : '';
+                user_info['lastname'] = (user_details['lastname'])? user_details['lastname'] : '';
+                user_info['address1'] = (user_details['address1'])? user_details['address1'] : '';
+                user_info['address2'] = (user_details['address2'])? user_details['address2'] : '';
+                user_info['country'] = (user_details['country'])? await getCountryStateCityById(user_details['country'],1) : '';
+                user_info['state'] = (user_details['state'])? await getCountryStateCityById(user_details['state'],2) : '';
+                user_info['city'] = (user_details['city'])? await getCountryStateCityById(user_details['city'],3) : '';
+                user_info['postalcode'] = (user_details['postalcode'])? user_details['postalcode'] : '';
+                user_info['phone'] = (user_details['phone'])? user_details['phone'] : '';
+                user_info['mobile'] = (user_details['mobile'])? user_details['mobile'] : '';
+
+                data['user_info'] = user_info;
+                data['product_description'] = get_product_details;
+                data['website_id'] = website_settings['projectID'];
+                data['owner_id'] = website_settings['UserID'];
+                data['product_image_url'] = project_settings.product_api_image_url;
+                data['billing_info'] = await returnDefaultBillingInfo();
 
                 $.ajax({
-                    type : ajaxType,
-                    url : ajaxURL,
+                    type : 'POST',
+                    url : project_settings.request_quote_api_url,
                     data : data,
+                    headers: {"Authorization": userToken},
                     dataType : 'json',
                     success : function(response_data) {
-                        if(response_data.status == 200) {
+                        if(response_data!= "") {
                             hidePageAjaxLoading()
-                            //showSuccessMessage("Product is added to cart","cartPage.html");
-                            window.location.href = "cartPage.html"
+                            showSuccessMessage("Request Quote Save Sucessfully","thankYou.html");
                             return false;
                         }
                         else if(response_data.status == 400) {
@@ -937,75 +1214,15 @@ $(document).ready( async function(){
                         console.log('error',error)
                     }
                 });
-              }
-              else{
-                  let user_info = {};
-                  user_info['id'] = user_details['_id'];
-                  user_info['email'] = user_details['email'];
-                  user_info['fullname'] = user_details['fullname'];
-                  user_info['userEmail'] = (user_details['userEmail'])? user_details['firstname'] : '';
-                  user_info['firstname'] = (user_details['firstname'])? user_details['firstname'] : '';
-                  user_info['lastname'] = (user_details['lastname'])? user_details['lastname'] : '';
-                  user_info['address1'] = (user_details['address1'])? user_details['address1'] : '';
-                  user_info['address2'] = (user_details['address2'])? user_details['address2'] : '';
-                  user_info['country'] = (user_details['country'])? await getCountryStateCityById(user_details['country'],1) : '';
-                  user_info['state'] = (user_details['state'])? await getCountryStateCityById(user_details['state'],2) : '';
-                  user_info['city'] = (user_details['city'])? await getCountryStateCityById(user_details['city'],3) : '';
-                  user_info['postalcode'] = (user_details['postalcode'])? user_details['postalcode'] : '';
-                  user_info['phone'] = (user_details['phone'])? user_details['phone'] : '';
-                  user_info['mobile'] = (user_details['mobile'])? user_details['mobile'] : '';
+            }
+        }
+        // console.log("data",data);
+    })
 
-                  data['user_info'] = user_info;
-                  data['product_description'] = get_product_details;
-                  data['website_id'] = website_settings['projectID'];
-                  data['owner_id'] = website_settings['UserID'];
-                  data['billing_info'] = await returnDefaultBillingInfo();
-
-                  $.ajax({
-                      type : 'POST',
-                      url : project_settings.request_quote_api_url,
-                      data : data,
-                      headers: {"Authorization": userToken},
-                      dataType : 'json',
-                      success : function(response_data) {
-                          if(response_data!= "") {
-                              hidePageAjaxLoading()
-                              showSuccessMessage("Request Quote Save Sucessfully","thankYou.html");
-                              return false;
-                          }
-                          else if(response_data.status == 400) {
-                              hidePageAjaxLoading()
-                              showErrorMessage(response_data.message);
-                              return false;
-                          }
-                      }
-                  });
-              }
-          }
-          // console.log("data",data);
-      })
-
-      if(user_id == null){
-        // if($("#js-place-order").length > 0){
-        //   $("#js_tab_list li").find('a[href="#js-place-order"]').parent('li').remove()
-        //   $("#js-place-order").remove()
-        // }
-
-        // if($("#js-request-quote").length > 0){
-        //   $("#js_tab_list li").find('a[href="#js-request-quote"]').parent('li').remove()
-        //   $("#js-request-quote").remove()
-        // }
-
-        // if($("#js-request-info").length > 0){
-        //   $("#js_tab_list li").find('a[href="#js-request-info"]').parent("li").addClass("active")
-        //   $("#js-request-info").addClass("in active")
-        //   $("#js-request-info .no-tag").parent('div').remove();
-        // }
-
-        // $(".place-order-submit").remove();
-        // $(".request-quote-submit").remove();
-      }
+    if(cid == null)
+    {
       $('#js_tab_list li.active').trigger('click');
+    }
 });
 
 function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_details,shippigCounter)
@@ -1065,27 +1282,28 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                         var noOfBox = Math.ceil(quantity/quantity_in_carton);
                     }
 
-                    if(noOfBox > 50)
-                    {
-                        let max_qty = shipping_qty_per_carton*50;
-                        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
-                        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").append('<div class="red js-section-errors">Maximum '+max_qty+' quantities are allowed.</div>')
-                    }
-                    else{
-                        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
-                        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").append('<div class="red js-section-errors">Please try with less quantity.</div>')
-                    }
-
+                    // if(noOfBox > 50)
+                    // {
+                    //     let max_qty = shipping_qty_per_carton*50;
+                    //     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
+                    //     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").append('<div class="red js-section-errors">Maximum '+max_qty+' quantities are allowed.</div>')
+                    // }
+                    // else{
+                    //     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
+                    //     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").append('<div class="red js-section-errors">Please try with less quantity.</div>')
+                    // }
+                    // console.log("result.data",result.data)
+                    // console.log("result.data.address_to.validation_results.messages[0].text",result.data.messages[0].text)
                     /*if(result.data.address_to.validation_results.is_valid == false) {
                        $(parentObj).find(".js-shippingMethod-"+shippigCounter+"-section").append('<div class="red js-section-errors">'+result.data.address_to.validation_results.messages[0].text+'</div>')
                     }*/
                 }
                 $(parentObj+" .js_rq_ship_shipmethod_ul").html(rateHtml);
-                
+
                 // Change Shipping Details
                 $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').trigger('click');
         		$('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_handdate').val('');
-        		
+
                 hidePageAjaxLoading()
             },
             error: function(err) {
@@ -1106,8 +1324,11 @@ function autoCounter() {
     let sectionCount = 0;
     $(activetab).find( ".js-section-number" ).each(function( index ) {
         if($(this).closest('.panel-group').css('display') != 'none'){
+            let sectionHtml = $(this).html();
+            sectionHtml1 = sectionHtml.split("<i>")
+            $(this).html(sectionHtml1[0])
             sectionCount = sectionCount + 1;
-            $(this).prepend("<i>"+sectionCount+"</i>&nbsp;");
+            $(this).append("<i>"+sectionCount+"</i>&nbsp;");
         }
     });
 }
@@ -1122,7 +1343,8 @@ function calculate_setup_charge(imprint_position)
             let imprint_data = get_product_details.imprint_data;
             for(let item in imprint_data)
             {
-                let data_imprint_method = replaceWithUnderscore(imprint_data[item].imprint_method)
+                // let data_imprint_method = replaceWithUnderscore(imprint_data[item].imprint_method)
+                let data_imprint_method = imprint_data[item].imprint_method
                 let selected_imprint_method = imprint_position[imprint_position_val].imprint_method_name
                 if(data_imprint_method == selected_imprint_method)
                 {
@@ -1248,32 +1470,36 @@ $(document).on("click","#js_tab_list",function(){
 
     //set dynamic id in html of place order and request quote by active tab
     let activeTabHtml = $(activetab).find(".js_set_active_tab").html()
-    activeTabHtml = activeTabHtml.replace(/#activetab#/g,setActivetab)
-    $(activetab).find(".js_set_active_tab").html(activeTabHtml)
 
-    let rqhtml = $(activetab+' .checkbox_colors').html();
-    rqhtml = rqhtml.replace(/#data.tabID#/g, setActivetab);
-    $(activetab+' .checkbox_colors').html(rqhtml);
-    $(activetab).find('#js_request_quote_qty_box').html('');
-    $(activetab).find(".js_color_checkbox").each(function(){
-        $(this).prop("checked",false);
-    });
+    if(typeof activeTabHtml != 'undefined' ){
+      activeTabHtml = activeTabHtml.replace(/#activetab#/g,setActivetab)
+      $(activetab).find(".js_set_active_tab").html(activeTabHtml)
 
-    $(activetab).find(".js_add_imprint_location_request_quote").each(function(){
-        $(this).prop("checked",false);
-    });
+      let rqhtml = $(activetab+' .checkbox_colors').html();
+      rqhtml = rqhtml.replace(/#data.tabID#/g, setActivetab);
+      $(activetab+' .checkbox_colors').html(rqhtml);
+      $(activetab).find('#js_request_quote_qty_box').html('');
+      $(activetab).find(".js_color_checkbox").each(function(){
+          $(this).prop("checked",false);
+      });
 
-    if(hasImprintData == undefined){
-        // $(activetab).find('#decoration-Decoration-Print-position').hide();
-        $('#'+setActivetab+'-Print-position').hide();
+      $(activetab).find(".js_add_imprint_location_request_quote").each(function(){
+          $(this).prop("checked",false);
+      });
+
+      if(hasImprintData == undefined){
+          // $(activetab).find('#decoration-Decoration-Print-position').hide();
+          $('#'+setActivetab+'-Print-position').hide();
+      }
+      $(activetab + '.print-checkbox').html('');
+      $(activetab).find('#js_imprint_request_quote').empty();
+      $(activetab).find('#js_request_quote_instruction').val('');
+      $(activetab).find('#js_shipping_method').addClass('hide');
+      $(activetab).find('.js_select_shipping_type').prop('checked',false);
     }
 
     $(activetab +' .js-section-errors').remove();
-    $(activetab + '.print-checkbox').html('');
-    $(activetab).find('#js_imprint_request_quote').empty();
-    $(activetab).find('#js_request_quote_instruction').val('');
-    $(activetab).find('#js_shipping_method').addClass('hide');
-    $(activetab).find('.js_select_shipping_type').prop('checked',false);
+
     //console.log($(activetab).find('#js_shipping_method').find(".shipping-scroll").html())
     //$(activetab).find('#js_shipping_method').find(".shipping-scroll").addClass('hide');
 
@@ -1283,51 +1509,25 @@ $(document).on("click","#js_tab_list",function(){
     }
 
     autoCounter();
+    if(typeof cid == 'undefined' || cid == null) {
+        $('#Quantity-quote-block').html('<div class="panel-body"> <div class="estimate-detail" id="js_product_summary"> <div class="estimate-tag-block js_summary_qty hide"> <div class="estimate-row heading"><span>Quantity</span></div> <div class="row"> <div class="col-sm-12"> <table class="product-color-price-table" id="js_product_summary_qty"></table> </div> </div> </div> <div class="estimate-tag-block js_print_postion_location hide"></div> <div class="estimate-tag-block estimate-address-block js_summary_shipping_type hide"> <div class="estimate-row heading"><span>Shipping Method</span></div> <div class="estimate-row ship_type">Shipping Type : <span>Standard Shipping</span></div> <div class="js_shipp_address_data hide"></div> </div> </div> <div class="js_special_inst estimate-detail hide"> <div class="estimate-tag-block"> <div class="estimate-row heading"><span>Special Instructions</span></div> <div class="js_summary_instruction" style="white-space: pre-wrap;"></div> </div> </div> <div class="jsTotal estimate-detail hide"> <div class="js_product_summary_charges" id="js_product_summary_charges"> <div class="estimate-tag-block js-additional-charges-summary hide"> <div class="estimate-row heading"> <span>Additional Charges</span> </div> <div class="estimate-row charge_type js-shipping-charge-summary hide"> Shipping Charge: <span class="text-uppercase">$ 0.00</span> </div> <div class="estimate-row charge_type js-total-tax-in-summary hide"> Total Tax: <span class="text-uppercase">$ 0.00</span> </div> </div> <div class="estimate-total-block hide"> <div class="row"> <div class="col-lg-7 col-md-7 col-sm-7"> <table class="estimate-sub-table responsive"> <thead> <tr> <th>Quantity</th> <th>Price</th> </tr> </thead> <tbody> <tr> <td class="total_quantity">0</td> <td class="total_price">$ 0.00</td> </tr> </tbody> </table> </div> <div class="col-lg-5 col-md-5 col-sm-5 estimate-sub-totle"> <h4>Total Price: </h4> <h5 class="final_price">$ 0.00</h5> </div> </div> </div> </div> </div> </div>');
 
+        $('#Quantity-quote').addClass('hide');
+    }
 });
 
 
 $(document).on("click",".split-add-new-address",function(){
-
-	/*let colors_qty = {};
-    let colors_hex_code = {};
-    $('.js_color_checkbox:checked').each(function() {
-        let colorName = $(this).val();
-        let color_name = $(this).attr('id');
-        let hex_code = $(this).parent().css('background-color');
-        let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
-        if(qty == 0){
-              showErrorMessage("Please enter quantity.")
-              return false;
-        }
-        colors_qty[colorName] = qty;
-        colors_hex_code[colorName] = hex_code;
-    });
-
-    if(colors_qty.length == 0){
-      showErrorMessage("Please select color.")
-      return false;
-    }
-
-    let shippingAddressColorQtyAreaHtml = $(".js_shipping_qty_box_main").html();
-    let replaceQtyHtml = '';
-    $.each(colors_qty,function(key,value){
-      colorQtyHtml1 = shippingAddressColorQtyAreaHtml.replace(/#data.color#/g,key)
-      colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
-      colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,value)
-      replaceQtyHtml += colorQtyHtml1
-    })
-    $(".js_shipping_qty_box_main").html(replaceQtyHtml);*/
     let shippingAddressHml = shippingAddressHtmlTemplate;
 
     shippigCounter = parseInt($(activetab+" .js_request_quote_shipping_counter").val());
     shippigCounter = shippigCounter+1;
 
     $(activetab+" .js_request_quote_shipping_counter").val(shippigCounter);
-    
-    // As this is default address, we should not have delete button for default address    
+
+    // As this is default address, we should not have delete button for default address
     shippingAddressHml = shippingAddressHml.replace(/#data.deletebutton#/g,'<span class="js-delete-address css-delete-address pull-right">Delete</span>');
-    
+
     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
     $(activetab).find(".shipping-method #js_shipping_method").append(shippingAddressHml);
 
@@ -1357,29 +1557,33 @@ $(document).on("click",".split-add-new-address",function(){
     /* Handling colors started */
     let shippingAddressColorQtyAreaHtml = shippingAddressColorQtyAreaHtmlTemplate;
     let replaceQtyHtml = '';
+    let setActivetab = activetab.replace(/\#/g, '');
+
     $.each(colors_qty,function(key,value){
-      let alreadyAssignedQuantiy = 0;
-      colorQtyHtml1 = shippingAddressColorQtyAreaHtml.replace(/#data.color#/g,key)
-      colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
-      
-      // Deciding the quantity for new address started
-      $("."+colors_id_code[key]+" .js_request_quote_shipping_qty_box ").each(function(){
-    	  alreadyAssignedQuantiy = parseInt(alreadyAssignedQuantiy) + parseInt($(this).val());
-    	  remainingQuantity = (value-alreadyAssignedQuantiy);
-    	  if(remainingQuantity < 0){ remainingQuantity = 0 }
-      })      
-      colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,remainingQuantity)
-      // Deciding the quantity for new address ended
-    	  
-      colorQtyHtml1 = colorQtyHtml1.replace(/#data.extraclass#/g,colors_id_code[key])
-      replaceQtyHtml += colorQtyHtml1
+        let alreadyAssignedQuantiy = 0;
+        colorQtyHtml1 = shippingAddressColorQtyAreaHtml.replace(/#data.color#/g,key)
+        colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
+        let colors_id_codeReplace = colors_id_code[key].replace(/#data.tabID#/g,setActivetab)
+        remainingQuantity = 0;
+
+	// Deciding the quantity for new address started
+        $("."+colors_id_codeReplace+" .js_request_quote_shipping_qty_box ").each(function(){
+            alreadyAssignedQuantiy = parseInt(alreadyAssignedQuantiy) + parseInt($(this).val());
+            remainingQuantity = parseInt(value)-parseInt(alreadyAssignedQuantiy);
+            if(remainingQuantity < 0){ remainingQuantity = 0 }
+        })
+
+        colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,remainingQuantity)
+        // Deciding the quantity for new address ended
+
+        colorQtyHtml1 = colorQtyHtml1.replace(/#data.extraclass#/g,colors_id_codeReplace)
+        replaceQtyHtml += colorQtyHtml1
     })
     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_qty_box_main").html(replaceQtyHtml);
     /* Handling colors ended */
 
     /* Handle Colors in newly added address ended */
 
-    let setActivetab = activetab.replace(/\#/g, '');
     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker"+shippigCounter);
 
     $(".js_request_quote_shipping_qty_box").removeAttr('readonly');
@@ -1405,18 +1609,6 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
         selectedShippingType = 'split';
     }
 
-    // let colors_qty = [];
-    //
-    // $('.js_color_checkbox:checked').each(function() {
-    //     let color_name = $(this).attr('id');
-    //     let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
-    //     if(qty == 0){
-    //       showErrorMessage("Please enter quantity.")
-    //       return false;
-    //     }
-    //     colors_qty[color_name] = qty;
-    //     colors_qty.push({color_name:qty})
-    // });
     let colors_qty = {};
     let colors_hex_code = {};
     let colors_id_code = {};
@@ -1442,23 +1634,13 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
     }
 
     shippigCounter = 1;
-
     $(activetab+" .js_request_quote_shipping_counter").val(shippigCounter);
-    /*if(shippingAddressColorQtyAreaHtmlTemplate == '')
-	{
-    	shippingAddressColorQtyAreaHtmlTemplate = $(activetab).find(".js_shipping_qty_box_main").html();
-	}
-
-    if(shippingAddressHtmlTemplate == '')
-	{
-    	shippingAddressHtmlTemplate = $(activetab).find(".shipping-method #js_shipping_method").html();
-	}*/
 
     let shippingAddressHml = shippingAddressHtmlTemplate;
-    
-    // As this is default address, we should not have delete button for default address    
+
+    // As this is default address, we should not have delete button for default address
     shippingAddressHml = shippingAddressHml.replace(/#data.deletebutton#/g,'');
-    
+
     shippingAddressHml = shippingAddressHml.replace(/#data.counter#/g,shippigCounter);
     $(activetab).find(".shipping-method #js_shipping_method").html(shippingAddressHml);
 
@@ -1470,12 +1652,12 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,colors_hex_code[key])
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,value)
       colorQtyHtml1 = colorQtyHtml1.replace(/#data.extraclass#/g,colors_id_code[key])
+      colorQtyHtml1 = colorQtyHtml1.replace(/#data.tabID#/g,setActivetab)
       replaceQtyHtml += colorQtyHtml1
     })
     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_qty_box_main").html(replaceQtyHtml);
     /* Handling colors ended */
 
-    //let setActivetab = activetab.replace("#","")
     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").attr("id",setActivetab+"_datetimepicker"+shippigCounter);
 
     if(addressBookHtmlTemplate == '')
@@ -1497,10 +1679,14 @@ $(document).on("change",activetab+" .js_select_shipping_type",function(){
         $(activetab + " .split-add-new-address").removeClass('hide');
         $(activetab + " .js_request_quote_shipping_qty_box").removeAttr('readonly');
         $(activetab + " .js_request_quote_shipping_qty_box").css("cursor", "auto");
-
     }
 
     attachAutoCompleteEvent("#js_shipping_method_detail_"+shippigCounter);
+
+    //summary for shipping method
+    $('.js_shipp_address_data').html('');
+    $('.ship_type').html("Shipping Type : <span>"+selectedShippingType.replace(/\b\w/g, l => l.toUpperCase())+" Shipping</span>");
+    $('#Quantity-quote, .js_summary_shipping_type').removeClass('hide');
 });
 
 // Auto sugession for search of addressbook
@@ -1512,9 +1698,34 @@ $(document).on("click",activetab+" .datepicker-color",function(){
 $(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
      let thisObj = $(this);
      let transitTime = thisObj.data("transit-time")
-    //  alert(transitTime)
      let shipCounter = thisObj.closest(".js_shipping_method_detail").data("shipping-counter")
      let parentObj = $(activetab+" #js_shipping_method_detail_"+shipCounter)
+
+     //summary for shipping address method
+     $('.js_address_method_'+shipCounter).find('span').html($(this).find('a').text());
+     $('#Quantity-quote, .js_address_method_'+shipCounter).removeClass('hide');
+
+     //summary for shipping charges
+     let shippingCharge = $(this).attr('data-value');
+     $(activetab+' .js_rq_ship_shippingmethod').each(function(i) {
+        if($(this).closest(".js_shipping_method_detail").data("shipping-counter") != shipCounter) {
+            shippingCharge = parseFloat(shippingCharge) + parseFloat($(this).attr('data-value'));
+        }
+     });
+
+     $('.js-shipping-charge-summary').find('span').html("$"+parseFloat(shippingCharge).toFixed(project_settings.price_decimal));
+     $('.js-additional-charges-summary').removeClass('hide');
+     $('.js-shipping-charge-summary').removeClass('hide');
+
+     let shipp_charge = shippingCharge;
+     let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
+     if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+         shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+     }
+
+     let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
+     $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+
      setdate(shipCounter,parentObj,activetab,transitTime)
 })
 
@@ -1523,7 +1734,7 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
     let printPos = $(this).attr("value");
     let listHtmlPrintPosMethod1 = '';
     let productHtmlPrintPosMethod = '';
-    let select_imprint_method ='<li id="" data-dropval="" data-printpos="" data-full-color="" data-max-imprint-color="" data-method=""><a>Select method</a></li>';
+    let select_imprint_method ='';
 
     if($(activetab).find('#'+print_pos_id).is(":checked")){
         listHtmlPrintPosMethod1 = listHtmlPrintPosMethod.replace('#data.printPositionName#',printPos);
@@ -1552,27 +1763,211 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
     else{
         $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).remove();
     }
+
+    //summary for print position
+    $('.js_print_postion_location').html('');
+    $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
+        let positionName = $(this).val()
+        let position_name = replaceWithUnderscore($(this).val());
+
+        let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
+        let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
+
+        var no_of_color = 0;
+        if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
+            no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
+        }
+
+        let selColorsHtml = "";
+        if(no_of_color.length > 0) {
+            for(var k=1;k<=no_of_color;k++) {
+                let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
+                if(selectedColor != "" && typeof selectedColor != "undefined") {
+                    selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+k+'">color'+k+' : <span>'+selectedColor+'</span></div><br>';
+                }
+            }
+        }
+
+        if(typeof imprintMethodName != 'undefined' && no_of_color != 0 && selColorsHtml != '') {
+            $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br><br>'+selColorsHtml+'</div></div></div>');
+        }
+        else if(typeof imprintMethodName != 'undefined' && no_of_color != 0) {
+            $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br></div></div></div>');
+        }
+        else if(typeof imprintMethodName != 'undefined') {
+            $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div></div></div>');
+        }
+        else {
+            $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div></div>');
+        }
+    });
+    if($(activetab+' .js_add_imprint_location_request_quote:checked').length > 0) {
+        $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
+    }
+    else {
+        $('.js_print_postion_location').addClass('hide');
+    }
 });
+
+
+//upload artwork section start
+$(document).on("click",activetab + ".js-upload-art-radio",function(){
+    $('.js-upload-art').removeClass('hide');
+    if(!$('.js-upload-email').hasClass('hide')) {
+        $('.js-upload-email').addClass('hide');
+    }
+});
+
+$(document).on("click",activetab + ".js-upload-email-radio",function(){
+    $('.js-upload-email').removeClass('hide');
+    if(!$('.js-upload-art').hasClass('hide')) {
+        $('.js-upload-art').addClass('hide');
+    }
+});
+
+$(document).on("click",activetab + ".js-upload-art-type-radio",function(){
+    $('.js-upload-art-type').removeClass('hide');
+    if(!$('.js-upload-email-type').hasClass('hide')) {
+        $('.js-upload-email-type').addClass('hide');
+    }
+});
+
+$(document).on("click",activetab + ".js-upload-email-type-radio",function(){
+    $('.js-upload-email-type').removeClass('hide');
+    if(!$('.js-upload-art-type').hasClass('hide')) {
+        $('.js-upload-art-type').addClass('hide');
+    }
+});
+
+$(document).on("click",activetab + ".js_add_logo",function(){
+    let img_src = $(this).closest('.js-img-global').find('img').attr('src');
+    if(typeof img_src == 'undefined' || img_src == '') {
+        showErrorMessage("Please upload artwork.");
+        return false;
+    }
+    $(this).addClass('hide');
+    let posVal = $(this).attr('data-pos');
+    //$('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', false);
+    $('#js_is_logo_'+posVal+'_2').removeClass('hide');
+});
+
+$(document).on("click",activetab + ".js_remove_logo",function(){
+    $('.js_add_logo').removeClass('hide');
+    let posVal = $(this).attr('data-pos');
+    //$('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', true);
+    $('#logo_show_'+posVal+'_2').attr('src','');
+    $('#logo_show_'+posVal+'_2').addClass('hide');
+    $('#logo_save_'+posVal+'_2').attr('value','');
+    $('#js_is_logo_'+posVal+'_2').addClass('hide');
+});
+
+$(document).on("click",activetab + ".js_add_text",function(){
+    let text_val = $(this).closest('.js-text-global').find('.js-art-text').val();
+    if(typeof text_val == 'undefined' || text_val.trim() == '') {
+        showErrorMessage("Please enter text.");
+        return false;
+    }
+    $(this).addClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_text_'+posVal+'_2 input[type=text]').attr('disabled', false);
+    $('#js_is_text_'+posVal+'_2').removeClass('hide');
+});
+
+$(document).on("click",activetab + ".js_remove_text",function(){
+    $('.js_add_text').removeClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_text_'+posVal+'_2 input[type=text]').val('');
+    $('#js_is_text_'+posVal+'_2 input[type=text]').attr('disabled', true);
+    $('#js_is_text_'+posVal+'_2').addClass('hide');
+});
+
+$(document).on("click",activetab + ".js_add_logo_type",function(){
+    let img_src = $(this).closest('.js-img-global').find('img').attr('src');
+    if(typeof img_src == 'undefined' || img_src == '') {
+        showErrorMessage("Please upload artwork.");
+        return false;
+    }
+    $(this).addClass('hide');
+    let posVal = $(this).attr('data-pos');
+    //$('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', false);
+    $('#js_is_logo_type_'+posVal+'_2').removeClass('hide');
+});
+
+$(document).on("click",activetab + ".js_remove_logo_type",function(){
+    $('.js_add_logo_type').removeClass('hide');
+    let posVal = $(this).attr('data-pos');
+    //$('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', true);
+    $('#logo_type_show_'+posVal+'_2').attr('src','');
+    $('#logo_type_show_'+posVal+'_2').addClass('hide');
+    $('#logo_type_save_'+posVal+'_2').attr('value','');
+    $('#js_is_logo_type_'+posVal+'_2').addClass('hide');
+});
+
+$(document).on("click",activetab + ".js_add_text_type",function(){
+    let text_val = $(this).closest('.js-text-global').find('.js-art-text').val();
+    if(typeof text_val == 'undefined' || text_val.trim() == '') {
+        showErrorMessage("Please enter text.");
+        return false;
+    }
+    $(this).addClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_text_type_'+posVal+'_2 input[type=text]').attr('disabled', false);
+    $('#js_is_text_type_'+posVal+'_2').removeClass('hide');
+});
+
+$(document).on("click",activetab + ".js_remove_text_type",function(){
+    $('.js_add_text_type').removeClass('hide');
+    let posVal = $(this).attr('data-pos');
+    $('#js_is_text_type_'+posVal+'_2 input[type=text]').val('');
+    $('#js_is_text_type_'+posVal+'_2 input[type=text]').attr('disabled', true);
+    $('#js_is_text_type_'+posVal+'_2').addClass('hide');
+});
+
+$(document).on('click', '.js-upload-art-image', function(e) {
+    let id = $(this).closest('.js-img-global').find('img').attr('id');
+    let save_id = $(this).closest('.js-img-global').find('input[type=hidden]').attr('id');
+
+    cloudinary.openUploadWidget({
+        cloud_name: 'flowz',
+        api_key: '927244196696278',
+        upload_preset: 'ebvcoubx',
+        sources: ['local', 'camera', 'url', 'facebook'],
+        public_id: website_settings['projectID']+'/artwork/'+Date.now(),
+        multiple: false
+    },
+    function(error, result) {
+        console.log(error, result)
+        $("#"+id).attr('src',result[0].thumbnail_url);
+        if($('#'+id).hasClass( "hide" )) {
+            $('#'+id).removeClass('hide');
+        }
+        $("#"+save_id).attr('value',result[0].url);
+    });
+
+    //readImgUrl(this,e,id); // do not remove this comment.
+});
+//upload artwork section end
+
 
 function changeShippingDetails(currentAddressCounter)
 {
 	let currentAddressShippingCarrier = $('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingcarrier .imprint-lbl-method').html();
-	
+
 	if(currentAddressShippingCarrier != undefined && currentAddressShippingCarrier != '')
 	{
 		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_select_shipping_carrier_method li').filter('[data-value="'+(currentAddressShippingCarrier.toLowerCase())+'"]').trigger('click');
-		
+
 		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_shippingmethod').html('Select Method <span class="caret"></span>');
 		$(activetab).find('#js_shipping_method_detail_'+currentAddressCounter+' .js_rq_ship_shippingmethod').trigger('click');
 		$('#js_shipping_method_detail_'+currentAddressCounter).find('.js_rq_ship_handdate').val('');
 	}
-	
+
 }
 function attachShippingDetailChangeEvent()
 {
 	$(document).off("change", activetab + ' .js_request_quote_shipping_qty_box').on("change", activetab + ' .js_request_quote_shipping_qty_box', function(){
 		let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
-		changeShippingDetails(currentAddressCounter)	
+		changeShippingDetails(currentAddressCounter)
 	});
 }
 $(document).on("change", activetab + ' .js_color_checkbox',function(){
@@ -1584,11 +1979,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
     let id = $(this).attr("id");
 
     if($(this).is(":checked")) {
-        // var hexCodeBgColor = $(this).parent().css('background-color');
         let hexCodeBgColor = $(this).parent().attr("style");
-        // Quantity = '<div class="quntity-count js_color_wise_qty" id="js_request_quote_qty_box_'+id+'"><div class="color-input" style="'+hexCodeBgColor+'" title="'+$(this).val()+'"><br></div><div class="selector-quantity js-quantity-section"><div class="selector-btn"><div class="sp-minus"><a data-multi="-1" href="javascript:void(0)" class="js-quantity-selector">-</a></div>'+
-        // '<div class="selector-input"> <input type="text" value="0" class="selector-input js_request_quote_qty js_request_quote_nosize_qty" ></div><div class="sp-plus"><a data-multi="1" href="javascript:void(0)" class="js-quantity-selector">+</a></div></div><div class="clearfix"></div></div><a href="javascript:void(0)" data-toggle="tooltip" class="js_request_quote_qty_remove remove-qty" data-id="'+id+'">'+
-        // '<i class="fa fa-trash-o"></i></a></div>';
 
         Quantity = "<div class='quntity-count js_color_wise_qty' id='js_request_quote_qty_box_"+id+"'><div class='color-input' style='"+hexCodeBgColor+"' title='"+$(this).val()+"'><br></div><div class='selector-quantity js-quantity-section'><div class='selector-btn'><div class='sp-minus'><a data-multi='-1' href='javascript:void(0)' class='js-quantity-selector'>-</a></div>"+
         "<div class='selector-input'> <input type='text' value='0' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
@@ -1611,6 +2002,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         let color_name = $(this).attr('id');
         let hex_code = $(this).parent().attr("style");
         let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+        let setActivetab = activetab.replace(/\#/g, '');
 
         let shippingAddressColorQtyAreaHtml = shippingAddressColorQtyAreaHtmlTemplate;
         let replaceQtyHtml = '';
@@ -1618,12 +2010,13 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         colorQtyHtml1 = colorQtyHtml1.replace(/#data.colorhexcode#/g,hex_code)
         colorQtyHtml1 = colorQtyHtml1.replace(/#data.quantity#/g,qty)
         colorQtyHtml1 = colorQtyHtml1.replace(/#data.extraclass#/g,id)
+        colorQtyHtml1 = colorQtyHtml1.replace(/#data.tabID#/g,setActivetab)
 
         $(activetab).find('.js_shipping_method_detail').each(function(i) {
         	$(this).find(".js_shipping_qty_box_main").append(colorQtyHtml1);
         	if(selectedShippingType == 'split')
         	{
-        		$(this).find(".js_request_quote_shipping_qty_box").removeAttr('readonly');        		
+        		$(this).find(".js_request_quote_shipping_qty_box").removeAttr('readonly');
         	}
         	attachShippingDetailChangeEvent();
         });
@@ -1637,6 +2030,63 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
             $(activetab).find('.'+id).remove();
         }
     }
+
+    //summary for color selection
+    let totalQty = 0;
+    if($(activetab+' .js_color_checkbox:checked').length > 0) {
+        $("#Quantity-quote, .js_summary_qty").removeClass('hide');
+        let qtyMerge = "";
+        $(activetab+' .js_color_checkbox:checked').each(function() {
+            let colorName = $(this).val();
+            let color_name = $(this).attr('id');
+            let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
+
+            qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
+
+            totalQty = totalQty + parseFloat(qty);
+        });
+        $('#js_product_summary_qty').html("<tbody>"+qtyMerge+"</tbody>");
+
+        $(".total_quantity").html(totalQty);
+        $(".jsTotal, .estimate-total-block").removeClass('hide');
+    }
+    else {
+        $("#Quantity-quote, .js_summary_qty").addClass('hide');
+    }
+
+    //summary for total price
+    let totalPrice = 0.00; //summary
+    var productDetails = get_product_details;
+    if(productDetails.pricing != undefined){
+        let priceRang = '';
+        $.each(productDetails.pricing, function(index,element){
+            if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global")
+            {
+                $.each(element.price_range,function(index,element2){
+                    if(element2.qty.lte != undefined) {
+                        if(totalQty >= element2.qty.gte && totalQty <= element2.qty.lte) {
+                            totalPrice = totalQty*parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                        }
+                    }
+                    else
+                    {
+                        if(totalQty >= element2.qty.gte) {
+                            totalPrice = totalQty*parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                        }
+                    }
+                });
+            }
+        });
+    }
+    $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
+
+    //summary for shipping charges
+    let shipp_charge = 0.00;
+    if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+        let shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+    }
+    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
+    $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
 $(document).on("click", activetab + ' .js_request_quote_qty_remove', function(){
@@ -1651,7 +2101,7 @@ function setdate(shipCounter,parentObj,activetab,transitTime=0){
       let endDate = "";
       let count = 0;
       let noOfDaysToAdd = 0
-      let setDate = "";  
+      let setDate = "";
       if(transitTime > 0 && transitTime !=''){
           noOfDaysToAdd = noOfDaysToAdd + parseInt(transitTime);
       }
@@ -1670,11 +2120,14 @@ function setdate(shipCounter,parentObj,activetab,transitTime=0){
       else{
         setDate = date
       }
-      
+
       // let setActivetab = activetab.replace("#","")
       $(activetab).find(parentObj).find(activetab+"_datetimepicker"+shipCounter).datepicker("setDate", setDate);
       $(activetab).find(parentObj).find(activetab+"_datetimepicker"+shipCounter).datepicker('option', 'minDate', setDate);
 
+      //summary for address inhand date
+      $('.js_inhand_date_'+shipCounter).find('span').html($(activetab).find(parentObj).find(activetab+"_datetimepicker"+shipCounter).val());
+      $('#Quantity-quote, .js_inhand_date_'+shipCounter).removeClass('hide');
   }
 }
 
@@ -1738,7 +2191,6 @@ function validateForm(data,activetab){
   }else{
       returnData["status"] = "success"
   }
-  // alert(activetab)
   return returnData;
 }
 
@@ -1839,10 +2291,10 @@ function shippingValidation(fld,section,value){
       let shippingArr = {}
       let arrKey = 1
 	  let splitShippingColorQuantity = {};
-      
-      $.each(value[fld].shipping_detail,function(key,shippingData){          
+
+      $.each(value[fld].shipping_detail,function(key,shippingData){
           let splitShippingAddressQuantity = 0;
-		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
+		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){
 			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
 			  if(splitShippingColorQuantity[colorkey] != undefined)
 			  {
@@ -1852,8 +2304,8 @@ function shippingValidation(fld,section,value){
 			  {
 				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
 			  }
-		  });	
-      })  
+		  });
+      })
 
       if(value['color'] != undefined)
       {
@@ -1870,7 +2322,7 @@ function shippingValidation(fld,section,value){
 		  });
       }
       console.log(errorLog);
-      
+
       if(isEmpty(errorLog))
       {
           $.each(value[fld].shipping_detail,function(key,shippingData){
@@ -1898,7 +2350,7 @@ function shippingValidation(fld,section,value){
                   shippingVal['selected_address_id'] = "Please select shipping address."
                   shippingArr[section1] = shippingVal
               }
-              else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
+              /*else if(!isEmpty(shippingData.shipping_detail) && shippingData.shipping_detail.shipping_carrier == ''){
                       shippingVal['shipping_carrier'] = "Select shipping carrier."
                       shippingArr[section1] = shippingVal
               }
@@ -1909,7 +2361,7 @@ function shippingValidation(fld,section,value){
               else if (shippingData.shipping_detail.shipping_charge == '') {
                     shippingVal['shipping_method'] = "Select shipping method."
                     shippingArr[section1] = shippingVal
-                  }
+                  }*/
               arrKey = arrKey + 1
           })
       }
@@ -1931,12 +2383,22 @@ function loadBxSlider(){
 
 $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosize_qty',function(){
     let colors_qty = {};
+    let qtyShow = "";
+    let totalQty = 0; //summary
+    let totalPrice = 0.00; //summary
     $('.js_color_checkbox:checked').each(function() {
         let colorName = $(this).val();
         let color_name = $(this).attr('id');
         let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
         colors_qty[colorName] = qty;
+
+        //summary for quantity selection
+        qtyShow = qtyShow + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
+
+        totalQty = totalQty + parseFloat(qty);
     });
+    $('#js_product_summary_qty').html(qtyShow);
+    $(".total_quantity").html(totalQty); //summary
 
     $('.js_shipping_qty_box_main .js_request_quote_shipping_qty_box').each(function(i) {
     	if(selectedShippingType == 'standard')
@@ -1947,6 +2409,39 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
             $(this).trigger('change');
     	}
     });
+
+    //summary for total price
+    var productDetails = get_product_details;
+    if(productDetails.pricing != undefined){
+        let priceRang = '';
+        $.each(productDetails.pricing, function(index,element){
+            if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global")
+            {
+                $.each(element.price_range,function(index,element2){
+                    if(element2.qty.lte != undefined) {
+                        if(totalQty >= element2.qty.gte && totalQty <= element2.qty.lte) {
+                            totalPrice = totalQty*parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                        }
+                    }
+                    else
+                    {
+                        if(totalQty >= element2.qty.gte) {
+                            totalPrice = totalQty*parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                        }
+                    }
+                });
+            }
+        });
+    }
+    $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
+    
+    //summary for shipping charges
+    let shipp_charge = 0.00;
+    if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+        let shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+    }
+    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
+    $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
 function attachDeleteEvent(parentDiv){
@@ -1961,11 +2456,18 @@ function attachDeleteEvent(parentDiv){
 			let deleteConfirm = confirm("Are you sure you want to remove this address?");
 			if(deleteConfirm == true)
 			{				
-				let shippingCounter = $(activetab+" .js_request_quote_shipping_counter").val();
-				let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
+                let shippingCounter = $(activetab+" .js_request_quote_shipping_counter").val();
+                let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
+                let currentAddressCounter1 = $(this).closest('.js_shipping_method_detail').attr('data-shipping-counter');
 				
 				// First remove the current address
-				$(activetab + ' #js_shipping_method_detail_'+currentAddressCounter).remove();
+				$(activetab + ' #js_shipping_method_detail_'+currentAddressCounter1).remove();
+				
+				//summary for shipping address split
+				$('#js_shipp_address_details_'+currentAddressCounter).remove();
+				if(shippingCounter == currentAddressCounter) {
+				    $('#js_shipp_address_details_'+currentAddressCounter).find('counter').html((currentAddressCounter-1));
+				}
 				
 				// Now shift the other addresses one step up
 				for(i=(currentAddressCounter+1);i<=shippingCounter;i++)
@@ -1973,8 +2475,10 @@ function attachDeleteEvent(parentDiv){
 					$(activetab + ' #js_shipping_method_detail_'+i).attr('id','js_shipping_method_detail_'+(i-1))
 					$(activetab + ' #js_shipping_method_detail_'+(i-1)).attr('data-shipping-counter',(i-1))
 					$(activetab + ' #js_shipping_method_detail_'+(i-1)+' .option-head a:first' ).html('Shipping Address '+(i-1))
-				}
-				$(activetab+" .js_request_quote_shipping_counter").val((shippigCounter-1));
+					$('#js_shipp_address_details_'+i).find('counter').html((i-1)); //summary
+                }
+                let shippingCounterTemp = shippingCounter
+				$(activetab+" .js_request_quote_shipping_counter").val((shippingCounterTemp-1));
 			}
 		});
 	}	
@@ -2004,7 +2508,7 @@ function attachAutoCompleteEvent(parentDiv){
 	          }
 	        }
 	      }).on('typeahead:selected', function (obj, datum) {
-	              showPageAjaxLoading();
+	          showPageAjaxLoading();
 	          let counter = $(obj.currentTarget).closest('.js_shipping_method_detail').data('shipping-counter');
 	          let shippigCounter = counter;
               let addressBookId = datum.id;
@@ -2015,7 +2519,7 @@ function attachAutoCompleteEvent(parentDiv){
 }
 
 
-function setSelectedAddress(addressBookId,shippigCounter)
+function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
 {
     axios({
         method: 'GET',
@@ -2042,61 +2546,93 @@ function setSelectedAddress(addressBookId,shippigCounter)
             if(cid == null)
             {
                 changeShippingDetails(shippigCounter);
+                //$('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').html('Select Carrier <span class="caret"></span>');
             }
-            // if(cid == null)
-            // {
-            //     $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').html('Select Carrier <span class="caret"></span>');
-            // }
-          //   $('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').attr('data-value','');
-            replaceAddressHtml += country
+            //$('#js_shipping_method_detail_'+shippigCounter).find('.js_rq_ship_shippingcarrier').attr('data-value','');
+            replaceAddressHtml += country;
             // END -Change
 
-            if(returnData.postalcode != undefined ){
+            if(typeof returnData.postalcode != "undefined" && returnData.postalcode != ''){
               replaceAddressHtml += "-"+returnData.postalcode+"<br>";
             }
-            if(returnData.phone != undefined ){
+            if(typeof returnData.phone != "undefined" && returnData.phone != ''){
               replaceAddressHtml += "T: "+returnData.phone+",<br>";
             }
-            if(returnData.mobile != undefined ){
+            if(typeof returnData.mobile != "undefined" && returnData.mobile!= ''){
               replaceAddressHtml += "M: "+returnData.mobile+"<br>";
             }
             replaceAddressHtml += '<input class="shippingAddressId" name="shippingAddressId" value="'+returnData.id+'" type="hidden">';
             addressBookHtml = addressBookHtmlTemplate;
 
+            let appendAddress = ""; //summary
             if(addressBookHtml.indexOf("#data.address#")!= -1){
                 addressBookHtml = addressBookHtml.replace(/#data.address#/g,replaceAddressHtml);
                 $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html(addressBookHtml);
+                appendAddress = addressBookHtml; //summary
             }else{
-                $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html(replaceAddressHtml)
+                $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html(replaceAddressHtml);
+                appendAddress = replaceAddressHtml; //summary
             }
             $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses").removeClass("hide");
-          // change
+
+            //summary for shipping address
+            if($("#js_shipp_address_details_"+shippigCounter).length) {
+                $("#js_shipp_address_details_"+shippigCounter+" .js_shipp_address_block span").html(appendAddress);
+            }
+            else {
+                $('.js_shipp_address_data').append('<div id="js_shipp_address_details_'+shippigCounter+'" class="js_shipp_address_details" style="padding-top: 10px;"><div class="estimate-row"><b>Shipping Address <counter>'+shippigCounter+'</counter> :</b></div><div class="estimate-row js_shipp_address_block"><span>'+appendAddress+'</span></div><div class="estimate-row js_address_carrier_'+shippigCounter+' hide">Shipping Carrier : <span></span></div><div class="estimate-row js_address_method_'+shippigCounter+' hide">Method : <span></span></div><div class="estimate-row js_inhand_date_'+shippigCounter+' hide">In Hand Date : <span></span></div>');
+            }
+
+            if(carrierData != null) {
+                $(".js_address_carrier_"+shippigCounter+" span").html(carrierData['shipping_carrier']);
+                $(".js_address_carrier_"+shippigCounter).removeClass('hide');
+
+                $(".js_address_method_"+shippigCounter+" span").html(carrierData['shipping_method']);
+                $(".js_address_method_"+shippigCounter).removeClass('hide');
+
+                $('.js_inhand_date_'+shippigCounter).find('span').html(carrierData['on_hand_date']);
+                $('.js_inhand_date_'+shippigCounter).removeClass('hide');
+            }
+
+            let shipping_type = $(activetab).find('input[name=request_quote_shipping_type]:checked').val();
+            if(shipping_type == 'standard') {
+                $('.js_shipp_address_details').find('counter').html('');
+            }
+            
+            $('#Quantity-quote, .js_shipp_address_data').removeClass('hide');
+
+
+            // change
               let shipping_details = get_product_details.shipping[0];
               if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
                     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
               }
+
+              let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
+              let getStreet = await getStreetData(getLocation)
+              
               var addressFrom  = {
-                  // "name": returnData.name,
-                  // "street1": returnData.street1,
+                  "name": shipping_details.fob_city,
+                  "street1": getStreet,
                   "city": shipping_details.fob_city,
                   "state": shipping_details.fob_state_code,
                   "zip": shipping_details.fob_zip_code,
                   "country": shipping_details.fob_country_code,
                   // "phone": "+1 555 341 9393",//optional
                   // "email": "shippotle@goshippo.com",//optional
-                  "validate": true//optional
+                  // "validate": true//optional
               };
 
               var addressTo  = {
-                  // "name": returnData.name,
-                  // "street1": "500 to 598 1st St",//returnData.street1,
+                  "name": returnData.name,
+                  "street1": returnData.street1,
                   "city": city,
                   "state": state,
                   "zip": returnData.postalcode,
                   "country": country,
                   // "phone": "+1 555 341 9393",//optional
                   // "email": "shippotle@goshippo.com",//optional
-                  "validate": true//optional
+                  // "validate": true//optional
               };
               // console.log("addressTo",addressTo);
 
@@ -2112,6 +2648,12 @@ function setSelectedAddress(addressBookId,shippigCounter)
                           $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-value','')
                           $('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_shippingmethod').attr('data-service','')
                       }
+
+                      //summary for shipping carrier
+                      let address_carrier = $(this).find('a').text();
+                      $('.js_address_carrier_'+shippigCounter).find('span').html(address_carrier);
+                      $('#Quantity-quote, .js_address_carrier_'+shippigCounter).removeClass('hide');
+
                       getShippingRate('#js_shipping_method_detail_'+shippigCounter,thisObj,addressFrom,addressTo,shipping_details,shippigCounter);
                   }
               });
@@ -2127,6 +2669,10 @@ function setSelectedAddress(addressBookId,shippigCounter)
                 onSelect: function(dateText, inst) {
                     let date = $(this).val();
                     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").val(date);
+                    
+                    //summary for address inhand date
+                    $('.js_inhand_date_'+shippigCounter).find('span').html(date);
+                    $('#Quantity-quote, .js_inhand_date_'+shippigCounter).removeClass('hide');
                 }
             });
         }
@@ -2137,3 +2683,117 @@ function setSelectedAddress(addressBookId,shippigCounter)
       // console.log('Error fetching and parsing data', error);
     });
 }
+
+async function getStreetLocation(ZipCode){
+   var resp = "";
+    await axios({
+        method: 'GET',
+        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&address={"+ZipCode+"}&sensor=true",
+        })
+    .then(async function (response) {
+        resp = response.data.results[0].geometry.location.lat+","+response.data.results[0].geometry.location.lng;
+        return resp;
+    })
+    .catch(function (error) {
+        // console.log("error",error);
+    });
+    return resp;
+}
+
+async function getStreetData(location){
+    var resp = "";
+    await axios({
+        method: 'GET',
+        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
+    })
+    .then(function (response1) {
+        // console.log("response1",response1);        
+        let resp1 = response1.data.results[0].formatted_address.split(",");
+        resp = resp1[0]
+        return resp;
+    })
+    .catch(function (error) {
+        // console.log("error",error);
+    })
+    return resp;
+}
+//summary for special instruction
+$(document).on("keyup", activetab + ' .js-specialInstruction-section textarea',function(){
+    $('.js_summary_instruction').html($(this).val());
+    $('#Quantity-quote, .js_special_inst').removeClass('hide');
+}); 
+
+function submitRequestInfo(productData,instruction,guestUserDetail){
+  let data = {'product_image_url':project_settings.product_api_image_url,'product_id':pid,'product_data':productData,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':guestUserDetail,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']};
+  $.ajax({
+        type: 'POST',
+        url: project_settings.request_info_api_url,
+        // data: {product_api_url:project_settings.product_api_url,'user_detail':user_details,'form_data':formObj.serializeFormJSON(),'culture':project_settings.default_culture,'guest_user_detail':null,"website_id":"bb1e5568-f907-4583-9259-42019a2352cc"},
+        data: data,
+        cache: false,
+        dataType: 'json',
+        headers: {"vid": website_settings.Projectvid.vid},
+        success: function(response){
+          hidePageAjaxLoading()
+            if(response.length > 0 && response[0].id != '' ){
+                showSuccessMessage("Your request info is submitted successfully.");
+                window.location = "thankYou.html";
+                return false;
+            }else{
+              //console.log(response);
+              return false;
+            }
+        }
+  });
+}
+
+$(document).on('click','.js-submit-btn',function (e) {
+      let formId = $(this).closest("form").attr("id")
+      $("form#"+formId).validate({
+          rules: {
+            "fullName" : "required",
+            "phone" : {
+              required:true,
+              minlength: 12
+            },
+            "email":{
+              required:true,
+              email: true
+            },
+            "company_name" : "required",
+            "zipcode" : "required"
+          },
+          messages: {
+            "fullName" : "Please enter name.",
+            "phone" : {
+              required : "Please enter phone number.",
+              minlength: "Please enter valid phone number."
+            },
+            "email":{
+              required:"Please enter email",
+              email: "Please enter valid email."
+            },
+            "company_name" : "Please enter company name.",
+            "zipcode" : "Please enter Postal code."
+          },
+          errorElement: "li",
+          errorPlacement: function(error, element) {
+            console.log("error",error);
+            console.log("element",element);
+            error.appendTo(element.closest("div"));
+            $(element).closest('div').find('ul').addClass('red')
+          },
+          errorLabelContainer: "#errors",
+          wrapper: "ul",
+          submitHandler: function(form) {
+            //console.log("+++++++++++++++++++");
+             let guestUserDetail = $(form).serializeFormJSON()
+             let productData = get_product_details
+             let instruction = $(activetab).find("textarea[name='note']").val()
+             submitRequestInfo(productData,instruction,guestUserDetail)
+            // console.log("data",data);
+            return false;
+          }
+      }).form()
+
+})

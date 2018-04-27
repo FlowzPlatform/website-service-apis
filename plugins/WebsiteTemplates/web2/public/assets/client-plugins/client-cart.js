@@ -28,8 +28,8 @@ function showCart()
   var shippingSectionHtml = $(".product-quantity-list").closest( "tr" ).clone().wrap('<p>').parent().html();
   $(".product-quantity-list").closest( "tr" ).remove();
 
-  var imprintSectionHtml = $(".js-imprint-information").closest( "td" ).html();
-  $(".js-imprint-information").remove();
+  var imprintSectionHtml = $(".js-imprint-information").html();
+  //$(".js-imprint-information").remove();
 
   var listHtml = $('#js-cart_data .js-listing').html()
   var carAmountHtml = $('#js-cart_data .js-cart-amount').html()
@@ -141,20 +141,20 @@ function showCart()
                   {
                     var imprintSectionHtml1 = imprintSectionHtml;
 
-                    if(typeof imprint_info.imprint_position_name != "undefined")
+                    if(typeof imprint_info.imprint_position_name != "undefined" && imprint_info.imprint_position_name != "")
                     {
-                      print_position = imprint_info.imprint_position_name;
+                      print_position = "<span class='header-color'>Print Position: </span> "+imprint_info.imprint_position_name+" <br />";
                     }
                     imprintSectionHtml1 = imprintSectionHtml1.replace("#data.print_position#",print_position)
 
-                    if(typeof imprint_info.imprint_method_name != "undefined")
+                    if(typeof imprint_info.imprint_method_name != "undefined" && imprint_info.imprint_method_name != "")
                     {
-                      imprint_method = imprint_info.imprint_method_name;
+                      imprint_method = "<span class='header-color'>Imprint Method: </span> "+imprint_info.imprint_method_name+" <br />";
                     }
                     imprintSectionHtml1 = imprintSectionHtml1.replace("#data.imprint_method#",imprint_method)
 
-                    if(typeof imprint_info.no_of_color != "undefined") {
-                      howmany_colors = imprint_info.no_of_color;
+                    if(typeof imprint_info.no_of_color != "undefined" && imprint_info.no_of_color != "") {
+                      howmany_colors = "<span class='header-color'>How many colors: </span> "+imprint_info.no_of_color+" <br />";
                     }
                     imprintSectionHtml1 = imprintSectionHtml1.replace("#data.howmany_colors#",howmany_colors)
 
@@ -168,8 +168,7 @@ function showCart()
                       }
                     }
 
-                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.colours#",colorHtml)
-
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.colours#",colorHtml+"<br />")
                     imprintHtml += imprintSectionHtml1;
                   }
                 }
@@ -218,6 +217,7 @@ function showCart()
                       shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'');
                       shippingHtml1 = shippingHtml1.replace("#data.on_hand_date#",'');
                       shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#","N/A");
+                      shippingHtml1 = shippingHtml1.replace("#data.shipping_count#",shippingKeyCount);
                     }
                     else {
                       if(shipping_details.shipping_carrier != '') {
@@ -248,22 +248,12 @@ function showCart()
                     else{
                       var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,"0.00");
                     }
-                    // alert(product_shipping_charges)
                     $(".js-shipping-"+response_data[key].id).find(".js-product_total_shipping_charge").html(product_shipping_charges.toFixed(project_settings.price_decimal));
 
                     //END - change
 
                     let replaceAddressHtml = await addressBookHtml(shipping_info.selected_address_id)
                     shippingHtml1 = shippingHtml1.replace("#data.address_book#",replaceAddressHtml)
-                    //  console.log("replaceAddressHtml replaceAddressHtmlreplaceAddressHtml " , replaceAddressHtml)
-                    // let replaceAddressHtml = addressBookHtml(shipping_info.selected_address_id).then(function(html){
-                    // //  console.log("html <<<<<<<<<<< " , html)
-                    //     shippingHtml1 = shippingHtml1.replace("#data.address_book#",html)
-                    //     console.log("shippingHtml1",shippingHtml1);
-                    //     return shippingHtml1;
-                    // })
-
-                    // console.log("replaceAddressHtml " , replaceAddressHtml)
                     // shippingHtmlReplace += replaceAddressHtml;
                     shippingHtmlReplace += shippingHtml1;
 
@@ -309,10 +299,10 @@ function showCart()
                   });
              }
                 if(imprintHtml != '') {
-                  $(".js-product-"+response_data[key].id).find(".js_imprint_info").html(imprintHtml);
+                  $(".js-product-"+response_data[key].id).find(".js-imprint-information").html(imprintHtml);
                 }
                 else {
-                  $(".js-product-"+response_data[key].id).find(".js_imprint_info").html('N/A');
+                  $(".js-product-"+response_data[key].id).find(".js-imprint-information").html('N/A');
                 }
 
                 $( shippingHtmlReplace ).insertAfter( ".js-product-"+response_data[key].id );
@@ -325,6 +315,7 @@ function showCart()
               $('#js-cart_data .js-listing').html('');
             }
             $("#cartCount").html(response_data.length-1);
+            await deleteItemById(project_settings.shopping_api_url+"/"+response_data[key].id);
           }
         }
 
@@ -343,6 +334,11 @@ function showCart()
         carAmountHtml = carAmountHtml.replace('#data.grand_total_with_tax#',grand_total);
 
         $('#js-cart_data .js-cart-amount').html(carAmountHtml)
+        if($("#cartCount").html() == 0)
+        {
+          $('#js-cart_data').html("<div class='col-sm-12 col-md-12 col-lg-12 col-xs-12'><div class='col-sm-6 col-md-6 col-lg-6 col-xs-12'>No records found.</div></div>")
+        }
+
         $("#js-cart_data").removeClass('hide');
         replaceColorNameWithHexaCodesNew()
 
@@ -377,7 +373,6 @@ async function addressBookHtml(id) {
 	if(id  != undefined )
 	{
 	    let addressBookData = await returnAddressBookDetailById(id)
-	    // console.log("addressBookData",addressBookData);
         let replaceAddressHtml = '';
         if(addressBookData != null) {
             replaceAddressHtml += addressBookData.name+"<br>";
