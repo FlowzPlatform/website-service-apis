@@ -67,9 +67,10 @@ const banners = require('./banners/banners.service.js');
 
 const commentRequest = require('./comment-request/comment-request.service.js');
 
-
+const rethinkservicecheck = require('./rethinkservicecheck/rethinkservicecheck.service.js');
 
 const cloudinaryService = require('./cloudinary-service/cloudinary-service.service.js');
+
 
 
 
@@ -118,5 +119,6 @@ module.exports = function () {
   app.configure(bannertype);
   app.configure(banners);
   app.configure(commentRequest);
+  app.configure(rethinkservicecheck);
   app.configure(cloudinaryService);
 };
