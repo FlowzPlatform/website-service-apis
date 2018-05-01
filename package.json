@@ -39,7 +39,7 @@
     "css-loader": "^0.28.7",
     "directory-tree": "^2.0.0",
     "element-ui": "^2.0.8",
-    "error-handler-flowz": "file:../error-handler-flowz",
+    "flowz-error-handler": "0.0.3",
     "feathers": "^2.1.7",
     "feathers-configuration": "^0.4.1",
     "feathers-errors": "^2.9.2",
