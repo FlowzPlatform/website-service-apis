@@ -67,16 +67,14 @@ const banners = require('./banners/banners.service.js');
 
 const commentRequest = require('./comment-request/comment-request.service.js');
 
-
+const rethinkservicecheck = require('./rethinkservicecheck/rethinkservicecheck.service.js');
 
 
 const copyJobqueuePublishFiles = require('./copy-jobqueue-publish-files/copy-jobqueue-publish-files.service.js');
 const cloudinaryService = require('./cloudinary-service/cloudinary-service.service.js');
 
 
-
 const jobqueue = require('./jobqueue/jobqueue.service.js');
-
 
 
 module.exports = function () {
@@ -124,7 +122,11 @@ module.exports = function () {
   app.configure(bannertype);
   app.configure(banners);
   app.configure(commentRequest);
+<<<<<<< HEAD
   app.configure(copyJobqueuePublishFiles);
+=======
+  app.configure(rethinkservicecheck);
+>>>>>>> 0bdeb2b5d1522f3c27e14c922be184d462999db0
   app.configure(cloudinaryService);
   app.configure(jobqueue);
 };
