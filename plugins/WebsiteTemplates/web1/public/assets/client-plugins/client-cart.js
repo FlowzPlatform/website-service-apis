@@ -170,6 +170,67 @@ function showCart()
 
                     imprintSectionHtml1 = imprintSectionHtml1.replace("#data.colours#",colorHtml+"<br />")
                     imprintHtml += imprintSectionHtml1;
+
+                    //artwork
+                    if(typeof imprint_info.artwork_type != "undefined" && typeof imprint_info.artwork != "undefined")
+                    {
+                      let artwork_type = imprint_info.artwork_type;
+                      let checkSendEmail = '';
+                      if(artwork_type == "upload_artwork_typeset")
+                      {
+                          if(typeof imprint_info.artwork.artwork_text_email != "undefined")
+                          {
+                            checkSendEmail = '<span class="header-color">Art Work Via Email</span>: <span>art@keyinnovations.ca</span>';
+                          }
+                      }
+                      else if(artwork_type == "upload_artwork")
+                      {
+                          if(typeof imprint_info.artwork.artwork_email != "undefined")
+                          {
+                            checkSendEmail = '<span class="header-color">Art Work Via Email</span>: <span>art@keyinnovations.ca</span>';
+                          }
+                      }
+
+                      if(checkSendEmail != "")
+                      {
+                        imprintHtml += checkSendEmail;
+                      }
+
+                      let thumbImg = '';
+                      
+                      if(typeof imprint_info.artwork.artwork_thumb != "undefined")
+                      {
+                          for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries())
+                          {
+                              let j = i+1;
+                              thumbImg += '<div class="estimate-row"><span class="header-color">Uploaded Artwork '+j+'</span>: <img alt="" src="'+artwork_thumb+'"><br><br></div>';
+                          }
+                      }
+
+                      if(thumbImg != "")
+                      {
+                        imprintHtml += thumbImg;
+                      }
+
+                      let artText = '';
+
+                      if(typeof imprint_info.artwork.artwork_text != "undefined")
+                      {
+                        for (let [i,artwork_text] of imprint_info.artwork.artwork_text.entries())
+                        {
+                            let j = i+1;
+                            artText += '<div class="estimate-row"><span class="header-color">Text '+j+'</span> : <span> '+artwork_text+'</span><br></div>';
+                        }
+                      }
+                      
+                      if(typeof imprint_info.artwork.artwork_instruction != "undefined")
+                      {
+                        artText += '<div class="estimate-row"><span class="header-color">Instructions :</span> <span> '+imprint_info.artwork.artwork_instruction+'</span><br></div>';
+                      }
+                      imprintHtml += artText;                      
+                    }
+                    //artwork -end
+
                   }
                 }
 
