@@ -63,11 +63,15 @@ function beforeentry(hook){
         Websiteid:Websiteid
     })
     // console.log('job:',job)
-    q.addJob(job).then((savedJobs) => {
+   await q.addJob(job).then((savedJobs) => {
       // savedJobs is an array of a single job object
+      console.log('jj')
+      hook.result={"data":'successfull'}
     }).catch((err) => {
         console.error(err)
+        hook.result={"data":'failed'}
     })  
+    console.log('hook',hook.data)
     resolve(hook);
   })
 }
@@ -79,7 +83,7 @@ function beforegetremove(hook){
 
   let id= hook.params.query.websiteid
      q.findJob(q.r.and(q.r.row("Websiteid").eq(id), q.r.row("status").eq("waiting").or(q.r.row("status").eq("active")))).then((jobs) => {
-      console.log(jobs)
+      
      q.cancelJob(jobs)
    }).catch(err => console.error(err))
 
