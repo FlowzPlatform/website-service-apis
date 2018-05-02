@@ -101,16 +101,19 @@ async function beforeSubmitOrder(hook){
 }
 
 afterSubmitOrder = async hook =>  {
-  await axios({
-    method : 'POST',
-    url : 'http://api.'+process.env.domainKey+'/crm/purchase-order',
-    data: hook.result
- })
- .then(function (response) {
-    // console.log("response------------------------",response)
-  })
-  .catch(function (error) {
-    // console.log("error",error)
-  });
-  hook.result = hook.result;
+  if(hook.data.id != undefined)
+  {
+    await axios({
+      method : 'POST',
+      url : 'http://api.'+process.env.domainKey+'/crm/purchase-order',
+      data: hook.result
+    })
+    .then(function (response) {
+        // console.log("response------------------------",response)
+      })
+      .catch(function (error) {
+        // console.log("error",error)
+      });
+      hook.result = hook.result;
+  }
 }
