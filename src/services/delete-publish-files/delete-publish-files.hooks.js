@@ -44,9 +44,8 @@ function before_create_ms(hook) {
 function after_create_ms(hook) {
   return new Promise((resolve, reject) => {
         // let deleteresponse=shell.exec('find '+hook.params.query.path+ '/public -maxdepth 1 -type f -iname \*.html -delete');
-        console.log('path:',hook.params.query.path+ '/.temppublish/*')
         let deleteresponse=shell.exec('rm -rf '+hook.params.query.path+ '/.temppublish/*');
-        console.log('deleteresponse',deleteresponse)
+        console.log('########################### deleteresponse',deleteresponse)
         hook.result = 'Successfull deleted previous published files';
         resolve(hook);
   })
