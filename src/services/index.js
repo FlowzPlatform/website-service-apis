@@ -122,11 +122,8 @@ module.exports = function () {
   app.configure(bannertype);
   app.configure(banners);
   app.configure(commentRequest);
-<<<<<<< HEAD
   app.configure(copyJobqueuePublishFiles);
-=======
   app.configure(rethinkservicecheck);
->>>>>>> 0bdeb2b5d1522f3c27e14c922be184d462999db0
   app.configure(cloudinaryService);
   app.configure(jobqueue);
 };
