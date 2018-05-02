@@ -5,6 +5,7 @@ let rauth = process.env.rauth ? process.env.rauth : null;
 
 const config = require("config");
 const table = 'my_orders';
+let axios = require('axios');
 
 let r = require('rethinkdb')
 let connection;
@@ -40,7 +41,9 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+      hook => afterSubmitOrder(hook)
+    ],
     update: [],
     patch: [],
     remove: []
@@ -95,4 +98,22 @@ async function beforeSubmitOrder(hook){
               resolve(hook)
           })
   })
+}
+
+afterSubmitOrder = async hook =>  {
+  if(hook.data.id != undefined)
+  {
+    await axios({
+      method : 'POST',
+      url : 'http://api.'+process.env.domainKey+'/crm/purchase-order',
+      data: hook.result
+    })
+    .then(function (response) {
+        // console.log("response------------------------",response)
+      })
+      .catch(function (error) {
+        // console.log("error",error)
+      });
+      hook.result = hook.result;
+  }
 }
