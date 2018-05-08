@@ -65,8 +65,8 @@ function beforeentry(hook){
     // console.log('job:',job)
    await q.addJob(job).then((savedJobs) => {
       // savedJobs is an array of a single job object
-      console.log('jj')
-      hook.result={"data":'successfull'}
+      // console.log('jj')
+      hook.result={"data":'successfull','websiteId':Websiteid}
     }).catch((err) => {
         console.error(err)
         hook.result={"data":'failed'}
@@ -86,7 +86,7 @@ function beforegetremove(hook){
       
      q.cancelJob(jobs)
    }).catch(err => console.error(err))
-
+      hook.result={"data":'cancelled','websiteId':id}
    resolve(hook)
   })
 
