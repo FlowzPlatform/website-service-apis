@@ -54,19 +54,21 @@ function beforeentry(hook){
   console.log('inside before create')
   return new Promise(async (resolve,reject)=>{
 
-    let hookdata=hook.data
-    let Websiteid=hook.data.Websiteid
+    let hookdata={RepojsonData:hook.data.RepojsonData,baseURL:hook.data.baseURL}
+    let websiteId=hook.data.websiteId
+    let userId=hook.data.userId
     // console.log('hookdata:',hookdata)
 
     let job = q.createJob({
         websitejobqueuedata: hookdata,
-        Websiteid:Websiteid
+        websiteId:websiteId,
+        userId:userId
     })
     // console.log('job:',job)
    await q.addJob(job).then((savedJobs) => {
       // savedJobs is an array of a single job object
       // console.log('jj')
-      hook.result={"data":'successfull','websiteId':Websiteid}
+      hook.result={"data":'successfull','websiteid':websiteId}
     }).catch((err) => {
         console.error(err)
         hook.result={"data":'failed'}
@@ -82,7 +84,7 @@ function beforegetremove(hook){
   return new Promise(async (resolve,reject)=>{
 
   let id= hook.params.query.websiteid
-     q.findJob(q.r.and(q.r.row("Websiteid").eq(id), q.r.row("status").eq("waiting").or(q.r.row("status").eq("active")))).then((jobs) => {
+     q.findJob(q.r.and(q.r.row("websiteId").eq(id), q.r.row("status").eq("waiting").or(q.r.row("status").eq("active")))).then((jobs) => {
       
      q.cancelJob(jobs)
    }).catch(err => console.error(err))
@@ -97,7 +99,7 @@ function beforegetstatus(hook){
    return new Promise(async(resolve,reject)=>{
       let id= hook.params.query.websiteid
 
-     await q.findJob(q.r.and(q.r.row("Websiteid").eq(id), q.r.row("status").eq("waiting").or(q.r.row("status").eq("active")))).then((jobs) => {
+     await q.findJob(q.r.and(q.r.row("websiteId").eq(id), q.r.row("status").eq("waiting").or(q.r.row("status").eq("active")))).then((jobs) => {
          if(jobs.length>0){
          hook.result={"data":'active'}
          }
