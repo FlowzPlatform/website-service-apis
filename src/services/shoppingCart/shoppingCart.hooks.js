@@ -34,7 +34,9 @@ module.exports = {
     create: [
       hook => bypassDefaultInsert(hook)
     ],
-    update: [],
+    update: [
+      hook => updateItemBefore(hook)
+    ],
     patch: [],
     remove: [
       //hook => deleteItem(hook),
@@ -49,7 +51,9 @@ module.exports = {
     create: [
       hook => ifItemAlreadyExistBeforeCreate(hook)
     ],
-    update: [],
+    update: [
+      hook => updateItemAfter(hook)      
+    ],
     patch: [],
     remove: []
   },
@@ -64,6 +68,32 @@ module.exports = {
     remove: []
   }
 };
+
+updateItemBefore = async hook => {
+  let table = decide_database_table(hook.data.type);
+  await r.table(table)
+  .filter(r.row("id").eq(hook.data.id))
+  .run(connection , function(error , cursor){
+    if (error) throw error;
+    cursor.toArray(function(err, result) {
+      if (err) throw err;
+      if(result.length > 0 && hook.data.type !=2 && hook.data.type !='2'){
+        hook.result = {status:400, data:result, message: "Item already exist"};
+      }else{
+        hook.data.createdAt = result[0].createdAt;
+      }
+    });
+  })
+  // }
+}
+updateItemAfter = async hook => {
+  if(hook.result.status == 400) {
+    hook.result = hook.result
+  }
+  else {
+    hook.result = { data : hook.result, status : 200, message : "Item updated successfully" }
+  }
+}
 
  bypassDefaultInsert= async hook => {
   let table = decide_database_table(hook.data.type);
@@ -94,7 +124,7 @@ findAllShoppingKartData = async hook => {
     hook.result = {status:400, message: "type is invalid. Please select type 1 for wislist, type 2 for cart or type 3 for compared product"}
   }else if(table != false){
     await r.table(table)
-    .filter(r.row("user_id").eq(hook.params.query.user_id).and(r.row("type").eq(hook.params.query.type)))
+    .filter(r.row("user_id").eq(hook.params.query.user_id).and(r.row("type").eq(hook.params.query.type)).and(r.row("website_id").eq(hook.params.query.website_id))).orderBy('createdAt')
     .run(connection , function(error , cursor){
       if (error) throw error;
       cursor.toArray(function(err, result) {

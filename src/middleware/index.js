@@ -6,7 +6,7 @@ module.exports = async function () {
   let registerAppModule = {
     'project-configuration': ['create'],
     'delete-service': ['remove'],
-     'subscription-websites' : ['find' , 'get']
+    // 'subscription-websites' : ['find' , 'get']
     // 'address-book': ['create', 'get', 'find', 'patch'],
     // 'request-info': ['create', 'get', 'find'],
     // 'myOrders': ['create', 'get', 'find'],

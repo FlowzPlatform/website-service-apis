@@ -1,0 +1,50 @@
+<style>
+button.btn.btn-default.btn-sm {
+    background: #fff !important;
+    color: #333 !important;
+    border-color: #ccc !important;
+}
+
+</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="col-lg-6 col-md-6 col-sm-6 js_hide_guest">
+                <div class="product-section-box">
+                       <h2 class="heading-block no-tag">Post Comment</h2>
+                       <div class="request-comment-info">
+                           <div id="js-comment-list-ajaxresponse">
+                               <div id="style-1 js-comment-list-container" class="scrollbar">
+                                   <div class="force-overflow">
+                                       <ul class="request-comment-box js-request-comment-box">
+                                           <li>
+                                               <div class="user-comment1">
+                                                   <h3>#data.createdBy#</h3>
+                                                   <span>#data.createdAt#</span>
+                                                   <p>#data.message#</p>
+                                               </div>
+                                           </li>
+                                       </ul>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                        <div class="request-comment-info">
+                           <div id="js-comment-list-ajaxresponse">
+                              <div id="style-1 js-comment-list-container" class="scrollbar">
+                                 <div class="force-overflow">
+                                    <ul class="request-comment-box"></ul>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="post-comment-text-box form-group">
+                               <textarea id="js-comment_requestinfo" name="comment_requestinfo" required="required" class="form-control" placeholder="Please fill your comments here"></textarea>
+                               <input type="hidden" name="request_info_id" id="js-request_info_id" value="#data.infoId#">
+                               <input type="hidden" name="module_name" id="js-module_name" value="#data.module#">
+                           </div>
+                           
+                           <div class="btn-box-main post-comment-btn">
+                               <input type="button" class="btn btn-default post-pink-btn js-btn-comment-list" value="Post Comment">
+                               <input type="button" value="Cancel" class="btn btn-default post-cancel-btn" data-dismiss="modal">
+                           </div>
+                        </div>
+                 </div>
+           </div>

@@ -85,6 +85,17 @@ class Service {
         return Promise.resolve(fs.readFileSync(params.query.path, 'utf8'));
     }
     create(data, params) {
+        console.log('data.socketListen : ',data.socketListen);
+
+        let socketListen = false;
+
+        if(data.socketListen == true) {
+            socketListen = true;    
+        } else {
+            socketListen = false;
+        }
+
+        console.log('socketListen : ',socketListen);
         if (data.type == "folder") {
             return new Promise((resolve, reject) => {
                 if(!fs.existsSync(data.foldername)) {
@@ -100,6 +111,7 @@ class Service {
             }).then(content => {
                 const dirTree = require('directory-tree');
                 const folderdetails = dirTree(content.foldername);
+                folderdetails.socketListen = socketListen;
                 return folderdetails;
             }).catch(err => {
                 console.error(err);
@@ -116,6 +128,7 @@ class Service {
                 // console.log(content);
                 const dirTree = require('directory-tree');
                 const filedetails = dirTree(content.filename);
+                filedetails.socketListen = socketListen;
                 return filedetails;
             }).catch(err => {
                 console.error(err);

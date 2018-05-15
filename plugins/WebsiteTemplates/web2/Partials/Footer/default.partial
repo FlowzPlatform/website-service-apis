@@ -7,6 +7,20 @@ body {
     margin: 0;
 }
 
+#i2ui9 {
+    color: #ed3e24;
+    margin-bottom: 32px;
+    font-size: 30px;
+}
+
+#ia19g {
+    margin: 17px 25px 0 0!important;
+}
+
+#il8nd1 {
+    height: 50px;
+}
+
 .row {
     display: table;
     padding-top: 10px;
@@ -14,10 +28,6 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     width: 100%;
-}
-
-:root {
-    margin-top: 0px;
 }
 
 :root {
@@ -52,187 +62,168 @@ body {
     margin-left: 0px;
 }
 
-#c138461 {
-    width: auto;
-    height: 30px;
+section#footer-brands {
+    padding-top: 70px;
+    padding-right: 0px;
+    padding-bottom: 70px;
+    padding-left: 0px;
 }
 
-#c498117 {
-    display: block;
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    font-family: "Open Sans Condensed", sans-serif;
+    color: rgb(78, 78, 78);
 }
 
-.owl-carousel .owl-wrapper {
-    display: block;
+.custom-col-5 {
+    float: left;
+    width: 20%;
+    text-align: center;
 }
 
-.partner-logo.owl-carousel {
-    display: block;
+.row.footer-menu {
+    padding-bottom: 5px!important;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px !important;
+}
+
+.midnight-blue {
+    border-bottom: 3px solid #808080;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background:url(http://res.cloudinary.com/flowz/image/upload/v1524143213/divider_vosrpq.png) no-repeat center top;
+}
+
+
+.row.footer-menu a{
+	color: #6d6d6d;
+}
+
+.row.footer-menu a:hover{
+	color: #c52d2f;
+}
+
+.row.footer-menu p{
+	font-size: 14px;
+}
+
+.textwidget{
+	color: #4e4e4e;
+    font-size: 14px;
+}
+
+.row.footer-menu ul.social-share {
+    float: right;
+}
+
+.row.footer-menu ul > li {
+    display: inline-block;
+    margin-left: 2px;
+}
+
+ul.social-share li a {
+    display: inline-block;
+    color: #6d6d6d;
+    background: #fff;
+    border: 2px solid #767676;
+    width: 40px;
+    height: 40px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 14px;
+}
+ul.social-share li a:hover {
+    background: #c52d2f;
+}
+ul.social-share.pull-right li i {
+    padding: 8px;
+    font-size: 19px;
+}
+ul.social-share.pull-right li {
+    float: left;
+    width: 40px;
+    margin: 0px 5px 5px;
 }
 </style>
 
 
 
 
-<div class="cssImports">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-    />
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/css/flowz_blocks.css"
-    type="text/css" />
-</div>
-<footer>
+<div class="middle-footer"></div>
+<section id="footer-brands">
     <div class="container">
-        <div class="row footer-inner">
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 footer-logo">
-                <img class="img-responsive" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/footer-logo.png?v=0.0.1"
-                />
+        <div class="row">
+            <h2 id="i2ui9">Check out our other brands</h2>
+            <div class="custom-col-5">
+                <div id="text-23" class="widget-1 widget-first widget_text">
+                    <div class="textwidget"><a href="http://kisspromotions.com.au/"><img src="http://umbrella.kisspromotions.com.au/wp-content/uploads/2016/06/sitelogo.jpg" alt="Kiss Promotions"/></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 footer-link accordian_tab">
-                <h3>Company</h3>
-                <div class="clearfix"></div>
-                <ul class="accordian_display_block">
-                    <li><a href="#" title="About Us">About Us</a>
-                    </li>
-                    <li><a href="#" title="BIOS">BIOS</a>
-                    </li>
-                    <li><a href="#" title="General Info">General Info</a>
-                    </li>
-                    <li><a href="http://www.zoomcatalog.com/catalogs/aakron-line-2016#/1/" title="E-Catalog">E-Catalog</a>
-                    </li>
-                    <li><a href="#" title="Sitemap">Sitemap</a>
-                    </li>
-                    <li><a href="#" title="Product Safety">Product Safety</a>
-                    </li>
-                    <li><a href="#" title="Career">Career</a>
-                    </li>
-                </ul>
+            <div class="custom-col-5">
+                <div id="text-24" class="widget-1 widget-first widget_text">
+                    <div class="textwidget"><a href="http://umbrella.kisspromotions.com.au"><img src="http://kisscustomusb.com.au/wp-content/uploads/2016/07/kissumbrella.png" alt="Kiss Custom USB"/></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 footer-link accordian_tab">
-                <h3>My Account</h3>
-                <div class="clearfix"></div>
-                <ul class="accordian_display_block">
-                    <li><a href="#" title="Accounts Info">Accounts Info</a>
-                    </li>
-                    <li><a href="#" title="Order Status">Order Status</a>
-                    </li>
-                    <li><a href="#" title="My Quote">My Quote</a>
-                    </li>
-                    <li><a href="#" title="My Favorite List
-                        ">My Favorite List</a>
-                    </li>
-                    <li><a href="# " title="My Order ">My Order</a>
-                    </li>
-                </ul>
+            <div class="custom-col-5">
+                <div id="text-25" class="widget-1 widget-first widget_text">
+                    <div class="textwidget"><a href="http://kisstotebags.com.au/"><img src="http://umbrella.kisspromotions.com.au/wp-content/uploads/2016/06/kisstotebags-e1462930670691.jpg" alt="Kiss Tote Bags"/></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 footer-link accordian_tab">
-                <h3>Information</h3>
-                <div class="clearfix"></div>
-                <ul class="accordian_display_block">
-                    <li><a href="#
-                        " title="New Customer Info ">New Customer Info</a>
-                    </li>
-                    <li><a href="# " title="Production
-                        Time ">Production Time</a>
-                    </li>
-                    <li><a href="# " title="Art Requirements
-                        ">Art Requirements</a>
-                    </li>
-                    <li><a href="# " title="Catalog Corrections
-                        ">Catalog Corrections</a>
-                    </li>
-                </ul>
+            <div class="custom-col-5">
+                <div id="text-26" class="widget-1 widget-first widget_text">
+                    <div class="textwidget"><a href="http://www.kisslanyards.com.au/"><img src="http://umbrella.kisspromotions.com.au/wp-content/uploads/2016/06/KissLanyardsLogo-e1462506321471.jpg" alt="Kiss Lanyards"/></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 footer-link accordian_tab">
-                <h3>Extras</h3>
-                <div class="clearfix"></div>
-                <ul class="accordian_display_block">
-                    <li><a href="#
-                        " title="Top Sellers ">Top Sellers</a>
-                    </li>
-                    <li><a href="# " title="Specials
-                        ">Specials</a>
-                    </li>
-                    <li><a href="# " title="Closeouts
-                        ">Closeouts</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-<div class="middle-footer">
-    <div class="container">
-        <div class="partner-logo owl-carousel owl-theme" id="partner-logo ">
-            <div class="owl-wrapper-outer style-">
-                <div class="owl-wrapper" id="c498117 ">
-                    <div class="owl-item" id="c498122
-                        ">
-                        <div class="item">
-                            <img class="center-block" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/UPIC-logo.png?v=0.0.1
-                        " />
-                        </div>
-                    </div>
-                    <div class="owl-item" id="c498135 ">
-                        <div class="item">
-                            <img class="center-block" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/counselor-design-logo.png?v=0.0.1
-                        " />
-                        </div>
-                    </div>
-                    <div class="owl-item" id="c498146 ">
-                        <div class="item">
-                            <img class="center-block" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/counselor-disributor-logo.png?v=0.0.1
-                        " />
-                        </div>
-                    </div>
-                    <div class="owl-item" id="c498157 ">
-                        <div class="item">
-                            <img class="center-block" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/member-logo.png?v=0.0.1
-                        " />
-                        </div>
-                    </div>
-                    <div class="owl-item" id="c498168 ">
-                        <div class="item">
-                            <img class="center-block" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/PPAI_logo.png?v=0.0.1
-                        " />
-                        </div>
-                    </div>
-                    <div class="owl-item" id="c498179 ">
-                        <div class="item">
-                            <img class="center-block" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/asi_logo.png?v=0.0.1
-                        " />
-                        </div>
-                    </div>
-                    <div class="owl-item" id="c498190 ">
-                        <div class="item">
-                            <img class="center-block" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/promo_logo.png?v=0.0.1
-                        " />
-                        </div>
-                    </div>
-                    <div class="owl-item" id="c498201 ">
-                        <div class="item">
-                            <img class="center-block img-responsive" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/Verified_logo.png?v=0.0.1
-                        " />
-                        </div>
-                    </div>
-                    <div class="owl-item" id="c498212 ">
-                        <div class="item">
-                            <img class="center-block" src="http://aakronline.com/bundles/officebraincustombundletheme/AakronLineTheme/images/sage_logo.png?v=0.0.1
-                        " />
-                        </div>
+            <div class="custom-col-5">
+                <div id="text-27" class="widget-1 widget-first widget_text">
+                    <div class="textwidget"><a href="http://kissapparel.com.au/"><img src="http://umbrella.kisspromotions.com.au/wp-content/uploads/2016/06/kissapparelsmallv2-e1432441397212.png" alt="Kiss Apparels"/></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="bottom-footer">
-    <div class="container"><span class="pull-left">Powered by : <a class="footer_logo" href="#"><img id="c138461" src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/supplier/images/footer_logo.png"/></a></span>
-        <span
-        class="col-xs-8 text-center">Copyright © 2017 Flowz. All rights reserved</span>
+</section>
+<div class="midnight-blue" id="js_display_virtual">
+    <div class="container">
+        <div class="row footer-menu">
+			<div id="text-20" class="widget-1 widget-first col-sm-12  widget_text">			
+				<div class="textwidget">
+					<div class="row"> 
+						<div class="col-md-8 col-sm-6">
+							<nav class="footer-nav">
+							<a href="javascript:void(0);"> Terms &amp; Conditions </a> | 
+							<a href="javascript:void(0);"> Privacy Policies </a> |  
+							</nav>
+						</div>
+						<div class="col-md-4 col-sm-6"> 
+							<p class="pull-right"> Tel: 1300 922 184 </p>
+						</div>
+					</div>
+				</div>
+			</div>            
+		</div>
+        <div class="row">
+			<div id="text-18" class="widget-1 widget-first col-sm-6  widget_text">			
+				<div class="textwidget"> Copyright ©  2015 kisspromotions.com.au. All rights reserved.</div>
+			</div>
+			<div id="text-19" class="widget-2 widget-last col-sm-6  widget_text">			
+				<div class="textwidget">
+					<ul class="social-share pull-right">
+						<li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li> 
+						<li><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
     </div>
 </div>
-<script type="text/javascript " src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/owl.carousel.js
-                        "></script>
+<script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519210886/js/owl.carousel.js"></script>
+<script src="./assets/client-plugins/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>

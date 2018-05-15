@@ -1,0 +1,32 @@
+<div class="my-track-detail-table my-quote-detail-table table-responsive">
+  <table class="table table-striped ">
+      <thead>
+          <tr class="myquotec" align="center">
+              <th>ID</th>
+              <th class="js_is_admin1 hide">User Type</th>
+              <th class="js_is_admin hide">User Name</th>
+              <th class="js_is_admin hide">User Email</th>
+              <th>Item Name</th>
+              <th>Total Comment</th>
+              <th>Created Date</th>
+              <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+            <tr class="my-inquiry-data hide" id="row-#data.id#" align="center">
+                <td><a href="javascript:void(0);">#data.index#</a></td>
+                <td class="js_is_admin1 hide">#data.userType#</td>
+                <td class="js_is_admin hide">#data.userName#</td>
+                <td class="js_is_admin hide">#data.userEmail#</td>
+                <td>#data.itemName#</td>
+                <td class="js-total_comments">#data.totalComments#</td>
+                <td>#data.date#</td>
+                <td class="my-quote-edit-delete">
+                    <div class="fa-hover">
+                      <a href="javascript:void(0)" class="js-open-modal-req-info-detail" data-original-title="View Detail" data-toggle="tooltip" data-placement="top" data-id="#data.id#"><i class="fa fa-eye"></i></a>
+                    </div>
+                </td>
+            </tr>
+      </tbody>
+  </table>
+</div>

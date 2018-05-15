@@ -58,6 +58,7 @@ function beforeCreateRequestInfo(hook){
             // if(result.hits.hits.length > 0){
             if(hook.data.product_data != null){
               let productInfo = [];
+              let product_image_url = '';
               // productInfo.push(result.hits.hits[0]._source);
               productInfo.push(hook.data.product_data)
               if(hook.data.user_detail._id != undefined){
@@ -67,9 +68,12 @@ function beforeCreateRequestInfo(hook){
                 var user_id = null;
                 var guest_info = hook.data.guest_user_detail;
               }
+              if(hook.data.product_image_url != undefined){
+                  product_image_url = hook.data.product_image_url
+              }
               obj.push({
                   userId: user_id,
-                  instruction: hook.data.form_data.note,
+                  instruction: hook.data.instruction,
                   productId: hook.data.product_id,
                   productInfo: productInfo,
                   commentInfo:null,
@@ -85,7 +89,8 @@ function beforeCreateRequestInfo(hook){
                   guestUserInfo:guest_info,
                   website_id: hook.data.website_id,
                   website_name: hook.data.websiteName,
-                  owner_id: hook.data.owner_id
+                  owner_id: hook.data.owner_id,
+                  product_image_url: product_image_url
               });
               // console.log("&&&",hook.data.product_data);
               hook.data = obj
@@ -115,4 +120,5 @@ function getProductDetailById(productId,productApi,token) {
 
 function before_all_service(hook) {
    module.exports.apiHeaders = this.apiHeaders;
+   hook.params.query.$sort = { createAt: -1}
 }

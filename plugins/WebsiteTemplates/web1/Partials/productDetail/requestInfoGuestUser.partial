@@ -1,0 +1,72 @@
+<div class="js_guest_info hide">
+    <div class="info-popup product-section-box">
+       <form name='guestuser' id='guestuser' method='POST' action=''>
+              <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                 <div class="row">
+                   <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 radiobox shipping-col">
+                     <div class="row">
+                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padding-right-0">
+                           <p><label class="required">Name</label> : <span class="red">*</span></p>
+                         </div>
+                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 shipping-select padding-left-0">
+                           <div class="form-group">
+                                <input type="text" id="fullName" name="fullName" placeholder="Enter name" class="input" tabindex="1">
+                           </div>
+                         </div>
+                     </div>
+                </div>
+             <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 radiobox shipping-col">
+               <div class="row">
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padding-right-0">
+                   <p><label class="required">Phone</label> : <span class="red">*</span></p>
+                 </div>
+                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 shipping-select padding-left-0">
+                   <div class="form-group">
+                      <input type="text" id="phone" name="phone" placeholder="Enter phone" class="input js-phone" tabindex="1">
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 radiobox shipping-col">
+               <div class="row">
+                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 padding-right-0">
+                   <p><label class="required">Email</label> : <span class="red">*</span></p>
+                 </div>
+                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 shipping-select padding-left-0">
+                   <div class="form-group">
+                     <input type="text" id="email" name="email" placeholder="Enter email" class="input" tabindex="1">
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 radiobox shipping-col">
+               <div class="row">
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padding-right-0">
+                   <p><label class="required">Company</label> : <span class="red">*</span></p>
+                 </div>
+                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 shipping-select padding-left-0">
+                   <div class="form-group">
+                      <input type="text" id="company_name" name="company_name" placeholder="Enter company name" class="input" tabindex="1">
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 radiobox shipping-col">
+               <div class="row">
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padding-right-0">
+                   <p><label class="required">Zip Code</label> : <span class="red">*</span></p>
+                 </div>
+                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 shipping-select padding-left-0">
+                   <div class="form-group">
+                     <input type="text" id="zipcode" name="zipcode" placeholder="Enter zipcode" class="input" tabindex="1">
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+           <div class="text-center">
+            <input class="small-but btn-default js-submit-btn" value="Submit Request" type="submit">
+          </div>
+       </form>
+     </div>
+</div>

@@ -1,0 +1,204 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c212908 {
+    display: none;
+}
+</style>
+
+
+<div id="js_imprint_request_quote">
+    <div class="optional-panel js-printPosition-#printPosMethodId#-section" id="js_imprint_request_quote_box_#printPosMethodId#">
+        <div class="option-head"><a href="javascript:void(0)" id="print_pos"><i class="fa fa-caret-down"></i>#data.printPositionName#<span class="caret-icon pull-right"></span></a>
+        </div>
+        <div class="option-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option"><span>Which imprint method do you need?</span>
+                    <div class="selection-common-box imprint-method-select">
+                        <div class="dropdown dropdown_size">
+                            <button class="btn dropdown-toggle" aria-expanded="true" data-toggle="dropdown"
+                            id="dropdownMenu16" type="button">Select Method<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu js_select_method js_set_selected_value" aria-labelledby="dropdownMenu17"
+                            role="menu" name="imprint" data-imprint-id="#data.imprintId#">
+                                <li id="select_method"><a>Pad Printed</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option imprint-color-select"><span class="question">How many colors are in design?</span>
+                    <div class="selection-common-box pull-left">
+                        <div class="dropdown dropdown_size js_imprint_method_selectbox_#data-printPosition#_#data-printMethod#">
+                            <input class="js_max_selectable_color_#data-printPosition#_#data-printMethod#" type="hidden" value="#data.maxImprintColor#" />
+                            <button class="btn dropdown-toggle" aria-expanded="true" data-toggle="dropdown"
+                            id="dropdownMenu16" type="button">Select Color<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu js_set_selected_value js_set_selected_value_col"
+                            aria-labelledby="dropdownMenu17" role="menu">
+                                <li data-value="1"><a href="javascript:void(0)">1 Color</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="js-color-div-append hide"></div>
+                    <div class="more-option">
+                            <div>
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li><a href="#upload-tab-1" aria-controls="Upload-Artwork" role="tab" data-toggle="tab">Upload Artwork</a></li>
+                                    <li><a href="#upload-tab-2" aria-controls="Typeset" role="tab" data-toggle="tab">Typeset</a></li>
+                                    <li class="active"><a href="#upload-tab-3" aria-controls="Upload Artwork & Typeset" role="tab" data-toggle="tab">Upload Artwork & Typeset</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane" id="upload-tab-1">
+                                        <div class="radiobox">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <span class="upload-logo pull-left"><input type="radio" value="" id="upload-logo" /><label for="upload-logo">Upload Logo</label></span>
+                                                    <div class="input-group col-lg-3 col-md-4 col-sm-3 col-xs-6 pull-left">
+                                                        <a href="" class="upload-button" data-toggle="modal" data-target="#select-logo-block"><i class="fa fa-upload"></i>Attach File</a>
+                                                    </div>
+                                                    <div class="contry-logo col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                        <img src="http://res.cloudinary.com/flowz/image/upload/v1524050167/canada-log_eevxea.png" alt="Text" />
+                                                        <span class="upload-logo">Canadalogo.jpg</span>
+                                                    </div>
+                                                    <div class="info-icons pull-right">
+                                                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Add"><i class="fa fa-plus"></i></a>
+                                                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <span class="upload-logo pull-left"><input type="radio" value="" id="send-via-email" /><label for="send-via-email">Send Artwork via Email</label></span>
+                                                    <div class="note-col pull-left"><em class="pink">Note:</em> <i>Email yore artwork on <a href="mailto:demo@flowz.com">demo@flowz.com</a></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="upload-tab-2">
+                                        <div class="radiobox">
+                                            <div class="other-option">
+                                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+                                                    <label>Text 1</label>
+                                                    <input type="text" name="text"  tabindex="1" class="input pull-left" placeholder="Hello canadian">
+                                                </div>
+                                                <div class="info-icons pull-right">
+                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Add"><i class="fa fa-plus"></i></a>
+                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="other-option">
+                                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+                                                    <label>Instructions</label>
+                                                    <textarea placeholder="Please fill your comments for typeset ..."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="note-col pull-left"><em class="pink">Note:</em> <i>Email yore artwork on <a href="mailto:demo@flowz.com">demo@flowz.com</a></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane active" id="upload-tab-3">
+                                        <div class="radiobox">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <span class="upload-logo pull-left"><input type="radio" value="" id="upload-logo2" /><label for="upload-logo2">Upload Logo</label></span>
+                                                    <div class="input-group col-lg-3 col-md-4 col-sm-3 col-xs-6 pull-left">
+                                                        <a href="" class="upload-button" data-toggle="modal" data-target="#select-logo-block"><i class="fa fa-upload"></i>Attach File</a>
+                                                    </div>
+                                                    <div class="contry-logo col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                        <img src="http://res.cloudinary.com/flowz/image/upload/v1524050167/canada-log_eevxea.png" alt="Text" />
+                                                        <span class="upload-logo">Canadalogo.jpg</span>
+                                                    </div>
+                                                    <div class="info-icons pull-right">
+                                                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Add"><i class="fa fa-plus"></i></a>
+                                                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="other-option">
+                                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+                                                    <label>Text 1</label>
+                                                    <input type="text" name="text"  tabindex="1" class="input pull-left" placeholder="Hello canadian">
+                                                </div>
+                                                <div class="info-icons pull-right">
+                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Add"><i class="fa fa-plus"></i></a>
+                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="other-option">
+                                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+                                                    <label>Instructions</label>
+                                                    <textarea placeholder="Please fill your comments for typeset ..."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="note-col pull-left"><em class="pink">Note:</em> <i>Email yore artwork on <a href="mailto:demo@flowz.com">demo@flowz.com</a></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+    </div>
+</div>

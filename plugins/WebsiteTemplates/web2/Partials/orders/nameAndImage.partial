@@ -1,0 +1,55 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+
+<table class="track-top-line js-order-basic" width="100%">
+    <tr>
+        <td colspan="3">
+            <div class="track-order-billing-address">
+                <h3 class="pull-left">Product Summary <span class="js-section-number"></span></h3>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="order-product-img">
+            <img class="img-responsive" src="#data.image#" id="order_product_image_551_0"
+            />
+        </td>
+        <td>
+            <h4>#data.title#</h4>
+            <h4>Item Code : #data.sku#</h4>
+        </td>
+        <td></td>
+    </tr>
+</table>

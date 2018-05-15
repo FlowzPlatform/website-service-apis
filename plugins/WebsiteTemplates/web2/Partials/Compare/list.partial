@@ -188,6 +188,7 @@ span.color {
     position: relative;
     vertical-align: top;
     width: 225px;
+    min-width: 225px;
 }
 
 .ob-product-compare .table-responsive {
@@ -208,10 +209,13 @@ span.color {
     -webkit-border-vertical-spacing: 0px;
     border-collapse: separate !important;
 }
-.compare_img {
+ .compare_img {
     margin: 0 auto;
     height: 125px;
     width: auto;
+}
+.ob-product-compare .compare-block tr:nth-child(2n + 1) {
+    background-color: #cccccc45;
 }
 </style>
 
@@ -226,16 +230,16 @@ span.color {
                         <td class="product-#data-id#">
                             <div class="product">
                                 <a class="delete-block js-remove-compare" data-id="#data.id#" href="javascript:void(0);" data-placement="left" data-toggle="tooltip" data-original-title="Remove"><i class="fa  fa-times-circle fa-fw"></i></a>
-                                <a href="#data.product_link#">
-                                    <img class="img-responsive compare_img" src="#data.image#" alt="product image" />
+                                <a href="#data.product_link#" class="pro-img">
+                                    <img class="img-responsive compare_img mb-4" src="#data.image#" alt="product image" />
+
+                                    <h5 class="productTitle"><strong>#data.title#</strong></h5>
                                 </a>
-                                <h5 class="productTitle"><strong>#data.title#</strong></h5>
                                 <hr/>
                                 <h3>#data.price#</h3>
                             </div>
-                        </td>
+                        </td>                        
                     </tr>
-                    <tr></tr>
                     <tr id="item_sku">
                         <td class="product-#data-id#">#data.sku#</td>
                     </tr>
@@ -243,12 +247,12 @@ span.color {
                         <td class="product-#data-id#">
                             <p>#data.features#</p>
                         </td>
-                    </tr>
+                    </tr>                    
                     <tr id="item_summary">
                         <td class="product-#data-id#">
                             <p>#data.summary#</p>
                         </td>
-                    </tr>
+                    </tr>                    
                 </table>
             </div>
         </div>
@@ -259,14 +263,12 @@ span.color {
         <div class="col-md-12 ob-product-compare">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped compare-block">
-                    <tr id="item_title_price1"></tr>
-                    <tr></tr>
-                    <tr id="item_sku1"></tr>
-                    <tr id="item_features1"></tr>
-                    <tr id="item_summary1"></tr>
+                    <tr id="item_title_price1"></tr> 
+                    <tr id="item_sku1"></tr>                                                       
+                    <tr id="item_features1"></tr>                    
+                    <tr id="item_summary1"></tr>                    
                 </table>
             </div>
         </div>
     </div>
 </div>
-<script src="./../assets/client-plugins/client-wishlist.js"></script>

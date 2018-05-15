@@ -41,8 +41,12 @@ app.configure(configuration(path.join(__dirname, '..')));
 app.use(cors());
 app.use(helmet());
 app.use(compress());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '100mb'}));
+app.use(bodyParser.urlencoded({
+  limit: '100mb',
+  extended: true
+}))
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
 app.use('/', feathers.static(app.get('public')));
@@ -53,9 +57,14 @@ app.options('*', cors());
 app.configure(hooks());
 app.configure(rethinkdb);
 app.configure(rest());
-app.configure(socketio(4032,{
+// app.configure(socketio(4032,{
+//   wsEngine: 'uws',
+//   origin: '*.flowz.com:*'
+// }));
+
+app.configure(socketio({
   wsEngine: 'uws',
-  origin: '*.flowz.com:*'
+  origin: '*.' + (process.env.domainKey ? 'localhost' : process.env.domainKey) + ':*'
 }));
 
 app.use(subscription.featherSubscription)

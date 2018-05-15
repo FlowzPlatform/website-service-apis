@@ -30,23 +30,6 @@ body {
     margin-left: 0px;
 }
 
-#c3960 {
-    margin-top: inherit;
-    margin-right: inherit;
-    margin-bottom: inherit;
-    margin-left: inherit;
-}
-
-.c3933 {
-    display: block;
-    width: 100%;
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    vertical-align: middle;
-}
-
 .filter-heading a:hover, .filter-heading a:focus, .filter-heading a:active {
     text-decoration-line: none;
     text-decoration-style: initial;
@@ -87,8 +70,357 @@ span.color {
     margin-left: 5px;
 }
 
-.pro-ject .row {
+.product-card > a {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(242, 242, 242);
+    color: rgb(51, 51, 51);
+    transition-duration: 0.1s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    transition-property: all;
+    position: relative;
     display: block;
+    z-index: 0;
+    padding-bottom: 5px;
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+}
+
+.product-card > a:hover {
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px;
+}
+
+.product-card figcaption {
+    display: block;
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+}
+
+.product-card .product-card-address {
+    color: rgb(136, 136, 136);
+    line-height: 1.2;
+}
+
+.product-card .product-card-address i {
+    font-size: 14px;
+    margin-right: 2px;
+    line-height: 1.2;
+}
+
+.product-card .product-card-price {
+    display: block;
+    text-align: right;
+}
+
+.product-card .product-card-price .original-price, .product-card .product-card-price .price-savings {
+    line-height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.product-card .product-card-price .price-savings {
+    float: left;
+    color: rgb(130, 181, 72);
+}
+
+.product-card .product-card-price .original-price {
+    color: rgb(170, 170, 170);
+    font-size: 14px;
+}
+
+.product-card .product-card-price .amount-price {
+    text-align: right;
+    font-size: 20px;
+    color: rgb(130, 181, 72);
+}
+
+.product-card .product-card-price .from {
+    font-size: 12px;
+}
+
+.product_price span, .product_title h5 {
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul.product_list {
+    list-style-type: none;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    width: 100%;
+    display: inline;
+}
+
+.product_image img {
+    display: block;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+.product_image img:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.product_title h5 {
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    font-weight: 500;
+    padding-bottom: 5px;
+}
+
+.product_price a {
+    color: rgb(0, 0, 0);
+}
+
+.product_desc p {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    line-height: 1.3;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+}
+
+.product_buttons .product_heart:hover {
+    color: rgb(223, 4, 4);
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.product_buttons .product_compare:hover {
+    color: rgb(18, 150, 18);
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.product_buttons .add_to_cart:hover {
+    color: rgb(77, 200, 211);
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.product a {
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+}
+
+.product:hover .info {
+    height: 40px;
+}
+
+.product:hover .info::before {
+    transform: scaleY(0.7);
+}
+
+.product:hover .info::after {
+    visibility: visible;
+    transform: translateY(10px);
+}
+
+.slide-title a {
+    color: inherit;
+}
+
+.product:hover .slide-title {
+    transform: translateY(-18px);
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+}
+
+.actions-wrapper * {
+    width: 50%;
+    padding-top: 2px;
+    padding-right: 0px;
+    padding-bottom: 2px;
+    padding-left: 0px;
+    text-align: center;
+    color: rgb(25, 25, 25);
+    font-size: 0.95em;
+    font-weight: 700;
+}
+
+.actions-wrapper ::before {
+    font-family: FontAwesome;
+    margin-right: 8px;
+}
+
+.product:hover .actions-wrapper * {
+    visibility: visible;
+}
+
+.c55781 {
+    display: block;
+    width: 100%;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    vertical-align: middle;
+}
+
+@media only screen and (min-width: 320px) {
+    .product_sale p {
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        color: rgb(255, 255, 255);
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: red;
+        padding-top: 3px;
+        padding-right: 25px;
+        padding-bottom: 3px;
+        padding-left: 25px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
+    }
+
+    .product_image .product_buttons {
+        display: none;
+    }
+
+    .product_values .product_buttons {
+        position: relative;
+        text-align: left;
+        float: left;
+        margin-top: 7px;
+    }
+
+    .product_values .product_buttons button {
+        color: rgb(37, 37, 37);
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(255, 255, 255);
+        font-size: 1em;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        width: 40px;
+        height: 40px;
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-left-width: 1px;
+        border-top-style: solid;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-left-style: solid;
+        border-top-color: rgb(0, 0, 0);
+        border-right-color: rgb(0, 0, 0);
+        border-bottom-color: rgb(0, 0, 0);
+        border-left-color: rgb(0, 0, 0);
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .product_title h5 {
+        font-weight: 700;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .product_image img {
+        position: relative;
+    }
+
+    .product_price span {
+        float: left;
+        width: 100%;
+    }
+}
+.css-cmj2qw + label{
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.css-omf3o4 a.e1cc0ogo1{
+    margin: 0 0.5% 22px 2.5% !important;
+    width: 30% !important;
 }
 </style>
 
@@ -96,20 +428,22 @@ span.color {
 
 
 <div class="cssImports"></div>
-<link href="./assets/css/materialize.min.css" rel="stylesheet" crossorigin="anonymous"
+<link href="./assets/css/searchPage.css" rel="stylesheet" crossorigin="anonymous"
 />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-rel="stylesheet" crossorigin="anonymous" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
 rel="stylesheet" />
-<productsearchfilter class="c3933" apiurl="https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdm1/_search"
-apiusername="599140556c71d1001c020729" apipassword="123456" selectadvance_search_filter="true"
-selectcategory_filter="true" selectprices_filter="true" selectcolours_filter="true"
-selectbrands_filter="true" selecttheme_filter="portrait">
+<productsearchfilter selectadvance_search_filter="false" selectcategory_filter="true"
+selectprices_filter="true" selectcolours_filter="true" selectbrands_filter="true"
+selecttheme_filter="portrait" select_anonymoususer_filter="yes" apiurl="https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243"
+class="c55781">
     <div class="reomve-texts"> <i class="fa fa-search"></i>
-        <label id="c3960">Product Search Filter</label>
+        <label id="c55807
+">Product Search Filter</label>
     </div>
 </productsearchfilter>
-<script type="text/javascript" src="./assets/client-plugins/client-search-page.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-rel="stylesheet" />
+<script type="text/javascript " src="./assets/client-plugins/client-search-page.js
+"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+" rel="stylesheet " crossorigin="anonymous " />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700
+" rel="stylesheet " />

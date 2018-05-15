@@ -24,6 +24,7 @@ const cloneWebsite = require('./clone-website/clone-website.service.js');
 
 const saveMenu = require('./save-menu/save-menu.service.js');
 const changeCityStateCountry = require('./change-city-state-country/change-city-state-country.service.js');
+const cityStateCountryList = require('./city-state-country-list/city-state-country-list.service.js');
 const myOrders = require('./my-orders/my-orders.service.js');
 
 const shippingEstimator = require('./shipping-estimator/shipping-estimator.service.js');
@@ -54,6 +55,24 @@ const subscriptionWebsites = require('./subscription-websites/subscription-websi
 
 
 
+const branchList = require('./branch-list/branch-list.service.js');
+
+
+
+const bannertype = require('./bannertype/bannertype.service.js');
+
+
+
+const banners = require('./banners/banners.service.js');
+
+const commentRequest = require('./comment-request/comment-request.service.js');
+
+
+
+const cloudinaryService = require('./cloudinary-service/cloudinary-service.service.js');
+
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -78,6 +97,7 @@ module.exports = function () {
   app.configure(addressBook);
   app.configure(emailSubscribers);
   app.configure(changeCityStateCountry);
+  app.configure(cityStateCountryList);
   app.configure(myOrders);
   app.configure(colorTable);
   app.configure(shippingEstimator);
@@ -94,4 +114,9 @@ module.exports = function () {
   app.configure(emailTemplate);
   app.configure(configdataHistory);
   app.configure(subscriptionWebsites);
+  app.configure(branchList);
+  app.configure(bannertype);
+  app.configure(banners);
+  app.configure(commentRequest);
+  app.configure(cloudinaryService);
 };

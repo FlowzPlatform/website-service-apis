@@ -58,12 +58,41 @@ module.exports = {
 };
 
 findAllOrders = async hook => {
-  if(hook.params.query.owner_id == undefined &&  hook.params.query.setting_id == undefined &&  hook.params.query.website_id == undefined &&  hook.params.query.user_id == undefined) 
+  if(hook.params.query.owner_id == undefined &&  hook.params.query.setting_id == undefined &&  hook.params.query.website_id == undefined &&  hook.params.query.user_id == undefined)
   {
     hook.result = {status:400, message: "Please pass user id or owner id or setting id or website_id"}
   }
+
+  hook.params.query.$sort = { created_at: -1}
+  // else{
+  //   await r.table(table)
+  //   .filter(r.row("user_id").eq(hook.params.query.user_id).and(r.row("website_id").eq(hook.params.query.website_id)))
+  //   .orderBy(r.desc('created_at'))
+  //   .run(connection , function(error , cursor){
+  //     if (error) throw error;
+  //     cursor.toArray(function(err, result) {
+  //       if (err) throw err;
+  //       hook.result = {data:result,total: result.length};
+  //
+  //   });
+  //   })
+  // }
 }
 
-function beforeSubmitOrder(hook){
-    hook.data.created_at = new Date();
+async function beforeSubmitOrder(hook){
+  return  new Promise ((resolve , reject) =>{
+      // console.log("hook",hook);
+        r.table("my_orders").filter({'website_id':hook.data.website_id}).count()
+          .run(connection , async function(error , cursor){
+              if (error) throw error;
+              let count = cursor + 1;
+              // console.log("count",count);
+              let currentDate = new Date();
+              let website = hook.data.websiteName
+              hook.data.order_id = website.substr(0, 3)+'-'+currentDate.getFullYear()+'-'+count
+              hook.data.created_at = currentDate;
+              // console.log("hook",hook);
+              resolve(hook)
+          })
+  })
 }

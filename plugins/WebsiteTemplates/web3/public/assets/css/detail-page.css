@@ -3,13 +3,59 @@
 }
 
 .innerpage {
-    margin: 0;
+    margin: 0 ;
 }
-
-.header-search-col {
-    width: 40%;
-    margin-top: 27px;
+.quantity-table-disc .owl-controls .owl-buttons div {
+    display: inline-block;
 }
 .header-search-col form input[type="text"] {
     width: 72%;
 }
+.search-mail-block .search-col input[type="submit"]{
+    text-indent: -9999px;
+}
+.ob-product-detail-page .select-quntity-col input[type="text"] {
+    width: 75px;
+    line-height: 26px;
+    padding: 0 10px;
+    height: 26px;
+}
+.shipping-method .option-body .btn {
+    text-transform: uppercase;
+    width: auto;
+    display: inline-block;
+    height: auto;
+}
+span.imprint-lbl-method {
+    color: #8c8c8c;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.small-but.btn-default{
+  background: #4d4d4d;
+  color: #fff;
+  font-size: 16px;
+  padding: 7px 20px;
+  font-family: 'Roboto Condensed',sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: auto;
+  display: inline-block;
+  height: auto;
+  margin-bottom: 10px;
+}
+.small-but.btn-default:hover{
+  background: #115095;
+  border: 1px #2d2b2b solid;
+}
+.product-section-box h2 i,.product-section-box .panel-heading.open h2 i{
+  background:url(../images/pink-button.png) no-repeat;
+}
+.shipping-method .option-body .btn:hover {
+    background: #115095;
+}
+.btn-default:hover{    background: #115095;}
+.product-detail-wrapper .more-option .nav-tabs a{font-size: 14px;}
+.upload-button{font-size: 13px;}

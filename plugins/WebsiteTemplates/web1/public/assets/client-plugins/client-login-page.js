@@ -29,7 +29,7 @@ $('.login-submit').on('click',function(){
 			$(".logout-show").removeClass('hide');
 			$('.username-text').text('welcome');
 
-			document.cookie = "auth_token=" + result.logintoken;
+			document.cookie = "user_auth_token=" + result.logintoken;
 
 			var user_details = function () {
 				var tmp = null;
@@ -45,20 +45,6 @@ $('.login-submit').on('click',function(){
 				});
 				return tmp;
 			}();
-
-			// let wishlistKey = decide_localStorage_key(1);
-			// if (localStorage.getItem(wishlistKey) != null) {
-			//   for (item in wishlist_values){
-			// 	dataSaveToDatabase(wishlist_values[item]['type'],wishlist_values[item]['product_id'],user_id,false);
-			//   }
-			// }
-
-			// let compareKey = decide_localStorage_key(3);
-			// if (localStorage.getItem(compareKey) != null) {
-			//   for (item in compare_values){
-			// 	dataSaveToDatabase(compare_values[item]['type'],compare_values[item]['product_id'],user_id,false);
-			//   }
-			// }
 
 			//redirect to previous page.
 			if(document.referrer.trim() != '') {

@@ -2,6 +2,9 @@ if(user_id == null) {
 	window.location = "login.html";
 }
 
+$(".breadcrumb li:last-child").html('<strong>Change Password</strong>')
+$(".breadcrumb li:last-child").removeClass("hide")
+
 $("#change_pass_form").submit(function(event){
     event.preventDefault();
 	//var form_data = $(this).serializeArray();
@@ -12,7 +15,7 @@ $("#change_pass_form").submit(function(event){
 
 	if(new_pass === confirm_pass) {
 		var passDetails = {"oldpass":old_pass ,"newpass":new_pass};
-		let userToken = getCookie('auth_token');
+		let userToken = getCookie('user_auth_token');
 
 		$.ajax({
 			type: 'POST',
@@ -28,7 +31,8 @@ $("#change_pass_form").submit(function(event){
 				showSuccessMessage(result.message,website_settings.BaseURL+"index.html");
 			},
 			error: function(err) {
-				showErrorMessage('internal server error');
+				let errorMsg = err.responseText.replace('Error:','');
+				showErrorMessage(errorMsg.trim());
 			}
 		});
 	}

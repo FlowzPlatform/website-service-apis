@@ -52,43 +52,15 @@ body {
     margin-left: 0px;
 }
 
+#js_tab_list {
+    display: none;
+}
+
 .product-showcase.row {
     display: inline;
 }
 
-#c99215 {
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: black;
-    border-right-color: black;
-    border-bottom-color: black;
-    border-left-color: black;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-}
-
 .c22805 {
-    display: block;
-    width: 100%;
-    min-height: 20px;
-}
-
-.c25962 {
-    display: block;
-    width: 100%;
-    min-height: 20px;
-}
-
-.c152859 {
     display: block;
     width: 100%;
     min-height: 20px;
@@ -100,27 +72,20 @@ body {
     min-height: 20px;
 }
 
-.breadcrumb ul li a, .breadcrumb ul li {
-    font-size: 14px;
+.c25962 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
 }
 
-.breadcrumb {
-    height: 40px !important;
+.c6158 {
+    right: -152px;
 }
 
-.product-detail-tab .nav-tabs li.active a {
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
+.c6231 {
+    right: -155px;
 }
-
-.product-detail-tab .nav-tabs li a {
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-}
+.header-search-col { width: auto !important }
 </style>
 
 
@@ -129,29 +94,44 @@ body {
 <div class="cssImports"></div>
 <link href="./assets/css/detail-page.css" rel="stylesheet" crossorigin="anonymous"
 />
-<div class="container main">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css"
+/>
+<div class="js-wishlist-block ob-wishlist-block c6158"><a href="javascript:void(0)" id="js-wishlist-btn" class="wishlist-btn isdrag"> <i class="fa fa-heart"></i> Add to Wishlist</a>
+    <div
+    class="wishlist-form">
+        <div class="clearfix"></div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="js-compare-block ob-compare-block c6231"><a href="javascript:void(0)" id="js-compare-btn" class="compare-btn isdrag"> <i class="fa fa-random"></i> Go to Compare</a>
+    <div
+    class="compare-form">
+        <div class="clearfix"></div>
+</div>
+</div>
+<div class="container main js-hide-div">
     <div class="innerpage ob-product-detail-page">
-        <div class="breadcrumb">
+        <!-- <div class="breadcrumb">
             <ul>
                 <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
                 </li>
                 <li><strong>#data.title#</strong>
                 </li>
             </ul>
-        </div>
+        </div> -->
         <div class="title-block" id="title">
             <reusecomponent class="c313421">{{> productDetail id='titleSku.partial' }}</reusecomponent>
         </div>
-        <div class="product-showcase row">
+        <div class="product-showcase row js-hide-div">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-left">
                 <reusecomponent class="c22805">{{> productDetail id='productDetailLeft.partial' }}</reusecomponent>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-right">
-                <div class="product-wrapper active" role="tabpanel">
+                <div role="tabpanel" class="product-wrapper active">
                     <div class="product-description product-detail-wrapper js_product_detail_tabs">
                         <div role="tabpanel">
                             <div class="tabbable">
-                                <ul class="nav nav-tabs bordred-tab" role="tablist" id="js_tab_list">
+                                <ul role="tablist" id="js_tab_list" class="nav nav-tabs bordred-tab">
                                     <li class="active"><a href="#js-place-order" aria-controls="js-place-order" role="tab" data-exist-sub-content="1"
                                         data-toggle="tab">Place Order</a>
                                     </li>
@@ -163,18 +143,16 @@ body {
                                     </li>
                                 </ul>
                                 <div class="request-tab-content tab-content">
-                                    <div class="tab-pane fade active in" id="js-place-order">
+                                    <div id="js-place-order" class="tab-pane fade active in">
                                         <reusecomponent class="c192300">{{> productDetail id='placeOrder.partial' }}</reusecomponent>
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div class="tab-pane fade in" id="js-request-quote">
-                                        <reusecomponent class="c192300">{{> productDetail id='requestQuote.partial' }}</reusecomponent>
+                                    <div id="js-request-quote" class="tab-pane fade in">
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div class="tab-pane fade" id="js-request-info">
-                                        <reusecomponent class="c152859">{{> productDetail id='requestInfoLayout.partial' }}</reusecomponent>
-                                        <div
-                                        class="clearfix"></div>
+                                    <div id="js-request-info" class="tab-pane fade">
+                                        <div class="clearfix"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -182,11 +160,10 @@ body {
                 </div>
             </div>
         </div>
+        <reusecomponent class="c25962">{{> productDetail id='productDetailBottom.partial' }}</reusecomponent>
     </div>
-    <reusecomponent class="c25962">{{> productDetail id='productDetailBottom.partial' }}</reusecomponent>
 </div>
-</div>
+<script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519651971/websites/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519215927/websites/js/jquery.zoom.js"></script>
+<script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519215927/websites/js/jquery.elevatezoom.js"></script>
 <script type="text/javascript" src="./assets/client-plugins/client-detail-page.js"></script>
-<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/jquery.zoom.js"></script>
-<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/airflowbucket1/flowz-builder/key-innovation/js/jquery.elevatezoom.js"></script>

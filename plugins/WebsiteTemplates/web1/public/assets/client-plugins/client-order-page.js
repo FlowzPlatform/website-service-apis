@@ -1,5 +1,18 @@
+if (user_id == null ) {
+  window.location = 'login.html';
+}
+
 document.addEventListener("DOMContentLoaded", function(event){
-showOrders();
+  $(".breadcrumb li:last-child").html('<strong> My Orders </strong>')
+
+  if( admin_role_flag == 1 ){
+      $(".main-title").html('<i class="fa fa-file-text"></i> Received Order List')
+      $(".breadcrumb li:last-child").html('<strong> Received Order List </strong>')
+      $(".js_is_admin").removeClass("hide")
+  }
+  $(".breadcrumb li:last-child").removeClass("hide")
+  $('.js-main-address-block').addClass("hide");
+  showOrders();
 })
 
 function showOrders()
@@ -28,11 +41,17 @@ function showOrders()
   // var productHtml = $(".js-order-product-info").parent().html();
   // alert(productHtml)
   let finalHtml1 = '';
-
+  let orderApiUrl = project_settings.myorders_api_url+'?user_id='+user_id+"&website_id="+website_settings['projectID']
+  let view_colspan = 7
+  if( admin_role_flag == 1 ){
+      orderApiUrl = project_settings.myorders_api_url+"?website_id="+website_settings['projectID']
+      view_colspan = 10
+  }
+  //alert(admin_role_flag)
 
   axios({
     method: 'GET',
-    url : project_settings.myorders_api_url+'?user_id='+user_id+"&website_id="+website_settings['projectID'],
+    url : orderApiUrl,
   })
   .then(async response_data => {
     if (response_data.data.total > 0 ) {
@@ -76,9 +95,9 @@ function showOrders()
 
         for (var product_key in response_data1.products) {
           let product_details = response_data1.products[product_key]
-          // console.log('product_details',product_details.product_id)
 
-          let productData = await getProductDetailById(product_details.product_id)
+          let productData = product_details.product_description;//await getProductDetailById(product_details.product_id)
+
           // console.log('productData',productData)
           let imgSkuReplace = img_sku.replace('#data.sku#',productData.sku);
 
@@ -106,7 +125,7 @@ function showOrders()
                 for(var selected_color in imprint_info.selected_colors)
                 {
                   let colorCount = parseInt(selected_color)+1;
-                  colorHtml += "<div>Colour"+colorCount+": "+"<span>"+imprint_info.selected_colors[selected_color]+"</span></div>";
+                  colorHtml += "<div>Color"+colorCount+": "+"<span>"+imprint_info.selected_colors[selected_color]+"</span></div>";
                 }
               }
 
@@ -125,7 +144,7 @@ function showOrders()
           {
             for(let charge_list in product_details.charges)
             {
-              additional_charges_list += capitalize(charge_list)+": $ "+product_details.charges[charge_list];
+              additional_charges_list += capitalize(charge_list)+": $"+product_details.charges[charge_list];
               charges = charges+parseFloat(product_details.charges[charge_list]);
             }
           }
@@ -133,7 +152,7 @@ function showOrders()
           imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
           imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
 
-          if(typeof product_details.special_instruction != "undefined")
+          if(typeof product_details.special_instruction != "undefined" && product_details.special_instruction != '')
           {
             imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace('#data.special_instruction#',product_details.special_instruction);
           }
@@ -157,7 +176,7 @@ function showOrders()
               var shippingKeyCount = parseInt(shippingKey)+1;
               var shipping_info = shipping_detail[shippingKey];
               var quantityHtml = '<table class="size-quantity-table">';
-
+              quantityHtml += '<thead><tr><th>Color</th><th class="border-right-none">Quantity</th></tr></thead>';
               for (var color_quantity in shipping_info.color_quantity) {
                 quantityHtml += "<tr class='grey-bottom-border'>";
                 quantityHtml += "<td>"+color_quantity+"</td>";
@@ -170,7 +189,7 @@ function showOrders()
               var shippingHtml1 = shippingHtml.replace("#data.color_quantity#",quantityHtml)
               var shipping_details = shipping_info.shipping_detail;
 
-              var shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#",shipping_details.shipping_carrier)
+              var shippingHtml1 = shippingHtml1.replace("#data.shipping_carrier#",shipping_details.shipping_carrier.toUpperCase())
               var shippingHtml1 = shippingHtml1.replace("#data.shipping_count#",shippingKeyCount)
               var shippingHtml1 = shippingHtml1.replace("#data.shipping_method#",shipping_details.shipping_method)
               var shippingHtml1 = shippingHtml1.replace("#data.ship_account#",'')
@@ -179,7 +198,7 @@ function showOrders()
               if(shipping_details.shipping_charge != "")
               {
                 var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,shipping_details.shipping_charge);
-              
+
                 product_shipping_charge_total = product_shipping_charge_total + parseFloat(shipping_details.shipping_charge);
                 product_shipping_charges = product_shipping_charges + parseFloat(shipping_details.shipping_charge);
               }
@@ -192,8 +211,31 @@ function showOrders()
               // $(".js-shipping-"+response_data[key].id).find(".js-product_total_shipping_charge").html(product_shipping_charges);
 
               //END - change
+              // console.log("shipping_info",shipping_info.shipping_address);
+              //let replaceAddressHtml = await addressBookHtml(shipping_info.selected_address_id)
+              let replaceAddressHtml = '';
+              replaceAddressHtml += shipping_info.shipping_address.name+"<br>";
+              if(shipping_info.shipping_address.street2 != undefined && shipping_info.shipping_address.street2 !=''){
+                replaceAddressHtml += shipping_info.shipping_address.street1;
+                replaceAddressHtml += ","+shipping_info.shipping_address.street2+",<br>";
+              }
+              else{
+                replaceAddressHtml += shipping_info.shipping_address.street1+",<br>";
+              }
+              replaceAddressHtml += shipping_info.shipping_address.city+",";
+              replaceAddressHtml += shipping_info.shipping_address.state,2+"<br>";
+              replaceAddressHtml += shipping_info.shipping_address.country;
+              if(shipping_info.shipping_address.postalcode != undefined ){
+                replaceAddressHtml += " - "+shipping_info.shipping_address.postalcode+"<br>";
+              }
+              replaceAddressHtml += "Email: "+shipping_info.shipping_address.email+"<br>";
+              if(shipping_info.shipping_address.phone != undefined ){
+                replaceAddressHtml += "T: "+shipping_info.shipping_address.phone;
+              }
+              if(shipping_info.shipping_address.mobile != undefined && shipping_info.shipping_address.mobile !=''){
+                replaceAddressHtml += ",<br>M: "+shipping_info.shipping_address.mobile+"<br>";
+              }
 
-              let replaceAddressHtml = await addressBookHtml(shipping_info.selected_address_id)
               shippingHtml1 = shippingHtml1.replace("#data.address_book#",replaceAddressHtml)
               //  console.log("replaceAddressHtml replaceAddressHtmlreplaceAddressHtml " , replaceAddressHtml)
               // let replaceAddressHtml = addressBookHtml(shipping_info.selected_address_id).then(function(html){
@@ -288,15 +330,25 @@ function showOrders()
         orderTotalSectionReplace = orderTotalSectionReplace.replace('#data.grand_total_with_tax#',grand_total);
 
         let orderInfoReplace = orderInfo;
-        orderInfoReplace = orderInfoReplace.replace(/#data.order_id#/g,response_data1.invoice_number);
+        orderInfoReplace = orderInfoReplace.replace(/#data.order_id#/g,response_data1.id);
+        if(response_data1.order_id != undefined){
+            orderInfoReplace = orderInfoReplace.replace("#data.order_id1#",response_data1.order_id);
+          }
+          else {
+             orderInfoReplace = orderInfoReplace.replace("#data.order_id1#",'-');
+          }
         orderInfoReplace = orderInfoReplace.replace('#data.order_date#',formatDate(response_data1.created_at,project_settings.format_date));
         orderInfoReplace = orderInfoReplace.replace('#data.payment_type#',response_data1.payment_via);
         orderInfoReplace = orderInfoReplace.replace('#data.quantity#',response_data1.products.length);
         orderInfoReplace = orderInfoReplace.replace('#data.payment_status#','Success');
         orderInfoReplace = orderInfoReplace.replace('#data.total_price#',response_data1.total);
+        if( admin_role_flag == 1 ){
+            orderInfoReplace = orderInfoReplace.replace('#data.user_name#',response_data1.user_info.fullname);
+            orderInfoReplace = orderInfoReplace.replace('#data.user_email#',response_data1.user_info.email);
+        }
 
         finalHtml1 = orderInfoReplace
-        finalHtml1 += "<tr class='track-order-view-block click-track-order js-view-order-detail' id='displayblock-"+response_data1.invoice_number+"' style='display:none;'><td colspan='7'>";
+        finalHtml1 += "<tr class='track-order-view-block click-track-order js-view-order-detail' id='displayblock-"+response_data1.id+"' style='display:none;'><td colspan='"+view_colspan+"'>";
         finalHtml1 += billingHtmlReplace
         finalHtml1 += finalHtml
         finalHtml1 += orderTotalSectionReplace
@@ -313,16 +365,19 @@ function showOrders()
         // }
         // return false;
         let sectionCount = 0;
-        
-        $('#displayblock-'+response_data1.invoice_number).find( ".js-section-number" ).each(function( index ) {
+
+        $('#displayblock-'+response_data1.id).find( ".js-section-number" ).each(function( index ) {
           sectionCount = sectionCount + 1;
           $(this).html(sectionCount);
         });
       }
+      $('.js-main-address-block').removeClass("hide");
+
       hidePageAjaxLoading()
     }
     else
     {
+      $('.js-main-address-block').removeClass("hide");
       hidePageAjaxLoading()
       $('.ob-my-quote-section').html("<hr> No records found.")
     }

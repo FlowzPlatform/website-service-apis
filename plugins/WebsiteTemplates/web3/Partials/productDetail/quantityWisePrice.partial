@@ -1,0 +1,72 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c204962 {
+    opacity: 1;
+    display: block;
+}
+
+#c204970 {
+    width: auto;
+    left: 0px;
+    display: block;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+    transition-delay: initial;
+    transition-property: all;
+    transform: translate3d(0px, 0px, 0px);
+}
+
+#c204974 {
+    width: 110px;
+}
+</style>
+
+
+<div class="product-section-box">
+    <h2 class="heading-block no-tag">   Quantity and Price</h2>
+    <div class="quantity-table">
+        <div class="quantity-table-title">
+            <div class="table-heading js-product-price-unit" data-product-price-unit="each">Quantity</div>
+            <div class="table-content">Price</div>
+        </div>
+        <div class="quantity-table-disc">
+            <div class="quantity-table-col owl-theme" id="c204962">
+                <div class="owl-wrapper-outer">
+                    <ul class="owl-wrapper" id="c204970">
+                        <li class="owl-item" id="c204974"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

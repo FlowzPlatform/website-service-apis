@@ -1,0 +1,118 @@
+ <section class="product-section">
+			<div class="container">
+		    	<div class="row">
+		        	<div class="col-md-12 section-title clearfix">
+		            	<p class="title">Promotional Product Categories</p>
+		                <h1>Popular promotional items that will enhance and build your brand</h1>
+		                    <div class="row productcatrow">
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/free-hour.png" class="img-responsive lazyLoad" alt="free 24 hours rush items">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-bags.png" class="img-responsive lazyLoad" alt="promotional bags">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-writing.png" class="img-responsive lazyLoad" alt="promotional writing items">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-drinkware.png" class="img-responsive lazyLoad" alt="promotional drinkware items">
+		                        </a>
+		                    </div>
+		                    </div>
+		                
+		                    <div class="row productcat">
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-apparel.png" class="img-responsive lazyLoad" alt="promotional apparel">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-technology.png" class="img-responsive lazyLoad" alt="promotional tech items">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-tools.png" class="img-responsive lazyLoad" alt="promotional auto &amp; tools">
+		                        </a>
+		                    </div>
+		                    
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-health.png" class="img-responsive lazyLoad" alt="promotional healthcare items">
+		                        </a>
+		                    </div>
+		                    </div>
+		                    
+		                    <div class="row productcat">
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-outdoor.png" class="img-responsive lazyLoad" alt="promotional outdoor items">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-folders.png" class="img-responsive lazyLoad" alt="promotional stationary &amp; folders">
+		                        </a>
+		                    </div>
+		                    
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-office.png" class="img-responsive lazyLoad" alt="promotional office items">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-tradeshow.png" class="img-responsive lazyLoad" alt="promotional tradeshow supplies">
+		                        </a>
+		                    </div>
+		                    </div>
+		                
+		                    
+		                    <div class="row productcat">
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-toys.png" class="img-responsive lazyLoad" alt="promotional toys &amp; novelties">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-calendar.png" class="img-responsive lazyLoad" alt="promotional calendars">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-candy.png" class="img-responsive lazyLoad" alt="promotional candy &amp; foods">
+		                        </a>
+		                    </div>
+		                    
+		                    <div class="col-md-3 col-sm-3 col-xs-12">
+		                    	<a href="javascript:void(0);">
+		                     		<img data-src="http://res.cloudinary.com/flowz/image/upload/v1522998405/websites/images/pc-catalog.png" class="img-responsive lazyLoad" alt="promo direct free catalog">
+		                        </a>
+		                    </div>
+		                    </div>
+		                
+		            </div>	
+		        </div>
+		    </div>
+		</section>
