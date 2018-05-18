@@ -231,4 +231,9 @@ div#ResultCard .sweet-loading {position: absolute;z-index: 1;top: 40%;left: 60%;
 section.css-8523a9.css-7bb100 {
     min-height: 1250px;
 }
+
+.header-loging li.header-login-text a .svg-inline--fa {
+font-size: 11px !important;
+}
+.header-loging li.header-login-text.login-show .svg-inline--fa.fa-fw {display:none}
 .header-loging li.header-login-text.login-show .login-text:after {content: "\f090";position: absolute;width: 1em;display: inline-block;font: normal normal normal 14px/1 FontAwesome;font-size: inherit;text-rendering: auto;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;left:  10px;top: 3px;font-size:  11px;}

@@ -265,6 +265,10 @@ if((userToken != null && userFrontId != null) || getParameterByName('token')) {
           'headers': {"Authorization": userToken},
           'success': function (res) {
               tmp = res.data;
+              if(tmp.fullname == undefined){
+                  if(tmp.lastname != undefined) tmp.fullname = tmp.firstname+" "+tmp.lastname;
+                  else tmp.fullname = tmp.firstname;
+              }
               user_id = tmp._id;
               if(getParameterByName('token')) {
                 document.cookie = "user_auth_token="+getParameterByName('token');
