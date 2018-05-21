@@ -22,10 +22,21 @@ var website_info = function () {
   return tmp;
 }();
 
-
 var website_settings = website_info[0];
 var project_settings = website_settings.project_settings;
 
+var cloudinaryDetails = function () {
+  var tmp = null;
+  $.ajax({
+    url: project_settings.project_configuration_api_url + "/" + website_settings['projectID'],
+    dataType: 'json',
+    async: false,
+    success: function(data) {
+      tmp = data.configData[1].projectSettings[1].CloudinaryDetails;
+    }
+  });
+  return tmp;
+}();
 
 function getWebsiteInfoById(websiteId,webInfoAPi) {
       var returnData = null;
@@ -254,6 +265,10 @@ if((userToken != null && userFrontId != null) || getParameterByName('token')) {
           'headers': {"Authorization": userToken},
           'success': function (res) {
               tmp = res.data;
+              if(tmp.fullname == undefined){
+                  if(tmp.lastname != undefined) tmp.fullname = tmp.firstname+" "+tmp.lastname;
+                  else tmp.fullname = tmp.firstname;
+              }
               user_id = tmp._id;
               if(getParameterByName('token')) {
                 document.cookie = "user_auth_token="+getParameterByName('token');

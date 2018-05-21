@@ -205,18 +205,18 @@ span.product-title {
 }
 
 .search_block_main_content .fa-search.fa-w-16.fa-fw.search_icon.trigger{
-    margin-top: 7px
+    margin-top: 7px !important;
 }
 .search_block_main_content .fa-search.fa-w-16.fa-fw.search_icon.trigger {
-    margin-top: 7px;
-    font-size: 15px;
-    background: transparent;
-    position: relative;
-    border: 0;
-    right: 33px;
-    width: 23px;
-    z-index: 3;
-    color: #157bea;
+    margin-top: 7px !important;
+    font-size: 15px !important;
+    background: transparent !important;
+    position: relative !important;
+    border: 0 !important;
+    right: 33px !important;
+    width: 23px !important;
+    z-index: 3 !important;
+    color: #157bea !important;
 }
 .search_block_main_content .fa-search.fa-w-16.fa-fw.search_icon.top_search {
     font-size: 140px !important;
@@ -224,3 +224,16 @@ span.product-title {
 span.sku-title {
     font-size: 15px;
 }
+
+div#ResultList .sweet-loading,
+div#ResultCard .sweet-loading {position: absolute;z-index: 1;top: 40%;left: 60%;}
+
+section.css-8523a9.css-7bb100 {
+    min-height: 1250px;
+}
+
+.header-loging li.header-login-text a .svg-inline--fa {
+font-size: 11px !important;
+}
+.header-loging li.header-login-text.login-show .svg-inline--fa.fa-fw {display:none}
+.header-loging li.header-login-text.login-show .login-text:after {content: "\f090";position: absolute;width: 1em;display: inline-block;font: normal normal normal 14px/1 FontAwesome;font-size: inherit;text-rendering: auto;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;left:  10px;top: 3px;font-size:  11px;}
