@@ -354,7 +354,7 @@ $(document).ready( async function(){
                                     "<div class='selector-input'> <input type='text' value='"+response_data.color[$(this).val()]+"' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
 
                                     $(this).prop("checked",true);
-                                    $(".js_add_imprint_location_request_quote").prop("checked",true);
+                                    // $(".js_add_imprint_location_request_quote").prop("checked",true);
 
                                     if($(activetab).find("#js_request_quote_qty_box").html() !=""){
                                         $(activetab).find("#js_request_quote_qty_box").append(Quantity);
@@ -420,9 +420,14 @@ $(document).ready( async function(){
 
                             $(activetab+"-Print-position-block").addClass("in");
 
-                            $(activetab).find(".js_add_imprint_location_request_quote").each(function(){
-                                $(this).prop("checked",false);
-                            });
+                            // $(activetab).find(".js_add_imprint_location_request_quote").each(function(){
+                            //     $(this).prop("checked",false);
+                            // });
+
+                            //summary for setup charge
+                            if(typeof response_data.charges != 'undefined' && typeof response_data.charges.setup_charge != 'undefined') {
+                                totalPrice = parseFloat(totalPrice) + parseFloat(response_data.charges.setup_charge)
+                            }
 
                             if(typeof response_data.imprint != "undefined")
                             {
@@ -435,6 +440,9 @@ $(document).ready( async function(){
 
                                     let printPos = imprint_info.imprint_position_name;//"BARREL";//$(this).attr("value");
                                     // console.log(printPos);
+
+                                    //summary for print position
+                                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location_'+print_pos_id+'"><div class="estimate-row heading"><span>Print Position : '+printPos+'</span></div><div class="row"><div class="col-sm-12"><div class="js_product_summary_imprint_location_'+print_pos_id+'"><div class="estimate-row js_imprint_method_summary_'+print_pos_id+' hide">Imprint Method : <span></span></div> <div class="estimate-row js_color_number_summary_'+print_pos_id+' hide">How many colors : <span></span></div> <div class="estimate-row js_selected_color_summary_'+print_pos_id+' hide"></div></div></div></div></div>');
 
                                     let printPosLower = replaceWithUnderscore(imprint_info.imprint_position_name);//"BARREL";//$(this).attr("value");
                                     // console.log(printPosLower);
@@ -476,18 +484,155 @@ $(document).ready( async function(){
 
                                         if(typeof imprint_info.selected_colors != "undefined")
                                         {
+                                            let selColorsHtml = ""; //summary
                                             for (let [i,imprint_selected_colors] of imprint_info.selected_colors.entries())
                                             {
                                                 let j = i+1;
+                                                //$( "ul[data-color-no='"+j+"'] li[data-value='"+imprint_selected_colors+"'][data-printpos='"+printPosLower+"']" ).click();
+
                                                 $(activetab).find("#js_selected_color_id_"+printPosLower+"_"+printMethod+"_"+j).val(imprint_selected_colors);
                                                 $(activetab).find("#js_selected_color_id_"+printPosLower+"_"+printMethod+"_"+j).next().find(".color-select-box button").attr("data-printpos",printPosLower)
                                                 $(activetab).find("#js_selected_color_id_"+printPosLower+"_"+printMethod+"_"+j).next().find(".color-select-box button").attr("data-value",imprint_selected_colors)
                                                 $(activetab).find("#js_selected_color_id_"+printPosLower+"_"+printMethod+"_"+j).next().find(".color-select-box button").html('<span class="imprint-lbl-method">'+imprint_selected_colors+'</span><span class="caret"></span>')
+
+                                                //summary for select color from list
+                                                selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+j+'">color'+j+' : <span>'+imprint_selected_colors+'</span></div><br>';
+                                            }
+
+                                            //summary for select color from list
+                                            if(selColorsHtml != '') {
+                                                $('.js_selected_color_summary_'+printPosLower).html(selColorsHtml+"<br>");
+                                                $('.js_selected_color_summary_'+printPosLower).removeClass('hide');
                                             }
                                         }
                                     }
                                     else{
                                         $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).remove();
+                                    }
+
+                                    if(typeof imprint_info.artwork_type != "undefined")
+                                    {
+                                        let artwork_type = imprint_info.artwork_type;
+
+                                        let selectedType = $(activetab).find("#js_request_quote_artwork_"+print_pos_id);
+                                        
+                                        $(selectedType).find("ul li[data-type='"+artwork_type+"'] a").click();
+
+                                        let checkSendEmail = '';
+                                        if(artwork_type == "upload_artwork_typeset")
+                                        {
+                                            if(typeof imprint_info.artwork.artwork_text_email != "undefined")
+                                            {
+                                                checkSendEmail = "#logo_text_email_"+print_pos_id;
+                                            }
+                                            else{
+                                                checkSendEmail = "#logo_text_image_"+print_pos_id;
+                                            }
+                                        }
+                                        else if(artwork_type == "upload_artwork")
+                                        {
+                                            if(typeof imprint_info.artwork.artwork_email != "undefined")
+                                            {
+                                                checkSendEmail = "#logo_email_"+print_pos_id;
+                                            }
+                                            else{
+                                                checkSendEmail = "#logo_image_"+print_pos_id;
+                                            }
+                                        }
+
+                                        if(checkSendEmail != "")
+                                        {
+                                            $(activetab).find(checkSendEmail).click();
+                                        }
+                                        
+                                        if(typeof imprint_info.artwork.artwork_text != "undefined")
+                                        {
+                                            for (let [i,artwork_text] of imprint_info.artwork.artwork_text.entries())
+                                            {
+                                                let j = i+1;
+                                                // console.log('artwork_text',artwork_text)
+
+                                                let inputTextVal = '';
+                                                let addClick = '';
+                                                
+
+                                                if(artwork_type == "typeset")
+                                                {
+                                                    inputTextVal = "#text_is_text_"+print_pos_id+"_"+j;
+                                                    addClick =  "#is_text_add_"+print_pos_id;
+                                                }
+                                                else if(artwork_type == "upload_artwork_typeset")
+                                                {
+                                                    inputTextVal = "input[data-id='text_is_logo_text_text_"+print_pos_id+"_"+j+"']";//"#text_is_text_"+print_pos_id+"_"+j;
+                                                    addClick =  "#is_logo_text_text_add_"+print_pos_id;
+                                                }
+
+                                                if(inputTextVal != "")
+                                                {
+                                                    $(activetab).find(inputTextVal).val(artwork_text);
+                                                }
+                                                
+                                                if(j>1)
+                                                {
+                                                    if(addClick != "")
+                                                    {
+                                                        $(activetab).find(addClick).click();
+                                                    }
+
+                                                    if(inputTextVal != "")
+                                                    {
+                                                        $(activetab).find(inputTextVal).val(artwork_text);
+                                                    }
+                                                }
+
+                                                //summary for upload artwork
+                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j+' span').text(artwork_text);
+                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j).removeClass('hide');
+                                            }
+                                        }
+
+                                        if(typeof imprint_info.artwork.artwork_thumb != "undefined")
+                                        {
+                                            for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries())
+                                            {
+                                                let j = i+1;
+                                                let thumbImg = '';
+                                                let addClick = '';
+                                                let actualImg = '';
+
+                                                if(artwork_type == "upload_artwork")
+                                                {
+                                                    addClick =  "#is_logo_add_"+print_pos_id;   
+                                                    thumbImg = "#logo_show_"+print_pos_id+"_"+j;
+                                                    actualImg = "#logo_save_"+print_pos_id+"_"+j;
+                                                }
+                                                else if(artwork_type == "upload_artwork_typeset")
+                                                {
+                                                    addClick =  "#is_logo_text_add_"+print_pos_id;   
+                                                    thumbImg = "#logo_type_show_"+print_pos_id+"_"+j;
+                                                    actualImg = "#logo_type_save_"+print_pos_id+"_"+j;
+                                                }
+
+                                                $(activetab).find(thumbImg).attr("src",artwork_thumb);
+                                                $(activetab).find(thumbImg).removeClass("hide");
+                                                $(activetab).find(actualImg).val(imprint_info.artwork.artwork_image[i]);
+                                                
+                                                if(j>1)
+                                                {
+                                                    $(activetab).find(addClick).click();
+                                                }
+
+                                                //summary for upload artwork
+                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j+' span img').attr("src",artwork_thumb);
+                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j).removeClass('hide');
+                                            }
+                                        }
+
+                                        $(selectedType).find("div[data-type='"+artwork_type+"']").find(".js_artwork_instructions_text").val(imprint_info.artwork.artwork_instruction);
+
+                                        //summary for upload artwork
+                                        $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_textarea span').text(imprint_info.artwork.artwork_instruction);
+                                        $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_textarea').removeClass('hide');
                                     }
                                 }
                             }
@@ -590,10 +735,13 @@ $(document).ready( async function(){
                             $(activetab).find("#js_request_quote_instruction").val(response_data.special_instruction);
 
                             //summary for shipping charges
-                            if(shipp_charge != 0.00) {
+                            if(shipp_charge != 0.00 && !isNaN(shipp_charge)) {
                                 $('.js-shipping-charge-summary').find('span').html("$"+parseFloat(shipp_charge).toFixed(project_settings.price_decimal));
                                 $('.js-additional-charges-summary').removeClass('hide');
                                 $('.js-shipping-charge-summary').removeClass('hide');
+                            }
+                            else {
+                                shipp_charge = 0.00;
                             }
                             let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
                             $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
@@ -696,28 +844,33 @@ $(document).ready( async function(){
             });
 
             thisObj.parent().parent().parent().find('.dropdown_size').removeClass('open');
+        }
+     });
 
-            //summary for imprint method
-            $('.js_print_postion_location').html('');
-            $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
-                let positionName = $(this).val();
-                let position_name = replaceWithUnderscore($(this).val());
+     //summary for imprint method
+     $(document).on("click",".js_select_method li",function(){
+        let thisObj = $(this);
+        let position_name = thisObj.attr('data-printpos');
+        let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
 
-                let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
-                let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
+        if(typeof imprintMethodName != 'undefined') {
+            $('.js_imprint_method_summary_'+position_name).find('span').html(imprintMethodName);
+            $('.js_color_number_summary_'+position_name).addClass('hide');
+            $('.js_selected_color_summary_'+position_name).addClass('hide');
+            $('.js_imprint_method_summary_'+position_name).removeClass('hide');
 
-                var no_of_color = 0;
-                if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
-                    no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
-                }
+            //summary for setup charges
+            let total_setup_charge = 0;
+            $(activetab).find(".imprint-method-select button").each(function(i) {
+                let imprintMethod = $(this).attr('data-method');
+                if(typeof imprintMethod != 'undefined' && imprintMethod != '') {
+                    let imprint_position = [];
+                    imprint_position.push({'imprint_method_name': imprintMethod});
 
-                let selColorsHtml = "";
-                if(no_of_color.length > 0) {
-                    for(var k=1;k<=no_of_color;k++) {
-                        let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
-                        if(selectedColor != "" && typeof selectedColor != "undefined") {
-                            selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+k+'">color'+k+' : <span>'+selectedColor+'</span></div><br>';
-                        }
+                    let setup_charge = calculate_setup_charge(imprint_position)
+                    if(setup_charge > 0)
+                    {
+                        total_setup_charge = total_setup_charge + setup_charge;
                     }
                 }
 
@@ -734,8 +887,21 @@ $(document).ready( async function(){
                     $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div></div>');
                 }
             });
-            $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
+            $('.js-setup-charge-summary').find('span').html("$"+parseFloat(total_setup_charge).toFixed(project_settings.price_decimal))
+            $('.js-setup-charge-summary').removeClass('hide');
+            $('.js-additional-charges-summary').removeClass('hide');
+            
+            let shipp_charge = 0.00;
+            let setup_charge = total_setup_charge;
+            let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
+            if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+                shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+            }
+       
+            let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+            $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
         }
+        $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
      });
 
      $(document).on("click",".js_set_selected_value_col li",async function(){
@@ -756,13 +922,28 @@ $(document).ready( async function(){
           })
         }
 
+        //summary for how many colors
+        let position_name = dataAttributes.position;
+        let no_of_color = 0;
+        if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
+            no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
+        }
+        if(no_of_color != 0) {
+            $('.js_color_number_summary_'+position_name).find('span').html(no_of_color+' color(s)');
+            $('.js_selected_color_summary_'+position_name).addClass('hide');
+            $('.js_color_number_summary_'+position_name).removeClass('hide');
+        }
+
           //imprint_color_val.imprint_color = ["Process Blue","Reflex Blue","Pantone Yellow","Pms 340","Pms 354","Pantone Orange","Pantone Purple"] // Static imprint color
 
-          for(let i=1;i<=dataAttributes.value;i++){
-            colorHtml1 = colorHtml.replace(/#data.printPositionName#/g,printPosition)
-            colorHtml1 = colorHtml1.replace(/#data.imprintId#/g,imprintMethod)
-            colorHtml1 = colorHtml1.replace(/#data.printColor#/g,i)
-            replaceColorHtml += colorHtml1;
+          if(typeof imprint_color_val.imprint_color != 'undefined') {
+            for(let i=1;i<=dataAttributes.value;i++) {
+                colorHtml1 = colorHtml.replace(/#data.printPositionName#/g,printPosition)
+                colorHtml1 = colorHtml1.replace(/#data.imprintId#/g,imprintMethod)
+                colorHtml1 = colorHtml1.replace(/#data.printColor#/g,i)
+                replaceColorHtml += colorHtml1;
+            }
+            parentObj.find(".js-color-div-append").html(replaceColorHtml)
           }
           parentObj.find(".js-color-div-append").html(replaceColorHtml)
 
@@ -831,43 +1012,27 @@ $(document).ready( async function(){
         parentObj.find('#js_selected_color_id_'+position_name+'_'+method_name+'_'+color_no).val(color_name);
 
         //summary for select color from list
-        $('.js_print_postion_location').html('');
-        $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
-            let positionName = $(this).val()
-            let position_name = replaceWithUnderscore($(this).val());
+        let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
 
-            let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
-            let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
+        let no_of_color = 0;
+        if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
+            no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
+        }
 
-            var no_of_color = 0;
-            if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
-                no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
-            }
-
-            let selColorsHtml = "";
-            if(no_of_color.length > 0) {
-                for(var k=1;k<=no_of_color;k++) {
-                    let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
-                    if(selectedColor != "" && typeof selectedColor != "undefined") {
-                        selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+k+'">color'+k+' : <span>'+selectedColor+'</span></div><br>';
-                    }
+        let selColorsHtml = "";
+        if(no_of_color.length > 0) {
+            for(var k=1;k<=no_of_color;k++) {
+                let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
+                if(selectedColor != "" && typeof selectedColor != "undefined") {
+                    selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+k+'">color'+k+' : <span>'+selectedColor+'</span></div><br>';
                 }
             }
+        }
 
-            if(typeof imprintMethodName != 'undefined' && no_of_color != 0 && selColorsHtml != '') {
-                $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br><br>'+selColorsHtml+'</div></div></div>');
-            }
-            else if(typeof imprintMethodName != 'undefined' && no_of_color != 0) {
-                $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br></div></div></div>');
-            }
-            else if(typeof imprintMethodName != 'undefined') {
-                $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div></div></div>');
-            }
-            else {
-                $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div></div>');
-            }
-        });
-        $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
+        if(selColorsHtml != '') {
+            $('.js_selected_color_summary_'+position_name).html(selColorsHtml+"<br>");
+            $('.js_selected_color_summary_'+position_name).removeClass('hide');
+        }
     });
 
      let select_how_colr = '';
@@ -885,7 +1050,8 @@ $(document).ready( async function(){
        listHtmlPrintPosColor1 = listHtmlPrintPosColor1.replace(/#data.printMethod#/g,dataAttributes.dropval);
        listHtmlPrintPosColor1 = listHtmlPrintPosColor1.replace(/#data.maxImprintColor#/g,dataAttributes.maxImprintColor);
        productHtmlPrintPosColor += listHtmlPrintPosColor1;
-        if(dataAttributes.maxImprintColor > 0) {
+
+        if(dataAttributes.maxImprintColor > 0 && dataAttributes.maxImprintColor != '') {
             for(let i=1;i<=dataAttributes.maxImprintColor;i++){
                 imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+'Color</a></li>'
             }
@@ -937,55 +1103,13 @@ $(document).ready( async function(){
 
             let currentTab = $(activetab+' #js_request_quote_artwork_'+position_name+' li.active a').attr('href');
             let art_type = $(activetab+' '+currentTab).attr('data-type');
+            let art_section = getArtworkData(currentTab,position_name);
+
+            let imprint_position_data = { 'imprint_position_name': positionName, 'imprint_method_name': imprintMethodName, 'no_of_color' : no_of_color, 'selected_colors' : selected_colors, 'artwork_type' : art_type, 'artwork' : art_section };
             
-            let art_url = [];
-            let art_thumb = [];
-            $(activetab+' '+currentTab+' .js-save-artwork-logo').each(function(i) {
-                if($(this).val().trim() != '') {
-                    art_url.push($(this).val());
-                    art_thumb.push($(this).prev('img').attr('src'));
-                }
-            });
-
-            let typeset = [];
-            $(activetab+' '+currentTab+' .js-art-text').each(function(i) {
-                if($(this).val().trim() != '') {
-                    typeset.push($(this).val());
-                }
-            });
-            
-            art_section = {};
-            if(art_url.length > 0) {
-                art_section.artwork = art_url;
-            }
-
-            if(art_thumb.length > 0) {
-                art_section.artwork_thumb = art_thumb;
-            }
-
-            if(typeset.length > 0) {
-                art_section.text = typeset;
-            }
-
-            if(art_url.length == 0 || typeset.length == 0) {
-                if(typeof $(activetab+' '+currentTab+' .js-upload-email-type-radio').prop('checked') != 'undefined' && $(activetab+' '+currentTab+' .js-upload-email-type-radio').prop('checked') == true) {
-                    art_section.art_text_email = 1;
-                }
-
-                if(typeof $(activetab+' '+currentTab+' .js-upload-email-radio').prop('checked') != 'undefined' && $(activetab+' '+currentTab+' .js-upload-email-radio').prop('checked') == true) {
-                    art_section.art_email = 1;
-                }
-            }
-
-            if(typeof $(activetab+' '+currentTab+' .js_artwork_instructions_text').val() != 'undefined' && $(activetab+' '+currentTab+' .js_artwork_instructions_text').val().trim() != '') {
-                art_section.art_instruction = $(activetab+' '+currentTab+' .js_artwork_instructions_text').val();
-            }
-
-            let imprint_position_data = { 'imprint_position_name': positionName, 'imprint_method_name': imprintMethodName, 'no_of_color' : no_of_color, 'selected_colors' : selected_colors };
-            imprint_position_data[art_type] = art_section;
             imprint_position.push(imprint_position_data);
         });
-        // console.log("imprint_position",imprint_position);
+        //console.log("imprint_position new",imprint_position);
 
         // charges
         let total_setup_charge = calculate_setup_charge(imprint_position)
@@ -1225,6 +1349,75 @@ $(document).ready( async function(){
     }
 });
 
+function getArtworkData(currentTab,position_name)
+{
+    let art_url = [];
+    let art_thumb = [];
+    $(activetab+' '+currentTab+' .js-save-artwork-logo').each(function(i) {
+        if($(this).val().trim() != '') {
+            art_url.push($(this).val());
+            art_thumb.push($(this).prev('img').attr('src'));
+        }
+    });
+
+    let typeset = [];
+    $(activetab+' '+currentTab+' .js-art-text').each(function(i) {
+        if($(this).val().trim() != '') {
+            typeset.push($(this).val());
+        }
+    });
+    
+    art_section = {};
+    if(art_url.length > 0) {
+        art_section.artwork_image = art_url;
+    }
+    else {
+        delete art_section.artwork_image;
+    }
+
+    if(art_thumb.length > 0) {
+        art_section.artwork_thumb = art_thumb;
+    }
+    else {
+        delete art_section.artwork_thumb;
+    }
+
+    if(typeof $(activetab+' '+currentTab+' .js_artwork_instructions_text').val() != 'undefined' && $(activetab+' '+currentTab+' .js_artwork_instructions_text').val().trim() != '') {
+        art_section.artwork_instruction = $(activetab+' '+currentTab+' .js_artwork_instructions_text').val();
+    }
+
+    if(typeset.length > 0) {
+        art_section.artwork_text = typeset;
+    }
+    else {
+        delete art_section.artwork_text;
+        delete art_section.artwork_instruction;
+    }
+
+    if(typeof $(activetab+' '+currentTab+' .js-upload-email-radio').prop('checked') != 'undefined' && $(activetab+' '+currentTab+' .js-upload-email-radio').prop('checked') == true) {
+        art_section.artwork_email = 1;
+        delete art_section.artwork_image;
+        delete art_section.artwork_thumb;
+        delete art_section.artwork_instruction;
+    }
+    else {
+        delete art_section.artwork_email;
+    }
+
+    if(typeof $(activetab+' '+currentTab+' .js-upload-email-type-radio').prop('checked') != 'undefined' && $(activetab+' '+currentTab+' .js-upload-email-type-radio').prop('checked') == true) {
+        art_section.artwork_text_email = 1;
+        delete art_section.artwork_image;
+        delete art_section.artwork_thumb;
+        delete art_section.artwork_text;
+        delete art_section.artwork_instruction;
+    }
+    else {
+        delete art_section.artwork_text_email;
+    }
+
+    return art_section;
+}
+
 function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_details,shippigCounter)
 {
     let qty = 0;
@@ -1273,7 +1466,7 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
                 }
                 else{
-                    rateHtml = '<li><a href="javascript:void(0)">Product shipping detail is missing</a></li>'
+                    rateHtml = '<li data-service="Select Method" data-value="0.00" data-transit-time=""><a href="javascript:void(0)">Product shipping detail is missing</a></li>'
 
                     let quantity= total_qty;
                     let quantity_in_carton = shipping_details.shipping_qty_per_carton
@@ -1510,7 +1703,7 @@ $(document).on("click","#js_tab_list",function(){
 
     autoCounter();
     if(typeof cid == 'undefined' || cid == null) {
-        $('#Quantity-quote-block').html('<div class="panel-body"> <div class="estimate-detail" id="js_product_summary"> <div class="estimate-tag-block js_summary_qty hide"> <div class="estimate-row heading"><span>Quantity</span></div> <div class="row"> <div class="col-sm-12"> <table class="product-color-price-table" id="js_product_summary_qty"></table> </div> </div> </div> <div class="estimate-tag-block js_print_postion_location hide"></div> <div class="estimate-tag-block estimate-address-block js_summary_shipping_type hide"> <div class="estimate-row heading"><span>Shipping Method</span></div> <div class="estimate-row ship_type">Shipping Type : <span>Standard Shipping</span></div> <div class="js_shipp_address_data hide"></div> </div> </div> <div class="js_special_inst estimate-detail hide"> <div class="estimate-tag-block"> <div class="estimate-row heading"><span>Special Instructions</span></div> <div class="js_summary_instruction" style="white-space: pre-wrap;"></div> </div> </div> <div class="jsTotal estimate-detail hide"> <div class="js_product_summary_charges" id="js_product_summary_charges"> <div class="estimate-tag-block js-additional-charges-summary hide"> <div class="estimate-row heading"> <span>Additional Charges</span> </div> <div class="estimate-row charge_type js-shipping-charge-summary hide"> Shipping Charge: <span class="text-uppercase">$ 0.00</span> </div> <div class="estimate-row charge_type js-total-tax-in-summary hide"> Total Tax: <span class="text-uppercase">$ 0.00</span> </div> </div> <div class="estimate-total-block hide"> <div class="row"> <div class="col-lg-7 col-md-7 col-sm-7"> <table class="estimate-sub-table responsive"> <thead> <tr> <th>Quantity</th> <th>Price</th> </tr> </thead> <tbody> <tr> <td class="total_quantity">0</td> <td class="total_price">$ 0.00</td> </tr> </tbody> </table> </div> <div class="col-lg-5 col-md-5 col-sm-5 estimate-sub-totle"> <h4>Total Price: </h4> <h5 class="final_price">$ 0.00</h5> </div> </div> </div> </div> </div> </div>');
+        $('#Quantity-quote-block').html('<div class="panel-body"><div class="estimate-detail" id="js_product_summary"><div class="estimate-tag-block js_summary_qty hide"><div class="estimate-row heading"><span>Quantity</span></div><div class="row"><div class="col-sm-12"><table class="product-color-price-table" id="js_product_summary_qty"></table></div></div></div><div class="estimate-tag-block js_print_postion_location hide"></div><div class="estimate-tag-block estimate-address-block js_summary_shipping_type hide"><div class="estimate-row heading"><span>Shipping Method</span></div><div class="row"><div class="col-sm-12"><div class="estimate-row ship_type">Shipping Type : <span></span></div><div class="js_shipp_address_data hide"></div></div></div></div></div><div class="js_special_inst estimate-detail hide"><div class="estimate-tag-block"><div class="estimate-row heading"><span>Special Instructions</span></div><div class="row"><div class="col-sm-12"><div class="js_summary_instruction" style="white-space:pre-wrap"></div></div></div></div></div><div class="jsTotal estimate-detail hide"><div class="js_product_summary_charges" id="js_product_summary_charges"><div class="estimate-tag-block js-additional-charges-summary hide"><div class="estimate-row heading"><span>Additional Charges</span></div><div class="row"><div class="col-sm-12"><div class="estimate-row charge_type js-shipping-charge-summary hide">Shipping Charge(s): <span class="text-uppercase">$0.00</span></div><div class="estimate-row charge_type js-setup-charge-summary hide">Setup Charge: <span class="text-uppercase">$0.00</span></div><div class="estimate-row charge_type js-total-tax-in-summary hide">Total Tax: <span class="text-uppercase">$0.00</span></div></div></div></div><div class="estimate-total-block hide"><div class="row"><div class="col-lg-7 col-md-7 col-sm-7"><table class="estimate-sub-table responsive"><thead><tr><th>Quantity</th><th>Price</th></tr></thead><tbody><tr><td class="total_quantity">0</td><td class="total_price">$0.00</td></tr></tbody></table></div><div class="col-lg-5 col-md-5 col-sm-5 estimate-sub-totle"><h4>Total Price: </h4><h5 class="final_price">$0.00</h5></div></div></div></div></div></div>');
 
         $('#Quantity-quote').addClass('hide');
     }
@@ -1718,12 +1911,13 @@ $(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
      $('.js-shipping-charge-summary').removeClass('hide');
 
      let shipp_charge = shippingCharge;
+     let setup_charge = 0.00;
      let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
-     if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-         shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+     if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+         setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
      }
 
-     let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
+     let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
      $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 
      setdate(shipCounter,parentObj,activetab,transitTime)
@@ -1759,48 +1953,78 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
             $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find(".js_select_method").html(select_imprint_method);
         }
         $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).find('.imprint-color-select').hide()
-    }
-    else{
-        $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).remove();
-    }
 
-    //summary for print position
-    $('.js_print_postion_location').html('');
-    $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
-        let positionName = $(this).val()
-        let position_name = replaceWithUnderscore($(this).val());
 
-        let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
-        let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
+        //summary for print position
+        let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id+" .imprint-method-select button").attr('data-dropval');
+        let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id+" .imprint-method-select button").attr('data-method');
 
-        var no_of_color = 0;
-        if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
-            no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
+        let no_of_color = 0;
+        if($(activetab).find("#js_imprint_request_quote_box_"+print_pos_id+" .imprint-color-select button").attr('data-value')) {
+            no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id+" .imprint-color-select button").attr('data-value');
         }
 
         let selColorsHtml = "";
         if(no_of_color.length > 0) {
             for(var k=1;k<=no_of_color;k++) {
-                let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
+                let selectedColor = $(activetab).find('#js_selected_color_id_'+print_pos_id+'_'+imprint_method_name+'_'+k).val();
                 if(selectedColor != "" && typeof selectedColor != "undefined") {
                     selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+k+'">color'+k+' : <span>'+selectedColor+'</span></div><br>';
                 }
             }
         }
 
-        if(typeof imprintMethodName != 'undefined' && no_of_color != 0 && selColorsHtml != '') {
-            $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br><br>'+selColorsHtml+'</div></div></div>');
+        if(typeof imprintMethodName != 'undefined') {
+            $('.js_imprint_method_summary_'+print_pos_id).find('span').html(imprintMethodName);
+            $('.js_imprint_method_summary_'+print_pos_id).removeClass('hide');
         }
-        else if(typeof imprintMethodName != 'undefined' && no_of_color != 0) {
-            $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br></div></div></div>');
+        if(no_of_color != 0) {
+            $('.js_color_number_summary_'+print_pos_id).find('span').html(no_of_color+' color(s)');
+            $('.js_color_number_summary_'+print_pos_id).removeClass('hide');
         }
-        else if(typeof imprintMethodName != 'undefined') {
-            $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div></div></div>');
+        if(selColorsHtml != '') {
+            $('.js_selected_color_summary_'+print_pos_id).html(selColorsHtml);
+            $('.js_selected_color_summary_'+print_pos_id).removeClass('hide');
         }
-        else {
-            $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div></div>');
+        if(typeof imprintMethodName == 'undefined' && no_of_color == 0 && selColorsHtml == '') {
+            $('.js_print_postion_location').append('<div class="js_summary_imprint_location_'+print_pos_id+'"><div class="estimate-row heading"><span>Print Position : '+printPos+'</span></div><div class="row"><div class="col-sm-12"><div class="js_product_summary_imprint_location_'+print_pos_id+'"><div class="estimate-row js_imprint_method_summary_'+print_pos_id+' hide">Imprint Method : <span></span></div> <div class="estimate-row js_color_number_summary_'+print_pos_id+' hide">How many colors : <span></span></div> <div class="estimate-row js_selected_color_summary_'+print_pos_id+' hide"></div></div></div></div></div>');
         }
-    });
+    }
+    else{
+        $(activetab).find("#js_imprint_request_quote_box_"+print_pos_id).remove();
+        $('.js_summary_imprint_location_'+print_pos_id).remove(); //summary
+
+        //summary for setup charges
+        let total_setup_charge = 0;
+        $(activetab).find(".imprint-method-select button").each(function(i) {
+            let imprintMethod = $(this).attr('data-method');
+            if(typeof imprintMethod != 'undefined' && imprintMethod != '') {
+                let imprint_position = [];
+                imprint_position.push({'imprint_method_name': imprintMethod});
+
+                let setup_charge = calculate_setup_charge(imprint_position)
+                if(setup_charge > 0)
+                {
+                    total_setup_charge = total_setup_charge + setup_charge;
+                }
+            }
+        });
+        $('.js-setup-charge-summary').find('span').html("$"+parseFloat(total_setup_charge).toFixed(project_settings.price_decimal))
+        $('.js-setup-charge-summary').removeClass('hide');
+        $('.js-additional-charges-summary').removeClass('hide');
+        
+        let shipp_charge = 0.00;
+        let setup_charge = total_setup_charge;
+        let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
+        if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+            shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+        }
+   
+        let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+        $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+    }
+
+    //summary for print position
     if($(activetab+' .js_add_imprint_location_request_quote:checked').length > 0) {
         $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
     }
@@ -1811,32 +2035,64 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
 
 
 //upload artwork section start
-$(document).on("click",activetab + ".js-upload-art-radio",function(){
+$(document).on("click",activetab + " .js-upload-art-radio",function(){
     $('.js-upload-art').removeClass('hide');
     if(!$('.js-upload-email').hasClass('hide')) {
         $('.js-upload-email').addClass('hide');
     }
+
+    //summary for upload artwork
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
+    let art_heading_undescore = replaceWithUnderscore(art_heading);
+    $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
+    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src=""></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src=""></span></div><br></div>');
 });
 
-$(document).on("click",activetab + ".js-upload-email-radio",function(){
+$(document).on("click",activetab + " .js-upload-email-radio",function(){
     $('.js-upload-email').removeClass('hide');
     if(!$('.js-upload-art').hasClass('hide')) {
         $('.js-upload-art').addClass('hide');
     }
+
+    //summary for upload artwork
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
+    let art_heading_undescore = replaceWithUnderscore(art_heading);
+    let tab_id = $(this).closest(".art-pos-value").find('li.active a').attr('href');
+    let art_email = $(this).closest(".art-pos-value").find(tab_id+' .js_artwork_email').text();
+    $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
+    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_email">Send Artwork via Email : <span>'+art_email+'</span></div><br></div>');
 });
 
-$(document).on("click",activetab + ".js-upload-art-type-radio",function(){
+$(document).on("click",activetab + " .js-upload-art-type-radio",function(){
     $('.js-upload-art-type').removeClass('hide');
     if(!$('.js-upload-email-type').hasClass('hide')) {
         $('.js-upload-email-type').addClass('hide');
     }
+
+    //summary for upload artwork
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
+    let art_heading_undescore = replaceWithUnderscore(art_heading);
+    $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
+    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src=""></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src=""></span></div><div class="estimate-row js_sum_art_text_1 hide">Text 1 : <span></span></div><div class="estimate-row js_sum_art_text_2 hide">Text 2 : <span></span></div><div class="estimate-row js_sum_art_textarea hide">Instructions: <span class="content-inline"></span></div><br></div>');
 });
 
-$(document).on("click",activetab + ".js-upload-email-type-radio",function(){
+$(document).on("click",activetab + " .js-upload-email-type-radio",function(){
     $('.js-upload-email-type').removeClass('hide');
     if(!$('.js-upload-art-type').hasClass('hide')) {
         $('.js-upload-art-type').addClass('hide');
     }
+
+    //summary for upload artwork
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
+    let art_heading_undescore = replaceWithUnderscore(art_heading);
+    let tab_id = $(this).closest(".art-pos-value").find('li.active a').attr('href');
+    let art_email = $(this).closest(".art-pos-value").find(tab_id+' .js_artwork_email').text();
+    $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
+    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_email">Send Artwork via Email : <span>'+art_email+'</span></div><br></div>');
 });
 
 $(document).on("click",activetab + ".js_add_logo",function(){
@@ -1846,105 +2102,171 @@ $(document).on("click",activetab + ".js_add_logo",function(){
         return false;
     }
     $(this).addClass('hide');
-    let posVal = $(this).attr('data-pos');
-    //$('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', false);
-    $('#js_is_logo_'+posVal+'_2').removeClass('hide');
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    //$('#js_is_logo_'+pos+'_2 input[type=file]').attr('disabled', false);
+    $('#js_is_logo_'+pos+'_2').removeClass('hide');
 });
 
-$(document).on("click",activetab + ".js_remove_logo",function(){
+$(document).on("click",activetab + " .js_remove_logo",function(){
     $('.js_add_logo').removeClass('hide');
-    let posVal = $(this).attr('data-pos');
-    //$('#js_is_logo_'+posVal+'_2 input[type=file]').attr('disabled', true);
-    $('#logo_show_'+posVal+'_2').attr('src','');
-    $('#logo_show_'+posVal+'_2').addClass('hide');
-    $('#logo_save_'+posVal+'_2').attr('value','');
-    $('#js_is_logo_'+posVal+'_2').addClass('hide');
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    //$('#js_is_logo_'+pos+'_2 input[type=file]').attr('disabled', true);
+    $('#logo_show_'+pos+'_2').attr('src','');
+    $('#logo_show_'+pos+'_2').addClass('hide');
+    $('#logo_save_'+pos+'_2').attr('value','');
+    $('#js_is_logo_'+pos+'_2').addClass('hide');
+
+    //summary for upload artwork
+    $('.js_sum_art_logo_2').find('img').attr('src','');
+    $('.js_sum_art_logo_2').addClass('hide');
 });
 
-$(document).on("click",activetab + ".js_add_text",function(){
+$(document).on("click",activetab + " .js_add_text",function(){
     let text_val = $(this).closest('.js-text-global').find('.js-art-text').val();
     if(typeof text_val == 'undefined' || text_val.trim() == '') {
         showErrorMessage("Please enter text.");
         return false;
     }
     $(this).addClass('hide');
-    let posVal = $(this).attr('data-pos');
-    $('#js_is_text_'+posVal+'_2 input[type=text]').attr('disabled', false);
-    $('#js_is_text_'+posVal+'_2').removeClass('hide');
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    $('#js_is_text_'+pos+'_2 input[type=text]').attr('disabled', false);
+    $('#js_is_text_'+pos+'_2').removeClass('hide');
 });
 
-$(document).on("click",activetab + ".js_remove_text",function(){
+$(document).on("click",activetab + " .js_remove_text",function(){
     $('.js_add_text').removeClass('hide');
-    let posVal = $(this).attr('data-pos');
-    $('#js_is_text_'+posVal+'_2 input[type=text]').val('');
-    $('#js_is_text_'+posVal+'_2 input[type=text]').attr('disabled', true);
-    $('#js_is_text_'+posVal+'_2').addClass('hide');
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    $('#js_is_text_'+pos+'_2 input[type=text]').val('');
+    $('#js_is_text_'+pos+'_2 input[type=text]').attr('disabled', true);
+    $('#js_is_text_'+pos+'_2').addClass('hide');
+
+    //summary for upload artwork
+    $('.js_sum_art_text_2').find('span').text('');
+    $('.js_sum_art_text_2').addClass('hide');
 });
 
-$(document).on("click",activetab + ".js_add_logo_type",function(){
+$(document).on("click",activetab + " .js_add_logo_type",function(){
     let img_src = $(this).closest('.js-img-global').find('img').attr('src');
     if(typeof img_src == 'undefined' || img_src == '') {
         showErrorMessage("Please upload artwork.");
         return false;
     }
     $(this).addClass('hide');
-    let posVal = $(this).attr('data-pos');
-    //$('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', false);
-    $('#js_is_logo_type_'+posVal+'_2').removeClass('hide');
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    //$('#js_is_logo_type_'+pos+'_2 input[type=file]').attr('disabled', false);
+    $('#js_is_logo_type_'+pos+'_2').removeClass('hide');
 });
 
-$(document).on("click",activetab + ".js_remove_logo_type",function(){
+$(document).on("click",activetab + " .js_remove_logo_type",function(){
     $('.js_add_logo_type').removeClass('hide');
-    let posVal = $(this).attr('data-pos');
-    //$('#js_is_logo_type_'+posVal+'_2 input[type=file]').attr('disabled', true);
-    $('#logo_type_show_'+posVal+'_2').attr('src','');
-    $('#logo_type_show_'+posVal+'_2').addClass('hide');
-    $('#logo_type_save_'+posVal+'_2').attr('value','');
-    $('#js_is_logo_type_'+posVal+'_2').addClass('hide');
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    //$('#js_is_logo_type_'+pos+'_2 input[type=file]').attr('disabled', true);
+    $('#logo_type_show_'+pos+'_2').attr('src','');
+    $('#logo_type_show_'+pos+'_2').addClass('hide');
+    $('#logo_type_save_'+pos+'_2').attr('value','');
+    $('#js_is_logo_type_'+pos+'_2').addClass('hide');
+
+    //summary for upload artwork
+    $('.js_sum_art_logo_2').find('img').attr('src','');
+    $('.js_sum_art_logo_2').addClass('hide');
 });
 
-$(document).on("click",activetab + ".js_add_text_type",function(){
+$(document).on("click",activetab + " .js_add_text_type",function(){
     let text_val = $(this).closest('.js-text-global').find('.js-art-text').val();
     if(typeof text_val == 'undefined' || text_val.trim() == '') {
         showErrorMessage("Please enter text.");
         return false;
     }
     $(this).addClass('hide');
-    let posVal = $(this).attr('data-pos');
-    $('#js_is_text_type_'+posVal+'_2 input[type=text]').attr('disabled', false);
-    $('#js_is_text_type_'+posVal+'_2').removeClass('hide');
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    $('#js_is_text_type_'+pos+'_2 input[type=text]').attr('disabled', false);
+    $('#js_is_text_type_'+pos+'_2').removeClass('hide');
 });
 
-$(document).on("click",activetab + ".js_remove_text_type",function(){
+$(document).on("click",activetab + " .js_remove_text_type",function(){
     $('.js_add_text_type').removeClass('hide');
-    let posVal = $(this).attr('data-pos');
-    $('#js_is_text_type_'+posVal+'_2 input[type=text]').val('');
-    $('#js_is_text_type_'+posVal+'_2 input[type=text]').attr('disabled', true);
-    $('#js_is_text_type_'+posVal+'_2').addClass('hide');
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    $('#js_is_text_type_'+pos+'_2 input[type=text]').val('');
+    $('#js_is_text_type_'+pos+'_2 input[type=text]').attr('disabled', true);
+    $('#js_is_text_type_'+pos+'_2').addClass('hide');
+
+    //summary for upload artwork
+    $('.js_sum_art_text_2').find('span').text('');
+    $('.js_sum_art_text_2').addClass('hide');
 });
 
 $(document).on('click', '.js-upload-art-image', function(e) {
     let id = $(this).closest('.js-img-global').find('img').attr('id');
     let save_id = $(this).closest('.js-img-global').find('input[type=hidden]').attr('id');
+    let pos = $(this).closest('.art-pos-value').attr('data-pos'); //summary
+    let index = $(this).attr('data-index'); //summary
+    let art_heading = $(this).closest(".art-pos-value").find('li.active a').text(); //summary
+    let art_heading_undescore = replaceWithUnderscore(art_heading); //summary
 
     cloudinary.openUploadWidget({
-        cloud_name: 'flowz',
-        api_key: '927244196696278',
-        upload_preset: 'ebvcoubx',
-        sources: ['local', 'camera', 'url', 'facebook'],
+        cloud_name: cloudinaryDetails.cloudName,
+        api_key: cloudinaryDetails.apiKey,
+        upload_preset: cloudinaryDetails.uploadPreset,
+        sources: ['local', 'url'],
         public_id: website_settings['projectID']+'/artwork/'+Date.now(),
         multiple: false
     },
     function(error, result) {
-        console.log(error, result)
-        $("#"+id).attr('src',result[0].thumbnail_url);
-        if($('#'+id).hasClass( "hide" )) {
-            $('#'+id).removeClass('hide');
+        //console.log(error, result)
+        if(typeof result != 'undefined') {
+            $("#"+id).attr('src',result[0].thumbnail_url);
+            if($('#'+id).hasClass( "hide" )) {
+                $('#'+id).removeClass('hide');
+            }
+            $("#"+save_id).attr('value',result[0].url);
+
+            //summary for upload artwork
+            $(".js_summary_artwork_"+pos+"_"+art_heading_undescore+" .js_sum_art_logo_"+index).removeClass('hide');
+            $(".js_summary_artwork_"+pos+"_"+art_heading_undescore+" .js_sum_art_logo_"+index).find('img').attr('src',result[0].thumbnail_url);
         }
-        $("#"+save_id).attr('value',result[0].url);
     });
 
     //readImgUrl(this,e,id); // do not remove this comment.
+});
+
+//summary for upload artwork
+$(document).on("click",activetab + " #js_imprint_request_quote li a",function(){
+    let art_heading = $(this).text();
+    let art_heading_undescore = replaceWithUnderscore(art_heading);
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+
+    $("*[class^=js_summary_artwork_"+pos+"]").addClass('hide');
+    if(typeof $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).html() != 'undefined' && $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).html() != '') {
+        $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).removeClass('hide');
+        $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).html($(".js_summary_artwork_"+pos+"_"+art_heading_undescore).html());
+    }
+    else if(art_heading_undescore == 'typeset') {
+        $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
+        $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_text_1 hide">Text 1 : <span></span></div><div class="estimate-row js_sum_art_text_2 hide">Text 2 : <span></span></div><div class="estimate-row js_sum_art_textarea hide">Instructions: <span class="content-inline"></span></div><br></div>');
+    }
+    else {
+        $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
+        $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><br></div>');
+    }
+});
+$(document).on("keyup",activetab + ' .js-art-text',function(){
+    let val = $(this).val();
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    let index = $(this).attr('data-index');
+    let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
+    let art_heading_undescore = replaceWithUnderscore(art_heading);
+
+    $(".js_summary_artwork_"+pos+"_"+art_heading_undescore+" .js_sum_art_text_"+index).removeClass('hide');
+    $(".js_summary_artwork_"+pos+"_"+art_heading_undescore+" .js_sum_art_text_"+index).find('span').text(val);
+});
+$(document).on("keyup",activetab + ' .js_artwork_instructions_text',function(){
+    let val = $(this).val();
+    let pos = $(this).closest('.art-pos-value').attr('data-pos');
+    let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
+    let art_heading_undescore = replaceWithUnderscore(art_heading);
+
+    $(".js_summary_artwork_"+pos+"_"+art_heading_undescore+" .js_sum_art_textarea").removeClass('hide');
+    $(".js_summary_artwork_"+pos+"_"+art_heading_undescore+" .js_sum_art_textarea").find('span').text(val);
 });
 //upload artwork section end
 
@@ -2082,10 +2404,14 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
 
     //summary for shipping charges
     let shipp_charge = 0.00;
+    let setup_charge = 0.00;
     if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-        let shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+        shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
     }
-    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
+    if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+        setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
+    }
+    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
     $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
@@ -2437,10 +2763,14 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     
     //summary for shipping charges
     let shipp_charge = 0.00;
+    let setup_charge = 0.00;
     if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-        let shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+        shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
     }
-    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
+    if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+        setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
+    }
+    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
     $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
@@ -2580,7 +2910,7 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
                 $("#js_shipp_address_details_"+shippigCounter+" .js_shipp_address_block span").html(appendAddress);
             }
             else {
-                $('.js_shipp_address_data').append('<div id="js_shipp_address_details_'+shippigCounter+'" class="js_shipp_address_details" style="padding-top: 10px;"><div class="estimate-row"><b>Shipping Address <counter>'+shippigCounter+'</counter> :</b></div><div class="estimate-row js_shipp_address_block"><span>'+appendAddress+'</span></div><div class="estimate-row js_address_carrier_'+shippigCounter+' hide">Shipping Carrier : <span></span></div><div class="estimate-row js_address_method_'+shippigCounter+' hide">Method : <span></span></div><div class="estimate-row js_inhand_date_'+shippigCounter+' hide">In Hand Date : <span></span></div>');
+                $('.js_shipp_address_data').append('<div id="js_shipp_address_details_'+shippigCounter+'" class="js_shipp_address_details" style="padding-top: 10px;"><div class="estimate-row"><b>Shipping Address <counter>'+shippigCounter+'</counter> :</b></div><div class="row"><div class="col-sm-12"><div class="estimate-row js_shipp_address_block"><span>'+appendAddress+'</span></div></div></div><div class="estimate-row js_address_carrier_'+shippigCounter+' hide">Shipping Carrier : <span></span></div><div class="estimate-row js_address_method_'+shippigCounter+' hide">Method : <span></span></div><div class="estimate-row js_inhand_date_'+shippigCounter+' hide">In Hand Date : <span></span></div>');
             }
 
             if(carrierData != null) {

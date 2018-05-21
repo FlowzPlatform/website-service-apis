@@ -76,29 +76,26 @@ $(function() {
         submitHandler: function(form) {
             let formObj = $(form);
             if(user_unique_id != 0) {
-              methodType = "PATCH"
-              url = project_settings.user_account_api_url+"/"+user_unique_id;
+                $.ajax({
+                    type: "PATCH",
+                    url: project_settings.user_account_api_url+"/"+user_unique_id,
+                    data: formObj.serialize()+'&userId='+user_id,
+                    cache: false,
+                    dataType: 'json',
+                    success: function(response){
+                        if(response.id != undefined && response.id != '' ){
+                            showSuccessMessage("Your account details are updated successfully.","myaccount.html");
+                            return false;
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                    }
+                });
             }
             else {
-              methodType = "POST"
-              url = project_settings.user_account_api_url;
+                showErrorMessage("Your account details are not updated.");
+                return false;
             }
-            $.ajax({
-                  type: methodType,
-                  url: url,
-                  data: formObj.serialize()+'&userId='+user_id,
-                  cache: false,
-                  dataType: 'json',
-                  success: function(response){
-                      if(response.id != undefined && response.id != '' ){
-                          showSuccessMessage("Your user account is updated successfully..","myaccount.html");
-                          return false;
-                      }
-                  },
-                  error: function(jqXHR, textStatus, errorThrown) {
-                  }
-            });
-
         },
     });
 
@@ -199,7 +196,7 @@ function getCountryData(countryId=0){
       $.each(project_settings.country_data,function(key,country){
         countryList.push(country.short_name);
       })
-      console.log("countryList",countryList);
+      //console.log("countryList",countryList);
       axios({
           method: 'GET',
           url: project_settings.city_country_state_api,

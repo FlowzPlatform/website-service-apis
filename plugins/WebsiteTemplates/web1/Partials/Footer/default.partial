@@ -60,7 +60,7 @@ body {
     color: #fff !important;
 }
 .innerpage, .home-content > .container {
-    min-height: 700px;
+    min-height: 670px;
 }
 .btn-success {
     color: #fff;
