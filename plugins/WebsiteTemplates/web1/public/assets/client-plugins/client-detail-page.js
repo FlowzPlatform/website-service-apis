@@ -873,19 +873,6 @@ $(document).ready( async function(){
                         total_setup_charge = total_setup_charge + setup_charge;
                     }
                 }
-
-                if(typeof imprintMethodName != 'undefined' && no_of_color != 0 && selColorsHtml != '') {
-                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br><br>'+selColorsHtml+'</div></div></div>');
-                }
-                else if(typeof imprintMethodName != 'undefined' && no_of_color != 0) {
-                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br></div></div></div>');
-                }
-                else if(typeof imprintMethodName != 'undefined') {
-                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div></div></div>');
-                }
-                else {
-                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div></div>');
-                }
             });
             $('.js-setup-charge-summary').find('span').html("$"+parseFloat(total_setup_charge).toFixed(project_settings.price_decimal))
             $('.js-setup-charge-summary').removeClass('hide');
@@ -945,7 +932,6 @@ $(document).ready( async function(){
             }
             parentObj.find(".js-color-div-append").html(replaceColorHtml)
           }
-          parentObj.find(".js-color-div-append").html(replaceColorHtml)
 
           let imprintColorsHexVal = await replaceColorSwatchWithHexaCodes(imprint_color_val.imprint_color,"imprintcolor");
           // console.log("imprintColorsHexVal",imprintColorsHexVal);
@@ -961,45 +947,6 @@ $(document).ready( async function(){
 
           parentObj.find(".js_select_color_from_list").html(dropDownColorHtml)
           parentObj.find('.js-color-div-append').removeClass('hide');
-
-            //summary for how many colors
-            $('.js_print_postion_location').html('');
-            $(activetab+' .js_add_imprint_location_request_quote:checked').each(function(i) {
-                let positionName = $(this).val()
-                let position_name = replaceWithUnderscore($(this).val());
-
-                let imprint_method_name = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-dropval');
-                let imprintMethodName = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-method-select button").attr('data-method');
-
-                var no_of_color = 0;
-                if($(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value')) {
-                    no_of_color = $(activetab).find("#js_imprint_request_quote_box_"+position_name+" .imprint-color-select button").attr('data-value');
-                }
-
-                let selColorsHtml = "";
-                if(no_of_color.length > 0) {
-                    for(var k=1;k<=no_of_color;k++) {
-                        let selectedColor = $(activetab).find('#js_selected_color_id_'+position_name+'_'+imprint_method_name+'_'+k).val();
-                        if(selectedColor != "" && typeof selectedColor != "undefined") {
-                            selColorsHtml = selColorsHtml + '<div class="js_selected_color_'+k+'">color'+k+' : <span>'+selectedColor+'</span></div><br>';
-                        }
-                    }
-                }
-
-                if(typeof imprintMethodName != 'undefined' && no_of_color != 0 && selColorsHtml != '') {
-                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br><br>'+selColorsHtml+'</div></div></div>');
-                }
-                else if(typeof imprintMethodName != 'undefined' && no_of_color != 0) {
-                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div><div class="estimate-row js_selected_color_summary">How many colors : <span>'+no_of_color+' color(s)</span><br></div></div></div>');
-                }
-                else if(typeof imprintMethodName != 'undefined') {
-                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div><div class="js_product_summary_imprint_location"><div class="js_imprint_method_summary">Imprint Method : <span>'+imprintMethodName+'</span></div></div></div>');
-                }
-                else {
-                    $('.js_print_postion_location').append('<div class="js_summary_imprint_location"><div class="estimate-row heading"><span>Print Position: '+positionName+'</span></div></div>');
-                }
-            });
-            $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
     });
 
     $(document).on("click",".js_select_color_from_list li",function(){
