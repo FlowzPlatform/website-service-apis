@@ -18,7 +18,7 @@ $(document).on("click", '.js-btn-comment-list', function(e){
     let message = $(".js_add_html").find("#js-comment_requestinfo").val()
     let Module = $(".js_add_html").find("#js-module_name").val()
     showPageAjaxLoading();
-    var data = {'RequestId':RequestId,'Module':Module,'message':message}
+    var data = {'RequestId':RequestId,'Module':Module,'message':message,'websiteid':website_settings['projectID'],'subscriptionId':website_settings['subscriptionId']}
     axios({
         method: 'POST',
         url : project_settings.comment_request_url,

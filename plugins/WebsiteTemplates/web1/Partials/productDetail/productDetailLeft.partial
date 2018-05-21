@@ -150,6 +150,7 @@ body {
         <div class="clearfix"></div>
     </aside>
     <div class="clearfix"></div>
+
     <reusecomponent class="c9910">{{> productDetail id='productDetailAction.partial' }}</reusecomponent>
 
     <div class="product-section-box">
@@ -173,14 +174,22 @@ body {
                             <div class="estimate-tag-block js_print_postion_location hide"></div>
                             <div class="estimate-tag-block estimate-address-block js_summary_shipping_type hide">
                                 <div class="estimate-row heading"><span>Shipping Method</span></div>
-                                <div class="estimate-row ship_type">Shipping Type : <span></span></div>
-                                <div class="js_shipp_address_data hide"></div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="estimate-row ship_type">Shipping Type : <span></span></div>
+                                        <div class="js_shipp_address_data hide"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="js_special_inst estimate-detail hide">
                             <div class="estimate-tag-block">
                                 <div class="estimate-row heading"><span>Special Instructions</span></div>
-                                <div class="js_summary_instruction" style="white-space: pre-wrap;"></div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="js_summary_instruction" style="white-space: pre-wrap;"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="jsTotal estimate-detail hide">
@@ -189,11 +198,18 @@ body {
                                     <div class="estimate-row heading">
                                         <span>Additional Charges</span>
                                     </div>
-                                    <div class="estimate-row charge_type js-shipping-charge-summary hide">
-                                        Shipping Charge(s): <span class="text-uppercase">$0.00</span>
-                                    </div>
-                                    <div class="estimate-row charge_type js-total-tax-in-summary hide">
-                                        Total Tax: <span class="text-uppercase">$0.00</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="estimate-row charge_type js-shipping-charge-summary hide">
+                                                Shipping Charge(s): <span class="text-uppercase">$0.00</span>
+                                            </div>
+                                            <div class="estimate-row charge_type js-setup-charge-summary hide">
+                                                Setup Charge: <span class="text-uppercase">$0.00</span>
+                                            </div>
+                                            <div class="estimate-row charge_type js-total-tax-in-summary hide">
+                                                Total Tax: <span class="text-uppercase">$0.00</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="estimate-total-block hide">
@@ -227,5 +243,4 @@ body {
             </div>
         </div>
     </div>
-
 </div>
