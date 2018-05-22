@@ -2369,3 +2369,19 @@ function timeAgo(selector) {
 }
 // update time every minute
 setInterval(timeAgo, 60000);
+
+// wishlist grid and list view
+$(document).on('click','.js-product-grid-btn',function(e) {
+    $('.js-product-grid-btn').addClass('active');
+    $('.js-product-list-btn').removeClass('active');
+    if($('.ob-product-grid.js-product-grid').hasClass('list-view')) {
+        $('.ob-product-grid.js-product-grid').removeClass('list-view');
+    }
+});
+$(document).on('click','.js-product-list-btn',function(e) {
+    $('.js-product-list-btn').addClass('active');
+    $('.js-product-grid-btn').removeClass('active');
+    if(!$('.ob-product-grid.js-product-grid').hasClass('list-view')) {
+        $('.ob-product-grid.js-product-grid').addClass('list-view');
+    }
+});
