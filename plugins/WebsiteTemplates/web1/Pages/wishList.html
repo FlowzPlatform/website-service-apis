@@ -69,10 +69,20 @@ body {
                </h1>
                 </div>
             </div>
+
             <div class="myaccount-my-wishlist">
                 <div class="product-main-list-block">
                     <div class="tab-pane active">
                         <div class="ob-product-grid js-product-grid list-view" id="product-list-container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                    <div class="wishlist-view-tab view-product">
+                                        View: 
+                                        <a data-toggle="tooltip" data-placement="top" data-original-title="Grid View" class="product-grid-btn js-product-grid-btn" href="javascript:;"><i class="fa fa-th fa-fw"></i></a>
+                                        <a data-toggle="tooltip" data-placement="top" data-original-title="List View" class="product-list-btn js-product-list-btn active" href="javascript:;"><i class="fa fa-th-list fa-fw"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <reusecomponent class="c67694">{{> wishlist id='list.partial' }}</reusecomponent>
                             </div>
