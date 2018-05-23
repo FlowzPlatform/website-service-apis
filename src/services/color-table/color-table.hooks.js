@@ -101,20 +101,20 @@ patchdata = async hook =>{
     // return err;
   })
 
-  return new Promise ((resolve , reject) =>{
-      r.table('color_table')
-        .get(hook.id)
-        .run(connection , function(error , cursor){
-           if (error) throw error;
-          //  if(hook.data.hexcode == undefined && cursor.hexcode != undefined){
-          //    delete cursor.hexcode;
-          //  }
-          //  else if(hook.data.file == undefined && cursor.file != undefined){
-          //     delete cursor.file;
-          //  }
-          //  cursor = hook
-          //  console.log("+999999",cursor.data);
-           resolve(hook)
-        })
-  })
+  // return new Promise ((resolve , reject) =>{
+  //     r.table('color_table')
+  //       .get(hook.id)
+  //       .run(connection , function(error , cursor){
+  //          if (error) throw error;
+  //         //  if(hook.data.hexcode == undefined && cursor.hexcode != undefined){
+  //         //    delete cursor.hexcode;
+  //         //  }
+  //         //  else if(hook.data.file == undefined && cursor.file != undefined){
+  //         //     delete cursor.file;
+  //         //  }
+  //         //  cursor = hook
+  //         //  console.log("+999999",cursor.data);
+  //          resolve(hook)
+  //       })
+  // })
 }
