@@ -265,6 +265,10 @@ if((userToken != null && userFrontId != null) || getParameterByName('token')) {
           'headers': {"Authorization": userToken},
           'success': function (res) {
               tmp = res.data;
+              if(tmp.fullname == undefined){
+                  if(tmp.lastname != undefined) tmp.fullname = tmp.firstname+" "+tmp.lastname;
+                  else tmp.fullname = tmp.firstname;
+              }
               user_id = tmp._id;
               if(getParameterByName('token')) {
                 document.cookie = "user_auth_token="+getParameterByName('token');
@@ -2365,3 +2369,19 @@ function timeAgo(selector) {
 }
 // update time every minute
 setInterval(timeAgo, 60000);
+
+// wishlist grid and list view
+$(document).on('click','.js-product-grid-btn',function(e) {
+    $('.js-product-grid-btn').addClass('active');
+    $('.js-product-list-btn').removeClass('active');
+    if($('.ob-product-grid.js-product-grid').hasClass('list-view')) {
+        $('.ob-product-grid.js-product-grid').removeClass('list-view');
+    }
+});
+$(document).on('click','.js-product-list-btn',function(e) {
+    $('.js-product-list-btn').addClass('active');
+    $('.js-product-grid-btn').removeClass('active');
+    if(!$('.ob-product-grid.js-product-grid').hasClass('list-view')) {
+        $('.ob-product-grid.js-product-grid').addClass('list-view');
+    }
+});

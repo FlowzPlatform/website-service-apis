@@ -73,92 +73,48 @@ beforeFindColorSwatch = async hook => {
 
 
 getdata = async hook =>{
-  if(hook.data.hexcode == undefined){
-  var res
-  await axios({
-    method : 'GET',
-    // url : 'http://api.flowzcluster.tk/auth/api/userdetails',
-    url : protocol + '://api.' + domainKey + '/auth/api/userdetails',
-    strictSSL: false,
-    headers: {
-        "Authorization" : apiHeaders.authorization
-    }
- })
- .then(function (response) {
-    res = response.data.data
-    //  resolve(response)
-  })
-  .catch(function (error) {
-    console.log("error",error)
-    //  resolve({"code" : 401 })
-  });
-
-  let UserEmail = res.email;
-  let subscriptionId = hook.data.subscriptionId;
-  let websitename = hook.data.websitename;
-  let filename = hook.data.file.filename;
-  let url;
-  let folder1 = 'swatch/crm/'+ UserEmail +'/'+subscriptionId +'/'+websitename
-
-
-  await axios({
-    method: 'post',
-    // url: 'https://api.flowzcluster.tk/crm/cloudinaryupload',
-    url: protocol + '://api.' + domainKey +'/crm/cloudinaryupload',
-    data:  {
-      "file" : hook.data.file,
-      "folder" : folder1
-    }
-
-  }).then(function (res) {
-    url = res.data.secure_url
-})
-hook.data.file.url = url;
-  }
+  hook.data.created_at = new Date();
 }
 
 
+
 patchdata = async hook =>{
-  if(hook.data.hexcode == undefined){
-  var res
-  await axios({
-    method : 'GET',
-    // url : 'http://api.flowzcluster.tk/auth/api/userdetails',
-    url : protocol + '://api.' + domainKey + '/auth/api/userdetails',
-    strictSSL: false,
-    headers: {
-        "Authorization" : apiHeaders.authorization
+ 
+  hook.app.service('color-table').get(hook.id).then(res => {
+   
+    if (hook.data.file == undefined) {
+      delete res.file
+      res.hexcode = hook.data.hexcode
     }
- })
- .then(function (response) {
-    res = response.data.data
-    //  resolve(response)
+    if (hook.data.hexcode == undefined) {
+      delete res.hexcode
+      res.file = hook.data.file
+    }
+    hook.app.service('color-table').update(hook.id, res).then(resp => {
+      hook.result = resp.data
+      // return hook;
+    }).catch(errr => {
+      // return errr;
+    })
+  }).catch(err => {
+    // Return Error
+    // return err;
   })
-  .catch(function (error) {
-    console.log("error",error)
-    //  resolve({"code" : 401 })
-  });
 
-  let UserEmail = res.email;
-  let subscriptionId = hook.data.subscriptionId;
-  let websitename = hook.data.websitename;
-  let filename = hook.data.file.filename;
-  let url;
-  var folder1 = 'swatch/crm/'+ UserEmail +'/'+subscriptionId +'/'+websitename
-
-  await axios({
-    method: 'post',
-    // url: 'https://api.flowzcluster.tk/crm/cloudinaryupload',
-    url: protocol + '://api.' + domainKey +'/crm/cloudinaryupload',
-    data:  {
-      "file" : hook.data.file,
-      "folder" : folder1
-    }
-
-  }).then(function (res) {
-    url = res.data.secure_url
-})
-
-hook.data.file.url = url;
-  }
+  // return new Promise ((resolve , reject) =>{
+  //     r.table('color_table')
+  //       .get(hook.id)
+  //       .run(connection , function(error , cursor){
+  //          if (error) throw error;
+  //         //  if(hook.data.hexcode == undefined && cursor.hexcode != undefined){
+  //         //    delete cursor.hexcode;
+  //         //  }
+  //         //  else if(hook.data.file == undefined && cursor.file != undefined){
+  //         //     delete cursor.file;
+  //         //  }
+  //         //  cursor = hook
+  //         //  console.log("+999999",cursor.data);
+  //          resolve(hook)
+  //       })
+  // })
 }

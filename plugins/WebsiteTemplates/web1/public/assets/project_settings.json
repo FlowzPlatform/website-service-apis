@@ -5,7 +5,7 @@
         "product_api_image_url": "http://image.promoworld.ca/migration-api-hidden-new/web/images/",
         "search_api_url": "https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdm1/_search",
         "search_api_auth_token": "Basic NTk5MTQwNTU2YzcxZDEwMDFjMDIwNzI5OjEyMzQ1Ng==",
-	    "supplier_id" : 5,
+	"supplier_id" : 5,
         "login_api": "https://api.flowzqa.tk/auth/api/login",
         "user_detail_api": "https://api.flowzqa.tk/auth/api/userdetails",
 	"user_detail_by_id":"https://api.flowzqa.tk/user/getuserdetails/",

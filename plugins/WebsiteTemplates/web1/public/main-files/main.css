@@ -19,4 +19,5 @@
 .no-padding {padding: 0px;}
 .radio.js-isoffice {padding-left: 7px;}
 .js_summary_imprint_location {padding: 15px 0;}
-.innerpage.row{min-height: 663px !important;display: inline-block;}
+.innerpage.row{min-height: 670px !important;display: inline-block;}
+.wishlist-view-tab.view-product {float: right;padding-bottom: 10px;}

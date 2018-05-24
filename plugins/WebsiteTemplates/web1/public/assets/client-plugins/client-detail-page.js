@@ -735,10 +735,13 @@ $(document).ready( async function(){
                             $(activetab).find("#js_request_quote_instruction").val(response_data.special_instruction);
 
                             //summary for shipping charges
-                            if(shipp_charge != 0.00) {
+                            if(shipp_charge != 0.00 && !isNaN(shipp_charge)) {
                                 $('.js-shipping-charge-summary').find('span').html("$"+parseFloat(shipp_charge).toFixed(project_settings.price_decimal));
                                 $('.js-additional-charges-summary').removeClass('hide');
                                 $('.js-shipping-charge-summary').removeClass('hide');
+                            }
+                            else {
+                                shipp_charge = 0.00;
                             }
                             let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge);
                             $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
@@ -1410,7 +1413,7 @@ function getShippingRate(parentObj,thisObj,addressFrom,addressTo,shipping_detail
                     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section .js-section-errors").remove();
                 }
                 else{
-                    rateHtml = '<li><a href="javascript:void(0)">Product shipping detail is missing</a></li>'
+                    rateHtml = '<li data-service="Select Method" data-value="0.00" data-transit-time=""><a href="javascript:void(0)">Product shipping detail is missing</a></li>'
 
                     let quantity= total_qty;
                     let quantity_in_carton = shipping_details.shipping_qty_per_carton
