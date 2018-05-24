@@ -66,7 +66,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
             "url": this.data_api,
             "method": "POST",
             "headers": {
-              "Authorization": "Basic MDU0MzY0ZDQtM2EwYi00MzZhLTgxNDQtMDRjYmZmYjA1ODdkOjJjNzllYzAwLTFiMGUtMTFlOC04YThlLTczMTFiODY2YzZiNA=="
+              "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
             }
           }
 
@@ -127,7 +127,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
             "url": this.data_api,
             "method": "POST",
             "headers": {
-              "Authorization": "Basic MDU0MzY0ZDQtM2EwYi00MzZhLTgxNDQtMDRjYmZmYjA1ODdkOjJjNzllYzAwLTFiMGUtMTFlOC04YThlLTczMTFiODY2YzZiNA=="
+              "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
             }
           }
 
@@ -512,7 +512,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
             "url": this.apiUrl,
             "method": "POST",
             "headers": {
-              "Authorization": "Basic MDU0MzY0ZDQtM2EwYi00MzZhLTgxNDQtMDRjYmZmYjA1ODdkOjJjNzllYzAwLTFiMGUtMTFlOC04YThlLTczMTFiODY2YzZiNA=="
+              "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
             },
             "data": "{\"query\": {\"multi_match\" : {\"query\": \"" + searchInput + "\", \"fields\": [\"search_keyword\", \"categories\", \"product_name\", \"sku\"] } }, \"from\": " + this.fromItemNumber + ", \"size\": " + this.numberOfProductsPerPage + "}"
           }
@@ -586,7 +586,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
           "url": self,
           "method": "POST",
           "headers": {
-            "Authorization": "Basic MDU0MzY0ZDQtM2EwYi00MzZhLTgxNDQtMDRjYmZmYjA1ODdkOjJjNzllYzAwLTFiMGUtMTFlOC04YThlLTczMTFiODY2YzZiNA=="
+            "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
           },
           "data": "{\n\t\"from\": "+this.fromItemNumber+",\n\t\"size\": "+this.numberOfProductsPerPage+"\n}"
         }
@@ -792,7 +792,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
               "url": this.apiUrl,
               "method": "POST",
               "headers": {
-                "Authorization": "Basic MDU0MzY0ZDQtM2EwYi00MzZhLTgxNDQtMDRjYmZmYjA1ODdkOjJjNzllYzAwLTFiMGUtMTFlOC04YThlLTczMTFiODY2YzZiNA=="
+                "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
               },
               "data": JSON.stringify(filterQuery)
             }
@@ -827,7 +827,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
               "url": this.apiUrl,
               "method": "POST",
               "headers": {
-                "Authorization": "Basic MDU0MzY0ZDQtM2EwYi00MzZhLTgxNDQtMDRjYmZmYjA1ODdkOjJjNzllYzAwLTFiMGUtMTFlOC04YThlLTczMTFiODY2YzZiNA=="
+                "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
               },
               "data": '{ "query":{ "bool":{ "must":[ { "range":{ "'+[this.priceField]+'":{ "gte":'+this.minValue+', "lte":'+this.maxValue+' } } } ] } }, "from": '+this.fromItemNumber+', "size": '+this.numberOfProductsPerPage+' }'
             }
