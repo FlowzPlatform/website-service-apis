@@ -37,7 +37,9 @@ module.exports = {
     },
 
     error: {
-        all: [],
+        all: [
+            hook => errorHooks(hook)
+        ],
         find: [],
         get: [],
         create: [],
@@ -46,6 +48,12 @@ module.exports = {
         remove: []
     }
 };
+
+
+function errorHooks(hook) {
+    // body...
+    hook.error = {"errorCode" : 500 , "errorMessage" : "errormessage nothing to commit"}
+}
 
 
 function before_send_repoToGit(hook) {
@@ -198,25 +206,49 @@ function after_commit_repo(hook) {
 
             shell.exec('git checkout -b ' + hook.data.branchName);
 
-            shell.exec('git status');
-
-            shell.exec('git add .');
-
-            shell.exec('git commit -m "' + hook.data.commitMessage + '"');
-
-            shell.exec('git push -u origin ' + hook.data.branchName + ' --force', function(code, stdout, stderr) {
+            shell.exec('git status', function(code, stdout, stderr) {
 
                 console.log('Exit Code: ', code);
                 console.log('Program output:', stdout);
                 console.log('Program stderr:', stderr);
 
-                hook.result = [{
-                    code: code,
-                    otuput: stdout,
-                    error: stderr
-                }];
+                let statusOut = stdout;
+                var n = statusOut.indexOf("nothing to commit");
 
-                resolve(hook);
+                console.log('Status string match n: ', n);
+
+                if(n == -1){
+                    shell.exec('git add .');
+
+                    shell.exec('git commit -m "' + hook.data.commitMessage + '"');
+
+                    shell.exec('git push -u origin ' + hook.data.branchName + ' --force', function(code, stdout, stderr) {
+
+                        console.log('Exit Code: ', code);
+                        console.log('Program output:', stdout);
+                        console.log('Program stderr:', stderr);
+
+                        hook.result = [{
+                            code: code,
+                            otuput: stdout,
+                            error: stderr
+                        }];
+
+                        resolve(hook);
+                    });
+                } else {
+                    // throw new Error ({errorMessage : "Nothing to commit"})
+                    // hook.error = new errors.GeneralError('Nothing to commit');
+                    // reject(hook);
+                    // new errors.GeneralError(new Error('Nothing to commit'));
+                    hook.result = [{
+                        code: 444,
+                        message: 'No changes. Nothing to add to revision',
+                    }];
+
+                    resolve(hook); 
+                }
+
             });
 
         }
