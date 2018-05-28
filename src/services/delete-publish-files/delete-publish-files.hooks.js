@@ -43,19 +43,10 @@ function before_create_ms(hook) {
 
 function after_create_ms(hook) {
   return new Promise((resolve, reject) => {
-    console.log(hook.params.query.path);
-      // let replace_path = (hook.params.query.path).replace(/\\/g,'\/')
-      // console.log('Replaced path: '+replace_path);
-      //  shell.cd(replace_path);
-        //  shell.exec('pwd');
-        let deleteresponse=shell.exec('find ./public -maxdepth 1 -type f -iname \*.html -delete');
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!deleteresponse',deleteresponse)
-      
-      hook.result = 'Successfull deleted previous published files';
-
-      // shell.cd(hook.params.query.path +'/public/assets/');
-      // let response = shell.exec('node metalsmith.js');
-      // console.log('MetalSmith Response : ', response);
-      resolve(hook);
+        // let deleteresponse=shell.exec('find '+hook.params.query.path+ '/public -maxdepth 1 -type f -iname \*.html -delete');
+        let deleteresponse=shell.exec('rm -rf '+hook.params.query.path+ '/.temppublish/*');
+        console.log('########################### deleteresponse',deleteresponse)
+        hook.result = 'Successfull deleted previous published files';
+        resolve(hook);
   })
 }
