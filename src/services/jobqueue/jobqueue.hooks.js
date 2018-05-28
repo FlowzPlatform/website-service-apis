@@ -3,6 +3,8 @@ let qOptions = {
     name: 'Metalsmith' // The queue and table name
 }
 let cxnOptions = {
+    host: process.env.RDB_HOST,
+    port: process.env.RDB_PORT,
     db: 'JobQueue', // The name of the database in RethinkDB
 }
 
