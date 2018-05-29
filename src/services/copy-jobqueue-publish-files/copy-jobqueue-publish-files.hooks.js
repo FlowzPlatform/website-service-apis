@@ -45,6 +45,12 @@ function after_copy_website(hook) {
       // let websiteid= hook.params.query.websiteid
 
       // shell.exec('mkdir '+config.basePath + 'plugins/TempLocation/'+websiteid)
+      if(shell.test('-e', projectPath + '/.temppublish')){
+        console.log('----->already exists');
+      } else {
+        console.log('----->doesnt exists')
+        shell.exec('mkdir '+projectPath+ '/.temppublish')
+      }
       shell.exec('cp -rf ' + projectPath  + '/* ' + projectPath+ '/.temppublish/', function(code, stdout, stderr){
         resolve(hook)
       });  
