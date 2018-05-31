@@ -39,6 +39,7 @@ margin-left: 3%;
     -webkit-box-pack: start;
     justify-content: start;
     flex-grow: 0;
+    min-width: 1px;
 }
 
 .css-omf3o4 a.e1cc0ogo1 .card-image {
