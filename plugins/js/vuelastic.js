@@ -463,7 +463,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
         projectVid: null,
         projectVPwd: null,
         dataAuthToken: null,
-        elasticURL: 'https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdmdev/_search'
+        elasticURL: 'https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdm1/_search'
       }
     },
     components: {
