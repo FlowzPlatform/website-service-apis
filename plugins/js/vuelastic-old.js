@@ -1,97 +1,97 @@
 const paginate = Vue.component('paginate', VuejsPaginate);
 
-  // const dfGroup = Vue.component('datasfieldgroup', {
-  //   template: `<div class="grid">
-  //               <template v-for="item in items1"><slot :text="item"></slot>
-  //               </template>
-  //             </div>`,
-  //   props: ['items1', 'data_schema', 'data_api', 'draggable'],
-  //   computed: {},
-  //   data: function() {
-  //     return {
-  //       items: this.items1
-  //     }
-  //   },
-  //   components: {
-  //   },
-  //   watch: {
-  //     items: function() {}
-  //   },
-  //   created() {
+  const dfGroup = Vue.component('datafieldgroup', {
+    template: `<div class="grid">
+                <template v-for="item in items1"><slot :text="item"></slot>
+                </template>
+              </div>`,
+    props: ['items1', 'data_schema', 'data_api', 'draggable'],
+    computed: {},
+    data: function() {
+      return {
+        items: this.items1
+      }
+    },
+    components: {
+    },
+    watch: {
+      items: function() {}
+    },
+    created() {
 
-  //     let self = this;
-  //     let api_url;
-  //     let api_listen;
-  //     if (this.data_schema == undefined) {
-  //       var a = this.data_api.lastIndexOf("/");
-  //       api_url = this.data_api.substring(0, a)
-  //       api_listen = this.data_api.substring(a + 2, this.data_api.length)
+      let self = this;
+      let api_url;
+      let api_listen;
+      if (this.data_schema == undefined) {
+        var a = this.data_api.lastIndexOf("/");
+        api_url = this.data_api.substring(0, a)
+        api_listen = this.data_api.substring(a + 2, this.data_api.length)
 
-  //     } else {
-  //       let schemaVal = this.data_schema.split(":");
-  //       let connString = $.trim(schemaVal[0]);
-  //       let schemaName = $.trim(schemaVal[1]);
-  //       api_url = "http://api.flowz.com/dbetl"
-  //       api_listen = 'schema/' + connString + '?schemaname=' + schemaName;
-  //     }
-  //   },
-  //   mounted() {
-  //     this.getData();
-  //     this.$emit('get-data', this.data_api);
-  //   },
-  //   methods: {
-  //     getData() {
-  //       let self = this;
-  //       if (this.data_schema != undefined) {
-  //         if (this.data_schema.length > 0) {
-  //           this.data_schema;
-  //           let schemaVal = this.data_schema.split(":");
-  //           let connString = $.trim(schemaVal[0]);
-  //           let schemaName = $.trim(schemaVal[1]);
-  //           let apiUrl = 'http://api.flowz.com/dbetl/schema/' + connString + '?schemaname=' + schemaName;
-  //           $.getJSON(apiUrl, function(data) {
-  //             this.products.push(data)
-  //             self.items = data;
-  //           });
-  //         } else {
-  //           $.getJSON(this.data_api, function(data) {
-  //             this.products.push(data)
-  //             self.items = data;
-  //           });
-  //         }
-  //       } else {
-  //         var settings = {
-  //           "async": true,
-  //           "crossDomain": true,
-  //           "url": this.data_api,
-  //           "method": "POST",
-  //           "headers": {
-  //             "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
-  //           }
-  //         }
+      } else {
+        let schemaVal = this.data_schema.split(":");
+        let connString = $.trim(schemaVal[0]);
+        let schemaName = $.trim(schemaVal[1]);
+        api_url = "http://api.flowz.com/dbetl"
+        api_listen = 'schema/' + connString + '?schemaname=' + schemaName;
+      }
+    },
+    mounted() {
+      this.getData();
+      this.$emit('get-data', this.data_api);
+    },
+    methods: {
+      getData() {
+        let self = this;
+        if (this.data_schema != undefined) {
+          if (this.data_schema.length > 0) {
+            this.data_schema;
+            let schemaVal = this.data_schema.split(":");
+            let connString = $.trim(schemaVal[0]);
+            let schemaName = $.trim(schemaVal[1]);
+            let apiUrl = 'http://api.flowz.com/dbetl/schema/' + connString + '?schemaname=' + schemaName;
+            $.getJSON(apiUrl, function(data) {
+              this.products.push(data)
+              self.items = data;
+            });
+          } else {
+            $.getJSON(this.data_api, function(data) {
+              this.products.push(data)
+              self.items = data;
+            });
+          }
+        } else {
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": this.data_api,
+            "method": "POST",
+            "headers": {
+              "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
+            }
+          }
 
-  //         $.ajax(settings).done(function(response) {
-  //           console.log("response", response)
-  //           self.products = response
-  //           self.items = response
-  //         });
-  //       }
-  //     },
-  //     search(searchEmail) {
-  //       for (let i = 0; i < this.items.length; i++) {
-  //         if (this.items[i].email == searchEmail) {
-  //           return i;
-  //         }
-  //       }
-  //     }
-  //   }
-  // });
+          $.ajax(settings).done(function(response) {
+            console.log("response", response)
+            self.products = response
+            self.items = response
+          });
+        }
+      },
+      search(searchEmail) {
+        for (let i = 0; i < this.items.length; i++) {
+          if (this.items[i].email == searchEmail) {
+            return i;
+          }
+        }
+      }
+    }
+  });
 
-  const dfObj = Vue.component('datasfieldobject', {
+  const dfObj = Vue.component('datafieldobject', {
     template: `<div class="dfgroup">
                 <div class="dfrepeate"><slot :text="items"></slot></div>
               </div>`,
-    props: ['data_api', 'data_schema', 'auth'],
+    props: ['data_api', 'data_schema'],
     computed: {},
     data: function() {
       return {
@@ -99,94 +99,94 @@ const paginate = Vue.component('paginate', VuejsPaginate);
       }
     },
     mounted() {
-      // this.getData()
-      // this.$emit('get-data', this.data_api);
+      this.getData()
+      this.$emit('get-data', this.data_api);
     },
     methods: {
-      // getData() {
-      //   let self = this;
-      //   if (this.data_schema != undefined) {
-      //     if (this.data_schema.length > 0) {
-      //       this.data_schema;
-      //       let schemaVal = this.data_schema.split(":");
-      //       let connString = $.trim(schemaVal[0]);
-      //       let schemaName = $.trim(schemaVal[1]);
-      //       let apiUrl = 'http://api.flowz.com/dbetl/schema/' + connString + '?schemaname=' + schemaName;
-      //       $.getJSON(apiUrl, function(data) {
-      //         self.items = data;
-      //       });
-      //     } else {
-      //       $.getJSON(this.data_api, function(data) {
-      //         self.items = data;
-      //       });
-      //     }
-      //   } else {
-      //     var settings = {
-      //       "async": true,
-      //       "crossDomain": true,
-      //       "url": this.data_api,
-      //       "method": "POST",
-      //       "headers": {
-      //         "Authorization": "Basic ZGM1YWUwNDctMzIzZC00YzZkLTgwZWEtNGM5Yzg1MmZmMzU1OjI5MzE3YjQwLTY1NWUtMTFlOC1hYzAxLWQzMmRkMDBjOWY2Nw=="
-      //       }
-      //     }
+      getData() {
+        let self = this;
+        if (this.data_schema != undefined) {
+          if (this.data_schema.length > 0) {
+            this.data_schema;
+            let schemaVal = this.data_schema.split(":");
+            let connString = $.trim(schemaVal[0]);
+            let schemaName = $.trim(schemaVal[1]);
+            let apiUrl = 'http://api.flowz.com/dbetl/schema/' + connString + '?schemaname=' + schemaName;
+            $.getJSON(apiUrl, function(data) {
+              self.items = data;
+            });
+          } else {
+            $.getJSON(this.data_api, function(data) {
+              self.items = data;
+            });
+          }
+        } else {
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": this.data_api,
+            "method": "POST",
+            "headers": {
+              "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
+            }
+          }
 
-      //     $.ajax(settings).done(function(response) {
-      //       self.products = response
-      //       self.items = response
-      //     });
-      //   }
-      // }
+          $.ajax(settings).done(function(response) {
+            self.products = response
+            self.items = response
+          });
+        }
+      }
     }
   });
 
-  // const Table = Vue.component('datasfieldtable', {
-  //   template: `<Table :columns="columns1" :data="data1"></Table>`,
-  //   props: ['column_value', 'data_api'],
-  //   computed: {},
-  //   data: function() {
-  //     return {
-  //       columns1: [],
-  //       data1: []
-  //     }
-  //   },
-  //   mounted() {
-  //     this.getData()
-  //   },
-  //   methods: {
-  //     getData() {
-  //       let self = this;
-  //       let arr_column = []
-  //       var str = this.column_value;
-  //       var res = str.split(",");
-  //       for (let index = 0; index < res.length; index++) {
-  //         let data = {
-  //           "title": res[index],
-  //           "key": res[index]
-  //         }
-  //         arr_column.push(data)
-  //       }
-  //       self.columns1 = arr_column;
-  //       $.getJSON(this.data_api, function(data) {
-  //         console.log(data)
-  //         self.data1 = data;
-  //       });
+  const Table = Vue.component('datafieldtable', {
+    template: `<Table :columns="columns1" :data="data1"></Table>`,
+    props: ['column_value', 'data_api'],
+    computed: {},
+    data: function() {
+      return {
+        columns1: [],
+        data1: []
+      }
+    },
+    mounted() {
+      this.getData()
+    },
+    methods: {
+      getData() {
+        let self = this;
+        let arr_column = []
+        var str = this.column_value;
+        var res = str.split(",");
+        for (let index = 0; index < res.length; index++) {
+          let data = {
+            "title": res[index],
+            "key": res[index]
+          }
+          arr_column.push(data)
+        }
+        self.columns1 = arr_column;
+        $.getJSON(this.data_api, function(data) {
+          console.log(data)
+          self.data1 = data;
+        });
 
-  //     }
-  //   }
-  // });
+      }
+    }
+  });
 
-  const dfList = Vue.component('datasfieldlist', {
+  const dfList = Vue.component('datafieldlist', {
     template: '<div><div v-for="item in items"><slot :text="item"></slot></div></div>',
     props: ['items']
   });
 
-  const dfText = Vue.component('datasfieldtext', {
+  const dfText = Vue.component('datafieldtext', {
     template: '<span v-bind:style="styles">{{text}}</span>',
     props: ['text', 'styles']
   });
 
-  const dfSlider = Vue.component('datasfieldslider', {
+  const dfSlider = Vue.component('datafieldslider', {
     template: `<div>
                 <h4><strong>{{label}}</strong></h4>
                 <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;" @change="filterProducts">
@@ -238,7 +238,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
   });
 
-  const dfCheckBox = Vue.component('datasfieldcheckbox', {
+  const dfCheckBox = Vue.component('datafieldcheckbox', {
     template: `<div>
                 <h4><strong>{{label}}</strong></h4>
                 <hr />
@@ -268,7 +268,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
     created() {
       // console.log("filtervalue...checkbox", this.filtervalue)
       let self = this
-      $('datasfieldcheckbox').each(function(index, value) {
+      $('datafieldcheckbox').each(function(index, value) {
         let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
         self.varFilter = varFilter;
         self.selectedFilters[varFilter] = [];
@@ -290,7 +290,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
     }
   });
 
-  const dfSelect = Vue.component('datasfieldselect', {
+  const dfSelect = Vue.component('datafieldselect', {
     template: `<div>
                 <h4><strong>{{label}}</strong></h4>
                 <hr />
@@ -318,7 +318,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
     },
     created() {
       let self = this;
-      $('datasfieldselect').each(function(index, value) {
+      $('datafieldselect').each(function(index, value) {
         let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
         self.varFilter = varFilter;
         self.selectedFilters[varFilter] = [];
@@ -338,7 +338,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
     }
   });
 
-  const dfSearch = Vue.component('datasfieldsearch', {
+  const dfSearch = Vue.component('datafieldsearch', {
     template: `<div class="row">
                 <div class="col-md-12">
                   <div class="row searchBar">
@@ -374,7 +374,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
     }
   });
 
-  const dfRating = Vue.component('datasfieldrating', {
+  const dfRating = Vue.component('datafieldrating', {
     template: `<div>
                 <h4><strong>{{label}}</strong></h4> 
                 <div class="starsInput">
@@ -452,6 +452,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
         minValue: null,
         maxValue: null,
         searchInput: '',
+        apiUrl: null,
         isDataLoading: false,
         totalPages: null,
         totalProductsCount: null,
@@ -459,19 +460,15 @@ const paginate = Vue.component('paginate', VuejsPaginate);
         displayedProducts: null,
         fromItemNumber: 1,
         priceField: null,
-        updatechild: null,
-        projectVid: null,
-        projectVPwd: null,
-        dataAuthToken: null,
-        elasticURL: 'https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdmdev/_search'
+        updatechild: null
       }
     },
     components: {
-      // dfGroup,
+      dfGroup,
       dfList,
       dfText,
       dfObj,
-      // Table,
+      Table,
       dfCheckBox,
       dfSlider,
       dfSelect,
@@ -512,10 +509,10 @@ const paginate = Vue.component('paginate', VuejsPaginate);
           this.filteredProducts = {};
           var settings = {
             "async": true,
-            "url": this.elasticURL,
+            "url": this.apiUrl,
             "method": "POST",
             "headers": {
-              "Authorization": "Basic " + this.dataAuthToken
+              "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
             },
             "data": "{\"query\": {\"multi_match\" : {\"query\": \"" + searchInput + "\", \"fields\": [\"search_keyword\", \"categories\", \"product_name\", \"sku\"] } }, \"from\": " + this.fromItemNumber + ", \"size\": " + this.numberOfProductsPerPage + "}"
           }
@@ -544,7 +541,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
       filterAll2() {
         let objFilter = {};
         let self = this
-        $('datasfieldcheckbox').each(function(index, value) {
+        $('datafieldcheckbox').each(function(index, value) {
           let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
 
           objFilter[varFilter] = []
@@ -555,7 +552,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
         });
 
-        $('datasfieldselect').each(function(index, value) {
+        $('datafieldselect').each(function(index, value) {
           let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
 
           objFilter[varFilter] = []
@@ -566,7 +563,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
         });
 
-        $('datasfieldslider').each(function(index, value) {
+        $('datafieldslider').each(function(index, value) {
           let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
           self.priceField = varFilter;
           self.dataSlider[varFilter] = []
@@ -579,23 +576,22 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
       getUrl(self) {
         this.isDataLoading = true;
-        // this.apiUrl = self;
+        this.apiUrl = self;
         let self_ = this;
         let filterBox = {};
 
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": this.elasticURL,
+          "url": self,
           "method": "POST",
           "headers": {
-            "Authorization": "Basic " + self_.dataAuthToken
+            "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
           },
           "data": "{\n\t\"from\": "+this.fromItemNumber+",\n\t\"size\": "+this.numberOfProductsPerPage+"\n}"
         }
 
         $.ajax(settings).done(function(data) {
-          console.log(data);
           self_.products = data.hits.hits;
           self_.filteredProducts = self_.products;
 
@@ -793,10 +789,10 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
             var settings = {
               "async": true,
-              "url": this.elasticURL,
+              "url": this.apiUrl,
               "method": "POST",
               "headers": {
-                "Authorization": "Basic " + this.dataAuthToken
+                "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
               },
               "data": JSON.stringify(filterQuery)
             }
@@ -828,10 +824,10 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
             var settings = {
               "async": true,
-              "url": this.elasticURL,
+              "url": this.apiUrl,
               "method": "POST",
               "headers": {
-                "Authorization": "Basic " + this.dataAuthToken
+                "Authorization": "Basic NWFmMDE3MDgzMjM4ZDUwMDEzMDhkOTQyOjNlM2JlMDEwLTUxZDctMTFlOC1hYWZjLWRkNWJiMWMzYjdmMg=="
               },
               "data": '{ "query":{ "bool":{ "must":[ { "range":{ "'+[this.priceField]+'":{ "gte":'+this.minValue+', "lte":'+this.maxValue+' } } } ] } }, "from": '+this.fromItemNumber+', "size": '+this.numberOfProductsPerPage+' }'
             }
@@ -902,24 +898,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
     },
 
-    async mounted() {
-
-      let self = this;
-
-      await $.getJSON('./assets/project-details.json', {
-      })
-      .then(function (response) {
-          self.projectVid = response[0].Projectvid.vid;
-          self.projectVPwd = response[0].Projectvid.password;
-
-          self.dataAuthToken = btoa(self.projectVid + ':' + self.projectVPwd);
-      })
-      .catch(function (error) {
-          console.log(error);
-      });
-
-      this.getUrl();
-
+    mounted() {
       this.fromItemNumber = 1;
       this.searchInput = null;
       if(Cookies.get('numberOfProductsPerPage')){
