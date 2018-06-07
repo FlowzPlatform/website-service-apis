@@ -1,0 +1,69 @@
+<style type="text/css">
+    .logo{background-color: transparent !important;}
+    #inbtldx {display: none !important;}
+    .menu-item {
+        padding: 0 !important;
+        width: auto !important;
+    }
+    p#i590tbl,#imajo4s {
+        margin-bottom: 25px !important;
+    }
+    .main-content {
+        padding-bottom: 0px !important;
+    }
+    #i46sbr,#ifdq8vh {
+        display: none !important;
+    }
+    #isb4t1h {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 20px !important;
+    }
+    #isuceb9s {
+        max-height: 108px;
+        display: none !important;
+    }
+</style>
+<div class="header-wrapper clearfix">
+        <header id="header" class="header-corporate header-15 search-sm">
+            <div class="header-main">
+                <div class="container">
+                    <div class="header-left">
+                        <h1 class="logo"><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/Preview/index.html" title="Flowz - Fractional and flat-rate services" rel="home"><img width="216" height="108" src="https://flowz-sk8womufkzae.stackpathdns.com/wp-content/uploads/2018/01/logo.png" alt="Flowz" class="img-responsive standard-logo"><img width="216" height="108" src="https://flowz-sk8womufkzae.stackpathdns.com/wp-content/uploads/2018/01/logo.png" alt="Flowz" id="inbtldx" class="img-responsive retina-logo"></a></h1>
+                    </div>
+                    <div class="header-right">
+                        <div id="main-menu">
+                            <ul id="menu-header-nav" class="main-menu mega-menu show-arrow effect-down subeffect-fadein-left">
+                                
+                                <li id="nav-menu-item-1385" class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/Preview/howitworks.html">How It Works</a>
+                                </li>
+                                <li id="nav-menu-item-261" class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/Preview/ContactUs.html">Contact Us</a>
+                                    
+                                </li>
+                                <li id="nav-menu-item-256" class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="https://customer.flowz.com/login?ec=302&amp;startURL=%2Fs%2F">Sign In</a>
+                                </li>
+                            </ul>
+                        </div><a class="mobile-toggle"><i class="fa fa-reorder"></i></a>
+                    </div>
+                </div>
+                <div id="nav-panel" class="panel-right" style="display: none;">
+                    <div class="container">
+                        <div class="mobile-nav-wrap">
+                            <div class="menu-wrap">
+                                <ul id="menu-header-nav-1" class="mobile-menu accordion-menu">
+                                   
+                                <li id="accordion-menu-item-1385" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.flowz.com/how-it-works-2/" rel="nofollow">How It Works</a>
+                                </li>
+                                <li id="accordion-menu-item-261" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children has-sub"><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/Preview/ContactUs.html" rel="nofollow">Contact Us</a><span class="arrow"></span>
+                                    
+                                </li>
+                                <li id="accordion-menu-item-256" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://customer.flowz.com/login?ec=302&amp;startURL=%2Fs%2F" rel="nofollow">Sign In</a>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
