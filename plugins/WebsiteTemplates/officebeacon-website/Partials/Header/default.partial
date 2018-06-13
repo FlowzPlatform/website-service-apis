@@ -13,15 +13,15 @@
                <div class="header-main">
                   <div class="container">
                      <div class="header-left">
-                        <h1 class="logo"> <a href="index.html" title="Office Beacon - Phenomenal Outsourcing" rel="home"> <img class="img-responsive standard-logo" width="450" height="41" src="https://wwwofficebeaconcom-sk8womufkzae.stackpathdns.com/wp-content/uploads/2018/01/cropped-OB_logo_2016-color-white-text_2.png" alt="Office Beacon" /><img class="img-responsive retina-logo" width="450" height="41" src="https://wwwofficebeaconcom-sk8womufkzae.stackpathdns.com/wp-content/uploads/2018/01/cropped-OB_logo_2016-color-white-text_2.png" alt="Office Beacon" style="display:none;" /> </a></h1>
+                        <h1 class="logo"> <a href="https://www.officebeacon.com/" title="Office Beacon - Phenomenal Outsourcing" rel="home"> <img class="img-responsive standard-logo" width="450" height="41" src="https://wwwofficebeaconcom-sk8womufkzae.stackpathdns.com/wp-content/uploads/2018/01/cropped-OB_logo_2016-color-white-text_2.png" alt="Office Beacon" /><img class="img-responsive retina-logo" width="450" height="41" src="https://wwwofficebeaconcom-sk8womufkzae.stackpathdns.com/wp-content/uploads/2018/01/cropped-OB_logo_2016-color-white-text_2.png" alt="Office Beacon" style="display:none;" /> </a></h1>
                      </div>
                      <div class="header-right">
                         <div id="main-menu" class="show-header-top">
                            <ul id="menu-header-nav" class="main-menu mega-menu show-arrow effect-down subeffect-fadein-left">
-                              <li id="nav-menu-item-5814" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="pricing.html" class="">Pricing</a></li>
-                              <li id="nav-menu-item-7170" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="Testimonials.html" class="">Testimonials</a></li>
-                              <li id="nav-menu-item-5813" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="#" class="">About Us</a></li>
-                              <li id="nav-menu-item-7534" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="#" class="">Blog</a></li>
+                              <li id="nav-menu-item-5814" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="https://www.officebeacon.com/pricing/" class="">Pricing</a></li>
+                              <li id="nav-menu-item-7170" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="https://www.officebeacon.com/testimonials/" class="">Testimonials</a></li>
+                              <li id="nav-menu-item-5813" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="https://www.officebeacon.com/about-us/" class="">About Us</a></li>
+                              <li id="nav-menu-item-7534" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="https://www.officebeacon.com/blog/" class="">Blog</a></li>
                            </ul>
                         </div>
                         <a class="mobile-toggle"><i class="fa fa-reorder"></i></a>
@@ -32,10 +32,10 @@
                         <div class="mobile-nav-wrap">
                            <div class="menu-wrap">
                               <ul id="menu-header-nav-1" class="mobile-menu accordion-menu">
-                                 <li id="accordion-menu-item-5814" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="pricing.html" rel="nofollow" class="">Pricing</a></li>
-                                 <li id="accordion-menu-item-7170" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="Testimonials.html" rel="nofollow" class="">Testimonials</a></li>
-                                 <li id="accordion-menu-item-5813" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" rel="nofollow" class="">About Us</a></li>
-                                 <li id="accordion-menu-item-7534" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" rel="nofollow" class="">Blog</a></li>
+                                 <li id="accordion-menu-item-5814" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.officebeacon.com/pricing/" rel="nofollow" class="">Pricing</a></li>
+                                 <li id="accordion-menu-item-7170" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.officebeacon.com/testimonials/" rel="nofollow" class="">Testimonials</a></li>
+                                 <li id="accordion-menu-item-5813" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.officebeacon.com/about-us/" rel="nofollow" class="">About Us</a></li>
+                                 <li id="accordion-menu-item-7534" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.officebeacon.com/blog/" rel="nofollow" class="">Blog</a></li>
                               </ul>
                            </div>
                         </div>
@@ -91,5 +91,7 @@
     background: #FFF !important;
     color: #2da1c2 !important;
 }
-    
+.header-wrapper #header .header-main .container .header-left {
+    padding: 30px 0 !important;
+}
 </style>
