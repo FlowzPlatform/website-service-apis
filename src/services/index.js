@@ -77,6 +77,9 @@ const cloudinaryService = require('./cloudinary-service/cloudinary-service.servi
 const jobqueue = require('./jobqueue/jobqueue.service.js');
 
 
+const websiteConfiguration = require('./website-configuration/website-configuration.service.js');
+
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(flowsDirListing);
@@ -126,4 +129,5 @@ module.exports = function () {
   app.configure(rethinkservicecheck);
   app.configure(cloudinaryService);
   app.configure(jobqueue);
+  app.configure(websiteConfiguration);
 };
