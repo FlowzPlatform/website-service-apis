@@ -1,0 +1,132 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+.bootstrapblock {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.c69751 {
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.row.c69751.wood {
+    height: 91px;
+    background-color: rgb(0, 0, 0);
+}
+
+.col-md-12.bootstrapblock.weeek {
+    height: 91px;
+}
+
+.c69954 {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    text-align: center;
+    width: 227px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    margin-left: 536px;
+}
+
+.c70036 {
+    display: inline-block;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    min-height: 50px;
+    min-width: 50px;
+    font-size: 12px;
+    margin-top: -60px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 736px;
+    width: 303px;
+}
+
+.c70081 {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: rgb(41, 138, 204);
+    margin-top: 4px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 1px;
+    width: 292px;
+}
+</style>
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+/>
+<link rel="stylesheet" href="https://res.cloudinary.com/flowz/raw/upload/v1515673729/builder/css/flowz_blocks.css"
+type="text/css" />
+<div class="row c69751 wood">
+    <div class="col-md-12 bootstrapblock weeek">
+        <div class="c69954">© 2018 Golf Trends Inc.. Designed by</div><a class="c70036"><div class="c70081">Warren Grant. Powered by Shopify</div></a>
+    </div>
+</div>
