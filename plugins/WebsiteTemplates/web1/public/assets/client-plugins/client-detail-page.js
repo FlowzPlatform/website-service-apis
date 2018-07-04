@@ -1,5 +1,56 @@
 var pid = getParameterByName('pid');
 var cid = getParameterByName('cid');
+// verifyAddress(sd);
+// console.log('taxcloud_url', project_settings.taxcloud_url)
+
+
+let verifyAddress = function (ADD, codes) {
+  if (typeof TaxCloud != 'undefined' && TaxCloud.apiKey != '' && TaxCloud.apiId != '') {
+    let taxid = TaxCloud.apiId;
+    let taxkey = TaxCloud.apiKey;
+    if (codes.countrycode != 'US') {
+      console.log('Not US FOUND')
+      // flag = true;
+      return true;
+    } else {
+      let flag = false;
+      let add = {
+        Zip4:"0000",
+        Zip5: ADD.zip,
+        State: codes.statecode,
+        City: "",
+        Address2:"",
+        Address1: ADD.street1,
+        apiLoginID: taxid, 
+        apiKey: taxkey
+      };
+      $.ajax({
+            type: 'POST',
+            url: project_settings.taxcloud_url+ '/VerifyAddress',
+            async: false,
+            dataType: 'json',
+            data: add, 
+            success: function (data) {
+                console.log('Dataa:: ', data)
+                if (data.ErrNumber == '0') {
+                  flag = true;
+                } else {
+                  flag = false;
+                }
+            },
+            error: function(xhr, status, error) {
+              var err = eval("(" + xhr.responseText + ")");
+              flag = false;   
+            },
+        });
+      return flag;
+    }
+  } else {
+    return true
+  }
+  
+};
+
 
 if(pid != null) {
   var get_product_details = function () {
@@ -531,12 +582,15 @@ $(document).ready( async function(){
                                         }
                                         else if(artwork_type == "upload_artwork")
                                         {
-                                            if(typeof imprint_info.artwork.artwork_email != "undefined")
+                                            if(typeof imprint_info.artwork != "undefined")
                                             {
-                                                checkSendEmail = "#logo_email_"+print_pos_id;
-                                            }
-                                            else{
-                                                checkSendEmail = "#logo_image_"+print_pos_id;
+                                                if(typeof imprint_info.artwork.artwork_email != "undefined")
+                                                {
+                                                    checkSendEmail = "#logo_email_"+print_pos_id;
+                                                }
+                                                else{
+                                                    checkSendEmail = "#logo_image_"+print_pos_id;
+                                                }
                                             }
                                         }
 
@@ -545,93 +599,96 @@ $(document).ready( async function(){
                                             $(activetab).find(checkSendEmail).click();
                                         }
                                         
-                                        if(typeof imprint_info.artwork.artwork_text != "undefined")
+                                        if(typeof imprint_info.artwork != "undefined")
                                         {
-                                            for (let [i,artwork_text] of imprint_info.artwork.artwork_text.entries())
+                                            if(typeof imprint_info.artwork.artwork_text != "undefined")
                                             {
-                                                let j = i+1;
-                                                // console.log('artwork_text',artwork_text)
+                                                for (let [i,artwork_text] of imprint_info.artwork.artwork_text.entries())
+                                                {
+                                                    let j = i+1;
+                                                    // console.log('artwork_text',artwork_text)
 
-                                                let inputTextVal = '';
-                                                let addClick = '';
-                                                
+                                                    let inputTextVal = '';
+                                                    let addClick = '';
+                                                    
 
-                                                if(artwork_type == "typeset")
-                                                {
-                                                    inputTextVal = "#text_is_text_"+print_pos_id+"_"+j;
-                                                    addClick =  "#is_text_add_"+print_pos_id;
-                                                }
-                                                else if(artwork_type == "upload_artwork_typeset")
-                                                {
-                                                    inputTextVal = "input[data-id='text_is_logo_text_text_"+print_pos_id+"_"+j+"']";//"#text_is_text_"+print_pos_id+"_"+j;
-                                                    addClick =  "#is_logo_text_text_add_"+print_pos_id;
-                                                }
-
-                                                if(inputTextVal != "")
-                                                {
-                                                    $(activetab).find(inputTextVal).val(artwork_text);
-                                                }
-                                                
-                                                if(j>1)
-                                                {
-                                                    if(addClick != "")
+                                                    if(artwork_type == "typeset")
                                                     {
-                                                        $(activetab).find(addClick).click();
+                                                        inputTextVal = "#text_is_text_"+print_pos_id+"_"+j;
+                                                        addClick =  "#is_text_add_"+print_pos_id;
+                                                    }
+                                                    else if(artwork_type == "upload_artwork_typeset")
+                                                    {
+                                                        inputTextVal = "input[data-id='text_is_logo_text_text_"+print_pos_id+"_"+j+"']";//"#text_is_text_"+print_pos_id+"_"+j;
+                                                        addClick =  "#is_logo_text_text_add_"+print_pos_id;
                                                     }
 
                                                     if(inputTextVal != "")
                                                     {
                                                         $(activetab).find(inputTextVal).val(artwork_text);
                                                     }
+                                                    
+                                                    if(j>1)
+                                                    {
+                                                        if(addClick != "")
+                                                        {
+                                                            $(activetab).find(addClick).click();
+                                                        }
+
+                                                        if(inputTextVal != "")
+                                                        {
+                                                            $(activetab).find(inputTextVal).val(artwork_text);
+                                                        }
+                                                    }
+
+                                                    //summary for upload artwork
+                                                    $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j+' span').text(artwork_text);
+                                                    $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j).removeClass('hide');
                                                 }
-
-                                                //summary for upload artwork
-                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j+' span').text(artwork_text);
-                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j).removeClass('hide');
                                             }
-                                        }
 
-                                        if(typeof imprint_info.artwork.artwork_thumb != "undefined")
-                                        {
-                                            for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries())
+                                            if(typeof imprint_info.artwork.artwork_thumb != "undefined")
                                             {
-                                                let j = i+1;
-                                                let thumbImg = '';
-                                                let addClick = '';
-                                                let actualImg = '';
-
-                                                if(artwork_type == "upload_artwork")
+                                                for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries())
                                                 {
-                                                    addClick =  "#is_logo_add_"+print_pos_id;   
-                                                    thumbImg = "#logo_show_"+print_pos_id+"_"+j;
-                                                    actualImg = "#logo_save_"+print_pos_id+"_"+j;
-                                                }
-                                                else if(artwork_type == "upload_artwork_typeset")
-                                                {
-                                                    addClick =  "#is_logo_text_add_"+print_pos_id;   
-                                                    thumbImg = "#logo_type_show_"+print_pos_id+"_"+j;
-                                                    actualImg = "#logo_type_save_"+print_pos_id+"_"+j;
-                                                }
+                                                    let j = i+1;
+                                                    let thumbImg = '';
+                                                    let addClick = '';
+                                                    let actualImg = '';
 
-                                                $(activetab).find(thumbImg).attr("src",artwork_thumb);
-                                                $(activetab).find(thumbImg).removeClass("hide");
-                                                $(activetab).find(actualImg).val(imprint_info.artwork.artwork_image[i]);
-                                                
-                                                if(j>1)
-                                                {
-                                                    $(activetab).find(addClick).click();
-                                                }
+                                                    if(artwork_type == "upload_artwork")
+                                                    {
+                                                        addClick =  "#is_logo_add_"+print_pos_id;   
+                                                        thumbImg = "#logo_show_"+print_pos_id+"_"+j;
+                                                        actualImg = "#logo_save_"+print_pos_id+"_"+j;
+                                                    }
+                                                    else if(artwork_type == "upload_artwork_typeset")
+                                                    {
+                                                        addClick =  "#is_logo_text_add_"+print_pos_id;   
+                                                        thumbImg = "#logo_type_show_"+print_pos_id+"_"+j;
+                                                        actualImg = "#logo_type_save_"+print_pos_id+"_"+j;
+                                                    }
 
-                                                //summary for upload artwork
-                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j+' span img').attr("src",artwork_thumb);
-                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j).removeClass('hide');
+                                                    $(activetab).find(thumbImg).attr("src",artwork_thumb);
+                                                    $(activetab).find(thumbImg).removeClass("hide");
+                                                    $(activetab).find(actualImg).val(imprint_info.artwork.artwork_image[i]);
+                                                    
+                                                    if(j>1)
+                                                    {
+                                                        $(activetab).find(addClick).click();
+                                                    }
+
+                                                    //summary for upload artwork
+                                                    $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j+' span img').attr("src",artwork_thumb);
+                                                    $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j).removeClass('hide');
+                                                }
                                             }
+
+                                            $(selectedType).find("div[data-type='"+artwork_type+"']").find(".js_artwork_instructions_text").val(imprint_info.artwork.artwork_instruction);
+
+                                            //summary for upload artwork
+                                            $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_textarea span').text(imprint_info.artwork.artwork_instruction);
                                         }
-
-                                        $(selectedType).find("div[data-type='"+artwork_type+"']").find(".js_artwork_instructions_text").val(imprint_info.artwork.artwork_instruction);
-
-                                        //summary for upload artwork
-                                        $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_textarea span').text(imprint_info.artwork.artwork_instruction);
                                         $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_textarea').removeClass('hide');
                                     }
                                 }
@@ -1574,7 +1631,7 @@ let returnDefaultBillingInfo = async function fetchDefaultBillingInfo() {
     let returnData = null;
       await axios({
               method: 'GET',
-              url: project_settings.address_book_api_url+'?address_type=billing&website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&is_default=1',
+              url: project_settings.address_book_api_url+'?website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&billing_default=1',
           })
       .then(async response => {
             let billing_address = {}
@@ -2804,7 +2861,65 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
       })
     .then(async response => {
         if(response.data != undefined ){
-            let returnData = response.data;
+            let returnData = response.data; 
+            console.log('returnData', returnData)
+            let city = await getCountryStateCityById(returnData.city,3);
+            let state = await getCountryStateCityById(returnData.state,2);
+            let country = await getCountryStateCityById(returnData.country,1);
+
+            // console.log('::::::::::::::', get_product_details)
+            if (typeof get_product_details.shipping == 'undefined') {
+              console.log('No Shipping FOUND')
+            }
+            let shipping_details = get_product_details.shipping[0];
+            // console.log('shipping_details', shipping_details)
+              if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
+                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
+              }
+
+              let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
+              let getStreet = await getStreetData(getLocation)
+              // console.log('getStreet', getStreet, getLocation)
+              var addressFrom  = {
+                  "name": shipping_details.fob_city,
+                  "street1": getStreet,
+                  "city": shipping_details.fob_city,
+                  "state": shipping_details.fob_state_code,
+                  "zip": shipping_details.fob_zip_code,
+                  "country": shipping_details.fob_country_code,
+                  // "phone": "+1 555 341 9393",//optional
+                  // "email": "shippotle@goshippo.com",//optional
+                  // "validate": true//optional
+              };
+
+              var addressTo  = {
+                  "name": returnData.name,
+                  "street1": returnData.street1,
+                  "city": city,
+                  "state": state,
+                  "zip": returnData.postalcode,
+                  "country": country,
+                  // "phone": "+1 555 341 9393",//optional
+                  // "email": "shippotle@goshippo.com",//optional
+                  // "validate": true//optional
+              };
+              console.log('addressFrom ::', addressFrom);
+              let sCode = await getStateCode(returnData.state, 2)
+              if (sCode != null) {
+                let verify_address_to = await verifyAddress(addressTo, sCode)
+                let verify_address_from = await verifyAddress(addressFrom, sCode)
+                console.log('verify_address ::', verify_address_to, verify_address_from)
+                if(!verify_address_to){
+                    hidePageAjaxLoading()
+                    showErrorMessage("Please add correct shipping address.")
+                    return false;
+                }
+                // showSuccessMessage()
+                
+              } else {
+                console.log('STATE CODE NOT FOUND')
+              }
+
             let replaceAddressHtml = '';
             replaceAddressHtml += returnData.name+"<br>";
             replaceAddressHtml += returnData.email+"<br>";
@@ -2813,13 +2928,13 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
               replaceAddressHtml += returnData.street2+"<br>";
             }
             // change
-            let city = await getCountryStateCityById(returnData.city,3);
+            // let city = await getCountryStateCityById(returnData.city,3);
             replaceAddressHtml += city+",";
 
-            let state = await getCountryStateCityById(returnData.state,2);
+            // let state = await getCountryStateCityById(returnData.state,2);
             replaceAddressHtml += state+",";
-
-            let country = await getCountryStateCityById(returnData.country,1);
+            // console.log('returnData.state ::::', returnData.state)
+            // let country = await getCountryStateCityById(returnData.country,1);
             if(cid == null)
             {
                 changeShippingDetails(shippigCounter);
@@ -2880,37 +2995,6 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
 
 
             // change
-              let shipping_details = get_product_details.shipping[0];
-              if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
-                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
-              }
-
-              let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
-              let getStreet = await getStreetData(getLocation)
-              
-              var addressFrom  = {
-                  "name": shipping_details.fob_city,
-                  "street1": getStreet,
-                  "city": shipping_details.fob_city,
-                  "state": shipping_details.fob_state_code,
-                  "zip": shipping_details.fob_zip_code,
-                  "country": shipping_details.fob_country_code,
-                  // "phone": "+1 555 341 9393",//optional
-                  // "email": "shippotle@goshippo.com",//optional
-                  // "validate": true//optional
-              };
-
-              var addressTo  = {
-                  "name": returnData.name,
-                  "street1": returnData.street1,
-                  "city": city,
-                  "state": state,
-                  "zip": returnData.postalcode,
-                  "country": country,
-                  // "phone": "+1 555 341 9393",//optional
-                  // "email": "shippotle@goshippo.com",//optional
-                  // "validate": true//optional
-              };
               // console.log("addressTo",addressTo);
 
               $(document).off('click', '#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li').on('click','#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li', function (e) {
@@ -2961,44 +3045,44 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
     });
 }
 
-async function getStreetLocation(ZipCode){
-   var resp = "";
-    await axios({
-        method: 'GET',
-        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&address={"+ZipCode+"}&sensor=true",
-        })
-    .then(async function (response) {
-        resp = response.data.results[0].geometry.location.lat+","+response.data.results[0].geometry.location.lng;
-        return resp;
-    })
-    .catch(function (error) {
-        // console.log("error",error);
-    });
-    return resp;
-}
+// async function getStreetLocation(ZipCode){
+//    var resp = "";
+//     await axios({
+//         method: 'GET',
+//         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&address={"+ZipCode+"}&sensor=true",
+//         })
+//     .then(async function (response) {
+//         resp = response.data.results[0].geometry.location.lat+","+response.data.results[0].geometry.location.lng;
+//         return resp;
+//     })
+//     .catch(function (error) {
+//         // console.log("error",error);
+//     });
+//     return resp;
+// }
 
-async function getStreetData(location){
-    var resp = "";
-    await axios({
-        method: 'GET',
-        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
-    })
-    .then(function (response1) {
-        // console.log("response1",response1);        
-        let resp1 = response1.data.results[0].formatted_address.split(",");
-        resp = resp1[0]
-        return resp;
-    })
-    .catch(function (error) {
-        // console.log("error",error);
-    })
-    return resp;
-}
+// async function getStreetData(location){
+//     var resp = "";
+//     await axios({
+//         method: 'GET',
+//         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
+//     })
+//     .then(function (response1) {
+//         // console.log("response1",response1);        
+//         let resp1 = response1.data.results[0].formatted_address.split(",");
+//         resp = resp1[0]
+//         return resp;
+//     })
+//     .catch(function (error) {
+//         // console.log("error",error);
+//     })
+//     return resp;
+// }
 //summary for special instruction
 $(document).on("keyup", activetab + ' .js-specialInstruction-section textarea',function(){
     $('.js_summary_instruction').html($(this).val());
     $('#Quantity-quote, .js_special_inst').removeClass('hide');
-}); 
+});
 
 function submitRequestInfo(productData,instruction,guestUserDetail){
   let data = {'product_image_url':project_settings.product_api_image_url,'product_id':pid,'product_data':productData,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':guestUserDetail,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']};

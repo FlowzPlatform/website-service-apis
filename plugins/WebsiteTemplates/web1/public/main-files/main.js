@@ -2,6 +2,7 @@
 
 let user_id = user_details = null;
 let timeStamp = Math.floor(Date.now() / 1000);
+let TaxCloud = null;
 
 var website_info = function () {
   var tmp = null;
@@ -14,6 +15,8 @@ var website_info = function () {
       'success': function (data) {
           let projectInfo = data[0]
           let webInfo = getWebsiteInfoById(data[0].projectID,data[0].project_settings.project_configuration_api_url);
+          TaxCloud = webInfo.configData[1].projectSettings[1].TaxCloud
+          // console.log(':::::::::::::::::', webInfo, TaxCloud)
           projectInfo['subscriptionId'] = webInfo.subscriptionId
           data[0] = projectInfo
           tmp = data;
@@ -24,6 +27,7 @@ var website_info = function () {
 
 var website_settings = website_info[0];
 var project_settings = website_settings.project_settings;
+
 
 var cloudinaryDetails = function () {
   var tmp = null;
@@ -76,6 +80,61 @@ async function getProductDetailById(id) {
     	return returnData;
 }
 
+async function getStreetLocation(ZipCode){
+   var resp = "";
+    await axios({
+        method: 'GET',
+        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&address={"+ZipCode+"}&sensor=true",
+        })
+    .then(async function (response) {
+        resp = response.data.results[0].geometry.location.lat+","+response.data.results[0].geometry.location.lng;
+        return resp;
+    })
+    .catch(function (error) {
+        // console.log("error",error);
+    });
+    return resp;
+}
+
+async function getStreetData(location){
+    var resp = "";
+    await axios({
+        method: 'GET',
+        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
+    })
+    .then(function (response1) {
+        // console.log("response1",response1);        
+        let resp1 = response1.data.results[0].formatted_address.split(",");
+        resp = resp1[0]
+        return resp;
+    })
+    .catch(function (error) {
+        // console.log("error",error);
+    })
+    return resp;
+}
+
+let getStateCode = async function (id, type) {
+  let code = null;
+  await axios({
+      method: 'GET',
+      url: project_settings.city_country_state_api,
+      async: false,
+      params: {
+          'id':id,
+          'type':type
+      }
+    }).then(res => {
+      // console.log('getLocation :::', res.data)
+      code = {
+        statecode: res.data.state_code,
+        countrycode: res.data.country_code
+      }
+    }).catch(err => {
+      console.log('Error::::', errr)
+    })
+    return code;
+}
 
 Y({
   db: {
@@ -106,9 +165,15 @@ Y({
         {
           $('#myWishList .listing').html('No records found.');
           document.getElementById("wishlistCount").innerHTML =  0;
+          if($(".wishlist-view-tab").length > 0 ) {
+            $(".wishlist-view-tab").hide()
+          }
         }
         else{
           document.getElementById("wishlistCount").innerHTML =  window.yList.share.wishList._content.length;
+          if($(".wishlist-view-tab").length > 0 ) {
+            $(".wishlist-view-tab").show()
+          }
         }
         // showWishList();
       }
@@ -127,6 +192,9 @@ Y({
         if(document.getElementById("wishlistCount").innerHTML == 0)
         {
           $('#myWishList .listing').html('No records found.');
+          if($(".wishlist-view-tab").length > 0 ) {
+            $(".wishlist-view-tab").hide()
+          }
           // document.getElementById("wishlistCount").innerHTML =  0;
         }
         // showWishList();
@@ -479,7 +547,7 @@ var init = function() {
    $('.login-text-check').on('click',function() {
      document.cookie = 'user_auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
      document.cookie = 'user_id=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-     window.location = window.location.href.split("?")[0];
+     window.location = window.location.href;//window.location.href.split("?")[0];
    });
   // login-logout end
 
@@ -531,35 +599,80 @@ var init = function() {
   }
 
   let total_hits;
-  let myarr = [];
-  let result = [];
+let myarr = [];
+let result = [];
+let HeaderSearchValue;
+let total_hits_SearchInAll;
+let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Projectvid.password);
 
-  // Auto sugession for search in header
-  $('input[name="search"]').keyup(function(){
-      let val = $('input[name="search"]').val();
-      let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Projectvid.password);
+  $( "#main_filter" ).change(function() {
+     HeaderSearchValue = $('#main_filter :selected').val()
+    //  console.log("HeaderSearchValue",HeaderSearchValue);
+   });
+
+   $('input[name="search"]').keyup(function(){
+    let val = $('input[name="search"]').val();
+     console.log("val",val);
+
+     if(HeaderSearchValue == undefined || HeaderSearchValue == "searchAll"){
+        let SearchInAll1 = {
+          "async": true,
+          "crossDomain": true,
+          "url": project_settings.search_api_url + '?size=0',
+          "method": "POST",
+          "headers": {
+            "Authorization" : "Basic " + auth
+          },
+          "data" : "{\n \"query\": {\n \"multi_match\" : {\n \"query\": \""+ val +"\",\n \"fields\": [ \"search_keyword\",\"categories\",\"product_name\",\"sku\" ] \n } \n } \n }"
+        }
+        $.ajax(SearchInAll1).done(function (data) {
+          total_hits_SearchInAll = data.hits.total;
+          console.log("total_hits_SearchInAll1",total_hits_SearchInAll);
+          let SearchInAll2 = {
+            "async": true,
+            "crossDomain": true,
+            "url": project_settings.search_api_url + '?from=1&size='+total_hits_SearchInAll,
+            "method": "POST",
+            "headers": {
+              "Authorization" : "Basic " + auth
+            },
+            "data" : "{\n \"query\": {\n \"multi_match\" : {\n \"query\": \""+ val +"\",\n \"fields\": [ \"search_keyword\",\"categories\",\"product_name\",\"sku\" ] \n } \n } \n }"
+          }
+            $.ajax(SearchInAll2).done(function (data) {
+              myarr = [];
+              result = [];
+              $.each(data.hits.hits,  function( index, value ) {
+                  value._source.categories.forEach(function(item,index) {
+                  myarr.push(item);
+                });
+                  value._source.search_keyword.forEach(function(item,index) {
+                    myarr.push(item);
+                  });
+                myarr.push(value._source.product_name);
+                myarr.push(value._source.sku);
+              });
+              result = _.uniq(myarr)
+            });
+            $('input[name="search"]').autocomplete({
+              source: result
+          });
+        });
+     }
+
+     else if( HeaderSearchValue == "categories" || HeaderSearchValue == "search_keyword" || HeaderSearchValue == "sku") {
+       console.log("in else if section");
       let settings = {
         "async": true,
         "crossDomain": true,
         "url": project_settings.search_api_url + '?size=0',
         "method": "POST",
         "headers": {
-          //"authorization": project_settings.search_api_auth_token,
-          "Authorization" : "Basic " + auth,
-          "content-type": "application/json",
-          "cache-control": "no-cache",
-          "postman-token": "0fe82014-49ea-eca8-1432-1f3b9fffc910"
+          "Authorization" : "Basic " + auth
         },
-        "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"search_keyword\"] \n}\u0001"
+         "data": " {\n \"query\": {\n \"bool\": {\n \"must\": {\n \"match_all\": {\n \n }\n },\n \"filter\": {\n \"match\": {\n \""+HeaderSearchValue+"\": \" "+ val +" \"\n }\n }\n }\n },\n \"_source\":[\""+HeaderSearchValue+"\"] \n}\u0001"
+     //  "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword \": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"search_keyword\"] \n}\u0001"
+     //  "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \""+ CategorySearch +"\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"categories\"] \n}\u0001"
       }
-      // $.ajax(settings).done(function (data) {
-      //     total_hits = data.hits.total;
-      //     $.each(data.hits.hits,  function( index, value ) {
-      //       value._source.search_keyword.forEach(function(item,index) {
-      //         myarr.push(item);
-      //       });
-      //     });
-      // });
       $.ajax(settings).done(function (data) {
         total_hits = data.hits.total;
           let settings1 = {
@@ -570,35 +683,54 @@ var init = function() {
                   "headers": {
                     "Authorization" : "Basic " + auth
                   },
-                  "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"search_keyword\"] \n}\u0001"
+              "data": "{\n \"query\": {\n \"bool\": {\n \"must\": {\n \"match_all\": {\n \n }\n },\n \"filter\": {\n \"match\": {\n \""+HeaderSearchValue+"\": \" "+ val +" \"\n }\n }\n }\n },\n \"_source\":[\""+HeaderSearchValue+"\"] \n}\u0001"
+              //    "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \""+ CategorySearch +" \": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"categories\"] \n}\u0001"
+            //    "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"search_keyword\"] \n}\u0001"
                 }
                 $.ajax(settings1).done(function (data) {
-                    // console.log("data",data);
+                  myarr = [];
+                  result = [];
                     $.each(data.hits.hits,  function( index, value ) {
-                      value._source.search_keyword.forEach(function(item,index) {
-                        myarr.push(item);
+                      if(HeaderSearchValue == "categories"){
+                        value._source.categories.forEach(function(item,index) {
+                         myarr.push(item);
                       });
-                    });
-                    result = _.uniq(myarr)
+                    }
+                      else if(HeaderSearchValue == "search_keyword"){
+                        value._source.search_keyword.forEach(function(item,index) {
+                          myarr.push(item);
+                        });
+                      }
+                      else if(HeaderSearchValue == "sku"){
+                       myarr.push(value._source.sku);
+                      }
+                  });
+                  result = _.uniq(myarr)
                 });
-              $('input[name="search"]').autocomplete({
-                  source: result,
-                  select: function( event, ui ) {
-                      var reportname = ui.item.value
-                      $('input[name="search"]').val(ui.item.value)
-                      $('input[name="search"]').closest('.header-search-col').find('.btn-search').trigger( "click" );
-                  }
-              });
-      });
-  });
+                $('input[name="search"]').autocomplete({
+                    source: result
+                });
+          });
+        }
+    }); // keyup
+// }); // change event $('#main_filter') end
+ //});
 
-  // $('input[name="search"]').autocomplete({
-  //   source: myarr
-  // });
 
   $('.header-search-col').find('.btn-search').click(function(){
     if($.trim($('input[name="search"]').val()) != '') {
-      window.location.href = website_settings.BaseURL+'search.html?SearchSensor="' + $('input[name="search"]').val()+'"'
+        window.location.href = website_settings.BaseURL+'search.html?SearchSensor='+$('input[name="search"]').val()
+    // window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + "\""+$('input[name="search"]').val()+"\""
+        if(HeaderSearchValue === "categories"){
+          window.location.href = website_settings.BaseURL+'search.html?CategorySensor='+$('input[name="search"]').val()
+        }
+        else if(HeaderSearchValue === "search_keyword"){
+          window.location.href = website_settings.BaseURL+'search.html?KeywordSensor='+$('input[name="search"]').val()
+        }
+        else if(HeaderSearchValue === "sku"){
+          window.location.href = website_settings.BaseURL+'search.html?SkuSensor='+$('input[name="search"]').val()
+        }
+        // $('#main_filter :selected').val(HeaderSearchValue)
     }
     else {
       window.location.href = website_settings.BaseURL+'search.html';
@@ -1288,17 +1420,28 @@ function showWishList(recetAdded=false)
         }
     } else {
       $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
+      if($(".wishlist-view-tab").length > 0 ) {
+        $(".wishlist-view-tab").hide()
+      }
     }
 
     $('#myWishList .listing').removeClass('hide');
-
+    if($(".wishlist-view-tab").length > 0 ) {
+      $(".wishlist-view-tab").show()
+    }
     if(wishlistValuesCount)
     {
       document.getElementById("wishlistCount").innerHTML = wishlistValuesCount;
+      if($(".wishlist-view-tab").length > 0 ) {
+        $(".wishlist-view-tab").show()
+      }
     }
     else{
-      document.getElementById("wishlistCount").innerHTML = 0;
-	  $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
+       document.getElementById("wishlistCount").innerHTML = 0;
+	     $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
+       if($(".wishlist-view-tab").length > 0 ) {
+         $(".wishlist-view-tab").hide()
+       }
     }
   }
   else{
@@ -1325,10 +1468,16 @@ function showWishList(recetAdded=false)
     if(wishlistValuesCount)
     {
       document.getElementById("wishlistCount").innerHTML = wishlistValuesCount;
+      if($(".wishlist-view-tab").length > 0 ) {
+        $(".wishlist-view-tab").show()
+      }
     }
     else{
       document.getElementById("wishlistCount").innerHTML = 0;
       $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
+      if($(".wishlist-view-tab").length > 0 ) {
+        $(".wishlist-view-tab").hide()
+      }
     }
   }
 }

@@ -65,7 +65,14 @@ $.ajax({
             }
             // END - shipping charge
 
-            var total = parseFloat(response_data[key].total_qty)*parseFloat(response_data[key].unit_price)+charges+shipping_charges;
+            // Taxcloud
+            // console.log('Taxcloud', response_data[key])
+            let tax = 0.00;
+            if (response_data[key].hasOwnProperty('taxcloud')) {
+              tax = response_data[key].taxcloud.tax_amount
+            }
+
+            var total = parseFloat(response_data[key].total_qty)*parseFloat(response_data[key].unit_price)+charges+shipping_charges + tax ;
             total = total.toFixed(project_settings.price_decimal);
 
             productHtml.find(".js-checkout-product-total").html("$"+total);
