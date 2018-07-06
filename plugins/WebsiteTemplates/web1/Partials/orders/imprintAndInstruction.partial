@@ -60,10 +60,13 @@ body {
                     <div class="estimate-row">Imprint Method: <span>#data.imprint_method#</span>
                     </div>
                     <div class="estimate-row">#data.colours#</div>
+                    <div class="estimate-row">#data.sendmail#</div>
+                    <div class="estimate-row">#data.artwork#</div>
+                    <div class="estimate-row">#data.artwork_text#</div>
                 </div>
             </td>
-            <td>#data.additional_charges_list#</td>
-            <td class="border-right-none">$#data.charges#</td>
+            <td class="estimate-detail"><div class="estimate-tag-block"><div class="estimate-row">#data.additional_charges_list#</div></div></td>
+            <td class="border-right-none">#data.charges#</td>
         </tr>
-    </tbody>    
+    </tbody>
 </table>

@@ -35,6 +35,7 @@
         "comment_request_url":"http://api.flowzcluster.tk/serverapi/comment-request",
         "crm_payment_url":"https://api.flowzcluster.tk/crm/payment",
         "crm_invoice_url":"https://api.flowzcluster.tk/crm/invoice",
-        "format_date": "m/d/Y"
+        "format_date": "m/d/Y",
+        "taxcloud_url":"https://api.taxcloud.net/1.0/TaxCloud"
       }
 }
