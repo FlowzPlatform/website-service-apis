@@ -143,7 +143,13 @@ $(document).ready( async function(){
                   var productDetails = get_product_details;
                   // console.log("productDetails==>>",productDetails);
                 	ProductName = productDetails.product_name;
-                	ProductImage = productDetails.default_image;
+                  // console.log("productDetails.images[0]",productDetails.images[0]);
+                  ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                  if(productDetails.images != undefined)  {
+                      ProductImage = productDetails.images[0].images[0].secure_url;//productDetails.default_image;
+                  }
+
+                  // console.log("ProductImage",ProductImage);
                   ProductSku = productDetails.sku;
                   hasImprintData = productDetails.imprint_data;
 
@@ -157,7 +163,7 @@ $(document).ready( async function(){
                   // console.log(titleAndSkuHtml);
                   // productHtml += listHtml1;
                   $('#title .row').html(titleAndSkuHtml);
-                  let productImageUrl = project_settings.product_api_image_url+ProductImage;
+                  let productImageUrl = ProductImage;
                   $('#product_img').attr("src",productImageUrl)
                   $('#product_img').data("zoom-image",productImageUrl)
                   $('#product_img').data("orig-img",productImageUrl)
@@ -165,20 +171,22 @@ $(document).ready( async function(){
 
                   // Add Variation Images
                   let imageGallaryHtml = '';
-                  imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_default_link" data-zoom-image="'+productImageUrl+'">';
-                  imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
+
                   // console.log("imageGallaryHtml",imageGallaryHtml);
     		          if(productDetails.images != undefined){
     		            // $.each(productDetails.images[0].images, function(index, element) {
                        for (let element of productDetails.images[0].images) {
-    		              // var imageUrl = project_settings.product_api_image_url+productDetails.supplier_id+'/'+element.web_image;
-                          let imageUrl = project_settings.product_api_image_url+project_settings.supplier_id+'/'+element.web_image;
+                          // let imageUrl = project_settings.product_api_image_url+project_settings.supplier_id+'/'+element.web_image;
+                          let imageUrl = element.secure_url;
     		                  let color = element.color;
                           color = color.toLowerCase().replace(/\s/g, '-');
                           imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
                           imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+'" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
-    		            }
-    		          }
+    		               }
+    		          }else{
+                    imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_default_link" data-zoom-image="'+productImageUrl+'">';
+                    imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
+                  }
 
                 $(".js-image-gallery").html(imageGallaryHtml);
 
@@ -692,6 +700,9 @@ $(document).ready( async function(){
                                         $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_textarea').removeClass('hide');
                                     }
                                 }
+                                if(websiteConfiguration.transaction.place_order.print_position.artwork.status == 0 && activetab != "#js-request-quote"){
+                                    $(activetab).find('.art-pos-value').parent().remove();
+                                }
                             }
 
                             $(activetab).find('input[name=request_quote_shipping_type][value="'+response_data.shipping_method.shipping_type+'"]').click();//.prop("checked",true);
@@ -813,7 +824,61 @@ $(document).ready( async function(){
                     })
                 }
                 // END - Edit Cart Product
+                if (user_id != null ) {
+                    if(websiteConfiguration.transaction.place_order.registered_user.status == 0){
+                        let html = 'Access Denied';
+                        $('#js-place-order').html(html);
+                    }
+                }
+                else{
+                    if(websiteConfiguration.transaction.place_order.guest_user.status == 0){
+                        let html = 'Access Denied';
+                        $('#js-place-order').html(html);
+                    }
+                }
 
+                if(websiteConfiguration.transaction.place_order.shipping.standard_shipping.status == 0 && activetab != "#js-request-quote"){
+                    $(activetab).find("input[name='request_quote_shipping_type'][value='standard']").parent().remove();
+                }
+
+                if(websiteConfiguration.transaction.place_order.shipping.split_shipping.status == 0 && activetab != "#js-request-quote"){
+                    $(activetab).find("input[name='request_quote_shipping_type'][value='split']").parent().remove();
+                }
+                
+                if(websiteConfiguration.transaction.place_order.product_summary.status == 0 && activetab != "#js-request-quote")
+                {
+                    $("#js-product-summary-container").addClass('hide');
+                }
+                
+
+                if(websiteConfiguration.product_detail.imprint_info.status == 0)
+                {
+                    $("a[href='#imprint-info']").parent().remove();
+                    $("#imprint-info").remove();
+                }
+
+                if(websiteConfiguration.product_detail.product_description.status == 0)
+                {
+                    $("a[href='#product_description']").parent().remove();
+                    $("#product_description").remove();
+                }
+                
+                if(websiteConfiguration.product_detail.product_detail.status == 0)
+                {
+                    $("a[href='#product-detail']").parent().remove();
+                    $("#product-detail").remove();
+                }
+
+                if(websiteConfiguration.product_detail.shipping_info.status == 0)
+                {
+                    $("a[href$='product-shipping']").parent().remove();
+                    $("#product-shipping").remove();
+                }
+
+                if($(".product-detail-tab").find('#myTab').html().trim().length === 0){
+                    $(".product-detail-tab").remove();
+                }
+                
                 $('.js-hide-div').removeClass("js-hide-div");
                 setTimeout(loadBxSlider(),5000)
 			  // },
@@ -937,13 +1002,16 @@ $(document).ready( async function(){
             
             let shipp_charge = 0.00;
             let setup_charge = total_setup_charge;
-            let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
-            if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-                shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
-            }
+            if($("#js-product-summary-container").length > 0)
+            {
+                let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
+                if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+                    shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+                }
        
-            let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
-            $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+                let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+                $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+            }
         }
         $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
      });
@@ -1184,6 +1252,11 @@ $(document).ready( async function(){
 
             let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").val();
 
+            if(typeof get_in_hand_date == 'undefined')
+            {
+                get_in_hand_date='';
+            }
+
             let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
 
             let shipping_detail = {"on_hand_date":get_in_hand_date,'ship_date':'',"ship_transittime": get_transittime,"shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
@@ -1239,7 +1312,8 @@ $(document).ready( async function(){
                             $(activetab+' #js_request_quote_qty_box_'+setActivetab+'_'+field+jquery_section).append('<div class="red js-section-errors">'+value+'</div>');
                         });
                         }else{
-                        $("#"+setActivetab+"-Quantity-block").append('<div class="red js-section-errors">'+flds+'</div>')
+                            let setActivetab = activetab.replace(/\#/g, '');
+                            $("#"+setActivetab+"-Quantity-block").append('<div class="red js-section-errors">'+flds+'</div>')
                         }
 
                         break;
@@ -1317,7 +1391,7 @@ $(document).ready( async function(){
                 data['product_description'] = get_product_details;
                 data['website_id'] = website_settings['projectID'];
                 data['owner_id'] = website_settings['UserID'];
-                data['product_image_url'] = project_settings.product_api_image_url;
+                // data['product_image_url'] = project_settings.product_api_image_url;
                 data['billing_info'] = await returnDefaultBillingInfo();
 
                 $.ajax({
@@ -1663,6 +1737,18 @@ $(document).on("click","#js_tab_list",function(){
     activeSubtab = $(activetab).find('#js_sub_tab_list > li.active > a').attr('href');
     activetab = (activeSubtab!=undefined) ? activeSubtab : activetab;
 
+    // console.log('activetab',activetab);
+    $("#js-product-summary-container").addClass('hide');
+    if(websiteConfiguration.transaction.request_quote.product_summary.status != 0 && activetab == "#js-request-quote")
+    {
+        $("#js-product-summary-container").removeClass('hide');
+    }
+
+    if(websiteConfiguration.transaction.place_order.product_summary.status != 0 && activetab != "#js-request-quote")
+    {
+        $("#js-product-summary-container").removeClass('hide');
+    }
+
     let setActivetab = activetab.replace(/\#/g, '');
 
     //set dynamic id in html of place order and request quote by active tab
@@ -1693,6 +1779,20 @@ $(document).on("click","#js_tab_list",function(){
       $(activetab).find('#js_request_quote_instruction').val('');
       $(activetab).find('#js_shipping_method').addClass('hide');
       $(activetab).find('.js_select_shipping_type').prop('checked',false);
+
+      //quote
+      if(websiteConfiguration.transaction.request_quote.shipping.standard_shipping.status == 0 && activetab == "#js-request-quote"){
+        $(activetab).find("input[name='request_quote_shipping_type'][value='standard']").parent().remove();
+      }
+
+      if(websiteConfiguration.transaction.request_quote.shipping.split_shipping.status == 0 && activetab == "#js-request-quote"){
+        $(activetab).find("input[name='request_quote_shipping_type'][value='split']").parent().remove();
+      }
+     
+      if(websiteConfiguration.transaction.request_quote.shipping.standard_shipping.status == 0 && activetab == "#js-request-quote"){
+        $(activetab).find("input[name='request_quote_shipping_type'][value='standard']").parent().remove();
+      }
+      
     }
 
     $(activetab +' .js-section-errors').remove();
@@ -1916,13 +2016,16 @@ $(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
 
      let shipp_charge = shippingCharge;
      let setup_charge = 0.00;
-     let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
-     if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
-         setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
-     }
+     if($("#js-product-summary-container").length > 0)
+     {
+        let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
+        if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+            setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
+        }
 
-     let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
-     $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+        let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+        $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+     }
 
      setdate(shipCounter,parentObj,activetab,transitTime)
 })
@@ -1992,6 +2095,14 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
         }
         if(typeof imprintMethodName == 'undefined' && no_of_color == 0 && selColorsHtml == '') {
             $('.js_print_postion_location').append('<div class="js_summary_imprint_location_'+print_pos_id+'"><div class="estimate-row heading"><span>Print Position : '+printPos+'</span></div><div class="row"><div class="col-sm-12"><div class="js_product_summary_imprint_location_'+print_pos_id+'"><div class="estimate-row js_imprint_method_summary_'+print_pos_id+' hide">Imprint Method : <span></span></div> <div class="estimate-row js_color_number_summary_'+print_pos_id+' hide">How many colors : <span></span></div> <div class="estimate-row js_selected_color_summary_'+print_pos_id+' hide"></div></div></div></div></div>');
+        }
+
+        if(websiteConfiguration.transaction.request_quote.print_position.artwork.status == 0 && activetab == "#js-request-quote"){
+            $(activetab).find('.art-pos-value').parent().remove();
+        }
+
+        if(websiteConfiguration.transaction.place_order.print_position.artwork.status == 0 && activetab != "#js-request-quote"){
+            $(activetab).find('.art-pos-value').parent().remove();
         }
     }
     else{
@@ -2409,14 +2520,17 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
     //summary for shipping charges
     let shipp_charge = 0.00;
     let setup_charge = 0.00;
-    if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-        shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+    if($("#js-product-summary-container").length > 0)
+    {
+        if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+            shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+        }
+        if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+            setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
+        }
+        let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+        $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
     }
-    if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
-        setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
-    }
-    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
-    $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
 $(document).on("click", activetab + ' .js_request_quote_qty_remove', function(){
@@ -2540,26 +2654,38 @@ function colorValidation(fld,section,value){
         })
         if(!isEmpty(quantityArr)) errorLog['quantity'] = quantityArr
         else{
-              let minQty = '';
-              // Find Minimum Qty from price range
-              $.each(get_product_details.pricing, function(index,element){
-                if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
-                  let priceRangeArry = []
-                    $.each(element.price_range,function(index,element2){
-                        if(element2.qty.lte != undefined) priceRangeArry.push(parseInt(element2.qty.lte))
-                        if(element2.qty.gte != undefined) priceRangeArry.push(parseInt(element2.qty.gte))
-                    })
-                    if(priceRangeArry != ""){
-                        minQty = Math.min.apply(Math,priceRangeArry);
+            let checkMiniQuantity = true;
+            
+            if(websiteConfiguration.transaction.place_order.check_minimum_qty.status == 0 && activetab != "#js-request-quote"){
+                checkMiniQuantity = false;
+            }
+            else if(websiteConfiguration.transaction.request_quote.check_minimum_qty.status == 0 && activetab == "#js-request-quote"){
+                checkMiniQuantity = false;                
+            }
+
+            if(checkMiniQuantity)
+            {
+                let minQty = '';
+                // Find Minimum Qty from price range
+                $.each(get_product_details.pricing, function(index,element){
+                    if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
+                    let priceRangeArry = []
+                        $.each(element.price_range,function(index,element2){
+                            if(element2.qty.lte != undefined) priceRangeArry.push(parseInt(element2.qty.lte))
+                            if(element2.qty.gte != undefined) priceRangeArry.push(parseInt(element2.qty.gte))
+                        })
+                        if(priceRangeArry != ""){
+                            minQty = Math.min.apply(Math,priceRangeArry);
+                        }
+                    }
+                })
+                
+                if(minQty != "" && minQty > 0){
+                    if(value.total_qty < minQty){
+                        errorLog['quantity'] = "Quantity should be equal to or greater than the minimum quantity."
                     }
                 }
-             })
-
-             if(minQty != "" && minQty > 0){
-                if(value.total_qty < minQty){
-                    errorLog['quantity'] = "Quantity should be equal to or greater than the minimum quantity."
-                }
-             }
+            }
         }
     }
     // console.log("errorLog - Color",errorLog);
@@ -2768,14 +2894,17 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     //summary for shipping charges
     let shipp_charge = 0.00;
     let setup_charge = 0.00;
-    if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-        shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+    if($("#js-product-summary-container").length > 0)
+    {
+        if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+            shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+        }
+        if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+            setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
+        }
+        let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+        $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
     }
-    if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
-        setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
-    }
-    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
-    $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
 function attachDeleteEvent(parentDiv){
@@ -2997,6 +3126,32 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
             // change
               // console.log("addressTo",addressTo);
 
+              if(websiteConfiguration.transaction.shipping_estimator.shipping_carrier.fedex.status == 0){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li[data-value="fedex"]').remove();
+              }
+
+              if(websiteConfiguration.transaction.shipping_estimator.shipping_carrier.ups.status == 0){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li[data-value="ups"]').remove();
+              }
+
+              if(websiteConfiguration.transaction.place_order.shipping.inhand_date.status == 0 && activetab != "#js-request-quote"){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_handdate').parent().parent().remove();
+              }
+
+              if(websiteConfiguration.transaction.place_order.shipping.shipping_carrier.status == 0 && activetab != "#js-request-quote"){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_shipping_option').remove();
+              }
+
+              //quote
+
+              if(websiteConfiguration.transaction.request_quote.shipping.inhand_date.status == 0 && activetab == "#js-request-quote"){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_handdate').parent().parent().remove();
+              }
+
+              if(websiteConfiguration.transaction.request_quote.shipping.shipping_carrier.status == 0 && activetab == "#js-request-quote"){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_shipping_option').remove();
+              }
+
               $(document).off('click', '#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li').on('click','#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li', function (e) {
                   // if(e.handled !== true)
                   {
@@ -3085,7 +3240,7 @@ $(document).on("keyup", activetab + ' .js-specialInstruction-section textarea',f
 });
 
 function submitRequestInfo(productData,instruction,guestUserDetail){
-  let data = {'product_image_url':project_settings.product_api_image_url,'product_id':pid,'product_data':productData,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':guestUserDetail,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']};
+  let data = {'product_id':pid,'product_data':productData,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':guestUserDetail,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']};
   $.ajax({
         type: 'POST',
         url: project_settings.request_info_api_url,
@@ -3158,3 +3313,33 @@ $(document).on('click','.js-submit-btn',function (e) {
       }).form()
 
 })
+
+if (user_id != null ) {
+    if(websiteConfiguration.transaction.request_info.registered_user.status == 0){
+        $("a[href='#js-request-info']").parent().remove();
+        let html = 'Access Denied';
+        $('#js-request-info').html(html);
+    }
+}
+else{
+    if(websiteConfiguration.transaction.request_info.guest_user.status == 0){
+        $("a[href='#js-request-info']").parent().remove();
+        let html = 'Access Denied';
+        $('#js-request-info').html(html);
+    }
+}
+
+if (user_id != null ) {
+    if(websiteConfiguration.transaction.request_quote.registered_user.status == 0){
+        $("a[href='#js-request-quote']").parent().remove();
+        let html = 'Access Denied';
+        $('#js-request-quote').html(html);
+    }
+}
+else{
+    if(websiteConfiguration.transaction.request_quote.guest_user.status == 0){
+        $("a[href='#js-request-quote']").parent().remove();
+        let html = 'Access Denied';
+        $('#js-request-quote').html(html);
+    }
+}

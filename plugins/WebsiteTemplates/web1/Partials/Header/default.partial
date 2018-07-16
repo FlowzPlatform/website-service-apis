@@ -567,7 +567,7 @@ nav.navbar {
                                     class="dropdown-menu dropdown-menu-arrow user-dropdown">
                                         <li><a href="myaccount.html">MY ACCOUNT</a>
                                         </li>
-                                        <li><a href="changePassword.html">CHANGE PASSWORD</a>
+                                        <li><a class="js_change_password" href="changePassword.html">CHANGE PASSWORD</a>
                                         </li>
                                         <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
                                         </li>

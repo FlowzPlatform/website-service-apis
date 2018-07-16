@@ -32,10 +32,11 @@
         "shipping_estimator_key": "shippo_test_3be31f8493f2ad8630b07fdd688dc2324054d1bb",
         "carrier_account": {"ups":"17bd3f6701a44108b5487370fb93224d","fedex":"de32f747140c459f8b02dd6c0bfab0e8"},
         "request_quote_api_url": "https://api.flowzdigital.com/serverapi/request-quote",
-        "comment_request_url":"http://api.flowzdigital.com/serverapi/comment-request",
+        "comment_request_url":"https://api.flowzdigital.com/serverapi/comment-request",
         "crm_payment_url":"https://api.flowzdigital.com/crm/payment",
         "crm_invoice_url":"https://api.flowzdigital.com/crm/invoice",
         "format_date": "m/d/Y",
-        "taxcloud_url":"https://api.taxcloud.net/1.0/TaxCloud"
+        "taxcloud_url":"https://api.taxcloud.net/1.0/TaxCloud",
+        "website_configuration_api_url" : "https://api.flowzdigital.com/website-configuration"
       }
 }
