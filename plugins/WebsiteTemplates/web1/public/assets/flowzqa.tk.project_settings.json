@@ -25,7 +25,7 @@
         "project_configuration_api_url": "https://api.flowzqa.tk/serverapi/project-configuration",
         "myorders_api_url": "https://api.flowzqa.tk/serverapi/myOrders",
         "country_data": [{"id": 233,"name": "USA","short_name": "US"},{"id": 105,"name": "India","short_name": "IN"}],
-        "city_country_state_api":"http://api.flowzqa.tk/serverapi/city-state-country-list",
+        "city_country_state_api":"https://api.flowzqa.tk/serverapi/city-state-country-list",
         "color_table_api_url": "https://api.flowzqa.tk/serverapi/color-table",
         "color_swatch_filter_api": "https://api.flowzqa.tk/pdmnew/filters/",
         "shipping_estimator_api_url": "https://api.flowzqa.tk/serverapi/shipping-estimator",
@@ -36,6 +36,7 @@
         "crm_payment_url":"https://api.flowzqa.tk/crm/payment",
         "crm_invoice_url":"https://api.flowzqa.tk/crm/invoice",
         "format_date": "m/d/Y",
-        "taxcloud_url":"https://api.taxcloud.net/1.0/TaxCloud"
+        "taxcloud_url":"https://api.taxcloud.net/1.0/TaxCloud",
+        "website_configuration_api_url" : "https://api.flowzqa.tk/website-configuration"
       }
 }

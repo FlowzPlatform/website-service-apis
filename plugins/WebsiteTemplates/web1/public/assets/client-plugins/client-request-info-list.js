@@ -13,6 +13,14 @@ $(document).ready(function(){
 
 });
 
+if(websiteConfiguration.my_account.my_sent_inquiries.status == 0)
+{
+  let html = '<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"><div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">Access Denied</div></div>';
+
+  $(".ob-main-address-block").html(html);
+  $('.js-hide-div').removeClass("js-hide-div");
+}
+
 $(document).on("click", '.js-btn-comment-list', function(e){
     let RequestId = $(".js_add_html").find("#js-request_info_id").val()
     let message = $(".js_add_html").find("#js-comment_requestinfo").val()
@@ -218,7 +226,11 @@ function detailRequestQuote(thisObj){
         requestQuoteHtml = requestQuoteHtml.replace("#data.module#","request-quote")
 
         requestQuoteHtml = requestQuoteHtml.replace(/#data.id#/g,requestQuoteData.id)
-        requestQuoteHtml = requestQuoteHtml.replace("#data.productImage#",project_settings.product_api_image_url+productData.default_image)
+        let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+        if(productData.images != undefined){
+            productImage = productData.images[0].images[0].secure_url
+        }
+        requestQuoteHtml = requestQuoteHtml.replace("#data.productImage#",productImage)
         requestQuoteHtml = requestQuoteHtml.replace("#data.productName#",productData.product_name)
         requestQuoteHtml = requestQuoteHtml.replace("#data.sku#",productData.sku)
         requestQuoteHtml = requestQuoteHtml.replace("#data.product_link#",detailLink)
@@ -475,7 +487,11 @@ function detailRequestInfo(thisObj){
       requestInfoHtml = requestInfoHtml.replace(/#data.createAt#/g,formatDate(requestInfoData.createAt,project_settings.format_date))
       requestInfoHtml = requestInfoHtml.replace(/#data.infoId#/g,requestInfoData.id)
       requestInfoHtml = requestInfoHtml.replace(/#data.module#/g,"request-info")
-      requestInfoHtml = requestInfoHtml.replace("#data.productImage#",project_settings.product_api_image_url+productInfo.default_image)
+      let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+      if(productInfo.images != undefined){
+          productImage = productInfo.images[0].images[0].secure_url
+      }
+      requestInfoHtml = requestInfoHtml.replace("#data.productImage#",productImage)
       requestInfoHtml = requestInfoHtml.replace("#data.productName#",productInfo.product_name)
       requestInfoHtml = requestInfoHtml.replace("#data.productDescription#",productInfo.description)
       requestInfoHtml = requestInfoHtml.replace("#data.sku#",productInfo.sku)

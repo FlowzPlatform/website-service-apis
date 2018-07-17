@@ -72,7 +72,7 @@ function detailRequestQuote() {
           quantityHtml += "</table>";
 
           shippingHtml1 = shippingHtml1.replace("#data.color_quantity#",quantityHtml)
-          
+
           let replaceAddressHtml = await addressBookHtml(selected_address_id)
           shippingHtml1 = shippingHtml1.replace("#data.address_book#",replaceAddressHtml)
 
@@ -122,7 +122,7 @@ function detailRequestQuote() {
 
     var detailHtmlReplace = quoteDetailHtml.html();
     var detailHtmlReplace = detailHtmlReplace.replace("#data.product_link#",detailLink);
-    var detailHtmlReplace = detailHtmlReplace.replace("#data.imageUrl#", project_settings.product_api_image_url+productData.default_image);
+    var detailHtmlReplace = detailHtmlReplace.replace("#data.imageUrl#", productData.default_image.images[0].images[0].secure_url);
     var detailHtmlReplace = detailHtmlReplace.replace("#data.title#", productData.product_name);
     var detailHtmlReplace = detailHtmlReplace.replace("#data.itemCode#", productData.sku);
     var detailHtmlReplace = detailHtmlReplace.replace("#data.shippingCharge#", 0);

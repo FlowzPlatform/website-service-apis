@@ -3,6 +3,15 @@ if (user_id == null ) {
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
+  if(websiteConfiguration.my_account.my_order.status == 0)
+  {
+    let html = '<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"><div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">Access Denied</div></div>';
+
+    $(".ob-main-address-block").html(html);
+    $('.js-hide-div').removeClass("js-hide-div");
+    return false;
+  }
+
   $(".breadcrumb li:last-child").html('<strong> My Orders </strong>')
 
   if( admin_role_flag == 1 ){
@@ -101,8 +110,11 @@ function showOrders()
 
           // console.log('productData',productData)
           let imgSkuReplace = img_sku.replace('#data.sku#',productData.sku);
-
-          imgSkuReplace = imgSkuReplace.replace('#data.image#',project_settings.product_api_image_url+productData.default_image);
+          let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+          if(productData.images != undefined){
+              productImage = productData.images[0].images[0].secure_url
+          }
+          imgSkuReplace = imgSkuReplace.replace('#data.image#',productImage);
           // let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_details.product_id;
           // imgSkuReplace = imgSkuReplace.replace(/#data.product_link#/g,detailLink);
           imgSkuReplace = imgSkuReplace.replace('#data.title#',productData.product_name);
