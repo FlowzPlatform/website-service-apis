@@ -59,6 +59,7 @@ body {
                     <input class="ob-btvirtualloadcontent" id="c70827" type="button" />
                 </div>
             </li>
+            <li><a href="javascript:void(0);" id="download_image" ><i class="strip download-img-strip"></i>Download Image</a></li>
         </ul>
         <div class="clearfix"></div>
     </div>
@@ -67,3 +68,7 @@ body {
 <script type="text/javascript">
     stLight.options({publisher: "2c09b640-d455-4fbb-a9c9-1046dc187914", doNotHash: false, doNotCopy: false, hashAddressBar: false});
 </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+<script type="text/javascript" src="./assets/client-plugins/client-product-action.js"></script>
