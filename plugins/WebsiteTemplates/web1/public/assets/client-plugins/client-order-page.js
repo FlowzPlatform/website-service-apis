@@ -3,6 +3,15 @@ if (user_id == null ) {
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
+  if(websiteConfiguration.my_account.my_order.status == 0)
+  {
+    let html = '<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"><div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">Access Denied</div></div>';
+
+    $(".ob-main-address-block").html(html);
+    $('.js-hide-div').removeClass("js-hide-div");
+    return false;
+  }
+
   $(".breadcrumb li:last-child").html('<strong> My Orders </strong>')
 
   if( admin_role_flag == 1 ){
@@ -94,14 +103,18 @@ function showOrders()
         billingHtmlReplace = billingHtmlReplace.replace('#data.email#',user_billing_info.email);
 
         for (var product_key in response_data1.products) {
+          product_shipping_charges = 0.00;
           let product_details = response_data1.products[product_key]
 
           let productData = product_details.product_description;//await getProductDetailById(product_details.product_id)
 
           // console.log('productData',productData)
           let imgSkuReplace = img_sku.replace('#data.sku#',productData.sku);
-
-          imgSkuReplace = imgSkuReplace.replace('#data.image#',project_settings.product_api_image_url+productData.default_image);
+          let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+          if(productData.images != undefined){
+              productImage = productData.images[0].images[0].secure_url
+          }
+          imgSkuReplace = imgSkuReplace.replace('#data.image#',productImage);
           // let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_details.product_id;
           // imgSkuReplace = imgSkuReplace.replace(/#data.product_link#/g,detailLink);
           imgSkuReplace = imgSkuReplace.replace('#data.title#',productData.product_name);
@@ -131,7 +144,63 @@ function showOrders()
 
               imprintSectionHtml1 = imprintSectionHtml1.replace("#data.colours#",colorHtml)
 
-              imprintHtml += imprintSectionHtml1;
+
+
+              if(typeof imprint_info.artwork_type != "undefined" && typeof imprint_info.artwork != "undefined"){
+                    let artwork_type = imprint_info.artwork_type;
+                    let checkSendEmail = '';
+                    if(artwork_type == "upload_artwork_typeset"){
+                        if(typeof imprint_info.artwork.artwork_text_email != "undefined"){
+                          checkSendEmail = 'Art Work Via Email: <span>artwork@flowz.com</span>';
+                        }
+                    }
+                    else if(artwork_type == "upload_artwork"){
+                        if(typeof imprint_info.artwork.artwork_email != "undefined"){
+                          checkSendEmail = 'Art Work Via Email: <span>artwork@flowz.com</span>';
+                        }
+                    }
+
+                    if(checkSendEmail != ""){
+                      // imprintHtml += checkSendEmail;
+                    }
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.sendmail#",checkSendEmail)
+                    let thumbImg = '';
+
+                    if(typeof imprint_info.artwork.artwork_thumb != "undefined"){
+                        for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries()){
+                            let j = i+1;
+                            thumbImg += 'Uploaded Artwork '+j+': <img alt="" src="'+artwork_thumb+'" style="max-width:50px;max-height:50px;"><br><br>';
+                        }
+                    }
+                    // thumbImg += '</div>'
+
+                    if(thumbImg != ""){
+                      // imprintHtml += thumbImg;
+
+                    }
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.artwork#",thumbImg)
+
+                    let artText = '';
+
+                    if(typeof imprint_info.artwork.artwork_text != "undefined"){
+                      for (let [i,artwork_text] of imprint_info.artwork.artwork_text.entries()){
+                          let j = i+1;
+                          artText += 'Text '+j+' : <span> '+artwork_text+'</span><br>';
+                      }
+                    }
+
+                    if(typeof imprint_info.artwork.artwork_instruction != "undefined"){
+                      artText += 'Instructions :</span> <span> '+imprint_info.artwork.artwork_instruction+'</span><br>';
+                    }
+                    //imprintHtml += artText;
+                    imprintSectionHtml1 = imprintSectionHtml1.replace("#data.artwork_text#",artText)
+                }else{
+                  imprintSectionHtml1 = imprintSectionHtml1.replace("#data.sendmail#",'')
+                  imprintSectionHtml1 = imprintSectionHtml1.replace("#data.artwork#",'')
+                  imprintSectionHtml1 = imprintSectionHtml1.replace("#data.artwork_text#",'')
+                }
+
+                imprintHtml += imprintSectionHtml1;
             }
           }
 
@@ -144,13 +213,13 @@ function showOrders()
           {
             for(let charge_list in product_details.charges)
             {
-              additional_charges_list += capitalize(charge_list)+": $"+product_details.charges[charge_list];
+              additional_charges_list += capitalize(charge_list)+": <span>$"+product_details.charges[charge_list]+"</span>";
               charges = charges+parseFloat(product_details.charges[charge_list]);
             }
           }
-
-          imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
-          imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.charges#/g,charges.toFixed(project_settings.price_decimal));
+          if(additional_charges_list == "") imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.additional_charges_list#/g,'N/A');
+          else imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.additional_charges_list#/g,additional_charges_list);
+          imprintSectionHtmlReplace = imprintSectionHtmlReplace.replace(/#data.charges#/g,"$"+charges.toFixed(project_settings.price_decimal));
 
           if(typeof product_details.special_instruction != "undefined" && product_details.special_instruction != '')
           {
@@ -197,13 +266,19 @@ function showOrders()
 
               if(shipping_details.shipping_charge != "")
               {
-                var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,shipping_details.shipping_charge);
+                var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,"$"+shipping_details.shipping_charge);
 
                 product_shipping_charge_total = product_shipping_charge_total + parseFloat(shipping_details.shipping_charge);
                 product_shipping_charges = product_shipping_charges + parseFloat(shipping_details.shipping_charge);
               }
               else{
-                var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,"0.00");
+                var shippingHtml1 = shippingHtml1.replace(/#data.shipping_charges#/g,"$0.00");
+              }
+
+		// Tax
+
+              if (typeof product_details.taxcloud !== 'undefined') {
+                tax = product_details.taxcloud.tax_amount
               }
               //change
               // alert(product_shipping_charges)

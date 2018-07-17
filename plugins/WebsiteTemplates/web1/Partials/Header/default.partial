@@ -71,54 +71,6 @@ body {
     background-attachment: fixed;
 }
 
-#c47368 {
-    display: none;
-}
-
-#c99549 {
-    display: none;
-}
-
-#c4046 {
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: black;
-    border-right-color: black;
-    border-bottom-color: black;
-    border-left-color: black;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-}
-
-#c26340 {
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: black;
-    border-right-color: black;
-    border-bottom-color: black;
-    border-left-color: black;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-}
-
 #menu {
     color: rgb(238, 238, 238);
     height: 35px;
@@ -361,15 +313,6 @@ body {
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
-}
-
-.c574096 {
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    display: block;
-    min-height: 1px;
 }
 
 .dropdown-toggle::after {
@@ -624,7 +567,7 @@ nav.navbar {
                                     class="dropdown-menu dropdown-menu-arrow user-dropdown">
                                         <li><a href="myaccount.html">MY ACCOUNT</a>
                                         </li>
-                                        <li><a href="changePassword.html">CHANGE PASSWORD</a>
+                                        <li><a class="js_change_password" href="changePassword.html">CHANGE PASSWORD</a>
                                         </li>
                                         <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
                                         </li>
@@ -638,21 +581,19 @@ nav.navbar {
                 <div class="ob-logo-block">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"> <a href="index.html"><img src="http://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png"/></a>
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-right">
-                                <div class="support-col"> <a href="mailto:admin@flowz.com"> <i></i> <span>BOOK a CONSULT</span> <em>For Ideas and Help</em> </a>
-                                </div>
-                                <div class="call-text"> <i></i><span>604 589 5268</span><em>Call Us: Speak with a Rep!</em>
-                                </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"><a href="index.html"><img src="http://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png"/></a>
                             </div>
                         </div>
                         <div class="row header-search-col">
-                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="col-xs-12">
+                                <select id="main_filter" name="main_filter">
+                                    <option value="searchAll">SEARCH IN ALL</option>
+                                    <option value="categories">CATEGORY</option>
+                                    <option value="search_keyword">KEYWORD</option>
+                                    <option value="sku">ITEM CODE</option>
+                                </select>
                                 <input placeholder="Search Products Here" type="text" name="search" />
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <input class="btn-search" type="button" title="Click to search" value="Search"
+                                <input type="button" title="Click to search" value="Search" class="btn-search"
                                 />
                             </div>
                         </div>
@@ -670,21 +611,16 @@ nav.navbar {
         </div>
     </div>
 </div>
-<menucomponent>
-    <nav id="menu">
-        <navimenu class="c574096" menuid="ki">
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <div class="container">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navigationDiv">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"> <a class="nav-link" href="index.html" title="Home">Home</a>
-                            </li>
-                    </ul>
-                </div>
-                </div>
-            </nav>
-        </navimenu>
-    </nav>
-</menucomponent>
+<nav menuId="default" class="navbar navbar-expand-sm bg-dark navbar-dark customMenu">
+    <div class="container">
+        <button type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
+        class="navbar-toggler"> <span class="navbar-toggler-icon"></span> 
+        </button>
+        <div id="navigationDiv" class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"> <a href="index.html" class="nav-link" title="Home">Home</a> 
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -67,9 +67,30 @@ const banners = require('./banners/banners.service.js');
 
 const commentRequest = require('./comment-request/comment-request.service.js');
 
+const rethinkservicecheck = require('./rethinkservicecheck/rethinkservicecheck.service.js');
 
 
+const copyJobqueuePublishFiles = require('./copy-jobqueue-publish-files/copy-jobqueue-publish-files.service.js');
 const cloudinaryService = require('./cloudinary-service/cloudinary-service.service.js');
+
+
+const jobqueue = require('./jobqueue/jobqueue.service.js');
+
+
+const websiteConfiguration = require('./website-configuration/website-configuration.service.js');
+
+const tagCategory = require('./tag-category/tag-category.service.js');
+
+
+
+
+const tags = require('./tags/tags.service.js');
+
+
+
+
+const productTags = require('./product-tags/product-tags.service.js');
+
 
 
 
@@ -118,5 +139,12 @@ module.exports = function () {
   app.configure(bannertype);
   app.configure(banners);
   app.configure(commentRequest);
+  app.configure(copyJobqueuePublishFiles);
+  app.configure(rethinkservicecheck);
   app.configure(cloudinaryService);
+  app.configure(jobqueue);
+  app.configure(websiteConfiguration);
+  app.configure(tagCategory);
+  app.configure(tags);
+  app.configure(productTags);
 };

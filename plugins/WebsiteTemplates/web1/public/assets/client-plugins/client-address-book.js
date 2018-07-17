@@ -1,6 +1,14 @@
 if (user_id == null ) {
   window.location = 'login.html';
 }
+//wishlist
+if(websiteConfiguration.my_account.address_book.status == 0)
+{
+  let html = '<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"><div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">Access Denied</div></div>';
+
+  $(".ob-main-address-block").html(html);
+  $('.js-hide-div').removeClass("js-hide-div");
+}
 
 $(function() {
   $(".breadcrumb li:last-child").html('<strong>Address Book</strong>')

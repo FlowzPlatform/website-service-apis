@@ -5,6 +5,16 @@ if(user_id == null) {
   hidePageAjaxLoading()
 	window.location = "login.html";
 }
+
+document.addEventListener("DOMContentLoaded", function(event)
+{
+  if(websiteConfiguration.transaction.place_order.checkout.status == 0){
+    let html = 'Access Denied';
+    $('#shopping_cart').html(html);
+    return false;
+  }
+})
+
 $.ajax({
   type : 'GET',
   url : project_settings.shopping_api_url+'?user_id='+user_id+'&type=2&website_id='+website_settings['projectID'],
@@ -25,7 +35,11 @@ $.ajax({
           success: function (data) {
             rawData = data.hits.hits;
             productData = rawData;
-            productHtml.find(".js-checkout-image").attr('src',project_settings.product_api_image_url+productData[0]._source.default_image);
+            let ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+            if(productData[0]._source.images != undefined)  {
+                ProductImage = productData[0]._source.images[0].images[0].secure_url;
+            }
+            productHtml.find(".js-checkout-image").attr('src',ProductImage);
             productHtml.find(".js-checkout-product-name").html(productData[0]._source.product_name);
             if(typeof response_data[key].special_instruction != "undefined" && response_data[key].special_instruction!='')
             {
@@ -65,7 +79,14 @@ $.ajax({
             }
             // END - shipping charge
 
-            var total = parseFloat(response_data[key].total_qty)*parseFloat(response_data[key].unit_price)+charges+shipping_charges;
+            // Taxcloud
+            // console.log('Taxcloud', response_data[key])
+            let tax = 0.00;
+            if (response_data[key].hasOwnProperty('taxcloud')) {
+              tax = response_data[key].taxcloud.tax_amount
+            }
+
+            var total = parseFloat(response_data[key].total_qty)*parseFloat(response_data[key].unit_price)+charges+shipping_charges + tax ;
             total = total.toFixed(project_settings.price_decimal);
 
             productHtml.find(".js-checkout-product-total").html("$"+total);

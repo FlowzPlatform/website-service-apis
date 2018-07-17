@@ -33,6 +33,7 @@ body {
 #c360459 {
     width: 30%;
 }
+.product-quantity-list tbody tr td span{color: #404040;}
 </style>
 
 
@@ -48,12 +49,14 @@ body {
     </thead>
     <tbody>
         <tr>
-            <td class="border-right-none">#data.color_quantity#</td>
-            <td class="border-right-none">#data.address_book#</td>
-            <td><span>Shipping Carrier: </span> #data.shipping_carrier#
-                <br/><span>Method: </span> #data.shipping_method#
-                <br/><span>In Hand Date: </span> #data.on_hand_date#</td>
-            <td class="text-center">$#data.shipping_charges#</td>
+            <td class="estimate-detail border-right-none"><div class="estimate-tag-block"><div class="estimate-row">#data.color_quantity#</div></td>
+            <td class="estimate-detail border-right-none"><div class="estimate-tag-block"><div class="estimate-row"><span>#data.address_book#</span></div></div></td>
+            <td class="estimate-detail"><div class="estimate-tag-block">
+                <div class="estimate-row">
+                    Shipping Carrier: <span> #data.shipping_carrier#</span>
+                <br/>Method: <span> #data.shipping_method#</span>
+                <br/>In Hand Date: <span> #data.on_hand_date#</span></div></div></td>
+            <td class="estimate-detail text-center"><div class="estimate-tag-block"><div class="estimate-row"><span>#data.shipping_charges#</span></div></td>
         </tr>
     </tbody>
 

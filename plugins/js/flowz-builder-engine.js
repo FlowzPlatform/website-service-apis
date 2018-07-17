@@ -56,7 +56,7 @@ try {
             if (entity.type == 'file') {
               if (item[entity.name] != undefined || item[entity.name] != null) {
                 $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = []
-                var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(); 
+                var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html();
                 var template = Handlebars.compile(source);
                 // $panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')
                 console.log('item >>>>>>>>', item)
@@ -342,7 +342,7 @@ try {
               });
               let fileChooser = form.querySelector('[name="' + entity.name + '"]');
               console.log('fileChooser', fileChooser, fileChooser.files)
-             
+
               let filearr = []
               for(let f = 0; f < fileChooser.files.length; f++) {
                 let file = fileChooser.files[f];
@@ -352,7 +352,7 @@ try {
                   filearr.push(fileurl)
                 } else {
                   filearr.push('')
-                } 
+                }
               }
               if (data !== undefined &&  data[i] != undefined && data[i][entity.name] !== undefined && data[i][entity.name].length > 0) {
                 for (let j of data[i][entity.name]) {
@@ -591,7 +591,7 @@ try{
         });
     });
 
-    
+
 
     function makeUL(lst, topLevelUl, rootLvl) {
         var html = [];
@@ -939,7 +939,7 @@ try {
   });
 
   async function getProjectInfo() {
-      await $.getJSON( "./assets/project-details.json", function( data ) {  
+      await $.getJSON( "./assets/project-details.json", function( data ) {
           projectID = data[0].projectID;
           // baseURL = 'http://localhost:3032'
           // socketHost= 'http://localhost:4032'
@@ -951,7 +951,7 @@ try {
   }
 
   function S4() {
-      return (((1+Math.random())*0x10000)|0).toString(16).substring(1); 
+      return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
   }
 
   function getUUID() {
@@ -961,6 +961,9 @@ try {
 
 
   async function setBanners($form, data) {
+    if (!$('.widget-box-overlay').length) {
+      $('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
+    }
     // console.log('$form:: ', $form)
     for (let item of $form) {
       $(item).closest(".row").css({"display": "flex"});
@@ -1031,10 +1034,10 @@ try {
               bannerconfig.navigation = true
               bannerconfig.navigationText = ['prev', 'next']
               if (prebtn != undefined && prebtn != '') {
-                bannerconfig.navigationText[0] = prebtn 
+                bannerconfig.navigationText[0] = prebtn
               }
               if (nexbtn != undefined && nexbtn != '') {
-                bannerconfig.navigationText[1] = nexbtn 
+                bannerconfig.navigationText[1] = nexbtn
               }
             } else {
               bannerconfig.navigation = false
@@ -1045,17 +1048,18 @@ try {
             // console.log('bannerconfig', bannerconfig)
             $("#BannerSlider" + bid).owlCarousel(bannerconfig);
           }
-          
+
         }
       }
       // $(item).html(mSider)
     }
+    $('.widget-box-overlay').remove();
     // await startBanners()
   }
 
   // function getBannerConfigs(type, attr) {
 
-  // } 
+  // }
 
   function startBanners () {
     $(".owl-carousel1").owlCarousel({
@@ -1076,18 +1080,18 @@ try {
       slideSpeed : 300,
       paginationSpeed : 400,
       // navigationText: ['Prev', 'Next'],
-      items : 1, 
+      items : 1,
       itemsDesktop : false,
       itemsDesktopSmall : false,
       itemsTablet: false,
       itemsMobile : false
-    });  
+    });
   }
 
   async function getBanners (id) {
     if (baseURL != '') {
       let bannerUrl = baseURL + '/banners?userId='+userID+'&banner_type=' + id + '&banner_status=true&$paginate=false';
-     
+
       let resp = await $.getJSON( bannerUrl ).then(res => {
         // console.log('res', res)
         return res
@@ -1161,11 +1165,11 @@ try {
               } else {
                 mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="'+ slide.linkurl_target +'"> <img  class="img-responsive" src="'+ slide.banner_img +'" alt="'+ slide.banner_name +'" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
               }
-            } 
+            }
             mSider += '</div></div>'
           }
         }
-      
+
       }
     }
     for (let item of $sform) {
@@ -1241,7 +1245,7 @@ try {
     }
 
   }
-} 
+}
 catch (err) {
   console.log('Error in CustomSliderComponent Module: ', err)
 }
