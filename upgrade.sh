@@ -17,6 +17,15 @@ then
     RANCHER_ACCESSKEY="$RANCHER_ACCESSKEY_MASTER";
     RANCHER_SECRETKEY="$RANCHER_SECRETKEY_MASTER";
     RANCHER_URL="$RANCHER_URL_MASTER";
+    SERVICE_NAME="$SERVICE_NAME_MASTER";
+    BACKEND_HOST="$BACKEND_HOST_MASTER";
+    RDB_HOST="$RDB_HOST_MASTER";
+    RDB_PORT="$RDB_PORT_MASTER";
+    PORT1="$PORT1_MASTER";
+    PORT2="$PORT2_MASTER";
+    PORT3="$PORT3_MASTER";
+    PORT4="$PORT4_MASTER";
+    DATAVOLUMES="$DATAVOLUMES_MASTER";
   }
 elif [ "$TRAVIS_BRANCH" = "develop" ]
 then
@@ -37,6 +46,15 @@ then
       RANCHER_ACCESSKEY="$RANCHER_ACCESSKEY_DEVELOP";
       RANCHER_SECRETKEY="$RANCHER_SECRETKEY_DEVELOP";
       RANCHER_URL="$RANCHER_URL_DEVELOP";
+      SERVICE_NAME="$SERVICE_NAME_DEVELOP";
+      BACKEND_HOST="$BACKEND_HOST_DEVELOP";
+      RDB_HOST="$RDB_HOST_DEVELOP";
+      RDB_PORT="$RDB_PORT_DEVELOP";
+      PORT1="$PORT1_DEVELOP";
+      PORT2="$PORT2_DEVELOP";
+      PORT3="$PORT3_DEVELOP";
+      PORT4="$PORT4_DEVELOP";
+      DATAVOLUMES="$DATAVOLUMES_DEVELOP";
   }
 elif [ "$TRAVIS_BRANCH" = "staging" ]
 then
@@ -57,11 +75,20 @@ then
       RANCHER_ACCESSKEY="$RANCHER_ACCESSKEY_STAGING";
       RANCHER_SECRETKEY="$RANCHER_SECRETKEY_STAGING";
       RANCHER_URL="$RANCHER_URL_STAGING";
+      SERVICE_NAME="$SERVICE_NAME_STAGING";
+      BACKEND_HOST="$BACKEND_HOST_STAGING";
+      RDB_HOST="$RDB_HOST_STAGING";
+      RDB_PORT="$RDB_PORT_STAGING";
+      PORT1="$PORT1_STAGING";
+      PORT2="$PORT2_STAGING";
+      PORT3="$PORT3_STAGING";
+      PORT4="$PORT4_STAGING";
+      DATAVOLUMES="$DATAVOLUMES_STAGING";
   }  
 else
   {
       echo "call $TRAVIS_BRANCH branch"
-      ENV_ID=`curl -u ""$RANCHER_ACCESSKEY_QA":"$RANCHER_SECRETKEY_QA"" -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' "$RANCHER_URL_QA/v2-beta/projects?name=QA" | jq '.data[].id' | tr -d '"'`
+      ENV_ID=`curl -u ""$RANCHER_ACCESSKEY_QA":"$RANCHER_SECRETKEY_QA"" -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' "$RANCHER_URL_QA/v2-beta/projects?name=Develop" | jq '.data[].id' | tr -d '"'`
       echo $ENV_ID
       USERNAME="$DOCKER_USERNAME";
       TAG="qa";
@@ -76,10 +103,19 @@ else
       RANCHER_ACCESSKEY="$RANCHER_ACCESSKEY_QA";
       RANCHER_SECRETKEY="$RANCHER_SECRETKEY_QA";
       RANCHER_URL="$RANCHER_URL_QA";
+      SERVICE_NAME="$SERVICE_NAME_QA";
+      BACKEND_HOST="$BACKEND_HOST_QA";
+      RDB_HOST="$RDB_HOST_QA";
+      RDB_PORT="$RDB_PORT_QA";
+      PORT1="$PORT1_QA";
+      PORT2="$PORT2_QA";
+      PORT3="$PORT3_QA";
+      PORT4="$PORT4_QA";
+      DATAVOLUMES="$DATAVOLUMES_QA";
   }
 fi
 
-SERVICE_ID=`curl -u ""$RANCHER_ACCESSKEY":"$RANCHER_SECRETKEY"" -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' "$RANCHER_URL/v2-beta/projects/$ENV_ID/services?name=service-api-backend-flowz" | jq '.data[].id' | tr -d '"'`
+SERVICE_ID=`curl -u ""$RANCHER_ACCESSKEY":"$RANCHER_SECRETKEY"" -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' "$RANCHER_URL/v2-beta/projects/$ENV_ID/services?name=$SERVICE_NAME" | jq '.data[].id' | tr -d '"'`
 echo $SERVICE_ID
 
 curl -u ""$RANCHER_ACCESSKEY":"$RANCHER_SECRETKEY"" \
@@ -87,5 +123,5 @@ curl -u ""$RANCHER_ACCESSKEY":"$RANCHER_SECRETKEY"" \
 -H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
 -d '{
-     "inServiceStrategy":{"launchConfig": {"imageUuid":"docker:'$USERNAME'/flowz_service_api_backend_flowz:'$TAG'","kind": "container","labels":{"io.rancher.container.pull_image": "always","io.rancher.scheduler.affinity:host_label": "machine=webbuilder-root"},"ports": ["3032:3032/tcp","4032:4032/tcp","80:80/tcp","443:443/tcp"],"dataVolumes": ["/data:/var/www/html/websites"],"environment": {"RDB_HOST": "'"$RDB_HOST"'","RDB_PORT": "'"$RDB_PORT"'","REGISTER_URL":"'"$REGISTER_URL"'","EMAIL_URL":"'"$EMAIL_URL"'","domainKey": "'"$DOMAINKEY"'","dnsServer1": "'"$DNSSERVER1"'","dnsServer2": "'"$DNSSERVER2"'","webrootServer": "'"$WEBROOTSERVER"'","serverARecord": "'"$SERVERARECORD"'","MONGODB": "'"$MONGODB"'"},"healthCheck": {"type": "instanceHealthCheck","healthyThreshold": 2,"initializingTimeout": 60000,"interval": 2000,"name": null,"port": 3032,"recreateOnQuorumStrategyConfig": {"type": "recreateOnQuorumStrategyConfig","quorum": 1},"reinitializingTimeout": 60000,"responseTimeout": 60000,"strategy": "recreateOnQuorum","unhealthyThreshold": 3},"networkMode": "managed"}},"toServiceStrategy":null}' \
+     "inServiceStrategy":{"launchConfig": {"imageUuid":"docker:'$USERNAME'/flowz_service_api_backend_flowz:'$TAG'","kind": "container","labels":{"io.rancher.container.pull_image": "always","io.rancher.scheduler.affinity:host_label": "'"$BACKEND_HOST"'"},"ports": ["'"$PORT1"'","'"$PORT2"'","'"$PORT3"'","'"$PORT4"'"],"volumeDriver": "rancher-nfs","dataVolumes": ["'"$DATAVOLUMES"'"],"environment": {"RDB_HOST": "'"$RDB_HOST"'","RDB_PORT": "'"$RDB_PORT"'","REGISTER_URL":"'"$REGISTER_URL"'","EMAIL_URL":"'"$EMAIL_URL"'","domainKey": "'"$DOMAINKEY"'","dnsServer1": "'"$DNSSERVER1"'","dnsServer2": "'"$DNSSERVER2"'","webrootServer": "'"$WEBROOTSERVER"'","serverARecord": "'"$SERVERARECORD"'","MONGODB": "'"$MONGODB"'"},"healthCheck": {"type": "instanceHealthCheck","healthyThreshold": 2,"initializingTimeout": 60000,"interval": 2000,"name": null,"port": 3032,"recreateOnQuorumStrategyConfig": {"type": "recreateOnQuorumStrategyConfig","quorum": 1},"reinitializingTimeout": 60000,"responseTimeout": 60000,"strategy": "recreateOnQuorum","unhealthyThreshold": 3},"networkMode": "managed"}},"toServiceStrategy":null}' \
 $RANCHER_URL/v2-beta/projects/$ENV_ID/services/$SERVICE_ID?action=upgrade

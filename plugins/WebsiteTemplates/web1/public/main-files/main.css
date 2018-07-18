@@ -20,3 +20,8 @@
 .radio.js-isoffice {padding-left: 7px;}
 .js_summary_imprint_location {padding: 15px 0;}
 .innerpage.row{min-height: 670px !important;display: inline-block;}
+.wishlist-view-tab.view-product {float: right;padding-bottom: 10px;}
+.header-search-col #main_filter { width: 124px; border: solid 0px #ccc; line-height: 24px; display: inline; background-color: #e4e4e4; float: left; height: 39px; }
+.header-search-col #main_filter + input[type="text"] { width: 206px; display: inline; float: left; line-height: 24px; font-size: 16px; }
+.header-search-col .btn-search { display: inline; float: left; }
+.row.header-search-col { width:500px;}

@@ -40,11 +40,11 @@ body {
                 <h4 class="panel-title"><span class="profile-pic hide"><img class="list_img img-responsive" alt="profile-pic"/></span><span class="fullname-word"></span><i class="fa fa-tachometer"></i></h4>
             </div>
             <ul>
-                <li><a class="ui-link active" href="myaccount.html"><i class="fa fa-user"></i>My Account Info</a>
+                <li><a class="ui-link active js_my_account_info" href="myaccount.html"><i class="fa fa-user"></i>My Account Info</a>
                 </li>
-                <li><a class="ui-link" href="addressBookList.html"><i class="fa fa-edit"></i>Address Book</a>
+                <li><a class="ui-link js_address_book" href="addressBookList.html"><i class="fa fa-edit"></i>Address Book</a>
                 </li>
-                <li><a class="ui-link" href="changePassword.html"><i class="fa fa-lock"></i>Change Password</a>
+                <li><a class="ui-link js_change_password" href="changePassword.html"><i class="fa fa-lock"></i>Change Password</a>
                 </li>
                 <li><a class="ui-link js_my_order" href="myOrderList.html"><i class="fa fa-file-text"></i>My Orders</a>
                 </li>

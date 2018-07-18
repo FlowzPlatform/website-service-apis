@@ -1,0 +1,62 @@
+<div class="footer-wrapper">
+        <div id="footer" class="footer-1">
+            <div class="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <aside id="contact-info-widget-2" class="widget-odd widget-last widget-first widget-1 widget contact-info">
+                                <h3 class="widget-title">Contact Us</h3>
+                                <div class="contact-info">
+                                    <ul class="contact-details">
+                                        <li><i class="fa fa-map-marker"></i><strong>Address:</strong><span><br>Office Beacon LLC <br>1240 Rosecrans Avenue<br>Manhattan Beach, California<br>USA 90266</span>
+                                        </li>
+                                        <li><i class="fa fa-phone"></i><strong>Phone:</strong><span>(310) 294-9901</span>
+                                        </li>
+                                        <li><i class="fa fa-envelope"></i><strong>Email:</strong><span><a href="mailto:sales@officebeacon.com">sales@officebeacon.com</a></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-lg-4">
+                            <aside id="follow-us-widget-2" class="widget-odd widget-last widget-first widget-1 widget follow-us">
+                                <h3 class="widget-title">Follow Us</h3>
+                                <div class="share-links disable-br"> <a href="https://www.facebook.com/officebeacon" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" class="share-facebook" data-original-title="Facebook">Facebook</a>
+                                    <a href="https://www.youtube.com/channel/UCw78cRnjcDvwstzmVa5-18Q" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" class="share-youtube" data-original-title="Youtube">Youtube</a><a href="https://www.linkedin.com/company/officebeacon" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" class="share-linkedin" data-original-title="Linkedin">Linkedin</a>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-lg-3">
+                            <aside id="nav_menu-3" class="widget-odd widget-last widget-first widget-1 footer_linkrs widget widget_nav_menu">
+                                <div class="menu-useful_link-container">
+                                    <ul id="menu-useful_link" class="menu">
+                                        <li id="menu-item-7375" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7375"><a href="https://www.officebeacon.com/services/">Services</a>
+                                        </li>
+                                        <li id="menu-item-7373" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7373"><a href="https://www.officebeacon.com/pricing/">Pricing</a>
+                                        </li>
+                                        <li id="menu-item-7377" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7377"><a href="https://www.officebeacon.com/testimonials/">Testimonials</a>
+                                        </li>
+                                        <li id="menu-item-7371" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7371"><a href="https://www.officebeacon.com/about-us/">About Us</a>
+                                        </li>
+                                        <li id="menu-item-7542" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7542"><a href="https://www.officebeacon.com/blog/">Blog</a>
+                                        </li>
+                                        <li id="menu-item-7372" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7372"><a href="https://www.officebeacon.com/careers/">Careers</a>
+                                        </li>
+                                        <li id="menu-item-7376" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7376"><a href="https://www.officebeacon.com/terms-of-service/">Terms of Service</a>
+                                        </li>
+                                        <li id="menu-item-7374" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7374"><a href="https://www.officebeacon.com/privacy-policy/">Privacy Policy</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="footer-center">Â© 2018 Office Beacon LLC. All Rights Reserved.</div>
+                </div>
+            </div>
+        </div>
+    </div>

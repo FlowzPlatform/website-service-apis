@@ -1,0 +1,97 @@
+<div class="header-wrapper clearfix">
+            <header id="header" class="header-corporate header-15 search-sm">
+               <div class="header-top">
+                  <div class="container">
+                     <div class="header-left">
+                        <div class="block-inline">
+                           <div class="header-contact"><a href="mailto:sales@officebeacon.com" itemprop="url"> SALES@OFFICEBEACON.COM</a></div>
+                        </div>
+                     </div>
+                     <div class="header-right"> <span class="welcome-msg"><a href ="https://try.officebeacon.com/web"><button class="btn btn-primary tp_demo_button">FREE DEMO</button></a><a href="https://app.officebeacon.com/ecomm/cregistration1.aspx"><button class="btn btn-primary tp_login_button">Login</button></a> </span></div>
+                  </div>
+               </div>
+               <div class="header-main">
+                  <div class="container">
+                     <div class="header-left">
+                        <h1 class="logo"> <a href="https://www.officebeacon.com/" title="Office Beacon - Phenomenal Outsourcing" rel="home"> <img class="img-responsive standard-logo" width="450" height="41" src="https://wwwofficebeaconcom-sk8womufkzae.stackpathdns.com/wp-content/uploads/2018/01/cropped-OB_logo_2016-color-white-text_2.png" alt="Office Beacon" /><img class="img-responsive retina-logo" width="450" height="41" src="https://wwwofficebeaconcom-sk8womufkzae.stackpathdns.com/wp-content/uploads/2018/01/cropped-OB_logo_2016-color-white-text_2.png" alt="Office Beacon" style="display:none;" /> </a></h1>
+                     </div>
+                     <div class="header-right">
+                        <div id="main-menu" class="show-header-top">
+                           <ul id="menu-header-nav" class="main-menu mega-menu show-arrow effect-down subeffect-fadein-left">
+                              <li id="nav-menu-item-5814" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="https://www.officebeacon.com/pricing/" class="">Pricing</a></li>
+                              <li id="nav-menu-item-7170" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="https://www.officebeacon.com/testimonials/" class="">Testimonials</a></li>
+                              <li id="nav-menu-item-5813" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="https://www.officebeacon.com/about-us/" class="">About Us</a></li>
+                              <li id="nav-menu-item-7534" class="menu-item menu-item-type-post_type menu-item-object-page  narrow "><a href="https://www.officebeacon.com/blog/" class="">Blog</a></li>
+                           </ul>
+                        </div>
+                        <a class="mobile-toggle"><i class="fa fa-reorder"></i></a>
+                     </div>
+                  </div>
+                  <div id="nav-panel" class="panel-right">
+                     <div class="container">
+                        <div class="mobile-nav-wrap">
+                           <div class="menu-wrap">
+                              <ul id="menu-header-nav-1" class="mobile-menu accordion-menu">
+                                 <li id="accordion-menu-item-5814" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.officebeacon.com/pricing/" rel="nofollow" class="">Pricing</a></li>
+                                 <li id="accordion-menu-item-7170" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.officebeacon.com/testimonials/" rel="nofollow" class="">Testimonials</a></li>
+                                 <li id="accordion-menu-item-5813" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.officebeacon.com/about-us/" rel="nofollow" class="">About Us</a></li>
+                                 <li id="accordion-menu-item-7534" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.officebeacon.com/blog/" rel="nofollow" class="">Blog</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </header>
+         </div>
+
+
+<style>
+         #ixjhn6n {
+    font-size: 46px !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+}
+#i2o38ou {
+    font-size: 46px !important;
+    font-weight: 600 !important;
+}
+#header .header-top .container, #header .header-main .container{margin-top: 0px !important;}
+#main .container {
+    margin-top: 0px;
+    margin-bottom: 0px;}
+
+.vc_general.vc_btn3 {
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    background-color: transparent;
+    color: #5472D2;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    top: 0;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    line-height: normal;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    font-size: 14px !important;
+    padding: 14px 20px !important;
+    font-size: 17px !important;
+    background: #FFF !important;
+    color: #2da1c2 !important;
+}
+.header-wrapper #header .header-main .container .header-left {
+    padding: 30px 0 !important;
+}
+</style>

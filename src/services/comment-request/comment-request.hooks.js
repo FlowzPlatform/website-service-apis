@@ -57,16 +57,24 @@ module.exports = {
 
 async function beforeCreateComment(hook){
   let res = await validateUser(hook);
+  // console.log("res",res);
   // res = JSON.parse(res);
   if(res.code == 401){
     throw new errors.NotAuthenticated('Invalid token');
   }else{
     let created_by1 = '';
-      if(res.data.data.firstname !== undefined && res.data.data.lastname !== undefined){
-        created_by1 = res.data.data.firstname+res.data.data.lastname
-      }else{
-        created_by1 = res.data.data.email
-      }
+    if(res.data.data.fullname !== undefined){
+      created_by1 = res.data.data.fullname
+    }
+    else if(res.data.data.lastname !== undefined){
+      created_by1 = res.data.data.firstname+res.data.data.lastname
+    }
+    else if(res.data.data.firstname != undefined && res.data.data.lastname == undefined){
+      created_by1 = res.data.data.firstname
+    }
+    else{
+      created_by1 = res.data.data.email
+    }
     let response = await alreadyAvailable(hook , res)
     if(response.length >0){
       messageObj = {
@@ -79,7 +87,7 @@ async function beforeCreateComment(hook){
         return resp
       }).catch(errr => {
         return errr
-      }) 
+      })
 
       hook.result = res1
       // hook.data = res1
@@ -136,7 +144,7 @@ function alreadyAvailable(hook , res) {
     r.table('comment_request')
     .filter({RequestId : hook.data.RequestId , Module:hook.data.Module}).run(connection , function(error , cursor){
       if(error){
-      }else{      
+      }else{
         cursor.toArray(function(err, results) {
           resolve(results)
       });
@@ -144,4 +152,4 @@ function alreadyAvailable(hook , res) {
     })
   })
 
-} 
+}

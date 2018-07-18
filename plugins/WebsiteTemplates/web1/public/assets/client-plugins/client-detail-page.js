@@ -1,5 +1,56 @@
 var pid = getParameterByName('pid');
 var cid = getParameterByName('cid');
+// verifyAddress(sd);
+// console.log('taxcloud_url', project_settings.taxcloud_url)
+
+
+let verifyAddress = function (ADD, codes) {
+  if (typeof TaxCloud != 'undefined' && TaxCloud.apiKey != '' && TaxCloud.apiId != '') {
+    let taxid = TaxCloud.apiId;
+    let taxkey = TaxCloud.apiKey;
+    if (codes.countrycode != 'US') {
+      console.log('Not US FOUND')
+      // flag = true;
+      return true;
+    } else {
+      let flag = false;
+      let add = {
+        Zip4:"0000",
+        Zip5: ADD.zip,
+        State: codes.statecode,
+        City: "",
+        Address2:"",
+        Address1: ADD.street1,
+        apiLoginID: taxid, 
+        apiKey: taxkey
+      };
+      $.ajax({
+            type: 'POST',
+            url: project_settings.taxcloud_url+ '/VerifyAddress',
+            async: false,
+            dataType: 'json',
+            data: add, 
+            success: function (data) {
+                console.log('Dataa:: ', data)
+                if (data.ErrNumber == '0') {
+                  flag = true;
+                } else {
+                  flag = false;
+                }
+            },
+            error: function(xhr, status, error) {
+              var err = eval("(" + xhr.responseText + ")");
+              flag = false;   
+            },
+        });
+      return flag;
+    }
+  } else {
+    return true
+  }
+  
+};
+
 
 if(pid != null) {
   var get_product_details = function () {
@@ -92,7 +143,15 @@ $(document).ready( async function(){
                   var productDetails = get_product_details;
                   // console.log("productDetails==>>",productDetails);
                 	ProductName = productDetails.product_name;
-                	ProductImage = productDetails.default_image;
+                  // console.log("productDetails.images[0]",productDetails.images[0]);
+                  ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                  if(productDetails.images != undefined)  {
+                      ProductImage = productDetails.images[0].images[0].secure_url;//productDetails.default_image;
+                  }else {
+                    $("#download_image").parent('li').remove()
+                  }
+
+                  // console.log("ProductImage",ProductImage);
                   ProductSku = productDetails.sku;
                   hasImprintData = productDetails.imprint_data;
 
@@ -106,7 +165,7 @@ $(document).ready( async function(){
                   // console.log(titleAndSkuHtml);
                   // productHtml += listHtml1;
                   $('#title .row').html(titleAndSkuHtml);
-                  let productImageUrl = project_settings.product_api_image_url+ProductImage;
+                  let productImageUrl = ProductImage;
                   $('#product_img').attr("src",productImageUrl)
                   $('#product_img').data("zoom-image",productImageUrl)
                   $('#product_img').data("orig-img",productImageUrl)
@@ -114,20 +173,22 @@ $(document).ready( async function(){
 
                   // Add Variation Images
                   let imageGallaryHtml = '';
-                  imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_default_link" data-zoom-image="'+productImageUrl+'">';
-                  imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
+
                   // console.log("imageGallaryHtml",imageGallaryHtml);
     		          if(productDetails.images != undefined){
     		            // $.each(productDetails.images[0].images, function(index, element) {
                        for (let element of productDetails.images[0].images) {
-    		              // var imageUrl = project_settings.product_api_image_url+productDetails.supplier_id+'/'+element.web_image;
-                          let imageUrl = project_settings.product_api_image_url+project_settings.supplier_id+'/'+element.web_image;
+                          // let imageUrl = project_settings.product_api_image_url+project_settings.supplier_id+'/'+element.web_image;
+                          let imageUrl = element.secure_url;
     		                  let color = element.color;
                           color = color.toLowerCase().replace(/\s/g, '-');
                           imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
                           imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+'" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
-    		            }
-    		          }
+    		               }
+    		          }else{
+                    imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_default_link" data-zoom-image="'+productImageUrl+'">';
+                    imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
+                  }
 
                 $(".js-image-gallery").html(imageGallaryHtml);
 
@@ -531,12 +592,15 @@ $(document).ready( async function(){
                                         }
                                         else if(artwork_type == "upload_artwork")
                                         {
-                                            if(typeof imprint_info.artwork.artwork_email != "undefined")
+                                            if(typeof imprint_info.artwork != "undefined")
                                             {
-                                                checkSendEmail = "#logo_email_"+print_pos_id;
-                                            }
-                                            else{
-                                                checkSendEmail = "#logo_image_"+print_pos_id;
+                                                if(typeof imprint_info.artwork.artwork_email != "undefined")
+                                                {
+                                                    checkSendEmail = "#logo_email_"+print_pos_id;
+                                                }
+                                                else{
+                                                    checkSendEmail = "#logo_image_"+print_pos_id;
+                                                }
                                             }
                                         }
 
@@ -545,95 +609,101 @@ $(document).ready( async function(){
                                             $(activetab).find(checkSendEmail).click();
                                         }
                                         
-                                        if(typeof imprint_info.artwork.artwork_text != "undefined")
+                                        if(typeof imprint_info.artwork != "undefined")
                                         {
-                                            for (let [i,artwork_text] of imprint_info.artwork.artwork_text.entries())
+                                            if(typeof imprint_info.artwork.artwork_text != "undefined")
                                             {
-                                                let j = i+1;
-                                                // console.log('artwork_text',artwork_text)
+                                                for (let [i,artwork_text] of imprint_info.artwork.artwork_text.entries())
+                                                {
+                                                    let j = i+1;
+                                                    // console.log('artwork_text',artwork_text)
 
-                                                let inputTextVal = '';
-                                                let addClick = '';
-                                                
+                                                    let inputTextVal = '';
+                                                    let addClick = '';
+                                                    
 
-                                                if(artwork_type == "typeset")
-                                                {
-                                                    inputTextVal = "#text_is_text_"+print_pos_id+"_"+j;
-                                                    addClick =  "#is_text_add_"+print_pos_id;
-                                                }
-                                                else if(artwork_type == "upload_artwork_typeset")
-                                                {
-                                                    inputTextVal = "input[data-id='text_is_logo_text_text_"+print_pos_id+"_"+j+"']";//"#text_is_text_"+print_pos_id+"_"+j;
-                                                    addClick =  "#is_logo_text_text_add_"+print_pos_id;
-                                                }
-
-                                                if(inputTextVal != "")
-                                                {
-                                                    $(activetab).find(inputTextVal).val(artwork_text);
-                                                }
-                                                
-                                                if(j>1)
-                                                {
-                                                    if(addClick != "")
+                                                    if(artwork_type == "typeset")
                                                     {
-                                                        $(activetab).find(addClick).click();
+                                                        inputTextVal = "#text_is_text_"+print_pos_id+"_"+j;
+                                                        addClick =  "#is_text_add_"+print_pos_id;
+                                                    }
+                                                    else if(artwork_type == "upload_artwork_typeset")
+                                                    {
+                                                        inputTextVal = "input[data-id='text_is_logo_text_text_"+print_pos_id+"_"+j+"']";//"#text_is_text_"+print_pos_id+"_"+j;
+                                                        addClick =  "#is_logo_text_text_add_"+print_pos_id;
                                                     }
 
                                                     if(inputTextVal != "")
                                                     {
                                                         $(activetab).find(inputTextVal).val(artwork_text);
                                                     }
+                                                    
+                                                    if(j>1)
+                                                    {
+                                                        if(addClick != "")
+                                                        {
+                                                            $(activetab).find(addClick).click();
+                                                        }
+
+                                                        if(inputTextVal != "")
+                                                        {
+                                                            $(activetab).find(inputTextVal).val(artwork_text);
+                                                        }
+                                                    }
+
+                                                    //summary for upload artwork
+                                                    $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j+' span').text(artwork_text);
+                                                    $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j).removeClass('hide');
                                                 }
-
-                                                //summary for upload artwork
-                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j+' span').text(artwork_text);
-                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_text_'+j).removeClass('hide');
                                             }
-                                        }
 
-                                        if(typeof imprint_info.artwork.artwork_thumb != "undefined")
-                                        {
-                                            for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries())
+                                            if(typeof imprint_info.artwork.artwork_thumb != "undefined")
                                             {
-                                                let j = i+1;
-                                                let thumbImg = '';
-                                                let addClick = '';
-                                                let actualImg = '';
-
-                                                if(artwork_type == "upload_artwork")
+                                                for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries())
                                                 {
-                                                    addClick =  "#is_logo_add_"+print_pos_id;   
-                                                    thumbImg = "#logo_show_"+print_pos_id+"_"+j;
-                                                    actualImg = "#logo_save_"+print_pos_id+"_"+j;
-                                                }
-                                                else if(artwork_type == "upload_artwork_typeset")
-                                                {
-                                                    addClick =  "#is_logo_text_add_"+print_pos_id;   
-                                                    thumbImg = "#logo_type_show_"+print_pos_id+"_"+j;
-                                                    actualImg = "#logo_type_save_"+print_pos_id+"_"+j;
-                                                }
+                                                    let j = i+1;
+                                                    let thumbImg = '';
+                                                    let addClick = '';
+                                                    let actualImg = '';
 
-                                                $(activetab).find(thumbImg).attr("src",artwork_thumb);
-                                                $(activetab).find(thumbImg).removeClass("hide");
-                                                $(activetab).find(actualImg).val(imprint_info.artwork.artwork_image[i]);
-                                                
-                                                if(j>1)
-                                                {
-                                                    $(activetab).find(addClick).click();
-                                                }
+                                                    if(artwork_type == "upload_artwork")
+                                                    {
+                                                        addClick =  "#is_logo_add_"+print_pos_id;   
+                                                        thumbImg = "#logo_show_"+print_pos_id+"_"+j;
+                                                        actualImg = "#logo_save_"+print_pos_id+"_"+j;
+                                                    }
+                                                    else if(artwork_type == "upload_artwork_typeset")
+                                                    {
+                                                        addClick =  "#is_logo_text_add_"+print_pos_id;   
+                                                        thumbImg = "#logo_type_show_"+print_pos_id+"_"+j;
+                                                        actualImg = "#logo_type_save_"+print_pos_id+"_"+j;
+                                                    }
 
-                                                //summary for upload artwork
-                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j+' span img').attr("src",artwork_thumb);
-                                                $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j).removeClass('hide');
+                                                    $(activetab).find(thumbImg).attr("src",artwork_thumb);
+                                                    $(activetab).find(thumbImg).removeClass("hide");
+                                                    $(activetab).find(actualImg).val(imprint_info.artwork.artwork_image[i]);
+                                                    
+                                                    if(j>1)
+                                                    {
+                                                        $(activetab).find(addClick).click();
+                                                    }
+
+                                                    //summary for upload artwork
+                                                    $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j+' span img').attr("src",artwork_thumb);
+                                                    $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_logo_'+j).removeClass('hide');
+                                                }
                                             }
+
+                                            $(selectedType).find("div[data-type='"+artwork_type+"']").find(".js_artwork_instructions_text").val(imprint_info.artwork.artwork_instruction);
+
+                                            //summary for upload artwork
+                                            $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_textarea span').text(imprint_info.artwork.artwork_instruction);
                                         }
-
-                                        $(selectedType).find("div[data-type='"+artwork_type+"']").find(".js_artwork_instructions_text").val(imprint_info.artwork.artwork_instruction);
-
-                                        //summary for upload artwork
-                                        $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_textarea span').text(imprint_info.artwork.artwork_instruction);
                                         $('.js_summary_artwork_'+print_pos_id+'_'+artwork_type).find('.js_sum_art_textarea').removeClass('hide');
                                     }
+                                }
+                                if(websiteConfiguration.transaction.place_order.print_position.artwork.status == 0 && activetab != "#js-request-quote"){
+                                    $(activetab).find('.art-pos-value').parent().remove();
                                 }
                             }
 
@@ -756,7 +826,61 @@ $(document).ready( async function(){
                     })
                 }
                 // END - Edit Cart Product
+                if (user_id != null ) {
+                    if(websiteConfiguration.transaction.place_order.registered_user.status == 0){
+                        let html = 'Access Denied';
+                        $('#js-place-order').html(html);
+                    }
+                }
+                else{
+                    if(websiteConfiguration.transaction.place_order.guest_user.status == 0){
+                        let html = 'Access Denied';
+                        $('#js-place-order').html(html);
+                    }
+                }
 
+                if(websiteConfiguration.transaction.place_order.shipping.standard_shipping.status == 0 && activetab != "#js-request-quote"){
+                    $(activetab).find("input[name='request_quote_shipping_type'][value='standard']").parent().remove();
+                }
+
+                if(websiteConfiguration.transaction.place_order.shipping.split_shipping.status == 0 && activetab != "#js-request-quote"){
+                    $(activetab).find("input[name='request_quote_shipping_type'][value='split']").parent().remove();
+                }
+                
+                if(websiteConfiguration.transaction.place_order.product_summary.status == 0 && activetab != "#js-request-quote")
+                {
+                    $("#js-product-summary-container").addClass('hide');
+                }
+                
+
+                if(websiteConfiguration.product_detail.imprint_info.status == 0)
+                {
+                    $("a[href='#imprint-info']").parent().remove();
+                    $("#imprint-info").remove();
+                }
+
+                if(websiteConfiguration.product_detail.product_description.status == 0)
+                {
+                    $("a[href='#product_description']").parent().remove();
+                    $("#product_description").remove();
+                }
+                
+                if(websiteConfiguration.product_detail.product_detail.status == 0)
+                {
+                    $("a[href='#product-detail']").parent().remove();
+                    $("#product-detail").remove();
+                }
+
+                if(websiteConfiguration.product_detail.shipping_info.status == 0)
+                {
+                    $("a[href$='product-shipping']").parent().remove();
+                    $("#product-shipping").remove();
+                }
+
+                if($(".product-detail-tab").find('#myTab').html().trim().length === 0){
+                    $(".product-detail-tab").remove();
+                }
+                
                 $('.js-hide-div').removeClass("js-hide-div");
                 setTimeout(loadBxSlider(),5000)
 			  // },
@@ -880,13 +1004,16 @@ $(document).ready( async function(){
             
             let shipp_charge = 0.00;
             let setup_charge = total_setup_charge;
-            let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
-            if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-                shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
-            }
+            if($("#js-product-summary-container").length > 0)
+            {
+                let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
+                if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+                    shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+                }
        
-            let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
-            $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+                let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+                $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+            }
         }
         $('#Quantity-quote, .js_print_postion_location').removeClass('hide');
      });
@@ -1127,6 +1254,11 @@ $(document).ready( async function(){
 
             let get_in_hand_date = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_handdate").val();
 
+            if(typeof get_in_hand_date == 'undefined')
+            {
+                get_in_hand_date='';
+            }
+
             let user_shipping_address = (ordertab !== 'place-order' && shipping_address!=='') ? shipping_address : '';
 
             let shipping_detail = {"on_hand_date":get_in_hand_date,'ship_date':'',"ship_transittime": get_transittime,"shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
@@ -1182,7 +1314,8 @@ $(document).ready( async function(){
                             $(activetab+' #js_request_quote_qty_box_'+setActivetab+'_'+field+jquery_section).append('<div class="red js-section-errors">'+value+'</div>');
                         });
                         }else{
-                        $("#"+setActivetab+"-Quantity-block").append('<div class="red js-section-errors">'+flds+'</div>')
+                            let setActivetab = activetab.replace(/\#/g, '');
+                            $("#"+setActivetab+"-Quantity-block").append('<div class="red js-section-errors">'+flds+'</div>')
                         }
 
                         break;
@@ -1260,7 +1393,7 @@ $(document).ready( async function(){
                 data['product_description'] = get_product_details;
                 data['website_id'] = website_settings['projectID'];
                 data['owner_id'] = website_settings['UserID'];
-                data['product_image_url'] = project_settings.product_api_image_url;
+                // data['product_image_url'] = project_settings.product_api_image_url;
                 data['billing_info'] = await returnDefaultBillingInfo();
 
                 $.ajax({
@@ -1574,7 +1707,7 @@ let returnDefaultBillingInfo = async function fetchDefaultBillingInfo() {
     let returnData = null;
       await axios({
               method: 'GET',
-              url: project_settings.address_book_api_url+'?address_type=billing&website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&is_default=1',
+              url: project_settings.address_book_api_url+'?website_id='+website_settings['projectID']+'&user_id='+user_id+'&deleted_at=false&is_address=1&billing_default=1',
           })
       .then(async response => {
             let billing_address = {}
@@ -1606,6 +1739,18 @@ $(document).on("click","#js_tab_list",function(){
     activeSubtab = $(activetab).find('#js_sub_tab_list > li.active > a').attr('href');
     activetab = (activeSubtab!=undefined) ? activeSubtab : activetab;
 
+    // console.log('activetab',activetab);
+    $("#js-product-summary-container").addClass('hide');
+    if(websiteConfiguration.transaction.request_quote.product_summary.status != 0 && activetab == "#js-request-quote")
+    {
+        $("#js-product-summary-container").removeClass('hide');
+    }
+
+    if(websiteConfiguration.transaction.place_order.product_summary.status != 0 && activetab != "#js-request-quote")
+    {
+        $("#js-product-summary-container").removeClass('hide');
+    }
+
     let setActivetab = activetab.replace(/\#/g, '');
 
     //set dynamic id in html of place order and request quote by active tab
@@ -1636,6 +1781,20 @@ $(document).on("click","#js_tab_list",function(){
       $(activetab).find('#js_request_quote_instruction').val('');
       $(activetab).find('#js_shipping_method').addClass('hide');
       $(activetab).find('.js_select_shipping_type').prop('checked',false);
+
+      //quote
+      if(websiteConfiguration.transaction.request_quote.shipping.standard_shipping.status == 0 && activetab == "#js-request-quote"){
+        $(activetab).find("input[name='request_quote_shipping_type'][value='standard']").parent().remove();
+      }
+
+      if(websiteConfiguration.transaction.request_quote.shipping.split_shipping.status == 0 && activetab == "#js-request-quote"){
+        $(activetab).find("input[name='request_quote_shipping_type'][value='split']").parent().remove();
+      }
+     
+      if(websiteConfiguration.transaction.request_quote.shipping.standard_shipping.status == 0 && activetab == "#js-request-quote"){
+        $(activetab).find("input[name='request_quote_shipping_type'][value='standard']").parent().remove();
+      }
+      
     }
 
     $(activetab +' .js-section-errors').remove();
@@ -1859,13 +2018,16 @@ $(document).on("click",activetab+" .js_rq_ship_shipmethod_ul li",function(){
 
      let shipp_charge = shippingCharge;
      let setup_charge = 0.00;
-     let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
-     if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
-         setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
-     }
+     if($("#js-product-summary-container").length > 0)
+     {
+        let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
+        if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+            setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
+        }
 
-     let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
-     $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+        let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+        $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
+     }
 
      setdate(shipCounter,parentObj,activetab,transitTime)
 })
@@ -1935,6 +2097,14 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
         }
         if(typeof imprintMethodName == 'undefined' && no_of_color == 0 && selColorsHtml == '') {
             $('.js_print_postion_location').append('<div class="js_summary_imprint_location_'+print_pos_id+'"><div class="estimate-row heading"><span>Print Position : '+printPos+'</span></div><div class="row"><div class="col-sm-12"><div class="js_product_summary_imprint_location_'+print_pos_id+'"><div class="estimate-row js_imprint_method_summary_'+print_pos_id+' hide">Imprint Method : <span></span></div> <div class="estimate-row js_color_number_summary_'+print_pos_id+' hide">How many colors : <span></span></div> <div class="estimate-row js_selected_color_summary_'+print_pos_id+' hide"></div></div></div></div></div>');
+        }
+
+        if(websiteConfiguration.transaction.request_quote.print_position.artwork.status == 0 && activetab == "#js-request-quote"){
+            $(activetab).find('.art-pos-value').parent().remove();
+        }
+
+        if(websiteConfiguration.transaction.place_order.print_position.artwork.status == 0 && activetab != "#js-request-quote"){
+            $(activetab).find('.art-pos-value').parent().remove();
         }
     }
     else{
@@ -2352,14 +2522,17 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
     //summary for shipping charges
     let shipp_charge = 0.00;
     let setup_charge = 0.00;
-    if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-        shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+    if($("#js-product-summary-container").length > 0)
+    {
+        if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+            shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+        }
+        if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+            setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
+        }
+        let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+        $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
     }
-    if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
-        setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
-    }
-    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
-    $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
 $(document).on("click", activetab + ' .js_request_quote_qty_remove', function(){
@@ -2483,26 +2656,38 @@ function colorValidation(fld,section,value){
         })
         if(!isEmpty(quantityArr)) errorLog['quantity'] = quantityArr
         else{
-              let minQty = '';
-              // Find Minimum Qty from price range
-              $.each(get_product_details.pricing, function(index,element){
-                if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
-                  let priceRangeArry = []
-                    $.each(element.price_range,function(index,element2){
-                        if(element2.qty.lte != undefined) priceRangeArry.push(parseInt(element2.qty.lte))
-                        if(element2.qty.gte != undefined) priceRangeArry.push(parseInt(element2.qty.gte))
-                    })
-                    if(priceRangeArry != ""){
-                        minQty = Math.min.apply(Math,priceRangeArry);
+            let checkMiniQuantity = true;
+            
+            if(websiteConfiguration.transaction.place_order.check_minimum_qty.status == 0 && activetab != "#js-request-quote"){
+                checkMiniQuantity = false;
+            }
+            else if(websiteConfiguration.transaction.request_quote.check_minimum_qty.status == 0 && activetab == "#js-request-quote"){
+                checkMiniQuantity = false;                
+            }
+
+            if(checkMiniQuantity)
+            {
+                let minQty = '';
+                // Find Minimum Qty from price range
+                $.each(get_product_details.pricing, function(index,element){
+                    if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
+                    let priceRangeArry = []
+                        $.each(element.price_range,function(index,element2){
+                            if(element2.qty.lte != undefined) priceRangeArry.push(parseInt(element2.qty.lte))
+                            if(element2.qty.gte != undefined) priceRangeArry.push(parseInt(element2.qty.gte))
+                        })
+                        if(priceRangeArry != ""){
+                            minQty = Math.min.apply(Math,priceRangeArry);
+                        }
+                    }
+                })
+                
+                if(minQty != "" && minQty > 0){
+                    if(value.total_qty < minQty){
+                        errorLog['quantity'] = "Quantity should be equal to or greater than the minimum quantity."
                     }
                 }
-             })
-
-             if(minQty != "" && minQty > 0){
-                if(value.total_qty < minQty){
-                    errorLog['quantity'] = "Quantity should be equal to or greater than the minimum quantity."
-                }
-             }
+            }
         }
     }
     // console.log("errorLog - Color",errorLog);
@@ -2711,14 +2896,17 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     //summary for shipping charges
     let shipp_charge = 0.00;
     let setup_charge = 0.00;
-    if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-        shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+    if($("#js-product-summary-container").length > 0)
+    {
+        if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+            shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+        }
+        if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+            setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
+        }
+        let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+        $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
     }
-    if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
-        setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
-    }
-    let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
-    $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
 });
 
 function attachDeleteEvent(parentDiv){
@@ -2804,7 +2992,65 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
       })
     .then(async response => {
         if(response.data != undefined ){
-            let returnData = response.data;
+            let returnData = response.data; 
+            console.log('returnData', returnData)
+            let city = await getCountryStateCityById(returnData.city,3);
+            let state = await getCountryStateCityById(returnData.state,2);
+            let country = await getCountryStateCityById(returnData.country,1);
+
+            // console.log('::::::::::::::', get_product_details)
+            if (typeof get_product_details.shipping == 'undefined') {
+              console.log('No Shipping FOUND')
+            }
+            let shipping_details = get_product_details.shipping[0];
+            // console.log('shipping_details', shipping_details)
+              if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
+                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
+              }
+
+              let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
+              let getStreet = await getStreetData(getLocation)
+              // console.log('getStreet', getStreet, getLocation)
+              var addressFrom  = {
+                  "name": shipping_details.fob_city,
+                  "street1": getStreet,
+                  "city": shipping_details.fob_city,
+                  "state": shipping_details.fob_state_code,
+                  "zip": shipping_details.fob_zip_code,
+                  "country": shipping_details.fob_country_code,
+                  // "phone": "+1 555 341 9393",//optional
+                  // "email": "shippotle@goshippo.com",//optional
+                  // "validate": true//optional
+              };
+
+              var addressTo  = {
+                  "name": returnData.name,
+                  "street1": returnData.street1,
+                  "city": city,
+                  "state": state,
+                  "zip": returnData.postalcode,
+                  "country": country,
+                  // "phone": "+1 555 341 9393",//optional
+                  // "email": "shippotle@goshippo.com",//optional
+                  // "validate": true//optional
+              };
+              console.log('addressFrom ::', addressFrom);
+              let sCode = await getStateCode(returnData.state, 2)
+              if (sCode != null) {
+                let verify_address_to = await verifyAddress(addressTo, sCode)
+                let verify_address_from = await verifyAddress(addressFrom, sCode)
+                console.log('verify_address ::', verify_address_to, verify_address_from)
+                if(!verify_address_to){
+                    hidePageAjaxLoading()
+                    showErrorMessage("Please add correct shipping address.")
+                    return false;
+                }
+                // showSuccessMessage()
+                
+              } else {
+                console.log('STATE CODE NOT FOUND')
+              }
+
             let replaceAddressHtml = '';
             replaceAddressHtml += returnData.name+"<br>";
             replaceAddressHtml += returnData.email+"<br>";
@@ -2813,13 +3059,13 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
               replaceAddressHtml += returnData.street2+"<br>";
             }
             // change
-            let city = await getCountryStateCityById(returnData.city,3);
+            // let city = await getCountryStateCityById(returnData.city,3);
             replaceAddressHtml += city+",";
 
-            let state = await getCountryStateCityById(returnData.state,2);
+            // let state = await getCountryStateCityById(returnData.state,2);
             replaceAddressHtml += state+",";
-
-            let country = await getCountryStateCityById(returnData.country,1);
+            // console.log('returnData.state ::::', returnData.state)
+            // let country = await getCountryStateCityById(returnData.country,1);
             if(cid == null)
             {
                 changeShippingDetails(shippigCounter);
@@ -2880,38 +3126,33 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
 
 
             // change
-              let shipping_details = get_product_details.shipping[0];
-              if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
-                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
+              // console.log("addressTo",addressTo);
+
+              if(websiteConfiguration.transaction.shipping_estimator.shipping_carrier.fedex.status == 0){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li[data-value="fedex"]').remove();
               }
 
-              let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
-              let getStreet = await getStreetData(getLocation)
-              
-              var addressFrom  = {
-                  "name": shipping_details.fob_city,
-                  "street1": getStreet,
-                  "city": shipping_details.fob_city,
-                  "state": shipping_details.fob_state_code,
-                  "zip": shipping_details.fob_zip_code,
-                  "country": shipping_details.fob_country_code,
-                  // "phone": "+1 555 341 9393",//optional
-                  // "email": "shippotle@goshippo.com",//optional
-                  // "validate": true//optional
-              };
+              if(websiteConfiguration.transaction.shipping_estimator.shipping_carrier.ups.status == 0){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li[data-value="ups"]').remove();
+              }
 
-              var addressTo  = {
-                  "name": returnData.name,
-                  "street1": returnData.street1,
-                  "city": city,
-                  "state": state,
-                  "zip": returnData.postalcode,
-                  "country": country,
-                  // "phone": "+1 555 341 9393",//optional
-                  // "email": "shippotle@goshippo.com",//optional
-                  // "validate": true//optional
-              };
-              // console.log("addressTo",addressTo);
+              if(websiteConfiguration.transaction.place_order.shipping.inhand_date.status == 0 && activetab != "#js-request-quote"){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_handdate').parent().parent().remove();
+              }
+
+              if(websiteConfiguration.transaction.place_order.shipping.shipping_carrier.status == 0 && activetab != "#js-request-quote"){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_shipping_option').remove();
+              }
+
+              //quote
+
+              if(websiteConfiguration.transaction.request_quote.shipping.inhand_date.status == 0 && activetab == "#js-request-quote"){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_rq_ship_handdate').parent().parent().remove();
+              }
+
+              if(websiteConfiguration.transaction.request_quote.shipping.shipping_carrier.status == 0 && activetab == "#js-request-quote"){
+                $(activetab).find('#js_shipping_method_detail_'+shippigCounter+' .js_shipping_option').remove();
+              }
 
               $(document).off('click', '#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li').on('click','#js_shipping_method_detail_'+shippigCounter+' .js_select_shipping_carrier_method li', function (e) {
                   // if(e.handled !== true)
@@ -2961,47 +3202,47 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
     });
 }
 
-async function getStreetLocation(ZipCode){
-   var resp = "";
-    await axios({
-        method: 'GET',
-        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&address={"+ZipCode+"}&sensor=true",
-        })
-    .then(async function (response) {
-        resp = response.data.results[0].geometry.location.lat+","+response.data.results[0].geometry.location.lng;
-        return resp;
-    })
-    .catch(function (error) {
-        // console.log("error",error);
-    });
-    return resp;
-}
+// async function getStreetLocation(ZipCode){
+//    var resp = "";
+//     await axios({
+//         method: 'GET',
+//         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&address={"+ZipCode+"}&sensor=true",
+//         })
+//     .then(async function (response) {
+//         resp = response.data.results[0].geometry.location.lat+","+response.data.results[0].geometry.location.lng;
+//         return resp;
+//     })
+//     .catch(function (error) {
+//         // console.log("error",error);
+//     });
+//     return resp;
+// }
 
-async function getStreetData(location){
-    var resp = "";
-    await axios({
-        method: 'GET',
-        url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
-    })
-    .then(function (response1) {
-        // console.log("response1",response1);        
-        let resp1 = response1.data.results[0].formatted_address.split(",");
-        resp = resp1[0]
-        return resp;
-    })
-    .catch(function (error) {
-        // console.log("error",error);
-    })
-    return resp;
-}
+// async function getStreetData(location){
+//     var resp = "";
+//     await axios({
+//         method: 'GET',
+//         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
+//     })
+//     .then(function (response1) {
+//         // console.log("response1",response1);        
+//         let resp1 = response1.data.results[0].formatted_address.split(",");
+//         resp = resp1[0]
+//         return resp;
+//     })
+//     .catch(function (error) {
+//         // console.log("error",error);
+//     })
+//     return resp;
+// }
 //summary for special instruction
 $(document).on("keyup", activetab + ' .js-specialInstruction-section textarea',function(){
     $('.js_summary_instruction').html($(this).val());
     $('#Quantity-quote, .js_special_inst').removeClass('hide');
-}); 
+});
 
 function submitRequestInfo(productData,instruction,guestUserDetail){
-  let data = {'product_image_url':project_settings.product_api_image_url,'product_id':pid,'product_data':productData,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':guestUserDetail,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']};
+  let data = {'product_id':pid,'product_data':productData,'user_detail':user_details,'instruction':instruction,'culture':project_settings.default_culture,'guest_user_detail':guestUserDetail,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID']};
   $.ajax({
         type: 'POST',
         url: project_settings.request_info_api_url,
@@ -3074,3 +3315,33 @@ $(document).on('click','.js-submit-btn',function (e) {
       }).form()
 
 })
+
+if (user_id != null ) {
+    if(websiteConfiguration.transaction.request_info.registered_user.status == 0){
+        $("a[href='#js-request-info']").parent().remove();
+        let html = 'Access Denied';
+        $('#js-request-info').html(html);
+    }
+}
+else{
+    if(websiteConfiguration.transaction.request_info.guest_user.status == 0){
+        $("a[href='#js-request-info']").parent().remove();
+        let html = 'Access Denied';
+        $('#js-request-info').html(html);
+    }
+}
+
+if (user_id != null ) {
+    if(websiteConfiguration.transaction.request_quote.registered_user.status == 0){
+        $("a[href='#js-request-quote']").parent().remove();
+        let html = 'Access Denied';
+        $('#js-request-quote').html(html);
+    }
+}
+else{
+    if(websiteConfiguration.transaction.request_quote.guest_user.status == 0){
+        $("a[href='#js-request-quote']").parent().remove();
+        let html = 'Access Denied';
+        $('#js-request-quote').html(html);
+    }
+}
