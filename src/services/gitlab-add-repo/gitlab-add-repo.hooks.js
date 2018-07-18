@@ -37,7 +37,9 @@ module.exports = {
     },
 
     error: {
-        all: [],
+        all: [
+            hook => errorHooks(hook)
+        ],
         find: [],
         get: [],
         create: [],
@@ -46,6 +48,12 @@ module.exports = {
         remove: []
     }
 };
+
+
+function errorHooks(hook) {
+    // body...
+    hook.error = {"errorCode" : 500 , "errorMessage" : "errormessage nothing to commit"}
+}
 
 
 function before_send_repoToGit(hook) {
@@ -101,11 +109,11 @@ function after_send_repoToGit(hook) {
 
                         if (process.env.dnsServer1 != undefined && process.env.dnsServer1 != '') {
                             if (process.env.webrootServer == 'DEV') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
                             } else if (process.env.webrootServer == 'QA') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                                shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
                             } else if (process.env.webrootServer == 'PROD') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
                             } else if (process.env.webrootServer == 'STAGING') {
                                 shell.exec('curl -i -X POST -d \'[ "flowzdigital.com", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
                             } else {
@@ -115,11 +123,11 @@ function after_send_repoToGit(hook) {
 
                         if (process.env.dnsServer2 != undefined && process.env.dnsServer2 != '') {
                             if (process.env.webrootServer == 'DEV') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
                             } else if (process.env.webrootServer == 'QA') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                                shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
                             } else if (process.env.webrootServer == 'PROD') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowz.com\' -H \'X-Auth-Password: 12345678\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
+                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
                             } else if (process.env.webrootServer == 'STAGING') {
                                 shell.exec('curl -i -X POST -d \'[ "flowzdigital.com", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
                             } else {
@@ -198,25 +206,49 @@ function after_commit_repo(hook) {
 
             shell.exec('git checkout -b ' + hook.data.branchName);
 
-            shell.exec('git status');
-
-            shell.exec('git add .');
-
-            shell.exec('git commit -m "' + hook.data.commitMessage + '"');
-
-            shell.exec('git push -u origin ' + hook.data.branchName + ' --force', function(code, stdout, stderr) {
+            shell.exec('git status', function(code, stdout, stderr) {
 
                 console.log('Exit Code: ', code);
                 console.log('Program output:', stdout);
                 console.log('Program stderr:', stderr);
 
-                hook.result = [{
-                    code: code,
-                    otuput: stdout,
-                    error: stderr
-                }];
+                let statusOut = stdout;
+                var n = statusOut.indexOf("nothing to commit");
 
-                resolve(hook);
+                console.log('Status string match n: ', n);
+
+                if(n == -1){
+                    shell.exec('git add .');
+
+                    shell.exec('git commit -m "' + hook.data.commitMessage + '"');
+
+                    shell.exec('git push -u origin ' + hook.data.branchName + ' --force', function(code, stdout, stderr) {
+
+                        console.log('Exit Code: ', code);
+                        console.log('Program output:', stdout);
+                        console.log('Program stderr:', stderr);
+
+                        hook.result = [{
+                            code: code,
+                            otuput: stdout,
+                            error: stderr
+                        }];
+
+                        resolve(hook);
+                    });
+                } else {
+                    // throw new Error ({errorMessage : "Nothing to commit"})
+                    // hook.error = new errors.GeneralError('Nothing to commit');
+                    // reject(hook);
+                    // new errors.GeneralError(new Error('Nothing to commit'));
+                    hook.result = [{
+                        code: 444,
+                        message: 'No changes. Nothing to add to revision',
+                    }];
+
+                    resolve(hook); 
+                }
+
             });
 
         }

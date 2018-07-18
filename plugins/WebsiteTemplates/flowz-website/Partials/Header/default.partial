@@ -1,0 +1,124 @@
+<div class="header-wrapper clearfix">
+    <header id="header" class="header-corporate header-15 search-sm header-loaded">
+        <div class="header-main">
+            <div class="container">
+                <div class="header-left">
+                    <h1 class="logo">    <a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/" title="Flowz - Fractional and flat-rate services" rel="home">
+                            <img class="img-responsive standard-logo" width="216" height="108" src="http://res.cloudinary.com/dmdst9hep/image/upload/v1529068390/flowz-dig-logo.png" alt="Flowz"><img class="img-responsive retina-logo" width="216" height="108" src="http://res.cloudinary.com/dmdst9hep/image/upload/v1529068390/flowz-dig-logo.png" alt="Flowz" style="max-height:108px;display:none;">            </a></h1></div>
+                <div class="header-right">
+                    <div id="main-menu">
+                        <ul id="menu-header-nav" class="main-menu mega-menu show-arrow effect-down subeffect-fadein-left">
+                            <li id="nav-menu-item-1888" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has-sub narrow "><a href="#" class="">SERVICES</a>
+                                <div class="popup" style="display: block;">
+                                    <div class="inner" style="">
+                                        <ul class="sub-menu">
+                                            <li id="nav-menu-item-1900" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  sub" data-cols="1"><a href="#" class="">Creative</a>
+                                                <ul class="sub-menu">
+                                                    <li id="nav-menu-item-1901" class="header_cat2 menu-item menu-item-type-custom menu-item-object-custom "><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/GraphicDesign.html" class="">Graphic Design</a></li>
+                                                    <li id="nav-menu-item-1902" class="header_cat2 menu-item menu-item-type-custom menu-item-object-custom "><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/VideoEditing.html" class="">Video Editing</a></li>
+                                                    <li id="nav-menu-item-1903" class="header_cat2 menu-item menu-item-type-custom menu-item-object-custom "><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/EmbroideryDigitizin.html" class="">Embroidery Digitizing</a></li>
+                                                </ul>
+                                            </li>
+                                            <li id="nav-menu-item-1891" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  sub" data-cols="1"><a href="#" class="">Sales</a>
+                                                <ul class="sub-menu">
+                                                    <li id="nav-menu-item-1904" class="header_cat2 menu-item menu-item-type-custom menu-item-object-custom "><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/LeadGenerator.html" class="">Lead Generation</a></li>
+                                                </ul>
+                                            </li>
+                                            <li id="nav-menu-item-1895" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  sub" data-cols="1"><a href="#" class="">Accounting</a>
+                                                <ul class="sub-menu">
+                                                    <li id="nav-menu-item-1894" class="menu-item menu-item-type-custom menu-item-object-custom "><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/Bookkeeping.html" class="">Bookkeeping</a></li>
+                                                </ul>
+                                            </li>
+                                            <li id="nav-menu-item-1897" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  sub" data-cols="1"><a href="#" class="">Customer Service</a>
+                                                <ul class="sub-menu">
+                                                    <li id="nav-menu-item-1905" class="menu-item menu-item-type-custom menu-item-object-custom "><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/AmazonManagement.html" class="">Amazon Seller Central Management</a></li>
+                                                </ul>
+                                            </li>
+                                            <li id="nav-menu-item-1896" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  sub" data-cols="1"><a href="#" class="">Website Development</a>
+                                                <ul class="sub-menu">
+                                                    <li id="nav-menu-item-1906" class="menu-item menu-item-type-custom menu-item-object-custom "><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/WebsiteMaintenance.html" class="">Website Maintenance</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="nav-menu-item-1385" class="menu-item menu-item-type-custom menu-item-object-custom  narrow "><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/howitworks.html" class="">How It Works</a></li>
+                            <li id="nav-menu-item-261" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has-sub narrow "><a href="#" class="">More</a>
+                                <div class="popup" style="display: block;">
+                                    <div class="inner" style="">
+                                        <ul class="sub-menu">
+                                            <li id="nav-menu-item-661" class="menu-item menu-item-type-post_type menu-item-object-page " data-cols="1"><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/aboutUs.html" class="">About Us</a></li>
+                                            <li id="nav-menu-item-526" class="menu-item menu-item-type-post_type menu-item-object-page " data-cols="1"><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/ContactUs.html" class="">Contact Us</a></li>
+                                            <li id="nav-menu-item-2275" class="menu-item menu-item-type-post_type menu-item-object-page " data-cols="1"><a href="http://5a8d41511b23f5001257a04d.1157ea5a-75eb-42e7-a6d8-c677be545285.flowzcluster.tk/blog.html" class="">Blog</a></li>
+                                            <li id="nav-menu-item-979" class="menu-item menu-item-type-custom menu-item-object-custom " data-cols="1"><a target="_blank" href="https://support.flowz.com" class="">FAQs</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="nav-menu-item-256" class="menu-item menu-item-type-custom menu-item-object-custom  narrow "><a href="https://customer.flowz.com/login?ec=302&amp;startURL=%2Fs%2F" class="">Sign In</a></li>
+                        </ul>
+                    </div>
+                    <a class="mobile-toggle"><i class="fa fa-reorder"></i></a></div>
+            </div>
+            <div id="nav-panel" class="panel-right" style="display: none;">
+                <div class="container">
+                    <div class="mobile-nav-wrap">
+                        <div class="menu-wrap">
+                            <ul id="menu-header-nav-1" class="mobile-menu accordion-menu">
+                                <li id="accordion-menu-item-1888" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has-sub"><a href="#" rel="nofollow" class="">SERVICES</a>
+                                    <span class="arrow"></span>
+                                    <ul class="sub-menu">
+                                        <li id="accordion-menu-item-1900" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has-sub"><a href="#" rel="nofollow" class="">Creative</a>
+                                            <span class="arrow"></span>
+                                            <ul class="sub-menu">
+                                                <li id="accordion-menu-item-1901" class="header_cat2 menu-item menu-item-type-custom menu-item-object-custom "><a href="https://customer.flowz.com/CommunitiesSignUpPage?service=a0t3900000CDv4QAAT&amp;usertype=customer" rel="nofollow" class="">Graphic Design</a></li>
+                                                <li id="accordion-menu-item-1902" class="header_cat2 menu-item menu-item-type-custom menu-item-object-custom "><a href="https://customer.flowz.com/CommunitiesSignUpPage?service=a0t3900000CDv4VAAT&amp;usertype=customer" rel="nofollow" class="">Video Editing</a></li>
+                                                <li id="accordion-menu-item-1903" class="header_cat2 menu-item menu-item-type-custom menu-item-object-custom "><a href="https://customer.flowz.com/CommunitiesSignUpPage?service=a0t3900000CDzDAAA1&amp;usertype=customer" rel="nofollow" class="">Embroidery Digitizing</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="accordion-menu-item-1891" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has-sub"><a href="#" rel="nofollow" class="">Sales</a>
+                                            <span class="arrow"></span>
+                                            <ul class="sub-menu">
+                                                <li id="accordion-menu-item-1904" class="header_cat2 menu-item menu-item-type-custom menu-item-object-custom "><a href="https://customer.flowz.com/CommunitiesSignUpPage?service=a0t3900000CfuD4AAJ&amp;usertype=customer" rel="nofollow" class="">Lead Generation</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="accordion-menu-item-1895" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has-sub"><a href="#" rel="nofollow" class="">Accounting</a>
+                                            <span class="arrow"></span>
+                                            <ul class="sub-menu">
+                                                <li id="accordion-menu-item-1894" class="menu-item menu-item-type-custom menu-item-object-custom "><a href="https://customer.flowz.com/CommunitiesSignUpPage?service=a0t3900000CDwVWAA1&amp;usertype=customer" rel="nofollow" class="">Bookkeeping</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="accordion-menu-item-1897" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has-sub"><a href="#" rel="nofollow" class="">Customer Service</a>
+                                            <span class="arrow"></span>
+                                            <ul class="sub-menu">
+                                                <li id="accordion-menu-item-1905" class="menu-item menu-item-type-custom menu-item-object-custom "><a href="https://customer.flowz.com/CommunitiesSignUpPage?service=a0t3900000CTl6eAAD&amp;usertype=customer" rel="nofollow" class="">Amazon Seller Central Management</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="accordion-menu-item-1896" class="header_cat1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has-sub"><a href="#" rel="nofollow" class="">Website Development</a>
+                                            <span class="arrow"></span>
+                                            <ul class="sub-menu">
+                                                <li id="accordion-menu-item-1906" class="menu-item menu-item-type-custom menu-item-object-custom "><a href="https://customer.flowz.com/CommunitiesSignUpPage?service=a0t3900000CTi2QAAT&amp;usertype=customer" rel="nofollow" class="">Website Maintenance</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="accordion-menu-item-1385" class="menu-item menu-item-type-custom menu-item-object-custom "><a href="https://www.flowz.com/how-it-works-2/" rel="nofollow" class="">How It Works</a></li>
+                                <li id="accordion-menu-item-261" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has-sub"><a href="#" rel="nofollow" class="">More</a>
+                                    <span class="arrow"></span>
+                                    <ul class="sub-menu">
+                                        <li id="accordion-menu-item-661" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.flowz.com/about-us-2/" rel="nofollow" class="">About Us</a></li>
+                                        <li id="accordion-menu-item-526" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.flowz.com/contact-us/" rel="nofollow" class="">Contact Us</a></li>
+                                        <li id="accordion-menu-item-2275" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.flowz.com/blog/" rel="nofollow" class="">Blog</a></li>
+                                        <li id="accordion-menu-item-979" class="menu-item menu-item-type-custom menu-item-object-custom "><a target="_blank" href="https://support.flowz.com" rel="nofollow" class="">FAQs</a></li>
+                                    </ul>
+                                </li>
+                                <li id="accordion-menu-item-256" class="menu-item menu-item-type-custom menu-item-object-custom "><a href="https://customer.flowz.com/login?ec=302&amp;startURL=%2Fs%2F" rel="nofollow" class="">Sign In</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>

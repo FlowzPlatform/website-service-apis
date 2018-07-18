@@ -1,4 +1,5 @@
 const subscription = require('flowz-subscription')
+const flowzError = require('flowz-error-handler');
 module.exports.subscription = subscription
 module.exports = async function () {
   const app = this;
@@ -16,4 +17,5 @@ module.exports = async function () {
   subscription.moduleResource.appRoles = ['admin', 'developer', 'client']
   subscription.registeredAppModulesRole()
   subscription.registerDynamicHooks(app, registerAppModule)
+  app.use(flowzError());
 };

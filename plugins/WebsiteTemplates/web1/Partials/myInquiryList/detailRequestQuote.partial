@@ -97,6 +97,9 @@
                                                       <div class="estimate-row">Imprint Method : <span>#data.imprintMethod#</span></div>
                                                       <div class="estimate-row">How many colors : <span>#data.howmanyColors#</span></div>
                                                       <div class="estimate-row">Imprint Colors : <span>#data.imprintColors#</span></div>
+                                                      <div class="estimate-row">#data.sendmail#</div>
+                                                      <div class="estimate-row">#data.artwork#</div>
+                                                      <div class="estimate-row">#data.artwork_text#</div>
                                                   </div>
                                               </div>
                                           </div>

@@ -54,10 +54,19 @@ function after_get_images(hook) {
         api_secret: api_secret,
       });
 
-      cloudinary.v2.api.resources({ next_cursor: hook.params.query.nextCursor }, function(error, result){
-        hook.result = result;
-        resolve(hook)
-      });      
-            
+      console.log('%%%%%%%%%%%%%%%Cursor: ', typeof hook.params.query.nextCursor);
+
+      if(hook.params.query.nextCursor != 'undefined')
+      {  
+        cloudinary.v2.api.resources({ next_cursor: hook.params.query.nextCursor }, function(error, result){
+          hook.result = result;
+          resolve(hook)
+        });      
+       } else {
+          cloudinary.v2.api.resources({}, function(error, result){
+          hook.result = result;
+          resolve(hook)
+        });
+       }     
     })
 }

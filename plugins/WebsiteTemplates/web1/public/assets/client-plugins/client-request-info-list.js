@@ -13,6 +13,14 @@ $(document).ready(function(){
 
 });
 
+if(websiteConfiguration.my_account.my_sent_inquiries.status == 0)
+{
+  let html = '<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"><div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">Access Denied</div></div>';
+
+  $(".ob-main-address-block").html(html);
+  $('.js-hide-div').removeClass("js-hide-div");
+}
+
 $(document).on("click", '.js-btn-comment-list', function(e){
     let RequestId = $(".js_add_html").find("#js-request_info_id").val()
     let message = $(".js_add_html").find("#js-comment_requestinfo").val()
@@ -33,7 +41,7 @@ $(document).on("click", '.js-btn-comment-list', function(e){
         hidePageAjaxLoading()
     }).catch(function (error) {
         console.log("error",error);
-        hidePageAjaxLoading()        
+        hidePageAjaxLoading()
     });
 });
 
@@ -124,7 +132,7 @@ $(".tabbable ul li").on("click",function(){
                     let msgCount = await getAddedComments(dataVal.id)
 
                     inquiryHtml1 = inquiryHtml1.replace("#data.totalComments#", msgCount);
-                    
+
                     inquiryHtml1 = inquiryHtml1.replace(/#data.id#/g, dataVal.id);
                     if( admin_role_flag == 1 ){
                         let userInfo = await getUserDetailById(dataVal.user_id)
@@ -218,7 +226,11 @@ function detailRequestQuote(thisObj){
         requestQuoteHtml = requestQuoteHtml.replace("#data.module#","request-quote")
 
         requestQuoteHtml = requestQuoteHtml.replace(/#data.id#/g,requestQuoteData.id)
-        requestQuoteHtml = requestQuoteHtml.replace("#data.productImage#",project_settings.product_api_image_url+productData.default_image)
+        let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+        if(productData.images != undefined){
+            productImage = productData.images[0].images[0].secure_url
+        }
+        requestQuoteHtml = requestQuoteHtml.replace("#data.productImage#",productImage)
         requestQuoteHtml = requestQuoteHtml.replace("#data.productName#",productData.product_name)
         requestQuoteHtml = requestQuoteHtml.replace("#data.sku#",productData.sku)
         requestQuoteHtml = requestQuoteHtml.replace("#data.product_link#",detailLink)
@@ -338,6 +350,50 @@ function detailRequestQuote(thisObj){
                 }
               }
               imprintHtml1 = imprintHtml1.replace("#data.imprintColors#",colorHtml)
+
+              if(typeof imprint_info.artwork_type != "undefined" && typeof imprint_info.artwork != "undefined"){
+                    let artwork_type = imprint_info.artwork_type;
+                    let checkSendEmail = '';
+                    if(artwork_type == "upload_artwork_typeset"){
+                        if(typeof imprint_info.artwork.artwork_text_email != "undefined"){
+                          checkSendEmail = 'Art Work Via Email: <span>artwork@flowz.com</span>';
+                        }
+                    }
+                    else if(artwork_type == "upload_artwork"){
+                        if(typeof imprint_info.artwork.artwork_email != "undefined"){
+                          checkSendEmail = 'Art Work Via Email: <span>artwork@flowz.com</span>';
+                        }
+                    }
+                    imprintHtml1 = imprintHtml1.replace("#data.sendmail#",checkSendEmail)
+
+                    let thumbImg = '';
+                    if(typeof imprint_info.artwork.artwork_thumb != "undefined"){
+                        for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries()){
+                            let j = i+1;
+                            thumbImg += 'Uploaded Artwork '+j+': <img alt="" src="'+artwork_thumb+'" style="max-width:50px;max-height:50px;"><br><br>';
+                        }
+                    }
+
+                    imprintHtml1 = imprintHtml1.replace("#data.artwork#",thumbImg)
+
+                    let artText = '';
+                    if(typeof imprint_info.artwork.artwork_text != "undefined"){
+                      for (let [i,artwork_text] of imprint_info.artwork.artwork_text.entries()){
+                          let j = i+1;
+                          artText += 'Text '+j+' : <span> '+artwork_text+'</span><br>';
+                      }
+                    }
+
+                    if(typeof imprint_info.artwork.artwork_instruction != "undefined"){
+                      artText += 'Instructions :</span> <span> '+imprint_info.artwork.artwork_instruction+'</span><br>';
+                    }
+                    imprintHtml1 = imprintHtml1.replace("#data.artwork_text#",artText)
+                }else{
+                  imprintHtml1 = imprintHtml1.replace("#data.sendmail#",'')
+                  imprintHtml1 = imprintHtml1.replace("#data.artwork#",'')
+                  imprintHtml1 = imprintHtml1.replace("#data.artwork_text#",'')
+                }
+
               imprintSectionHtml += imprintHtml1;
           }
 
@@ -383,7 +439,6 @@ function detailRequestInfo(thisObj){
       let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+requestInfoData.productId;
       //console.log("requestInfoData",requestInfoData);
       let userInfo = await getUserDetailById(requestInfoData.userId)
-
       let userInfoHtml = ""
       userInfoHtml += "<h4>"+userInfo.fullname+"</h4>"
 
@@ -432,7 +487,11 @@ function detailRequestInfo(thisObj){
       requestInfoHtml = requestInfoHtml.replace(/#data.createAt#/g,formatDate(requestInfoData.createAt,project_settings.format_date))
       requestInfoHtml = requestInfoHtml.replace(/#data.infoId#/g,requestInfoData.id)
       requestInfoHtml = requestInfoHtml.replace(/#data.module#/g,"request-info")
-      requestInfoHtml = requestInfoHtml.replace("#data.productImage#",project_settings.product_api_image_url+productInfo.default_image)
+      let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+      if(productInfo.images != undefined){
+          productImage = productInfo.images[0].images[0].secure_url
+      }
+      requestInfoHtml = requestInfoHtml.replace("#data.productImage#",productImage)
       requestInfoHtml = requestInfoHtml.replace("#data.productName#",productInfo.product_name)
       requestInfoHtml = requestInfoHtml.replace("#data.productDescription#",productInfo.description)
       requestInfoHtml = requestInfoHtml.replace("#data.sku#",productInfo.sku)
@@ -482,7 +541,7 @@ async function getAddedComments(requestId)
         let getCommentHtml = $(".js_add_html").find(".js-request-comment-box li:first");
         getCommentHtml.addClass('hide')
         // $('.js-hide-div').removeClass("js-hide-div");
-        $(".js_add_html").find(".js-request-comment-box li").slice(1).remove()  
+        $(".js_add_html").find(".js-request-comment-box li").slice(1).remove()
         if(response_data.data.total>0)
         {
             if($(".js_add_html").html() != "")
@@ -490,13 +549,13 @@ async function getAddedComments(requestId)
                 let replaceCommentHtml = '';
                 for(let [key,comment_data] of response_data.data.data[0].message.entries()) {
                     let commentHtml = getCommentHtml.html();
-                    commentHtml = commentHtml.replace("#data.createdBy#",comment_data.created_by);          
+                    commentHtml = commentHtml.replace("#data.createdBy#",comment_data.created_by);
                     // commentHtml = commentHtml.replace("#data.createdAt#",formatDate(comment_data.created_at,project_settings.format_date));
-                    
+
                     commentHtml = commentHtml.replace("#data.createdAt#",'<time class="timeago" datetime="'+comment_data.created_at+'">'+comment_data.created_at+'</time>');
 
                     commentHtml = commentHtml.replace("#data.message#",comment_data.message);
-                    replaceCommentHtml += "<li>"+commentHtml+"</li>";        
+                    replaceCommentHtml += "<li>"+commentHtml+"</li>";
                 }
                 $(".js_add_html").find(".js-request-comment-box li:first").after(replaceCommentHtml)
                 $(".js_add_html").find("#js-comment_requestinfo").val('')

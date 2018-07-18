@@ -112,8 +112,9 @@ async function paynow() {
 		if ( $( "#payForm .js-error-msg" ).length ) {
 			$("#payForm .js-error-msg").html('');
 		}
-		 		resp = response;
+		 	 resp = response;
 			 let transaction_id;
+
 			 if(paymentGatewayId == "stripe" || paymentGatewayId == "paypal"){
 				 	transaction_id = response.data.paymentGateway.id
 			 }else if (paymentGatewayId == "auth") {
@@ -124,12 +125,72 @@ async function paynow() {
 				 if (product_response.data!= "") {
 					 var newHtml = "";
 
+					 	// console.log('product_response:: ', product_response)
+
+					 	// if Tax found than authorized that cart
+					 	for (let items of product_response) {
+					 		console.log('items', items)
+							if (items.taxcloud != 'undefined') {
+							 	let taxcloudurl = project_settings.taxcloud_url;
+								if (typeof TaxCloud != 'undefined' && TaxCloud.apiKey != '' && TaxCloud.apiId != '') {
+									let taxid = TaxCloud.apiId
+									let taxkey = TaxCloud.apiKey
+								 	if (items.taxcloud.type == 'split') {
+								 		for (let item of items.taxcloud.subtax) {
+											let date = new Date().toISOString();
+											date = date.split('T');
+									 		let mdata = {
+											  customerID: user_details['fullname'] + ' ' + user_details['_id'],
+											  apiLoginID: taxid,
+											  apiKey: taxkey,
+											  cartID: item.tax_id,
+											  orderID: item.tax_id,
+											  dateAuthorized: date[0],
+											  dateCaptured: date[0]
+											};
+								 			await axios({
+												method: 'POST',
+												url: taxcloudurl + '/AuthorizedWithCapture',
+												data: mdata
+											}).then(resp => {
+												console.log('TAX Authorized')
+											}).catch(err => {
+												console.log('Tax Authorized Failed')
+											})
+								 		}
+								 	} else {
+								 		let date = new Date().toISOString();
+								 		date = date.split('T');
+								 		console.log('Date:: ', date, taxcloudurl)
+								 		let mdata = {
+										  customerID: user_details['fullname'] + ' ' + user_details['_id'],
+										  apiLoginID: taxid,
+										  apiKey: taxkey,
+										  cartID: items.taxcloud.tax_id,
+										  orderID: items.taxcloud.tax_id,
+										  dateAuthorized: date[0],
+										  dateCaptured: date[0]
+										};
+										console.log('mdata', mdata)
+										await axios({
+											method: 'POST',
+											url: taxcloudurl + '/AuthorizedWithCapture',
+											data: mdata
+										}).then(resp => {
+											console.log('Tax Authorized')
+										}).catch(err => {
+											console.log('Tax Authorized Failed')
+										})
+								 	}
+								}
+							 }
+					 	}
 						 let user_info = {};
 						 user_info['id'] = user_details['_id']
 						 user_info['email'] = user_details['email']
 						 user_info['fullname'] = user_details['fullname']
 
-						 let userDetails = {"product_image_url": project_settings.product_api_image_url,"subscription_id":website_settings.subscriptionId,"distributor_email":website_settings.projectOwner,"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID'],"setting_id": website_settings.CrmSettingId,"products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
+						 let userDetails = {"subscription_id":website_settings.subscriptionId,"distributor_email":website_settings.projectOwner,"total":grand_total ,"quantity":total_qty,"user_id":user_id,"website_id":website_settings['projectID'],"websiteName":website_settings['websiteName'],"owner_id":website_settings['UserID'],"setting_id": website_settings.CrmSettingId,"products":product_response,'user_type':"registered",'user_info':user_info,'transaction_id':transaction_id,"invoice_number":invoice.data.InvoiceNumber,"user_billing_info":billing_info,"payment_via":paymentGatewayId,"billing_details":invoice};
 						//  console.log("userDetails",userDetails);
 						 axios({
 								method: 'POST',
@@ -156,9 +217,11 @@ async function paynow() {
 	if ( $( "#payForm .js-error-msg" ).length ) {
 		$("#payForm .js-error-msg").html('');
 	}
-	if(typeof error.response.data.message != "undefined" && error.response.data.message!='')
-	{
-		$(".panel-body").append("<ul class='js-error-msg'><li style='color: red;'>"+error.response.data.message+"</li></ul>");
+	if (typeof error.response != 'undefined') {
+		if(typeof error.response.data.message != "undefined" && error.response.data.message!='')
+		{
+			$(".panel-body").append("<ul class='js-error-msg'><li style='color: red;'>"+error.response.data.message+"</li></ul>");
+		}
 	}
 	hidePageAjaxLoading();
 	// 	console.log("error+++",error);
@@ -225,7 +288,10 @@ async function addInvoice() {
 			}
 			data['additional_charges'] = charges
 			data['shipping_charges'] = shipping_charges
-			data['tax'] = 0//tax
+			data['tax'] = 0
+			if (typeof product_detail.taxcloud != "undefined") {
+				data['tax'] = product_detail.taxcloud.tax_amount
+			}
 			// let total = parseFloat(product_detail.total_qty)*parseFloat(product_detail.unit_price)+charges;
 			// total = total.toFixed(project_settings.price_decimal)
 			data['amount'] = product_detail.unit_price

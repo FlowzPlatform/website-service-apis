@@ -61,54 +61,115 @@ async function before_get_email_template(hook){
   if(hook.data.id != undefined){
     if(typeof hook.data.form_data != "undefined")
     {
+      // console.log('+++++++++++++++');
       if(typeof hook.data.form_data.slug != "undefined")
       {
-        let response = await hook.app.service("email-template").find({query: { slug: hook.data.form_data.slug }});
-        
-        let data = hook.result;
-        let userEmail = hook.data.form_data.to_email;
-        let mjmlsrc =  response.data[0].template_content;
-        let subject =  response.data[0].subject;
-        let fromEmail =  hook.data.form_data.email;
+        let response = await hook.app.service("email-template").find({query: { slug: hook.data.form_data.slug ,website_id:hook.data.website_id}});
+        // console.log("response",response);
+        if(response.total != 0){
+            let data = hook.result;
 
-        hb.registerHelper("math", function(lvalue, operator, rvalue, options) {
-          lvalue = parseFloat(lvalue);
-          rvalue = parseFloat(rvalue);
-          return {
-              "+": lvalue + rvalue
-          }[operator];
-        });
-        let template = hb.compile(mjmlsrc);
-        let mjmlresult = template({ data: data });
-        
-        let htmlOutput = mjml.mjml2html(mjmlresult).html;
+            let userEmail = hook.data.form_data.to_email;
+            let mjmlsrc =  response.data[0].template_content;
+            let subject =  response.data[0].subject;
+            let fromEmail =  hook.data.form_data.email;
 
-        let messageId = await mailService.mailSend(userEmail,fromEmail,subject,htmlOutput);
+            hb.registerHelper("math", function(lvalue, operator, rvalue, options) {
+              lvalue = parseFloat(lvalue);
+              rvalue = parseFloat(rvalue);
+              return {
+                  "+": lvalue + rvalue
+              }[operator];
+            });
+
+            hb.registerHelper('ifCond', function (v1, operator, v2, options) {
+              switch (operator) {
+                  case '==':
+                      return (v1 == v2) ? options.fn(this) : options.inverse(this);
+                  case '===':
+                      return (v1 === v2) ? options.fn(this) : options.inverse(this);
+                  case '!==':
+                      return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+                  case '<':
+                      return (v1 < v2) ? options.fn(this) : options.inverse(this);
+                  case '<=':
+                      return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+                  case '>':
+                      return (v1 > v2) ? options.fn(this) : options.inverse(this);
+                  case '>=':
+                      return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+                  case '&&':
+                      return (v1 && v2) ? options.fn(this) : options.inverse(this);
+                  case '||':
+                      return (v1 || v2) ? options.fn(this) : options.inverse(this);
+                  default:
+                      return options.inverse(this);
+              }
+          });
+
+            let template = hb.compile(mjmlsrc);
+            let mjmlresult = template({ data: data });
+
+            let htmlOutput = mjml.mjml2html(mjmlresult).html;
+
+            let messageId = await mailService.mailSend(userEmail,fromEmail,subject,htmlOutput);
+          }
       }
     }
     else{
-      let response = await hook.app.service("email-template").find({query: { slug: 'request-quote' }});
+      // console.log("*****************");
+      let response = await hook.app.service("email-template").find({query: { slug: 'request-quote',website_id:hook.data.website_id }});
+      // console.log("response",response);
+      if(response.total != 0){
+          let data = hook.result;
+          // data.product_image = data.product_description.product_image_url+""+data.product_description.product_name
+          // console.log("++++++++++",data);
+          let userEmail = data.user_info.email;
+          //let userEmail = 'divyesh2589@gmail.com';
+          let mjmlsrc =  response.data[0].template_content;
+          let subject =  response.data[0].subject;
+          let fromEmail =  response.data[0].from;
+          //let fromEmail =  'obsoftcare@gmail.com';
 
-      let data = hook.result;
-      let userEmail = data.user_info.email;
-      //let userEmail = 'divyesh2589@gmail.com';
-      let mjmlsrc =  response.data[0].template_content;
-      let subject =  response.data[0].subject;
-      let fromEmail =  response.data[0].from;
-      //let fromEmail =  'obsoftcare@gmail.com';
+          hb.registerHelper("math", function(lvalue, operator, rvalue, options) {
+            lvalue = parseFloat(lvalue);
+            rvalue = parseFloat(rvalue);
+            return {
+                "+": lvalue + rvalue
+            }[operator];
+          });
 
-      hb.registerHelper("math", function(lvalue, operator, rvalue, options) {
-        lvalue = parseFloat(lvalue);
-        rvalue = parseFloat(rvalue);
-        return {
-            "+": lvalue + rvalue
-        }[operator];
-      });
-      let template = hb.compile(mjmlsrc);
-      let mjmlresult = template({ data: data });
-      //console.log('mjmlresult', mjmlresult);
-      let htmlOutput = mjml.mjml2html(mjmlresult).html;
-      let messageId = await mailService.mailSend(userEmail,fromEmail,subject,htmlOutput);
+            hb.registerHelper('ifCond', function (v1, operator, v2, options) {
+              switch (operator) {
+                  case '==':
+                      return (v1 == v2) ? options.fn(this) : options.inverse(this);
+                  case '===':
+                      return (v1 === v2) ? options.fn(this) : options.inverse(this);
+                  case '!==':
+                      return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+                  case '<':
+                      return (v1 < v2) ? options.fn(this) : options.inverse(this);
+                  case '<=':
+                      return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+                  case '>':
+                      return (v1 > v2) ? options.fn(this) : options.inverse(this);
+                  case '>=':
+                      return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+                  case '&&':
+                      return (v1 && v2) ? options.fn(this) : options.inverse(this);
+                  case '||':
+                      return (v1 || v2) ? options.fn(this) : options.inverse(this);
+                  default:
+                      return options.inverse(this);
+              }
+          });
+
+          let template = hb.compile(mjmlsrc);
+          let mjmlresult = template({ data: data });
+          //console.log('mjmlresult', mjmlresult);
+          let htmlOutput = mjml.mjml2html(mjmlresult).html;
+          let messageId = await mailService.mailSend(userEmail,fromEmail,subject,htmlOutput);
+        }
     }
   }
 }
