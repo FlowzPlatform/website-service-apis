@@ -3,7 +3,7 @@
       {
         "product_api_url": "https://api.flowzqa.tk/pdmnew/pdm/US",
         "product_api_image_url": "http://image.promoworld.ca/migration-api-hidden-new/web/images/",
-        "search_api_url": "https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdm1/_search",
+        "search_api_url": "https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdmqa/_search",
         "search_api_auth_token": "Basic NTk5MTQwNTU2YzcxZDEwMDFjMDIwNzI5OjEyMzQ1Ng==",
 	"supplier_id" : 5,
         "login_api": "https://api.flowzqa.tk/auth/api/login",
