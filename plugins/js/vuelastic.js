@@ -193,9 +193,11 @@ const paginate = Vue.component('paginate', VuejsPaginate);
                 <div id="product-filter-slider-range" ></div>
               </div>`,
     props: ['label', 'filtervalue', 'filterkey', 'filterkeysecond'],
-    data: {
-      minPrice: '',
-      maxPrice: ''
+    data: function() {
+      return {
+        minPrice: '',
+        maxPrice: ''
+      }
     },
     methods: {
       filterProducts() {
@@ -290,7 +292,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
     }
   });
 
-  const dfSelect = Vue.component('datasfieldselect', {
+  const dfSelect = Vue.component('datafieldselect', {
     template: `<div>
                 <h4><strong>{{label}}</strong></h4>
                 <hr />
@@ -318,7 +320,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
     },
     created() {
       let self = this;
-      $('datasfieldselect').each(function(index, value) {
+      $('datafieldselect').each(function(index, value) {
         let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
         self.varFilter = varFilter;
         self.selectedFilters[varFilter] = [];
@@ -555,7 +557,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
         });
 
-        $('datasfieldselect').each(function(index, value) {
+        $('datafieldselect').each(function(index, value) {
           let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
 
           objFilter[varFilter] = []
