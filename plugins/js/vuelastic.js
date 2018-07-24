@@ -432,97 +432,176 @@ const paginate = Vue.component('paginate', VuejsPaginate);
     mounted() {}
   });
 
-  new Vue({
-    el: "#app",
-    data() {
-      return {
-        products: null,
-        searchfilter: {},
-        filteredProducts: [],
-        colors: [],
-        categories: [],
-        minPrice: null,
-        maxPrice: null,
-        filterAll: null,
-        selectedFilters: {},
-        chipsFilter : {},
-        dataCat: {},
-        dataSlider: {},
-        dataColor: [],
-        dataFilterKeys: [],
-        dataSliderKey: [],
-        minValue: null,
-        maxValue: null,
-        searchInput: '',
-        isDataLoading: false,
-        totalPages: null,
-        totalProductsCount: null,
-        numberOfProductsPerPage: 20,
-        displayedProducts: null,
-        fromItemNumber: 1,
-        priceField: null,
-        updatechild: null,
-        projectVid: null,
-        projectVPwd: null,
-        dataAuthToken: null,
-        elasticURL: 'https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdmdev/_search'
-      }
-    },
-    components: {
-      // dfGroup,
-      dfList,
-      dfText,
-      dfObj,
-      // Table,
-      dfCheckBox,
-      dfSlider,
-      dfSelect,
-      dfRating,
-      dfSearch,
-      paginate
-    },
-    methods: {
+  $('.datasset').each(function() {
+    let setId = this.id ;
+    console.log('Set ID: ', setId);
 
-      changeNumberOfProducts(){
-        Cookies.set('numberOfProductsPerPage', this.numberOfProductsPerPage);
-        if(Object.keys(this.selectedFilters).length == 0){
-          this.totalPages = Math.ceil(this.totalProductsCount / this.numberOfProductsPerPage);  
-          this.filterProducts();
-        } else {
-          this.totalPages = Math.ceil(this.filteredProducts.length / this.numberOfProductsPerPage);  
-          this.filterProducts();
-        }        
+    new Vue({
+      el: "#" + setId,
+      data() {
+        return {
+          products: null,
+          searchfilter: {},
+          filteredProducts: [],
+          colors: [],
+          categories: [],
+          minPrice: null,
+          maxPrice: null,
+          filterAll: null,
+          selectedFilters: {},
+          chipsFilter : {},
+          dataCat: {},
+          dataSlider: {},
+          dataColor: [],
+          dataFilterKeys: [],
+          dataSliderKey: [],
+          minValue: null,
+          maxValue: null,
+          searchInput: '',
+          isDataLoading: false,
+          totalPages: null,
+          totalProductsCount: null,
+          numberOfProductsPerPage: 20,
+          displayedProducts: null,
+          fromItemNumber: 1,
+          priceField: null,
+          updatechild: null,
+          projectVid: null,
+          projectVPwd: null,
+          dataAuthToken: null,
+          elasticURL: 'https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdmdev/_search'
+        }
       },
-
-      clickCallback(pageNum) {
-        this.fromItemNumber = (this.numberOfProductsPerPage * (pageNum - 1) + 1 );
-        this.$refs.paginate.selected = pageNum - 1;
-        this.filterProducts();
+      components: {
+        // dfGroup,
+        dfList,
+        dfText,
+        dfObj,
+        // Table,
+        dfCheckBox,
+        dfSlider,
+        dfSelect,
+        dfRating,
+        dfSearch,
+        paginate
       },
+      methods: {
 
-      searchProduct(searchInput) {
-        if (searchInput == '' || searchInput == null || searchInput == undefined) {
-          this.searchInput = '';
-          
+        changeNumberOfProducts(){
+          Cookies.set('numberOfProductsPerPage', this.numberOfProductsPerPage);
+          if(Object.keys(this.selectedFilters).length == 0){
+            this.totalPages = Math.ceil(this.totalProductsCount / this.numberOfProductsPerPage);  
+            this.filterProducts();
+          } else {
+            this.totalPages = Math.ceil(this.filteredProducts.length / this.numberOfProductsPerPage);  
+            this.filterProducts();
+          }        
+        },
+
+        clickCallback(pageNum) {
+          this.fromItemNumber = (this.numberOfProductsPerPage * (pageNum - 1) + 1 );
+          this.$refs.paginate.selected = pageNum - 1;
           this.filterProducts();
+        },
 
-          $(function() {
-            $('.lazy').lazy();
+        searchProduct(searchInput) {
+          if (searchInput == '' || searchInput == null || searchInput == undefined) {
+            this.searchInput = '';
+            
+            this.filterProducts();
+
+            $(function() {
+              $('.lazy').lazy();
+            });
+          } else {
+            this.searchInput = searchInput;
+            this.filteredProducts = {};
+            var settings = {
+              "async": true,
+              "url": this.elasticURL,
+              "method": "POST",
+              "headers": {
+                "Authorization": "Basic " + this.dataAuthToken
+              },
+              "data": "{\"query\": {\"multi_match\" : {\"query\": \"" + searchInput + "\", \"fields\": [\"search_keyword\", \"categories\", \"product_name\", \"sku\"] } }, \"from\": " + this.fromItemNumber + ", \"size\": " + this.numberOfProductsPerPage + "}"
+            }
+            let self_ = this;
+            $.ajax(settings).done(function(data) {
+              self_.products = data.hits.hits;
+              self_.filteredProducts = self_.products;
+
+              self_.totalProductsCount = data.hits.total;
+
+              if(data.hits.hits.length < self_.numberOfProductsPerPage){
+                self_.displayedProducts = data.hits.hits.length;
+              } else {
+                self_.displayedProducts = self_.numberOfProductsPerPage;
+              }
+
+              self_.totalPages = Math.ceil(self_.totalProductsCount / self_.numberOfProductsPerPage);
+
+              $(function() {
+                $('.lazy').lazy();
+              });
+            });
+          }
+        },
+
+        filterAll2() {
+          let objFilter = {};
+          let self = this
+          $('datasfieldcheckbox').each(function(index, value) {
+            let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
+
+            objFilter[varFilter] = []
+            self.dataCat[varFilter] = []
+            objFilter[varFilter] = self.dataCat[varFilter]
+
+            self.dataFilterKeys.push(varFilter);
+
           });
-        } else {
-          this.searchInput = searchInput;
-          this.filteredProducts = {};
+
+          $('datafieldselect').each(function(index, value) {
+            let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
+
+            objFilter[varFilter] = []
+            self.dataCat[varFilter] = []
+            objFilter[varFilter] = self.dataCat[varFilter]
+
+            self.dataFilterKeys.push(varFilter);
+
+          });
+
+          $('datasfieldslider').each(function(index, value) {
+            let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
+            self.priceField = varFilter;
+            self.dataSlider[varFilter] = []
+            objFilter[varFilter] = self.dataSlider[varFilter]
+            self.dataSliderKey.push(varFilter);
+          });
+
+          return objFilter;
+        },
+
+        getUrl(self) {
+          this.isDataLoading = true;
+          // this.apiUrl = self;
+          let self_ = this;
+          let filterBox = {};
+
           var settings = {
             "async": true,
+            "crossDomain": true,
             "url": this.elasticURL,
             "method": "POST",
             "headers": {
-              "Authorization": "Basic " + this.dataAuthToken
+              "Authorization": "Basic " + self_.dataAuthToken
             },
-            "data": "{\"query\": {\"multi_match\" : {\"query\": \"" + searchInput + "\", \"fields\": [\"search_keyword\", \"categories\", \"product_name\", \"sku\"] } }, \"from\": " + this.fromItemNumber + ", \"size\": " + this.numberOfProductsPerPage + "}"
+            "data": "{\n\t\"from\": "+this.fromItemNumber+",\n\t\"size\": "+this.numberOfProductsPerPage+"\n}"
           }
-          let self_ = this;
+
           $.ajax(settings).done(function(data) {
+            console.log(data);
             self_.products = data.hits.hits;
             self_.filteredProducts = self_.products;
 
@@ -536,415 +615,343 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
             self_.totalPages = Math.ceil(self_.totalProductsCount / self_.numberOfProductsPerPage);
 
+            // for arrays
+            self_.dataFilterKeys.forEach(function(dfKey) {
+              filterBox[dfKey] = [];
+              self_.filteredProducts.forEach(function(fProd) {
+                filterBox[dfKey] = filterBox[dfKey].concat(fProd._source[dfKey]);
+
+                filterBox[dfKey] = _.uniq(filterBox[dfKey])
+              });
+
+              for (let index = 0; index < filterBox[dfKey].length; index++) {
+                self_.dataCat[dfKey].push(filterBox[dfKey][index]);
+              }
+            });
+
+            //for single value
+            let slider_temp = {}
+            self_.dataSliderKey.forEach(function(dfKey) {
+              slider_temp[dfKey] = [];
+              self_.filteredProducts.forEach(function(fProd) {
+                  slider_temp[dfKey] = slider_temp[dfKey].concat(fProd._source[dfKey]);
+                })
+              self_.dataSlider[dfKey].push(slider_temp[dfKey])
+            });
+
             $(function() {
               $('.lazy').lazy();
             });
+
+            // self_.isDataLoading = false;
           });
-        }
-      },
+        },
 
-      filterAll2() {
-        let objFilter = {};
-        let self = this
-        $('datasfieldcheckbox').each(function(index, value) {
-          let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
+        callfilteredproducts(data, key) {
+          this.selectedFilters[key] = [];
+          this.selectedFilters[key] = data;
+          this.filterProducts();
+        },
 
-          objFilter[varFilter] = []
-          self.dataCat[varFilter] = []
-          objFilter[varFilter] = self.dataCat[varFilter]
+        callfilteredproducts2(minValue, maxValue, minVal, maxVal) {
+          this.minValue = minValue;
+          this.maxValue = maxValue;
+          setTimeout(()=>{
+            this.filterProducts();
+          },1500);
+        },
 
-          self.dataFilterKeys.push(varFilter);
+        filterProductsOld() {
+          this.isDataLoading = true;
+          setTimeout(async() => {
 
-        });
+            console.log('This Selected Filters: ', this.selectedFilters);
+            this.selectedFilters = this.selectedFilters
 
-        $('datafieldselect').each(function(index, value) {
-          let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
 
-          objFilter[varFilter] = []
-          self.dataCat[varFilter] = []
-          objFilter[varFilter] = self.dataCat[varFilter]
+            let keys = Object.keys(this.selectedFilters);
+            this.chipsFilter = keys;
 
-          self.dataFilterKeys.push(varFilter);
-
-        });
-
-        $('datasfieldslider').each(function(index, value) {
-          let varFilter = $(this).attr(":filtervalue").substring($(this).attr(":filtervalue").indexOf(".") + 1, $(this).attr(":filtervalue").length);
-          self.priceField = varFilter;
-          self.dataSlider[varFilter] = []
-          objFilter[varFilter] = self.dataSlider[varFilter]
-          self.dataSliderKey.push(varFilter);
-        });
-
-        return objFilter;
-      },
-
-      getUrl(self) {
-        this.isDataLoading = true;
-        // this.apiUrl = self;
-        let self_ = this;
-        let filterBox = {};
-
-        var settings = {
-          "async": true,
-          "crossDomain": true,
-          "url": this.elasticURL,
-          "method": "POST",
-          "headers": {
-            "Authorization": "Basic " + self_.dataAuthToken
-          },
-          "data": "{\n\t\"from\": "+this.fromItemNumber+",\n\t\"size\": "+this.numberOfProductsPerPage+"\n}"
-        }
-
-        $.ajax(settings).done(function(data) {
-          console.log(data);
-          self_.products = data.hits.hits;
-          self_.filteredProducts = self_.products;
-
-          self_.totalProductsCount = data.hits.total;
-
-          if(data.hits.hits.length < self_.numberOfProductsPerPage){
-            self_.displayedProducts = data.hits.hits.length;
-          } else {
-            self_.displayedProducts = self_.numberOfProductsPerPage;
-          }
-
-          self_.totalPages = Math.ceil(self_.totalProductsCount / self_.numberOfProductsPerPage);
-
-          // for arrays
-          self_.dataFilterKeys.forEach(function(dfKey) {
-            filterBox[dfKey] = [];
-            self_.filteredProducts.forEach(function(fProd) {
-              filterBox[dfKey] = filterBox[dfKey].concat(fProd._source[dfKey]);
-
-              filterBox[dfKey] = _.uniq(filterBox[dfKey])
+            await keys.forEach((key)=>{
+              if(this.selectedFilters[key].length == 0){
+                delete this.selectedFilters[key];
+                var keyIndex = keys.indexOf(key);
+                if (keyIndex > -1) {
+                  keys.splice(keyIndex, 1);
+                }
+              }
             });
 
-            for (let index = 0; index < filterBox[dfKey].length; index++) {
-              self_.dataCat[dfKey].push(filterBox[dfKey][index]);
-            }
-          });
+            let allEmpty = [];
 
-          //for single value
-          let slider_temp = {}
-          self_.dataSliderKey.forEach(function(dfKey) {
-            slider_temp[dfKey] = [];
-            self_.filteredProducts.forEach(function(fProd) {
-                slider_temp[dfKey] = slider_temp[dfKey].concat(fProd._source[dfKey]);
-              })
-            self_.dataSlider[dfKey].push(slider_temp[dfKey])
-          });
-
-          $(function() {
-            $('.lazy').lazy();
-          });
-
-          // self_.isDataLoading = false;
-        });
-      },
-
-      callfilteredproducts(data, key) {
-        this.selectedFilters[key] = [];
-        this.selectedFilters[key] = data;
-        this.filterProducts();
-      },
-
-      callfilteredproducts2(minValue, maxValue, minVal, maxVal) {
-        this.minValue = minValue;
-        this.maxValue = maxValue;
-        setTimeout(()=>{
-          this.filterProducts();
-        },1500);
-      },
-
-      filterProductsOld() {
-        this.isDataLoading = true;
-        setTimeout(async() => {
-
-          console.log('This Selected Filters: ', this.selectedFilters);
-          this.selectedFilters = this.selectedFilters
-
-
-          let keys = Object.keys(this.selectedFilters);
-          this.chipsFilter = keys;
-
-          await keys.forEach((key)=>{
-            if(this.selectedFilters[key].length == 0){
-              delete this.selectedFilters[key];
-              var keyIndex = keys.indexOf(key);
-              if (keyIndex > -1) {
-                keys.splice(keyIndex, 1);
+            for (let i = 0; i < keys.length; i++) {
+              if (this.selectedFilters[keys[i]].length > 0) {
+                allEmpty.push(true);
+              } else {
+                allEmpty.push(false);
               }
             }
-          });
 
-          let allEmpty = [];
+            if (($.inArray(true, allEmpty)) != -1) {
 
-          for (let i = 0; i < keys.length; i++) {
-            if (this.selectedFilters[keys[i]].length > 0) {
-              allEmpty.push(true);
-            } else {
-              allEmpty.push(false);
-            }
-          }
+              let self = this;
 
-          if (($.inArray(true, allEmpty)) != -1) {
+              await keys.forEach(function(filterKey) {
 
-            let self = this;
+                let filterdProducts = _.filter(self.products, function(o) {
 
-            await keys.forEach(function(filterKey) {
+                  let flg = false;
+                  let searchFilterKey = self.selectedFilters[filterKey];
+                  searchFilterKey.forEach(function(sKey) {
+                    let ind = o._source[filterKey].indexOf(sKey)
+                    if (ind >= 0) {
+                      flg = true;
+                    }
+                  })
 
-              let filterdProducts = _.filter(self.products, function(o) {
-
-                let flg = false;
-                let searchFilterKey = self.selectedFilters[filterKey];
-                searchFilterKey.forEach(function(sKey) {
-                  let ind = o._source[filterKey].indexOf(sKey)
-                  if (ind >= 0) {
-                    flg = true;
+                  if (flg) {
+                    return o._source.price_1 >= self.minValue && o._source.price_1 <= self.maxValue;
                   }
-                })
+                });
 
-                if (flg) {
-                  return o._source.price_1 >= self.minValue && o._source.price_1 <= self.maxValue;
-                }
+                self.filteredProducts = filterdProducts;
+                self.totalPages = Math.ceil(self.filteredProducts.length / self.numberOfProductsPerPage);
+                self.isDataLoading = false;
+
               });
 
-              self.filteredProducts = filterdProducts;
-              self.totalPages = Math.ceil(self.filteredProducts.length / self.numberOfProductsPerPage);
+            } else {
+              let self = this;
+              this.filteredProducts = _.filter(this.products, function(o) {
+                return o._source.price_1 >= self.minValue && o._source.price_1 <= self.maxValue;
+              });
               self.isDataLoading = false;
+            }
 
+          }, 0);
+        },
+
+        filterProducts(){
+          this.filteredProducts = null;
+          this.isDataLoading = true;
+          setTimeout(async() => {
+
+            // console.log('This Selected Filters: ', this.selectedFilters);
+            this.selectedFilters = this.selectedFilters
+
+
+            let keys = Object.keys(this.selectedFilters);
+            this.chipsFilter = keys;
+
+            await keys.forEach((key)=>{
+              if(this.selectedFilters[key].length == 0){
+                delete this.selectedFilters[key];
+                var keyIndex = keys.indexOf(key);
+                if (keyIndex > -1) {
+                  keys.splice(keyIndex, 1);
+                }
+              }
             });
 
-          } else {
-            let self = this;
-            this.filteredProducts = _.filter(this.products, function(o) {
-              return o._source.price_1 >= self.minValue && o._source.price_1 <= self.maxValue;
-            });
-            self.isDataLoading = false;
-          }
+            let allEmpty = [];
 
-        }, 0);
-      },
-
-      filterProducts(){
-        this.filteredProducts = null;
-        this.isDataLoading = true;
-        setTimeout(async() => {
-
-          // console.log('This Selected Filters: ', this.selectedFilters);
-          this.selectedFilters = this.selectedFilters
-
-
-          let keys = Object.keys(this.selectedFilters);
-          this.chipsFilter = keys;
-
-          await keys.forEach((key)=>{
-            if(this.selectedFilters[key].length == 0){
-              delete this.selectedFilters[key];
-              var keyIndex = keys.indexOf(key);
-              if (keyIndex > -1) {
-                keys.splice(keyIndex, 1);
+            for (let i = 0; i < keys.length; i++) {
+              if (this.selectedFilters[keys[i]].length > 0) {
+                allEmpty.push(true);
+              } else {
+                allEmpty.push(false);
               }
             }
-          });
 
-          let allEmpty = [];
+            if (($.inArray(true, allEmpty)) != -1) {
 
-          for (let i = 0; i < keys.length; i++) {
-            if (this.selectedFilters[keys[i]].length > 0) {
-              allEmpty.push(true);
-            } else {
-              allEmpty.push(false);
-            }
-          }
+              let self = this;
 
-          if (($.inArray(true, allEmpty)) != -1) {
-
-            let self = this;
-
-            let filterQuery = { 
-              query:{ 
-                bool:{ 
-                  must:[{
-                    range:{
-                      [this.priceField]:{
-                        gte:this.minValue,
-                        lte:this.maxValue
+              let filterQuery = { 
+                query:{ 
+                  bool:{ 
+                    must:[{
+                      range:{
+                        [this.priceField]:{
+                          gte:this.minValue,
+                          lte:this.maxValue
+                        }
                       }
                     }
-                  }
-                  ] 
-                } 
-              },
-              from: this.fromItemNumber,
-              size: this.numberOfProductsPerPage 
-            };
+                    ] 
+                  } 
+                },
+                from: this.fromItemNumber,
+                size: this.numberOfProductsPerPage 
+              };
 
-            await keys.forEach(function(filterKey) {
+              await keys.forEach(function(filterKey) {
 
-              let searchTerm = '{ "terms": { "' + filterKey + '.raw" : ' + JSON.stringify(self.selectedFilters[filterKey]) + ' } }';
+                let searchTerm = '{ "terms": { "' + filterKey + '.raw" : ' + JSON.stringify(self.selectedFilters[filterKey]) + ' } }';
 
-              filterQuery.query.bool.must.push(JSON.parse(searchTerm));
+                filterQuery.query.bool.must.push(JSON.parse(searchTerm));
 
-              // self.filteredProducts = filterdProducts;
-              // self.totalPages = Math.ceil(self.filteredProducts.length / self.numberOfProductsPerPage);
-              // self.isDataLoading = false;
+                // self.filteredProducts = filterdProducts;
+                // self.totalPages = Math.ceil(self.filteredProducts.length / self.numberOfProductsPerPage);
+                // self.isDataLoading = false;
 
-            });
+              });
 
-            var settings = {
-              "async": true,
-              "url": this.elasticURL,
-              "method": "POST",
-              "headers": {
-                "Authorization": "Basic " + this.dataAuthToken
-              },
-              "data": JSON.stringify(filterQuery)
-            }
+              var settings = {
+                "async": true,
+                "url": this.elasticURL,
+                "method": "POST",
+                "headers": {
+                  "Authorization": "Basic " + this.dataAuthToken
+                },
+                "data": JSON.stringify(filterQuery)
+              }
 
-            $.ajax(settings).done(function(data) {
-              self.totalProductsCount = data.hits.total;
-              self.totalPages = Math.ceil(self.totalProductsCount / self.numberOfProductsPerPage);
+              $.ajax(settings).done(function(data) {
+                self.totalProductsCount = data.hits.total;
+                self.totalPages = Math.ceil(self.totalProductsCount / self.numberOfProductsPerPage);
 
-              self.products = data.hits.hits;
-              self.filteredProducts = self.products;
-              self.isDataLoading = false;
+                self.products = data.hits.hits;
+                self.filteredProducts = self.products;
+                self.isDataLoading = false;
+                
+                if(data.hits.hits.length < self.numberOfProductsPerPage){
+                  self.displayedProducts = data.hits.hits.length;
+                } else {
+                  self.displayedProducts = self.numberOfProductsPerPage;
+                }
+
+                $(function() {
+                  $('.lazy').lazy();
+                });
+              });
+
+              // console.log('Filter Query : ', JSON.stringify(filterQuery));
+
+            } else {
+
+              let self = this;
+
+              var settings = {
+                "async": true,
+                "url": this.elasticURL,
+                "method": "POST",
+                "headers": {
+                  "Authorization": "Basic " + this.dataAuthToken
+                },
+                "data": '{ "query":{ "bool":{ "must":[ { "range":{ "'+[this.priceField]+'":{ "gte":'+this.minValue+', "lte":'+this.maxValue+' } } } ] } }, "from": '+this.fromItemNumber+', "size": '+this.numberOfProductsPerPage+' }'
+              }
+
+              await $.ajax(settings).done(function(data) {
+                self.totalProductsCount = data.hits.total;
+                self.totalPages = Math.ceil(self.totalProductsCount / self.numberOfProductsPerPage);
+                self.products = data.hits.hits;
+                self.filteredProducts = self.products;
+                self.isDataLoading = false;
+
+                if(data.hits.hits.length < self.numberOfProductsPerPage){
+                  self.displayedProducts = data.hits.hits.length;
+                } else {
+                  self.displayedProducts = self.numberOfProductsPerPage;
+                }
+
+                // self.filteredProducts = _.filter(self.products, function(o) {
+                //   return o._source.price_1 >= self.minValue && o._source.price_1 <= self.maxValue;
+                // });
+
+                $(function() {
+                  $('.lazy').lazy();
+                });
+              });
+
               
-              if(data.hits.hits.length < self.numberOfProductsPerPage){
-                self.displayedProducts = data.hits.hits.length;
-              } else {
-                self.displayedProducts = self.numberOfProductsPerPage;
-              }
-
-              $(function() {
-                $('.lazy').lazy();
-              });
-            });
-
-            // console.log('Filter Query : ', JSON.stringify(filterQuery));
-
-          } else {
-
-            let self = this;
-
-            var settings = {
-              "async": true,
-              "url": this.elasticURL,
-              "method": "POST",
-              "headers": {
-                "Authorization": "Basic " + this.dataAuthToken
-              },
-              "data": '{ "query":{ "bool":{ "must":[ { "range":{ "'+[this.priceField]+'":{ "gte":'+this.minValue+', "lte":'+this.maxValue+' } } } ] } }, "from": '+this.fromItemNumber+', "size": '+this.numberOfProductsPerPage+' }'
             }
 
-            await $.ajax(settings).done(function(data) {
-              self.totalProductsCount = data.hits.total;
-              self.totalPages = Math.ceil(self.totalProductsCount / self.numberOfProductsPerPage);
-              self.products = data.hits.hits;
-              self.filteredProducts = self.products;
-              self.isDataLoading = false;
+          }, 0);
+        },
 
-              if(data.hits.hits.length < self.numberOfProductsPerPage){
-                self.displayedProducts = data.hits.hits.length;
-              } else {
-                self.displayedProducts = self.numberOfProductsPerPage;
-              }
+        removeAllFilters(){
+          this.selectedFilters = {};
+          this.filterProducts();
 
-              // self.filteredProducts = _.filter(self.products, function(o) {
-              //   return o._source.price_1 >= self.minValue && o._source.price_1 <= self.maxValue;
-              // });
+          let arrayToSend = [{
+            selectedFilters: this.selectedFilters,
+            category: []
+          }];
 
-              $(function() {
-                $('.lazy').lazy();
-              });
-            });
+          this.updatechild = arrayToSend;
+        },
 
-            
-          }
+        removeSearchFilter(){
+          this.searchInput = null;
+          this.filterProducts();
+        },
 
-        }, 0);
-      },
+        removeFilter(category, name){
 
-      removeAllFilters(){
-        this.selectedFilters = {};
-        this.filterProducts();
+          console.log("Remove cat: ", name);
 
-        let arrayToSend = [{
-          selectedFilters: this.selectedFilters,
-          category: []
-        }];
+          let updatedFilters = _.remove(this.selectedFilters[category], function(n) {
+                                return n == name;
+                              });
 
-        this.updatechild = arrayToSend;
-      },
+          let arrayToSend = [{
+            selectedFilters: this.selectedFilters,
+            category: category
+          }];
 
-      removeSearchFilter(){
-        this.searchInput = null;
-        this.filterProducts();
-      },
+          this.updatechild = arrayToSend;
+          this.category = category
 
-      removeFilter(category, name){
-
-        console.log("Remove cat: ", name);
-
-        let updatedFilters = _.remove(this.selectedFilters[category], function(n) {
-                              return n == name;
-                            });
-
-        let arrayToSend = [{
-          selectedFilters: this.selectedFilters,
-          category: category
-        }];
-
-        this.updatechild = arrayToSend;
-        this.category = category
-
-        this.filterProducts();
-      }
-
-    },
-
-    async mounted() {
-
-      let self = this;
-
-      await $.getJSON('./assets/project-details.json', {
-      })
-      .then(function (response) {
-          self.projectVid = response[0].Projectvid.vid;
-          self.projectVPwd = response[0].Projectvid.password;
-
-          self.dataAuthToken = btoa(self.projectVid + ':' + self.projectVPwd);
-      })
-      .catch(function (error) {
-          console.log(error);
-      });
-
-      this.getUrl();
-
-      this.fromItemNumber = 1;
-      this.searchInput = null;
-      if(Cookies.get('numberOfProductsPerPage')){
-        this.numberOfProductsPerPage = Cookies.get('numberOfProductsPerPage');
-      } else {
-        this.numberOfProductsPerPage = 20;
-      }
-    },
-
-    created() {
-      this.filterAll = this.filterAll2();
-
-      let self = this;
-
-      $('#searchInputText').keypress(function(e) {
-        var key = e.which;
-        console.log(key)
-        if (key == 13) // the enter key code
-        {
-          self.searchProduct();
-          return false;
+          this.filterProducts();
         }
-      });
 
-    }
-  })
+      },
+
+      async mounted() {
+
+        let self = this;
+
+        await $.getJSON('./assets/project-details.json', {
+        })
+        .then(function (response) {
+            self.projectVid = response[0].Projectvid.vid;
+            self.projectVPwd = response[0].Projectvid.password;
+
+            self.dataAuthToken = btoa(self.projectVid + ':' + self.projectVPwd);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+        this.getUrl();
+
+        this.fromItemNumber = 1;
+        this.searchInput = null;
+        if(Cookies.get('numberOfProductsPerPage')){
+          this.numberOfProductsPerPage = Cookies.get('numberOfProductsPerPage');
+        } else {
+          this.numberOfProductsPerPage = 20;
+        }
+      },
+
+      created() {
+        this.filterAll = this.filterAll2();
+
+        let self = this;
+
+        $('#searchInputText').keypress(function(e) {
+          var key = e.which;
+          console.log(key)
+          if (key == 13) // the enter key code
+          {
+            self.searchProduct();
+            return false;
+          }
+        });
+
+      }
+    })
+  });
+
+  
