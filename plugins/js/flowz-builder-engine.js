@@ -362,7 +362,11 @@ try {
               // console.log('data........', data[i][entity.name], filearr)
               mdata[entity.name] = filearr
             } else {
-              mdata[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
+              if (form.querySelector('[name="' + entity.name + '"]').type == 'checkbox') {
+                mdata[entity.name] = await form.querySelector('[name="' + entity.name + '"]').checked
+              } else {
+                mdata[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
+              }
             }
           } else {
             mdata[entity.name] = ''
