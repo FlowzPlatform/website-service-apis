@@ -1,0 +1,138 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#iozmp {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: black;
+    border-right-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.c8203 {
+    display: block;
+    width: 100%;
+    min-height: 60px;
+}
+</style>
+
+
+
+
+<div class="ob-our-brand">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="slider-wrapper">
+                    <div class="common-title">
+                        <h4 class="most-popular-title">AWARDS</h4>
+                    </div>
+                    <div id="owl-carousel-brand" class="owl-carousel owl-brand owl-loaded owl-drag">
+                        <!-- <customslidercomponent aplay="5000" prev="prev" next="next" slidespeed="200"
+                        ditems="7" slidercustom="5379e3ac-b412-456c-a785-9e698b31773f" navigation
+                        btype="brand" pagination sliderCustom="5379e3ac-b412-456c-a785-9e698b31773f"
+                        class="c-slider c8203">
+                            <div id="iozmp"></div>
+                        </customslidercomponent> -->
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-3.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-2.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-1.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-5.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-4.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-1.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-2.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-3.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-4.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-5.png"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-block">
+                                <a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532335377/websites/InnovationLine/images/awards-4.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

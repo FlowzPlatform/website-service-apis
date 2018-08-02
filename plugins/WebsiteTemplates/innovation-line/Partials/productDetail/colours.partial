@@ -1,0 +1,60 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+.checkbox_color {
+    float: left;
+    margin: 2px;
+}
+.checkbox_color input {
+    display: none;
+}
+.checkbox_color label {
+    width: 30px;
+    height: 30px;
+}
+.checkbox_color input:checked + label {
+    background-image: url(https://www.goldstarpens.com/bundles/officebraincustombundletheme/GoldStarTheme/images/checkbox-arrow.png);
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-position: 2px 1px;
+    background-repeat: no-repeat;
+}
+</style>
+
+
+
+<div class="product-section-box">
+    <h2 class="heading-block js-section-number">Colors </h2>
+    <div class="checkbox_colors js-color-section">
+        <div id="js-color-box" class="owl-theme owl-carousel color-box checkbox_color js-color-section" style="#data.colorCodeStyle#" title="#data.colorVal#">
+            <input class="js_color_checkbox" type="checkbox" name="col1" id="#data.tabID#_#data.colorID#"
+            value="#data.colorVal#" data-hex-code="#data.colorHexCode#"/>
+            <label for="#data.tabID#_#data.colorID#"></label>
+        </div>
+    </div>
+</div>

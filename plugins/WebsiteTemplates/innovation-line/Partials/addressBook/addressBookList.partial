@@ -1,0 +1,81 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c23460 {
+    font-size: 20px;
+}
+
+#c23476 {
+    font-size: 16px;
+}
+</style>
+
+<section class="fdb-block">
+    <div class="js_address_book_list">
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+            <div class="account-address-block">
+                <div class="address-inner-block">
+                    <div class="address-title-block">
+                        <h4>#data.name#</h4>
+                        <div class="pull-right address-edit-del-block">
+                            <ul>
+                                <li><a class="ui-link" data-original-title="Edit" data-placement="top" data-toggle="tooltip"
+                                    href="editAddressBook.html?id=#data.id#" data-id="#data.id#"><i class="fa fa-pencil-square-o"></i></a>
+                                </li>
+                                <li><a class="ui-link js_delete_address" data-original-title="Delete" data-placement="top" data-toggle="tooltip"
+                                    href="javascript:void(0)" data-id="#data.id#"><i class="fa fa-trash-o"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="address-info-block">
+                        <div class="scrollbar" id="style-1">
+                            <p>#data.address#</p>
+                        </div>
+                    </div>
+                    <div class="address-contact-info-block">
+                        <ul>
+                            <li><i class="fa fa-phone"></i>#data.phone#</li>
+                            <li><a href="#"><i class="fa fa-envelope"></i>#data.email#</a>
+                            </li>
+                            <li><i class="fa fa-print"></i>#data.mobile#</li>
+                        </ul>
+                    </div>
+                    <div class="address-shipping-block js_address_type">
+                        <div class="checkbox">#data.addressTypeHtml#</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="./assets/client-plugins/client-address-book.js"></script>

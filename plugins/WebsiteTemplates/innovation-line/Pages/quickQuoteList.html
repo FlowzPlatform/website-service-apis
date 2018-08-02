@@ -1,0 +1,97 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.c67694 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<div id="myQuickQuoteList" class="container main">
+    <div class="innerpage row account-innerpage">
+        <div class="breadcrumb">
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right fa-fw"> </i>
+                </li>
+                <li>
+                    <strong>My Quick Quote </strong>
+                </li>
+            </ul>
+        </div>
+        <div class="ob-quick-quote-block myaccount-my-wishlist">
+            <h1 class="main-title"><i class="fa fa-comment quote-icon"><span>,,</span></i>My Quick Quote </h1>
+                    <div id="product-list-container" class="ob-product-grid js-product-grid list-view quick-quote-list ob-product-grid2">
+                            <reusecomponent class="c67694">{{> quickQuote id='list.partial' }}</reusecomponent>
+                    </div>
+
+                    <div class="ob-contact-form-block quick-quote-form hide">
+                        <div class="sub-form-box">
+                            <form name="send_quick_quoteemail" method="post" id="send_quick_quoteemail">                      
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="checkout-label">To<i class="mandatory-field">*</i></label>
+                                            <input type="text" name="to_name" class="input" id="to_name">                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="checkout-label">From Name<i class="mandatory-field">*</i></label>
+                                            <input type="text" name="from_name" class="input" id="from_name">
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="checkout-label">From Email<i class="mandatory-field">*</i></label>
+                                            <input type="text" name="from_email" class="input" id="from_email">                                            
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">                                        
+                                        <label class="checkout-label">Message<i class="mandatory-field">*</i></label>
+                                        <textarea class="textarea" id="message" name="message"></textarea>
+                                        </div>                                        	
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                        <div class="quick-quote-btn">
+                                            <input type="submit" value="Submit" class="btn btn-default js-submit-btn js-email_quick_quote">
+                                            <input type="reset" value="reset" class="btn btn-default">
+                                        </div>
+                                    </div>
+                                                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>

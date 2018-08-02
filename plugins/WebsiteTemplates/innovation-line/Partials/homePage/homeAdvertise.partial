@@ -1,0 +1,43 @@
+ <div class="container">
+        <div class="banner-box">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12"><a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532085105/websites/InnovationLine/images/Catalog.jpg" alt="catalog image" class="img-responsive"/></a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 cat-right-side">
+                    <div class="deal-banner"><a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532085265/websites/InnovationLine/images/cat-banner1.png" alt="Text"/></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="banner-over">
+                                <div class="right-banner-bg1">
+                                    <h4>Logo Marking</h4>
+                                    <p class="right-banner-para">Logo Marking and
+                                        <br/>product promotion
+                                        <br/>is what we do best!
+                                        <br/>
+                                    </p><a href="javascript:void(0)" class="learn-more">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="banner-over">
+                                <div class="right-banner-bg2">
+                                    <h4>
+                                    Why profile<br/>
+                                    advertising
+                                </h4>
+                                    <p class="right-banner-para2">A strong and clear brand
+                                        <br/>image is important for
+                                        <br/>recognition and a whole in
+                                        <br/>the overall marketing campaign.
+                                        <br/>
+                                    </p><a href="javascript:void(0)" class="learn-more"> Learn More </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>

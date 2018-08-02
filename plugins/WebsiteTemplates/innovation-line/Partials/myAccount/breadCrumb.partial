@@ -1,0 +1,11 @@
+<div class="breadcrumb breadcrumbs-under" id="breadcrumbs">
+    <ul>
+        <li>
+            <a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
+        </li>
+        <li>
+            <a href="myaccount.html">My Account</a><i class="fa fa-angle-right fa-fw"></i>
+        </li>
+        <li class="hide"><strong>#data.myAccountPage#</strong></li>
+    </ul>
+</div>
