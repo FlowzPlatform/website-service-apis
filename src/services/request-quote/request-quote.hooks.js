@@ -65,14 +65,39 @@ async function before_get_email_template(hook){
       if(typeof hook.data.form_data.slug != "undefined")
       {
         let response = await hook.app.service("email-template").find({query: { slug: hook.data.form_data.slug ,website_id:hook.data.website_id}});
+
+        // let response = await hook.app.service("email-template").find({query: { slug: hook.data.form_data.slug}});
+
         // console.log("response",response);
         if(response.total != 0){
             let data = hook.result;
 
-            let userEmail = hook.data.form_data.to_email;
+            let userEmail = "";
+            let fromEmail = "";
+            let ccEmail = "";
+            
+            if(typeof hook.data.form_data.to_email != "undefined"){
+                userEmail = hook.data.form_data.to_email;
+            }
+            else if(typeof hook.data.form_data.email != "undefined"){
+                userEmail = hook.data.form_data.email;
+            }
+            // let userEmail = hook.data.form_data.to_email;
             let mjmlsrc =  response.data[0].template_content;
             let subject =  response.data[0].subject;
-            let fromEmail =  hook.data.form_data.email;
+            
+            if(typeof response.data[0].cc != "undefined")
+            {
+                ccEmail =  response.data[0].cc;
+            }
+            
+            if(typeof hook.data.form_data.email != "undefined"){
+                fromEmail =  hook.data.form_data.email;
+            }
+            else{
+                fromEmail =  response.data[0].from;
+            }
+            
 
             hb.registerHelper("math", function(lvalue, operator, rvalue, options) {
               lvalue = parseFloat(lvalue);
@@ -112,12 +137,14 @@ async function before_get_email_template(hook){
 
             let htmlOutput = mjml.mjml2html(mjmlresult).html;
 
-            let messageId = await mailService.mailSend(userEmail,fromEmail,subject,htmlOutput);
+            let messageId = await mailService.mailSend(userEmail,fromEmail,subject,htmlOutput,ccEmail);
           }
       }
     }
     else{
       // console.log("*****************");
+      // let response = await hook.app.service("email-template").find({query: { slug: 'request-quote'}});
+      
       let response = await hook.app.service("email-template").find({query: { slug: 'request-quote',website_id:hook.data.website_id }});
       // console.log("response",response);
       if(response.total != 0){
