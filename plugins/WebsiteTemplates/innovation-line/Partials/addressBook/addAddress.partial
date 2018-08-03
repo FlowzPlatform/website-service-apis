@@ -1,0 +1,176 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+</style>
+
+
+
+<form name="address_book" id="address_book" method="post">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="radio js-isoffice" style="display: none;">
+                    <div id="addresstbook_isOffice" class="input" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
+                        <input id="addresstbook_is_office_0" name="is_office" value="1" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_0">Is Office</label>
+                        <input id="addresstbook_is_office_1" name="is_office" value="0" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_1">Is Home</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="firstName">Name<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Name"
+                    name="name" id="addresstbook_name"  data-toggle="tooltip" data-placement="bottom" title="Name" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group inp-parts address-checkbox">
+                    <label class="checkout-label" for="address_type">Address Type<span class="mandatory-field">*</span>
+                    </label><br />
+
+                    <input name="address_type[]" value="shipping" id="address_type_shipping" tabindex="1"  class="css-checkbox js-address-type" type="checkbox">
+                    <label for="address_type_shipping" class="css-label font-style-normal">Shipping</label>
+
+                    <input name="address_type[]" value="billing" id="address_type_billing" tabindex="1"  class="css-checkbox js-address-type" type="checkbox">
+                    <label for="address_type_billing" class="css-label font-style-normal">Billing</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Email<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" placeholder="Enter Email " tabindex="1"
+                    name="email" id="addresstbook_email"   data-toggle="tooltip" data-placement="bottom" title="Email" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 1<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" placeholder="Enter Address 1" type="text" tabindex="1"
+                    id="addresstbook_street1" name="street1"   data-toggle="tooltip" data-placement="bottom" title="Address 1" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 2</label>
+                    <input class="input" placeholder="Enter Address 2" type="text"
+                    tabindex="1" id="addresstbook_street2" name="street2"   data-toggle="tooltip" data-placement="bottom" title="Address2" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label">Country<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select js-country" tabindex="1" id="addresstbook_country" name="country" data-toggle="tooltip" data-placement="bottom" title="Country">
+                        <option value="" selected="selected">Select Country</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label">State<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select js-state" tabindex="1" id="addresstbook_state" name="state" data-toggle="tooltip" data-placement="bottom" title="State">
+                        <option value="" selected="selected">Select State</option>
+                    </select>
+                </div>
+            </div>
+            
+
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label">City<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select js-city" tabindex="1" id="addresstbook_city" name="city" data-toggle="tooltip" data-placement="bottom" title="City">
+                        <option value="" selected="selected">Select city</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="postalcode">Postal Code <i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Postal Code"
+                    id="addresstbook_postalcode" name="postalcode"   data-toggle="tooltip" data-placement="bottom" title="Postal Code" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="phone">Phone<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Phone Number"
+                    id="addresstbook_phone" name="phone"   data-toggle="tooltip" data-placement="bottom" title="Phone Number" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="lastName">Mobile</label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Mobile Number"
+                    id="addresstbook_mobile" name="mobile"   data-toggle="tooltip" data-placement="bottom" title="Mobile Number" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12 pull-right">
+                    <span class="required-field">* Required Fields</span>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="btn-box-main">
+                        <input class="btn btn-default js_submit_address" type="submit" value="save" tabindex="17" />
+                        <input class="btn btn-default" type="reset" value="Reset" tabindex="18" />
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+
+<script type="text/javascript" src="./assets/client-plugins/client-address-book.js"></script>

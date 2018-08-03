@@ -91,6 +91,17 @@ const tags = require('./tags/tags.service.js');
 
 const productTags = require('./product-tags/product-tags.service.js');
 
+const flyerCategory = require('./flyer-category/flyer-category.service.js');
+const flyers = require('./flyers/flyers.service.js');
+
+const ecatalogCategory = require('./ecatalog-category/ecatalog-category.service.js');
+const ecatalogs = require('./ecatalogs/ecatalogs.service.js');
+
+
+
+
+const category = require('./category/category.service.js');
+
 
 
 
@@ -147,4 +158,9 @@ module.exports = function () {
   app.configure(tagCategory);
   app.configure(tags);
   app.configure(productTags);
+  app.configure(flyerCategory);
+  app.configure(flyers);
+  app.configure(ecatalogCategory);
+  app.configure(ecatalogs);
+  app.configure(category);
 };

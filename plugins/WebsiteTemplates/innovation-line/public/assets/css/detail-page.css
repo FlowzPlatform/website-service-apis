@@ -1,0 +1,26 @@
+.quick-view-left .product-big-image {
+   width : 455px
+}
+
+.innerpage {
+    margin: 0 ;
+}
+
+.header-search-col {
+    width: 40%;
+    margin-top: 27px;
+}
+.header-search-col form input[type="text"] {
+    width: 72%;
+}
+.search-mail-block .search-col input[type="submit"]{
+    text-indent: -9999px;
+}
+.ob-product-detail-page .select-quntity-col input[type="text"] {
+    width: 75px;
+    line-height: 26px;
+    padding: 0 10px;
+    height: 26px;
+}
+.product-detail-wrapper .more-option .nav-tabs a{font-size: 14px;}
+.upload-button{font-size: 13px;}

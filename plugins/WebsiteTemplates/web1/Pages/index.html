@@ -558,19 +558,9 @@ div#slides + div#controls {
             </div>
         </div>
     </section>
+    <reusecomponent class="c1225868">{{> homePage id='productTags.partial' }}</reusecomponent>
 </div>
 <script src="./assets/client-plugins/client-slider-plugin.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.6/jquery.lazy.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.6/jquery.lazy.plugins.min.js"></script>
-<script>
-    $(function() {
-        $('.lazyLoad').Lazy({
-            scrollDirection: 'vertical',
-            effect: 'fadeIn',
-            visibleOnly: true,
-            onError: function(element) {
-                console.log('error loading ' + element.data('src'));
-            }
-        });
-    });
-</script>
+<script src="./assets/client-plugins/client-homepage.js"></script>

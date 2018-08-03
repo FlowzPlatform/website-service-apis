@@ -1,0 +1,27 @@
+/* Add your custom CSS styles here. It will be automatically included in every page. */
+.innerpage{margin:0!important}p{margin: 0 !important; padding: 0 !important;}.row{padding: 0 !important; margin: 0 !important;}.column{padding: 0 !important; margin: 0 !important;}body{font-size:14px !important;}
+.no-image { background-color: #f2f2f2;border: solid 1px #ccc;border-radius: 5px;box-shadow: 1px 1px; }
+.address-book-link { margin-left: 10px; }
+#payForm .btn.payment-btn { margin: 0 20px;font-family: 'Roboto Condensed',sans-serif !important;text-transform: uppercase;font-weight: bold;line-height: 26px;display: inline-block;height: 37px;}
+.js-hide-div{visibility: hidden;}
+#address_book .radio label{ min-width: 100px;font-size: 13px; }
+.search-mail-block .search-col input[type="submit"] { cursor: default; }
+.shopping-cart-itemlist img {max-width: 115px;text-align: center;margin: 0 auto;}
+.size-quantity-table tr th:after, .size-quantity-table tr td:after {display: none;}
+.imprint-lbl-method {width: 87%;overflow: hidden;display: inline-block;text-overflow: ellipsis;}
+.size-quantity-table thead tr th{border-right: 1px solid #e3e3e3;}
+#shopping_cart .js-replace-products td {vertical-align: middle;}
+.nomargin.js-checkout-product-name {margin-top: 12px;}
+.pl-zero {padding-left:0px !important;}
+.pr-zero {padding-right:0px !important;}
+.header-color{color: #7f7f7f;}
+#address_book .address-checkbox label.font-style-normal{ padding-left: 5px;min-width: 85px;color: #333; }
+.no-padding {padding: 0px;}
+.radio.js-isoffice {padding-left: 7px;}
+.js_summary_imprint_location {padding: 15px 0;}
+.innerpage.row{min-height: 670px !important;display: inline-block;}
+.wishlist-view-tab.view-product {float: right;padding-bottom: 10px;}
+.header-search-col #main_filter { width: 124px; border: solid 0px #ccc; line-height: 24px; display: inline; background-color: #e4e4e4; float: left; height: 39px; }
+.header-search-col #main_filter + input[type="text"] { width: 206px; display: inline; float: left; line-height: 24px; font-size: 16px; }
+.header-search-col .btn-search { display: inline; float: left; }
+.row.header-search-col { width:500px;}

@@ -1,0 +1,139 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.c17522 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c12862 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
+
+
+<div class="container main">
+    <div class="content-info-page">
+        <div class="innerpage row account-innerpage">
+            <reusecomponent class="c46972">{{> myAccount id='leftNavigation.partial' }}</reusecomponent>
+            <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+                <div class="ob-account-right">
+                    <reusecomponent class="c12862">{{> myAccount id='breadCrumb.partial' }}</reusecomponent>
+                    <div class="ob-main-address-block js-main-address-block">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <h1 class="main-title"><i class="fa fa-file-text"></i>My Orders</h1>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 pull-right"></div>
+                        </div>
+                        <div class="ob-my-track-block ob-my-quote-section">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="my-track-detail-table table-responsive">
+                                        <table class="table table-striped tab-track-block js_search_list">
+                                            <tr class="mytrackc">
+                                                <th>Order ID</th>
+                                                <th>Order Date</th>
+                                                <th class="js_is_admin hide">User Name</th>
+                                                <th class="js_is_admin hide">User Email</th>
+                                                <th>Payment Type</th>
+                                                <th>Total Items</th>
+                                                <th>Payment Status</th>
+                                                <th>Total Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tr class="js-order-info">
+                                                <td>#data.order_id1#</td>
+                                                <td>#data.order_date#</td>
+                                                <td class="js_is_admin hide">#data.user_name#</td>
+                                                <td class="js_is_admin hide">#data.user_email#</td>
+                                                <td>#data.payment_type#</td>
+                                                <td>#data.quantity#</td>
+                                                <td>#data.payment_status#</td>
+                                                <td class="unit-price text-right">$#data.total_price#</td>
+                                                <td class="my-track-all-btn">
+                                                    <div class="fa-hover"><a class="js_preview_order" data-call="displayblock-#data.order_id#" data-toggle="tooltip"
+                                                        data-placement="top" data-original-title="View" data-order-id="#data.order_id#"><i class="fa fa-eye"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="track-order-view-block click-track-order js-view-order-detail hide">
+                                                <td colspan="7">
+                                                    <div class="row" id="js_product_list">
+                                                        <reusecomponent class="c17522">{{> orders id='billingInfo.partial' }}</reusecomponent>
+                                                        <reusecomponent
+                                                        class="c17522">{{> orders id='nameAndImage.partial' }}</reusecomponent>
+                                                            <reusecomponent
+                                                            class="c17522">{{> orders id='imprintAndInstruction.partial' }}</reusecomponent>
+                                                                <reusecomponent
+                                                                class="c17522">{{> orders id='shippingInfo.partial' }}</reusecomponent>
+                                                                    <reusecomponent
+                                                                    class="c17522">{{> orders id='subTotalAndTax.partial' }}</reusecomponent>
+                                                                        <reusecomponent
+                                                                        class="c17522">{{> orders id='orderTotal.partial' }}</reusecomponent>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="track-order-shipping-block click-track-order container-1" id="displaytrackblock-551"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="./assets/client-plugins/client-order-page.js"></script>

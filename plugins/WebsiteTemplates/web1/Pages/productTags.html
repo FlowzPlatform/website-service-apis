@@ -1,0 +1,94 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.c67694 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
+
+
+
+<div class="container" id="myProductTags">
+    <div class="innerpage row account-innerpage">
+        <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
+            <div class="ob-myaccount-product-tags">
+                <div class="myaccount-title">
+                    <h1 class="main-title">
+                        <!-- Product Tags -->
+                    </h1>
+                </div>
+            </div>
+
+            <div class="myaccount-product-tags">
+                <div class="product-main-list-block">
+                    <div class="tab-pane active">
+                        <div class="ob-product-grid js-product-grid list-view" id="product-list-container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                    <div class="list-grid-view-tab view-product">
+                                        View: 
+                                        <a data-toggle="tooltip" data-placement="top" data-original-title="Grid View" class="product-grid-btn js-product-grid-btn" href="javascript:;"><i class="fa fa-th fa-fw"></i></a>
+                                        <a data-toggle="tooltip" data-placement="top" data-original-title="List View" class="product-list-btn js-product-list-btn active" href="javascript:;"><i class="fa fa-th-list fa-fw"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <reusecomponent class="c67694">{{> productTags id='list.partial' }}</reusecomponent>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./assets/client-plugins/client-product-tags.js"></script>

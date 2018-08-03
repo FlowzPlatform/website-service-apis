@@ -1,0 +1,74 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c70827 {
+    display: none;
+}
+
+.obv-virtualbrochurelibrary-main-div .row.obv-padding-top-50.obv-padding-bottom-15 {
+    width: 1028px;
+}
+</style>
+
+
+<script type="text/javascript" src="http://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js"></script>
+<div class="product-section-box">
+    <div class="detail-popup-block">
+        <ul>
+            <li id="ob_virtual_list">
+                <div id="ob-virtualmarketingcart">
+                    <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"
+                    />
+                    <input id="ob-virtualmarketingcart-supplier" type="hidden" value="#data.spplierId#"
+                    />
+                    <input id="ob-virtualmarketingcart-culture" type="hidden" value="#data.culture#"
+                    />
+                    <input class="ob-btvirtualloadcontent" id="c70827" type="button" />
+                </div>
+            </li>
+            <li><a href="javascript:void(0);" id="download_image" ><i class="strip download-img-strip"></i>Download Image</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">
+    stLight.options({publisher: "2c09b640-d455-4fbb-a9c9-1046dc187914", doNotHash: false, doNotCopy: false, hashAddressBar: false});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+<script type="text/javascript" src="./assets/client-plugins/client-product-action.js"></script>

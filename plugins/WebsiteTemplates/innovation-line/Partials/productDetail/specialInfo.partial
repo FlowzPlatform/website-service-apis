@@ -1,0 +1,42 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+
+<div class="product-section-box">
+    <h2 class="heading-block js-section-number ">Special Instructions</h2>
+    <div class="special-instruction-textarea js-specialInstruction-section">
+        <textarea name="note" placeholder="Please fill your comments here..."
+        id="js_request_quote_instruction" required="true"></textarea>
+    </div>
+</div>
