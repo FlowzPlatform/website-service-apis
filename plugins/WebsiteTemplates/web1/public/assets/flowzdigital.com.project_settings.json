@@ -37,6 +37,14 @@
         "crm_invoice_url":"https://api.flowzdigital.com/crm/invoice",
         "format_date": "m/d/Y",
         "taxcloud_url":"https://api.taxcloud.net/1.0/TaxCloud",
-        "website_configuration_api_url" : "https://api.flowzdigital.com/serverapi/website-configuration"
+        "website_configuration_api_url" : "https://api.flowzdigital.com/serverapi/website-configuration",
+        "tag_category_api_url":"https://api.flowzdigital.com/serverapi/tagCategory",
+        "tags_api_url":"https://api.flowzdigital.com/serverapi/tags",
+        "product_tags_api_url":"https://api.flowzdigital.com/serverapi/productTags",
+        "flyer_category_api_url":"https://api.flowzdigital.com/serverapi/flyer-category",
+        "flyers_api_url":"https://api.flowzdigital.com/serverapi/flyers",
+        "ecatalog_category_api_url":"https://api.flowzdigital.com/serverapi/ecatalog-category",
+        "ecatalogs_api_url":"https://api.flowzdigital.com/serverapi/ecatalogs",
+	"webtools_api_url":"https://api.flowzdigital.com/serverapi/webtools"
       }
 }

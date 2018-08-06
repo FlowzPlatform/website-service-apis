@@ -27,7 +27,7 @@ $.ajax({
 
 product_tag_data(product_tags);
 async function product_tag_data(product_tags) {
-    if(product_tags.length > 0)
+    if(product_tags != null && product_tags.length > 0)
     {
         showPageAjaxLoading();
         await sleep(100);
@@ -46,8 +46,13 @@ async function product_tag_data(product_tags) {
                     let listHtml = $('#myProductTags .js-list').html();
                     if(productData.length > 0)
                     {
-                        listHtml1 = listHtml.replace('#data.image#',project_settings.product_api_image_url+productData[0]._source.default_image);
-                        
+                        let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                        if(productData[0]._source.images != undefined){
+                            productImage = productData[0]._source.images[0].images[0].secure_url
+                        }
+
+                        listHtml1 = listHtml.replace('#data.image#',productImage);
+
                         listHtml1 = listHtml1.replace(/#data.id#/g,tagArray.id);
                         
                         listHtml1 = listHtml1.replace('#data.title#',productData[0]._source.product_name);

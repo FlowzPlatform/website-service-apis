@@ -335,7 +335,7 @@ function detailRequestQuote(thisObj){
               let colorHtml = ''
               if(typeof imprint_info.selected_colors != "undefined")
               {
-                //let imprintColorsHexVal = await replaceColorSwatchWithHexaCodes(imprint_info.selected_colors,"imprintcolor");
+                //let imprintColorsHexVal = replaceColorSwatchWithHexaCodes(imprint_info.selected_colors,"imprintcolor");
                 for(let selected_color in imprint_info.selected_colors)
                 {
                   let colorCount = parseInt(selected_color)+1;
