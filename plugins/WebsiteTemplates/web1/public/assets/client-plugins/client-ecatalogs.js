@@ -35,7 +35,7 @@ ecatalog_categories = function () {
 
 ecatalog_data(ecatalogs);
 async function ecatalog_data(ecatalogs) {
-    if(ecatalogs.length > 0)
+    if(ecatalogs != null && ecatalogs.length > 0)
     {
         showPageAjaxLoading();
         await sleep(100);
