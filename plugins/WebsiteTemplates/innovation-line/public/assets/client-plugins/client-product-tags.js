@@ -5,7 +5,7 @@ product_tags = function () {
         'type': "GET",
         'global': false,
         'dataType': 'json',
-        'url': project_settings.tag_products_api_url+"?tag_id="+getParameterByName('tid')+"&website="+website_settings['projectID'],
+        'url': project_settings.product_tags_api_url+"?tag_id="+getParameterByName('tid')+"&website="+website_settings['projectID'],
         'success': function (res) {
             tmp = res.data;
         }
@@ -18,7 +18,7 @@ $.ajax({
     'type': "GET",
     'global': false,
     'dataType': 'json',
-    'url': project_settings.tag_api_url+"?id="+getParameterByName('tid'),
+    'url': project_settings.tags_api_url+"?id="+getParameterByName('tid'),
     'success': function (res) {
         $('#myProductTags .main-title').html("<i class='fa fa-tag'></i> "+res.data[0].tag_name);
     }
@@ -53,20 +53,20 @@ async function product_tag_data(product_tags) {
                         listHtml1 = listHtml.replace('#data.image#',productImage);
 
                         listHtml1 = listHtml1.replace(/#data.id#/g,tagArray.id);
-                        
+
                         listHtml1 = listHtml1.replace('#data.title#',productData[0]._source.product_name);
-                        
+
                         listHtml1 = listHtml1.replace('#data.sku#',productData[0]._source.sku);
-                        
+
                         listHtml1 = listHtml1.replace('#data.price#',parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
-                        
+
                         listHtml1 = listHtml1.replace('#data.currency#',productData[0]._source.currency);
 
                         let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+tagArray.product_id;
-                        
+
                         listHtml1 = listHtml1.replace(/#data.product_link#/g,detailLink);
 
-                        listHtml1 = listHtml1.replace('#data.description#',productData[0]._source.description);       
+                        listHtml1 = listHtml1.replace('#data.description#',productData[0]._source.description);
                     }
 
                     $('#myProductTags .listing').append(listHtml1);

@@ -898,6 +898,11 @@ $(document).ready( async function(){
                     $(".product-detail-tab").remove();
                 }
 
+                if(productDetails.video_url == "" && $("#js-show_play_video").length > 0)
+                {
+                    $("#js-show_play_video").parent().remove();
+                }
+
                 $('.js-hide-div').removeClass("js-hide-div");
                 setTimeout(loadBxSlider(),5000)
 			  // },
