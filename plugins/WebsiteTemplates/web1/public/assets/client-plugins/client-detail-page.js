@@ -147,13 +147,55 @@ $(document).ready( async function(){
                   ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                   if(productDetails.images != undefined)  {
                       ProductImage = productDetails.images[0].images[0].secure_url;//productDetails.default_image;
-                  }else {
+                  }
+                  else {
                     $("#download_image").parent('li').remove()
                   }
 
                   // console.log("ProductImage",ProductImage);
                   ProductSku = productDetails.sku;
                   hasImprintData = productDetails.imprint_data;
+                
+                axios({
+                    method: 'GET',
+                    url: project_settings.webtools_api_url+'?website='+website_settings['projectID']+'&sku='+ProductSku,
+                })
+                .then(async response => {
+                    if(response.data.data.length > 0){
+                        let webtoolData = response.data.data[0];
+
+                        if(webtoolData.product_pdf != undefined && webtoolData.product_pdf != '') {
+                            $('#download_product_template').attr('href',webtoolData.product_pdf)
+                        }
+                        else {
+                            $('#download_product_template').parent('li').remove()
+                        }
+
+                        if(webtoolData.art_pdf != undefined && webtoolData.art_pdf != '') {
+                            $('#download_art_template').attr('href',webtoolData.art_pdf)
+                        }
+                        else {
+                            $('#download_art_template').parent('li').remove()
+                        }
+
+                        if(webtoolData.gcc_pdf != undefined && webtoolData.gcc_pdf != '') {
+                            $('#download_gcc_template').attr('href',webtoolData.gcc_pdf)
+                        }
+                        else {
+                            $('#download_gcc_template').parent('li').remove()
+                        }
+
+                        if(webtoolData.special_pricing != undefined && webtoolData.special_pricing != '') {
+                            $('#download_special_pricing').attr('href',webtoolData.special_pricing)
+                        }
+                        else {
+                            $('#download_special_pricing').parent('li').remove()
+                        }
+                    }
+                    else {
+                        $('#download_product_template, #download_art_template, #download_gcc_template, #download_special_pricing').parent('li').remove()
+                    }
+                })            
 
                   // $('#product_name').html(ProductName)
                   let listHtml = $('#title .row').html();
