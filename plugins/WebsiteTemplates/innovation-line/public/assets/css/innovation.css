@@ -333,7 +333,16 @@ p.right-banner-para{color:#fff;    margin-bottom: 8px !important;}
 .add-flyer-modal .modal-body .img-responsive {display: inline-block;}
 .sub-form-box .row {margin-top: 21px !important;}
 .request-tab-content .quantity-table-disc .owl-controls .owl-buttons{top: -55px;}
-
+span.fileinput-new img {width: 50px;height: 31px;margin-left: 10px;}
+.fileinput.fileinput-new .js_file_name {margin-left: 10px;}
+label.control-label.enter-captcha {font-family: "Roboto", sans-serif;font-size: 14px;margin-top: 14px;}
+.capbox {width: 47%;}
+.form-group.js-clone_div {border: 1px solid #DDD;padding: 5px;min-height: 53px;background: #FFF;}
+.detail-popup-block .strip.order-strip{background-position: -733px -175px;}
+.ob-logo-block .header-advace-search{    top: 118px;z-index: 999 !important;}
+.header-advace-search .advance-search-col .button-colum .form-group input[type="submit"]{background:#17468f !important;}
+.header-advace-search .advance-search-col .button-colum .form-group input[type="submit"]:hover{background:#17468f !important;}
+.multiselect-container.dropdown-menu > li.active a label:after{    left: 10px;}
 /* Responsive */
 .container.main{background:#fff;}
 .innerpage{background:#fff;margin-bottom:10px;padding-top:20px; margin-top: 0px;}

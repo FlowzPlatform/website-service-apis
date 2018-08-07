@@ -1,6 +1,11 @@
 $(document).ready(function(){
     let pid = getParameterByName('pid');
+    if($("#order_sample").length > 0){
+        let link = $("#order_sample").attr("href")//.replace("#data.productId#",pid)
+        link = link.replace("#data.productId#",pid)
+        $("#order_sample").attr("href",link)
 
+    }
     // download variation images
     $("#download_image").on("click",async function(){
         let productResponse = await getProductDetailById(pid)
@@ -31,4 +36,17 @@ $(document).ready(function(){
             });
         }
     })
+
+    $(document).on('click','#js-show_play_video', async function (e) {
+        let productResponse = await getProductDetailById(pid)
+        $('#modal-table').attr('class','modal fade model-popup-black');
+        $("#modal-table").find(".modal-title").html('<i class="strip video-popup-strip"></i>Play Video');
+        $("#modal-table").find(".modal-dialog").addClass("play-video");
+        let guestUserHtml = $(".js-play_video_block").html();
+        let replaceHtml = guestUserHtml.replace("#data.video_url#",productResponse.video_url);
+        $(".js_add_html").html(replaceHtml)
+        $('#modal-table').modal('show');
+        return false;
+    });
+
 });

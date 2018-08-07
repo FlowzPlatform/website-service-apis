@@ -41,7 +41,6 @@ var websiteConfiguration = function () {
   });
   return tmp;
 }();
-// console.log('websiteConfiguration',websiteConfiguration)
 
 var cloudinaryDetails = function () {
   var tmp = null;

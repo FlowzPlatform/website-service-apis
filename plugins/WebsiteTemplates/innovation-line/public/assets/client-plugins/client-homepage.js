@@ -181,7 +181,7 @@ async function fetchProductsByTagId(tagId){
     let returnData = null;
     await axios({
         method: 'GET',
-        url: project_settings.tag_products_api_url+"?website="+ website_settings['projectID']+"&tag_id="+tagId,
+        url: project_settings.product_tags_api_url+"?website="+ website_settings['projectID']+"&tag_id="+tagId,
     })
     .then(response => {
       // console.log("returnData",response);
@@ -200,7 +200,7 @@ async function getTagCategoryByName(catName) {
       let returnData = null;
     	await axios({
     			method: 'GET',
-    			url: project_settings.tags_cat_api_url+"?website="+ website_settings['projectID']+"&status=true&tc_name="+catName,
+    			url: project_settings.tag_category_api_url+"?website="+ website_settings['projectID']+"&status=true&tc_name="+catName,
     	})
     	.then(response => {
         // console.log("returnData",response);
@@ -219,7 +219,7 @@ async function getTagListByObj(obj) {
       let returnData = null;
     	await axios({
     			method: 'GET',
-    			url: project_settings.tag_api_url+"?website="+ website_settings['projectID']+"&tag_status=true&"+obj,
+    			url: project_settings.tags_api_url+"?website="+ website_settings['projectID']+"&tag_status=true&"+obj,
     	})
     	.then(response => {
         // console.log("returnData",response);
@@ -240,7 +240,7 @@ async function getTagListByObj(obj) {
 //         'async': false,
 //         'type': "GET",
 //         'global': false,
-//         'url': project_settings.tag_products_api_url + "?website=" + website_settings['projectID'],
+//         'url': project_settings.product_tags_api_url + "?website=" + website_settings['projectID'],
 //         'success': function (res) {
 //             tmp = res.data;
 //         }
