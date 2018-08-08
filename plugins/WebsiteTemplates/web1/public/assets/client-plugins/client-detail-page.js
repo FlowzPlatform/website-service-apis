@@ -146,15 +146,7 @@ $(document).ready(async function() {
     ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
     if (productDetails.images != undefined) {
         ProductImage = productDetails.images[0].images[0].secure_url; //productDetails.default_image;
-        <<
-        <<
-        << < HEAD
-    } else { ===
-        ===
-        =
-    } else { >>>
-        >>>
-        > QA
+    } else {
         $("#download_image").parent('li').remove()
     }
 
