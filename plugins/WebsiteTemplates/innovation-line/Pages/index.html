@@ -1,0 +1,374 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+}
+
+#ifvwi {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: black;
+    border-right-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.page img {
+    width: 100%;
+    height: 466px;
+}
+
+#slider input {
+    display: none;
+}
+
+#controls label {
+    display: none;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+#controls label:hover {
+    opacity: 0.8;
+}
+
+#slide1:checked ~ #controls label:nth-child(2), #slide2:checked ~ #controls label:nth-child(3), #slide3:checked ~ #controls label:nth-child(4), #slide4:checked ~ #controls label:nth-child(5), #slide5:checked ~ #controls label:nth-child(1) {
+    width: 0px;
+    height: 0px;
+    border-top-width: 20px;
+    border-top-style: solid;
+    border-top-color: transparent;
+    border-left-width: 20px;
+    border-left-style: solid;
+    border-left-color: rgb(51, 51, 51);
+    border-bottom-width: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    float: right;
+    margin-right: -30px;
+    display: block;
+}
+
+#slide1:checked ~ #controls label:nth-child(5), #slide2:checked ~ #controls label:nth-child(1), #slide3:checked ~ #controls label:nth-child(2), #slide4:checked ~ #controls label:nth-child(3), #slide5:checked ~ #controls label:nth-child(4) {
+    width: 0px;
+    height: 0px;
+    border-top-width: 20px;
+    border-top-style: solid;
+    border-top-color: transparent;
+    border-bottom-width: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    border-right-width: 20px;
+    border-right-style: solid;
+    border-right-color: rgb(51, 51, 51);
+    float: left;
+    display: block;
+    margin-left: -27px;
+}
+
+#slide1:checked ~ #slides .inner {
+    margin-left: 0px;
+}
+
+#slide2:checked ~ #slides .inner {
+    margin-left: -100%;
+}
+
+#slide3:checked ~ #slides .inner {
+    margin-left: -200%;
+}
+
+#slide4:checked ~ #slides .inner {
+    margin-left: -300%;
+}
+
+#slide5:checked ~ #slides .inner {
+    margin-left: -400%;
+}
+
+#active label {
+    padding-top: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    width: 230px;
+    height: 53px;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(241, 241, 241);
+    display: table-cell;
+    cursor: pointer;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    line-height: 19px;
+    font-family: sans-serif;
+    font-size: small;
+}
+
+#active label:hover {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(196, 190, 190);
+}
+
+#slide1:checked ~ #active label:nth-child(1), #slide2:checked ~ #active label:nth-child(2), #slide3:checked ~ #active label:nth-child(3), #slide4:checked ~ #active label:nth-child(4), #slide5:checked ~ #active label:nth-child(5) {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(221, 221, 221);
+}
+
+#slides .inner {
+    transition-duration: 0.8s;
+    transition-timing-function: ease-in-out;
+    transition-delay: initial;
+    transition-property: all;
+}
+
+.col-item .photo img {
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    width: 100%;
+}
+
+.col-item .info {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 1px;
+}
+
+.col-item:hover .info {
+    background-color: rgb(238, 238, 238);
+}
+
+.col-item .price {
+    float: left;
+    margin-top: 5px;
+}
+
+.col-item .price h5 {
+    line-height: 20px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.col-item .info .rating {
+    color: rgb(119, 119, 119);
+}
+
+.col-item .rating {
+    float: left;
+    font-size: 17px;
+    text-align: right;
+    line-height: 52px;
+    margin-bottom: 10px;
+    height: 52px;
+}
+
+.col-item .separator {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(225, 225, 225);
+}
+
+.col-item .separator p {
+    line-height: 20px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.col-item .separator p i {
+    margin-right: 5px;
+}
+
+.col-item .btn-add {
+    width: 50%;
+    float: left;
+}
+
+.col-item .btn-details {
+    width: 50%;
+    float: left;
+    padding-left: 10px;
+}
+
+[data-slide="prev"] {
+    margin-right: 10px;
+}
+
+.home-content {
+    margin-top: 0px !important;
+}
+
+div#slides {
+    box-shadow: none !important;
+}
+
+div#slides .page img {
+    height: 330px;
+}
+
+div#slides + div#controls {
+    top: 42%;
+}
+
+.justify-content-center .service-col:last-child {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 7px;
+}
+
+.justify-content-center .service-col:first-child {
+    margin-top: 0px;
+    margin-right: 7px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.c5097 {
+    display: block;
+    width: 100%;
+    min-height: 60px;
+}
+
+.c16713 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c25640 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c25690 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c33826 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c23984 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
+
+
+
+
+<div class="cssImports"></div>
+<div class="home-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ob-slide-box">
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css"
+                    />
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css"
+                    />
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+                    <customslidercomponent aplay="5000" pagination prev="prev" next="next"
+                    slidespeed="200" ditems="5"
+                    class="c-slider c5097">
+                        <div id="ifvwi"></div>
+                    </customslidercomponent>
+                </div>
+                <div class="clearfix"></div>
+                    <reusecomponent class="c33826">{{> homePage id='tagCategory.partial' }}</reusecomponent>
+                        <reusecomponent class="c25640">{{> homePage id='featuredProduct.partial' }}</reusecomponent>
+            </div>
+        </div>
+    </div>
+    <reusecomponent class="c23984">{{> homePage id='awards.partial' }}</reusecomponent>
+    <div class="clearfix"></div>
+    <reusecomponent class="c16713">{{> homePage id='homeAdvertise.partial' }}</reusecomponent>
+</div>
+<script src="./assets/client-plugins/client-homepage.js"></script>

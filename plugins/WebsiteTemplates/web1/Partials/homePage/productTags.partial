@@ -1,0 +1,12 @@
+<section class="fdb-block js-product-tags hide">
+    <div class="in-prod-main">
+        <h1 class="heading">Product Tags</h1>
+        <div class="in-prod-under">
+            <div class="in-prod-main">
+                <div class="in-prod-under js-tag-listing">
+
+                </div>
+            </div>
+        </div>
+    </div>        
+</section>

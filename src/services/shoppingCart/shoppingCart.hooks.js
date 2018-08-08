@@ -121,7 +121,7 @@ updateItemAfter = async hook => {
 findAllShoppingKartData = async hook => {
   let table = decide_database_table(hook.params.query.type);
   if(table == false) {
-    hook.result = {status:400, message: "type is invalid. Please select type 1 for wislist, type 2 for cart or type 3 for compared product"}
+    hook.result = {status:400, message: "type is invalid. Please select type 1 for wislist, type 2 for cart, type 3 for compared product or type 4 for quick quote"}
   }else if(table != false){
     await r.table(table)
     .filter(r.row("user_id").eq(hook.params.query.user_id).and(r.row("type").eq(hook.params.query.type)).and(r.row("website_id").eq(hook.params.query.website_id))).orderBy('createdAt')
@@ -257,7 +257,7 @@ deleteShoppingCartItem = async hook => {
 // }
 
 decide_database_table = (data) => {
-  if (data == 1){
+  if (data == 1 || data == 4){
     return "wishlist"
   }else if (data == 2){
     return "wishlist"
