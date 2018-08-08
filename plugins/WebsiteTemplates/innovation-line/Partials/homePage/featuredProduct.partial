@@ -1,0 +1,106 @@
+<div class="col-lg-6 col-md-6 col-xs-12 hide js-tag-featured-product-list"  data-slug="featured-products">
+    <div class="pro-overflow">
+            <div class="slider-wrapper">
+                <div class="common-title">
+                    <h4 class="most-popular-title">
+                        Featured Products
+                    </h4>
+                </div>
+                <div class="row">
+                        <div id="owl-carousel-recommeded" class="owl-carousel recommeded-product-slider owl-loaded owl-drag js-list">
+                                <div class="item product-wrap js-product-box product-#data-id#">
+                                    <div class="pro-box">
+                                        <div class="pro-image box01">
+                                            <div class="product-flag-block">
+                                                <style>
+                                                  .product-flag-block .product-label.#data.tagSlug# { background: #data.tagColor#  }
+                                                  .product-flag-block .product-label.#data.tagSlug#:before { border-top-color: #data.tagColor#  }
+                                                  .product-flag-block .product-label.#data.tagSlug#:after { border-bottom-color: #data.tagColor#  }
+                                                  </style>
+                                                <div class="sales">
+                                                    <div class="product-label #data.tagSlug#">
+                                                        <h2 class="logo">#data.tagName#</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-img-blk">
+                                                <a class="item-title js-product-title" href="#data.product_link#">
+                                                    <img class="img-responsive center-block" src="#data.image#"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="pro-desc">
+                                            <a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
+                                            <div class="item-code">Item Code : #data.sku#</div>
+                                            <div class="item-price">#data.currency# #data.price#</div>
+                                            <div class="list-quantity-block"></div>
+                                            <div class="pro-button">
+                                                <ul>
+                                                    <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-quote"><i class="fa fa-comment quote-icon"><span>,,</span></i></a></li>
+                                                    <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-wishlist"><i class="fa fa-heart fa-fw"></i></a></li>
+                                                    <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+            </div>
+    </div>
+ </div>
+ <div class="col-lg-6 col-md-6 col-xs-12 hide js-best-seller-product-list"  data-slug="top-seller">
+   <div class="pro-overflow">
+           <div class="slider-wrapper">
+               <div class="common-title">
+                   <h4 class="most-popular-title">
+                       Top Seller
+                   </h4>
+               </div>
+               <div class="row">
+                 <div id="owl-carousel-best-seller" class="owl-carousel recommeded-product-slider owl-loaded owl-drag js-list">
+                       <div class="item product-wrap js-product-box product-#data-id#">
+                           <div class="pro-box">
+                               <div class="pro-image box01">
+                                   <div class="product-flag-block">
+                                       <style>
+                                         .product-flag-block .product-label.#data.tagSlug# { background: #data.tagColor#  }
+                                         .product-flag-block .product-label.#data.tagSlug#:before { border-top-color: #data.tagColor#  }
+                                         .product-flag-block .product-label.#data.tagSlug#:after { border-bottom-color: #data.tagColor#  }
+                                         </style>
+                                       <div class="sales">
+                                           <div class="product-label #data.tagSlug#">
+                                               <h2 class="logo">#data.tagName#</h2>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class="product-img-blk">
+                                       <a class="item-title js-product-title" href="#data.product_link#">
+                                           <img class="img-responsive center-block" src="#data.image#"/>
+                                       </a>
+                                   </div>
+                               </div>
+                               <div class="pro-desc">
+                                   <a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
+                                   <div class="item-code">Item Code : #data.sku#</div>
+                                   <div class="item-price">#data.currency# #data.price#</div>
+                                   <div class="list-quantity-block"></div>
+                                   <div class="pro-button">
+                                       <ul>
+                                           <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-quote"><i class="fa fa-comment quote-icon"><span>,,</span></i></a></li>
+                                           <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-wishlist"><i class="fa fa-heart fa-fw"></i></a></li>
+                                           <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li>
+                                       </ul>
+                                   </div>
+                                   <div class="clearfix"></div>
+                               </div>
+                               <div class="clearfix"></div>
+                           </div>
+                       </div>
+                 </div>
+               </div>
+           </div>
+   </div>
+ </div>

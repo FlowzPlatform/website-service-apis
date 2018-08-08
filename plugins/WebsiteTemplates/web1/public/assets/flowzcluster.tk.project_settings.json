@@ -3,7 +3,7 @@
       {
         "product_api_url": "https://api.flowzcluster.tk/pdmnew/pdm/US",
         "product_api_image_url": "http://image.promoworld.ca/migration-api-hidden-new/web/images/",
-        "search_api_url": "https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdm1/_search",
+        "search_api_url": "https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdmdev/_search",
         "search_api_auth_token": "Basic NTk5MTQwNTU2YzcxZDEwMDFjMDIwNzI5OjEyMzQ1Ng==",
 	"supplier_id" : 5,
         "login_api": "https://api.flowzcluster.tk/auth/api/login",
@@ -37,6 +37,14 @@
         "crm_invoice_url":"https://api.flowzcluster.tk/crm/invoice",
         "format_date": "m/d/Y",
         "taxcloud_url":"https://api.taxcloud.net/1.0/TaxCloud",
-        "website_configuration_api_url" : "https://api.flowzcluster.tk/serverapi/website-configuration"
+        "website_configuration_api_url" : "https://api.flowzcluster.tk/serverapi/website-configuration",
+        "tag_category_api_url":"https://api.flowzcluster.tk/serverapi/tagCategory",
+        "tags_api_url":"https://api.flowzcluster.tk/serverapi/tags",
+        "product_tags_api_url":"https://api.flowzcluster.tk/serverapi/productTags",
+        "flyer_category_api_url":"https://api.flowzcluster.tk/serverapi/flyer-category",
+        "flyers_api_url":"https://api.flowzcluster.tk/serverapi/flyers",
+        "ecatalog_category_api_url":"https://api.flowzcluster.tk/serverapi/ecatalog-category",
+        "ecatalogs_api_url":"https://api.flowzcluster.tk/serverapi/ecatalogs",
+	      "webtools_api_url": "https://api.flowzcluster.tk/serverapi/webtools"
       }
 }

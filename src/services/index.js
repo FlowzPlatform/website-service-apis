@@ -91,60 +91,82 @@ const tags = require('./tags/tags.service.js');
 
 const productTags = require('./product-tags/product-tags.service.js');
 
+const flyerCategory = require('./flyer-category/flyer-category.service.js');
+const flyers = require('./flyers/flyers.service.js');
+
+const ecatalogCategory = require('./ecatalog-category/ecatalog-category.service.js');
+const ecatalogs = require('./ecatalogs/ecatalogs.service.js');
 
 
 
-module.exports = function () {
-  const app = this; // eslint-disable-line no-unused-vars
-  app.configure(flowsDirListing);
-  app.configure(commitService);
-  app.configure(gitlabAddRepo);
-  app.configure(userService);
-  app.configure(metalsmith);
 
-  //app.configure(transaction);
-  app.configure(imageUpload);
-  app.configure(getDirectoryList);
-  app.configure(shoppingCart);
-  app.configure(register);
+const category = require('./category/category.service.js');
 
-  app.configure(requestInfo);
-  app.configure(publishNow);
-  app.configure(projectConfiguration);
-  app.configure(webpackApi);
-  app.configure(publishSurge);
-  app.configure(copyWebsite);
 
-  app.configure(addressBook);
-  app.configure(emailSubscribers);
-  app.configure(changeCityStateCountry);
-  app.configure(cityStateCountryList);
-  app.configure(myOrders);
-  app.configure(colorTable);
-  app.configure(shippingEstimator);
 
-  app.configure(cloneWebsite);
-  app.configure(saveMenu);
-  app.configure(deleteService);
-  app.configure(registerWebsiteSubscriptions);
-  app.configure(websiteUsers);
-  app.configure(adminOrders);
-  app.configure(metalsmithPublish);
-  app.configure(deletePublishFiles);
-  app.configure(requestQuote);
-  app.configure(emailTemplate);
-  app.configure(configdataHistory);
-  app.configure(subscriptionWebsites);
-  app.configure(branchList);
-  app.configure(bannertype);
-  app.configure(banners);
-  app.configure(commentRequest);
-  app.configure(copyJobqueuePublishFiles);
-  app.configure(rethinkservicecheck);
-  app.configure(cloudinaryService);
-  app.configure(jobqueue);
-  app.configure(websiteConfiguration);
-  app.configure(tagCategory);
-  app.configure(tags);
-  app.configure(productTags);
+
+const webtools = require('./webtools/webtools.service.js');
+
+
+
+
+module.exports = function() {
+    const app = this; // eslint-disable-line no-unused-vars
+    app.configure(flowsDirListing);
+    app.configure(commitService);
+    app.configure(gitlabAddRepo);
+    app.configure(userService);
+    app.configure(metalsmith);
+
+    //app.configure(transaction);
+    app.configure(imageUpload);
+    app.configure(getDirectoryList);
+    app.configure(shoppingCart);
+    app.configure(register);
+
+    app.configure(requestInfo);
+    app.configure(publishNow);
+    app.configure(projectConfiguration);
+    app.configure(webpackApi);
+    app.configure(publishSurge);
+    app.configure(copyWebsite);
+
+    app.configure(addressBook);
+    app.configure(emailSubscribers);
+    app.configure(changeCityStateCountry);
+    app.configure(cityStateCountryList);
+    app.configure(myOrders);
+    app.configure(colorTable);
+    app.configure(shippingEstimator);
+
+    app.configure(cloneWebsite);
+    app.configure(saveMenu);
+    app.configure(deleteService);
+    app.configure(registerWebsiteSubscriptions);
+    app.configure(websiteUsers);
+    app.configure(adminOrders);
+    app.configure(metalsmithPublish);
+    app.configure(deletePublishFiles);
+    app.configure(requestQuote);
+    app.configure(emailTemplate);
+    app.configure(configdataHistory);
+    app.configure(subscriptionWebsites);
+    app.configure(branchList);
+    app.configure(bannertype);
+    app.configure(banners);
+    app.configure(commentRequest);
+    app.configure(copyJobqueuePublishFiles);
+    app.configure(rethinkservicecheck);
+    app.configure(cloudinaryService);
+    app.configure(jobqueue);
+    app.configure(websiteConfiguration);
+    app.configure(tagCategory);
+    app.configure(tags);
+    app.configure(productTags);
+    app.configure(flyerCategory);
+    app.configure(flyers);
+    app.configure(ecatalogCategory);
+    app.configure(ecatalogs);
+    app.configure(category);
+    app.configure(webtools);
 };

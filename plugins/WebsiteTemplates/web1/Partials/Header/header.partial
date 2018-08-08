@@ -502,6 +502,8 @@ padding: 0;
                                 </li>
                                 <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="compare.html"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span> </a>
                                 </li>
+                                <li class="dropdown cart-popup header-login-text"><a class="dropdown-toggle" href="quickQuoteList.html"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>QuickQuote</span> (<span id="quickQuoteCount">0</span>)</span> </a>
+                                </li>
                                 <li class="dropdown login-col header-login-text login-show hide"><a class="dropdown-toggle" href="login.html"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
                                 </li>
                                 <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>

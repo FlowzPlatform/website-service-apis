@@ -1,0 +1,213 @@
+ <style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+.padding-top25 {
+	padding-top:25px;
+}
+.common-title {
+    height: 18px;
+    margin-top: 7px;
+    border: 0px;
+    margin-bottom: 15px;
+}
+
+.title-heading {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    color: rgb(64, 64, 64);
+    float: left;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+</style>
+
+
+<div class="padding-top25">
+   <!-- <div class="common-title">
+        <h3 class="title-heading">Request to Quote Detail</h3>
+    </div> -->
+    <div class="force-overflow">
+        <div class="panel-group">
+            <div class="panel panel-default info-block">
+                <div class="panel-collapse collapse in quote-product-summary">
+                    <div class="panel-body" id="quote-detail">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 padding-right-0">
+                                <div class="detail-image">
+                                    <a target="_blank" href="#data.product_link#"><img class="img-responsive" src="#data.imageUrl#"/></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
+                                <div class="row heading-2">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <h1 class="">#data.title#</h1>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12" style="font-size: 13px;">
+                                        <div class="skuprice">
+                                            <a target="_blank" href="#data.product_link#">ITEM CODE : <span>#data.itemCode#</span></a>
+                                        </div>    
+                                    </div>
+                                </div>
+                                
+                                
+
+                        <div class="estimate-detail product-section-box">
+                            <div class="estimate-tag-block border-bottom">
+								<h3>Product Summary</h3>
+								<div class="js-color-info">
+		                            <div class="row">
+		                                <div class="col-sm-12">
+		                                    <table class="product-color-price-table">
+		                                        <tr>
+		                                            <td>#data.color#</td>
+		                                            <td><strong>Total:#data.totalQty#</strong>
+		                                            </td>
+		                                        </tr>
+		                                    </table>
+		                                </div>
+		                            </div>
+								</div>
+                                <div class="js-shipping-info">
+                                    <div class="row">
+										<h3>Shipping Method : #data.shippingMethod#</h3>
+										<div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="estimate-row">
+                                                <div>#data.address_book#</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="estimate-row">Shipping Charge: <span>#data.shippingCharge#</span>
+                                            </div>
+                                            <div class="estimate-row">
+                                                <div>shippingCarrier: <span>#data.shippingCarrier#</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="estimate-row">
+                                                <div>On Hand Date: <span> #data.onHandDate#</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="estimate-row">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="js-imprint-information">
+                                <div class="row">
+                                    <h3>Print Position: #data.imprintPostion#</h3>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="estimate-row">Imprint Method : <span>#data.imprintMethod#</span></div>
+                                    </div>
+									<div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="estimate-row">How many colors : <span>#data.howmanyColors#</span></div>
+                                    </div>
+									<div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="estimate-row">Imprint Colors : <span>#data.imprintColors#</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Special Instructions</h3>
+                            <div class="special-instruction">
+                                <div>#data.specialInstruction#</div>
+                            </div>
+                            <h3>My Information</h3>
+                            <div class="panel-body address-req-info">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                                        <h4>#data.fullname#</h4>
+                                        <p>#data.firstname#  #data.lastname#
+                                            <br/>#data.address1#  #data.address2#
+                                            <br/>#data.postalcode#  #data.city#
+                                            <br/>#data.state#  #data.country#
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                                        <div class="req-info-add-block">
+                                            <ul>
+                                                <li><i class="fa fa-phone"></i>#data.phone#</li>
+                                                <li><i class="fa fa-envelope"></i>#data.email#</li>
+                                                <li><i class="fa fa-mobile"></i>#data.mobile#</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

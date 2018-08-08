@@ -1,0 +1,63 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c360459 {
+    width: 30%;
+}
+.product-quantity-list tbody tr td span{color: #404040;}
+</style>
+
+
+<table class="cart-item-view product-quantity-list">
+    <thead>
+        <tr>
+            <th class="border-right-none item-list-number">
+                <div class="quantity-item">#data.shipping_count#</div>Product Quantity</th>
+            <th class="border-right-none">Shipping Address</th>
+            <th>Shipping</th>
+            <th class="border-right-none text-center total-count">Shipping Charge</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="estimate-detail border-right-none"><div class="estimate-tag-block"><div class="estimate-row">#data.color_quantity#</div></td>
+            <td class="estimate-detail border-right-none"><div class="estimate-tag-block"><div class="estimate-row"><span>#data.address_book#</span></div></div></td>
+            <td class="estimate-detail"><div class="estimate-tag-block">
+                <div class="estimate-row">
+                    Shipping Carrier: <span> #data.shipping_carrier#</span>
+                <br/>Method: <span> #data.shipping_method#</span>
+                <br/>In Hand Date: <span> #data.on_hand_date#</span></div></div></td>
+            <td class="estimate-detail text-center"><div class="estimate-tag-block"><div class="estimate-row"><span>#data.shipping_charges#</span></div></td>
+        </tr>
+    </tbody>
+
+</table>
