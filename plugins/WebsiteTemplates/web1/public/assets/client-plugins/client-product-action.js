@@ -31,4 +31,17 @@ $(document).ready(function(){
             });
         }
     })
+
+    $(document).on('click','#js-show_play_video', async function (e) {
+        let productResponse = await getProductDetailById(pid)
+        $('#modal-table').attr('class','modal fade model-popup-black');
+        $("#modal-table").find(".modal-title").html('<i class="strip video-popup-strip"></i>Play Video');
+        $("#modal-table").find(".modal-dialog").addClass("play-video");
+        let guestUserHtml = $(".js-play_video_block").html();
+        let replaceHtml = guestUserHtml.replace("#data.video_url#",productResponse.video_url);
+        $(".js_add_html").html(replaceHtml)
+        $('#modal-table').modal('show');
+        return false;
+    });
+
 });
