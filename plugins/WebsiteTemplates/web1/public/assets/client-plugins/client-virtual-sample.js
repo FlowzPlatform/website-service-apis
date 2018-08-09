@@ -37,30 +37,49 @@ $(document).on('click','.js-virtual_sample',function (e)
     errorLabelContainer: "#errors",
     wrapper: "ul",
     submitHandler: function(form) {
-		
-		
-		let firstAttachemnt = $('.js-clone_div:first').find('#award_file_url').val()
-	
-		if(firstAttachemnt == ""){
-			$('.js-clone_div:first').find('.col-sm-8').append('<ul class="red"><li id="po_number-error" class="error" style="">Please attach artwork.</li></ul>');
-			return false;
-		}
-			
-		let formObj = $(form);
-		var productJsonData1 = {};
-		var form_data = formObj.serializeArray();
-		var virtualSample = {};
 
-		var why = "";
-                        
-		if($('#CaptchaInput').val() == ""){
-			why += "Please Enter CAPTCHA Code.\n";
-		}
-		if($('#CaptchaInput').val() != ""){
-			if(ValidCaptcha($('#CaptchaInput').val()) == false){
-				why += "The CAPTCHA Code Does Not Match.\n";
-			}
-		}
+      /*let checkBlanckItemNum = checking('item_num');
+      if(checkBlanckItemNum == 3){
+          $("#item_num_1").parent('div.form-group').append('<ul class="red"><li class="error">Please enter at-least one item number.</li></ul>')
+      }
+
+      let checkBlanckItemColor = checking('item_color');
+      if(checkBlanckItemColor == 3){
+          $("#item_color_1").parent('div.form-group').append('<ul class="red"><li class="error">Please enter at-least one item color.</li></ul>')
+      }
+
+      let checkBlanckImprintColor = checking('imprint_color');
+      if(checkBlanckImprintColor == 3){
+          $("#imprint_color_1").parent('div.form-group').append('<ul class="red"><li class="error">Please enter at-least one imprint color.</li></ul>')
+      }*/
+
+  		let firstAttachemnt = $('.js-clone_div:first').find('#award_file_url').val()
+
+  		if(firstAttachemnt == ""){
+  			// $('.js-clone_div:first').find('.col-sm-8').append('<ul class="red"><li id="po_number-error" class="error" style="">Please attach artwork.</li></ul>');
+        $(".fileinput-new").append('<ul class="red"><li id="po_number-error" class="error" style="">Please attach artwork.</li></ul>');
+        return false;
+  		}
+
+      // if(checkBlanckItemNum == 3 || checkBlanckItemColor == 3 || checkBlanckImprintColor == 3 || firstAttachemnt == ""){
+      //     return false;
+      // }
+
+  		let formObj = $(form);
+  		var productJsonData1 = {};
+  		var form_data = formObj.serializeArray();
+  		var virtualSample = {};
+
+  		var why = "";
+
+  		if($('#CaptchaInput').val() == ""){
+  			why += "Please Enter CAPTCHA Code.\n";
+  		}
+  		if($('#CaptchaInput').val() != ""){
+  			if(ValidCaptcha($('#CaptchaInput').val()) == false){
+  				why += "The CAPTCHA Code Does Not Match.\n";
+  			}
+  		}
 
 		if(why != ""){
 			$("input[name='CaptchaInput']").closest("div").append('<ul class="red" style=""><li id="CaptchaInput-error" class="error" style="">'+why+'</li></ul>')
@@ -71,14 +90,14 @@ $(document).on('click','.js-virtual_sample',function (e)
 		  var name = form_data[input]['value'];
 		  virtualSample[form_data[input]['name']] = name;
 		}
-		
+
 		virtualSample['slug'] = 'virtual-sample-order';
-		
+
 		productJsonData1['form_data'] = virtualSample;
 		productJsonData1['website_id'] = website_settings['projectID'];
 
 		let responseItemArray = [];
-		
+
 		let responseObj = {};
 		let get_form_data = productJsonData1['form_data'];
 
@@ -108,7 +127,7 @@ $(document).on('click','.js-virtual_sample',function (e)
 		productJsonData1['items'] = responseItemArray;
 
 		let sampleOrderAttachments = [];
-		
+
 		$( ".fileinput-filename" ).each(function( index ) {
 			let attachedUrl = $( this ).find('#award_file_url').val();
 			if(attachedUrl != "")
@@ -116,9 +135,9 @@ $(document).on('click','.js-virtual_sample',function (e)
 				sampleOrderAttachments.push($( this ).find('#award_file_url').val() );
 			}
 		});
-		
+
 		productJsonData1['attachements'] = sampleOrderAttachments;
-		
+
 		// console.log('productJsonData1',productJsonData1);
 		// return false;
 
@@ -160,13 +179,13 @@ function addFileInput()
 //end
 function showCaptcha(){
 	// Captcha Script
-	
+
 	var a = Math.ceil(Math.random() * 9)+ '';
 	var b = Math.ceil(Math.random() * 9)+ '';
 	var c = Math.ceil(Math.random() * 9)+ '';
 	var d = Math.ceil(Math.random() * 9)+ '';
 	var e = Math.ceil(Math.random() * 9)+ '';
-	
+
 	var code = a + b + c + d + e;
 	document.getElementById("txtCaptcha").value = code;
 	document.getElementById("CaptchaDiv").innerHTML = code;
@@ -181,7 +200,7 @@ function ValidCaptcha(){
 	return false;
 	}
 	}
-	
+
 	// Remove the spaces from the entered and generated code
 	function removeSpaces(string){
 	return string.split(' ').join('');
@@ -216,20 +235,25 @@ $(document).on('click', '.js-upload-art-image', function(e) {
 						if(getParentHtml.find('#award_file_img').hasClass( "hide" )) {
 							getParentHtml.find('#award_file_img').removeClass('hide');
 						}
-						getParentHtml.find("#award_file_url").val(result[0].url);		
+						getParentHtml.find("#award_file_url").val(result[0].url);
 						getParentHtml.find(".js_file_name").html(result[0].original_filename+'.'+result[0].format);
 						getParentHtml.find("ul.red").remove();
 					}
 					else{
 						getParentHtml.find("#award_file_url").val(result[0].url);
 						getParentHtml.find(".js_file_name").html(result[0].original_filename+'.'+result[0].format);
-						getParentHtml.find("ul.red").remove();						
+						getParentHtml.find("ul.red").remove();
 						getParentHtml.find("#award_file_img").attr("src","")
-						getParentHtml.find("#award_file_img").addClass("hide")								
+						getParentHtml.find("#award_file_img").addClass("hide")
 					}
 				}
 				else{
-					getParentHtml.append('<ul class="red"><li class="error" style="">Artwork must be in one of the following formats: AI, EPS, PDF, PSD, TIF, JPG.</li></ul>');
+          if(getParentHtml.find('.error').length > 0){
+              getParentHtml.find('.error').html('Artwork must be in one of the following formats: AI, EPS, PDF, PSD, TIF, JPG.');
+          }else{
+              getParentHtml.append('<ul class="red"><li class="error" style="">Artwork must be in one of the following formats: AI, EPS, PDF, PSD, TIF, JPG.</li></ul>');
+          }
+
 					getParentHtml.find("#award_file_img").attr("src","")
 					getParentHtml.find(".js_file_name").html("")
 					getParentHtml.find("#award_file_img").addClass("hide")
@@ -246,3 +270,12 @@ $(document).on('click', '.js-upload-art-image', function(e) {
 });
 
 /////////////////////////
+function checking(inputClass) {
+    let empty = 0;
+    $('input.'+inputClass+'[type=text]').each(function(){
+       if ($.trim(this.value) == "") {
+           empty++;
+       }
+    })
+    return empty;
+}
