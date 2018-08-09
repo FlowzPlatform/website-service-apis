@@ -21,7 +21,7 @@ let verifyAddress = function (ADD, codes) {
         City: "",
         Address2:"",
         Address1: ADD.street1,
-        apiLoginID: taxid,
+        apiLoginID: taxid, 
         apiKey: taxkey
       };
       $.ajax({
@@ -29,7 +29,7 @@ let verifyAddress = function (ADD, codes) {
             url: project_settings.taxcloud_url+ '/VerifyAddress',
             async: false,
             dataType: 'json',
-            data: add,
+            data: add, 
             success: function (data) {
                 console.log('Dataa:: ', data)
                 if (data.ErrNumber == '0') {
@@ -40,7 +40,7 @@ let verifyAddress = function (ADD, codes) {
             },
             error: function(xhr, status, error) {
               var err = eval("(" + xhr.responseText + ")");
-              flag = false;
+              flag = false;   
             },
         });
       return flag;
@@ -48,7 +48,7 @@ let verifyAddress = function (ADD, codes) {
   } else {
     return true
   }
-
+  
 };
 
 
@@ -147,13 +147,55 @@ $(document).ready( async function(){
                   ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                   if(productDetails.images != undefined)  {
                       ProductImage = productDetails.images[0].images[0].secure_url;//productDetails.default_image;
-                  }else {
+                  }
+                  else {
                     $("#download_image").parent('li').remove()
                   }
 
                   // console.log("ProductImage",ProductImage);
                   ProductSku = productDetails.sku;
                   hasImprintData = productDetails.imprint_data;
+                
+                axios({
+                    method: 'GET',
+                    url: project_settings.webtools_api_url+'?website='+website_settings['projectID']+'&sku='+ProductSku,
+                })
+                .then(async response => {
+                    if(response.data.data.length > 0){
+                        let webtoolData = response.data.data[0];
+
+                        if(webtoolData.product_pdf != undefined && webtoolData.product_pdf != '') {
+                            $('#download_product_template').attr('href',webtoolData.product_pdf)
+                        }
+                        else {
+                            $('#download_product_template').parent('li').remove()
+                        }
+
+                        if(webtoolData.art_pdf != undefined && webtoolData.art_pdf != '') {
+                            $('#download_art_template').attr('href',webtoolData.art_pdf)
+                        }
+                        else {
+                            $('#download_art_template').parent('li').remove()
+                        }
+
+                        if(webtoolData.gcc_pdf != undefined && webtoolData.gcc_pdf != '') {
+                            $('#download_gcc_template').attr('href',webtoolData.gcc_pdf)
+                        }
+                        else {
+                            $('#download_gcc_template').parent('li').remove()
+                        }
+
+                        if(webtoolData.special_pricing != undefined && webtoolData.special_pricing != '') {
+                            $('#download_special_pricing').attr('href',webtoolData.special_pricing)
+                        }
+                        else {
+                            $('#download_special_pricing').parent('li').remove()
+                        }
+                    }
+                    else {
+                        $('#download_product_template, #download_art_template, #download_gcc_template, #download_special_pricing').parent('li').remove()
+                    }
+                })            
 
                   // $('#product_name').html(ProductName)
                   let listHtml = $('#title .row').html();
@@ -248,14 +290,7 @@ $(document).ready( async function(){
                     });
 
                     $(".checkbox_colors").html(productHtmlColor);
-                    /*$(".checkbox_colors").owlCarousel({
-                        items : 14, //10 items above 1000px browser width
-                        itemsDesktop : [1000,14], //5 items between 1000px and 901px
-                        itemsDesktopSmall : [900,14], // betweem 900px and 601px
-                        itemsTablet: [600,9], //2 items between 600 and 0
-                        navigation: true,
-                        itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
-                    });*/
+
                   }
 
                 // product print position
@@ -584,7 +619,7 @@ $(document).ready( async function(){
                                         let artwork_type = imprint_info.artwork_type;
 
                                         let selectedType = $(activetab).find("#js_request_quote_artwork_"+print_pos_id);
-
+                                        
                                         $(selectedType).find("ul li[data-type='"+artwork_type+"'] a").click();
 
                                         let checkSendEmail = '';
@@ -616,7 +651,7 @@ $(document).ready( async function(){
                                         {
                                             $(activetab).find(checkSendEmail).click();
                                         }
-
+                                        
                                         if(typeof imprint_info.artwork != "undefined")
                                         {
                                             if(typeof imprint_info.artwork.artwork_text != "undefined")
@@ -628,7 +663,7 @@ $(document).ready( async function(){
 
                                                     let inputTextVal = '';
                                                     let addClick = '';
-
+                                                    
 
                                                     if(artwork_type == "typeset")
                                                     {
@@ -645,7 +680,7 @@ $(document).ready( async function(){
                                                     {
                                                         $(activetab).find(inputTextVal).val(artwork_text);
                                                     }
-
+                                                    
                                                     if(j>1)
                                                     {
                                                         if(addClick != "")
@@ -676,13 +711,13 @@ $(document).ready( async function(){
 
                                                     if(artwork_type == "upload_artwork")
                                                     {
-                                                        addClick =  "#is_logo_add_"+print_pos_id;
+                                                        addClick =  "#is_logo_add_"+print_pos_id;   
                                                         thumbImg = "#logo_show_"+print_pos_id+"_"+j;
                                                         actualImg = "#logo_save_"+print_pos_id+"_"+j;
                                                     }
                                                     else if(artwork_type == "upload_artwork_typeset")
                                                     {
-                                                        addClick =  "#is_logo_text_add_"+print_pos_id;
+                                                        addClick =  "#is_logo_text_add_"+print_pos_id;   
                                                         thumbImg = "#logo_type_show_"+print_pos_id+"_"+j;
                                                         actualImg = "#logo_type_save_"+print_pos_id+"_"+j;
                                                     }
@@ -690,7 +725,7 @@ $(document).ready( async function(){
                                                     $(activetab).find(thumbImg).attr("src",artwork_thumb);
                                                     $(activetab).find(thumbImg).removeClass("hide");
                                                     $(activetab).find(actualImg).val(imprint_info.artwork.artwork_image[i]);
-
+                                                    
                                                     if(j>1)
                                                     {
                                                         $(activetab).find(addClick).click();
@@ -863,12 +898,12 @@ $(document).ready( async function(){
                 if(websiteConfiguration.transaction.place_order.shipping.split_shipping.status == 0 && activetab != "#js-request-quote"){
                     $(activetab).find("input[name='request_quote_shipping_type'][value='split']").parent().remove();
                 }
-
+                
                 if(websiteConfiguration.transaction.place_order.product_summary.status == 0 && activetab != "#js-request-quote")
                 {
                     $("#js-product-summary-container").addClass('hide');
                 }
-
+                
 
                 if(websiteConfiguration.product_detail.imprint_info.status == 0)
                 {
@@ -881,7 +916,7 @@ $(document).ready( async function(){
                     $("a[href='#product_description']").parent().remove();
                     $("#product_description").remove();
                 }
-
+                
                 if(websiteConfiguration.product_detail.product_detail.status == 0)
                 {
                     $("a[href='#product-detail']").parent().remove();
@@ -902,7 +937,7 @@ $(document).ready( async function(){
                 {
                     $("#js-show_play_video").parent().remove();
                 }
-
+                
                 $('.js-hide-div').removeClass("js-hide-div");
                 setTimeout(loadBxSlider(),5000)
 			  // },
@@ -1023,7 +1058,7 @@ $(document).ready( async function(){
             $('.js-setup-charge-summary').find('span').html("$"+parseFloat(total_setup_charge).toFixed(project_settings.price_decimal))
             $('.js-setup-charge-summary').removeClass('hide');
             $('.js-additional-charges-summary').removeClass('hide');
-
+            
             let shipp_charge = 0.00;
             let setup_charge = total_setup_charge;
             if($("#js-product-summary-container").length > 0)
@@ -1032,7 +1067,7 @@ $(document).ready( async function(){
                 if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
                     shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
                 }
-
+       
                 let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
                 $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
             }
@@ -1202,7 +1237,7 @@ $(document).ready( async function(){
             let art_section = getArtworkData(currentTab,position_name);
 
             let imprint_position_data = { 'imprint_position_name': positionName, 'imprint_method_name': imprintMethodName, 'no_of_color' : no_of_color, 'selected_colors' : selected_colors, 'artwork_type' : art_type, 'artwork' : art_section };
-
+            
             imprint_position.push(imprint_position_data);
         });
         //console.log("imprint_position new",imprint_position);
@@ -1468,7 +1503,7 @@ function getArtworkData(currentTab,position_name)
             typeset.push($(this).val());
         }
     });
-
+    
     art_section = {};
     if(art_url.length > 0) {
         art_section.artwork_image = art_url;
@@ -1812,11 +1847,11 @@ $(document).on("click","#js_tab_list",function(){
       if(websiteConfiguration.transaction.request_quote.shipping.split_shipping.status == 0 && activetab == "#js-request-quote"){
         $(activetab).find("input[name='request_quote_shipping_type'][value='split']").parent().remove();
       }
-
+     
       if(websiteConfiguration.transaction.request_quote.shipping.standard_shipping.status == 0 && activetab == "#js-request-quote"){
         $(activetab).find("input[name='request_quote_shipping_type'][value='standard']").parent().remove();
       }
-
+      
     }
 
     $(activetab +' .js-section-errors').remove();
@@ -2151,14 +2186,14 @@ $(document).on("change",activetab + ".js_add_imprint_location_request_quote",fun
         $('.js-setup-charge-summary').find('span').html("$"+parseFloat(total_setup_charge).toFixed(project_settings.price_decimal))
         $('.js-setup-charge-summary').removeClass('hide');
         $('.js-additional-charges-summary').removeClass('hide');
-
+        
         let shipp_charge = 0.00;
         let setup_charge = total_setup_charge;
         let totalPrice = $("#js_product_summary_charges .total_price").html().replace('$','');
         if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
             shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
         }
-
+   
         let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
         $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
     }
@@ -2679,12 +2714,12 @@ function colorValidation(fld,section,value){
         if(!isEmpty(quantityArr)) errorLog['quantity'] = quantityArr
         else{
             let checkMiniQuantity = true;
-
+            
             if(websiteConfiguration.transaction.place_order.check_minimum_qty.status == 0 && activetab != "#js-request-quote"){
                 checkMiniQuantity = false;
             }
             else if(websiteConfiguration.transaction.request_quote.check_minimum_qty.status == 0 && activetab == "#js-request-quote"){
-                checkMiniQuantity = false;
+                checkMiniQuantity = false;                
             }
 
             if(checkMiniQuantity)
@@ -2703,7 +2738,7 @@ function colorValidation(fld,section,value){
                         }
                     }
                 })
-
+                
                 if(minQty != "" && minQty > 0){
                     if(value.total_qty < minQty){
                         errorLog['quantity'] = "Quantity should be equal to or greater than the minimum quantity."
@@ -2807,9 +2842,9 @@ function shippingValidation(fld,section,value){
       {
           $.each(value[fld].shipping_detail,function(key,shippingData){
               let section1 = section+'-'+arrKey
-
+              
               let splitShippingAddressQuantity = 0;
-    		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){
+    		  $.each(shippingData.color_quantity,function(colorkey,colorvalue){    			  
     			  splitShippingAddressQuantity = parseInt(splitShippingAddressQuantity) + parseInt(colorvalue);
     			  if(splitShippingColorQuantity[colorkey] != undefined)
     			  {
@@ -2820,7 +2855,7 @@ function shippingValidation(fld,section,value){
     				  splitShippingColorQuantity[colorkey] = parseInt(colorvalue)
     			  }
     		  });
-
+    		  
               let shippingVal = {}
               if(!isEmpty(shippingData.color_quantity) && splitShippingAddressQuantity <= 0){
             	  shippingVal['shipping_method'] = "All colors cant not have 0 quantity in address."
@@ -2914,7 +2949,7 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
         });
     }
     $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
-
+    
     //summary for shipping charges
     let shipp_charge = 0.00;
     let setup_charge = 0.00;
@@ -2933,29 +2968,29 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
 
 function attachDeleteEvent(parentDiv){
 	if ($(activetab).find(parentDiv + " .js-delete-address").length > 0){
-
+		
 		// Turn off old events which are attached
 		$(document).off("click", activetab + ' .js-delete-address');
-
+		
 		// Turn on new events
 		$(document).on("click", activetab + ' .js-delete-address',function(){
-
+			
 			let deleteConfirm = confirm("Are you sure you want to remove this address?");
 			if(deleteConfirm == true)
-			{
+			{				
                 let shippingCounter = $(activetab+" .js_request_quote_shipping_counter").val();
                 let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
                 let currentAddressCounter1 = $(this).closest('.js_shipping_method_detail').attr('data-shipping-counter');
-
+				
 				// First remove the current address
 				$(activetab + ' #js_shipping_method_detail_'+currentAddressCounter1).remove();
-
+				
 				//summary for shipping address split
 				$('#js_shipp_address_details_'+currentAddressCounter).remove();
 				if(shippingCounter == currentAddressCounter) {
 				    $('#js_shipp_address_details_'+currentAddressCounter).find('counter').html((currentAddressCounter-1));
 				}
-
+				
 				// Now shift the other addresses one step up
 				for(i=(currentAddressCounter+1);i<=shippingCounter;i++)
 				{
@@ -2968,7 +3003,7 @@ function attachDeleteEvent(parentDiv){
 				$(activetab+" .js_request_quote_shipping_counter").val((shippingCounterTemp-1));
 			}
 		});
-	}
+	}	
 }
 function attachAutoCompleteEvent(parentDiv){
 	 if ($(activetab).find(parentDiv + " .auto_complete_shipping_email").length > 0)
@@ -2999,7 +3034,7 @@ function attachAutoCompleteEvent(parentDiv){
 	          let counter = $(obj.currentTarget).closest('.js_shipping_method_detail').data('shipping-counter');
 	          let shippigCounter = counter;
               let addressBookId = datum.id;
-
+              
               setSelectedAddress(addressBookId,shippigCounter);
 	      });
 	    }
@@ -3014,7 +3049,7 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
       })
     .then(async response => {
         if(response.data != undefined ){
-            let returnData = response.data;
+            let returnData = response.data; 
             console.log('returnData', returnData)
             let city = await getCountryStateCityById(returnData.city,3);
             let state = await getCountryStateCityById(returnData.state,2);
@@ -3068,7 +3103,7 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
                     return false;
                 }
                 // showSuccessMessage()
-
+                
               } else {
                 console.log('STATE CODE NOT FOUND')
               }
@@ -3143,7 +3178,7 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
             if(shipping_type == 'standard') {
                 $('.js_shipp_address_details').find('counter').html('');
             }
-
+            
             $('#Quantity-quote, .js_shipp_address_data').removeClass('hide');
 
 
@@ -3209,7 +3244,7 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
                 onSelect: function(dateText, inst) {
                     let date = $(this).val();
                     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_rq_ship_handdate").val(date);
-
+                    
                     //summary for address inhand date
                     $('.js_inhand_date_'+shippigCounter).find('span').html(date);
                     $('#Quantity-quote, .js_inhand_date_'+shippigCounter).removeClass('hide');
@@ -3247,7 +3282,7 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
 //         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
 //     })
 //     .then(function (response1) {
-//         // console.log("response1",response1);
+//         // console.log("response1",response1);        
 //         let resp1 = response1.data.results[0].formatted_address.split(",");
 //         resp = resp1[0]
 //         return resp;

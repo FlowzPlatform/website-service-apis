@@ -1,6 +1,11 @@
 $(document).ready(function(){
     let pid = getParameterByName('pid');
+    if($("#order_sample").length > 0){
+        let link = $("#order_sample").attr("href")//.replace("#data.productId#",pid)
+        link = link.replace("#data.productId#",pid)
+        $("#order_sample").attr("href",link)
 
+    }
     // download variation images
     $("#download_image").on("click",async function(){
         let productResponse = await getProductDetailById(pid)
