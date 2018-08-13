@@ -7,15 +7,6 @@ body {
     margin: 0;
 }
 
-.row {
-    display: table;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    width: 100%;
-}
-
 :root {
     margin-top: 0px;
 }
@@ -24,24 +15,26 @@ body {
     margin-top: 0px;
 }
 
-.row {
-    display: table;
+.logo {
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 130px;
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
-    width: 100%;
+    min-height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: rgb(77, 17, 79);
+    font-size: 23px;
 }
 
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
-}
-
-.bootstrapblock {
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
 }
 
 * {
@@ -55,331 +48,540 @@ body {
     margin-left: 0px;
 }
 
-#i3jwk0b {
-    color: rgb(255, 255, 255);
-}
-
-#i4clg47 {
-    color: rgb(255, 255, 255);
-}
-
-#ita5b5j {
-    color: rgb(255, 255, 255);
-}
-
-#i910g4l {
-    color: rgb(255, 255, 255);
-}
-
-#ivvx9cn {
-    color: rgb(255, 255, 255);
-}
-
-.c87372 {
+#special {
     padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
 }
 
-.col-md-4.bootstrapblock.via {
-    width: 430px;
-    height: 67.31px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 113px;
+.shopify-payment-button__button[disabled] {
+    opacity: 0.6;
+    cursor: default;
 }
 
-.col-md-4.bootstrapblock.sew {
-    width: 88.22px;
-    height: 38px;
-    background-color: rgb(41, 138, 204);
-    margin-top: 17px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 601px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
+.shopify-payment-button__button--unbranded:hover:not([disabled]) {
+    background-color: rgb(19, 111, 153);
 }
 
-.col-md-4.bootstrapblock.dump {
-    width: 97px;
-    height: 38px;
-    margin-top: 15px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 13px;
-    background-color: rgb(41, 138, 204);
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
+.shopify-payment-button__more-options:hover:not([disabled]) {
+    text-decoration-line: underline;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
 }
 
-.c87713 {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 0px;
-    padding-left: 10px;
-    margin-top: -16px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: -17px;
-    width: 82px;
-    font-size: 14px;
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    line-height: 13px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
+.shopify-payment-button__more-options[disabled] {
+    opacity: 0.6;
+    cursor: default;
 }
 
-a {
-    text-decoration-line: none !important;
-    text-decoration-style: initial !important;
-    text-decoration-color: initial !important;
+.shopify-payment-button__button--branded .shopify-cleanslate {
+    flex-grow: 1 !important;
+    flex-shrink: 1 !important;
+    flex-basis: 0% !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
-.c87887 {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 0px;
-    padding-left: 10px;
-    margin-top: -14px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: -17px;
-    width: 91px;
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    line-height: 11px;
+.container .offset-by-three {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: none;
+    padding-left: 0px !important;
 }
 
-.c88294 {
-    color: black;
-    width: 340px;
-    height: 37.31px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 30px;
+.footer p {
+    text-align: center;
+    font-size: 12px !important;
+    color: rgb(255, 255, 255) !important;
 }
 
-.c125349 {
-    padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
+p {
+    font-style: normal;
+    line-height: 1.8em;
+    font-size: 16px !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 15px !important;
+    margin-left: 0px !important;
 }
 
-.row.c125349.dil {
-    background-color: rgb(0, 0, 0);
+@media only screen and (min-width: 1199px) {
+    .index div.content {
+        padding-top: 145px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 0px !important;
+    }
 }
 
-.col-md-2.bootstrapblock.khbr {
-    width: 105.48px;
-    height: 39.4px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 502px;
+@media only screen and (max-width: 767px) {
+    .container .offset-by-five {
+        padding-left: 0px !important;
+        margin-left: 0px !important;
+    }
 }
-
-.col-md-2.bootstrapblock.ny {
-    width: 94px;
-    height: 39.4px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 20px;
+.column.col-md-12.col-sm-12.col-xs-12 {
+    float: none;
 }
-
-.col-md-2.bootstrapblock.pdti {
-    width: 98px;
-    height: 39.4px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 20px;
+@media only screen and (min-width: 1199px)
+div.content {
+    padding-top: 150px !important;
+   
 }
-
-.col-md-2.bootstrapblock.su {
-    width: 115px;
-    height: 39.4px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 20px;
+.container .six.columns {
+    
+    height: 100px !important;
 }
-
-.col-md-2.bootstrapblock.me {
-    width: 96px;
-    height: 39.4px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 20px;
-}
-
-.c126076 {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    color: rgb(255, 255, 255);
-    margin-top: -21px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: -18px;
-    height: 30px;
-    width: 101px;
-    line-height: 26px;
-    font-size: 14px;
-}
-
-.c126344 {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    color: rgb(255, 255, 255);
-    margin-top: -21px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: -17px;
-    height: 30px;
-    width: 88px;
-    line-height: 26px;
-}
-
-.c126637 {
-    padding-top: 9px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    color: rgb(255, 255, 255);
-    font-size: 14px;
-    width: 91px;
-    margin-top: -21px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: -17px;
-    height: 30px;
-    line-height: 26px;
-}
-
-.c127028 {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    width: 111px;
-    height: 30px;
-    margin-top: -21px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: -18px;
-    color: rgb(255, 255, 255);
-    line-height: 26px;
-}
-
-.c127196 {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    color: rgb(255, 255, 255);
-    height: 30px;
-    width: 94px;
-    margin-top: -21px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: -17px;
-    line-height: 26px;
-}
-
-.col-md-4.bootstrapblock.sew:hover {
-    background-color: rgb(4, 92, 144);
-}
-
-.col-md-4.bootstrapblock.dump:hover {
-    background-color: rgb(4, 92, 144);
-}
-
-b#i4clg47:hover {
-    color: rgb(41, 138, 204);
-}
-
-b#ita5b5j:hover {
-    color: rgb(41, 138, 204);
-}
-
-b#i910g4l:hover {
-    color: rgb(41, 138, 204);
-}
-
-b#ivvx9cn:hover {
-    color: rgb(41, 138, 204);
-}
-
-.c127196:hover {
-    color: rgb(41, 138, 204);
+.ten.columns.nav.mobile_hidden {
+    margin-top: 24px !important;
 }
 </style>
 
 
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+<meta charset="utf-8" />
+<meta http-equiv="cleartype" content="on" />
+<meta name="robots" content="index,follow" />
+<title>Golf Trends Inc.</title>
+<meta name="description" content="Canadian distributor of golf clubs, bags, travel covers, carts, grips, accessories and much more."
 />
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-rel="stylesheet" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+<meta name="author" content="Golf Trends Inc." />
+<meta property="og:url" content="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/ " />
+<meta property="og:site_name" content="Golf Trends Inc." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Golf Trends Inc." />
+<meta property="og:image" content="https://res.cloudinary.com/dq28hwvhb/image/upload/v1533188858/golftrends/logo/logo.png"
 />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+<meta property="og:image:secure_url" content="https://res.cloudinary.com/dq28hwvhb/image/upload/v1533188858/golftrends/logo/logo.png"
 />
-<link rel="stylesheet" href="https://res.cloudinary.com/flowz/raw/upload/v1515673729/builder/css/flowz_blocks.css"
-type="text/css" />
-<div class="row c87372 di">
-    <div class="col-md-4 bootstrapblock via"><a href="http://5af424c123b9100013445a70.6f2fce0d5cea431c9e08a53ee41994c7.flowzcluster.tk/"><img src="https://res.cloudinary.com/flowz/image/upload/v1526879818/builder/hh06nkksrobj5wgrehvo.png" class="c88294"/></a>
+<meta property="og:description" content="Canadian distributor of golf clubs, bags, travel covers, carts, grips, accessories and much more."
+/>
+<meta name="twitter:site" content="@shopify" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+/>
+<link href="https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533188963/golftrends/header_home/styles.css"
+rel="stylesheet" type="text/css" media="all" />
+<link href="https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189006/golftrends/header_home/extra.css"
+rel="stylesheet" type="text/css" media="all" />
+<link rel="shortcut icon" type="image/x-icon" href="https://res.cloudinary.com/dq28hwvhb/image/upload/v1533189060/golftrends/logo/favicon.png"
+/>
+<link rel="canonical" href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/ " />
+<link rel="stylesheet" href="https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189113/golftrends/header_home/font-awesome.min.css"
+/>
+<link href="//fonts.googleapis.com/css?family=.|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans+Condensed:light,normal,bold|Open+Sans:light,normal,bold"
+rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800"
+rel="stylesheet" type="text/css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write("<script src='https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189315/golftrends/header_home_js/jquery.min.js'>\x3C/script>")
+</script>
+<script src="https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189358/golftrends/header_home_js/app.js"
+type="text/javascript"></script>
+<script src="https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189389/golftrends/header_home_js/option_selection-ea4f4a242e299f2227b2b8038152223f741e90780c0c766883939e8902542bda.js"
+type="text/javascript"></script>
+<meta id="shopify-digital-wallet" name="shopify-digital-wallet"
+content="/8836942/digital_wallets/dialog" />
+<meta name="shopify-checkout-api-token" content="ca5ee0f1aebf635e1ddfd1f55477db57"
+/>
+<script id="shopify-features" type="application/json">
+    {"accessToken":"ca5ee0f1aebf635e1ddfd1f55477db57","betas":[],"domain":"www.golftrendsinc.com","shopId":8836942,"smart_payment_buttons_url":"https:\/\/cdn.shopifycloud.com\/payment-sheet\/assets\/latest\/spb.js"}
+</script>
+<script>
+    var Shopify = Shopify || {};
+    Shopify.shop = "pivotal-gear-canada.myshopify.com";
+    Shopify.theme = {"name":"Golf Trends 2017","id":166498886,"theme_store_id":null,"role":"main"};
+    Shopify.theme.handle = "null";
+    Shopify.theme.style = {"id":null,"handle":null};
+</script>
+<script id="__st">
+    var __st={"a":8836942,"offset":-14400,"reqid":"a48f9093-6d4d-4300-ac27-c0628eaad9bf","pageurl":"www.golftrendsinc.com\/","u":"23b20303276d","p":"home"};
+</script>
+<script>
+    window.ShopifyPaypalV4VisibilityTracking = true;
+</script>
+<script>
+    window.Shopify = window.Shopify || {};
+    window.Shopify.Checkout = window.Shopify.Checkout || {};
+    window.Shopify.Checkout.apiHost = "pivotal-gear-canada.myshopify.com";
+    window.ShopifyPay = window.ShopifyPay || {};
+    window.ShopifyPay.acceleratedFlowIncontext = false;
+    window.ShopifyPay.apiHost = "pay.shopify.com";
+    window.ShopifyPay.apiToken = "eGdWNUZMUW85a2M1MWt5UkhCV3NranJqZWdPTHFqSHBKVXg1UlJMTVA1REp6cStmbkp5Vk9WcUVlVHdYeitPbS0tUG9mMllyVEEycUtncWMxRmdnSi9TZz09--32a4f9d1185a3580d5502e7c0ac3a307d9f91659";
+    window.ShopifyPay.requestHost = "www.golftrendsinc.com"
+    window.ShopifyPay.sheetStyleSheetUrl = "\/\/cdn.shopify.com\/s\/assets\/shared\/sheet\/main-9591cdb8fc78ba1acaca189815e8d30f2513988b8b83f4a84c83115fcae19d76.css";
+</script>
+<script>
+    window['GoogleAnalyticsObject'] = 'ga';
+    window['ga'] = window['ga'] || function() {
+      (window['ga'].q = window['ga'].q || []).push(arguments);
+    };
+    window['ga'].l = 1 * new Date();
+</script>
+<script>
+    var _gaUTrackerOptions = {'allowLinker': true};ga('create', 'UA-79629315-1', 'auto', _gaUTrackerOptions);ga('send', 'pageview');
+          (function(){
+            ga('require', 'linker');
+            function addListener(element, type, callback) {
+              if (element.addEventListener) {
+                element.addEventListener(type, callback);
+              }
+              else if (element.attachEvent) {
+                element.attachEvent('on' + type, callback);
+              }
+            }
+            function decorate(event) {
+              event = event || window.event;
+              var target = event.target || event.srcElement;
+              if (target && (target.action || target.href)) {
+                ga(function (tracker) {
+                  var linkerParam = tracker.get('linkerParam');
+                  document.cookie = '_shopify_ga=' + linkerParam + '; ' + 'path=/';
+                });
+              }
+            }
+            addListener(window, 'load', function(){
+              for (var i=0; i<document.forms.length; i++) {
+                if(document.forms[i].action && document.forms[i].action.indexOf('/cart') >= 0) {
+                  addListener(document.forms[i], 'submit', decorate);
+                }
+              }
+              for (var i=0; i<document.links.length; i++) {
+                if(document.links[i].href && document.links[i].href.indexOf('/checkout') >= 0) {
+                  addListener(document.links[i], 'click', decorate);
+                }
+              }
+            })
+          }());
+</script>
+<script>
+    window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+      window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+      window.ShopifyAnalytics.meta.currency = 'CAD';
+      var meta = {"page":{"pageType":"home"}};
+      for (var attr in meta) {
+        window.ShopifyAnalytics.meta[attr] = meta[attr];
+      }
+</script>
+<script>
+    window.ShopifyAnalytics.merchantGoogleAnalytics = function() {
+      
+    };
+</script>
+<script class="analytics">
+    (function () {
+      var customDocumentWrite = function(content) {
+        var jquery = null;
+    
+        if (window.jQuery) {
+          jquery = window.jQuery;
+        } else if (window.Checkout && window.Checkout.$) {
+          jquery = window.Checkout.$;
+        }
+    
+        if (jquery) {
+          jquery('body').append(content);
+        }
+      };
+    
+      var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
+      if (trekkie.integrations) {
+        return;
+      }
+      trekkie.methods = [
+        'identify',
+        'page',
+        'ready',
+        'track',
+        'trackForm',
+        'trackLink'
+      ];
+      trekkie.factory = function(method) {
+        return function() {
+          var args = Array.prototype.slice.call(arguments);
+          args.unshift(method);
+          trekkie.push(args);
+          return trekkie;
+        };
+      };
+      for (var i = 0; i < trekkie.methods.length; i++) {
+        var key = trekkie.methods[i];
+        trekkie[key] = trekkie.factory(key);
+      }
+      trekkie.load = function(config) {
+        trekkie.config = config;
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.onerror = function(e) {
+          (new Image()).src = '//v.shopify.com/internal_errors/track?error=trekkie_load';
+        };
+        script.async = true;
+        script.src = 'https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189459/golftrends/header_home_js/trekkie.storefront.min.js';
+        var first = document.getElementsByTagName('script')[0];
+        first.parentNode.insertBefore(script, first);
+      };
+      trekkie.load(
+        {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":8836942,"isMerchantRequest":null,"themeId":166498886,"themeCityHash":839714170374146985}},"Performance":{"navigationTimingApiMeasurementsEnabled":true,"navigationTimingApiMeasurementsSampleRate":1.0},"Session Attribution":{}}
+      );
+    
+      var loaded = false;
+      trekkie.ready(function() {
+        if (loaded) return;
+        loaded = true;
+    
+        window.ShopifyAnalytics.lib = window.trekkie;
+        
+    
+        var originalDocumentWrite = document.write;
+        document.write = customDocumentWrite;
+        try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch(error) {};
+        document.write = originalDocumentWrite;
+    
+        
+            window.ShopifyAnalytics.lib.page(
+              null,
+              {"pageType":"home"}
+            );
+          
+        
+      });
+    
+      
+          var eventsListenerScript = document.createElement('script');
+          eventsListenerScript.async = true;
+          eventsListenerScript.src = "https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189506/golftrends/header_home_js/shop_events_listener-f2c5800305098f0ebebdfa7d980c9abf56514c46d5305e97a7c476f7c9116163.js";
+          document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+        
+    })();
+</script>
+<script defer="defer" integrity="sha256-qhF2cfCYNFAl0umvIOrU7EMiySlENmgKI12SDbDaDWY="
+crossorigin="anonymous" src="/https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189560/golftrends/header_home_js/express_buttons-aa117671f098345025d2e9af20ead4ec4322c9294436680a235d920db0da0d66.js"></script>
+<script defer="defer" integrity="sha256-NfqRkSQwKw0JfNupCky6Zxtoijw8YUA8km/3gYu7kY8="
+crossorigin="anonymous" src="https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189605/golftrends/header_home_js/features-35fa919124302b0d097cdba90a4cba671b688a3c3c61403c926ff7818bbb918f.js"></script>
+<script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+<script defer="defer" src="https://res.cloudinary.com/dq28hwvhb/raw/upload/v1533189657/golftrends/header_home_js/ga_urchin_forms-68ca1924c495cfc55dac65f4853e0c9a395387ffedc8fe58e0f2e677f95d7f23.js"></script>
+<div>
+    <div id="header" class="mm-fixed-top"><a href="#nav" class="icon-menu"> <span>Menu</span></a>
     </div>
-    <div class="col-md-4 bootstrapblock sew">
-        <div class="c87713">Portal <i aria-hidden="true" class="fa fa-th"></i>
+    <div class="hidden">
+        <div id="nav">
+            <ul>
+                <li><a href="/collections/all" title="Products">Products</a>
+                    <ul>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Accessory Bags and Pouches</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Bag Tags, Tees and Pencils</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Divot Tools, Hat Clips and Ball Markers</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Bags</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Balls and Retrievers</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Carts</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Clubs</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Grips</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">GPS Watches and Rangefinders</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Headcovers and Golf Gloves</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Rain/Cold Weather Gear</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Travel Covers</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Sunscreen and Lip Balm</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="/pages/brands" title="Brands">Brands</a>
+                    <ul>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Aloe Up</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Bag Boy</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Champ</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Chromax</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Datrek</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Devant Towels</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Pride</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Trends</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Goose & Co.</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">IGOTCHA</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Lamkin</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">P2 Putter Grips</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Pitchfix</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Precision Pro</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Pride Tees</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">SKB</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Softspikes</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Stick It</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">SuperStroke</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">TLink</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Tour Edge</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Tour Striker</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Winn Grips</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Catalogues.html">Catalogues</a>
+                </li>
+                <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/wherebuy.html">Where to Buy</a>
+                </li>
+                <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/contactus.html">Contact Us</a>
+                </li>
+                
+        </div>/Preview/wherebuy.html
+        <div id="cart">
+            <ul>
+                <li class="mm-subtitle"><a href="#cart" class="mm-subclose continue">Continue Shopping</a>
+                </li>
+                <li class="Label">Your Cart is Empty</li>
+            </ul>
         </div>
     </div>
-    <div class="col-md-4 bootstrapblock dump">
-        <div class="c87887"><a href="http://5af424c123b9100013445a70.6f2fce0d5cea431c9e08a53ee41994c7.flowzcluster.tk/account.html"
-            id="i3jwk0b">Account <i aria-hidden="true" class="fa fa-user"></i></a>
+    <div class="header mm-fixed-top">
+        <div class="container">
+            <div class="six columns logo"><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/ "><img src="https://res.cloudinary.com/dq28hwvhb/image/upload/v1533711331/golftrends/logo/flowz-dig-logo-2.png" alt="Golf Trends Inc." data-src="https://res.cloudinary.com/dq28hwvhb/image/upload/v1533711331/golftrends/logo/flowz-dig-logo-2.png" style="
+    margin-top: -17px !important;
+"></a>
+            </div>
+            <div class="ten columns nav mobile_hidden">
+                <ul class="top-menu">
+                    <li><a id="special" href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Account.html">Account <i aria-hidden="true" class="fa fa-user"></i></a>
+                    </li>
+                    <li><a id="special" href="#" onclick="openNewsletterPopup()">Portal <i aria-hidden="true" class="fa fa-th"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-block">
+            <div class="container">
+                <div class="sixteen columns nav mobile_hidden">
+                    <ul class="menu">
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Products.html"
+                            class="sub-menu">Products                     
+                    <span class="arrow">▾</span></a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Accessory Bags and Pouches</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Bag Tags, Tees and Pencils</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Divot Tools, Hat Clips and Ball Markers</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Bags</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Balls and Retrievers</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Carts</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Clubs</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Grips</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">GPS Watches and Rangefinders</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Headcovers and Golf Gloves</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Rain/Cold Weather Gear</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Travel Covers</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Sunscreen and Lip Balm</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Brands.html"
+                            title="Brands" class="sub-menu">Brands                     
+                    <span class="arrow">▾</span></a>
+                            <div class="dropdown dropdown-wide">
+                                <ul>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Aloe Up</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Bag Boy</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Champ</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Chromax</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Datrek</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Devant Towels</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Pride</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Golf Trends</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Goose & Co.</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">IGOTCHA</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Lamkin</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">P2 Putter Grips</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Pitchfix</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Precision Pro</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Pride Tees</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">SKB</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Softspikes</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Stick It</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">SuperStroke</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">TLink</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Tour Edge</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Tour Striker</a>
+                                    </li>
+                                    <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Featured.html">Winn Grips</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/Catalogues.html">Catalogues</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/wherebuy.html">Where to Buy</a>
+                        </li>
+                        <li><a href="http://5af424c123b9100013445a70.e971382907dd4495b4a5f417ad8313f8.flowzcluster.tk/contactus.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="row c125349 dil">
-    <div class="col-md-2 bootstrapblock khbr">
-        <div class="c126076"> <a href="http://5af424c123b9100013445a70.6f2fce0d5cea431c9e08a53ee41994c7.flowzcluster.tk/products.html"><b id="ita5b5j">Products</b></a>
-        </div>
-    </div>
-    <div class="col-md-2 bootstrapblock ny">
-        <div class="c126344"> <a href="http://5af424c123b9100013445a70.6f2fce0d5cea431c9e08a53ee41994c7.flowzcluster.tk/brands.html"><b id="i4clg47">Brands</b></a>
-        </div>
-    </div>
-    <div class="col-md-2 bootstrapblock pdti">
-        <div class="c126637"><b><a href="http://5af424c123b9100013445a70.6f2fce0d5cea431c9e08a53ee41994c7.flowzcluster.tk/Catalogues.html"><b id="i910g4l">Catelogues</b>
-            </a>
-            </b>
-        </div><b>
-    </b>
-    </div><b><div class="col-md-2 bootstrapblock su"><div class="c127028"><a href="http://5af424c123b9100013445a70.6f2fce0d5cea431c9e08a53ee41994c7.flowzcluster.tk/wheretobuy.html"><b id="ivvx9cn">Where to Buy</b>
-    </a>
-</div>
-</div>
-<div class="col-md-2 bootstrapblock me">
-    <div class="c127196"><b><span>Contact </span>Us</b>
-    </div>
-</div>
-</b>
 </div>

@@ -296,7 +296,7 @@
 	.ob-logo-block .menu-box .navbar-nav > li > a{ line-height:inherit; padding-bottom:30px;}
     .menu-box .ui-navigation .dropdown:hover>.dropdown-menu{display:block;}
     .menu-box .ui-navigation .dropdown-menu .dropdown-submenu:hover .dropdown-menu{display:block;}
-    .menu-box .ui-navigation .dropdown-menu .dropdown-submenu .dropdown-menu{min-height:395px;}
+    /*.menu-box .ui-navigation .dropdown-menu .dropdown-submenu .dropdown-menu{min-height:395px;}*/
     /*--IMAGE EDITOR--*/
     .product-gallery-page .zoom{ display: table-cell; vertical-align: middle; width: 500px;}
     .full-image-editor .zoom{ display: table-cell; vertical-align: middle; width:1170px;}

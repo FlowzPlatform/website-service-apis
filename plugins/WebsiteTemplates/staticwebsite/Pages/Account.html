@@ -1,0 +1,129 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#customer {
+    min-height: 430px !important;
+}
+
+#inm1zl {
+    margin-bottom: 5px !important;
+}
+
+#recover-password {
+    display: none;
+}
+
+.container .offset-by-five {
+    margin-left: 375px;
+    padding-left: 0px !important;
+}
+
+@media only screen and (min-width: 1199px) {
+    div.content {
+        padding-top: 135px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+}
+</style>
+
+
+
+
+<div class="container main content">
+    <div class="six offset-by-five columns clearfix">
+        <h1 class="collection_title">Customer Login</h1>
+    </div>
+    <div id="customer" class="clearfix">
+        <div id="login_form" class="six offset-by-five columns">
+            <p>This ecommerce portal is for wholesale customers only. To gain access
+                to this site, existing wholesale customers may call our head office at
+                1-800-668-1101 to request access.</p>
+            <form method="post" action="/account/login"
+            id="customer_login" accept-charset="UTF-8">
+                <input type="hidden" name="form_type" value="customer_login" />
+                <input type="hidden" name="utf8" value="✓" />
+                <label for="customer_email" class="login">Email</label>
+                <input type="email" value="" name="customer[email]" id="customer_email"
+                size="30" autocorrect="off" autocapitalize="off" class="large" /><small class="right"><em><a href="#" onclick="showRecoverPasswordForm()">Forgot your password?</a></em></small>
+                <label
+                for="customer_password" class="login">Password</label>
+                    <input type="password" value="" name="customer[password]"
+                    id="customer_password" size="16" class="large password" />
+                    <input type="submit" value="Sign In" id="inm1zl" class="btn action_button"
+                    />
+            </form>
+        </div>
+        <div id="recover-password">
+            <div class="six columns offset-by-five">
+                <h4>Reset Password</h4>
+                <form method="post" action="/account/recover" accept-charset="UTF-8">
+                    <input type="hidden" name="form_type" value="recover_customer_password"
+                    />
+                    <input type="hidden" name="utf8" value="✓" />
+                    <div id="recover_email" class="clearfix large_form">
+                        <label for="email" class="large">Email</label>
+                        <input type="email" value="" size="30" name="email" id="recover-email"
+                        autocorrect="off" autocapitalize="off" class="large" />
+                    </div>
+                    <p><em class="note">We will send you an email to reset your password.</em>
+                    </p>
+                    <div class="action_bottom">
+                        <input type="submit" value="Submit" class="btn action_button" /><span class="note">or <a href="#" onclick="hideRecoverPasswordForm()">Cancel</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function showRecoverPasswordForm() {
+        document.getElementById('recover-password').style.display = 'block';
+        document.getElementById('login_form').style.display='none';
+        return false;
+      }
+    
+      function hideRecoverPasswordForm() {
+        document.getElementById('recover-password').style.display = 'none';
+        document.getElementById('login_form').style.display = 'block';
+        return false;
+      }
+    
+      if (window.location.hash == '#recover') { showRecoverPasswordForm() }
+    
+      // reset_success is only true when the reset form is
+</script>

@@ -280,14 +280,7 @@ $(document).ready(async function() {
         });
 
         $(".checkbox_colors").html(productHtmlColor);
-        // $(".checkbox_colors").owlCarousel({
-        //     items : 14, //10 items above 1000px browser width
-        //     itemsDesktop : [1000,14], //5 items between 1000px and 901px
-        //     itemsDesktopSmall : [900,14], // betweem 900px and 601px
-        //     itemsTablet: [600,9], //2 items between 600 and 0
-        //     navigation: true,
-        //     itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
-        // });
+
     }
 
     // product print position
@@ -881,7 +874,7 @@ $(document).ready(async function() {
         $(".product-detail-tab").remove();
     }
 
-    if (productDetails.video_url == "") {
+    if (productDetails.video_url == "" && $("#js-show_play_video").length > 0) {
         $("#js-show_play_video").parent().remove();
     }
 
@@ -938,19 +931,6 @@ $(document).ready(async function() {
         }
         showPageAjaxLoading()
         submitRequestInfo(product_data, instruction, guestUserDetail)
-    });
-
-    $(document).on('click', '#js-show_play_video', function(e) {
-        $('#modal-table').attr('class', 'modal fade model-popup-black');
-        $("#modal-table").find(".modal-title").html('<i class="strip video-popup-strip"></i>Play Video');
-        $("#modal-table").find(".modal-dialog").addClass("play-video");
-        let guestUserHtml = $(".js-play_video_block").html();
-        let replaceHtml = guestUserHtml.replace("#data.video_url#", productDetails.video_url);
-        console.log('replaceHtml', replaceHtml)
-
-        $(".js_add_html").html(replaceHtml)
-        $('#modal-table').modal('show');
-        return false;
     });
 
     $(document).on('click', '.js-quantity-selector', function(e) {

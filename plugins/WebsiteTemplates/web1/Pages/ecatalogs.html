@@ -58,25 +58,23 @@ body {
 
 
 
-<div id="myEcatalogs" class="container">
-    <div class="innerpage row account-innerpage">
-        <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
-            <div class="ob-myaccount-ecatalogs">
-                <div class="myaccount-title">
-                    <h1 class="main-title">Ecatalogs</h1>
-                </div>
-            </div>
-            <div class="myaccount-ecatalogs">
-                <div class="product-main-list-block">
-                    <div class="tab-pane active">
-                        <div id="product-list-container" class="ob-product-grid js-product-grid">
-                            <div class="row">
-                                <reusecomponent class="c67694">{{> ecatalogs id='list.partial' }}</reusecomponent>
-                            </div>
-                        </div>
+<div id="myEcatalogs" class="container main">
+    <div class="innerpage">
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"> </i></li>
+                <li><strong>Catalog</strong></li>
+            </ul>
+        </div>
+        <div class="ob-catalog-block">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <h1 class="catalogue-title"><span>CATALOG</span></h1>
+                    <div id="product-list-container" class="cat-pro-list">
+                        <reusecomponent class="c67694">{{> ecatalogs id='list.partial' }}</reusecomponent>
                     </div>
                 </div>
-            </div>
+              </div>
         </div>
     </div>
 </div>
