@@ -143,9 +143,9 @@ async function before_get_email_template(hook){
     }
     else{
       // console.log("*****************");
-      // let response = await hook.app.service("email-template").find({query: { slug: 'request-quote'}});
+      let response = await hook.app.service("email-template").find({query: { slug: 'request-quote'}});
       
-      let response = await hook.app.service("email-template").find({query: { slug: 'request-quote',website_id:hook.data.website_id }});
+    //   let response = await hook.app.service("email-template").find({query: { slug: 'request-quote',website_id:hook.data.website_id }});
       // console.log("response",response);
       if(response.total != 0){
           let data = hook.result;
