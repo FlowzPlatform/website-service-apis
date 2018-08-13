@@ -1,0 +1,3 @@
+ <div class="js_display_ecatalog hide">
+    <div id="viewOwnEcatalogBody"><img class="img-responsive js-view-ecatalog-image" src="#ecatalog-image-link#"></div>
+</div>
