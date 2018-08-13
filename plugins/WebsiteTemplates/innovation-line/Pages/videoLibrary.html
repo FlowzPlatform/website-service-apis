@@ -24,10 +24,6 @@ body {
     margin-top: 0px;
 }
 
-.clearfix {
-    clear: both;
-}
-
 .row {
     display: table;
     padding-top: 10px;
@@ -52,7 +48,13 @@ body {
     margin-left: 0px;
 }
 
-.ob-product-grid .pro-box .pro-desc {
+.c67694 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.ob-product-grid .pro-box .pro-desc  {
     min-height: 55px;
 }
 
@@ -64,48 +66,10 @@ body {
     height: 170px;
 }
 
-.pro-box {
-    border-top-width: 0px;
-    border-right-width: 0px;
-    border-bottom-width: 0px;
-    border-left-width: 0px;
-    border-top-style: initial;
-    border-right-style: initial;
-    border-bottom-style: initial;
-    border-left-style: initial;
-    border-top-color: initial;
-    border-right-color: initial;
-    border-bottom-color: initial;
-    border-left-color: initial;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
+.pro-box, .pro-box:hover {
+    border: 0;
     cursor: auto;
 }
-
-.pro-box:hover {
-    border-top-width: 0px;
-    border-right-width: 0px;
-    border-bottom-width: 0px;
-    border-left-width: 0px;
-    border-top-style: initial;
-    border-right-style: initial;
-    border-bottom-style: initial;
-    border-left-style: initial;
-    border-top-color: initial;
-    border-right-color: initial;
-    border-bottom-color: initial;
-    border-left-color: initial;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-    cursor: auto;
-}
-
 .video-title {
     text-align: center;
     font-size: 25px;
@@ -130,22 +94,30 @@ body {
                         <div id="product-list-container" class="ob-product-grid js-product-grid">
                             <div class="row">
                                 <div class="col-sm-4 col-md-6 col-lg-4 col-xs-6">
-                                    <input type="text" id="video_sku" name="video_sku" placeholder="Item Number"
-                                    class="form-control" />
+                                    <input type="text" id="video_sku" name="video_sku" class="form-control" placeholder="Item Number" />
                                 </div>
-                                <div class="col-sm-8 col-md-6 col-lg-8 col-xs-6"><span class="input-group-btn"><input type="button" id="video_search" name="video_search" value="Search" class="btn-primary"/><input type="button" id="video_reset" name="video_reset" value="Reset" class="btn-primary"/></span>
+                                <div class="col-sm-8 col-md-6 col-lg-8 col-xs-6">
+                                    <span class="input-group-btn">
+                                        <input type="button" id="video_search" class="btn-primary" name="video_search" value="Search">
+                                        <input type="button" id="video_reset" class="btn-primary" name="video_reset" value="Reset">
+                                    </span>
                                 </div>
+
                                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                                     <div class="video-title">Branded Version</div>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                                     <div class="video-title">Non Branded Version</div>
                                 </div>
+
                                 <div class="js-list hide">
-                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6 product--video-template-id-">
+                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6 product-#video-template-id#">
                                         <div class="pro-box">
                                             <div class="pro-image box01">
-                                                <div class="product-img-blk"><a href="#video-library-brand-url#" target="_blank"><iframe height="180" src="#video-library-brand-url#"></iframe></a>
+                                                <div class="product-img-blk">
+                                                    <a href="#video-library-brand-url#" target="_blank">
+                                                        <iframe height="180" src="#video-library-brand-url#"></iframe>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="pro-desc">
@@ -154,10 +126,14 @@ body {
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6 product--video-template-id-">
+
+                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6 product-#video-template-id#">
                                         <div class="pro-box">
                                             <div class="pro-image box01">
-                                                <div class="product-img-blk"><a href="#video-library-nonbrand-url#" target="_blank"><iframe height="180" src="#video-library-nonbrand-url#"></iframe></a>
+                                                <div class="product-img-blk">
+                                                    <a href="#video-library-nonbrand-url#" target="_blank">
+                                                        <iframe height="180" src="#video-library-nonbrand-url#"></iframe>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="pro-desc">

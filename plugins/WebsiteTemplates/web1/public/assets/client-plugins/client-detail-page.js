@@ -290,14 +290,7 @@ $(document).ready( async function(){
                     });
 
                     $(".checkbox_colors").html(productHtmlColor);
-                    // $(".checkbox_colors").owlCarousel({
-                    //     items : 14, //10 items above 1000px browser width
-                    //     itemsDesktop : [1000,14], //5 items between 1000px and 901px
-                    //     itemsDesktopSmall : [900,14], // betweem 900px and 601px
-                    //     itemsTablet: [600,9], //2 items between 600 and 0
-                    //     navigation: true,
-                    //     itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
-                    // });
+
                   }
 
                 // product print position
@@ -939,8 +932,8 @@ $(document).ready( async function(){
                 if($(".product-detail-tab").find('#myTab').html().trim().length === 0){
                     $(".product-detail-tab").remove();
                 }
-                
-                if(productDetails.video_url == "")
+
+                if(productDetails.video_url == "" && $("#js-show_play_video").length > 0)
                 {
                     $("#js-show_play_video").parent().remove();
                 }

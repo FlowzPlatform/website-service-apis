@@ -14,6 +14,10 @@ r.connect({
 
 var axios = require('axios');
 
+let hb = require("handlebars");
+let mjml = require("mjml");
+let mailService = require("../../common/mail.js");
+
 module.exports = {
   before: {
     all: [
@@ -33,7 +37,9 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+	hook => afterRequestInfoCreate(hook)	
+    ],
     update: [],
     patch: [],
     remove: []
@@ -59,13 +65,16 @@ function beforeCreateRequestInfo(hook){
             if(hook.data.product_data != null){
               let productInfo = [];
               let product_image_url = '';
+	      let user_detail;
               // productInfo.push(result.hits.hits[0]._source);
               productInfo.push(hook.data.product_data)
               if(hook.data.user_detail._id != undefined){
                   var user_id = hook.data.user_detail._id;
+		  user_detail = hook.data.user_detail;
                   var guest_info = null;
               }else{
                 var user_id = null;
+		user_detail = null;
                 var guest_info = hook.data.guest_user_detail;
               }
               if(hook.data.product_image_url != undefined){
@@ -73,6 +82,7 @@ function beforeCreateRequestInfo(hook){
               }
               obj.push({
                   userId: user_id,
+		  userDetail: user_detail,
                   instruction: hook.data.instruction,
                   productId: hook.data.product_id,
                   productInfo: productInfo,
@@ -117,6 +127,64 @@ var product_detail = {
 function getProductDetailById(productId,productApi,token) {
   return product_detail.getProductDetailById(productId,productApi,token);
 }
+
+async function afterRequestInfoCreate(hook) {
+  if(hook.data.id != undefined){
+    let response = await hook.app.service("email-template").find({query: { slug: 'request-info' ,website_id:hook.data.website_id}});
+    if(response.total != 0) {
+        let data = hook.result;
+        // data.product_image = data.product_description.product_image_url+""+data.product_description.product_name
+        // console.log("++++++++++",data);
+        let userEmail;
+        if (hook.data.guestUserInfo != null) {
+          userEmail = hook.data.guestUserInfo.email
+        }
+        else {
+          userEmail = hook.data.userDetail.email
+        }
+        // let userEmail = hook.data.user_info.email;
+        //let userEmail = 'divyesh2589@gmail.com';
+        let mjmlsrc =  response.data[0].template_content;
+        let subject =  response.data[0].subject;
+        let fromEmail =  response.data[0].from;
+        //let fromEmail =  'obsoftcare@gmail.com';
+
+        hb.registerHelper({
+          eq: function (v1, v2) {
+              return v1 === v2;
+          },
+          ne: function (v1, v2) {
+              return v1 !== v2;
+          },
+          lt: function (v1, v2) {
+              return v1 < v2;
+          },
+          gt: function (v1, v2) {
+              return v1 > v2;
+          },
+          lte: function (v1, v2) {
+              return v1 <= v2;
+          },
+          gte: function (v1, v2) {
+              return v1 >= v2;
+          },
+          and: function () {
+              return Array.prototype.slice.call(arguments).every(Boolean);
+          },
+          or: function () {
+              return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
+          }
+        });
+
+        let template = hb.compile(mjmlsrc);
+        let mjmlresult = template({ data: data });
+        //console.log('mjmlresult', mjmlresult);
+        let htmlOutput = mjml.mjml2html(mjmlresult).html;
+        let messageId = await mailService.mailSend(userEmail,fromEmail,subject,htmlOutput);
+    }
+  }
+}
+
 
 function before_all_service(hook) {
    module.exports.apiHeaders = this.apiHeaders;

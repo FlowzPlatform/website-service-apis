@@ -1,4 +1,4 @@
- <style>
+<style>
 * {
     box-sizing: border-box;
 }
@@ -19,24 +19,6 @@ body {
     clear: both;
 }
 
-.logo {
-    background-color: rgb(255, 255, 255);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    width: 130px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    min-height: 30px;
-    text-align: center;
-    line-height: 30px;
-    color: rgb(77, 17, 79);
-    font-size: 23px;
-}
-
 .gjs-am-file-uploader > form {
     min-height: 325px !important;
 }
@@ -52,19 +34,8 @@ body {
     margin-left: 0px;
 }
 
-#productImage {
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 5px;
-}
-
 h4 {
     padding-top: 1%;
-}
-
-#comment {
-    margin-top: 5%;
 }
 
 button.remove {
@@ -75,25 +46,36 @@ button.remove {
 .col-sm-12.col-md-6.col-lg-4.col-xs-12.product-wrap.js-product-box.product--data-id- {
     cursor: pointer;
 }
+
+.c49533 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
 </style>
 
 
 
+
 <div class="js-list hide">
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap js-product-box product-#ecatalog-id#">
-        <div class="pro-box">
-            <div class="pro-image box01">
-                <div class="product-img-blk">
-                    <img class="img-responsive center-block" src="#ecatalog-image#"/>
-                </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xs-12 product-#ecatalog-id#">
+        <div class="catelogue pro-box">
+            <div class="catelogue-image-wrap pro-image box01"><a href="#ecatalog-image-link#" target="_blank"><img src="#ecatalog-image#" class="img-responsive center-block"/></a>
             </div>
             <div class="pro-desc">
-                <div>#ecatalog-title#</div>
-                <br /><a class="item-title js-product-title" href="#ecatalog-image-link#" target="_blank">Download Image</a> | <a class="item-title js-product-title" href="#ecatalog-pdf-link#" target="_blank">Download PDF</a></div>
-                <div class="clearfix"></div>
+                <div class="pro-button">
+                    <ul>
+                        <li>
+                          <a href="javascript:void(0);" data-image="#ecatalog-image-link#" data-toggle="tooltip" data-placement="top" title="" data-original-title="" class="js-open-modal-ecatalog"><i class="fa fa-eye"></i>View</a>
+                        </li>
+                        <li><a href="#data.pdflink#" target="_blank" class="download-pdf-#ecatalog-id#"><i class="fa fa-download"></i> Download</a>
+                        </li>
+                    </ul>
+                </div><a href="#ecatalog-image-link#" class="item-title">#ecatalog-title#</a>
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
 </div>
 <div class="listing"></div>
+<reusecomponent class="c49533">{{> ecatalogs id='viewEcatalogue.partial' }}</reusecomponent>

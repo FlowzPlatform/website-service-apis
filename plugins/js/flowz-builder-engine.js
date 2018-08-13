@@ -568,7 +568,9 @@ try {
 
               var topLevelUl = true;
               $("#navigationDiv").html(makeUL(menuData.menu, topLevelUl, true));
-
+              if($(".dropdown-menu").find('ul.dropdown-menu').length > 0){
+                  $(".dropdown-menu").find('ul.dropdown-menu').closest('li').attr("class","dropdown-submenu")
+              }
               $('.navbar a.dropdown-toggle').on('click', function(e) {
                   var $el = $(this);
                   var $parent = $(this).offsetParent(".dropdown-menu");
@@ -594,7 +596,7 @@ try {
   function makeUL(lst, topLevelUl, rootLvl) {
       var html = [];
       if (topLevelUl) {
-          html.push('<ul class="nav navbar-nav" id="menu">');
+          html.push('<ul class="nav navbar-nav  ui-navigation" id="menu">');
           topLevelUl = false;
       } else {
           html.push('<ul class="dropdown-menu" role="menu">');
@@ -612,6 +614,8 @@ try {
       var html = [];
       if (elem.children && !rootLvl) {
           html.push('<li>');
+      }else if(elem.children && rootLvl) {
+          html.push('<li class="dropdown">');
       } else {
           html.push('<li>');
           rootLvl = false;

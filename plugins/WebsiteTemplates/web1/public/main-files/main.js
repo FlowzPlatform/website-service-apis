@@ -366,6 +366,18 @@ Y({
     if(getParameterByName('SearchSensor')){
         $('input[name="search"]').val(getParameterByName('SearchSensor').replace (/(^")|("$)/g, ''))
     }
+    if(getParameterByName('CategorySensor')){
+      $('input[name="search"]').val(getParameterByName('CategorySensor').replace (/(^")|("$)/g, ''))
+      $("#main_filter").val("categories");
+    }
+    if(getParameterByName('KeywordSensor')){
+      $('input[name="search"]').val(getParameterByName('KeywordSensor').replace (/(^")|("$)/g, ''))
+      $("#main_filter").val("search_keyword");
+    }
+    if(getParameterByName('SkuSensor')){
+      $('input[name="search"]').val(getParameterByName('SkuSensor').replace (/(^")|("$)/g, ''))
+      $("#main_filter").val("sku"); 
+    }
 
   })
 })

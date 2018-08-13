@@ -109,7 +109,7 @@ button.remove {
 #data.description#</p>
                 <div class="clearfix"></div>
             </div>
-            <div class="checkbox_colors js-color-section">
+            <div class="carousel-color-section checkbox_colors js-color-section color-box" id="carousel-color-section">
                 <div class="checkbox_color" style="#data.colorCodeStyle#" title="#data.colorVal#">
                     <input class="js_color_checkbox" type="checkbox" name="col1" value="#data.colorVal#" data-hex-code="#data.colorHexCode#"/>
                 </div>
