@@ -64,9 +64,9 @@ async function before_get_email_template(hook){
       // console.log('+++++++++++++++');
       if(typeof hook.data.form_data.slug != "undefined")
       {
-        let response = await hook.app.service("email-template").find({query: { slug: hook.data.form_data.slug ,website_id:hook.data.website_id}});
+        // let response = await hook.app.service("email-template").find({query: { slug: hook.data.form_data.slug ,website_id:hook.data.website_id}});
 
-        // let response = await hook.app.service("email-template").find({query: { slug: hook.data.form_data.slug}});
+        let response = await hook.app.service("email-template").find({query: { slug: hook.data.form_data.slug}});
 
         // console.log("response",response);
         if(response.total != 0){

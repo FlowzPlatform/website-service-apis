@@ -130,7 +130,9 @@ function getProductDetailById(productId,productApi,token) {
 
 async function afterRequestInfoCreate(hook) {
   if(hook.data.id != undefined){
-    let response = await hook.app.service("email-template").find({query: { slug: 'request-info' ,website_id:hook.data.website_id}});
+    // let response = await hook.app.service("email-template").find({query: { slug: 'request-info' ,website_id:hook.data.website_id}});
+    let response = await hook.app.service("email-template").find({query: { slug: 'request-info'}});
+    
     if(response.total != 0) {
         let data = hook.result;
         // data.product_image = data.product_description.product_image_url+""+data.product_description.product_name
