@@ -246,7 +246,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
                 <hr />
                 <ul class="categoriesFilter">
                   <li v-for="category in filtervalue"><label><input type="checkbox" :id="category" :value="category" v-model="currentSelection" @click="filterProducts()"><span class="categoryName">{{category}}</span></label></li>
-                </ul> 
+                </ul>
               </div>`,
     data() {
       return {
@@ -378,7 +378,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
   const dfRating = Vue.component('datasfieldrating', {
     template: `<div>
-                <h4><strong>{{label}}</strong></h4> 
+                <h4><strong>{{label}}</strong></h4>
                 <div class="starsInput">
                   <fieldset class="rating" @click="setRatingFilter">
                     <input type="radio" id="star5" name="rating" value="5" />
@@ -427,7 +427,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
       }
     },
     created() {
-      
+
     },
     mounted() {}
   });
@@ -490,12 +490,12 @@ const paginate = Vue.component('paginate', VuejsPaginate);
         changeNumberOfProducts(){
           Cookies.set('numberOfProductsPerPage', this.numberOfProductsPerPage);
           if(Object.keys(this.selectedFilters).length == 0){
-            this.totalPages = Math.ceil(this.totalProductsCount / this.numberOfProductsPerPage);  
+            this.totalPages = Math.ceil(this.totalProductsCount / this.numberOfProductsPerPage);
             this.filterProducts();
           } else {
-            this.totalPages = Math.ceil(this.filteredProducts.length / this.numberOfProductsPerPage);  
+            this.totalPages = Math.ceil(this.filteredProducts.length / this.numberOfProductsPerPage);
             this.filterProducts();
-          }        
+          }
         },
 
         clickCallback(pageNum) {
@@ -507,7 +507,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
         searchProduct(searchInput) {
           if (searchInput == '' || searchInput == null || searchInput == undefined) {
             this.searchInput = '';
-            
+
             this.filterProducts();
 
             $(function() {
@@ -767,9 +767,9 @@ const paginate = Vue.component('paginate', VuejsPaginate);
 
               let self = this;
 
-              let filterQuery = { 
-                query:{ 
-                  bool:{ 
+              let filterQuery = {
+                query:{
+                  bool:{
                     must:[{
                       range:{
                         [this.priceField]:{
@@ -778,11 +778,11 @@ const paginate = Vue.component('paginate', VuejsPaginate);
                         }
                       }
                     }
-                    ] 
-                  } 
+                    ]
+                  }
                 },
                 from: this.fromItemNumber,
-                size: this.numberOfProductsPerPage 
+                size: this.numberOfProductsPerPage
               };
 
               await keys.forEach(function(filterKey) {
@@ -814,7 +814,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
                 self.products = data.hits.hits;
                 self.filteredProducts = self.products;
                 self.isDataLoading = false;
-                
+
                 if(data.hits.hits.length < self.numberOfProductsPerPage){
                   self.displayedProducts = data.hits.hits.length;
                 } else {
@@ -864,7 +864,7 @@ const paginate = Vue.component('paginate', VuejsPaginate);
                 });
               });
 
-              
+
             }
 
           }, 0);
