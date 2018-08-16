@@ -1,0 +1,188 @@
+<div class="js-guest_user_address_block hide">
+	<div class="embed-main-block">
+		<div class="play-video-block">
+            <form name="address_book" id="address_book" method="post">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="radio js-isoffice" style="display: none;">
+                    <div id="addresstbook_isOffice" class="input" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
+                        <input id="addresstbook_is_office_0" name="is_office" value="1" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_0">Is Office</label>
+                        <input id="addresstbook_is_office_1" name="is_office" value="0" data-fv-field="isOffice" type="radio">
+                        <label for="addresstbook_is_office_1">Is Home</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="firstName">Name<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Name"
+                    name="name" id="addresstbook_name"  data-toggle="tooltip" data-placement="bottom" title="Name" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Email<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" placeholder="Enter Email " tabindex="1"
+                    name="email" id="addresstbook_email"   data-toggle="tooltip" data-placement="bottom" title="Email" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 1<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" placeholder="Enter Address 1" type="text" tabindex="1"
+                    id="addresstbook_street1" name="street1"   data-toggle="tooltip" data-placement="bottom" title="Address 1" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="LastName">Address 2</label>
+                    <input class="input" placeholder="Enter Address 2" type="text"
+                    tabindex="1" id="addresstbook_street2" name="street2"   data-toggle="tooltip" data-placement="bottom" title="Address2" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label">Country<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select js-country" tabindex="1" id="addresstbook_country" name="country" data-toggle="tooltip" data-placement="bottom" title="Country">
+                        <option value="" selected="selected">Select Country</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label">State<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select js-state" tabindex="1" id="addresstbook_state" name="state" data-toggle="tooltip" data-placement="bottom" title="State">
+                        <option value="" selected="selected">Select State</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group inp-parts">
+                    <label class="checkout-label">City<span class="mandatory-field">*</span>
+                    </label>
+                    <select class="custom-select js-city" tabindex="1" id="addresstbook_city" name="city" data-toggle="tooltip" data-placement="bottom" title="City">
+                        <option value="" selected="selected">Select city</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="postalcode">Postal Code <i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input" type="text" tabindex="1" placeholder="Enter Postal Code"
+                    id="addresstbook_postalcode" name="postalcode"   data-toggle="tooltip" data-placement="bottom" title="Postal Code" />
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="phone">Phone<i class="mandatory-field">*</i>
+                    </label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Phone Number"
+                    id="addresstbook_phone" name="phone"   data-toggle="tooltip" data-placement="bottom" title="Phone Number" />
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="checkout-label" for="lastName">Mobile</label>
+                    <input class="input js-phone" type="text" tabindex="1" placeholder="Enter Mobile Number"
+                    id="addresstbook_mobile" name="mobile"   data-toggle="tooltip" data-placement="bottom" title="Mobile Number" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12 pull-right">
+                    <span class="required-field">* Required Fields</span>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="btn-box-main">
+                        <input class="btn btn-default js_submit_address" type="submit" value="save" tabindex="17" />
+                        <input class="btn btn-default" type="reset" value="Reset" tabindex="18" />
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+		</div>
+    </div>
+</div>
+
+<div class="js_guestuserPersonalInfo hide">
+    <div class="info-popup product-section-box">
+            <form name="js_add_huest_personal_info" id="js_add_huest_personal_info" method="post">
+              <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                 <div class="row">
+                   <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 radiobox shipping-col">
+                     <div class="row">
+                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padding-right-0">
+                           <p><label class="required">Name</label> : <span class="red">*</span></p>
+                         </div>
+                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 shipping-select padding-left-0">
+                           <div class="form-group">
+                                <input type="text" id="personalinfo_fullname" name="personalinfo_fullname" placeholder="Enter name" class="input">
+                           </div>
+                         </div>
+                     </div>
+                </div>
+             <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 radiobox shipping-col">
+               <div class="row">
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padding-right-0">
+                   <p><label class="required">Phone</label> : <span class="red">*</span></p>
+                 </div>
+                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 shipping-select padding-left-0">
+                   <div class="form-group">
+                      <input type="text" id="personalinfo_phone" name="personalinfo_phone" placeholder="Enter phone" class="input js-phone">
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 radiobox shipping-col">
+               <div class="row">
+                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 padding-right-0">
+                   <p><label class="required">Email</label> : <span class="red">*</span></p>
+                 </div>
+                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 shipping-select padding-left-0">
+                   <div class="form-group">
+                     <input type="text" id="personalinfo_email" name="personalinfo_email" placeholder="Enter email" class="input">
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 radiobox shipping-col">
+               <div class="row">
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padding-right-0">
+                   <p><label class="required">Company</label> : <span class="red">*</span></p>
+                 </div>
+                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 shipping-select padding-left-0">
+                   <div class="form-group">
+                      <input type="text" id="personalinfo_company_name" name="personalinfo_company_name" placeholder="Enter company name" class="input">
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 radiobox shipping-col">
+               <div class="row">
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padding-right-0">
+                   <p><label class="required">Zip Code</label> : <span class="red">*</span></p>
+                 </div>
+                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 shipping-select padding-left-0">
+                   <div class="form-group">
+                     <input type="text" id="personalinfo_zipcode" name="personalinfo_zipcode" placeholder="Enter zipcode" class="input">
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+           <div class="text-center">
+            <input class="small-but btn-default js-submit-personalinfo" value="Submit Request" type="submit">
+          </div>
+     </div>
+     </form>
+    </div>
+</div>         
