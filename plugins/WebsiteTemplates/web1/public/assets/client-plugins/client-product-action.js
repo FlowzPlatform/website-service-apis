@@ -49,4 +49,22 @@ $(document).ready(function(){
         return false;
     });
 
+    $(document).on('click','#js-share_product', async function (e) {
+        $('#modal-table').attr('class','modal fade model-popup-black');
+        $("#modal-table").find(".modal-title").html('<i class="strip share-popup-strip"></i>Share Product');
+        $("#modal-table").find(".modal-dialog").removeClass("play-video");
+        let guestUserHtml = $(".js-share_product_html").html();
+        $(".js_add_html").html(guestUserHtml)
+        $('#modal-table').modal('show');
+
+        // var switchTo5x=true;
+        $.getScript("http://w.sharethis.com/button/buttons.js", function(){
+            stLight.options({publisher: "2c09b640-d455-4fbb-a9c9-1046dc187914", doNotHash: false, doNotCopy: false, hashAddressBar: false, popup: 'true'});
+            // stLight.options({publisher: "c68c8f6c-c670-419b-b8e2-23772e22a861", doNotHash: false, doNotCopy: false, hashAddressBar: false, popup: 'true'});
+            stButtons.locateElements();
+        });
+
+        return false;
+    });
+	
 });
