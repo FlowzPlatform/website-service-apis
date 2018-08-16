@@ -2,7 +2,8 @@ var pid = getParameterByName('pid');
 var cid = getParameterByName('cid');
 // verifyAddress(sd);
 // console.log('taxcloud_url', project_settings.taxcloud_url)
-
+localStorage.setItem("guestPersonalInfo","")
+localStorage.removeItem("requestQuoteAddress");
 
 let verifyAddress = function(ADD, codes) {
     if (typeof TaxCloud != 'undefined' && TaxCloud.apiKey != '' && TaxCloud.apiId != '') {
@@ -1210,8 +1211,12 @@ $(document).ready(async function() {
             let selected_address_id = $(activetab).find("#js_shipping_method_detail_" + i + " .js_shipping_addresses .shippingAddressId ").val();
             let shipping_address = ''
 
-            if (selected_address_id != undefined) shipping_address = await returnshippingData(selected_address_id);
-            let shipping_carrier = $(activetab).find("#js_shipping_method_detail_" + i + " .js_rq_ship_shippingcarrier").attr('data-value');
+            if(user_details != null)
+            {
+                if(selected_address_id != undefined) shipping_address = await returnshippingData(selected_address_id);
+            }
+            
+            let shipping_carrier = $(activetab).find("#js_shipping_method_detail_"+i+" .js_rq_ship_shippingcarrier").attr('data-value');
 
             if (typeof shipping_carrier === typeof undefined) {
                 shipping_carrier = "";
@@ -1251,8 +1256,29 @@ $(document).ready(async function() {
 
             let user_shipping_address = (ordertab !== 'place-order' && shipping_address !== '') ? shipping_address : '';
 
-            let shipping_detail = { "on_hand_date": get_in_hand_date, 'ship_date': '', "ship_transittime": get_transittime, "shipping_carrier": shipping_carrier, "shipping_charge": get_shipping_charge, "shipping_method": get_shipping_method };
-            shipping_details.push({ 'color_quantity': shipping_colors_qty, 'shipping_from': 'shipping_book', 'selected_address_id': selected_address_id, 'shipping_detail': shipping_detail, 'shipping_address': user_shipping_address });
+            let shipping_detail = {"on_hand_date":get_in_hand_date,'ship_date':'',"ship_transittime": get_transittime,"shipping_carrier": shipping_carrier,"shipping_charge": get_shipping_charge,"shipping_method": get_shipping_method};
+
+            if(ordertab === 'request-quote' && user_details == null)
+            {
+                let requestQuoteAddressData = JSON.parse(localStorage.getItem("requestQuoteAddress"));
+                // console.log('requestQuoteAddressData',requestQuoteAddressData)
+                // console.log('i000',i)
+                if(localStorage.getItem("requestQuoteAddress") != null && localStorage.getItem("requestQuoteAddress") != "" &&typeof requestQuoteAddressData[i-1] != "undefined")
+                {
+                    requestQuoteAddressData[i-1]['city'] = await getCountryStateCityById(requestQuoteAddressData[i-1].city,3)
+                    requestQuoteAddressData[i-1]['country'] = await getCountryStateCityById(requestQuoteAddressData[i-1].country,1)
+                    requestQuoteAddressData[i-1]['state'] = await getCountryStateCityById(requestQuoteAddressData[i-1].state,2)
+                    
+                    shipping_details.push({'color_quantity':shipping_colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail,'shipping_address':requestQuoteAddressData[i-1]});
+                }
+                else{
+                    shipping_details.push({'color_quantity':shipping_colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail,'shipping_address':""});
+                }
+            }
+            else{
+                shipping_details.push({'color_quantity':shipping_colors_qty,'shipping_from':'shipping_book','selected_address_id':selected_address_id,'shipping_detail':shipping_detail,'shipping_address':user_shipping_address});
+            }
+
         }
         let shipping_method = ''
         if (shipping_details.length > 0 || shipping_type != undefined) shipping_method = { 'shipping_detail': shipping_details, "shipping_type": shipping_type };
@@ -1354,41 +1380,82 @@ $(document).ready(async function() {
                     error: function(error) {
                         console.log('error', error)
                     }
-                });
-            } else {
-                let user_info = {};
-                user_info['id'] = user_details['_id'];
-                user_info['email'] = user_details['email'];
-                user_info['fullname'] = user_details['fullname'];
-                user_info['userEmail'] = (user_details['userEmail']) ? user_details['firstname'] : '';
-                user_info['firstname'] = (user_details['firstname']) ? user_details['firstname'] : '';
-                user_info['lastname'] = (user_details['lastname']) ? user_details['lastname'] : '';
-                user_info['address1'] = (user_details['address1']) ? user_details['address1'] : '';
-                user_info['address2'] = (user_details['address2']) ? user_details['address2'] : '';
-                user_info['country'] = (user_details['country']) ? await getCountryStateCityById(user_details['country'], 1) : '';
-                user_info['state'] = (user_details['state']) ? await getCountryStateCityById(user_details['state'], 2) : '';
-                user_info['city'] = (user_details['city']) ? await getCountryStateCityById(user_details['city'], 3) : '';
-                user_info['postalcode'] = (user_details['postalcode']) ? user_details['postalcode'] : '';
-                user_info['phone'] = (user_details['phone']) ? user_details['phone'] : '';
-                user_info['mobile'] = (user_details['mobile']) ? user_details['mobile'] : '';
 
-                data['user_info'] = user_info;
+            });
+            }
+            else{
+                if(ordertab === 'request-quote' && user_details == null)
+                {
+                    //pop-up
+                    if(localStorage.getItem("guestPersonalInfo") == null || localStorage.getItem("guestPersonalInfo") == "")
+                    {
+                        hidePageAjaxLoading();
+                        $('#modal-table').attr('class','modal fade model-popup-black request-info-popup-modal');
+                        $("#modal-table").find(".modal-title").html('Personal Info');
+                        $("#modal-table").find(".modal-dialog").removeClass("play-video"); 
+                        let guestUserHtml = $(".js_guestuserPersonalInfo").html();
+                        
+                        $(".js_add_html").html(guestUserHtml)
+                        $('#modal-table').modal('show');
+                        return false;
+
+                    }
+                    else{
+                        let guestPersonalInfo = JSON.parse(localStorage.getItem("guestPersonalInfo"));
+                        data['guest_request_personalInfo'] = guestPersonalInfo;
+                        data['form_data'] = {'slug':'guest-request-quote','to_email':data['guest_request_personalInfo']['personalinfo_email']};
+                        localStorage.setItem("guestPersonalInfo","")
+                        // console.log('guestPersonalInfo',guestPersonalInfo);
+                    }
+
+                    data['billing_info'] = '';//await returnDefaultBillingInfo();
+                }
+                else{
+                    let user_info = {};
+                    user_info['id'] = user_details['_id'];
+                    user_info['email'] = user_details['email'];
+                    user_info['fullname'] = user_details['fullname'];
+                    user_info['userEmail'] = (user_details['userEmail'])? user_details['firstname'] : '';
+                    user_info['firstname'] = (user_details['firstname'])? user_details['firstname'] : '';
+                    user_info['lastname'] = (user_details['lastname'])? user_details['lastname'] : '';
+                    user_info['address1'] = (user_details['address1'])? user_details['address1'] : '';
+                    user_info['address2'] = (user_details['address2'])? user_details['address2'] : '';
+                    user_info['country'] = (user_details['country'])? await getCountryStateCityById(user_details['country'],1) : '';
+                    user_info['state'] = (user_details['state'])? await getCountryStateCityById(user_details['state'],2) : '';
+                    user_info['city'] = (user_details['city'])? await getCountryStateCityById(user_details['city'],3) : '';
+                    user_info['postalcode'] = (user_details['postalcode'])? user_details['postalcode'] : '';
+                    user_info['phone'] = (user_details['phone'])? user_details['phone'] : '';
+                    user_info['mobile'] = (user_details['mobile'])? user_details['mobile'] : '';
+
+                    data['user_info'] = user_info;
+                    data['billing_info'] = await returnDefaultBillingInfo();
+                }
+
                 data['product_description'] = get_product_details;
                 data['website_id'] = website_settings['projectID'];
                 data['owner_id'] = website_settings['UserID'];
                 // data['product_image_url'] = project_settings.product_api_image_url;
-                data['billing_info'] = await returnDefaultBillingInfo();
 
+                // console.log('---data---',data);
+                // return false;
+                
                 $.ajax({
-                    type: 'POST',
-                    url: project_settings.request_quote_api_url,
-                    data: data,
-                    headers: { "Authorization": userToken },
-                    dataType: 'json',
-                    success: function(response_data) {
-                        if (response_data != "") {
+                    type : 'POST',
+                    url : project_settings.request_quote_api_url,
+                    data : data,
+                    // headers: {"Authorization": userToken},
+                    dataType : 'json',
+                    success : function(response_data) {
+                        if(response_data!= "") {
                             hidePageAjaxLoading()
-                            showSuccessMessage("Request Quote Save Sucessfully", "thankYou.html");
+                            if(ordertab === 'request-quote' && user_details == null)
+                            {
+                                showSuccessMessage("Request Quote Email Sent Sucessfully","thankYou.html");
+                            }
+                            else{
+                                showSuccessMessage("Request Quote Save Sucessfully","thankYou.html");
+                            }
+
                             return false;
                         } else if (response_data.status == 400) {
                             hidePageAjaxLoading()
@@ -1845,15 +1912,27 @@ $(document).on("click", ".split-add-new-address", function() {
     $(activetab).find("#js_shipping_method_detail_" + shippigCounter + " .js_rq_ship_handdate").attr("id", setActivetab + "_datetimepicker" + shippigCounter);
 
     $(".js_request_quote_shipping_qty_box").removeAttr('readonly');
-    attachDeleteEvent("#js_shipping_method_detail_" + shippigCounter);
-    attachAutoCompleteEvent("#js_shipping_method_detail_" + shippigCounter);
+
+    attachDeleteEvent("#js_shipping_method_detail_"+shippigCounter);
+    attachAutoCompleteEvent("#js_shipping_method_detail_"+shippigCounter);
+    
+    if(setActivetab == "js-request-quote" && user_details == null)
+    {
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter).find(".js-add_new_address_cls").remove();
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter).find(".js-address_list_cls").remove();
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").find(".ship-add-tit").remove();
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").find(".search-mail-block").remove();
+    }
+    else{
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter).find(".js-add_address_guest").remove();
+    }
 });
 
-$(document).on("change", activetab + " .js_select_shipping_type", function() {
-    let setActivetab = activetab.replace(/\#/g, '');
-    if (user_id == null) {
-        window.location = 'login.html';
-        return false;
+$(document).on("change",activetab+" .js_select_shipping_type",function(){
+  let setActivetab = activetab.replace(/\#/g, '');
+    if (user_id == null && setActivetab !== "js-request-quote") {
+      window.location = 'login.html';
+      return false;
     }
 
     if ($(this).val() == 'standard') {
@@ -1915,11 +1994,26 @@ $(document).on("change", activetab + " .js_select_shipping_type", function() {
 
     $(activetab).find("#js_shipping_method_detail_" + shippigCounter + " .js_rq_ship_handdate").attr("id", setActivetab + "_datetimepicker" + shippigCounter);
 
-    if (addressBookHtmlTemplate == '') {
-        addressBookHtmlTemplate = $(activetab).find("#js_shipping_method_detail_" + shippigCounter + " .js_shipping_addresses p").html();
+    // if(addressBookHtmlTemplate == '')
+    if(setActivetab == "js-request-quote" && user_details == null)
+    {
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter).find(".js-add_new_address_cls").remove();
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter).find(".js-address_list_cls").remove();
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").find(".ship-add-tit").remove();
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js-shippingMethod-section").find(".search-mail-block").remove();
+    }
+    else{
+	if(addressBookHtmlTemplate == '')
+    	{
+    		addressBookHtmlTemplate = $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html();
+    	}
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter).find(".js-add_address_guest").remove();
     }
     let addressBookHtml = addressBookHtmlTemplate;
 
+    if (user_id == null && setActivetab === "js-request-quote") {
+        $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_addresses p").html();    
+    }
     $(activetab).find(".shipping-method #js_shipping_method").removeClass("hide");
 
     if ($(this).val() == 'standard') {
@@ -2353,8 +2447,10 @@ function attachShippingDetailChangeEvent() {
         changeShippingDetails(currentAddressCounter)
     });
 }
-$(document).on("change", activetab + ' .js_color_checkbox', function() {
-    if (user_id == null) {
+
+$(document).on("change", activetab + ' .js_color_checkbox',function(){
+    let setActivetab = activetab.replace(/\#/g, '');
+    if (user_id == null && setActivetab !== "js-request-quote") {
         window.location = "login.html";
         return false;
     }
@@ -2838,22 +2934,30 @@ function attachDeleteEvent(parentDiv) {
                 let shippingCounter = $(activetab + " .js_request_quote_shipping_counter").val();
                 let currentAddressCounter = $(this).closest('.js_shipping_method_detail').data('shipping-counter');
                 let currentAddressCounter1 = $(this).closest('.js_shipping_method_detail').attr('data-shipping-counter');
-
-                // First remove the current address
-                $(activetab + ' #js_shipping_method_detail_' + currentAddressCounter1).remove();
-
-                //summary for shipping address split
-                $('#js_shipp_address_details_' + currentAddressCounter).remove();
-                if (shippingCounter == currentAddressCounter) {
-                    $('#js_shipp_address_details_' + currentAddressCounter).find('counter').html((currentAddressCounter - 1));
+				
+				// First remove the current address
+				$(activetab + ' #js_shipping_method_detail_'+currentAddressCounter1).remove();
+                
+                let setActivetab = activetab.replace(/\#/g, '');
+                if(setActivetab == "js-request-quote" && user_details == null)
+                {
+                    let addressRemove = JSON.parse(localStorage.getItem('requestQuoteAddress'));
+                    addressRemove.splice(parseInt(currentAddressCounter1)-1, 1);
+                    localStorage.setItem('requestQuoteAddress',JSON.stringify(addressRemove));
                 }
-
-                // Now shift the other addresses one step up
-                for (i = (currentAddressCounter + 1); i <= shippingCounter; i++) {
-                    $(activetab + ' #js_shipping_method_detail_' + i).attr('id', 'js_shipping_method_detail_' + (i - 1))
-                    $(activetab + ' #js_shipping_method_detail_' + (i - 1)).attr('data-shipping-counter', (i - 1))
-                    $(activetab + ' #js_shipping_method_detail_' + (i - 1) + ' .option-head a:first').html('Shipping Address ' + (i - 1))
-                    $('#js_shipp_address_details_' + i).find('counter').html((i - 1)); //summary
+				//summary for shipping address split
+				$('#js_shipp_address_details_'+currentAddressCounter).remove();
+				if(shippingCounter == currentAddressCounter) {
+				    $('#js_shipp_address_details_'+currentAddressCounter).find('counter').html((currentAddressCounter-1));
+				}
+				
+				// Now shift the other addresses one step up
+				for(i=(currentAddressCounter+1);i<=shippingCounter;i++)
+				{
+					$(activetab + ' #js_shipping_method_detail_'+i).attr('id','js_shipping_method_detail_'+(i-1))
+					$(activetab + ' #js_shipping_method_detail_'+(i-1)).attr('data-shipping-counter',(i-1))
+					$(activetab + ' #js_shipping_method_detail_'+(i-1)+' .option-head a:first' ).html('Shipping Address '+(i-1))
+					$('#js_shipp_address_details_'+i).find('counter').html((i-1)); //summary
                 }
                 let shippingCounterTemp = shippingCounter
                 $(activetab + " .js_request_quote_shipping_counter").val((shippingCounterTemp - 1));
@@ -2899,25 +3003,63 @@ function attachAutoCompleteEvent(parentDiv) {
 
 function setSelectedAddress(addressBookId, shippigCounter, carrierData = null) {
     axios({
-            method: 'GET',
-            url: project_settings.address_book_api_url + '/' + addressBookId,
-        })
-        .then(async response => {
-            if (response.data != undefined) {
-                let returnData = response.data;
-                console.log('returnData', returnData)
-                let city = await getCountryStateCityById(returnData.city, 3);
-                let state = await getCountryStateCityById(returnData.state, 2);
-                let country = await getCountryStateCityById(returnData.country, 1);
+        method: 'GET',
+        url: project_settings.address_book_api_url+'/'+addressBookId,
+      })
+    .then(async response => {
+        if(response.data != undefined ){
+            let returnData = response.data; 
+            // console.log('returnData', returnData)
+            let city = await getCountryStateCityById(returnData.city,3);
+            let state = await getCountryStateCityById(returnData.state,2);
+            let country = await getCountryStateCityById(returnData.country,1);
 
-                // console.log('::::::::::::::', get_product_details)
-                if (typeof get_product_details.shipping == 'undefined') {
-                    console.log('No Shipping FOUND')
-                }
-                let shipping_details = get_product_details.shipping[0];
-                // console.log('shipping_details', shipping_details)
-                if (shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == '') {
-                    $(activetab).find("#js_shipping_method_detail_" + shippigCounter + " .js_shipping_option").html('')
+            // console.log('::::::::::::::', get_product_details)
+            if (typeof get_product_details.shipping == 'undefined') {
+              console.log('No Shipping FOUND')
+            }
+            let shipping_details = get_product_details.shipping[0];
+            // console.log('shipping_details', shipping_details)
+              if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
+                    $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
+              }
+
+              let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
+              let getStreet = await getStreetData(getLocation)
+              // console.log('getStreet', getStreet, getLocation)
+              var addressFrom  = {
+                  "name": shipping_details.fob_city,
+                  "street1": getStreet,
+                  "city": shipping_details.fob_city,
+                  "state": shipping_details.fob_state_code,
+                  "zip": shipping_details.fob_zip_code,
+                  "country": shipping_details.fob_country_code,
+                  // "phone": "+1 555 341 9393",//optional
+                  // "email": "shippotle@goshippo.com",//optional
+                  // "validate": true//optional
+              };
+
+              var addressTo  = {
+                  "name": returnData.name,
+                  "street1": returnData.street1,
+                  "city": city,
+                  "state": state,
+                  "zip": returnData.postalcode,
+                  "country": country,
+                  // "phone": "+1 555 341 9393",//optional
+                  // "email": "shippotle@goshippo.com",//optional
+                  // "validate": true//optional
+              };
+              console.log('addressFrom ::', addressFrom);
+              let sCode = await getStateCode(returnData.state, 2)
+              if (sCode != null) {
+                let verify_address_to = await verifyAddress(addressTo, sCode)
+                let verify_address_from = await verifyAddress(addressFrom, sCode)
+                console.log('verify_address ::', verify_address_to, verify_address_from)
+                if(!verify_address_to){
+                    hidePageAjaxLoading()
+                    showErrorMessage("Please add correct shipping address.")
+                    return false;
                 }
 
                 let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
