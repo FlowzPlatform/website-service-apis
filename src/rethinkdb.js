@@ -11,6 +11,8 @@ module.exports = function () {
   console.log(ssl);
   let aconfig = {
     "db": "product_service_api",
+    "buffer":20,
+    "timeoutGb":1*60*1000,
     "servers": [
       {
         "host": process.env.RDB_HOST,
