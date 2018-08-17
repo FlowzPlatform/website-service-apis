@@ -139,11 +139,14 @@ body {
                                 <div class="shipping-address">
                                     <div class="ship-add-tit">Select a Shipping address from your address book or enter a new address.</div>
                                     <div class="ship-add-parts">
-                                        <a class="btn" data-placement="top" data-toggle="tooltip" href="addAddressBook.html" data-original-title="Add New Address" target="_blank">
+                                        <a class="btn js-add_new_address_cls" data-placement="top" data-toggle="tooltip" href="addAddressBook.html" data-original-title="Add New Address" target="_blank">
                                             Add New Address
                                         </a>
-                                        <a class="btn address-book-link" data-placement="top" data-toggle="tooltip" href="addressBookList.html" data-original-title="Address Book List" target="_blank">
+                                        <a class="btn address-book-link js-address_list_cls" data-placement="top" data-toggle="tooltip" href="addressBookList.html" data-original-title="Address Book List" target="_blank">
                                             Address Book List
+                                        </a>
+                                        <a class="btn address-book-link js-add_address_guest" data-placement="top" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add Address">
+                                            Add Address
                                         </a>
                                     </div>
                                 <div class="search-mail-block">
