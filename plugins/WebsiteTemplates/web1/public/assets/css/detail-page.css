@@ -24,3 +24,5 @@
 }
 .product-detail-wrapper .more-option .nav-tabs a{font-size: 14px;}
 .upload-button{font-size: 13px;}
+.detail-popup-block .strip.order-strip{    background-position: -730px -172px;}
+.detail-popup-block > ul li a:hover .order-strip {background-position: -730px -256px;}

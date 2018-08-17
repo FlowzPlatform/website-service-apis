@@ -5,10 +5,10 @@
         "product_api_image_url": "http://image.promoworld.ca/migration-api-hidden-new/web/images/",
         "search_api_url": "https://349d6e5f56299a9f7b9ff68ccd099977.us-west-2.aws.found.io:9243/pdmstaging/_search",
         "search_api_auth_token": "Basic NTk5MTQwNTU2YzcxZDEwMDFjMDIwNzI5OjEyMzQ1Ng==",
-	      "supplier_id" : 5,
+	"supplier_id" : 5,
         "login_api": "https://api.flowzdigital.com/auth/api/login",
         "user_detail_api": "https://api.flowzdigital.com/auth/api/userdetails",
-	      "user_detail_by_id":"https://api.flowzdigital.com/user/getuserdetails/",
+	"user_detail_by_id":"https://api.flowzdigital.com/user/getuserdetails/",
         "change_password_api": "https://api.flowzdigital.com/auth/api/changepassword",
         "forgot_password_api": "https://api.flowzdigital.com/auth/api/forgetpassword",
         "social_auth_api": "https://api.flowzdigital.com/auth/",
@@ -18,7 +18,7 @@
         "shopping_api_url": "https://api.flowzdigital.com/serverapi/shoppingCart",
         "request_info_api_url": "https://api.flowzdigital.com/serverapi/request-info",
         "address_book_api_url": "https://api.flowzdigital.com/serverapi/address-book",
-	      "user_account_api_url": "https://api.flowzdigital.com/serverapi/website-users",
+	"user_account_api_url": "https://api.flowzdigital.com/serverapi/website-users",
         "charges": ["setup_charge","pms_charge"],
         "price_decimal": 2,
         "email_subscribe_api_url": "https://api.flowzdigital.com/serverapi/emailSubscribers",
@@ -45,6 +45,6 @@
         "flyers_api_url":"https://api.flowzdigital.com/serverapi/flyers",
         "ecatalog_category_api_url":"https://api.flowzdigital.com/serverapi/ecatalog-category",
         "ecatalogs_api_url":"https://api.flowzdigital.com/serverapi/ecatalogs",
-	      "webtools_api_url":"https://api.flowzdigital.com/serverapi/webtools"
+	"webtools_api_url":"https://api.flowzdigital.com/serverapi/webtools"
       }
 }
