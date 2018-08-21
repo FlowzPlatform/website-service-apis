@@ -77,8 +77,73 @@ if(pid != null) {
       });
       return tmp;
     }();
-  // var get_product_details = getProductDetailById(pid)
+    // var get_product_details = getProductDetailById(pid)
 
+    
+    // RECENTY VIEWED PRODUCTS
+    let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
+    let recentViewedProducts = [];
+    if (localStorage.getItem(recentProductsName) != null) {
+        recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
+    }
+    
+    if(!(recentViewedProducts.includes(pid))) {
+        if(recentViewedProducts.length > 5) {
+            recentViewedProducts.splice(0, 1);
+        }
+        recentViewedProducts.push(pid);
+    }
+    localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
+
+    recentlyViewedProducts(recentViewedProducts);
+}
+
+function recentlyViewedProducts(recentViewedProducts) {
+    if(recentViewedProducts != null && recentViewedProducts.length > 0)
+    {
+        let recentLoop = recentViewedProducts;
+        let cIndex = recentLoop.indexOf(pid);
+        if (cIndex > -1) {
+            recentLoop.splice(cIndex, 1);
+        }
+
+        let recentProductHtml = "";
+        $.each( recentLoop, function( key, productId ) {
+            $.ajax({
+                type: 'GET',
+                url: project_settings.product_api_url+"?_id="+productId+"&source=default_image,product_id,sku,product_name,currency,min_price,price_1,images",
+                async: false,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
+                },
+                dataType: 'json',
+                success: function (data) {
+                    let productData = data.hits.hits[0]._source;
+                    if(!isEmpty(productData))
+                    {
+                        let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                        if(productData.images != undefined){
+                            productImage = productData.images[0].images[0].secure_url
+                        }
+                        let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
+                        let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
+
+                        recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block" alt=""> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
+                    }
+                    else {
+                        let AIndex = recentLoop.indexOf(productId);
+                        if (AIndex > -1) {
+                            recentLoop.splice(AIndex, 1);
+                        }
+                        localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
+                    }
+                }
+            });
+        });
+
+        $('#owl-carousel-recently-products').html(recentProductHtml);
+        $('.js-recent-viewed-products').removeClass('hide');
+    }
 }
 
 showPageAjaxLoading()

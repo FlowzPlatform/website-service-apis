@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-xs-12">
-                <div class="form-group">
+                <div class="form-group inp-parts">
                     <label class="checkout-label" for="postalcode">Postal Code <i class="mandatory-field">*</i>
                     </label>
                     <input class="input" type="text" tabindex="1" placeholder="Enter Postal Code"

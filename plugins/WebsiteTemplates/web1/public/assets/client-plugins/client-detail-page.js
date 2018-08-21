@@ -80,9 +80,10 @@ if(pid != null) {
     // var get_product_details = getProductDetailById(pid)
 
     // RECENTY VIEWED PRODUCTS
+    let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
     let recentViewedProducts = [];
-    if (localStorage.getItem('recentViewedProducts') != null) {
-        recentViewedProducts = JSON.parse(localStorage.getItem("recentViewedProducts"));
+    if (localStorage.getItem(recentProductsName) != null) {
+        recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
     }
     
     if(!(recentViewedProducts.includes(pid))) {
@@ -91,14 +92,18 @@ if(pid != null) {
         }
         recentViewedProducts.push(pid);
     }
-    localStorage.setItem('recentViewedProducts', JSON.stringify(recentViewedProducts));
+    localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
 
+    recentlyViewedProducts(recentViewedProducts);
+}
+
+function recentlyViewedProducts(recentViewedProducts) {
     if(recentViewedProducts != null && recentViewedProducts.length > 0)
     {
         let recentLoop = recentViewedProducts;
-        let index = recentLoop.indexOf(pid);
-        if (index > -1) {
-            recentLoop.splice(index, 1);
+        let cIndex = recentLoop.indexOf(pid);
+        if (cIndex > -1) {
+            recentLoop.splice(cIndex, 1);
         }
 
         let recentProductHtml = "";
@@ -124,11 +129,18 @@ if(pid != null) {
 
                         recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block" alt=""> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
                     }
+                    else {
+                        let AIndex = recentLoop.indexOf(productId);
+                        if (AIndex > -1) {
+                            recentLoop.splice(AIndex, 1);
+                        }
+                        localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
+                    }
                 }
             });
         });
 
-        $('.js-recent-products-listing').html(recentProductHtml);
+        $('#owl-carousel-recently-products').html(recentProductHtml);
         $('.js-recent-viewed-products').removeClass('hide');
     }
 }

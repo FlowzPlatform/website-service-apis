@@ -108,10 +108,10 @@ $(function() {
   		}
   	});
 
-  	$(".custom-select").each(function () {
-  	    $(this).wrap("<span class='checkout-select-wrapper'></span>");
-        $(this).after("<span class='checkout-holder'></span>");
-  	});
+  	// $(".custom-select").each(function () {
+  	//     $(this).wrap("<span class='checkout-select-wrapper'></span>");
+    //     $(this).after("<span class='checkout-holder'></span>");
+  	// });
 
   	$(document).on('change','.custom-select', function() {
   		var selectedOption = $(this).find(":selected").text();
