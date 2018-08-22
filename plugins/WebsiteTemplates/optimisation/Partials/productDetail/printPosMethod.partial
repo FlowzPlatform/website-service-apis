@@ -1,0 +1,334 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c212908 {
+    display: none;
+}
+</style>
+
+
+<div id="js_imprint_request_quote">
+    <div class="optional-panel js-printPosition-#printPosMethodId#-section" id="js_imprint_request_quote_box_#printPosMethodId#">
+        <div class="option-head"><a href="javascript:void(0)" id="print_pos"><i class="fa fa-caret-down"></i>#data.printPositionName#<span class="caret-icon pull-right"></span></a>
+        </div>
+        <div class="option-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option"><span>Which imprint method do you need?</span>
+                    <div class="selection-common-box imprint-method-select">
+                        <div class="dropdown dropdown_size">
+                            <button class="btn dropdown-toggle" aria-expanded="true" data-toggle="dropdown"
+                            id="dropdownMenu16" type="button">Select Method<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu js_select_method js_set_selected_value" aria-labelledby="dropdownMenu17"
+                            role="menu" name="imprint" data-imprint-id="#data.imprintId#">
+                                <li id="select_method"><a></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 radiobox selection-option imprint-color-select"><span class="question">How many colors are in design?</span>
+                    <div class="selection-common-box pull-left">
+                        <div class="dropdown dropdown_size js_imprint_method_selectbox_#data-printPosition#_#data-printMethod#">
+                            <input class="js_max_selectable_color_#data-printPosition#_#data-printMethod#" type="hidden" value="#data.maxImprintColor#" />
+                            <button class="btn dropdown-toggle" aria-expanded="true" data-toggle="dropdown"
+                            id="dropdownMenu16" type="button">Select Color<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu js_set_selected_value js_set_selected_value_col"
+                            aria-labelledby="dropdownMenu17" role="menu">
+                                <li data-value=""><a href="javascript:void(0)"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="js-color-div-append hide"></div>
+            <div class="row">
+                <div class="more-option art-pos-value" data-pos="#printPosMethodId#">
+                    <div id="js_request_quote_artwork_#printPosMethodId#">
+                        <ul role="tablist" class="nav nav-tabs">
+                            <li class="active" data-type="upload_artwork"><a data-toggle="tab" role="tab" aria-controls="Upload-Artwork" href="#upload-tab-1-#printPosMethodId#">Upload Artwork</a></li>
+                            <li data-type="typeset"><a data-toggle="tab" role="tab" aria-controls="Typeset" href="#upload-tab-2-#printPosMethodId#">Typeset</a></li>
+                            <li data-type="upload_artwork_typeset"><a data-toggle="tab" role="tab" aria-controls="Upload Artwork &amp; Typeset" href="#upload-tab-3-#printPosMethodId#">Upload Artwork &amp; Typeset</a></li>
+                        </ul>
+
+                        <div class="tab-content" id="js_request_quote_artwork_tabs_#printPosMethodId#">
+                            <div id="upload-tab-1-#printPosMethodId#" class="tab-pane js_art_tab_details active" data-type="upload_artwork" role="tabpanel" data-tab-id="1">
+                                <div class="radiobox">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <span class="upload-logo pull-left">
+                                                <input type="radio" class="js-upload-art-radio" id="logo_image_#printPosMethodId#" name="is_logo_#printPosMethodId#" value="logo_image">
+                                                <label>Upload Artwork</label>
+                                            </span>
+                                            <div id="logo_image_#printPosMethodId#_div" class="hide js-upload-art">
+                                                <div id="js_is_logo_#printPosMethodId#_1" class="upload-art-works upload-logo js-img-global">
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <span id="image_is_logo_#printPosMethodId#_1" class="btn btn-default btn-file js-upload-art-image" data-index="1">
+                                                                <i class="fa fa-upload"></i> Attach File
+                                                            </span>
+                                                            <span class="fileinput-filename"></span>
+                                                            <span class="fileinput-new"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                        <img id="logo_show_#printPosMethodId#_1" class="hide" alt="img" src="" width="30" height="30">
+                                                        <input type="hidden" id="logo_save_#printPosMethodId#_1" class="js-save-artwork-logo" value="" />
+                                                    </div>
+                                                    <div class="info-icons pull-right">
+                                                        <a href="javascript:void(0)" class="js_add_logo" id="is_logo_add_#printPosMethodId#">
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div id="js_is_logo_#printPosMethodId#_2" class="upload-art-works upload-logo js-img-global hide">
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <span id="image_is_logo_#printPosMethodId#_2" class="btn btn-default btn-file js-upload-art-image" data-index="2">
+                                                                <i class="fa fa-upload"></i> Attach File
+                                                            </span>
+                                                            <span class="fileinput-filename"></span>
+                                                            <span class="fileinput-new"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                        <img id="logo_show_#printPosMethodId#_2" class="hide" alt="img" src="" width="30" height="30">
+                                                        <input type="hidden" id="logo_save_#printPosMethodId#_2" class="js-save-artwork-logo" value="" />
+                                                    </div>
+                                                    <div class="info-icons pull-right">
+                                                        <a href="javascript:void(0)" class="js_remove_logo" id="is_logo_remove_#printPosMethodId#">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <span class="upload-logo pull-left">
+                                                <input type="radio" class="js-upload-email-radio" id="logo_email_#printPosMethodId#" name="is_logo_#printPosMethodId#" value="logo_email">
+                                                <label>Send Artwork via Email</label>
+                                            </span>
+                                            <div class="note-col pull-left upload-art-works-main hide js-upload-email" id="logo_email_#printPosMethodId#_div">
+                                                <em class="pink">Note:</em>
+                                                <i>Email your artwork to <a class="js_artwork_email" href="mailto:artwork@flowz.com" data-email="artwork@flowz.com">artwork@flowz.com</a></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="upload-tab-2-#printPosMethodId#" class="tab-pane js_art_tab_details" data-type="typeset" role="tabpanel" data-tab-id="2">
+                                <div class"js-typeset-text">
+                                    <div id="js_is_text_#printPosMethodId#_1" class="js-text-global">
+                                        <div class="radiobox">
+                                            <div class="other-option">
+                                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                                    <label>Text</label>
+                                                    <input type="text" placeholder="Enter Text" class="input pull-left js-art-text" data-index="1" id="text_is_text_#printPosMethodId#_1">
+                                                </div>
+                                                <div class="info-icons pull-right">
+                                                    <a href="javascript:void(0)" class="js_add_text" id="is_text_add_#printPosMethodId#">
+                                                        <i class="fa fa-plus"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="js_is_text_#printPosMethodId#_2" class="js-text-global hide">
+                                        <div class="radiobox">
+                                            <div class="other-option">
+                                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                                    <label>Text</label>
+                                                    <input type="text" placeholder="Enter Text" class="input pull-left js-art-text" data-index="2" id="text_is_text_#printPosMethodId#_2">
+                                                </div>
+                                                <div class="info-icons pull-right">
+                                                    <a href="javascript:void(0)" class="js_remove_text" id="is_text_remove_#printPosMethodId#">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="other-option">
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                        <label>Instructions</label>
+                                        <textarea style="resize: none;" placeholder="Please fill your comments for typeset " class="input pull-left js_artwork_instructions_text" name="is_logo_instructions_#printPosMethodId#" id="text_is_textarea_#printPosMethodId#_2"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="note-col pull-left">
+                                            <em class="pink">Note:</em>
+                                            <i>Email Your artwork on 
+                                            <a href="mailto:artwork@flowz.com">artwork@flowz.com</a></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="upload-tab-3-#printPosMethodId#" class="tab-pane js_art_tab_details" data-type="upload_artwork_typeset" role="tabpanel" data-tab-id="3">
+                                <div class="radiobox">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <span class="upload-logo pull-left">
+                                                <input type="radio" class="js-upload-art-type-radio" id="logo_text_image_#printPosMethodId#" name="is_logo_text_#printPosMethodId#" value="logo_text_image">
+                                                <label>Upload Artwork &amp; Typeset</label>
+                                            </span>
+                                            <div id="js_is_logo_type_#printPosMethodId#_div" class="hide js-upload-art-type">
+                                                <div id="js_is_logo_type_#printPosMethodId#">
+                                                    <div id="js_is_logo_type_#printPosMethodId#_1" class="upload-art-works upload-logo js-img-global">
+                                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <span id="image_is_logo_text_#printPosMethodId#_1" class="btn btn-default btn-file js-upload-art-image" data-index="1">
+                                                                    <i class="fa fa-upload"></i> Attach File
+                                                                </span>
+                                                                <span class="fileinput-filename"></span>
+                                                                <span class="fileinput-new"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                            <img id="logo_type_show_#printPosMethodId#_1" class="hide" alt="img" src="" width="30" height="30">
+                                                            <input type="hidden" id="logo_type_save_#printPosMethodId#_1" class="js-save-artwork-logo" value="" />
+                                                        </div>
+         
+                                                        <div class="info-icons pull-right">
+                                                            <a href="javascript:void(0)" class="js_add_logo_type" id="is_logo_text_add_#printPosMethodId#">
+                                                                <i class="fa fa-plus"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div id="js_is_logo_type_#printPosMethodId#_2" class="upload-art-works upload-logo js-img-global hide">
+                                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <span id="image_is_logo_text_#printPosMethodId#_2" class="btn btn-default btn-file js-upload-art-image" data-index="2">
+                                                                    <i class="fa fa-upload"></i> Attach File
+                                                                </span>
+                                                                <span class="fileinput-filename"></span>
+                                                                <span class="fileinput-new"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
+                                                            <img id="logo_type_show_#printPosMethodId#_2" class="hide" alt="img" src="" width="30" height="30">
+                                                            <input type="hidden" id="logo_type_save_#printPosMethodId#_2" class="js-save-artwork-logo" value="" />
+                                                        </div>
+         
+                                                        <div class="info-icons pull-right">
+                                                            <a href="javascript:void(0)" class="js_remove_logo_type" id="is_logo_text_remove_#printPosMethodId#">
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="js_is_text_type_#printPosMethodId#">
+                                                    <div id="js_is_text_type_#printPosMethodId#_1" class="js-text-global">
+                                                        <div class="other-option">
+                                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                                                <label>Text</label>
+                                                                <input type="text" placeholder="Enter Text" class="input pull-left js-art-text" data-index="1" data-id="text_is_logo_text_text_#printPosMethodId#_1">
+                                                            </div>
+                                                            <div class="info-icons pull-right">
+                                                                <a href="javascript:void(0)" class="js_add_text_type" id="is_logo_text_text_add_#printPosMethodId#">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="js_is_text_type_#printPosMethodId#_2" class="js-text-global hide">
+                                                        <div class="other-option">
+                                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                                                <label>Text</label>
+                                                                <input type="text" placeholder="Enter Text" class="input pull-left js-art-text" data-index="2" data-id="text_is_logo_text_text_#printPosMethodId#_2">
+                                                            </div>
+                                                            <div class="info-icons pull-right">
+                                                                <a href="javascript:void(0)" class="js_remove_text_type" id="is_logo_text_text_remove_#printPosMethodId#">
+                                                                    <i class="fa fa-trash-o"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="other-option">
+                                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                                        <label>Instructions</label>
+                                                        <textarea style="resize: none;" placeholder="Please fill your comments for typeset" class="input pull-left js_artwork_instructions_text" name="text_is_logo_text_instructions_#printPosMethodId#" data-id="text_is_logo_text_textarea_#printPosMethodId#_2"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <span class="upload-logo pull-left">
+                                                <input type="radio" class="js-upload-email-type-radio" id="logo_text_email_#printPosMethodId#" name="is_logo_text_#printPosMethodId#" value="logo_text_email">
+                                                <label>Send Artwork via Email</label>
+                                            </span>
+                                            <div class="note-col pull-left hide upload-art-works-main js-upload-email-type" id="logo_text_email_#printPosMethodId#_div">
+                                                <em class="pink">Note:</em>
+                                                <i>Email your artwork to <a class="js_artwork_email" href="mailto:artwork@flowz.com" data-email="artwork@flowz.com">artwork@flowz.com</a></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

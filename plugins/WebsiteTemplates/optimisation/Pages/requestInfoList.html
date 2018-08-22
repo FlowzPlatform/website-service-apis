@@ -1,0 +1,117 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.c15389 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c8198 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+
+.c28498 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
+
+
+
+<div class="container main">
+    <div class="content-info-page">
+        <div class="innerpage row account-innerpage">
+            <reusecomponent class="c46972">{{> myAccount id='leftNavigation.partial' }}</reusecomponent>
+            <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+                <div class="ob-account-right">
+                    <div class="ob-main-address-block">
+                        <reusecomponent class="c15389">{{> myAccount id='breadCrumb.partial' }}</reusecomponent>
+                        <div class="ob-add-new-address">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <h1 class="main-title"><i class="fa fa-question-circle"></i>My Inquiry List</h1>
+                                </div>
+                            </div>
+                            <div class="ob-request-info-block ob-sent-inquirie-block">
+                                <div class="product-description">
+                                    <div id="js-tabbable" class="tabbable">
+                                        <ul role="tablist" class="nav nav-tabs">
+                                            <li data-target="#request-info" aria-controls="request-info" role="tab"
+                                            data-toggle="tab" class="active"><a href="javascript:void(0);">Request Info</a>
+                                            </li>
+                                            <li data-target="#request-quote" aria-controls="request-quote" role="tab"
+                                            data-toggle="tab"><a href="javascript:void(0);">Request Quote</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="request-info" class="tab-pane fade active in">
+                                                <reusecomponent class="c15389">{{> myInquiryList id='list.partial' }}</reusecomponent>
+                                            </div>
+                                            <div id="request-quote" class="tab-pane fade">
+                                                <reusecomponent class="c15389">{{> myInquiryList id='list.partial' }}</reusecomponent>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <reusecomponent class="c8198">{{> myInquiryList id='detailRequestInfo.partial' }}</reusecomponent>
+            <reusecomponent class="c28498">{{> myInquiryList id='detailRequestQuote.partial' }}</reusecomponent>
+        </div>
+    </div>
+</div>
+<script src="./assets/client-plugins/client-request-info-list.js"></script>
