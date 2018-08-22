@@ -1,0 +1,147 @@
+<div class="js_request_quote_modal hide">
+    <div class="request-info-modal">
+        <div class="col-lg-6 col-md-6 col-sm-6 right-border">
+            <div class="skuprice popup-title">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">Created Date:  <span> #data.createAt# </span></div>
+            </div>
+            <div class="scrollbar" id="style-1">
+                <div class="force-overflow">
+                    <div class="panel-group" id="accordion1">
+                        <div class="panel panel-default info-block">
+                            <div class="product-section-box">
+                                <div class="panel-group" id="Shipping-method-quote-one_#data.id#" role="tablist" aria-multiselectable="true">
+                                    <!-- HEADING -->
+                                    <div class="panel-heading open" role="tab">
+                                        <h2 class="panel-title heading-block request-quote-tab">Product</h2>
+                                        <a class="js-add-class tab-quantity" data-toggle="collapse" data-parent="#Shipping-method-quote-one_#data.id#" href="#product_info_#data.id#" aria-expanded="true"><i class="caret-icon"></i></a>
+                                    </div>
+                                    <div id="Shipping-method-col" class="panel-collapse collapse in" role="tabpanel" >
+                                    </div>
+                                </div>
+                             </div>
+                             <div id="product_info_#data.id#" class="panel-collapse collapse in quote-product-summary">
+                                  <div class="panel-body">
+                                      <div class="row">
+                                          <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 padding-right-0">
+                                              <div class="detail-image">
+                                                  <a target="_blank" href="#data.product_link#"><img alt="" src="#data.productImage#" id="order_product_image" class="img-responsive"></a>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
+                                              <h1 class="heading-2">#data.productName#</h1>
+                                              <div class="skuprice">
+                                                  <div class="col lg-6 col-md-6 col-sm-6 col-xs-12">Item Number : <span>#data.sku#</span></div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <h3>Quantity Price</h3>
+                                      <div class="quantity-table">
+                                          	<div class="quantity-table-title">
+                                                <div class="table-heading">Quantity</div>
+                                                <div class="table-content">Price</div>
+                                            </div>
+                                            <div class="quantity-table-disc">
+                                	               <div class="quantity-table-col owl-carousel owl-theme">
+                                                      #data.pricing#
+                                                  </div>
+                                            </div>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                      <h3>Product Summary</h3>
+                                      <div class="estimate-detail product-section-box">
+                                          <div class="estimate-tag-block border-bottom">
+                                              <div class="js-shipping-info">
+                                                <div class="estimate-row heading"><span>Quantity  #data.qty#</span></div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="product-color-price-table">
+                                                            <tbody class="js-color-info-#data.qty#">
+                                                                <tr>
+                                                                    <td><i class="white-color-box" title="#data.color#" style="#data.colorSwatch#"></i></td>
+                                                                    <td>#data.color#</td>
+                                                                    <td><strong>Total:#data.totalQty#</strong></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="estimate-tag-block">
+                                                    <h3>Shipping Method : #data.shippingCarrier#</h3>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                              <div class="estimate-row">Shipping Charge: <span>#data.shippingCharge#</span></div>
+                                                              <div class="estimate-row">
+                                                                  <div>#data.address_book#</div>
+                                                              </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="estimate-row">Shipping Method: <span>#data.shippingMethod#</span></div>
+                                                            <div class="estimate-row">
+                                                                <div>Shipping Carrier: <span>#data.shippingCarrier#</span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="estimate-row">
+                                                                <div>On Hand Date: <span> #data.onHandDate#</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                          <div class="estimate-tag-block js-imprint-information">
+                                              <h3>Print Position: #data.imprintPostion#</h3>
+                                              <div class="row">
+                                                  <div class="col-lg-12 col-md-6 col-sm-6">
+                                                      <div class="estimate-row">Imprint Method : <span>#data.imprintMethod#</span></div>
+                                                      <div class="estimate-row">How many colors : <span>#data.howmanyColors#</span></div>
+                                                      <div class="estimate-row">Imprint Colors : <span>#data.imprintColors#</span></div>
+                                                      <div class="estimate-row">#data.sendmail#</div>
+                                                      <div class="estimate-row">#data.artwork#</div>
+                                                      <div class="estimate-row">#data.artwork_text#</div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <h3>Special Instructions</h3>
+                                          <div class="estimate-tag-block">
+                                              <div>#data.instruction#</div>
+                                          </div>
+                                      </div>
+                                  </div>
+                             </div>
+                        </div>
+                        <div class="panel panel-default info-block">
+                             <div class="product-section-box">
+                                  <div class="panel-group" id="Shipping-method-quote-three_#data.id#" role="tablist" aria-multiselectable="true">
+                                        <div class="panel-heading open" role="tab">
+                                              <h2 class="panel-title heading-block request-quote-tab">My Information</h2>
+                                              <a class="js-add-class tab-quantity collapsed" data-toggle="collapse" data-parent="#Shipping-method-quote-three_#data.id#" href="#collapseThree_#data.id#" aria-expanded="true"><i class="caret-icon"></i></a>
+                                        </div>
+                                        <div id="Shipping-method-col" class="panel-collapse collapse in" role="tabpanel" ></div>
+                                  </div>
+                              </div>
+                              <div id="collapseThree_#data.id#" class="panel-collapse collapse">
+                                  <div class="panel-body address-req-info">
+                                      <div class="row">
+                                          <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                                              #data.userInfo#
+                                          </div>
+                                          <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                                              <div class="req-info-add-block">
+                                                  <ul>
+                                                      #data.userContactInfo#
+                                                  </ul>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <reusecomponent class="c75667">{{> myInquiryList id='commentRequest.partial' }}</reusecomponent>
+    </div>
+</div>

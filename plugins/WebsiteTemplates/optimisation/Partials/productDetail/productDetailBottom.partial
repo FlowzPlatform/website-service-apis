@@ -1,0 +1,86 @@
+ <section class="fdb-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="product-detail-tab">
+                    <div role="tabpanel">
+                      
+                      <ul class="nav nav-tabs bordred-tab responsive" id="myTab">
+                          <li role="presentation" class="product_description_label hide active"><a href="#product_description" aria-controls="product-description" role="tab" data-toggle="tab">Product Description</a></li>
+                          <li role="presentation" class="imprint-info-label hide"><a href="#imprint-info" aria-controls="imprint-information" role="tab" data-toggle="tab">Imprint Information</a></li>
+                          <li role="presentation" class="product-shipping-label hide"><a href="#product-shipping" aria-controls="production-shipping" role="tab" data-toggle="tab">Production & Shipping</a></li>
+                          <li role="presentation" class="product-detail-label hide"><a href="#product-detail" aria-controls="product-detail" role="tab" data-toggle="tab">Product Detail</a></li>
+                      </ul>
+
+
+						
+					  <div class="tab-content responsive">
+                          
+                          <div role="tabpanel" class="tab-pane active" id="product_description">
+                              <div class="product-rating-info-wrap safety-block product_description_text">
+                              </div>
+                          </div>
+
+                          <div role="tabpanel" class="tab-pane" id="imprint-info">
+                              <div class="inner-tab-content">
+                                  <table class="main-table" width="100%">
+                                      <tbody>
+                                          <tr>
+                                              <td>
+                                                  <table class="sub-table border-right-10" cellpadding="5" width="100%">
+                                                      <tbody class="imprint-info-text">
+                                                          
+                                                          
+                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+
+                          <div role="tabpanel" class="tab-pane" id="product-shipping">
+                              <div class="inner-tab-content">
+                                  <table class="main-table" width="100%">
+                                      <tbody>
+                                          <tr>
+                                              <td>
+                                                  <table class="sub-table border-right-10" cellpadding="5" width="100%">
+                                                      <tbody class="product-shipping-text">
+                                                          
+                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+
+						  <div role="tabpanel" class="tab-pane" id="product-detail">
+                              <div class="inner-tab-content">
+                                  <table width="100%" class="main-table">
+                                      <tbody>
+                                          <tr>
+                                              <td>
+                                                  <table width="100%" class="sub-table border-right-10" cellpadding="5">
+                                                      <tbody class="product-detail-text">
+                                                          
+                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      
+					  </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
