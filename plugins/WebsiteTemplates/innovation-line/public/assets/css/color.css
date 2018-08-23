@@ -54,7 +54,7 @@ body header .forgot-passwd .send-email:hover {background: #005dab ;border-color:
 .login-col input[type="password"]:focus {border-color: #005dab ;}
 /**  Default Theme Main Menu **/
 .ui-menu-nav {background: #17468f;}
-.menu-box .navbar-nav > li > a {color: #fff;}
+.ui-menu-nav .menu-box .navbar-nav > li > a {color: #fff;}
 .advance-search-btn > a {color: #fff;}
 .ob-logo-block .advance-search-btn > a {color: #17468f;}
 .ob-logo-block .advance-search-btn > a:hover, .ob-logo-block .advance-search-btn.open a, .ob-logo-block .advance-search-btn.open a:focus {color: #17468f;}

@@ -1072,7 +1072,7 @@ $(document).ready( async function(){
               $('#modal-table').addClass('request-info-popup-modal');
               $("#modal-table").find(".modal-title").html('Your Information')
               let guestUserHtml = $(".js_guest_info").html()
-              $(".js_guest_info").html('')
+            //   $(".js_guest_info").html('')
               $(".js_add_html").html(guestUserHtml)
               $('#modal-table').modal('show');
               // window.location = "login.html";
@@ -1272,7 +1272,7 @@ $(document).ready( async function(){
 
         if(dataAttributes.maxImprintColor > 0 && dataAttributes.maxImprintColor != '') {
             for(let i=1;i<=dataAttributes.maxImprintColor;i++){
-                imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+'Color</a></li>'
+                imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+' Color</a></li>'
             }
             parentObj.find(".imprint-color-select").html(productHtmlPrintPosColor);
             parentObj.find(".js_set_selected_value_col").html(imprintColor);
