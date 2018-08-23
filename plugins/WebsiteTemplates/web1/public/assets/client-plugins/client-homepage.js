@@ -9,8 +9,8 @@ $(function() {
     });
 });
 
-var tagInfo = function () {
-    var tmp = null;
+let tagInfo = function () {
+    let tmp = null;
     $.ajax({
         'async': false,
         'type': "GET",
@@ -27,8 +27,30 @@ var tagInfo = function () {
 if(tagInfo.length > 0) {
     let tagHtml = "";
     $.each( tagInfo, function( key, tagArray ) {
-        tagHtml += '<div class="in-box-cont"><div class="right-part"><a href="productTags.html?locale=en_us&tid='+tagArray.id+'"><img width="134" height="118" class="lazyLoad" data-src="'+tagArray.tag_icon+'" alt=""></a></div><div class="left-part"><div class="pro-title"><a href="javascript:;">'+tagArray.tag_name+'</a></div><div class="pro-btn"><a href="productTags.html?locale=en_us&tid='+tagArray.id+'">See All</a></div></div></div>';
+        tagHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="productTags.html?locale=en_us&tid='+tagArray.id+'" target="_blank"><img src="'+tagArray.tag_icon+'" class="img-responsive center-block" alt=""> </a> </div></div><div class="pro-desc" style="min-height:0"> <a href="productTags.html?locale=en_us&tid='+tagArray.id+'" target="_blank"> '+tagArray.tag_name+' </a></div><div class="clearfix"></div></div></div>';
     });
     $('.js-tag-listing').html(tagHtml);
     $('.js-product-tags').removeClass('hide');
 }
+
+$("#owl-product-tags").owlCarousel({
+    navigation: true,
+    items:4,
+    autoPlay: 3200,
+    margin: 10,
+    autoplayHoverPause: true,
+    lazyLoad: true,
+    stopOnHover: true,
+    itemsCustom: false,
+    itemsDesktop: [1170, 4],
+    itemsDesktop: [1024, 3],
+    itemsTabletSmall: false,
+    itemsMobile: [400, 2],
+    itemsMobile: [399, 1],
+    singleItem: false,
+    itemsScaleUp: false,
+    afterInit: function (elem) {
+        var that = this
+        that.owlControls.prependTo(elem)
+    }
+});

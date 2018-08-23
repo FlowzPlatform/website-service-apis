@@ -1249,7 +1249,6 @@ try {
 try {
     $(document).ready(() => {
         let contactid = '#frmContact1'
-        console.log("contactid:", contactid)
         $(contactid).submit(async function(e) {
             e.preventDefault();
             console.log("contactform:", $(contactid))
@@ -1301,7 +1300,6 @@ try {
 try {
     $(document).ready(() => {
         let contactid = '#frmContact2'
-        console.log("contactid:", contactid)
         $(contactid).submit(async function(e) {
             e.preventDefault();
             // console.log("contactform:",$(contactid))
@@ -1356,7 +1354,6 @@ try {
 try {
     $(document).ready(() => {
         let contactid = '#frmContact3'
-        console.log("contactid:", contactid)
         $(contactid).submit(async function(e) {
             e.preventDefault();
             // console.log("contactform:",$(contactid))
@@ -1411,7 +1408,6 @@ try {
 try {
     $(document).ready(() => {
         let contactid = '#frmContact4'
-        console.log("contactid:", contactid)
         $(contactid).submit(async function(e) {
             e.preventDefault();
             // console.log("contactform:",$(contactid))
@@ -1466,7 +1462,6 @@ try {
 try {
     $(document).ready(() => {
         let contactid = '#frmContact5'
-        console.log("contactid:", contactid)
         $(contactid).submit(async function(e) {
             e.preventDefault();
             // console.log("contactform:",$(contactid))
@@ -1522,7 +1517,6 @@ try {
 try {
     $(document).ready(() => {
         let contactid = '#frmContact6'
-        console.log("contactid:", contactid)
         $(contactid).submit(async function(e) {
             e.preventDefault();
             // console.log("contactform:",$(contactid))
@@ -1580,7 +1574,6 @@ try {
 try {
     $(document).ready(() => {
         let contactid = '#frmContact7'
-        console.log("contactid:", contactid)
         $(contactid).submit(async function(e) {
             e.preventDefault();
             // console.log("contactform:",$(contactid))
@@ -1636,7 +1629,6 @@ try {
 try {
     $(document).ready(() => {
         let contactid = '#frmContact8'
-        console.log("contactid:", contactid)
         $(contactid).submit(async function(e) {
             e.preventDefault();
             // console.log("contactform:",$(contactid))
@@ -1696,7 +1688,6 @@ try {
 try {
     $(document).ready(() => {
         let contactid = '#frmContact10'
-        console.log("contactid:", contactid)
         $(contactid).submit(async function(e) {
             e.preventDefault();
             // console.log("contactform:",$(contactid))

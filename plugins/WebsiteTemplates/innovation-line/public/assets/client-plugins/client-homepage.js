@@ -157,8 +157,10 @@ let tagProductList = function(tagObj,productBoxHtml) {
                           productBoxHtml1 = productBoxHtml.replace(/#data.id#/g,value.product_id)
                           productBoxHtml1 = productBoxHtml1.replace(/#data.product_link#/g,'productdetail.html?locale='+project_settings.default_culture+'&pid='+value.product_id)
                           ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                          if(productRes.images != undefined)  {
-                              ProductImage = productRes.images[0].images[0].secure_url;
+                          if(productRes !== undefined)  {
+								if(productRes.images !== undefined) {
+                              		ProductImage = productRes.images[0].images[0].secure_url;
+								}
                           }
 
                           productBoxHtml1 = productBoxHtml1.replace('#data.image#',ProductImage)

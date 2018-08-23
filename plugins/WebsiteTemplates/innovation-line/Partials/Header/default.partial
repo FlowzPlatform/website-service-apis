@@ -452,23 +452,6 @@ nav.navbar {
 
 <script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/yjs@12.3.3/dist/y.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"
-defer="defer"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-map@10.1.3/dist/y-map.js"
-defer="defer"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-memory@8.0.9/dist/y-memory.js"
-defer="defer"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-webrtc@8.0.7/dist/y-webrtc.js"
-defer="defer"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-indexeddb@8.1.9/dist/y-indexeddb.js"
-defer="defer"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-text@9.5.1/dist/y-text.js"
-defer="defer"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-array@10.1.4/dist/y-array.js"
-defer="defer"></script>
-<script src="https://cdn.jsdelivr.net/npm/y-websockets-client@8.0.16/dist/y-websockets-client.js"
-defer="defer"></script>
 <script src="https://res.cloudinary.com/flowz/raw/upload/v1533193147/websites/js/bootstrap-multiselect.js"></script>
 <script src="./main-files/main.js"></script>
 <script src="./assets/client-plugins/client-cart.js"></script>

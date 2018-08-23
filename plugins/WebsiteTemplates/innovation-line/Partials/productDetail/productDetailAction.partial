@@ -59,12 +59,14 @@ body {
                     <input class="ob-btvirtualloadcontent" id="c70827" type="button" />
                 </div>
             </li>
+            <li><a href="virtualsample.html"><i class="strip order-strip"></i>Virtual Sample</a></li>
             <li><a href="javascript:void(0);" id="download_image" ><i class="strip download-img-strip"></i>Download Image</a></li>
             <li><a href="javascript:void(0);" id="js-show_play_video" ><i class="strip play-strip"></i>Play Video</a></li>
             <li><a href="orderSample.html?pid=#data.productId#" id="order_sample"><i class="strip order-strip"></i>Order Sample</a></li>
-	    <li><a href="javascript:void(0);" id="download_product_template" target="_blank"><i class="strip download-img-strip"></i>Product Template</a></li>
+            <li><a href="javascript:void(0);" id="js-email-product" data-toggle="modal" data-target="#emailProduct"><i class="strip email-strip"></i>Email Product</a></li>
+	        <li><a href="javascript:void(0);" id="download_product_template" target="_blank"><i class="strip download-img-strip"></i>Product Template</a></li>
             <li><a href="javascript:void(0);" id="download_art_template" target="_blank"><i class="strip download-img-strip"></i>Art Template</a></li>
-            <li><a href="javascript:void(0);" id="download_gcc_template" target="_blank"><i class="strip download-img-strip"></i>GCC Template</a></li>
+            <li><a href="javascript:void(0);" id="download_gcc_template" target="_blank"><i class="strip download-img-strip"></i>Safety Document</a></li>
             <li><a href="javascript:void(0);" id="download_special_pricing" target="_blank"><i class="strip download-img-strip"></i>Special Pricing</a></li>
             <li class="hide">
                 <a href="javascript:void(0);" id="js-share_product" target="_blank"><i class="strip share-strip"></i>Share Product</a>
@@ -79,3 +81,44 @@ body {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
 <script type="text/javascript" src="./assets/client-plugins/client-product-action.js"></script>
+
+<div id="emailProduct" role="dialog" class="modal fade model-popup-black">
+    <div class="modal-dialog">
+        <div class="modal-content"><a aria-label="Close" data-dismiss="modal" href="javascript:void(0);"
+            class="close">×</a>
+            <div class="modal-header">
+                <h1 class="modal-title"><i class="fa fa-envelope fa-fw"></i> Email Product</h1>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form name="email_product" method="post" id="email_product">
+                            <div class="form-group col-sm-12">
+                                <label for="name">Sender Name</label><span title="This field is required" class="red">*</span>
+                                <input
+                                type="text" id="name" name="name" class="form-control" />
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="from_email">Sender Email</label><span title="This field is required" class="red">*</span>
+                                <input type="text" id="from_email" name="from_email" class="form-control" />
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="to_email">Recipient Email</label><span title="This field is required" class="red">*</span>
+                                <small class="form-note">(Use Comma [,] for multiple email.)</small>
+                                <input type="text" id="to_email" name="to_email" class="form-control" />
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="message">Message</label><span title="This field is required" class="red">*</span>
+                                <textarea id="message" name="message" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group col-sm-12 center-block">
+                                <input type="submit" value="Send" class="btn btn-default send-email-product" />
+                                <input type="reset" value="Reset" class="btn btn-default" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
