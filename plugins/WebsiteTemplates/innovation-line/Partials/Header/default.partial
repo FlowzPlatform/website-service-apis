@@ -478,20 +478,6 @@ nav.navbar {
                                 </li>
                                 <li><a href="#">Contact Us</a>
                                 </li>
-                                <li class="dropdown"><a href="javascript:void(0)" aria-expanded="true" data-toggle="dropdown"
-                                    class="dropdown-toggle">Language: Eng <i class="fa fa-caret-down"></i></a>
-                                    <div
-                                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
-                                        <div class="inner-box">
-                                            <ul>
-                                                <li><a href="javascript:void(0)"><img src="https://res.cloudinary.com/flowz/image/upload/v1531902843/websites/InnovationLine/images/usd-currency-icon.png"/> English / USD$</a>
-                                                </li>
-                                                <li><a href="javascript:void(0)"><img src="https://res.cloudinary.com/flowz/image/upload/v1531902843/websites/InnovationLine/images/cad-currency-icon.png"/> English / CAD$</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                        </div>
-                        </li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -505,17 +491,6 @@ nav.navbar {
                             </li>
                             <li class="dropdown cart-popup header-login-text"><a href="quickQuoteList.html" class="dropdown-toggle"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>QuickQuote</span> (<span id="quickQuoteCount">0</span>)</span> </a>
                             </li>
-                            <li class="dropdown login-col header-login-text login-show hide"><a href="login.html" class="dropdown-toggle"><span class="fa fa-sign-in"></span> <span class="login-text">LOGIN</span></a>
-                            </li>
-                            <li class="dropdown login-col header-login-text logout-show hide"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
-                                <ul
-                                class="dropdown-menu dropdown-menu-arrow user-dropdown">
-                                    <li><a href="myaccount.html">MY ACCOUNT</a>
-                                    </li>
-                                    <li><a href="changePassword.html" class="js_change_password">CHANGE PASSWORD</a>
-                                    </li>
-                                    <li><a href="javascript:;" class="login-text-check">LOGOUT</a>
-                                    </li>
                         </ul>
                         </li>
                         </ul>

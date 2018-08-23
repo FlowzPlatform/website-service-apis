@@ -64,7 +64,7 @@ body {
             <li><a href="javascript:void(0);" id="js-show_play_video" ><i class="strip play-strip"></i>Play Video</a></li>
             <li><a href="orderSample.html?pid=#data.productId#" id="order_sample"><i class="strip order-strip"></i>Order Sample</a></li>
             <li><a href="javascript:void(0);" id="js-email-product" data-toggle="modal" data-target="#emailProduct"><i class="strip email-strip"></i>Email Product</a></li>
-	        <li><a href="javascript:void(0);" id="download_product_template" target="_blank"><i class="strip download-img-strip"></i>Product Template</a></li>
+	    <li><a href="javascript:void(0);" id="download_product_template" target="_blank"><i class="strip download-img-strip"></i>Product Template</a></li>
             <li><a href="javascript:void(0);" id="download_art_template" target="_blank"><i class="strip download-img-strip"></i>Art Template</a></li>
             <li><a href="javascript:void(0);" id="download_gcc_template" target="_blank"><i class="strip download-img-strip"></i>Safety Document</a></li>
             <li><a href="javascript:void(0);" id="download_special_pricing" target="_blank"><i class="strip download-img-strip"></i>Special Pricing</a></li>
@@ -111,10 +111,14 @@ body {
                                 <label for="message">Message</label><span title="This field is required" class="red">*</span>
                                 <textarea id="message" name="message" class="form-control"></textarea>
                             </div>
-                            <div class="form-group col-sm-12 center-block">
-                                <input type="submit" value="Send" class="btn btn-default send-email-product" />
-                                <input type="reset" value="Reset" class="btn btn-default" />
-                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 center-block">
+                                    <div class="btn-box-main">
+                                        <input type="submit" value="Send" class="btn btn-default send-email-product" />
+                                        <input type="reset" value="Reset" class="btn btn-default" />
+                                    </div>    
+                                </div>
+                            </div>    
                         </form>
                     </div>
                 </div>
