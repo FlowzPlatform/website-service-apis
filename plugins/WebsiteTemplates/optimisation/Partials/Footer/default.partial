@@ -124,6 +124,8 @@ body {
     </div>
 </div>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="./main-files/main.js"></script>
 <script type="text/javascript" src="./assets/client-plugins/common-header.js"></script>
 <script type="text/javascript" src="https://widget.cloudinary.com/global/all.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
