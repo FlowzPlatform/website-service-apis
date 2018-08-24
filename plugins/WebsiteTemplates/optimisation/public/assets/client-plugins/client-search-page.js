@@ -122,7 +122,7 @@ $(document).ready(function(){
       	 	  $("#PriceRange").remove();
       	 	 }
          }
-	      $( document ).tooltip(); 
+	     //$( document ).tooltip(); 
 	      
      });
 });

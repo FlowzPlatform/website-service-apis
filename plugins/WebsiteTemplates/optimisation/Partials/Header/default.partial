@@ -518,8 +518,6 @@ nav.navbar {
     rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
     rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
     <div id="js-fix-header-controller">
         <div class="ob-header">
             <div class="main-logo-part">
