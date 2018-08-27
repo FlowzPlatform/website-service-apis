@@ -81,7 +81,7 @@ const websiteConfiguration = require('./website-configuration/website-configurat
 
 const tagCategory = require('./tag-category/tag-category.service.js');
 
-
+const gitlabservice = require('./gitlabservice/gitlabservice.service.js');
 
 
 const tags = require('./tags/tags.service.js');
@@ -117,7 +117,7 @@ module.exports = function() {
     app.configure(gitlabAddRepo);
     app.configure(userService);
     app.configure(metalsmith);
-
+    app.configure(gitlabservice);
     //app.configure(transaction);
     app.configure(imageUpload);
     app.configure(getDirectoryList);
