@@ -100,6 +100,16 @@ span.color {
 .table-striped > tbody > tr:nth-of-type(2n+1) {
     background-color: transparent;
 }
+
+.c18475 {
+    display: none;
+}
+
+.c21409 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
 </style>
 
 
@@ -107,127 +117,127 @@ span.color {
 
 <div class="cssImports"></div>
 <div class="c90784">
-    <div class="container" id="myCompareList">
-            <div class="innerpage row">
-                <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-                        <h1 class="main-title"><i class="fa fa-retweet"></i>PRODUCT COMPARE</h1>
+    <div id="myCompareList" class="container">
+        <div class="innerpage row">
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+                <h1 class="main-title"><i class="fa fa-retweet"></i>PRODUCT COMPARE</h1>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 col-xs-12">
+                <div class="product-compare-top-navi js-compare-btns"><a href="javascript:void(0);" class="add-btn gray js-btn-delete-all-compare-product"><i class="fa fa-times-circle fa-fw"></i>clear all</a>
+                    <a
+                    href="javascript:void(0);" data-toggle="modal" data-target="#myModal" class="add-btn gray js_open_modal_email_to_friend"><i class="fa fa-envelope fa-fw"></i> Email to friend</a><a href="javascript:void(0);"
+                        onclick="printDiv()" class="add-btn gray js_open_modal_print"><i class="fa fa-print fa-fw"></i> Print</a>
+                        <a
+                        href="javascript:void(0)" class="add-btn gray js-btn-download-compare-product"><i class="fa fa-file-pdf-o fa-fw"></i> Download PDF</a><a href="search.html"
+                            class="continue-shopping-btn">Continue Shopping<i class="fa fa-angle-double-right"></i></a>
                 </div>
-                <div class="col-sm-12 col-md-8 col-lg-8 col-xs-12">
-                    <div class="product-compare-top-navi js-compare-btns">
-                        <a href="javascript:void(0);" class="add-btn gray js-btn-delete-all-compare-product"><i class="fa fa-times-circle fa-fw"></i>clear all</a>
-                        <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" class="add-btn gray js_open_modal_email_to_friend"><i class="fa fa-envelope fa-fw"></i> Email to friend</a>
-                        <a href="javascript:void(0);" onclick="printDiv()" class="add-btn gray js_open_modal_print"><i class="fa fa-print fa-fw"></i> Print</a>
-                        <a href="javascript:void(0)" class="add-btn gray js-btn-download-compare-product" onclick="printDiv()"><i class="fa fa-file-pdf-o fa-fw"></i> Download PDF </a><a href="search.html" class="continue-shopping-btn">Continue Shopping<i class="fa fa-angle-double-right"></i></a>
-                    </div>
-                 </div>
-                <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
+            </div>
+            <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
                 <reusecomponent class="c93217">{{> Compare id='list.partial' }}</reusecomponent>
                 <div class="col-md-12"></div>
             </div>
         </div>
+        <reusecomponent class="c21409">{{> Compare id='downloadPDF.partial' }}</reusecomponent>
     </div>
 </div>
-<div id="modal-table" data-keyboard="false" data-backdrop="static" tabindex="-1" aria-hidden="false" style="display: none;" class="modal fade model-popup-black print-comparision in">
+<div id="modal-table" data-keyboard="false" data-backdrop="static" tabindex="-1"
+aria-hidden="false" class="modal fade model-popup-black print-comparision in c18475">
     <div id="print-comparision">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <a aria-label="Close" data-dismiss="modal" class="close" href="javascript:void(0)">&times;</a>
-                <div class="modal-header">
-                    <i class="fa fa-print"></i>Title
-                </div>
-                <div class="modal-body">
-                    <div class="ob-product-compare">
-                        <div class="scroll-block">
-                            <table class="compare-block js-print-html" cellspacing="0" cellpadding="10" width="100%" border="0">
-                                <tbody>
-                                    <tr class="dark-bg" id="js-print_item_title">
-                                        <td class="">
-                                            <div class="pro-img">
-                                            <div class="img-block"><img width="100px"src="#data.image#" class="img-responsive center-block" alt=""></div>
+            <div class="modal-content"><a aria-label="Close" data-dismiss="modal" href="javascript:void(0)" class="close">×</a>
+                <div
+                class="modal-header"><i class="fa fa-print"></i>Title</div>
+            <div class="modal-body">
+                <div class="ob-product-compare">
+                    <div class="scroll-block">
+                        <table cellspacing="0" cellpadding="10" width="100%" border="0" class="compare-block js-print-html">
+                            <tbody>
+                                <tr id="js-print_item_title" class="dark-bg">
+                                    <td>
+                                        <div class="pro-img">
+                                            <div class="img-block">
+                                                <img width="100px" src="#data.image#" alt="" class="img-responsive center-block"
+                                                />
                                             </div>
-                                            <div class="product-name">
-                                                    #data.title#
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="feature dark-bg pro-title" id="js-print_item_price">
-                                        <td class="price-rang-brd  ">
-                                            <div class="product-price">
-                                                    #data.price#
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="feature light-bg" id="js-print_item_sku">
-                                        <td class="">#data.sku#</td>
-                                    </tr>
-                                    <tr class="feature dark-bg" id="js-print_item_features">
-                                        <td class="">
-                                            #data.features#
-                                            <br>
-                                        </td>
-                                    </tr>
-                                    <tr class="feature summary light-bg" id="js-print_item_summary">
-                                        <td class="">#data.summary#</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                        </div>
+                                        <div class="product-name">#data.title#</div>
+                                    </td>
+                                </tr>
+                                <tr id="js-print_item_price" class="feature dark-bg pro-title">
+                                    <td class="price-rang-brd">
+                                        <div class="product-price">#data.price#</div>
+                                    </td>
+                                </tr>
+                                <tr id="js-print_item_sku" class="feature light-bg">
+                                    <td>#data.sku#</td>
+                                </tr>
+                                <tr id="js-print_item_features" class="feature dark-bg">
+                                    <td>#data.features#
+                                        <br/>
+                                    </td>
+                                </tr>
+                                <tr id="js-print_item_summary" class="feature summary light-bg">
+                                    <td>#data.summary#</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 <div id="myModal" role="dialog" class="modal fade model-popup-black">
-        <div class="modal-dialog">
-            <div class="modal-content"><a aria-label="Close" data-dismiss="modal" href="javascript:void(0);"
-                class="close">×</a>
-                <div class="modal-header">
-                    <h1 class="modal-title"><i class="fa fa-envelope fa-fw"></i> Email to friend</h1>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <form name="send_email_to_friend" method="post" id="send_email_to_friend">
-                                <div class="form-group col-sm-12">
-                                    <label for="name">Sender name</label><span title="This field is required" class="red">*</span>
-                                    <input
-                                    type="text" id="name" name="name" placeholder="Enter Sender Name" title="Enter Sender Name"
-                                    data-placement="" class="" />
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="email">Sender Email</label><span title="This field is required" class="red">*</span>
-                                    <input
-                                    type="text" id="email" name="email" placeholder="Enter From Email" title="Enter From Email"
-                                    data-placement="" class="form-control form-contol-tool-tip" />
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="to_email">Recipient Email</label><span title="This field is required" class="red">*</span>
-                                    <small
-                                    class="form-note">(Use Comma [,] for multiple email.)</small>
-                                        <input type="text" id="to_email"
-                                        name="to_email" placeholder="Enter Recipient Email" title="Enter Recipient Email"
-                                        data-placement="" class="form-control form-control-tool-tip" />
-                                </div>
-                                <div class="form-group col-sm-12">
-                                    <label for="send_email_to_friend_message">Message</label><span title="This field is required" class="red">*</span>
-                                    <textarea
-                                    id="message" name="message" placeholder="Enter Message" title="Enter Message"
-                                    data-placement="" class="form-control form-control-tool-tip "></textarea>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 center-block">
-                                        <div class="btn-box-main">
-                                            <input type="submit" value="Send Email" class="btn btn-default js-submit-btn send-friend-email"
-                                            />
-                                            <input type="reset" value="reset" class="btn btn-default" />
-                                        </div>    
+    <div class="modal-dialog">
+        <div class="modal-content"><a aria-label="Close" data-dismiss="modal" href="javascript:void(0);"
+            class="close">×</a>
+            <div class="modal-header">
+                <h1 class="modal-title"><i class="fa fa-envelope fa-fw"></i> Email to friend</h1>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form name="send_email_to_friend" method="post" id="send_email_to_friend">
+                            <div class="form-group col-sm-12">
+                                <label for="name">Sender name</label><span title="This field is required" class="red">*</span>
+                                <input
+                                type="text" id="name" name="name" placeholder="Enter Sender Name" title="Enter Sender Name"
+                                data-placement="" />
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="email">Sender Email</label><span title="This field is required" class="red">*</span>
+                                <input
+                                type="text" id="email" name="email" placeholder="Enter From Email" title="Enter From Email"
+                                data-placement="" class="form-control form-contol-tool-tip" />
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="to_email">Recipient Email</label><span title="This field is required" class="red">*</span>
+                                <small
+                                class="form-note">(Use Comma [,] for multiple email.)</small>
+                                    <input type="text" id="to_email"
+                                    name="to_email" placeholder="Enter Recipient Email" title="Enter Recipient Email"
+                                    data-placement="" class="form-control form-control-tool-tip" />
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="send_email_to_friend_message">Message</label><span title="This field is required" class="red">*</span>
+                                <textarea
+                                id="message" name="message" placeholder="Enter Message" title="Enter Message"
+                                data-placement="" class="form-control form-control-tool-tip"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 center-block">
+                                    <div class="btn-box-main">
+                                        <input type="submit" value="Send Email" class="btn btn-default js-submit-btn send-friend-email"
+                                        />
+                                        <input type="reset" value="reset" class="btn btn-default" />
                                     </div>
-                                </div>    
-                            </form>
-                        </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>
