@@ -110,6 +110,11 @@ const webtools = require('./webtools/webtools.service.js');
 
 
 
+const downloadPdf = require('./download-pdf/download-pdf.service.js');
+
+
+
+
 module.exports = function() {
     const app = this; // eslint-disable-line no-unused-vars
     app.configure(flowsDirListing);
@@ -169,4 +174,5 @@ module.exports = function() {
     app.configure(ecatalogs);
     app.configure(category);
     app.configure(webtools);
+    app.configure(downloadPdf);
 };

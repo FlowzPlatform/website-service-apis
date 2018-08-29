@@ -1,3 +1,26 @@
+$(document).ready(async function(){
+var baseURL = '';
+var socketHost = '';
+var projectID = '';
+var userID = '';
+var userEmail = '';
+var configDataUrl = '';
+
+// async function getProjectInfo() {
+await $.getJSON( "./assets/project-details.json", function( data ) {  
+    var configData = data;
+    userEmail = data[0].projectOwner;
+    projectID = data[0].projectID;
+
+    baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+    socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+
+    configDataUrl = baseURL + "/project-configuration/" + projectID;
+    // console.log('configDataUrl:',configDataUrl)
+});
+
+// }
+
 // Activate smooth scroll
 $(document).on("click", ".smooth-scroll", function(event) {
     event.preventDefault();
@@ -743,204 +766,272 @@ try {
 }
 // Popular products ends
 
-// dataField JS
-// const MyGroup = Vue.component('datafieldgroup', {
-//   template: `<div class="dfgroup">
-//                     <div class="dfrepeate" v-for="item in items"><slot :text="item"></slot></div>
-//             </div>`,
-//   props: ['data_api', 'data_schema'],
-//   computed: {},
-//   data: function() {
-//     return {
-//       items: []
-//     }
-//   },
-//   mounted() {
-//     this.getData()
-//   },
-//   methods: {
-//     getData() {
-//       let self = this;
-//       console.log("data_schema", this.data_schema)
-//       console.log("data_api", this.data_api)
-//       if (this.data_schema != undefined) {
-//         if (this.data_schema.length > 0) {
-//           console.log("hello")
-//           this.data_schema;
-//           let schemaVal = this.data_schema.split(":");
-//           let connString = $.trim(schemaVal[0]);
-//           let schemaName = $.trim(schemaVal[1]);
-//           let apiUrl = 'http://172.16.230.80:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
-//           $.getJSON(apiUrl, function(data) {
-//             console.log(data)
-//             self.items = data;
-//           });
-//         } else {
-//           $.getJSON(this.data_api, function(data) {
-//             console.log(data)
-//             self.items = data;
-//           });
-//         }
-//       } else {
-//         $.getJSON(this.data_api, function(data) {
-//           console.log(data)
-//           self.items = data;
+
+///////////////////////// Payment JS
+// try {
+//     var paymentgateways = [];
+
+//     var userEmail = '';
+//     var projectName = '';
+//     var configDataUrl = '';
+//     var ProjectbaseURL = '';
+//     // var baseURL = 'http://localhost:3032';
+//     // var socketURL = 'http://localhost:4032';
+//     var baseURL = '';
+//     var socketHost = '';
+
+//     $(document).ready(function() {
+//         getProjectInfo();
+//         // ImpletementSocekt();
+//     });
+
+//     async function getProjectInfo() {
+//         await $.getJSON("./assets/project-details.json", function(data) {
+//             var configData = data;
+//             userEmail = data[0].projectOwner;
+//             projectName = data[0].projectName;
+//             baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+//             socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+//             configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
 //         });
-//       }
+//         getConfigData();
 //     }
-//   }
-// });
 
-// const MyObj = Vue.component('datafieldobject', {
-//   template: `<div class="dfgroup">
-//                     <div class="dfrepeate"><slot :text="items"></slot></div>
-//             </div>`,
-//   props: ['data_api', 'data_schema'],
-//   computed: {},
-//   data: function() {
-//     return {
-//       items: []
-//     }
-//   },
-//   mounted() {
-//     this.getData()
-//   },
-//   methods: {
-//     getData() {
-//       let self = this;
-//       console.log("data_schema", this.data_schema)
-//       console.log("data_api", this.data_api)
-//       if (this.data_schema != undefined) {
-//         if (this.data_schema.length > 0) {
-//           console.log("hello")
-//           this.data_schema;
-//           let schemaVal = this.data_schema.split(":");
-//           let connString = $.trim(schemaVal[0]);
-//           let schemaName = $.trim(schemaVal[1]);
-//           let apiUrl = 'http://172.16.230.80:3080/connectiondata/' + connString + '?schemaname=' + schemaName;
-//           $.getJSON(apiUrl, function(data) {
-//             console.log(data)
-//             self.items = data;
-//           });
-//         } else {
-//           $.getJSON(this.data_api, function(data) {
-//             console.log(data)
-//             self.items = data;
-//           });
-//         }
-//       } else {
-//         $.getJSON(this.data_api, function(data) {
-//           console.log(data)
-//           self.items = data;
+//     async function getConfigData() {
+
+//         await $.getJSON(configDataUrl, function(data) {
+//             var configData = data.data[0].configData;
+//             // globalVariables = configData[1].projectSettings[1].GlobalVariables;
+//             paymentgateways = configData[1].projectSettings[1].PaymentGateways
+//             ProjectbaseURL = configData[0].repoSettings[0].BaseURL;
 //         });
-//       }
+//         Paymentgateways();
 //     }
-//   }
-// });
 
-// const MyList = Vue.component('datafieldlist', {
-//   template: '<div class="dflist"><div v-for="item in items"><slot :text="item"></slot></div></div>',
-//   props: ['items']
-// });
 
-// const MyText = Vue.component('datafieldtext', {
-//   template: '<div class="dftext"><h3>{{text}}</h3></div>',
-//   props: ['text']
-// });
+//     async function Paymentgateways() {
+//         var paymentbuttons = ''
+//         for (let i = 0; i < paymentgateways.length; i++) {
+//             if (paymentgateways[i].checked == true) {
+//                 paymentbuttons = paymentbuttons + '<button type="button" class="btn" data-id="' + paymentgateways[i].name + '" title="' + paymentgateways[i].description + '">' + paymentgateways[i].gateway + '</button>'
+//             }
+//         }
+//         $('paymentgateway').replaceWith(paymentbuttons);
 
-// new Vue({
-//   el: '#app',
-//   components: {
-//     MyGroup,
-//     MyList,
-//     MyText
-//   }
-// })
-// dataField js ends
+//     }
+// } catch (err) {
+//     console.log('Error in Payment Module: ', err);
+// }
+///////////////////////// Payment JS Ends
 
-// Payment JS
-try {
-    var paymentgateways = [];
+////////////////////////Following is the global-variable-plugin js code
+try{
+    var globalVariables = [];
+    var brandName;
 
-    var userEmail = '';
-    var projectName = '';
-    var configDataUrl = '';
-    var ProjectbaseURL = '';
-    // var baseURL = 'http://localhost:3032';
-    // var socketURL = 'http://localhost:4032';
-    var baseURL = 'http://api.flowzcluster.tk/serverapi';
-    var socketHost = 'http://ws.flowzcluster.tk:4032';
+    // var userEmail = '';
+    // var projectID = '';
+    // var configDataUrl = '';
 
-    $(document).ready(function() {
-        getProjectInfo();
-        // ImpletementSocekt();
-    });
+    // var baseURL = 'https://api.flowzcluster.tk/serverapi';
+    // var socketHost = 'https://ws.flowzcluster.tk:4032';
 
-    async function getProjectInfo() {
-        await $.getJSON("./assets/project-details.json", function(data) {
-            var configData = data;
-            userEmail = data[0].projectOwner;
-            projectName = data[0].projectName;
+    // var baseURL = '';
+    // var socketHost = '';
 
-            configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
-        });
-        getConfigData();
+    // $(document).ready(async function() {
+        // await getProjectInfo();
+        // console.log('configDataUrl inside global',this.configDataUrl)
+        await getConfigData();
+        ImplementSocket();
+    // });
+
+    // async function getProjectInfo() {
+    //     await $.getJSON( "./assets/project-details.json", function( data ) {  
+    //         var configData = data;
+    //         userEmail = data[0].projectOwner;
+    //         projectID = data[0].projectID;
+
+    //         baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+    //         socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+
+    //         configDataUrl = baseURL + "/project-configuration/" + projectID;
+    //     });
+
+        
+    // }
+
+    async function getConfigData () {
+
+        await $.getJSON( configDataUrl , function( data ) {  
+            var configData = data.configData;
+            globalVariables = configData[1].projectSettings[1].GlobalVariables;
+        }); 
+
+        updateGlobalVariables();
     }
 
-    async function getConfigData() {
+    async function updateGlobalVariables () {
+        $('body [id="brandName"]').html(brandName);
+      
+        // Replace all global variables
+        for (var i = 0; i < globalVariables.length; i++){
 
-        await $.getJSON(configDataUrl, function(data) {
-            var configData = data.data[0].configData;
-            // globalVariables = configData[1].projectSettings[1].GlobalVariables;
-            paymentgateways = configData[1].projectSettings[1].PaymentGateways
-            ProjectbaseURL = configData[0].repoSettings[0].BaseURL;
-        });
-        Paymentgateways();
-    }
+            switch(globalVariables[i].variableType){
+                case 'text':
+                    if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                        $('body [data-global-id="' + globalVariables[i].variableId + '"]').text(globalVariables[i].variableValue);
+                    } 
+                    break;
+                case 'image':
+                    var _varId = globalVariables[i].variableId;
+                    var _varValue = globalVariables[i].variableValue;
+                    if(($('body [data-global-id="' + _varId + '"]').length > 0)){
 
+                        $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
 
-    async function Paymentgateways() {
-        var paymentbuttons = ''
-        for (let i = 0; i < paymentgateways.length; i++) {
-            if (paymentgateways[i].checked == true) {
-                paymentbuttons = paymentbuttons + '<button type="button" class="btn" data-id="' + paymentgateways[i].name + '" title="' + paymentgateways[i].description + '">' + paymentgateways[i].gateway + '</button>'
+                        // if(globalVariables[i].isImageUrl == true){
+                        //     $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
+                        // } else {
+                        //     var getImageData = await $.ajax({
+                        //       url:'./assets/' + _varValue,
+                        //       method: 'GET',
+                        //       type: 'HEAD',
+                        //       async: true,
+                        //       error: function(err)
+                        //       {
+                        //         return false;
+                        //       },
+                        //       success: function(res)
+                        //       {
+                        //         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
+                        //         return true;
+                        //       }
+                        //     });
+                        // }
+                      
+                    } 
+                    break;
+                case 'hyperlink':
+                    if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                        $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].text = globalVariables[i].variableTitle;
+                        $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].href = globalVariables[i].variableValue;
+                    }
+                    break; 
+                case 'html':
+                    if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                        $('body [data-global-id="' + globalVariables[i].variableId + '"]').html(globalVariables[i].variableValue);
+                    } 
+                    break;
+                default:
+                    console.log('No Variables Found'); 
             }
+
         }
-        $('paymentgateway').replaceWith(paymentbuttons);
-
     }
-} catch (err) {
-    console.log('Error in Payment Module: ', err);
-}
-// Payment JS Ends
 
+    function ImplementSocket() {
+      var socket = io(socketHost);
+      var client = feathers()
+          .configure(feathers.hooks())
+          .configure(feathers.socketio(socket));
+      var flowzDirectoryService = client.service('project-configuration');
+
+      flowzDirectoryService.on('updated', async function(flowzDirectoryService) {
+        console.log('Configurations Updated:', flowzDirectoryService);
+
+        getConfigData();
+
+        $('body [id="brandName"]').html(brandName);
+            $('body [id="brandLogo"]').attr('src', './assets/brand-logo.png');
+        
+            // Replace all global variables
+            for (var i = 0; i < globalVariables.length; i++){
+
+                switch(globalVariables[i].variableType){
+                    case 'text':
+                        if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                            $('body [data-global-id="' + globalVariables[i].variableId + '"]').text(globalVariables[i].variableValue);
+                        } 
+                        break;
+                    case 'image':
+                        var _varId = globalVariables[i].variableId;
+                        var _varValue = globalVariables[i].variableValue;
+                        if(($('body [data-global-id="' + _varId + '"]').length > 0)){
+
+                            $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
+
+                            // if(globalVariables[i].isImageUrl == true){
+                            //     $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
+                            // } else {
+                            //     var getImageData = await $.ajax({
+                            //     url:'./assets/' + _varValue,
+                            //     method: 'GET',
+                            //     type: 'HEAD',
+                            //     async: true,
+                            //     error: function(err)
+                            //     {
+                            //         return false;
+                            //     },
+                            //     success: function(res)
+                            //     {
+                            //         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
+                            //         return true;
+                            //     }
+                            //     });
+                            // }
+                        
+                        } 
+                        break;
+                    case 'hyperlink':
+                        if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                            $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].text = globalVariables[i].variableTitle;
+                            $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].href = globalVariables[i].variableValue;
+                        }
+                        break; 
+                    case 'html':
+                        if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                            $('body [data-global-id="' + globalVariables[i].variableId + '"]').html(globalVariables[i].variableValue);
+                        } 
+                        break;
+                    default:
+                        console.log('No Variables Found'); 
+                }
+
+            }    
+        
+      });
+    }
+}catch(e){
+    console.log(e)
+}
 
 // CustomSliderComponent
 try {
 
-    let baseURL = '';
-    let socketHost = '';
-    let projectID = '';
-    let userID = '';
+    // let baseURL = '';
+    // let socketHost = '';
+    // let projectID = '';
+    // let userID = '';
 
-    $(document).ready(async function() {
-        await getProjectInfo();
+    // $(document).ready(async function() {
+        // await getProjectInfo();
         await ImplementSocket();
         let $form = document.querySelectorAll('customslidercomponent')
         await setBanners($form)
-    });
+    // });
 
-    async function getProjectInfo() {
-        await $.getJSON("./assets/project-details.json", function(data) {
-            projectID = data[0].projectID;
-            // baseURL = 'http://localhost:3032'
-            // socketHost= 'http://localhost:4032'
-            baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
-            socketHost = 'https://ws.' + data[0].domainkey + ':4032';
-            userID = data[0].UserID
-                // configDataUrl = baseURL + "/project-configuration/" + projectID;
-        });
-    }
+    // async function getProjectInfo() {
+    //     await $.getJSON("./assets/project-details.json", function(data) {
+    //         projectID = data[0].projectID;
+    //         // baseURL = 'http://localhost:3032'
+    //         // socketHost= 'http://localhost:4032'
+    //         baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+    //         socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+    //         userID = data[0].UserID
+    //             // configDataUrl = baseURL + "/project-configuration/" + projectID;
+    //     });
+    // }
 
     function S4() {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -1738,3 +1829,4 @@ try {
 } catch (e) {
     console.log(e)
 }
+});
