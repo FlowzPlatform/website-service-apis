@@ -49,7 +49,7 @@
         "feathers-socketio": "^2.0.0",
         "file-loader": "^1.1.5",
         "flowz-error-handler": "0.0.3",
-        "flowz-subscription": "^0.2.2",
+        "flowz-subscription": "^0.2.7",
         "handlebars": "^4.0.11",
         "helmet": "^3.6.1",
         "html-to-pdf": "^0.1.11",
