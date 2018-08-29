@@ -31,7 +31,7 @@ margin-left: 3%;
 .css-omf3o4 a.e1cc0ogo1 {
     padding: 15px;
     display: inline-block;
-    max-height: 400px;
+    /* max-height: 400px; */
     height: auto;
     margin: 0 0.5% 20px 0.5%;
     max-width: inherit;
@@ -51,6 +51,7 @@ margin-left: 3%;
     border-top: solid 1px #ccc;
     padding: 10px 0;
     width: 100%;
+    border : 0;
 }
 
 .css-omf3o4 a.e1cc0ogo1 article .icon {
@@ -330,3 +331,36 @@ font-size: 11px !important;
 }
 .list-product-view .css-z0rtg8 .icon .product-info {margin-top: 0px}
 .css-z0rtg8 .icon button{margin-top: 19px;}
+
+.card-image{
+top: 50%;
+left: 50%;
+margin: auto;
+max-height: 75%;
+max-width: 99%;
+position: absolute;
+-ms-transform: translateX(-50%) translateY(-50%);
+transform: translateX(-50%) translateY(-50%);
+-webkit-transform: translateX(-50%) translateY(-50%);
+}
+
+.ListView .product-img-blk {
+    float: left;
+    position: relative;
+    height: 280px;
+    background: #fff;
+    text-align: center;
+    display: block;
+    width: 20%;
+}
+
+.ListView .pro-desc {
+    background: #f0f0f0;
+    text-align: left;
+    padding: 15px 0;
+    position: relative;
+    min-height: 110px;
+    width: 80%;
+    float: left;
+    padding-left: 20px;
+}

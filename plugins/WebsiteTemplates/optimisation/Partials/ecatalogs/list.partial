@@ -1,0 +1,81 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+h4 {
+    padding-top: 1%;
+}
+
+button.remove {
+    float: right;
+    margin-top: 1%;
+}
+
+.col-sm-12.col-md-6.col-lg-4.col-xs-12.product-wrap.js-product-box.product--data-id- {
+    cursor: pointer;
+}
+
+.c49533 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
+
+
+
+
+<div class="js-list hide">
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xs-12 product-#ecatalog-id#">
+        <div class="catelogue pro-box">
+            <div class="catelogue-image-wrap pro-image box01"><a href="#ecatalog-image-link#" target="_blank"><img src="#ecatalog-image#" class="img-responsive center-block"/></a>
+            </div>
+            <div class="pro-desc">
+                <div class="pro-button">
+                    <ul>
+                        <li>
+                          <a href="javascript:void(0);" data-image="#ecatalog-image-link#" data-toggle="tooltip" data-placement="top" title="" data-original-title="" class="js-open-modal-ecatalog"><i class="fa fa-eye"></i>View</a>
+                        </li>
+                        <li><a href="#data.pdflink#" target="_blank" class="download-pdf-#ecatalog-id#"><i class="fa fa-download"></i> Download</a>
+                        </li>
+                    </ul>
+                </div><a href="#ecatalog-image-link#" class="item-title">#ecatalog-title#</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="listing"></div>
+<reusecomponent class="c49533">{{> ecatalogs id='viewEcatalogue.partial' }}</reusecomponent>

@@ -1,0 +1,72 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.heading {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+<table class="cart-item-view">
+    <thead>
+        <tr>
+            <th>Special Instructions</th>
+            <th>Imprint Information</th>
+            <th class="table-charge">Additional Charges</th>
+            <th class="border-right-none">Charges</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>#data.special_instruction#</p>
+            </td>
+            <td class="estimate-detail js_imprint_info">
+                <div class="estimate-tag-block js-imprint-information">
+                    <div class="estimate-row">Print Position: <span>#data.print_position#</span>
+                    </div>
+                    <div class="estimate-row">Imprint Method: <span>#data.imprint_method#</span>
+                    </div>
+                    <div class="estimate-row">#data.colours#</div>
+                    <div class="estimate-row">#data.sendmail#</div>
+                    <div class="estimate-row">#data.artwork#</div>
+                    <div class="estimate-row">#data.artwork_text#</div>
+                </div>
+            </td>
+            <td class="estimate-detail"><div class="estimate-tag-block"><div class="estimate-row">#data.additional_charges_list#</div></div></td>
+            <td class="border-right-none">#data.charges#</td>
+        </tr>
+    </tbody>
+</table>

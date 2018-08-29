@@ -8,7 +8,7 @@
 
 .header-search-col {
     width: 40%;
-    margin-top: 27px;
+    /* margin-top: 27px; */
 }
 .header-search-col form input[type="text"] {
     width: 72%;

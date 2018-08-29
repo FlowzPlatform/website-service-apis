@@ -77,8 +77,73 @@ if(pid != null) {
       });
       return tmp;
     }();
-  // var get_product_details = getProductDetailById(pid)
+    // var get_product_details = getProductDetailById(pid)
 
+    
+    // RECENTY VIEWED PRODUCTS
+    let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
+    let recentViewedProducts = [];
+    if (localStorage.getItem(recentProductsName) != null) {
+        recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
+    }
+    
+    if(!(recentViewedProducts.includes(pid))) {
+        if(recentViewedProducts.length > 5) {
+            recentViewedProducts.splice(0, 1);
+        }
+        recentViewedProducts.push(pid);
+    }
+    localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
+
+    recentlyViewedProducts(recentViewedProducts);
+}
+
+function recentlyViewedProducts(recentViewedProducts) {
+    if(recentViewedProducts != null && recentViewedProducts.length > 0)
+    {
+        let recentLoop = recentViewedProducts;
+        let cIndex = recentLoop.indexOf(pid);
+        if (cIndex > -1) {
+            recentLoop.splice(cIndex, 1);
+        }
+
+        let recentProductHtml = "";
+        $.each( recentLoop, function( key, productId ) {
+            $.ajax({
+                type: 'GET',
+                url: project_settings.product_api_url+"?_id="+productId+"&source=default_image,product_id,sku,product_name,currency,min_price,price_1,images",
+                async: false,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
+                },
+                dataType: 'json',
+                success: function (data) {
+                    let productData = data.hits.hits[0]._source;
+                    if(!isEmpty(productData))
+                    {
+                        let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                        if(productData.images != undefined){
+                            productImage = productData.images[0].images[0].secure_url
+                        }
+                        let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
+                        let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
+
+                        recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block" alt=""> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
+                    }
+                    else {
+                        let AIndex = recentLoop.indexOf(productId);
+                        if (AIndex > -1) {
+                            recentLoop.splice(AIndex, 1);
+                        }
+                        localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
+                    }
+                }
+            });
+        });
+
+        $('#owl-carousel-recently-products').html(recentProductHtml);
+        $('.js-recent-viewed-products').removeClass('hide');
+    }
 }
 
 showPageAjaxLoading()
@@ -985,7 +1050,7 @@ $(document).ready( async function(){
               $('#modal-table').addClass('request-info-popup-modal');
               $("#modal-table").find(".modal-title").html('Your Information')
               let guestUserHtml = $(".js_guest_info").html()
-              $(".js_guest_info").html('')
+            //   $(".js_guest_info").html('')
               $(".js_add_html").html(guestUserHtml)
               $('#modal-table').modal('show');
               // window.location = "login.html";
@@ -1185,7 +1250,7 @@ $(document).ready( async function(){
 
         if(dataAttributes.maxImprintColor > 0 && dataAttributes.maxImprintColor != '') {
             for(let i=1;i<=dataAttributes.maxImprintColor;i++){
-                imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+'Color</a></li>'
+                imprintColor +=  '<li data-value="'+i+'" data-position="'+dataAttributes.printpos+'"><a href="javascript:void(0)">'+i+' Color</a></li>'
             }
             parentObj.find(".imprint-color-select").html(productHtmlPrintPosColor);
             parentObj.find(".js_set_selected_value_col").html(imprintColor);
@@ -2990,6 +3055,7 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     let qtyShow = "";
     let totalQty = 0; //summary
     let totalPrice = 0.00; //summary
+    
     $('.js_color_checkbox:checked').each(function() {
         let colorName = $(this).val();
         let color_name = $(this).attr('id');
@@ -3001,19 +3067,7 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
 
         totalQty = totalQty + parseFloat(qty);
     });
-    $('#js_product_summary_qty').html(qtyShow);
-    $(".total_quantity").html(totalQty); //summary
-
-    $('.js_shipping_qty_box_main .js_request_quote_shipping_qty_box').each(function(i) {
-    	if(selectedShippingType == 'standard')
-    	{
-            let colorName = $(this).closest('.js_rq_shipping_quantity').data('color-id');
-            $(this).val(colors_qty[colorName]);
-            // Trigger change event for updating shipping details
-            $(this).trigger('change');
-    	}
-    });
-
+    
     //summary for total price
     var productDetails = get_product_details;
     if(productDetails.pricing != undefined){
@@ -3037,21 +3091,44 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
             }
         });
     }
-    $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
-    
-    //summary for shipping charges
-    let shipp_charge = 0.00;
-    let setup_charge = 0.00;
-    if($("#js-product-summary-container").length > 0)
+    if(totalPrice === 0)
     {
-        if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
-            shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+        let setActivetab = activetab.replace(/\#/g, '');
+        $("#"+setActivetab+"-Quantity-block").find('.js-section-errors').remove();   
+        $("#"+setActivetab+"-Quantity-block").append('<div class="red js-section-errors">Quantity should be equal to or greater than the minimum quantity.</div>');
+    }
+    else{
+        let setActivetab = activetab.replace(/\#/g, '');
+        $("#"+setActivetab+"-Quantity-block").find('.js-section-errors').remove(); 
+        $('#js_product_summary_qty').html(qtyShow);
+        $(".total_quantity").html(totalQty); //summary
+    
+        $('.js_shipping_qty_box_main .js_request_quote_shipping_qty_box').each(function(i) {
+            if(selectedShippingType == 'standard')
+            {
+                let colorName = $(this).closest('.js_rq_shipping_quantity').data('color-id');
+                $(this).val(colors_qty[colorName]);
+                // Trigger change event for updating shipping details
+                $(this).trigger('change');
+            }
+        });
+        
+        $("#js_product_summary_charges .total_price").html('$'+parseFloat(totalPrice).toFixed(project_settings.price_decimal));
+        
+        //summary for shipping charges
+        let shipp_charge = 0.00;
+        let setup_charge = 0.00;
+        if($("#js-product-summary-container").length > 0)
+        {
+            if($('.js-shipping-charge-summary').find('span').html() != '$0.00') {
+                shipp_charge = $('.js-shipping-charge-summary').find('span').html().replace('$','');
+            }
+            if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
+                setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
+            }
+            let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
+            $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
         }
-        if($('.js-setup-charge-summary').find('span').html() != '$0.00') {
-            setup_charge = $('.js-setup-charge-summary').find('span').html().replace('$','');
-        }
-        let final_price = parseFloat(totalPrice) + parseFloat(shipp_charge) + parseFloat(setup_charge);
-        $("#js_product_summary_charges .final_price").html('$'+parseFloat(final_price).toFixed(project_settings.price_decimal));
     }
 });
 

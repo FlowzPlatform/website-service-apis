@@ -1,0 +1,246 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#c53481 {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#c53501 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    width: 600px;
+    height: 426px;
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    max-width: none;
+    max-height: none;
+}
+
+#c53505 {
+    max-width: 100px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+}
+
+#c53510 {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+    height: 100px;
+}
+
+#c53515 {
+    width: auto;
+    position: relative;
+    transition-duration: 0s;
+    transform: translate3d(0px, -107px, 0px);
+}
+
+#c53520 {
+    float: none;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    position: relative;
+    width: 95px;
+    margin-bottom: 7px;
+}
+
+#c53543 {
+    float: none;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    position: relative;
+    width: 95px;
+    margin-bottom: 7px;
+}
+
+#c53561 {
+    float: none;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    position: relative;
+    width: 95px;
+    margin-bottom: 7px;
+}
+
+#image-test {
+    display: none;
+}
+</style>
+
+
+
+
+<div class="product-gallery-view ob-product-gallery">
+    <aside class="quick-view-left">
+        <div class="product-big-image">
+            <div class="zoom product-gallery" id="c53481">
+                <img class="img-responsive virt-img" id="product_img" alt="Product image"
+                />
+                <div class="zoom-col"><i class="fa"></i>
+                </div>
+            </div>
+        </div>
+        <div class="product-big-image-thumbnails js-image-gallery" id="c53515">
+            <div class="slide" id="c53543"><a class="product-thumb-img-anchar" href="javascript:void(0);"><img alt="product-image"/></a>
+                <input
+                type="hidden" id="var_img_clr_id" value="clr_" />
+            </div>
+        </div>
+        <input type="hidden" id="ob-virtual-product-status" value="0" />
+        <div id="image-test"></div>
+        <div class="clearfix"></div>
+    </aside>
+    <div class="clearfix"></div>
+
+    <reusecomponent class="c9910">{{> productDetail id='productDetailAction.partial' }}</reusecomponent>
+
+    <div class="product-section-box">
+        <div class="product-section-box" id="js-product-summary-container">
+            <div class="panel-group hide" id="Quantity-quote" role="tablist" aria-multiselectable="true">
+                <div class="panel-heading" role="tab">
+                    <h2 class="panel-title heading-block no-tag">Summary</h2>
+                    <a class="caret-icon js-add-class tab-quantity" data-toggle="collapse" data-parent="#Quantity-quote" href="#Quantity-quote-block" aria-expanded="true"><i class="caret-icon"></i></a>
+                </div>
+                <div id="Quantity-quote-block" class="panel-collapse collapse in" role="tabpanel">
+                    <div class="panel-body">
+                        <div class="estimate-detail" id="js_product_summary">
+                            <div class="estimate-tag-block js_summary_qty hide">
+                                <div class="estimate-row heading"><span>Quantity</span></div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="product-color-price-table" id="js_product_summary_qty"></table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="estimate-tag-block js_print_postion_location hide"></div>
+                            <div class="estimate-tag-block estimate-address-block js_summary_shipping_type hide">
+                                <div class="estimate-row heading"><span>Shipping Method</span></div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="estimate-row ship_type">Shipping Type : <span></span></div>
+                                        <div class="js_shipp_address_data hide"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="js_special_inst estimate-detail hide">
+                            <div class="estimate-tag-block">
+                                <div class="estimate-row heading"><span>Special Instructions</span></div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="js_summary_instruction" style="white-space: pre-wrap;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jsTotal estimate-detail hide">
+                            <div class="js_product_summary_charges" id="js_product_summary_charges">
+                                <div class="estimate-tag-block js-additional-charges-summary hide">
+                                    <div class="estimate-row heading">
+                                        <span>Additional Charges</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="estimate-row charge_type js-shipping-charge-summary hide">
+                                                Shipping Charge(s): <span class="text-uppercase">$0.00</span>
+                                            </div>
+                                            <div class="estimate-row charge_type js-setup-charge-summary hide">
+                                                Setup Charge: <span class="text-uppercase">$0.00</span>
+                                            </div>
+                                            <div class="estimate-row charge_type js-total-tax-in-summary hide">
+                                                Total Tax: <span class="text-uppercase">$0.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="estimate-total-block hide">
+                                    <div class="row">
+                                        <div class="col-lg-7 col-md-7 col-sm-7">
+                                            <table class="estimate-sub-table responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Quantity</th>
+                                                        <th>Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="total_quantity">0</td>
+                                                        <td class="total_price">$0.00</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-5 col-md-5 col-sm-5 estimate-sub-totle">
+                                            <h4>Total Price: </h4>
+                                            <h5 class="final_price">$0.00</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

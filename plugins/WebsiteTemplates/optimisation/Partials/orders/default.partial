@@ -1,0 +1,49 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+</style>
+
+
+<table>
+    <tr class="js-order-info">
+        <td>#data.order_id#</td>
+        <td>#data.order_date#</td>
+        <td>Submit Quote</td>
+        <td>#data.total_quantity#</td>
+        <td>-</td>
+        <td class="unit-price text-right">$#data.grand_total#</td>
+        <td class="my-track-all-btn">
+            <div class="fa-hover"><a class="js_preview_order" data-toggle="tooltip" data-placement="top"
+                data-original-title="View"><i class="fa fa-eye"></i></a>
+            </div>
+        </td>
+    </tr>
+</table>
