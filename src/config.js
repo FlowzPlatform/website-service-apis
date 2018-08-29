@@ -9,5 +9,9 @@ module.exports = {
     // mailSendApi: "http://api.flowzcluster.tk/sendmail/email/send",
     mailSendApi: "http://api."+process.env.domainKey+"/sendmail/email/send",
     // gitLabToken: 'eQ1-V9hyB9PN_XYnYfkV'
-    gitLabToken: 'kR69TpDzkUhqE-u_s-ax'
+    gitLabToken: 'kR69TpDzkUhqE-u_s-ax',
+
+    LabUrl: 'https://gitlab.com',
+    LabUsername: 'gkumar9',
+    LabToken: 'dZSt9B_--KLwdNRo7-gL'
 }

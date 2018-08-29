@@ -71,22 +71,24 @@ function before_remove_project(hook) {
 
 function after_send_repoToGit(hook) {
     return new Promise((resolve, reject) => {
-        let nameOfRepo = hook.params.query.nameOfRepo;
+        let nameOfRepo = hook.params.query.nameOfRepo ;
         let userDetailId = hook.params.query.userDetailId;
         // let username = 'fsaiyed';
         var options = {
             method: 'POST',
-            uri: config.gitLabUrl + '/api/v4/projects',
+            uri: config.LabUrl + '/api/v4/projects',
             body: {
                 name: nameOfRepo,
                 visibility: 'public'
             },
             headers: {
-                'PRIVATE-TOKEN': config.gitLabToken
+                'PRIVATE-TOKEN': config.LabToken
             },
             json: true
         };
-
+        console.log('options::::::::::::::::',options)
+        console.log('$$$$$$$$$$$$$$$$$$$',config.path + userDetailId + '/' + nameOfRepo + '/')
+        console.log('git remote add origin ' + config.LabUrl + '/' + config.LabUsername + '/' + nameOfRepo + '.git')
         rp(options)
             .then(function(repos) {
                 if (!shell.which('git')) {
@@ -96,7 +98,7 @@ function after_send_repoToGit(hook) {
                     shell.cd(config.path + userDetailId + '/' + nameOfRepo + '/');
 
                     shell.exec('git init');
-                    shell.exec('git remote add origin ' + config.gitLabUrl + '/' + config.gitLabUsername + '/' + nameOfRepo + '.git');
+                    shell.exec('git remote add origin ' + config.LabUrl + '/' + config.LabUsername + '/' + nameOfRepo + '.git');
                     shell.exec('git remote -v');
 
                     shell.exec('git status');
@@ -104,38 +106,6 @@ function after_send_repoToGit(hook) {
                     shell.exec('git add .');
                     shell.exec('git commit -m "Initial commit"');
                     shell.exec('git push -u origin master -f');
-
-                    if (process.env.NODE_ENV != 'development') {
-
-                        if (process.env.dnsServer1 != undefined && process.env.dnsServer1 != '') {
-                            if (process.env.webrootServer == 'DEV') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                            } else if (process.env.webrootServer == 'QA') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                            } else if (process.env.webrootServer == 'PROD') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                            } else if (process.env.webrootServer == 'STAGING') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzdigital.com", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer1 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                            } else {
-                                console.log('No webrootServer server specified')
-                            }
-                        }
-
-                        if (process.env.dnsServer2 != undefined && process.env.dnsServer2 != '') {
-                            if (process.env.webrootServer == 'DEV') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                            } else if (process.env.webrootServer == 'QA') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzqa.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                            } else if (process.env.webrootServer == 'PROD') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzcluster.tk", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                            } else if (process.env.webrootServer == 'STAGING') {
-                                shell.exec('curl -i -X POST -d \'[ "flowzdigital.com", [ { "ttl" : "3600", "label" : "' + userDetailId + '.' + nameOfRepo + '", "class" : "IN", "type" : "A", "rdata" : "' + process.env.serverARecord + '" } ] ]\' -H \'X-Auth-Username: admin@flowzdigital.com\' -H \'X-Auth-Password: 123456789\' \'http://' + process.env.dnsServer2 + '/pretty/atomiadns.json/SetDnsRecords\'');
-                            } else {
-                                console.log('No webrootServer server specified')
-                            }
-                        }
-
-                    }
 
                 }
 
@@ -272,9 +242,9 @@ function after_remove_project(hook) {
 
         var options = {
             method: 'DELETE',
-            uri: config.gitLabUrl + '/api/v4/projects/' + hook.id,
+            uri: config.LabUrl + '/api/v4/projects/' + hook.id,
             headers: {
-                'PRIVATE-TOKEN': config.gitLabToken
+                'PRIVATE-TOKEN': config.LabToken
             },
             json: true
         };
