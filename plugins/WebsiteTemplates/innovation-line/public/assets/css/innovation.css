@@ -367,7 +367,17 @@ label.control-label.enter-captcha {font-family: "Roboto", sans-serif;font-size: 
     -webkit-transform:none;
 }
 }
+.print-product-detail .quantity-table .quantity-table-title,
+.print-product-detail .quantity-table .quantity-table-disc {width:100%}
+.print-product-detail .quantity-table-title .table-heading,
+.print-product-detail .quantity-table .quantity-table-disc .table-heading,
+.print-product-detail .quantity-table-title .table-content, 
+.print-product-detail .quantity-table .table-content {width:49%; float:left;line-height: 25px;min-height: 32px;}
+.print-product-detail .owl-carousel .owl-wrapper {width: 100% !important;}
+.print-product-detail .owl-carousel .owl-item {width: 100% !important;}
 
+/* .product-print-shipping .col-xs-6,.print-product-detail .col-xs-6,.print-close,.print-btn-product{width:50%!important}
+.print-product-detail span{padding-bottom:10px} */
 
  @media screen and (max-width: 3000px) and (min-width: 1200px) {
 /*     .container {width: 1200px;}*/
