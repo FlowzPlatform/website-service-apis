@@ -61,6 +61,11 @@ body {
             </li>
             <li><a href="virtualsample.html"><i class="strip order-strip"></i>Virtual Sample</a></li>
             <li><a href="javascript:void(0);" id="download_image" ><i class="strip download-img-strip"></i>Download Image</a></li>
+            <li class="mobile-print-btn">
+                <a href="javascript:void(0)" class="js-product-detail-print-product"><i class="strip print-strip"></i>
+                    Print Product
+			    </a>
+            </li>
             <li><a href="javascript:void(0);" id="js-show_play_video" ><i class="strip play-strip"></i>Play Video</a></li>
             <li><a href="orderSample.html?pid=#data.productId#" id="order_sample"><i class="strip order-strip"></i>Order Sample</a></li>
             <li><a href="javascript:void(0);" id="js-email-product" data-toggle="modal" data-target="#emailProduct"><i class="strip email-strip"></i>Email Product</a></li>
@@ -123,6 +128,95 @@ body {
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div id="print-product" class="hide">
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 print-logo">
+            <img src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png" alt="">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+            <h3>#data.product_name#</h3>
+            <div class="print-main-img"><img src="#data.product_img#" alt="Product image" class="img-responsive"></div>
+            <div class="print-total-thumb"></div>
+            <div class="clearfix"></div>
+            <div class="print-product-desc">
+                <h3 class="print-sub-title">Description</h3>
+                <p>#data.description#</p>
+            </div>
+            <div class="clearfix"></div>
+            <div class="print-product-detail">
+                <h3 class="print-sub-title">Products Details</h3>
+                <div class="row">
+                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>Colours :</label></div>
+                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6"><span>#data.colors#</span></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="product-print-shipping">
+                <h3 class="print-sub-title">Production And Shipping</h3>
+                <div class="row">
+                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>PRODUCTION DAYS:</label></div>
+                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6">
+                    <span> #data.production_days# </span>
+                </div>
+                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>SETUP CHARGE:</label></div>
+                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6">
+                    <span> #data.setup_charge# </span>
+                </div>
+                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>FOB:</label></div>
+                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6">
+                    <span> #data.fob# </span>
+                </div>
+                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>QTY PER CARTON:</label></div>
+                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6">
+                    <span> #data.qty_per_carton# </span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+            <div class="skuprice">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 print-code">Item Number :<span>#data.sku#</span></div>
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="product-print-price">
+                <div class="row">
+                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-6"></div>
+                </div>
+                <div class="product-section-box">
+                <h2 class="heading-block no-tag">   Quantity and Price </h2>
+                <div class="quantity-table">
+                    <div class="quantity-table-title">
+                        <div class="table-heading js-product-price-unit" data-product-price-unit="each">Quantity </div>
+                        <div class="table-content">Price</div>
+                    </div>
+                    <div class="quantity-table-disc">
+                        <div class="quantity-table-col owl-theme">
+                            #data.quantity_and_price#
+                        </div>    
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 print-btn-product">
+            <div class="print-buttom-border"></div>
+            <a href="javascript:void(0)" class="btn-default js-print-it">Print </a>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 print-close">
+            <div class="print-buttom-border"></div>
+            <a class="btn-default" href="javascript:void(0)" data-toggle="modal" aria-label="Close" data-dismiss="modal"> Close </a>
         </div>
     </div>
 </div>

@@ -11,7 +11,7 @@ await $.getJSON( "./assets/project-details.json", function( data ) {
     var configData = data;
     userEmail = data[0].projectOwner;
     projectID = data[0].projectID;
-
+    userID = data[0].UserID;
     baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
     socketHost = 'https://ws.' + data[0].domainkey + ':4032';
 

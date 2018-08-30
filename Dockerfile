@@ -28,6 +28,7 @@ WORKDIR /opt/app
 ADD . /opt/app
 RUN npm install
 
+
 # ssl certificate add
 ADD cert /etc/ssl/cert
 ADD privkey /etc/ssl/privkey
@@ -60,6 +61,7 @@ RUN sed -i 's/# gzip_types/gzip_types/' /etc/nginx/nginx.conf
 
 WORKDIR /var/www/html
 RUN npm install
+RUN apt-get install -y default-jre
 
 WORKDIR /opt/app
 CMD service nginx start && npm start
