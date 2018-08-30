@@ -330,12 +330,9 @@ ul#menu{
                             "Authorization": response.data.logintoken
                         }
                     }).then(async(resp) => {
-                        // console.log('user detail response',resp);
                         await axios.get(baseURL + "/website-users?websiteId=" + projectID + "&userEmail=" + $(".user_email").val(), {})
                         .then(async(res) => {
-                            // console.log('website user response',res);
                             if (res.data.data.length > 0) {
-                                console.log("User already exist")
                                 if (res.data.data[0].isActive == true && res.data.data[0].isDeleted == false) {
                                   loginFlag = true;
                                 }
@@ -348,7 +345,6 @@ ul#menu{
                                   }, 5000)
                                 }
                             } else {
-                                console.log("New User");
                                 let userRole;
                                 let name;
                                 if (adminEmail == resp.data.data.email) {
@@ -379,7 +375,6 @@ ul#menu{
                         }).catch((e) => {
                             console.log(e)
                         });
-                        console.log('loginFlag',loginFlag)
                         if (loginFlag) {
                           $.cookie("user_auth_token", response.data.logintoken, {
                               path: window.location.hostname

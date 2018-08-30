@@ -11,7 +11,7 @@ $('.user-signup').on('click',function() {
 	        baseURL = data[0].builder_service_api;
 	    })
 	},1000);
-	
+
 	var fullname = $('.fullname').val().trim();
 	var useremail = $('.useremail').val().trim();
 	var userpass  = $('.userpass').val().trim();
@@ -56,17 +56,14 @@ $('.user-signup').on('click',function() {
 						'type': "GET",
 						'url': baseURL + '/website-users?websiteId='+projectID+'&userEmail='+useremail,
 						'success': function (res) {
-								if (res.data.length > 0) {
-                    console.log("User already exist")
-								} else {
-                    console.log("New User");
+								if (res.data.length == 0) {
 		                axios({
 										  method: 'post',
 										  url: baseURL + '/website-users',
 										  data: signUpJSON
 										})
 										.then(function(res) {
-											console.log('sucessfully entered in website user')
+											console.log('created new entry')
 										})
 								}
 						}
