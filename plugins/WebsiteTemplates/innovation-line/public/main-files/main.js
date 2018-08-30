@@ -1387,6 +1387,12 @@ function showQuickQuoteList()
                           await deleteItemById(project_settings.shopping_api_url+'/'+wishlist_values[item].id);
                         }
                       }
+                      else{
+                        if(typeof wishlist_values[item] != "undefined")
+                        {
+                          deleteFromLocal(4,wishlist_values[item].id)
+                        }
+                      }
                     }
 
                     if($('#myQuickQuoteList .listing .product-'+prodId).length == 0)
@@ -1663,6 +1669,12 @@ function showWishList(recetAdded=false)
                           await deleteItemById(project_settings.shopping_api_url+'/'+wishlist_values[item].id);
                         }
                       }
+                      else{
+                        if(typeof wishlist_values[item] != "undefined")
+                        {
+                          deleteFromLocal(1,wishlist_values[item].id)
+                        }
+                      }
                     }
                     if(recetAdded)
                     {
@@ -1926,6 +1938,12 @@ function showCompareList(recetAdded=false)
                         if(typeof compare_values[item] != "undefined")
                         {
                           await deleteItemById(project_settings.shopping_api_url+'/'+compare_values[item].id);
+                        }
+                      }
+                      else{
+                        if(typeof compare_values[item] != "undefined")
+                        {
+                          deleteFromLocal(3,compare_values[item].id)
                         }
                       }
                       

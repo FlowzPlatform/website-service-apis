@@ -3,6 +3,15 @@ if(user_id != null) {
 }
 
 $('.user-signup').on('click',function() {
+	let projectID;
+	let baseURL;
+	setTimeout(() => {
+		$.getJSON("./assets/project-details.json", function(data) {
+	        projectID = data[0].projectID;
+	        baseURL = data[0].builder_service_api;
+	    })
+	},1000)
+
 	var fullname = $('.fullname').val().trim();
 	var useremail = $('.useremail').val().trim();
 	var userpass  = $('.userpass').val().trim();
@@ -24,6 +33,14 @@ $('.user-signup').on('click',function() {
 		if(!$( ".error-message" ).hasClass( "hide" )) {
 			$('.error-message').addClass('hide');
 		}
+		let signUpJSON = {};
+		signUpJSON['isActive'] = true;
+  	signUpJSON['isDeleted'] = false;
+  	signUpJSON['websiteId'] = projectID;
+  	signUpJSON['userRole'] = 'registered';
+		signUpJSON['userEmail'] = useremail;
+		signUpJSON['userName'] = fullname;
+
 		var userDetails = {"password":userpass ,"email":useremail ,"fullname":fullname};
 		$.ajax({
 			type: 'POST',
@@ -34,6 +51,23 @@ $('.user-signup').on('click',function() {
 			headers: { 'Content-Type': 'application/json' },
 			success: function (result) {
 				showSuccessMessage(result.message);
+				$.ajax({
+						'async': false,
+						'type': "GET",
+						'url': baseURL + '/website-users?websiteId='+projectID+'&userEmail='+useremail,
+						'success': function (res) {
+								if (res.data.length == 0) {
+		                axios({
+										  method: 'post',
+										  url: baseURL + '/website-users',
+										  data: signUpJSON
+										})
+										.then(function(res) {
+											console.log('created new entry')
+										})
+								}
+						}
+				});
 				window.location = "login.html";
 			},
 			error: function(err) {
