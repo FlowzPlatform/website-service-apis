@@ -80,17 +80,23 @@ button.remove {
 
 
 <div class="js-list hide">
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap js-product-box product-#flyer-id#">
-        <div class="pro-box">
-            <div class="pro-image box01">
-                <div class="product-img-blk">
-                    <img class="img-responsive center-block" src="#flyer-image#"/>
-                </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xs-12 js-product-box product-#flyer-id#">
+        
+        <div class="catelogue pro-box">
+            <div class="catelogue-image-wrap pro-image box01"><a href="#flyer-image-link#" target="_blank"><img src="#flyer-image#" class="img-responsive center-block"/></a>
             </div>
             <div class="pro-desc">
-                <div>#flyer-title#</div>
-                <br /><a class="item-title js-product-title" href="#flyer-image-link#" target="_blank">Download Image</a> | <a class="item-title js-product-title" href="#flyer-pdf-link#" target="_blank">Download PDF</a></div>
-                <div class="clearfix"></div>
+                <div class="pro-button flyer_button">
+                    <ul>
+                        <li>
+                            <a class="" href="#flyer-pdf-link#" target="_blank"><i class="fa fa-download"></i> Download Flyer</a>
+                        </li>
+                        <li>
+                          <a class="js_client_friendly_pdf" href="#flyer-client_friendly-link#" target="_blank"><i class="fa fa-download"></i> Download Client Friendly</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#flyer-image-link#" class="item-title" target="_blank">#flyer-title#</a>
             </div>
             <div class="clearfix"></div>
         </div>
