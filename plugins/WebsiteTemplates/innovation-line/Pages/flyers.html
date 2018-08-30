@@ -58,22 +58,14 @@ body {
 
 
 
-<div id="myFlyers" class="container">
-    <div class="innerpage row account-innerpage">
-        <div class="col-sm-8 col-md-9 col-lg-12 col-xs-12">
-            <div class="ob-myaccount-flyers">
-                <div class="myaccount-title">
-                    <h1 class="main-title">Flyers</h1>
-                </div>
-            </div>
-            <div class="myaccount-flyers">
-                <div class="product-main-list-block">
-                    <div class="tab-pane active">
-                        <div id="product-list-container" class="ob-product-grid js-product-grid">
-                            <div class="row">
-                                <reusecomponent class="c67694">{{> flyers id='list.partial' }}</reusecomponent>
-                            </div>
-                        </div>
+<div id="myFlyers" class="container main">
+    <div class="innerpage row">
+        <div class="ob-catalog-block">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <h1 class="catalogue-title"><span>Flyers</span></h1>
+                    <div id="product-list-container" class="cat-pro-list">
+                        <reusecomponent class="c67694">{{> flyers id='list.partial' }}</reusecomponent>
                     </div>
                 </div>
             </div>

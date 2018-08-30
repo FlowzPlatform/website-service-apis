@@ -7,12 +7,39 @@ body {
     margin: 0;
 }
 
+#iebmeuo {
+    width: auto;
+    height: 30px;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+:root {
+    margin-top: 0px;
+}
+
 :root {
     margin-top: 0px;
 }
 
 .clearfix {
     clear: both;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 .gjs-am-file-uploader > form {
@@ -30,6 +57,10 @@ body {
     margin-left: 0px;
 }
 
+.news-box {
+    display: block !important;
+}
+
 .newslatter {
     margin-top: 10px !important;
     margin-right: 25px !important;
@@ -37,9 +68,6 @@ body {
     margin-left: 0px !important;
 }
 
-.news-box {
-    display: block !important;
-}
 .virtual-button {
     background: #666;
     text-align: center;
@@ -60,15 +88,54 @@ body {
     color: #fff !important;
 }
 
+.detail-popup-block .virtual-button:hover {
+    background-image: initial !important;
+    background-position-x: initial !important;
+    background-position-y: initial !important;
+    background-size: initial !important;
+    background-repeat-x: initial !important;
+    background-repeat-y: initial !important;
+    background-attachment: initial !important;
+    background-origin: initial !important;
+    background-clip: initial !important;
+    background-color: rgb(197, 19, 39) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.btn-success:active:hover {
+    color: rgb(255, 255, 255);
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(197, 19, 39);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(197, 19, 39);
+    border-right-color: rgb(197, 19, 39);
+    border-bottom-color: rgb(197, 19, 39);
+    border-left-color: rgb(197, 19, 39);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
 .btn-success {
     color: #fff;
     background-color: #5d5c5c;
     border-color: #5d5c5c;
-}
-.btn-success:active:hover{
-    color: #fff;
-    background: #c51327;
-    border: 1px #c51327 solid;
 }
 .btn-success:hover{
     color: #fff;
@@ -81,79 +148,94 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            	<div class="common-title">
-                	<h3 class="footer-heading">WEB TOOLS</h3>
+                <div class="common-title">
+                    <h3 class="footer-heading">WEB TOOLS</h3>
                 </div>
                 <div class="clearfix"></div>
                 <ul class="list-unstyled footer-link">
-                    <li><a href="javascript:void(0)">2 Day Rush Guidelines</a></li>
-                    <li><a href="javascript:void(0)">Turbo24 (24 Hour Rush) Guidelines</a></li>
-                    <li><a href="javascript:void(0)">Art Templates</a></li>
-                    <li><a href="javascript:void(0)">Custom Acrylic Awards</a></li>
-
-
-                    <li><a href="javascript:void(0)">Image Library</a></li>
-                    <li><a href="javascript:void(0)">Product Data</a></li>
-                    <li><a href="javascript:void(0)">Return Claims</a></li>
-                    <li><a href="javascript:void(0)">Video Library</a></li>
-
+                    <li><a href="http://innovation-line.flowzdigital.com/2DayRush.html">2 Day Rush Guidelines</a>
+                    </li>
+                    <li><a href="http://innovation-line.flowzdigital.com/24rushguidelines.html">Turbo24 (24 Hour Rush) Guidelines</a>
+                    </li>
+                    <li><a href="javascript:void(0)">Art Templates</a>
+                    </li>
+                    <li><a href="javascript:void(0)">Custom Acrylic Awards</a>
+                    </li>
+                    <li><a href="javascript:void(0)">Image Library</a>
+                    </li>
+                    <li><a href="javascript:void(0)">Product Data</a>
+                    </li>
+                    <li><a href="http://innovation-line.flowzdigital.com/returnclaim.html">Return Claims</a>
+                    </li>
+                    <li><a href="javascript:void(0)">Video Library</a>
+                    </li>
                 </ul>
             </div>
-            <div class="col-lg-3  col-md-3  col-sm-3 col-xs-12">
-            	<div class="common-title">
-                	<h3 class="footer-heading">ONLINE RESOURCES</h3>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="common-title">
+                    <h3 class="footer-heading">ONLINE RESOURCES</h3>
                 </div>
                 <div class="clearfix"></div>
                 <ul class="list-unstyled footer-link">
-
-                    <li><a href="javascript:void(0);">Catalog</a></li>
-                    <li><a href="javascript:void(0);">California Tax Requirements</a></li>
-                    <li><a href="javascript:void(0);">General Ordering Information</a></li>
-                    <li><a href="javascript:void(0);">Press Releases</a></li>
-                    <li><a href="javascript:void(0);">Corporate Safety Program</a></li>
-                    <li><a href="javascript:void(0);">Innovation Line Social Compliance Audit</a></li>
-                    <li><a href="javascript:void(0);">Code Of Coduct</a></li>
-                    <li><a href="javascript:void(0);">FDA Registration</a></li>
-
-                    <li><a href="javascript:void(0);">Ink Compliance</a></li>
-                    <li><a href="javascript:void(0);">MSDS</a></li>
-                    <li><a href="javascript:void(0);">Power Bank FAQ's</a></li>
-
+                    <li><a href="javascript:void(0);">Catalog</a>
+                    </li>
+                    <li><a href="http://innovation-line.flowzdigital.com/californiataxrequire.html">California Tax Requirements</a>
+                    </li>
+                    <li><a href="javascript:void(0);">General Ordering Information</a>
+                    </li>
+                    <li><a href="javascript:void(0);">Press Releases</a>
+                    </li>
+                    <li><a href="javascript:void(0);">Corporate Safety Program</a>
+                    </li>
+                    <li><a href="javascript:void(0);">Innovation Line Social Compliance Audit</a>
+                    </li>
+                    <li><a href="http://innovation-line.flowzdigital.com/codeofconduct.html">Code Of Conduct</a>
+                    </li>
+                    <li><a href="javascript:void(0);">FDA Registration</a>
+                    </li>
+                    <li><a href="javascript:void(0);">Ink Compliance</a>
+                    </li>
+                    <li><a href="javascript:void(0);">MSDS</a>
+                    </li>
+                    <li><a href="http://innovation-line.flowzdigital.com/powerbankfaqs.html">Power Bank FAQ's</a>
+                    </li>
                 </ul>
             </div>
-            <div class="col-lg-3  col-md-3  col-sm-3 col-xs-12">
-            	<div class="common-title">
-                	<h3 class="footer-heading">Contact Details</h3>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="common-title">
+                    <h3 class="footer-heading">Contact Details</h3>
                 </div>
                 <div class="clearfix"></div>
                 <ul class="footer-contact-detail footer-link">
-                        <li><a href="javascript:void(0);">About Us</a></li>
-                        <li><a href="javascript:void(0);">Contact Us</a></li>
+                    <li><a href="http://innovation-line.flowzdigital.com/aboutus.html">About Us</a>
+                    </li>
+                    <li><a href="javascript:void(0);">Contact Us</a>
+                    </li>
                 </ul>
             </div>
-            <div class="col-lg-3  col-md-3  col-sm-3 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="common-title">
                     <h3 class="footer-heading">Newsletter</h3>
                 </div>
-                <form class="form-inline news-box" id="sunscribe_email"
-                metod="post" onsubmit="return submitNewsLetterForm();">
+                <form id="sunscribe_email" metod="post" onsubmit="return submitNewsLetterForm();"
+                class="form-inline news-box">
                     <div class="form-group">
-                        <input class="required email form-control js-subscribe_email" type="email"
-                        name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
-                        required="true" />
+                        <input type="email" name="subscribe_email" aria-required="true" placeholder="Enter Your Email Address"
+                        required="true" class="required email form-control js-subscribe_email"
+                        />
                     </div>
-                    <input class="btn btn-default news-letter-validation-submit-btn" type="submit"
-                    value="Subscribe" name="subscribe" />
+                    <input type="submit" value="Subscribe" name="subscribe" class="btn btn-default news-letter-validation-submit-btn"
+                    />
                 </form>
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
 </div>
-<div class="bottom-footer" id="js_display_virtual">
-    <div class="container"><span class="pull-left">Powered by : <a href="#" class="footer_logo"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/footer_logo.png" style="width:auto;height:30px;"/></a></span>
+<div id="js_display_virtual" class="bottom-footer">
+    <div class="container"><span class="pull-left">Powered by : <a href="#" class="footer_logo"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/footer_logo.png" id="iebmeuo"/></a></span>
         <span
-        class="pull-right">Copyright &copy; 2018 Flowz. All rights reserved</span>
+        class="pull-right">Copyright © 2018 Flowz. All rights reserved</span>
     </div>
 </div>
 <script type="text/javascript" src="http://res.cloudinary.com/flowz/raw/upload/v1519210886/js/owl.carousel.js"></script>
