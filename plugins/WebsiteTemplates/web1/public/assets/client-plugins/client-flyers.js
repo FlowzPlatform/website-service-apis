@@ -53,8 +53,15 @@ async function flyer_data(flyers) {
             listHtml1 = listHtml1.replace(/#flyer-image-link#/g,flyerArray.flyer_image);
 
             listHtml1 = listHtml1.replace(/#flyer-pdf-link#/g,flyerArray.flyer_pdf);
-            
+            if(typeof flyerArray.client_friendly_pdf != "undefined")
+            {
+                listHtml1 = listHtml1.replace(/#flyer-client_friendly-link#/g,flyerArray.client_friendly_pdf);
+            }
             $('#myFlyers .listing').append(listHtml1);
+            if(typeof flyerArray.client_friendly_pdf == "undefined")
+            {
+                $('#myFlyers .listing').find('.product-'+flyerArray.id+' .js_client_friendly_pdf').remove();
+            }
         });
 
         
