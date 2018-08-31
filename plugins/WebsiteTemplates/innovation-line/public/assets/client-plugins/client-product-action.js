@@ -105,7 +105,7 @@ $(document).on('click','.send-email-product', function (e) {
             showPageAjaxLoading();
             let productResponse = $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+pid+"&source=default_image,sku,product_name,pricing,features",
+                url: project_settings.product_api_url+"?_id="+pid+"&source=default_image,sku,product_name,pricing,features,images",
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -172,7 +172,7 @@ $(document).on('click','.send-email-product', function (e) {
                         });
                         productJsonData['quantity_pricing'] = priceRang;
                     }
-
+                    
                     if(productJsonData['data'].images != undefined){
                         productJsonData['image'] = productJsonData['data'].images[0].images[0].secure_url;
                     }else{
@@ -272,7 +272,7 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
                 guestUserHtml = guestUserHtml.replace('#data.fob#',fob);
             }
             else{
-                guestUserHtml = guestUserHtml.replace('#data.fob#',fob);
+                guestUserHtml = guestUserHtml.replace('#data.fob#','-');
             }
             
             // if(productResponse.shipping[0].carton_length != undefined && productResponse.shipping[0].carton_length != ''){
@@ -292,6 +292,10 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
             else{
                 guestUserHtml = guestUserHtml.replace('#data.qty_per_carton#','-');
             }
+        }
+        else{
+            guestUserHtml = guestUserHtml.replace('#data.qty_per_carton#','-');
+            guestUserHtml = guestUserHtml.replace('#data.fob#','-');
         }
     }
     
