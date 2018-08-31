@@ -1018,7 +1018,9 @@ try {
         // await getProjectInfo();
         await ImplementSocket();
         let $form = document.querySelectorAll('customslidercomponent')
-        await setBanners($form)
+        if ($form.length > 0) {
+            await setBanners($form)
+        }
     // });
 
     // async function getProjectInfo() {
