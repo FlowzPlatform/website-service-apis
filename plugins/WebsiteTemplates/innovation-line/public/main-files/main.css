@@ -36,6 +36,7 @@ button.multiselect.dropdown-toggle.btn.btn-default b.caret {float: right;margin-
 .catelogue .pro-desc .flyer_button ul li{margin-bottom: 8px;}
 .ob-product-grid .pro-box .video_sku_block { min-height: 55px;width: 100px;text-align: center;display: block;margin: 19px auto 0;background: no-repeat;}
 /* .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default, input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover */
+.js-shippingMethod-section{padding: 15px 2px !important}
 @media (min-width: 768px){
 #myModal .modal-dialog {
     width: 615px;

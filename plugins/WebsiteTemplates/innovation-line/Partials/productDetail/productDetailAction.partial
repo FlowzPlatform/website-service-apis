@@ -60,7 +60,7 @@ body {
                 </div>
             </li>
             <li><a href="virtualsample.html"><i class="strip order-strip"></i>Virtual Sample</a></li>
-            <li><a href="javascript:void(0);" id="download_image" ><i class="strip download-img-strip"></i>Download Image</a></li>
+            <li class="hide"><a href="javascript:void(0);" id="download_image" ><i class="strip download-img-strip"></i>Download Image</a></li>
             <li class="mobile-print-btn">
                 <a href="javascript:void(0)" class="js-product-detail-print-product"><i class="strip print-strip"></i>
                     Print Product
