@@ -58,6 +58,7 @@ $(document).on('click','.js_submit_address',function (e)
     errorLabelContainer: "#errors",
     wrapper: "ul",
     submitHandler: function(form) {
+        showPageAjaxLoading();
         let formObj = $(form);
         let form_data = formObj.serializeArray();
         // console.log('formData',form_data);
@@ -123,7 +124,7 @@ $(document).on('click','.js_submit_address',function (e)
 
         // $(".js_shipping_addresses").html(htmll);
         // $(".js_shipping_addresses").removeClass('hide');
-        
+        hidePageAjaxLoading();
         return false;
         // formObj.serialize() - addd in localstorage
     },
@@ -137,35 +138,36 @@ async function setGuestAddress(returnData,shippigCounter,carrierData = null)
             let city = await getCountryStateCityById(returnData.city,3);
             let state = await getCountryStateCityById(returnData.state,2);
             let country = await getCountryStateCityById(returnData.country,1);
-
+            let shipping_details='';
             if (typeof get_product_details.shipping == 'undefined') {
               console.log('No Shipping FOUND')
             }
-            let shipping_details = get_product_details.shipping[0];
+            else{
+              shipping_details = get_product_details.shipping[0];
               if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
                     $(activetab).find("#js_shipping_method_detail_"+shippigCounter+" .js_shipping_option").html('')
               }
 
-              let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
-              let getStreet = await getStreetData(getLocation)
-              var addressFrom  = {
-                  "name": shipping_details.fob_city,
-                  "street1": getStreet,
-                  "city": shipping_details.fob_city,
-                  "state": shipping_details.fob_state_code,
-                  "zip": shipping_details.fob_zip_code,
-                  "country": shipping_details.fob_country_code,
-              };
+              // let getLocation = await getStreetLocation(shipping_details.fob_zip_code)
+              // let getStreet = await getStreetData(getLocation)
+              // var addressFrom  = {
+              //     "name": shipping_details.fob_city,
+              //     "street1": getStreet,
+              //     "city": shipping_details.fob_city,
+              //     "state": shipping_details.fob_state_code,
+              //     "zip": shipping_details.fob_zip_code,
+              //     "country": shipping_details.fob_country_code,
+              // };
 
-              var addressTo  = {
-                  "name": returnData.name,
-                  "street1": returnData.street1,
-                  "city": city,
-                  "state": state,
-                  "zip": returnData.postalcode,
-                  "country": country,
-              };
-              console.log('addressFrom ::', addressFrom);
+              // var addressTo  = {
+              //     "name": returnData.name,
+              //     "street1": returnData.street1,
+              //     "city": city,
+              //     "state": state,
+              //     "zip": returnData.postalcode,
+              //     "country": country,
+              // };
+              // console.log('addressFrom ::', addressFrom);
               // let sCode = await getStateCode(returnData.state, 2)
               // if (sCode != null) {
               //   let verify_address_to = await verifyAddress(addressTo, sCode)
@@ -181,6 +183,7 @@ async function setGuestAddress(returnData,shippigCounter,carrierData = null)
               // } else {
               //   console.log('STATE CODE NOT FOUND')
               // }
+            }
 
             let replaceAddressHtml = '';
             replaceAddressHtml += returnData.name+"<br>";
