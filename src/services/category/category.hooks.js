@@ -39,6 +39,9 @@ function beforeFindFilterCategory(hook){
   if (hook.params.query.hasOwnProperty('status') && (hook.params.query.status === 'true' || hook.params.query.status === 'false')) {
     hook.params.query.status = JSON.parse(hook.params.query.status)
   }
+  if (hook.params.query.hasOwnProperty('homepage') && (hook.params.query.homepage === 'true' || hook.params.query.homepage === 'false')) {
+    hook.params.query.homepage = JSON.parse(hook.params.query.homepage)
+  }
   if (hook.params.query && hook.params.query.$paginate) {
     hook.params.paginate = hook.params.query.$paginate === 'false' || hook.params.query.$paginate === false;
     delete hook.params.query.$paginate;
