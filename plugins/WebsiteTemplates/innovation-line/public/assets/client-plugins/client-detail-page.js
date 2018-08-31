@@ -79,23 +79,24 @@ if(pid != null) {
     }();
     // var get_product_details = getProductDetailById(pid)
 
-    
-    // RECENTY VIEWED PRODUCTS
-    let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
-    let recentViewedProducts = [];
-    if (localStorage.getItem(recentProductsName) != null) {
-        recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
-    }
-    
-    if(!(recentViewedProducts.includes(pid))) {
-        if(recentViewedProducts.length > 5) {
-            recentViewedProducts.splice(0, 1);
+    if(get_product_details != null && get_product_details != undefined) {
+        // RECENTLY VIEWED PRODUCTS
+        let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
+        let recentViewedProducts = [];
+        if (localStorage.getItem(recentProductsName) != null) {
+            recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
         }
-        recentViewedProducts.push(pid);
-    }
-    localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
+        
+        if(!(recentViewedProducts.includes(pid))) {
+            if(recentViewedProducts.length > 5) {
+                recentViewedProducts.splice(0, 1);
+            }
+            recentViewedProducts.push(pid);
+        }
+        localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
 
-    recentlyViewedProducts(recentViewedProducts);
+        recentlyViewedProducts(recentViewedProducts);
+    }
 }
 
 function recentlyViewedProducts(recentViewedProducts) {
@@ -1033,6 +1034,29 @@ $(document).ready( async function(){
         itemsMobile: [479, 2]
     });
     // END QUANTITY PRICE TABLE END
+
+    //RECENTLY VIEWED PRODUCTS
+    $("#owl-carousel-recently-products").owlCarousel({
+        navigation: true,
+        items:4,
+        autoPlay: 3200,
+        margin: 10,
+        autoplayHoverPause: true,
+        lazyLoad: true,
+        stopOnHover: true,
+        itemsCustom: false,
+        itemsDesktop: [1170, 4],
+        itemsDesktop: [1024, 3],
+        itemsTabletSmall: false,
+        itemsMobile: [400, 2],
+        itemsMobile: [399, 1],
+        singleItem: false,
+        itemsScaleUp: false,
+        afterInit: function (elem) {
+            var that = this
+            that.owlControls.prependTo(elem)
+        }
+    });
 
     $(document).on('click','.js_submit_info', async function (e) {
             let formObj = $(this).closest('form');
