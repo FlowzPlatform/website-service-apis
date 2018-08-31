@@ -1338,495 +1338,624 @@ try {
 
 //Contact Form 1
 try {
-    $(document).ready(() => {
-        let contactid = '#frmContact1'
-        $(contactid).submit(async function(e) {
-            e.preventDefault();
-            console.log("contactform:", $(contactid))
-            let formdata = $(contactid).serializeArray()
-            let first_name = $(contactid).find('.fname').val()
-            let last_name = $(contactid).find('.lname').val()
-            let to_email = $(contactid + "> fcontact").attr("email")
-                // let from_email = $(contactid).find('.email').val()
-            let email = $(contactid).find('.email').val()
-            let subject = $(contactid).find('.fsubject').val()
-            let content = $(contactid).find('.fcontent').val()
-            let body = '<html><body>Dear Admin<p>You have received following query from ' + first_name + ' ' + last_name + ' .</p><p> ' + content + '</p><p> Best Regards<br/>' + first_name + ' ' + last_name + '</p><p>Email:' + email + '</p></body></html>'
-            let data1 = {
-                "to": to_email,
-                "subject": subject,
-                "body": body
-            }
-            await $.ajax({
-                url: './assets/project-details.json',
-                dataType: 'json',
-                success: function(data) {
-                    axios({
-                        method: 'post',
-                        url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                        data: data1,
-                        config: {
-                            headers: {
-                                "contentType": "application/json"
-                            }
-                        }
-                    }).then((res) => {
-                        console.log("res", res.data.success)
-                        alert(res.data.success)
-                    }).catch((err) => {
-                        console.log("err", err)
-                        alert(err)
-                    })
-                }
-            })
-
-
-        });
-    })
+  $(document).ready(() => {
+    let contactid = '#frmContact1'
+      // console.log("contactid:", contactid)
+      
+    $('form#frmContact1').validate({
+        rules: {
+              "fname":"required",
+              "lname": "required",
+              "email": "required",
+              "subject": "required",
+              "fcontent": "required"
+        },
+        messages: {
+          "fname": "Enter Valid First Name!",
+          "lname": "Enter Valid Last Name!",
+          "email": "Enter Valid Email ID!",
+          "subject": "Enter Valid Subject!",
+          "fcontent": "Enter Valid Content!"
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest("div"));
+          $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+          // $('form#frmContact1').preventDefault();
+          let to_email = $(contactid + "> fcontact").attr("email")
+          let email = $(contactid).find('.email').val()
+          let subject = $(contactid).find('.fsubject').val()
+          let content = $(contactid).find('.fcontent').val()
+          let userName = $(contactid).find('.fname').val() + ' ' + $(contactid).find('.lname').val();
+          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+          let data1 = {
+              "to": to_email,
+              "subject": subject,
+              "body": body
+          };
+           $.ajax({
+              url: './assets/project-details.json',
+              dataType: 'json',
+              success: function(data) {
+                  axios({
+                      method: 'post',
+                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                      data: data1,
+                      config: {
+                          headers: {
+                              "contentType": "application/json"
+                          }
+                      }
+                  }).then((res) => {
+                      // console.log("res", res.data.success)
+                      showSuccessMessage(res.data.success);
+                      form.reset();
+                      // alert(res.data.success)
+                  }).catch((err) => {
+                      console.log("err", err)
+                      showErrorMessage(err);
+                      form.reset();
+                  })
+              }
+          })
+        },
+    });
+  })
 
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
 //Contact 2
 try {
-    $(document).ready(() => {
-        let contactid = '#frmContact2'
-        $(contactid).submit(async function(e) {
-            e.preventDefault();
-            // console.log("contactform:",$(contactid))
-            // let formdata=$(contactid).serializeArray()
-            // console.log('formdata',formdata)
-            let name = $(contactid).find('input[name="name"]').val()
-                // let last_name = $(contactid).find('.lname').val()
-            let to_email = $(contactid + "> fcontact").attr("email")
-                // let from_email = $(contactid).find('.email').val()
-            let email = $(contactid).find('input[name="email"]').val()
-            let phone = $(contactid).find('input[name="phone"]').val()
-            let subject = $(contactid).find('input[name="subject"]').val()
-            let content = $(contactid).find('textarea[name="message"]').val()
-            let body = '<html><body>Dear Admin<p>You have received following query from ' + name + ' .</p><p> ' + content + '</p><p> Best Regards<br/>' + name + '</p><p>Email:' + email + '<br>Phone Number:' + phone + '</p></body></html>'
-            let data1 = {
-                "to": to_email,
-                "subject": subject,
-                "body": body
+  $(document).ready(() => {
+      let contactid = '#frmContact2'
 
-            }
-            await $.ajax({
-                url: './assets/project-details.json',
-                dataType: 'json',
-                success: function(data) {
-                    axios({
-                        method: 'post',
-                        url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                        data: data1,
-                        config: {
-                            headers: {
-                                "contentType": "application/json"
-                            }
-                        }
-                    }).then((res) => {
-                        console.log("res", res.data.success)
-                        alert(res.data.success)
-                    }).catch((err) => {
-                        console.log("err", err)
-                        alert(err)
-                    })
-                }
-            })
-
-
-        });
-    })
+      $('form#frmContact2').validate({
+        rules: {
+              "name":"required",
+              "email": "required",
+              "subject": "required",
+              "message": "required"
+        },
+        messages: {
+          "name": "Enter Valid Name!",
+          "email": "Enter Valid Email ID!",
+          "subject": "Enter Valid Subject!",
+          "message": "Enter Valid Content!"
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest("div"));
+          $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+          // form.preventDefault();
+          let to_email = $(contactid + "> fcontact").attr("email")
+          let email = $(contactid).find('input[name="email"]').val()
+          let phnNo = $(contactid).find('input[name="phone"]').val()
+          let subject = $(contactid).find('input[name="subject"]').val()
+          let content = $(contactid).find('textarea[name="message"]').val()
+          let userName = $(contactid).find('input[name="name"]').val();
+          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+          let data1 = {
+              "to": to_email,
+              "subject": subject,
+              "body": body
+          };
+           $.ajax({
+              url: './assets/project-details.json',
+              dataType: 'json',
+              success: function(data) {
+                  axios({
+                      method: 'post',
+                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                      data: data1,
+                      config: {
+                          headers: {
+                              "contentType": "application/json"
+                          }
+                      }
+                  }).then((res) => {
+                      // console.log("res", res.data.success)
+                      showSuccessMessage(res.data.success);
+                      form.reset();
+                  }).catch((err) => {
+                      console.log("err", err)
+                      showErrorMessage(err);
+                      form.reset();
+                  })
+              }
+          })
+        },
+    });
+  })
 
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
 //Contact 3
 try {
-    $(document).ready(() => {
-        let contactid = '#frmContact3'
-        $(contactid).submit(async function(e) {
-            e.preventDefault();
-            // console.log("contactform:",$(contactid))
-            // let formdata=$(contactid).serializeArray()
-            // console.log('formdata',formdata)
-            // let name = $(contactid).find('input[name="name"]').val()
-            // let last_name = $(contactid).find('.lname').val()
-            let to_email = $(contactid + "> fcontact").attr("email")
-                // let from_email = $(contactid).find('.email').val()
-            let email = $(contactid).find('input[name="email"]').val()
-                // let phone=$(contactid).find('input[name="phone"]').val()
-            let subject = $(contactid).find('input[name="subject"]').val()
-            let content = $(contactid).find('textarea[name="message"]').val()
-            let body = '<html><body>Dear Admin<p>You have received following query.</p><p> ' + content + '</p><p> Best Regards<br/></p><p>Email:' + email + '</p></body></html>'
-            let data1 = {
-                "to": to_email,
-                "subject": subject,
-                "body": body
+  $(document).ready(() => {
+      let contactid = '#frmContact3'
 
-            }
-            await $.ajax({
-                url: './assets/project-details.json',
-                dataType: 'json',
-                success: function(data) {
-                    axios({
-                        method: 'post',
-                        url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                        data: data1,
-                        config: {
-                            headers: {
-                                "contentType": "application/json"
-                            }
-                        }
-                    }).then((res) => {
-                        console.log("res", res.data.success)
-                        alert(res.data.success)
-                    }).catch((err) => {
-                        console.log("err", err)
-                        alert(err)
-                    })
-                }
-            })
-
-
-        });
-    })
+      $('form#frmContact3').validate({
+        rules: {
+              "email": "required",
+              "subject": "required",
+              "message": "required"
+        },
+        messages: {
+          "email": "Enter Valid Email ID!",
+          "subject": "Enter Valid Subject!",
+          "message": "Enter Valid Content!"
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest("div"));
+          $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+          // form.preventDefault();
+          let to_email = $(contactid + "> fcontact").attr("email")
+          let email = $(contactid).find('input[name="email"]').val()
+          let subject = $(contactid).find('input[name="subject"]').val()
+          let content = $(contactid).find('textarea[name="message"]').val()
+          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+          let data1 = {
+              "to": to_email,
+              "subject": subject,
+              "body": body
+          };
+           $.ajax({
+              url: './assets/project-details.json',
+              dataType: 'json',
+              success: function(data) {
+                  axios({
+                      method: 'post',
+                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                      data: data1,
+                      config: {
+                          headers: {
+                              "contentType": "application/json"
+                          }
+                      }
+                  }).then((res) => {
+                      // console.log("res", res.data.success)
+                      showSuccessMessage(res.data.success);
+                      form.reset();
+                  }).catch((err) => {
+                      console.log("err", err)
+                      showErrorMessage(err);
+                      form.reset();
+                  })
+              }
+          })
+        },
+    });
+  })
 
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
 //Contact 4
 try {
-    $(document).ready(() => {
-        let contactid = '#frmContact4'
-        $(contactid).submit(async function(e) {
-            e.preventDefault();
-            // console.log("contactform:",$(contactid))
-            // let formdata=$(contactid).serializeArray()
-            // console.log('formdata',formdata)
-            let name = $(contactid).find('input[name="name"]').val()
-                // let last_name = $(contactid).find('.lname').val()
-            let to_email = $(contactid + "> fcontact").attr("email")
-                // let from_email = $(contactid).find('.email').val()
-            let email = $(contactid).find('input[name="email"]').val()
-                // let phone=$(contactid).find('input[name="phone"]').val()
-            let subject = $(contactid).find('input[name="subject"]').val()
-            let content = $(contactid).find('textarea[name="message"]').val()
-            let body = '<html><body>Dear Admin<p>You have received following query from ' + name + '.</p><p> ' + content + '</p><p> Best Regards<br/>' + name + '</p><p>Email:' + email + '</p></body></html>'
-            let data1 = {
-                "to": to_email,
-                "subject": subject,
-                "body": body
+  $(document).ready(() => {
+      let contactid = '#frmContact4'
 
-            }
-            await $.ajax({
-                url: './assets/project-details.json',
-                dataType: 'json',
-                success: function(data) {
-                    axios({
-                        method: 'post',
-                        url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                        data: data1,
-                        config: {
-                            headers: {
-                                "contentType": "application/json"
-                            }
-                        }
-                    }).then((res) => {
-                        console.log("res", res.data.success)
-                        alert(res.data.success)
-                    }).catch((err) => {
-                        console.log("err", err)
-                        alert(err)
-                    })
-                }
-            })
-
-
-        });
-    })
+      $('form#frmContact4').validate({
+        rules: {
+              "name":"required",
+              "email": "required",
+              "subject": "required",
+              "message": "required"
+        },
+        messages: {
+          "name": "Enter Valid Name!",
+          "email": "Enter Valid Email ID!",
+          "subject": "Enter Valid Subject!",
+          "message": "Enter Valid Content!"
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest("div"));
+          $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+          // form.preventDefault();
+          let to_email = $(contactid + "> fcontact").attr("email")
+          let userName = $(contactid).find('input[name="name"]').val();
+          let email = $(contactid).find('input[name="email"]').val()
+          let subject = $(contactid).find('input[name="subject"]').val()
+          let content = $(contactid).find('textarea[name="message"]').val()
+          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+          let data1 = {
+              "to": to_email,
+              "subject": subject,
+              "body": body
+          };
+           $.ajax({
+              url: './assets/project-details.json',
+              dataType: 'json',
+              success: function(data) {
+                  axios({
+                      method: 'post',
+                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                      data: data1,
+                      config: {
+                          headers: {
+                              "contentType": "application/json"
+                          }
+                      }
+                  }).then((res) => {
+                      // console.log("res", res.data.success)
+                      showSuccessMessage(res.data.success);
+                      form.reset();
+                  }).catch((err) => {
+                      console.log("err", err)
+                      showErrorMessage(err);
+                      form.reset();
+                  })
+              }
+          })
+        },
+    });
+  })
 
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
 //Contact 5
 try {
-    $(document).ready(() => {
-        let contactid = '#frmContact5'
-        $(contactid).submit(async function(e) {
-            e.preventDefault();
-            // console.log("contactform:",$(contactid))
-            // let formdata=$(contactid).serializeArray()
-            // console.log('formdata',formdata)
-            // let name = $(contactid).find('input[name="name"]').val()
-            // let last_name = $(contactid).find('.lname').val()
-            let to_email = $(contactid + "> fcontact").attr("email")
-                // let from_email = $(contactid).find('.email').val()
-            let email = $(contactid).find('input[name="email"]').val()
-                // let phone=$(contactid).find('input[name="phone"]').val()
-            let subject = $(contactid).find('input[name="subject"]').val()
-            let content = $(contactid).find('textarea[name="message"]').val()
-            let body = '<html><body>Dear Admin<p>You have received following query.</p><p> ' + content + '</p><p> Best Regards<br/></p><p>Email:' + email + '</p></body></html>'
-            let data1 = {
-                "to": to_email,
-                "subject": subject,
-                "body": body
-
-            }
-            await $.ajax({
-                url: './assets/project-details.json',
-                dataType: 'json',
-                success: function(data) {
-                    axios({
-                        method: 'post',
-                        url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                        data: data1,
-                        config: {
-                            headers: {
-                                "contentType": "application/json"
-                            }
-                        }
-                    }).then((res) => {
-                        console.log("res", res.data.success)
-                        alert(res.data.success)
-                    }).catch((err) => {
-                        console.log("err", err)
-                        alert(err)
-                    })
-                }
-            })
-
-
-        });
-    })
+  $(document).ready(() => {
+      let contactid = '#frmContact5'
+      $('form#frmContact5').validate({
+        rules: {
+              "email": "required",
+              "subject": "required",
+              "message": "required"
+        },
+        messages: {
+          "email": "Enter Valid Email ID!",
+          "subject": "Enter Valid Subject!",
+          "message": "Enter Valid Content!"
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest("div"));
+          $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+          // form.preventDefault();
+          let to_email = $(contactid + "> fcontact").attr("email")
+          let email = $(contactid).find('input[name="email"]').val()
+          let subject = $(contactid).find('input[name="subject"]').val()
+          let content = $(contactid).find('textarea[name="message"]').val()
+          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+          let data1 = {
+              "to": to_email,
+              "subject": subject,
+              "body": body
+          };
+           $.ajax({
+              url: './assets/project-details.json',
+              dataType: 'json',
+              success: function(data) {
+                  axios({
+                      method: 'post',
+                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                      data: data1,
+                      config: {
+                          headers: {
+                              "contentType": "application/json"
+                          }
+                      }
+                  }).then((res) => {
+                      // console.log("res", res.data.success)
+                      showSuccessMessage(res.data.success);
+                      form.reset();
+                  }).catch((err) => {
+                      console.log("err", err)
+                      showErrorMessage(err);
+                      form.reset();
+                  })
+              }
+          })
+        },
+    });
+  })
 
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
 
 //Contact 6
 try {
-    $(document).ready(() => {
-        let contactid = '#frmContact6'
-        $(contactid).submit(async function(e) {
-            e.preventDefault();
-            // console.log("contactform:",$(contactid))
-            // let formdata=$(contactid).serializeArray()
-            // console.log('formdata',formdata)
-            let fname = $(contactid).find('input[name="fname"]').val()
-            let lname = $(contactid).find('input[name="lname"]').val()
-                // let first_name = $(contactid).find('.fname').val()
-                // let last_name = $(contactid).find('.lname').val()
-            let to_email = $(contactid + "> fcontact").attr("email")
-                // let from_email = $(contactid).find('.email').val()
-            let email = $(contactid).find('input[name="email"]').val()
-                // let phone=$(contactid).find('input[name="phone"]').val()
-            let subject = $(contactid).find('input[name="subject"]').val()
-            let content = $(contactid).find('textarea[name="message"]').val()
-            let body = '<html><body>Dear Admin<p>You have received following query from ' + fname + ' ' + lname + '.</p><p> ' + content + '</p><p> Best Regards<br/></p><p>Email:' + email + '</p></body></html>'
-            let data1 = {
-                "to": to_email,
-                "subject": subject,
-                "body": body
+  $(document).ready(() => {
+      let contactid = '#frmContact6'
 
-            }
-            await $.ajax({
-                url: './assets/project-details.json',
-                dataType: 'json',
-                success: function(data) {
-                    axios({
-                        method: 'post',
-                        url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                        data: data1,
-                        config: {
-                            headers: {
-                                "contentType": "application/json"
-                            }
-                        }
-                    }).then((res) => {
-                        console.log("res", res.data.success)
-                        alert(res.data.success)
-                    }).catch((err) => {
-                        console.log("err", err)
-                        alert(err)
-                    })
-                }
-            })
-
-
-        });
-    })
+      $('form#frmContact6').validate({
+        rules: {
+              "fname":"required",
+              "lname": "required",
+              "email": "required",
+              "subject": "required",
+              "message": "required"
+        },
+        messages: {
+          "fname": "Enter Valid First Name!",
+          "lname": "Enter Valid Last Name!",
+          "email": "Enter Valid Email ID!",
+          "subject": "Enter Valid Subject!",
+          "message": "Enter Valid Content!"
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest("div"));
+          $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+          // form.preventDefault();
+          let to_email = $(contactid + "> fcontact").attr("email")
+          let userName = $(contactid).find('input[name="fname"]').val() + ' ' + $(contactid).find('input[name="lname"]').val()
+          let email = $(contactid).find('input[name="email"]').val()
+          let subject = $(contactid).find('input[name="subject"]').val()
+          let content = $(contactid).find('textarea[name="message"]').val()
+          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+          let data1 = {
+              "to": to_email,
+              "subject": subject,
+              "body": body
+          };
+           $.ajax({
+              url: './assets/project-details.json',
+              dataType: 'json',
+              success: function(data) {
+                  axios({
+                      method: 'post',
+                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                      data: data1,
+                      config: {
+                          headers: {
+                              "contentType": "application/json"
+                          }
+                      }
+                  }).then((res) => {
+                      // console.log("res", res.data.success)
+                      showSuccessMessage(res.data.success);
+                      form.reset();
+                      // alert(res.data.success)
+                  }).catch((err) => {
+                      console.log("err", err)
+                      showErrorMessage(err);
+                      form.reset();
+                  })
+              }
+          })
+        },
+    });
+  })
 
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
 
 //Contact 7
 try {
-    $(document).ready(() => {
-        let contactid = '#frmContact7'
-        $(contactid).submit(async function(e) {
-            e.preventDefault();
-            // console.log("contactform:",$(contactid))
-            // let formdata=$(contactid).serializeArray()
-            // console.log('formdata',formdata)
-            // let name = $(contactid).find('input[name="name"]').val()
-            // let last_name = $(contactid).find('.lname').val()
-            let to_email = $(contactid + "> fcontact").attr("email")
-                // let from_email = $(contactid).find('.email').val()
-            let email = $(contactid).find('input[name="email"]').val()
-                // let phone=$(contactid).find('input[name="phone"]').val()
-            let subject = $(contactid).find('input[name="subject"]').val()
-            let content = $(contactid).find('textarea[name="message"]').val()
-            let body = '<html><body>Dear Admin<p>You have received following query.</p><p> ' + content + '</p><p> Best Regards<br/></p><p>Email:' + email + '</p></body></html>'
-            let data1 = {
-                "to": to_email,
-                "subject": subject,
-                "body": body
-
-            }
-            await $.ajax({
-                url: './assets/project-details.json',
-                dataType: 'json',
-                success: function(data) {
-                    axios({
-                        method: 'post',
-                        url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                        data: data1,
-                        config: {
-                            headers: {
-                                "contentType": "application/json"
-                            }
-                        }
-                    }).then((res) => {
-                        console.log("res", res.data.success)
-                        alert(res.data.success)
-                    }).catch((err) => {
-                        console.log("err", err)
-                        alert(err)
-                    })
-                }
-            })
-
-
-        });
-    })
+  $(document).ready(() => {
+      let contactid = '#frmContact7'
+      
+      $('form#frmContact7').validate({
+        rules: {
+              "email": "required",
+              "subject": "required",
+              "message": "required"
+        },
+        messages: {
+          "email": "Enter Valid Email ID!",
+          "subject": "Enter Valid Subject!",
+          "message": "Enter Valid Content!"
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest("div"));
+          $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+          // form.preventDefault();
+          let to_email = $(contactid + "> fcontact").attr("email")
+          let email = $(contactid).find('input[name="email"]').val()
+          let subject = $(contactid).find('input[name="subject"]').val()
+          let content = $(contactid).find('textarea[name="message"]').val()
+          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+          let data1 = {
+              "to": to_email,
+              "subject": subject,
+              "body": body
+          };
+           $.ajax({
+              url: './assets/project-details.json',
+              dataType: 'json',
+              success: function(data) {
+                  axios({
+                      method: 'post',
+                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                      data: data1,
+                      config: {
+                          headers: {
+                              "contentType": "application/json"
+                          }
+                      }
+                  }).then((res) => {
+                      // console.log("res", res.data.success)
+                      showSuccessMessage(res.data.success);
+                      form.reset();
+                  }).catch((err) => {
+                      console.log("err", err)
+                      showErrorMessage(err);
+                      form.reset();
+                  })
+              }
+          })
+        },
+    });
+  })
 
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
 
 //Contact 8
 try {
-    $(document).ready(() => {
-        let contactid = '#frmContact8'
-        $(contactid).submit(async function(e) {
-            e.preventDefault();
-            // console.log("contactform:",$(contactid))
-            // let formdata=$(contactid).serializeArray()
-            // console.log('formdata',formdata)
-            let fname = $(contactid).find('input[name="fname"]').val()
-            let lname = $(contactid).find('input[name="lname"]').val()
-            let cname = $(contactid).find('input[name="Cname"]').val()
-                // let first_name = $(contactid).find('.fname').val()
-                // let last_name = $(contactid).find('.lname').val()
-            let to_email = $(contactid + "> fcontact").attr("email")
-                // let from_email = $(contactid).find('.email').val()
-            let email = $(contactid).find('input[name="email"]').val()
-            let phone = $(contactid).find('input[name="phone"]').val()
-            let country = $(contactid).find('input[name="country"]').val()
-            let subject = $(contactid).find('input[name="subject"]').val()
-            let content = $(contactid).find('textarea[name="message"]').val()
-            let department = $(contactid).find('select[name="message"]').val()
-            let body = '<html><body>Dear Admin<p>You have received following query from ' + fname + ' ' + lname + '.</p><p> ' + content + '</p><p> Best Regards<br/></p><p>Email:' + email + '</p><p>Phone Number:' + phone + '</p><p>Company:' + cname + '</p><p>Country:' + country + '</p></body></html>'
-            let data1 = {
-                "to": to_email,
-                "subject": subject,
-                "body": body
+  $(document).ready(() => {
+      let contactid = '#frmContact8'
 
-            }
-            await $.ajax({
-                url: './assets/project-details.json',
-                dataType: 'json',
-                success: function(data) {
-                    axios({
-                        method: 'post',
-                        url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                        data: data1,
-                        config: {
-                            headers: {
-                                "contentType": "application/json"
-                            }
-                        }
-                    }).then((res) => {
-                        console.log("res", res.data.success)
-                        alert(res.data.success)
-                    }).catch((err) => {
-                        console.log("err", err)
-                        alert(err)
-                    })
-                }
-            })
-
-
-        });
-    })
+      $('form#frmContact8').validate({
+        rules: {
+              "fname":"required",
+              "lname": "required",
+              "email": "required",
+              "subject": "required",
+              "message": "required"
+        },
+        messages: {
+          "fname": "Enter Valid First Name!",
+          "lname": "Enter Valid Last Name!",
+          "email": "Enter Valid Email ID!",
+          "subject": "Enter Valid Subject!",
+          "message": "Enter Valid Content!"
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest("div"));
+          $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+          // form.preventDefault();
+          let to_email = $(contactid + "> fcontact").attr("email")
+          let email = $(contactid).find('input[name="email"]').val()
+          let subject = $(contactid).find('input[name="subject"]').val()
+          let content = $(contactid).find('textarea[name="message"]').val()
+          let userName = $(contactid).find('input[name="fname"]').val() + ' ' + $(contactid).find('input[name="lname"]').val();
+          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span>:'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+          let data1 = {
+              "to": to_email,
+              "subject": subject,
+              "body": body
+          };
+           $.ajax({
+              url: './assets/project-details.json',
+              dataType: 'json',
+              success: function(data) {
+                  axios({
+                      method: 'post',
+                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                      data: data1,
+                      config: {
+                          headers: {
+                              "contentType": "application/json"
+                          }
+                      }
+                  }).then((res) => {
+                      // console.log("res", res.data.success)
+                      showSuccessMessage(res.data.success);
+                      form.reset();
+                      // alert(res.data.success)
+                  }).catch((err) => {
+                      console.log("err", err)
+                      showErrorMessage(err);
+                      form.reset();
+                  })
+              }
+          })
+        },
+    });
+  })
 
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
+
 //Contact 10
 try {
-    $(document).ready(() => {
-        let contactid = '#frmContact10'
-        $(contactid).submit(async function(e) {
-            e.preventDefault();
-            // console.log("contactform:",$(contactid))
-            // let formdata=$(contactid).serializeArray()
-            // console.log('formdata',formdata)
-            // let name = $(contactid).find('input[name="name"]').val()
-            // let last_name = $(contactid).find('.lname').val()
-            let to_email = $(contactid + "> fcontact").attr("email")
-                // let from_email = $(contactid).find('.email').val()
-            let email = $(contactid).find('input[name="email"]').val()
-                // let phone=$(contactid).find('input[name="phone"]').val()
-            let subject = $(contactid).find('input[name="subject"]').val()
-            let content = $(contactid).find('textarea[name="message"]').val()
-            let body = '<html><body>Dear Admin<p>You have received following query.</p><p> ' + content + '</p><p> Best Regards<br/></p><p>Email:' + email + '</p></body></html>'
-            let data1 = {
-                "to": to_email,
-                "subject": subject,
-                "body": body
+  $(document).ready(() => {
+      let contactid = '#frmContact10'
 
-            }
-            await $.ajax({
-                url: './assets/project-details.json',
-                dataType: 'json',
-                success: function(data) {
-                    axios({
-                        method: 'post',
-                        url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                        data: data1,
-                        config: {
-                            headers: {
-                                "contentType": "application/json"
-                            }
-                        }
-                    }).then((res) => {
-                        console.log("res", res.data.success)
-                        alert(res.data.success)
-                    }).catch((err) => {
-                        console.log("err", err)
-                        alert(err)
-                    })
-                }
-            })
-
-
-        });
-    })
+      $('form#frmContact10').validate({
+        rules: {
+              "email": "required",
+              "subject": "required",
+              "message": "required"
+        },
+        messages: {
+          "email": "Enter Valid Email ID!",
+          "subject": "Enter Valid Subject!",
+          "message": "Enter Valid Content!"
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest("div"));
+          $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+          // form.preventDefault();
+          let to_email = $(contactid + "> fcontact").attr("email")
+          let email = $(contactid).find('input[name="email"]').val()
+          let subject = $(contactid).find('input[name="subject"]').val()
+          let content = $(contactid).find('textarea[name="message"]').val()
+          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span>:'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+          let data1 = {
+              "to": to_email,
+              "subject": subject,
+              "body": body
+          };
+           $.ajax({
+              url: './assets/project-details.json',
+              dataType: 'json',
+              success: function(data) {
+                  axios({
+                      method: 'post',
+                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                      data: data1,
+                      config: {
+                          headers: {
+                              "contentType": "application/json"
+                          }
+                      }
+                  }).then((res) => {
+                      // console.log("res", res.data.success)
+                      showSuccessMessage(res.data.success);
+                      form.reset();
+                  }).catch((err) => {
+                      console.log("err", err)
+                      showErrorMessage(err);
+                      form.reset();
+                  })
+              }
+          })
+        },
+    });
+  })
 
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
-});
