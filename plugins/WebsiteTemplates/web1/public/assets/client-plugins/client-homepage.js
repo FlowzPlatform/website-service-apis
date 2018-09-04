@@ -61,7 +61,7 @@ let catDetails = function () {
         'async': false,
         'type': "GET",
         'global': false,
-        'url': project_settings.category_api_url + "?website=" + website_settings['projectID'] + "&homepage=true",
+        'url': project_settings.category_api_url + "?website=" + website_settings['projectID'] + "&homepage=true&&status=true",
         'success': function (res) {
             console.log("res == ",res.data)
             tmp = res.data;
