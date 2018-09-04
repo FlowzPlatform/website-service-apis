@@ -23,7 +23,6 @@ let tagInfo = function () {
     return tmp;
 }();
 
-
 if(tagInfo.length > 0) {
     let tagHtml = "";
     $.each( tagInfo, function( key, tagArray ) {
@@ -54,3 +53,29 @@ $("#owl-product-tags").owlCarousel({
         that.owlControls.prependTo(elem)
     }
 });
+
+
+let catDetails = function () {
+    let tmp = null;
+    $.ajax({
+        'async': false,
+        'type': "GET",
+        'global': false,
+        'url': project_settings.category_api_url + "?website=" + website_settings['projectID'] + "&homepage=true",
+        'success': function (res) {
+            console.log("res == ",res.data)
+            tmp = res.data;
+        }
+    });
+    return tmp;
+}();
+
+if(catDetails.length > 0) {
+    let catHtml = "";
+    $.each( catDetails, function( key, catArray ) {
+        catHtml += '<div class="in-box-cont"><div class="right-part"><a href="search.html?SearchSensor='+catArray.name+'"><img class="lazyLoad" data-src="'+catArray.icon+'" alt=""></a></div><div class="left-part"><div class="pro-title"><a href="search.html?SearchSensor='+catArray.name+'" data-item-type="product-category">'+catArray.name+'</a></div></div></div>';
+    });
+    $('.js-show-category').html(catHtml);
+    $('.js-category-list').removeClass('hide');
+}
+

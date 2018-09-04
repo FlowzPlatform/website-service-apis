@@ -5,7 +5,7 @@
                 <div class="pro-overflow">
                     <div class="slider-wrapper">           
                         <div class="common-title">
-                            <h4 class="most-popular-title">Recenty Viewed Products</h4>
+                            <h4 class="most-popular-title">Recently Viewed Products</h4>
                         </div>                    
                         <div class="row">
                             <div id="owl-carousel-recently-products" class="owl-carousel">

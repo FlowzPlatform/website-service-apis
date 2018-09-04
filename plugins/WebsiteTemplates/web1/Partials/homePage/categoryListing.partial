@@ -1,8 +1,20 @@
-<div class="in-prod-main">
+<div class="in-prod-main js-category-list hide">
             <h1 class="heading">Branded Products That Build Relationships With Your Brand</h1>
             <div class="in-prod-under">
                 <div class="in-prod-main">
-                    <div class="in-prod-under">
+                    <div class="in-prod-under js-show-category">
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href='search.html?SearchSensor="Awareness"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603027/websites/images/1490051271_awards.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href='search.html?SearchSensor="Awareness"' data-item-type="product-category">Awards &amp; awareness</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href='search.html?SearchSensor="BRACELETS"' data-item-type="category-product-list">Bracelets</a></li>
+                                        <li><a href='search.html?SearchSensor="earth day"' data-item-type="category-product-list">Earth Day</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="in-box-cont">
                             <div class="right-part"><a href='search.html?SearchSensor="Awareness"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603027/websites/images/1490051271_awards.PNG" alt=""></a></div>
                             <div class="left-part">

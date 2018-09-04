@@ -78,24 +78,25 @@ if(pid != null) {
       return tmp;
     }();
     // var get_product_details = getProductDetailById(pid)
-
     
-    // RECENTY VIEWED PRODUCTS
-    let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
-    let recentViewedProducts = [];
-    if (localStorage.getItem(recentProductsName) != null) {
-        recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
-    }
-    
-    if(!(recentViewedProducts.includes(pid))) {
-        if(recentViewedProducts.length > 5) {
-            recentViewedProducts.splice(0, 1);
+    if(get_product_details != null && get_product_details != undefined) {
+        // RECENTLY VIEWED PRODUCTS
+        let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
+        let recentViewedProducts = [];
+        if (localStorage.getItem(recentProductsName) != null) {
+            recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
         }
-        recentViewedProducts.push(pid);
-    }
-    localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
+        
+        if(!(recentViewedProducts.includes(pid))) {
+            if(recentViewedProducts.length > 5) {
+                recentViewedProducts.splice(0, 1);
+            }
+            recentViewedProducts.push(pid);
+        }
+        localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
 
-    recentlyViewedProducts(recentViewedProducts);
+        recentlyViewedProducts(recentViewedProducts);
+    }
 }
 
 function recentlyViewedProducts(recentViewedProducts) {
@@ -1034,7 +1035,7 @@ $(document).ready( async function(){
     });
     // END QUANTITY PRICE TABLE END
 
-    //RECENTY VIEWED PRODUCTS
+    //RECENTLY VIEWED PRODUCTS
     $("#owl-carousel-recently-products").owlCarousel({
         navigation: true,
         items:4,
@@ -3078,7 +3079,6 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     let qtyShow = "";
     let totalQty = 0; //summary
     let totalPrice = 0.00; //summary
-    
     $('.js_color_checkbox:checked').each(function() {
         let colorName = $(this).val();
         let color_name = $(this).attr('id');
