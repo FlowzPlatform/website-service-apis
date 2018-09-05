@@ -159,7 +159,8 @@ let tagProductList = function(tagObj,productBoxHtml) {
                           ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                           if(productRes !== undefined)  {
 								if(productRes.images !== undefined) {
-                              		ProductImage = productRes.images[0].images[0].secure_url;
+                                      ProductImage = productRes.images[0].images[0].secure_url;
+                                      ProductImage = addOptimizeImgUrl(ProductImage,'w_210');
 								}
                           }
 
