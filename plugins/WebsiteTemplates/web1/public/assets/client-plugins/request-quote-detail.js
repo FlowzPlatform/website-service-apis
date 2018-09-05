@@ -53,7 +53,7 @@ function detailRequestQuote() {
       {
         var shipping_detail = quote_data.shipping_method.shipping_detail;
 
-        console.log(quote_data);
+        //console.log(quote_data);
         for(var shippingKey in shipping_detail)
         {
           var shippingHtml1 = shippingSectionHtml.html();

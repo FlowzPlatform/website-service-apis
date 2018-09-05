@@ -189,7 +189,7 @@ $(document).on('click','.send-email-product', function (e) {
                     dataType : 'json',
                         success : function(response_data) {
                             // $('#emailProduct').modal('toggle');
-                            console.log('response_data',response_data)
+                            // console.log('response_data',response_data)
                             if(response_data!= "") {
                                 // $("#email_product").find("input,textarea").val('');
                                 hidePageAjaxLoading()

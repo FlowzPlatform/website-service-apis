@@ -48,7 +48,7 @@ $(document).on('click','.js-award_submit',function (e)
 		productJsonData1['form_data'] = orderSample;
 		productJsonData1['website_id'] = website_settings['projectID'];
 
-		console.log('productJsonData1',productJsonData1);
+		//console.log('productJsonData1',productJsonData1);
 		
 		// return false;
 		
@@ -86,7 +86,7 @@ $(document).on('click', '.js-upload-art-image', function(e) {
 	// let index = $(this).attr('data-index'); //summary
 	// let art_heading = $(this).closest(".art-pos-value").find('li.active a').text(); //summary
 	// let art_heading_undescore = replaceWithUnderscore(art_heading); //summary
-	console.log('cloudinaryDetails',cloudinaryDetails)
+	//console.log('cloudinaryDetails',cloudinaryDetails)
 	cloudinary.openUploadWidget({
 			cloud_name: cloudinaryDetails.cloudName,
 			api_key: cloudinaryDetails.apiKey,
@@ -96,7 +96,7 @@ $(document).on('click', '.js-upload-art-image', function(e) {
 			multiple: false
 	},
 	function(error, result) {
-			console.log(error, result)
+			//console.log(error, result)
 			if(typeof result != 'undefined') {
 				$("#award_file_url").val(result[0].url);		
 					$("#award_file_img").attr('src',result[0].url);

@@ -129,7 +129,7 @@ async function paynow() {
 
 					 	// if Tax found than authorized that cart
 					 	for (let items of product_response) {
-					 		console.log('items', items)
+					 		//console.log('items', items)
 							if (items.taxcloud != 'undefined') {
 							 	let taxcloudurl = project_settings.taxcloud_url;
 								if (typeof TaxCloud != 'undefined' && TaxCloud.apiKey != '' && TaxCloud.apiId != '') {
@@ -153,15 +153,15 @@ async function paynow() {
 												url: taxcloudurl + '/AuthorizedWithCapture',
 												data: mdata
 											}).then(resp => {
-												console.log('TAX Authorized')
+												//console.log('TAX Authorized')
 											}).catch(err => {
-												console.log('Tax Authorized Failed')
+												//console.log('Tax Authorized Failed')
 											})
 								 		}
 								 	} else {
 								 		let date = new Date().toISOString();
 								 		date = date.split('T');
-								 		console.log('Date:: ', date, taxcloudurl)
+								 		//console.log('Date:: ', date, taxcloudurl)
 								 		let mdata = {
 										  customerID: user_details['fullname'] + ' ' + user_details['_id'],
 										  apiLoginID: taxid,
@@ -171,15 +171,15 @@ async function paynow() {
 										  dateAuthorized: date[0],
 										  dateCaptured: date[0]
 										};
-										console.log('mdata', mdata)
+										//console.log('mdata', mdata)
 										await axios({
 											method: 'POST',
 											url: taxcloudurl + '/AuthorizedWithCapture',
 											data: mdata
 										}).then(resp => {
-											console.log('Tax Authorized')
+											//console.log('Tax Authorized')
 										}).catch(err => {
-											console.log('Tax Authorized Failed')
+											//console.log('Tax Authorized Failed')
 										})
 								 	}
 								}

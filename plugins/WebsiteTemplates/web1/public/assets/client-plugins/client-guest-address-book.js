@@ -139,7 +139,7 @@ async function setGuestAddress(returnData,shippigCounter,carrierData = null)
             let country = await getCountryStateCityById(returnData.country,1);
 
             if (typeof get_product_details.shipping == 'undefined') {
-              console.log('No Shipping FOUND')
+              //console.log('No Shipping FOUND')
             }
             let shipping_details = get_product_details.shipping[0];
               if(shipping_details.fob_city == '' || shipping_details.fob_state_code == '' || shipping_details.fob_zip_code == '' || shipping_details.fob_country_code == ''){
@@ -165,7 +165,7 @@ async function setGuestAddress(returnData,shippigCounter,carrierData = null)
                   "zip": returnData.postalcode,
                   "country": country,
               };
-              console.log('addressFrom ::', addressFrom);
+              //console.log('addressFrom ::', addressFrom);
               // let sCode = await getStateCode(returnData.state, 2)
               // if (sCode != null) {
               //   let verify_address_to = await verifyAddress(addressTo, sCode)

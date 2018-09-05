@@ -130,7 +130,7 @@ $(document).on('click','.js-order_sample',function (e)
 
 let setProductDetail = async function(){
 	let product_data = await getProductDetailById(pid);
-	console.log('product_data',product_data);
+	//console.log('product_data',product_data);
 	$("#prod").val(pid);
 	$("#prod_name").val(product_data.product_name);
 }();
