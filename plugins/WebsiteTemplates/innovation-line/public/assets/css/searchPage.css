@@ -228,7 +228,7 @@ span.sku-title {
 }
 
 div#ResultList .sweet-loading,
-div#ResultCard .sweet-loading {position: absolute;z-index: 1;top: 30%;left: 60%;}
+div#ResultCard .sweet-loading {position: absolute;z-index: 1;top: 30%;left: 50%;}
 
 section.css-8523a9.css-7bb100 {
     min-height: 1250px;
