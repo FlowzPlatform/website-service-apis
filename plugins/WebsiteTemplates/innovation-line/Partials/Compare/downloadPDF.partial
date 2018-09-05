@@ -20,7 +20,10 @@
                                 </tr>
                                 <tr class="feature dark-bg pro-title" id="product_price">
                                         <td style="width:20%" class="price-rang-brd ">
-                                            <div class="product-price"> #data.price#</div>
+                                                <div class="product-price" style="text-align:center">
+                                                        <div style="float:left;margin-left:25px;"><span class="priceProd">#data.price#</span></div>
+                                                        <span style="display:inline-block;vertical-align:top;margin-left:8px">Qty #data.min_qty#</span>
+                                                </div>
                                         </td>
                                 </tr>
                                 <tr class="feature light-bg" id="product_sku">

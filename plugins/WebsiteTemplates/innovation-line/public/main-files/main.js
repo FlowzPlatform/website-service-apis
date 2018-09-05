@@ -16,7 +16,6 @@ var website_info = function () {
           let projectInfo = data[0]
           let webInfo = getWebsiteInfoById(data[0].projectID,data[0].project_settings.project_configuration_api_url);
           TaxCloud = webInfo.configData[1].projectSettings[1].TaxCloud
-          // console.log(':::::::::::::::::', webInfo, TaxCloud)
           projectInfo['subscriptionId'] = webInfo.subscriptionId
           data[0] = projectInfo
           tmp = data;
@@ -36,7 +35,6 @@ var websiteConfiguration = function () {
     async: false,
     success: function(data) {
       tmp = data.data[0].module_name;
-      // console.log('data',data.data[0].module_name)
     }
   });
   return tmp;
@@ -70,7 +68,6 @@ function getWebsiteInfoById(websiteId,webInfoAPi) {
     	return returnData;
 }
 
-// console.log("website_settings",website_settings);
 async function getProductDetailById(id) {
       var returnData = null;
     	await axios({
@@ -80,7 +77,6 @@ async function getProductDetailById(id) {
     		})
     	.then(response => {
          productData = response.data;
-        //  console.log("productData",productData);
          if(typeof productData.hits.hits[0] != "undefined")
          {
           returnData = productData.hits.hits[0]._source;
@@ -91,6 +87,27 @@ async function getProductDetailById(id) {
 
     	})
     	return returnData;
+}
+
+async function getProductDetailBySource(id,source) {
+  var returnData = null;
+  await axios({
+      method: 'GET',
+      url: project_settings.product_api_url+"?_id="+id+"&source="+source,
+      headers: {'vid' : website_settings.Projectvid.vid},
+    })
+  .then(response => {
+     productData = response.data;
+     if(typeof productData.hits.hits[0] != "undefined")
+     {
+      returnData = productData.hits.hits[0]._source;
+     }
+     return returnData
+  })
+  .catch(function (error){
+
+  })
+  return returnData;
 }
 
 async function getStreetLocation(ZipCode){
@@ -104,7 +121,6 @@ async function getStreetLocation(ZipCode){
         return resp;
     })
     .catch(function (error) {
-        // console.log("error",error);
     });
     return resp;
 }
@@ -116,13 +132,11 @@ async function getStreetData(location){
         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
     })
     .then(function (response1) {
-        // console.log("response1",response1);
         let resp1 = response1.data.results[0].formatted_address.split(",");
         resp = resp1[0]
         return resp;
     })
     .catch(function (error) {
-        // console.log("error",error);
     })
     return resp;
 }
@@ -138,7 +152,6 @@ let getStateCode = async function (id, type) {
           'type':type
       }
     }).then(res => {
-      // console.log('getLocation :::', res.data)
       code = {
         statecode: res.data.state_code,
         countrycode: res.data.country_code
@@ -236,8 +249,6 @@ if (user_id != null ) {
           //   'type': "GET",
           //   'url': project_settings.project_configuration_api_url+"/"+website_settings['projectID'],
           //   'success': function (response) {
-          //       // console.log("website response",response);
-          //       //console.log("subscriptionId",response.subscriptionId);
           //       if(user_details.package[response.subscriptionId] != undefined && user_details.package[response.subscriptionId].role == "admin"){
           //             admin_role_flag = 1;
           //       }
@@ -359,7 +370,6 @@ var init = function() {
         });
         return tmp;
       }();
-      console.log('quickquote_values',quickquote_values)
       if(quickquote_values.length >0)
       {
         var recentAddedInQuotelist = [];
@@ -391,7 +401,6 @@ var init = function() {
         });
         return tmp;
       }();
-      console.log('compare_values',compare_values)
 
       if(compare_values.length >0)
       {
@@ -423,7 +432,6 @@ var init = function() {
   }
 
   let type;
-  //console.log("user_details",user_details);
   // login-logout start
   if(user_details != null){
     $(".logout-show").removeClass('hide');
@@ -525,12 +533,10 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
 
   $( "#main_filter" ).change(function() {
      HeaderSearchValue = $('#main_filter :selected').val()
-    //  console.log("HeaderSearchValue",HeaderSearchValue);
    });
 
    $('input[name="search"]').keyup(function(){
     let val = $('input[name="search"]').val();
-     console.log("val",val);
 
      if(HeaderSearchValue == undefined || HeaderSearchValue == "searchAll"){
         let SearchInAll1 = {
@@ -545,7 +551,6 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
         }
         $.ajax(SearchInAll1).done(function (data) {
           total_hits_SearchInAll = data.hits.total;
-          console.log("total_hits_SearchInAll1",total_hits_SearchInAll);
           let SearchInAll2 = {
             "async": true,
             "crossDomain": true,
@@ -578,7 +583,6 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
      }
 
      else if( HeaderSearchValue == "categories" || HeaderSearchValue == "search_keyword" || HeaderSearchValue == "sku") {
-       console.log("in else if section");
       let settings = {
         "async": true,
         "crossDomain": true,
@@ -925,7 +929,6 @@ function deleteFromDatabase(type,id,user_id){
 
         // var recentAddedInWishlist = data;
         // recentAddedInWishlist.push(data);
-        // localStorage.removeItem('savedWishlistRecent');
         if(type == 1)
         {
           updateShoppingDatabaseCount(type,'-');
@@ -1212,7 +1215,6 @@ function getProductDetailBysku(sku){
       }
 
       $.ajax(settings).done(function (response) {
-        // console.log(response);
       });
 }
 
@@ -1322,7 +1324,6 @@ function showQuickQuoteList()
     {
       $('#myQuickQuoteList .listing').addClass('hide');
       $('#myQuickQuoteList .quick-quote-form').addClass('hide');
-      console.log('wishlist_values',wishlist_values);
       if (typeof(listHtml) !== "undefined" && wishlist_values != "" ) {
           for (item in wishlist_values)
           {
@@ -1519,7 +1520,6 @@ function showQuickQuoteList()
       if (wishlist_values != "" ) {
         for (item in wishlist_values)
         {
-          // console.log('user_id',wishlist_values[item].val.user_id)
           var showItem = false;
           if(user_details != null && user_id == wishlist_values[item].user_id)
           {
@@ -1588,7 +1588,6 @@ function showWishList(recetAdded=false)
       var wishlist_values = JSON.parse(localStorage.getItem("savedWishlist"));
     }
 
-    console.log('wishlist_values',wishlist_values);
     // return false;
 
     var productHtml='';
@@ -1599,7 +1598,6 @@ function showWishList(recetAdded=false)
       if (typeof(listHtml) !== "undefined" && wishlist_values != "" ) {
           for (item in wishlist_values)
           {
-            // console.log('user_id',wishlist_values[item].val.user_id)
             var showItem = false;
             if(user_details != null && user_id == wishlist_values[item].user_id)
             {
@@ -1637,12 +1635,10 @@ function showWishList(recetAdded=false)
                   success: async function (data) {
                     rawData = data.hits.hits;
                     productData = rawData;
-                    // console.log("productData.length",productData.length)
                     if(productData.length > 0)
                     {
                       wishlistValuesCount = wishlistValuesCount+1;
 		    let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                    console.log("productData",productData);
                     if(productData[0]._source.images != undefined){
                         product_image = productData[0]._source.images[0].images[0].secure_url;
                     }
@@ -1730,7 +1726,6 @@ function showWishList(recetAdded=false)
       if (wishlist_values != "" ) {
         for (item in wishlist_values)
         {
-          // console.log('user_id',wishlist_values[item].val.user_id)
           var showItem = false;
           if(user_details != null && user_id == wishlist_values[item].user_id)
           {
@@ -1796,12 +1791,9 @@ function showCompareList(recetAdded=false)
      else {      
         var compare_values = JSON.parse(localStorage.getItem("savedCompared"));
      }
-      console.log("compare_values",compare_values)
-
 
     if($("#myCompareList").length > 0)
     {
-      // console.log('compare_values',compare_values)
       $('#myCompareList #listing').addClass('hide');
       var productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
       var productData;
@@ -1814,7 +1806,6 @@ function showCompareList(recetAdded=false)
       if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) {
             for (item in compare_values)
             {
-              // console.log('user_id',compare_values[item].val.user_id)
               var showItem = false;
               if(user_details != null && user_id == compare_values[item].user_id)
               {
@@ -1837,7 +1828,7 @@ function showCompareList(recetAdded=false)
                 $.ajax({
                   type: 'GET',
                   // url: project_settings.product_api_url+"?_id="+prodId,
-                  url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
+                  url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
                   async: false,
                   beforeSend: function (xhr) {
                     xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -1853,7 +1844,6 @@ function showCompareList(recetAdded=false)
                     var itemTitleHtml = html;
                     var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].id);
 		    let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                  // console.log("productData[0]._source.images",productData[0]._source.images);
                   if( productData[0]._source.images != undefined ){
                     product_image = productData[0]._source.images[0].images[0].secure_url;
                   }
@@ -1863,12 +1853,16 @@ function showCompareList(recetAdded=false)
                     var itemTitleHtml = itemTitleHtml.replace('#data.product_link#',detailLink);
 
                     var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
+                    
                     if(user_id == null){
                       var itemTitleHtml = itemTitleHtml.replace('#data.price#',"");
-                    }else{
+                      var itemTitleHtml = itemTitleHtml.replace(/#data.min_qty#/g,"");
+                    }else
+                    {
                       var itemTitleHtml = itemTitleHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
+                      var itemTitleHtml = itemTitleHtml.replace(/#data.min_qty#/g,productData[0]._source.pricing[0].price_range[0].qty.gte);
                     }
-
+                    
                     productHtml = itemTitleHtml;
 
                     var itemTitleHtml = item_sku;
@@ -1890,29 +1884,7 @@ function showCompareList(recetAdded=false)
                     var itemTitleHtml = itemTitleHtml.replace('#data.features#',fetureList);
                     itemFeaturesHtml = itemTitleHtml;
 
-                    if(recetAdded)
-                    {
-                      $("#myCompareList #listing .js-no-records").remove();
-                      $("#myCompareList #listing div:first").removeClass("hide");
-
-                      if(JSON.parse(localStorage.getItem("savedCompared")).length == 1)
-                      {
-                        // console.log('compareHtml.find("#item_title_price1").html', compareHtml.find("#item_title_price1").html());
-                        compareHtml.find("#item_title_price1").html("<td></td>"+productHtml)
-                        compareHtml.find("#item_sku1").html("<td><strong>ITEM CODE</strong></td>"+itemSkuHtml)
-                        compareHtml.find("#item_summary1").html("<td><strong>SUMMARY</strong></td>"+activeSummaryHtml)
-                        compareHtml.find("#item_features1").html("<td><strong>FEATURES</strong></td>"+itemFeaturesHtml)
-                        $('#myCompareList #listing').html(compareHtml.html());
-                      }
-                      else
-                      {
-                        $("tr#item_title_price1").append(productHtml)
-                        $("tr#item_sku1").append(itemSkuHtml)
-                        $("tr#item_summary1").append(activeSummaryHtml)
-                        $("tr#item_features1").append(itemFeaturesHtml)
-                      }
-                    }
-                    else if(item == 0 || compareValuesCount == 1)
+                    if(item == 0 || compareValuesCount == 1)
                     {
                       $("#myCompareList #listing .js-no-records").remove();
                       $("#myCompareList #listing div:first").removeClass("hide");
@@ -1922,6 +1894,9 @@ function showCompareList(recetAdded=false)
                       compareHtml.find("#item_summary1").html("<td><strong>SUMMARY</strong></td>"+activeSummaryHtml)
                       compareHtml.find("#item_features1").html("<td><strong>FEATURES</strong></td>"+itemFeaturesHtml)
                       $('#myCompareList #listing').html(compareHtml.html());
+                      if(user_id == null){
+                        $("#listing .product-"+productData[0]._id).find(".js_quantity_input").parent().remove();
+                      }
                     }
                     else{
                       compareHtml.find("#item_title_price1").append(productHtml)
@@ -1929,6 +1904,9 @@ function showCompareList(recetAdded=false)
                       compareHtml.find("#item_summary1").append(activeSummaryHtml)
                       compareHtml.find("#item_features1").append(itemFeaturesHtml)
                       $('#myCompareList #listing').html(compareHtml.html());
+                      if(user_id == null){
+                        $("#listing .product-"+productData[0]._id).find(".js_quantity_input").parent().remove();
+                      }
                     }
                   }
                     else{
@@ -2083,9 +2061,7 @@ async function getCountryStateCityById(id,type){
     }
   })
   .catch(function (error) {
-    // console.log("error",error);
   });
-  // console.log("resp",resp);
   return resp;
 }
 
@@ -2277,10 +2253,8 @@ async function deleteItemById(ajaxUrl)
     url : ajaxUrl,
   })
   .then(function (response) {
-    console.log("Deleted")
   })
   .catch(function (error) {
-    // console.log("error",error);
   });
 }
 
@@ -2298,7 +2272,6 @@ async function getUserDetailById(userId) {
           return returnData
     	})
       .catch(function (error) {
-          //console.log("error",error.response);
       });
     	return returnData;
 }
@@ -2327,7 +2300,6 @@ let replaceColorSwatchWithHexaCodes = function(attribute_value,attribute_name) {
             resolve(returnColorVal);
         }).catch(function (error) {
             resolve(error)
-            // 	console.log("error+++",error);
             // reject()
         });
       }
@@ -2368,7 +2340,6 @@ if(navigator.userAgent.indexOf("Firefox") != -1 )
   };
   // request.onsuccess = function(event) {
   //   // db = event.target.result;
-  //   console.log( 'onsuccess' + event.target )
   // };
 }
 function sleep(ms) {
@@ -2425,7 +2396,7 @@ async function printDiv(printDiv=true) {
 
                   $.ajax({
                     type: 'GET',
-                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
+                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
                     async: false,
                     beforeSend: function (xhr) {
                       xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -2452,9 +2423,12 @@ async function printDiv(printDiv=true) {
                       var itemPriceHtml = html;
                       if(user_id == null){
                         var itemPriceHtml = itemPriceHtml.replace('#data.price#',"");
-                      }else{
-                        var itemPriceHtml = itemPriceHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
+                      }else
+                      {
+                        itemPriceHtml = itemPriceHtml.replace('#data.price#',$("#listing #js-price-per-qty-"+productData[0]._id).find(".priceProd").html());
+                        itemPriceHtml = itemPriceHtml.replace('#data.min_qty#',$("#listing .product-"+productData[0]._id).find(".js_quantity_input").val()); 
                       }
+                      
                       productPriceHtml = itemPriceHtml;
 
                       var itemTitleHtml = item_sku;
@@ -2484,6 +2458,9 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_summary").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").html("<td class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
                         $('#print-comparision').html(compareHtml.html());
+                        if(user_id == null){
+                          $("#print-comparision #js-print_item_price").remove();
+                        }
                       }
                       else{
                         $(compareHtml).find("#js-print_item_title").append(productTitleHtml)
@@ -2492,6 +2469,9 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_summary").append(activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").append(itemFeaturesHtml)
                         $('#print-comparision').html(compareHtml.html());
+                        if(user_id == null){
+                          $("#print-comparision #js-print_item_price").remove();                          
+                        }
                       }
                     }
                     }
@@ -2511,7 +2491,6 @@ async function printDiv(printDiv=true) {
       });
 
       document.body.innerHTML = $(".js-print-html").parent().html();
-      // console.log('document.body.innerHTML',document.body.innerHTML)
       window.print();
 
       document.body.innerHTML = originalContents;
@@ -2590,8 +2569,6 @@ $(document).on('click','.js-email_quick_quote',function (e)
             var quoteData = [];
             for (item in quote_values)
             {
-              console.log('quote_values',quote_values[item]);
-              
               var showItem = false;
               if(user_details != null && user_id == quote_values[item].user_id)
               {
@@ -2626,7 +2603,6 @@ $(document).on('click','.js-email_quick_quote',function (e)
                     if(productData.length >0)
                     {
                       productJsonData = {};
-                      console.log('productData',productData[0])
 
                       if(productData[0]._source.images != undefined){
                           productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
@@ -2709,10 +2685,8 @@ $(document).on('click','.js-email_quick_quote',function (e)
 
                             productHtmlColor += '<span style="border: 2px solid #ccc; height: 30px; width: 30px; display: inline-block ;'+element_color_style+'"></span>';
                         }
-                        // console.log('productHtmlColor',productHtmlColor);
                         productJsonData['productColors'] = productHtmlColor;
                       }
-                      console.log('productJsonData--------',JSON.stringify(productJsonData));
                       quoteData.push(productJsonData);
                     }
                   },
@@ -2723,9 +2697,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
               }
             }
             var productJsonData1 = {};
-            console.log('quoteData--------',JSON.stringify(quoteData));
             productJsonData1['data'] = quoteData;
-            console.log('productJsonData1["data"]--------',JSON.stringify(productJsonData1['data']));
             var form_data = formObj.serializeArray();
             var emailToFriend = {};
 
@@ -2748,7 +2720,6 @@ $(document).on('click','.js-email_quick_quote',function (e)
               cache: false,
               dataType : 'json',
               success : function(response_data) {
-                // console.log("response_data",response_data)
                 if(response_data!= "") {
                   $("#send_quick_quoteemail").find("input,textarea").val('');
                     hidePageAjaxLoading()
@@ -2878,7 +2849,12 @@ $(document).on('click','.send-friend-email',function (e)
                       }else{
                         productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
                       }
-
+                      if(user_id == null){
+                        productJsonData['min_qty'] = "";
+                      }else{
+                        productJsonData['min_qty'] = $("#listing #js-price-per-qty-"+productData[0]._id).find(".priceProd").html();
+                      }
+                      
                       productJsonData['sku'] = productData[0]._source.sku;
                       productJsonData['description'] = productData[0]._source.description;
 
@@ -2914,7 +2890,6 @@ $(document).on('click','.send-friend-email',function (e)
               cache: false,
               dataType : 'json',
               success : function(response_data) {
-                // console.log("response_data",response_data)
                 $('#myModal').modal('toggle');
                 if(response_data!= "") {
                   $("#send_email_to_friend").find("input,textarea").val('');
@@ -3200,8 +3175,10 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
             productHtml = itemTitleHtml;
 
             let itemPriceHtml = itemPrice;
-            if(user_id != null){
-              itemPriceHtml = itemPriceHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
+            if(user_id != null)
+            {
+              itemPriceHtml = itemPriceHtml.replace('#data.price#',$("#listing #js-price-per-qty-"+productData[0]._id).find(".priceProd").html());
+              itemPriceHtml = itemPriceHtml.replace('#data.min_qty#',$("#listing .product-"+productData[0]._id).find(".js_quantity_input").val());
             }
             let itemSkuHtml1 = item_sku;
             itemSkuHtml1 = itemSkuHtml1.replace('#data.sku#',productData[0]._source.sku);
@@ -3228,7 +3205,8 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
               {
                 compareHtml.find("#product_price").remove();
               }
-              else{
+              else
+              {
                 compareHtml.find("#product_price").addClass('hide').html("<td style='width:20%' class='feature-block'>PRICE</td>"+itemPriceHtml)
               }
               compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM CODE</td>"+itemSkuHtml)
@@ -3285,3 +3263,45 @@ function stripHtml(html){
   // Retrieve the text property of the element (cross-browser support)
   return temporalDivElement.textContent || temporalDivElement.innerText || "";
 }
+
+function addOptimizeImgUrl(imgUrl, wparam)
+{
+	let b = imgUrl.split("/")
+	b.splice(6, 0, wparam);
+	return b.join('/');
+}
+$(document).on('change', '#listing .js_quantity_input', async function(e) {
+    this.PreviousVal = $(this).val();
+		var QtyBox = $(this);
+		var qty = QtyBox.val();
+		var thisPreviousVal = this.PreviousVal ;
+		var product_id = QtyBox.data('product-id');
+    var data = { productId:product_id, qty:qty };
+		// showTopAjaxLoading();
+    $(".product-"+product_id).find(".js_quantity_input").attr("value",qty);
+    
+    let productPricing = await getProductDetailBySource(product_id,'pricing,currency')
+
+    if(productPricing.pricing != undefined){
+      let priceRang = '';
+      $.each(productPricing.pricing, function(index,element){
+              if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
+                   $.each(element.price_range,function(index,element2){
+                      if(element2.qty.lte != undefined){
+                          if(qty>=element2.qty.gte && qty<=element2.qty.lte){
+                            $("#js-price-per-qty-"+product_id).find(".priceProd").html(productPricing.currency+" "+element2.price.toFixed(project_settings.price_decimal));
+                            return false;
+                          }
+                        }
+                        else
+                        {
+                          $("#js-price-per-qty-"+product_id).find(".priceProd").html(element2.price.toFixed(project_settings.price_decimal));
+                          return false;                          
+                        }
+                     });
+              }
+      });
+    }
+    return false;
+
+	});
