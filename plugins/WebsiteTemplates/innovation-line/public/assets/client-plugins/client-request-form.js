@@ -189,7 +189,7 @@ function ecatalog_data(ecatalogs) {
 
 					listHtml1 = listHtml1.replace(/#ecatalog-id#/g,ecatalogArray.id);
 
-					listHtml1 = listHtml1.replace('#ecatalog-title#',ecatalogArray.ecatalog_name);
+					listHtml1 = listHtml1.replace(/#ecatalog-title#/g,ecatalogArray.ecatalog_name);
 
 					listHtml1 = listHtml1.replace(/#ecatalog-image-link#/g,ecatalogArray.ecatalog_image);
 

@@ -13,7 +13,7 @@
                                 <tr class="dark-bg" id="product_img">
                                         <td style="width:20%" class=" ">
                                         <div class="pro-img">
-                                        <div class="img-block"><img src="#data.image#" class="img-responsive center-block lazyLoad" alt=""></div>
+                                        <div class="img-block"><img src="#data.image#" class="img-responsive center-block lazyLoad" alt="#data.title#" title="#data.title#"></div>
                                         </div>
                                         <div class="product-name">#data.title#</div>
                                         </td>
