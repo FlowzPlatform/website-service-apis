@@ -32,7 +32,7 @@ let verifyAddress = function (ADD, codes) {
             dataType: 'json',
             data: add, 
             success: function (data) {
-                console.log('Dataa:: ', data)
+                //console.log('Dataa:: ', data)
                 if (data.ErrNumber == '0') {
                   flag = true;
                 } else {
@@ -129,7 +129,7 @@ function recentlyViewedProducts(recentViewedProducts) {
                         let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
                         let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
 
-                        recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block" alt=""> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
+                        recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt=""> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
                     }
                     else {
                         let AIndex = recentLoop.indexOf(productId);
@@ -292,11 +292,11 @@ $(document).ready( async function(){
     		                  let color = element.color;
                           color = color.toLowerCase().replace(/\s/g, '-');
                           imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
-                          imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+'" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
+                          imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+' lazyLoad" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
     		               }
     		          }else{
                     imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_default_link" data-zoom-image="'+productImageUrl+'">';
-                    imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
+                    imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default lazyLoad" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
                   }
 
                 $(".js-image-gallery").html(imageGallaryHtml);
@@ -3288,12 +3288,12 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
                   // "email": "shippotle@goshippo.com",//optional
                   // "validate": true//optional
               };
-              console.log('addressFrom ::', addressFrom);
+              //console.log('addressFrom ::', addressFrom);
               let sCode = await getStateCode(returnData.state, 2)
               if (sCode != null) {
                 let verify_address_to = await verifyAddress(addressTo, sCode)
                 let verify_address_from = await verifyAddress(addressFrom, sCode)
-                console.log('verify_address ::', verify_address_to, verify_address_from)
+                //console.log('verify_address ::', verify_address_to, verify_address_from)
                 if(!verify_address_to){
                     hidePageAjaxLoading()
                     showErrorMessage("Please add correct shipping address.")
@@ -3550,8 +3550,8 @@ $(document).on('click','.js-submit-btn',function (e) {
           },
           errorElement: "li",
           errorPlacement: function(error, element) {
-            console.log("error",error);
-            console.log("element",element);
+            //console.log("error",error);
+            //console.log("element",element);
             error.appendTo(element.closest("div"));
             $(element).closest('div').find('ul').addClass('red')
           },

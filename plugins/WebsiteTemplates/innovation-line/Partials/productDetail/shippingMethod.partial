@@ -102,7 +102,7 @@ body {
 
 
 
-<script type="text/javascript" src="./assets/client-plugins/typeahead.min.js"></script>
+<script type="text/javascript" src="./assets/client-plugins/typeahead.min.js" defer="defer"></script>
 <div class="product-section-box">
     <div class="panel-group" id="#activetab#-Shipping-method" role="tablist"
     aria-multiselectable="true">
