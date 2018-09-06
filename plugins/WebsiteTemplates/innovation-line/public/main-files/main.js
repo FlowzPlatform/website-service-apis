@@ -5,7 +5,7 @@ let timeStamp = Math.floor(Date.now() / 1000);
 let TaxCloud = null;
 
 var website_info = function () {
-  var tmp = null;
+  let tmp = null;
   $.ajax({
       'async': false,
       'type': "GET",
@@ -28,7 +28,7 @@ var website_settings = website_info[0];
 var project_settings = website_settings.project_settings;
 
 var websiteConfiguration = function () {
-  var tmp = null;
+  let tmp = null;
   $.ajax({
     url: project_settings.website_configuration_api_url+ "?website_id=" + website_settings['projectID'],
     dataType: 'json',
@@ -41,7 +41,7 @@ var websiteConfiguration = function () {
 }();
 
 var cloudinaryDetails = function () {
-  var tmp = null;
+  let tmp = null;
   $.ajax({
     url: project_settings.project_configuration_api_url + "/" + website_settings['projectID'],
     dataType: 'json',
@@ -54,7 +54,7 @@ var cloudinaryDetails = function () {
 }();
 
 function getWebsiteInfoById(websiteId,webInfoAPi) {
-      var returnData = null;
+      let returnData = null;
       $.ajax({
           'async': false,
           'type': "GET",
@@ -69,7 +69,7 @@ function getWebsiteInfoById(websiteId,webInfoAPi) {
 }
 
 async function getProductDetailById(id) {
-      var returnData = null;
+      let returnData = null;
     	await axios({
     			method: 'GET',
     			url: project_settings.product_api_url+"?_id="+id,
@@ -111,7 +111,7 @@ async function getProductDetailBySource(id,source) {
 }
 
 async function getStreetLocation(ZipCode){
-   var resp = "";
+    let resp = "";
     await axios({
         method: 'GET',
         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&address={"+ZipCode+"}&sensor=true",
@@ -126,7 +126,7 @@ async function getStreetLocation(ZipCode){
 }
 
 async function getStreetData(location){
-    var resp = "";
+    let resp = "";
     await axios({
         method: 'GET',
         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
@@ -185,7 +185,7 @@ if(getParameterByName('token')) {
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
@@ -193,7 +193,7 @@ function getParameterByName(name, url) {
 }
 
 function validateEmail(sEmail) {
- var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  let filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
  if (filter.test(sEmail)) {
    return true;
  }
@@ -203,8 +203,8 @@ function validateEmail(sEmail) {
 }
 
 function getCookie(name) {
-  var re = new RegExp(name + "=([^;]+)");
-  var value = re.exec(document.cookie);
+  let re = new RegExp(name + "=([^;]+)");
+  let value = re.exec(document.cookie);
   return (value != null) ? unescape(value[1]) : null;
 }
 
@@ -213,7 +213,7 @@ let userFrontId = getCookie('user_id');
 
 if((userToken != null && userFrontId != null) || getParameterByName('token')) {
     var user_details = function () {
-      var tmp = null;
+      let tmp = null;
       $.ajax({
           'async': false,
           'type': "GET",
@@ -260,7 +260,7 @@ if (user_id != null ) {
 //alert(admin_role_flag)
 
 function $_GET(param) {
-	var vars = {};
+	let vars = {};
 	window.location.href.replace( location.hash, '' ).replace(
 		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
 		function( m, key, value ) { // callback
@@ -275,7 +275,7 @@ function $_GET(param) {
 }
 
 function validateEmail(sEmail) {
-  var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  let filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
   if (filter.test(sEmail)) {
     return true;
   }
@@ -285,7 +285,7 @@ function validateEmail(sEmail) {
 }
 
 function getUserInfo(){
-  var userDetail = {};
+  let userDetail = {};
   $.ajax({
     'async': false,
     'type': "GET",
@@ -325,7 +325,7 @@ var init = function() {
       localStorage.setItem("savedWishlistRegister",'');
       
       wishlist_values = function () {
-          var tmp = null;
+          let tmp = null;
           $.ajax({
               'async': false,
               'type': "GET",
@@ -342,7 +342,7 @@ var init = function() {
 
         if(wishlist_values.length >0)
         {
-          var recentAddedInWishlist = [];
+          let recentAddedInWishlist = [];
 
           for(let item in wishlist_values)
           {
@@ -356,7 +356,7 @@ var init = function() {
       ////////////////// quick quote ///////////////////
       localStorage.setItem("savedQuickQuoteRegister",'');  
       quickquote_values = function () {
-        var tmp = null;
+        let tmp = null;
         $.ajax({
             'async': false,
             'type': "GET",
@@ -372,7 +372,7 @@ var init = function() {
       }();
       if(quickquote_values.length >0)
       {
-        var recentAddedInQuotelist = [];
+        let recentAddedInQuotelist = [];
 
         for(let item in quickquote_values)
         {
@@ -388,7 +388,7 @@ var init = function() {
       localStorage.setItem("savedComparedRegister",''); 
       
       compare_values = function () {
-        var tmp = null;
+        let tmp = null;
         $.ajax({
             'async': false,
             'type': "GET",
@@ -404,7 +404,7 @@ var init = function() {
 
       if(compare_values.length >0)
       {
-        var recentAddedInComparelist = [];
+        let recentAddedInComparelist = [];
 
         for(let item in compare_values)
         {
@@ -639,7 +639,7 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
  //});
 
 
-  $('.header-search-col').find('.btn-search').click(function(){
+  $(document).on('click','.header-search-col .btn-search',function() {
     if($.trim($('input[name="search"]').val()) != '') {
         window.location.href = website_settings.BaseURL+'search.html?SearchSensor='+$('input[name="search"]').val()
     // window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + "\""+$('input[name="search"]').val()+"\""
@@ -732,14 +732,14 @@ function dataSaveToLocal(type,product_id,show_msg=true){
     }
 
   }else{
-    var data = [];
+    let data = [];
     data.push({ 'type': type,'product_id': product_id,'id': product_id,'website_id':website_settings['projectID'] });
     localStorage.setItem(decideLocalStorageKey , JSON.stringify(data))
 
-    var recentAddedInWishlist = [];
+    let recentAddedInWishlist = [];
     recentAddedInWishlist.push({ 'type': type,'product_id': product_id,'id': product_id,'website_id':website_settings['projectID']});
     
-    var addedTo = "";
+    let addedTo = "";
     if(type == 1)
     {
       addedTo = " to wishlist";
@@ -860,7 +860,7 @@ function deleteFromLocal(type,product_id){
 }
 
 function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
-  var data = { 'type': type,'product_id': product_id,'user_id' : user_id,'website_id':website_settings['projectID'] };
+  let data = { 'type': type,'product_id': product_id,'user_id' : user_id,'website_id':website_settings['projectID'] };
   $.ajax({
     type : 'POST',
     url : project_settings.shopping_api_url,
@@ -872,13 +872,13 @@ function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
           updateShoppingDatabaseCount(type,'+');
         }
 
-        var recentAddedInWishlist = [];
+        let recentAddedInWishlist = [];
         data['id'] = response_data.data.id;
         recentAddedInWishlist.push(data);
       }
       if(show_msg != false) {
         if(response_data.status == 200) {
-          var addedTo = "";
+          let addedTo = "";
           if(type == 1)
           {
             addedTo = " to wishlist";
@@ -894,7 +894,7 @@ function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
           showSuccessMessage(response_data.message+addedTo)
         }
         else{
-          var alreadyAddedIn = "";
+          let alreadyAddedIn = "";
           if(type == 1)
           {
             alreadyAddedIn = " in wishlist";
@@ -927,7 +927,7 @@ function deleteFromDatabase(type,id,user_id){
       if(response_data != '') {
         // updateShoppingDatabaseCount(type,'-');
 
-        // var recentAddedInWishlist = data;
+        // let recentAddedInWishlist = data;
         // recentAddedInWishlist.push(data);
         if(type == 1)
         {
@@ -1148,12 +1148,12 @@ function decide_localStorage_key(type){
 
 
 function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=true) {  // The last one is array
-  // var count = array.length + 1;
-  var found = array.some(function (el) {
+  // let count = array.length + 1;
+  let found = array.some(function (el) {
     return el.product_id == product_id;
   });
 
-  var addedTo = "";
+  let addedTo = "";
   if(type == 1)
   {
     addedTo = " to wishlist";
@@ -1167,7 +1167,7 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
     addedTo = " to quick quote";
   }
 
-  var alreadyAddedIn = "";
+  let alreadyAddedIn = "";
   if(type == 1)
   {
     alreadyAddedIn = " in wishlist";
@@ -1185,7 +1185,7 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
   {
     array.push({ type: type , 'product_id': product_id,'id': product_id,'website_id':website_settings['projectID']  });
 
-    var recentAddedInWishlist = [];
+    let recentAddedInWishlist = [];
     recentAddedInWishlist.push({ 'type': type,'product_id': product_id, 'id': product_id});
 
     if(show_msg != false) {
@@ -1201,7 +1201,7 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
 
 
 function getProductDetailBysku(sku){
-      var settings = {
+      let settings = {
         "crossDomain": true,
         "url": "https://ae3f5d08fa1ec79613b0b307dadb0834.us-east-1.aws.found.io:9243/pdm1/_search",
         "method": "POST",
@@ -1221,8 +1221,8 @@ function getProductDetailBysku(sku){
 (function ($) {
     $.fn.serializeFormJSON = function () {
 
-        var o = {};
-        var a = this.serializeArray();
+        let o = {};
+        let a = this.serializeArray();
         $.each(a, function () {
             if (o[this.name]) {
                 if (!o[this.name].push) {
@@ -1318,8 +1318,8 @@ function showQuickQuoteList()
         $('#myQuickQuoteList .listing').html('');
         var wishlist_values = JSON.parse(localStorage.getItem("savedQuickQuote"));
     }
-    var productHtml='';
-    var productData;
+    let productHtml='';
+    let productData;
     if($("#myQuickQuoteList").length > 0)
     {
       $('#myQuickQuoteList .listing').addClass('hide');
@@ -1327,7 +1327,7 @@ function showQuickQuoteList()
       if (typeof(listHtml) !== "undefined" && wishlist_values != "" ) {
           for (item in wishlist_values)
           {
-            var showItem = false;
+            let showItem = false;
             if(user_details != null && user_id == wishlist_values[item].user_id)
             {
               showItem = true;
@@ -1520,7 +1520,7 @@ function showQuickQuoteList()
       if (wishlist_values != "" ) {
         for (item in wishlist_values)
         {
-          var showItem = false;
+          let showItem = false;
           if(user_details != null && user_id == wishlist_values[item].user_id)
           {
             showItem = true;
@@ -1726,7 +1726,7 @@ function showWishList(recetAdded=false)
       if (wishlist_values != "" ) {
         for (item in wishlist_values)
         {
-          var showItem = false;
+          let showItem = false;
           if(user_details != null && user_id == wishlist_values[item].user_id)
           {
             showItem = true;
@@ -1806,7 +1806,7 @@ function showCompareList(recetAdded=false)
       if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) {
             for (item in compare_values)
             {
-              var showItem = false;
+              let showItem = false;
               if(user_details != null && user_id == compare_values[item].user_id)
               {
                 showItem = true;
@@ -1960,7 +1960,7 @@ function showCompareList(recetAdded=false)
       if (compare_values != null && compare_values.length > 0 ) {
         for (item in compare_values)
         {
-          var showItem = false;
+          let showItem = false;
           if(user_details != null && user_id == compare_values[item].user_id)
           {
             showItem = true;
@@ -2040,7 +2040,7 @@ function removeSpecialCharacters(str)
 
 /* get city , state and country name by id */
 async function getCountryStateCityById(id,type){
-  var resp = "";
+  let resp = "";
   await axios({
       method: 'GET',
       url: project_settings.city_country_state_api,
@@ -2066,7 +2066,7 @@ async function getCountryStateCityById(id,type){
 }
 
 var returnAddressBookDetailById = async function(addressBookId) {
-	var returnData = null;
+	let returnData = null;
 	await axios({
 			method: 'GET',
 			url: project_settings.address_book_api_url+'/'+addressBookId,
@@ -2109,7 +2109,7 @@ async function getStateAndCityVal(countryVal,stateVal,dataFrom){
 
 $(document).ready(function(){
   if( $('.js-phone')){
-    var cntkey=0;
+      let cntkey=0;
       $(document).on('keypress', '.js-phone', function (event)
       {
           cntkey=$(this).val().length;
@@ -2139,7 +2139,7 @@ $(document).ready(function(){
 })
 
 function nl2br (str, is_xhtml) {
-  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+  let breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
   return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }
 
@@ -2147,8 +2147,8 @@ localStorage.setItem("vOneLocalStorage", user_id);
 
 
 Date.prototype.format = function(format) {
-  var returnStr = '';
-  var replace = Date.replaceChars;
+  let returnStr = '';
+  let replace = Date.replaceChars;
   for (var i = 0; i < format.length; i++) {
         var curChar = format.charAt(i);
         if (i - 1 >= 0 && format.charAt(i - 1) == "\\") {
@@ -2229,10 +2229,10 @@ Date.replaceChars = {
 };
 
 function formatDate(date,format) {
-  var formatdate = '-';
+  let formatdate = '-';
   if(date!='' && format!=''){
     let strdate = new Date(date);
-    var formatdate = strdate.format(format);
+    formatdate = strdate.format(format);
   }
   return formatdate
 };
@@ -2281,7 +2281,7 @@ let replaceColorSwatchWithHexaCodes = function(attribute_value,attribute_name) {
     return new Promise(async (resolve , reject ) => {
       let returnColorVal = null;
       if(attribute_value != undefined && attribute_value.length > 0) {
-        var data = {'colorname':attribute_value};
+        let data = {'colorname':attribute_value};
         await axios({
           method: 'GET',
           url : project_settings.color_table_api_url+'?vid='+website_settings.Projectvid.vid+'&websiteid='+website_settings['projectID']+'&attribute_name='+attribute_name,
@@ -2375,7 +2375,7 @@ async function printDiv(printDiv=true) {
             {
               if(item<4)
               {
-                var showItem = false;
+                let showItem = false;
                 if(user_details != null && user_id == compare_values[item].user_id)
                 {
                   showItem = true;
@@ -2502,9 +2502,9 @@ $.validator.addMethod(
    function(value, element) {
        if (this.optional(element)) // return true on optional element
            return true;
-       var emails = value.split(/[;,]+/); // split element by , and ;
+           let emails = value.split(/[;,]+/); // split element by , and ;
        valid = true;
-       for (var i in emails) {
+       for (let i in emails) {
            value = emails[i];
            valid = valid &&
                    jQuery.validator.methods.email.call(this, $.trim(value), element);
@@ -2569,7 +2569,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
             var quoteData = [];
             for (item in quote_values)
             {
-              var showItem = false;
+              let showItem = false;
               if(user_details != null && user_id == quote_values[item].user_id)
               {
                 showItem = true;
@@ -2621,7 +2621,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
                       productJsonData['sku'] = productData[0]._source.sku;
                       productJsonData['description'] = productData[0]._source.description;
 
-                      var fetureList = '';
+                      let fetureList = '';
                       for (let [i, features] of productData[0]._source.features.entries() ) {
                         fetureList += features.key+": "+features.value+"<br>";
                       }
@@ -2702,7 +2702,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
             var emailToFriend = {};
 
             for (var input in form_data){
-              var name = form_data[input]['value'];
+              let name = form_data[input]['value'];
               emailToFriend[form_data[input]['name']] = name;
               emailToFriend['slug'] = 'quick-quote';
             }
@@ -2801,7 +2801,7 @@ $(document).on('click','.send-friend-email',function (e)
             var compareData = [];
             for (item in compare_values)
             {
-              var showItem = false;
+              let showItem = false;
               if(user_details != null && user_id == compare_values[item].val.user_id)
               {
                 showItem = true;
@@ -2869,11 +2869,11 @@ $(document).on('click','.send-friend-email',function (e)
                 });
               }
             }
-            var productJsonData1 = {};
+            let productJsonData1 = {};
             productJsonData1['data'] = compareData;
 
-            var form_data= formObj.serializeArray();
-            var emailToFriend = {};
+            let form_data= formObj.serializeArray();
+            let emailToFriend = {};
 
             for (var input in form_data){
               var name = form_data[input]['value'];
@@ -2920,7 +2920,7 @@ $(document).on('click', '.js-btn-delete-all-compare-product',function(e) {
       showPageAjaxLoading();
       await sleep(300)
 
-      var values = "";
+      let values = "";
       if(user_details != null)
       {
         values = JSON.parse(localStorage.getItem("savedComparedRegister"));
@@ -3028,7 +3028,7 @@ document.addEventListener("DOMContentLoaded", function(event){
 
 function readImgUrl(input,e,imgId) {
   if (input.files && input.files[0]) {
-      var reader = new FileReader();
+      let reader = new FileReader();
       reader.onload = function(e) {
         $('#'+imgId).attr('src', e.target.result);
         if($('#'+imgId).hasClass( "hide" )) {
@@ -3080,7 +3080,7 @@ function timeAgo(selector) {
 
   var elements = document.getElementsByClassName('timeago');
   for (var i in elements) {
-      var $this = elements[i];
+      let $this = elements[i];
       if (typeof $this === 'object') {
           $this.innerHTML = timer($this.getAttribute('title') || $this.getAttribute('datetime'));
       }
