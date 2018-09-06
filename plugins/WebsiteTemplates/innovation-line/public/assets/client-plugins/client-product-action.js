@@ -241,7 +241,7 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
 
     let guestUserHtml = $("#print-product").html();
 
-    guestUserHtml = guestUserHtml.replace('#data.product_name#',productResponse.product_name);
+    guestUserHtml = guestUserHtml.replace(/#data.product_name#/g,productResponse.product_name);
     guestUserHtml = guestUserHtml.replace('#data.sku#',productResponse.sku);
     guestUserHtml = guestUserHtml.replace('#data.description#',productResponse.description);
     guestUserHtml = guestUserHtml.replace('#data.colors#',productResponse.attributes.colors);

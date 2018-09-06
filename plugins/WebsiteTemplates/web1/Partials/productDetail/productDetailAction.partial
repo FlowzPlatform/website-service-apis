@@ -44,7 +44,7 @@ body {
 </style>
 
 
-<script type="text/javascript" src="http://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js"></script>
+<script type="text/javascript" src="http://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js" defer="defer"></script>
 <div class="product-section-box">
     <div class="detail-popup-block">
         <ul>
@@ -81,10 +81,10 @@ body {
     </div>
 </div>
 
-<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5b62f774f3742d0012c886ab&product=inline-share-buttons' defer='defer'></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5b62f774f3742d0012c886ab&product=inline-share-buttons' defer='defer'></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.js" defer="defer"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.js" defer="defer"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js" defer="defer"></script>
 <script type="text/javascript" src="./assets/client-plugins/client-product-action.js" defer="defer"></script>
 
 <div id="emailProduct" role="dialog" class="modal fade model-popup-black">

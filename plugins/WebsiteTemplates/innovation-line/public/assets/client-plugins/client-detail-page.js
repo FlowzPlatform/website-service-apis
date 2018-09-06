@@ -129,7 +129,7 @@ function recentlyViewedProducts(recentViewedProducts) {
                         let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
                         let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
 
-                        recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt=""> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
+                        recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
                     }
                     else {
                         let AIndex = recentLoop.indexOf(productId);
@@ -266,10 +266,10 @@ $(document).ready( async function(){
 
                   // $('#product_name').html(ProductName)
                   let listHtml = $('#title .row').html();
-                  let titleAndSkuHtml = listHtml.replace('#data.product_name#',ProductName);
+                  let titleAndSkuHtml = listHtml.replace(/#data.product_name#/g,ProductName);
                   titleAndSkuHtml = titleAndSkuHtml.replace('#data.sku#',ProductSku);
                   let breadcrumbHtml = $(".breadcrumb").html();
-                  breadcrumbHtml = breadcrumbHtml.replace("#data.title#",ProductName)
+                  breadcrumbHtml = breadcrumbHtml.replace(/#data.title#/g,ProductName)
                   $(".breadcrumb").html(breadcrumbHtml);
                   // console.log(titleAndSkuHtml);
                   // productHtml += listHtml1;
@@ -292,11 +292,11 @@ $(document).ready( async function(){
     		                  let color = element.color;
                           color = color.toLowerCase().replace(/\s/g, '-');
                           imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
-                          imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+' lazyLoad" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
+                          imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+' lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
     		               }
     		          }else{
                     imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_default_link" data-zoom-image="'+productImageUrl+'">';
-                    imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default lazyLoad" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
+                    imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
                   }
 
                 $(".js-image-gallery").html(imageGallaryHtml);

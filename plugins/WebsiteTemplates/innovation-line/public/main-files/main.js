@@ -1290,7 +1290,7 @@ function hideAlertBar(){
 }
 function showPageAjaxLoading(){
 	if (!$('.widget-box-overlay').length) {
-		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
+		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img class="lazyLoad" alt="loader" title="loader" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
 	}
 }
 function hidePageAjaxLoading(){
@@ -1375,7 +1375,7 @@ function showQuickQuoteList()
                       }
                       var listHtml1 = listHtml.replace('#data.image#',product_image);
                       listHtml1 = listHtml1.replace(/#data.id#/g,wishlist_values[item].id);
-                      listHtml1 = listHtml1.replace('#data.title#',productResponseData[0]._source.product_name);
+                      listHtml1 = listHtml1.replace(/#data.title#/g,productResponseData[0]._source.product_name);
                       listHtml1 = listHtml1.replace('#data.sku#',productResponseData[0]._source.sku);
                       listHtml1 = listHtml1.replace('#data.price#',parseFloat(productResponseData[0]._source.min_price).toFixed(project_settings.price_decimal));
                       listHtml1 = listHtml1.replace('#data.currency#',productResponseData[0]._source.currency);
@@ -1652,7 +1652,7 @@ function showWishList(recetAdded=false)
                     }
                       var listHtml1 = listHtml.replace('#data.image#',product_image);
                       listHtml1 = listHtml1.replace(/#data.id#/g,wishlist_values[item].id);
-                      listHtml1 = listHtml1.replace('#data.title#',productData[0]._source.product_name);
+                      listHtml1 = listHtml1.replace(/#data.title#/g,productData[0]._source.product_name);
                       listHtml1 = listHtml1.replace('#data.sku#',productData[0]._source.sku);
                       listHtml1 = listHtml1.replace('#data.price#',parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
                       listHtml1 = listHtml1.replace('#data.currency#',productData[0]._source.currency);
@@ -1862,7 +1862,7 @@ function showCompareList(recetAdded=false)
                     let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                     var itemTitleHtml = itemTitleHtml.replace('#data.product_link#',detailLink);
 
-                    var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
+                    var itemTitleHtml = itemTitleHtml.replace(/#data.title#/g,productData[0]._source.product_name);
                     
                     if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                       var itemTitleHtml = itemTitleHtml.replace('#data.price#',"");
@@ -2429,7 +2429,7 @@ async function printDiv(printDiv=true) {
                       var itemTitleHtml = itemTitleHtml.replace('#data.image#',product_image);
 
 
-                      var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
+                      var itemTitleHtml = itemTitleHtml.replace(/#data.title#/g,productData[0]._source.product_name);
                       productTitleHtml = itemTitleHtml;
 
                       var itemPriceHtml = html;
@@ -3203,7 +3203,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
 
             itemTitleHtml = itemTitleHtml.replace('#data.image#',product_image);
 
-            itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
+            itemTitleHtml = itemTitleHtml.replace(/#data.title#/g,productData[0]._source.product_name);
 
             productHtml = itemTitleHtml;
 

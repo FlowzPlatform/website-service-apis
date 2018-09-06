@@ -233,7 +233,7 @@ body {
     </div>
 </div>
 <div id="js_display_virtual" class="bottom-footer">
-    <div class="container"><span class="pull-left">Powered by : <a href="#" class="footer_logo"><img class="lazyLoad" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/footer_logo.png" id="iebmeuo"/></a></span>
+    <div class="container"><span class="pull-left">Powered by : <a href="#" class="footer_logo"><img class="lazyLoad" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/footer_logo.png" id="iebmeuo" alt="logo" title="logo" /></a></span>
         <span
         class="pull-right">Copyright © 2018 Flowz. All rights reserved</span>
     </div>
