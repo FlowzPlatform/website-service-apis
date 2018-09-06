@@ -331,7 +331,7 @@ function showCart()
                 listHtmlReplace = listHtmlReplace.replace(/#data.product_link#/g,detailLink);
                 listHtmlReplace = listHtmlReplace.replace(/#data.id#/g,response_data[key].id);
                 listHtmlReplace = listHtmlReplace.replace(/#data.product_id#/g,response_data[key].id);
-                listHtmlReplace = listHtmlReplace.replace('#data.product_name#',productData.product_name);
+                listHtmlReplace = listHtmlReplace.replace(/#data.product_name#/g,productData.product_name);
                 listHtmlReplace = listHtmlReplace.replace('#data.sku#',productData.sku);
                 listHtmlReplace = listHtmlReplace.replace('#data.price#',parseFloat(productData.price_1).toFixed(project_settings.price_decimal));
                 listHtmlReplace = listHtmlReplace.replace('#data.currency#',productData.currency);
@@ -448,7 +448,7 @@ function showCart()
                           for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries())
                           {
                               let j = i+1;
-                              thumbImg += '<div class="estimate-row"><span class="header-color">Uploaded Artwork '+j+'</span>: <img alt="" src="'+artwork_thumb+'" style="max-width:50px;max-height:50px;"><br><br></div>';
+                              thumbImg += '<div class="estimate-row"><span class="header-color">Uploaded Artwork '+j+'</span>: <img class="lazyLoad" alt="artwork" title="artwork" src="'+artwork_thumb+'" style="max-width:50px;max-height:50px;"><br><br></div>';
                           }
                       }
 

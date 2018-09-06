@@ -132,13 +132,13 @@ body {
 <div id="print-product" class="hide">
     <div class="row">
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 print-logo">
-            <img src="http://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png" alt="">
+            <img src="http://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png" class="lazyLoad" alt="logo" title="logo">
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
             <h3>#data.product_name#</h3>
-            <div class="print-main-img"><img src="#data.product_img#" alt="Product image" class="img-responsive"></div>
+            <div class="print-main-img"><img src="#data.product_img#" alt="#data.product_name#" title="#data.product_name#" class="img-responsive lazyLoad"></div>
             <div class="print-total-thumb"></div>
             <div class="clearfix"></div>
             <div class="print-product-desc">

@@ -47,7 +47,7 @@ body {
                     </tr>
                     <tr>
                         <td class="order-product-img">
-                            <img class="img-responsive" src="#data.image#" />
+                            <img class="img-responsive lazyLoad" alt="#data.title#" title="#data.title#" src="#data.image#" />
                         </td>
                         <td>
                             <h4>#data.title#</h4>

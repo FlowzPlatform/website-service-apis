@@ -37,7 +37,7 @@ body {
     class="filter-search">
         <div class="my-account-left filter-search">
             <div class="panel-heading">
-                <h4 class="panel-title"><span class="profile-pic hide"><img class="list_img img-responsive" alt="profile-pic"/></span><span class="fullname-word"></span><i class="fa fa-tachometer"></i></h4>
+                <h4 class="panel-title"><span class="profile-pic hide"><img class="list_img img-responsive lazyLoad" alt="profile-pic" title="profile-pic" /></span><span class="fullname-word"></span><i class="fa fa-tachometer"></i></h4>
             </div>
             <ul>
                 <li><a class="ui-link active js_my_account_info" href="myaccount.html"><i class="fa fa-user"></i>My Account Info</a>

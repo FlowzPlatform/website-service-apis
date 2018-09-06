@@ -48,7 +48,7 @@ async function flyer_data(flyers) {
 
             listHtml1 = listHtml1.replace(/#flyer-id#/g,flyerArray.id);
             
-            listHtml1 = listHtml1.replace('#flyer-title#',flyerArray.flyer_name);
+            listHtml1 = listHtml1.replace(/#flyer-title#/g,flyerArray.flyer_name);
                             
             listHtml1 = listHtml1.replace(/#flyer-image-link#/g,flyerArray.flyer_image);
 
