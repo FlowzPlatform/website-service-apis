@@ -194,7 +194,8 @@ $(document).on('click','.send-email-product', function (e) {
                                 // $("#email_product").find("input,textarea").val('');
                                 hidePageAjaxLoading()
                                 showSuccessMessage("Email Sent Successfully.");
-                                window.location = "thankYou.html";
+                                $('#emailProduct').modal('toggle');
+                                // window.location = "thankYou.html";
                                 return false;
                             }
                             else if(response_data.status == 400) {
