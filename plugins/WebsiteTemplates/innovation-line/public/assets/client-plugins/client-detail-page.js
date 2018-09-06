@@ -3178,9 +3178,12 @@ function attachDeleteEvent(parentDiv){
                 let setActivetab = activetab.replace(/\#/g, '');
                 if(setActivetab == "js-request-quote" && user_details == null)
                 {
-                    let addressRemove = JSON.parse(localStorage.getItem('requestQuoteAddress'));
-                    addressRemove.splice(parseInt(currentAddressCounter1)-1, 1);
-                    localStorage.setItem('requestQuoteAddress',JSON.stringify(addressRemove));
+                    if(localStorage.getItem('requestQuoteAddress') != null)
+                    {
+                        let addressRemove = JSON.parse(localStorage.getItem('requestQuoteAddress'));
+                        addressRemove.splice(parseInt(currentAddressCounter1)-1, 1);
+                        localStorage.setItem('requestQuoteAddress',JSON.stringify(addressRemove));
+                    }
                 }
 				//summary for shipping address split
 				$('#js_shipp_address_details_'+currentAddressCounter).remove();
