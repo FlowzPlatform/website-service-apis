@@ -54,7 +54,7 @@ async function product_tag_data(product_tags) {
 
                         listHtml1 = listHtml1.replace(/#data.id#/g,tagArray.id);
 
-                        listHtml1 = listHtml1.replace('#data.title#',productData[0]._source.product_name);
+                        listHtml1 = listHtml1.replace(/#data.title#/g,productData[0]._source.product_name);
 
                         listHtml1 = listHtml1.replace('#data.sku#',productData[0]._source.sku);
 

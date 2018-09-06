@@ -491,7 +491,7 @@ nav.navbar {
             </div>
             <div class="ob-logo-block">
                 <div class="container">
-                    <div class="logo-col pull-left"><a href="index.html"><img src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png" class="lazyLoad" /></a>
+                    <div class="logo-col pull-left"><a href="index.html"><img src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png" class="lazyLoad" alt="logo" title="logo" /></a>
                     </div>
                     <div class="ui-advance-search">
                         <div class="dropdown nav-search-btn js-advance-menu position-inherit">

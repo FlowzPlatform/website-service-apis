@@ -25,7 +25,7 @@ $(document).ready(async function(){
                   for (let [key,tagRes] of responseTagList.entries()) {
                       categoryHtml1 = categoryHtml.replace("#data.tagLink#","productTags.html?locale=en_us&tid="+tagRes.id)
                       categoryHtml1 = categoryHtml1.replace("#data.image#",tagRes.tag_icon)
-                      categoryHtml1 = categoryHtml1.replace("#data.tagName#",tagRes.tag_name)
+                      categoryHtml1 = categoryHtml1.replace(/#data.tagName#/g,tagRes.tag_name)
                       catHtml +=categoryHtml1
                   }
                   $(".js-tag-listing").html(catHtml)
@@ -168,7 +168,7 @@ let tagProductList = function(tagObj,productBoxHtml) {
                           productBoxHtml1 = productBoxHtml1.replace('#data.sku#',productRes.sku)
                           productBoxHtml1 = productBoxHtml1.replace('#data.currency#','$')
                           productBoxHtml1 = productBoxHtml1.replace('#data.price#',productRes.min_price.toFixed(project_settings.price_decimal))
-                          productBoxHtml1 = productBoxHtml1.replace('#data.title#',productRes.product_name)
+                          productBoxHtml1 = productBoxHtml1.replace(/#data.title#/g,productRes.product_name)
                           productBoxHtml1 = productBoxHtml1.replace(/#data.tagSlug#/g,responseTag[0].tag_slug)
                           productBoxHtml1 = productBoxHtml1.replace(/#data.tagColor#/g,responseTag[0].tag_color)
                           productBoxHtml1 = productBoxHtml1.replace(/#data.tagName#/g,responseTag[0].tag_name)
