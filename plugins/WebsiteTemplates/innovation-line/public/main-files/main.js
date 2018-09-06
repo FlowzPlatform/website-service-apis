@@ -2988,21 +2988,33 @@ document.addEventListener("DOMContentLoaded", function(event){
   {
     $("#comparedCount").closest('a').parent().remove();
   }
+  else{
+    $("#comparedCount").closest('a').parent().removeClass('hide');    
+  }
 
   if(websiteConfiguration.transaction.wishlist.status == 0)
   {
     $("#wishlistCount").closest('a').parent().remove();
+  }
+  else{
+    $("#wishlistCount").closest('a').parent().removeClass('hide');    
   }
 
   if(websiteConfiguration.transaction.quick_quote.status == 0)
   {
     $("#quickQuoteCount").closest('a').parent().remove();
   }
+  else{
+    $("#quickQuoteCount").closest('a').parent().removeClass('hide');    
+  }
 
 
   if(websiteConfiguration.transaction.place_order.cart_list.parent_status == 0 && websiteConfiguration.transaction.place_order.cart_list.status == 0){
     $("#cartCount").closest('a').parent().remove();
     $("#js-place-order").find('.place-order-submit').remove();
+  }
+  else{
+    $("#cartCount").closest('a').parent().removeClass('hide');
   }
 
   if(websiteConfiguration.transaction.compare_product.print_page.status == 0)
