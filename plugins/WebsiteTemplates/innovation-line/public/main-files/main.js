@@ -459,25 +459,28 @@ var init = function() {
   // Compare, whishlist and cart count in header
   if(websiteConfiguration.transaction.compare_product.status != 0 || websiteConfiguration.transaction.compare_product.parent_status != 0)
   {
-    if(user_id == null && localStorage.getItem("savedCompared") != null){
-      document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem("savedCompared")).length;
+    let decideLocalStorageKey = decide_localStorage_key(3)
+    if(user_id == null && localStorage.getItem(decideLocalStorageKey) != null){
+      document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
   }
 
   
   if($("#wishlistCount").length>0)
   {
-    if(user_id == null && localStorage.getItem("savedWishlist") != null)
+    let decideLocalStorageKey = decide_localStorage_key(1)
+    if(user_id == null && localStorage.getItem(decideLocalStorageKey) != null)
     {
-      document.getElementById("wishlistCount").innerHTML =  JSON.parse(localStorage.getItem("savedWishlist")).length;
+      document.getElementById("wishlistCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
   }
 
   if($("#quickQuoteCount").length>0)
   {
-    if(user_id == null && localStorage.getItem("savedQuickQuote") != null)
+    let decideLocalStorageKey = decide_localStorage_key(4)
+    if(user_id == null && localStorage.getItem(decideLocalStorageKey) != null)
     {
-      document.getElementById("quickQuoteCount").innerHTML =  JSON.parse(localStorage.getItem("savedQuickQuote")).length;
+      document.getElementById("quickQuoteCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
   }
 
@@ -763,7 +766,8 @@ function dataSaveToLocal(type,product_id,show_msg=true){
 function deleteFromLocal(type,product_id){
   if(type == 1) {
     /////////////// xxxxx ////////////////////
-    let values = JSON.parse(localStorage.getItem("savedWishlist"));
+    let decideLocalStorageKey = decide_localStorage_key(1)
+    let values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     for( let [i, obj] of values.entries()) {
       if(obj.id == product_id)
       {
@@ -771,11 +775,11 @@ function deleteFromLocal(type,product_id){
         $("#myWishList .listing .product-"+product_id).remove();
       }
     }
-    localStorage.setItem("savedWishlist" , JSON.stringify(values))
+    localStorage.setItem(decideLocalStorageKey , JSON.stringify(values))
 
-    if(localStorage.getItem("savedWishlist") != null && JSON.parse(localStorage.getItem("savedWishlist")).length == 0)
+    if(localStorage.getItem(decideLocalStorageKey) != null && JSON.parse(localStorage.getItem(decideLocalStorageKey)).length == 0)
     {
-      localStorage.removeItem('savedWishlist');
+      localStorage.removeItem(decideLocalStorageKey);
       $('#myWishList .listing').html('No records found.');
       if($(".wishlist-view-tab").length > 0 ) {
         $(".wishlist-view-tab").hide()
@@ -784,14 +788,15 @@ function deleteFromLocal(type,product_id){
     }
     else
     {
-      document.getElementById("wishlistCount").innerHTML =  JSON.parse(localStorage.getItem("savedWishlist")).length;
+      document.getElementById("wishlistCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
     /////////////// xxxxx ////////////////////
   }
 
   if(type == 4) {
     /////////////// xxxxx ////////////////////
-    let values = JSON.parse(localStorage.getItem("savedQuickQuote"));
+    let decideLocalStorageKey = decide_localStorage_key(4);
+    let values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     for( let [i, obj] of values.entries()) {
       if(obj.id == product_id)
       {
@@ -799,26 +804,26 @@ function deleteFromLocal(type,product_id){
         $("#myQuickQuoteList .listing .product-"+product_id).remove();
       }
     }
-    localStorage.setItem("savedQuickQuote" , JSON.stringify(values))
+    localStorage.setItem(decideLocalStorageKey , JSON.stringify(values))
 
-    if(localStorage.getItem("savedQuickQuote") != null && JSON.parse(localStorage.getItem("savedQuickQuote")).length == 0)
+    if(localStorage.getItem(decideLocalStorageKey) != null && JSON.parse(localStorage.getItem(decideLocalStorageKey)).length == 0)
     {
-      localStorage.removeItem('savedQuickQuote');
+      localStorage.removeItem(decideLocalStorageKey);
       $('#myQuickQuoteList .listing').html('No records found.');      
       document.getElementById("quickQuoteCount").innerHTML =  0;
       $('#myQuickQuoteList .quick-quote-form').addClass('hide');
     }
     else
     {
-      document.getElementById("quickQuoteCount").innerHTML =  JSON.parse(localStorage.getItem("savedQuickQuote")).length;
+      document.getElementById("quickQuoteCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
     /////////////// xxxxx ////////////////////
   }
 
   if(type == 3) {
-
+    let decideLocalStorageKey = decide_localStorage_key(3);    
     /////////////// xxxxx ////////////////////
-    let values = JSON.parse(localStorage.getItem("savedCompared"));
+    let values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     for( let [i, obj] of values.entries()) {
       if(obj.id == product_id)
       {
@@ -826,11 +831,11 @@ function deleteFromLocal(type,product_id){
         $("#myCompareList #listing .product-"+product_id).remove();
       }
     }
-    localStorage.setItem("savedCompared" , JSON.stringify(values))
+    localStorage.setItem(decideLocalStorageKey , JSON.stringify(values))
 
-    if(localStorage.getItem("savedCompared") != null && JSON.parse(localStorage.getItem("savedCompared")).length == 0)
+    if(localStorage.getItem(decideLocalStorageKey) != null && JSON.parse(localStorage.getItem(decideLocalStorageKey)).length == 0)
     {
-      localStorage.removeItem('savedCompared');
+      localStorage.removeItem(decideLocalStorageKey);
       $("#myCompareList #listing div:first").addClass("hide");
       if($('#myCompareList #listing .js-no-records').length == 0)
       {
@@ -844,15 +849,15 @@ function deleteFromLocal(type,product_id){
     }
     else
     {
-      if(JSON.parse(localStorage.getItem("savedCompared")).length>4)
+      if(JSON.parse(localStorage.getItem(decideLocalStorageKey)).length>4)
       {
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*JSON.parse(localStorage.getItem("savedCompared")).length+'px')
+        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*JSON.parse(localStorage.getItem(decideLocalStorageKey)).length+'px')
       }
       else{
         $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
       }
       $("#myCompareList").find(".js-compare-btns").show()
-      document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem("savedCompared")).length;
+      document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
     /////////////// xxxxx ////////////////////
   }
@@ -1316,7 +1321,8 @@ function showQuickQuoteList()
     }
     else {
         $('#myQuickQuoteList .listing').html('');
-        var wishlist_values = JSON.parse(localStorage.getItem("savedQuickQuote"));
+        let decideLocalStorageKey = decide_localStorage_key(4);
+        var wishlist_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     }
     let productHtml='';
     let productData;
@@ -1586,7 +1592,8 @@ function showWishList(recetAdded=false)
     }
     else {
       $('#myWishList .listing').html('');
-      var wishlist_values = JSON.parse(localStorage.getItem("savedWishlist"));
+      let decideLocalStorageKey = decide_localStorage_key(1)
+      var wishlist_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     }
 
     // return false;
@@ -1790,8 +1797,9 @@ function showCompareList(recetAdded=false)
         var compare_values = '';        
       }
      }
-     else {      
-        var compare_values = JSON.parse(localStorage.getItem("savedCompared"));
+     else {
+        let decideLocalStorageKey = decide_localStorage_key(3);      
+        var compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
      }
 
     if($("#myCompareList").length > 0)
@@ -2362,7 +2370,8 @@ async function printDiv(printDiv=true) {
       var compare_values = JSON.parse(localStorage.getItem("savedComparedRegister"));
     }
     else {
-        var compare_values = JSON.parse(localStorage.getItem("savedCompared"));
+        let decideLocalStorageKey = decide_localStorage_key(3);
+        var compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     }
       var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
       var productData;
@@ -2561,7 +2570,8 @@ $(document).on('click','.js-email_quick_quote',function (e)
             var quote_values = JSON.parse(localStorage.getItem("savedQuickQuoteRegister"));
           }
           else {
-              var quote_values = JSON.parse(localStorage.getItem("savedQuickQuote"));
+              let decideLocalStorageKey = decide_localStorage_key(4);
+              var quote_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
           }
 
           var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
@@ -2788,7 +2798,8 @@ $(document).on('click','.send-friend-email',function (e)
             var compare_values = JSON.parse(localStorage.getItem("savedComparedRegister"));
           }
           else {
-              var compare_values = JSON.parse(localStorage.getItem("savedCompared"));
+              let decideLocalStorageKey = decide_localStorage_key(3);
+              var compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
           }
 
           var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
@@ -2944,7 +2955,8 @@ $(document).on('click', '.js-btn-delete-all-compare-product',function(e) {
       }
       else{
         try {
-          localStorage.removeItem("savedCompared");
+          let decideLocalStorageKey = decide_localStorage_key(3);
+          localStorage.removeItem(decideLocalStorageKey);
           $("#myCompareList #listing div:first").addClass("hide");
           if($('#myCompareList #listing .js-no-records').length == 0)
           {
@@ -3260,6 +3272,50 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
   }
   return false;
 });
+
+$(document).on('change', '#listing .js_quantity_input', async function(e) {
+  this.PreviousVal = $(this).val();
+  let thisPreviousVal = this.PreviousVal ;
+  let QtyBox = $(this);
+  let qty = QtyBox.val();
+  let product_id = QtyBox.data('product-id');
+  let minQty = QtyBox.data('min-qty');
+  
+  if(qty == "" || qty == 0){
+    $(".product-"+product_id).find(".js_quantity_input").val(minQty);
+    qty = minQty;
+  }
+  
+  let data = { productId:product_id, qty:qty };
+  // showTopAjaxLoading();
+  $(".product-"+product_id).find(".js_quantity_input").attr("value",qty);
+  
+  let productPricing = await getProductDetailBySource(product_id,'pricing,currency')
+
+  if(productPricing.pricing != undefined){
+    let priceRang = '';
+    $.each(productPricing.pricing, function(index,element){
+            if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
+                 $.each(element.price_range,function(index,element2){
+                    if(element2.qty.lte != undefined){
+                        if(qty>=element2.qty.gte && qty<=element2.qty.lte){
+                          $("#js-price-per-qty-"+product_id).find(".priceProd").html(productPricing.currency+" "+element2.price.toFixed(project_settings.price_decimal));
+                          return false;
+                        }
+                      }
+                      else
+                      {
+                        $("#js-price-per-qty-"+product_id).find(".priceProd").html(element2.price.toFixed(project_settings.price_decimal));
+                        return false;                          
+                      }
+                   });
+            }
+    });
+  }
+  return false;
+
+});
+
 // END - can move to different js - used in compare page only
 
 function stripHtml(html){
@@ -3277,38 +3333,9 @@ function addOptimizeImgUrl(imgUrl, wparam)
 	b.splice(6, 0, wparam);
 	return b.join('/');
 }
-$(document).on('change', '#listing .js_quantity_input', async function(e) {
-    this.PreviousVal = $(this).val();
-		var QtyBox = $(this);
-		var qty = QtyBox.val();
-		var thisPreviousVal = this.PreviousVal ;
-		var product_id = QtyBox.data('product-id');
-    var data = { productId:product_id, qty:qty };
-		// showTopAjaxLoading();
-    $(".product-"+product_id).find(".js_quantity_input").attr("value",qty);
-    
-    let productPricing = await getProductDetailBySource(product_id,'pricing,currency')
 
-    if(productPricing.pricing != undefined){
-      let priceRang = '';
-      $.each(productPricing.pricing, function(index,element){
-              if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
-                   $.each(element.price_range,function(index,element2){
-                      if(element2.qty.lte != undefined){
-                          if(qty>=element2.qty.gte && qty<=element2.qty.lte){
-                            $("#js-price-per-qty-"+product_id).find(".priceProd").html(productPricing.currency+" "+element2.price.toFixed(project_settings.price_decimal));
-                            return false;
-                          }
-                        }
-                        else
-                        {
-                          $("#js-price-per-qty-"+product_id).find(".priceProd").html(element2.price.toFixed(project_settings.price_decimal));
-                          return false;                          
-                        }
-                     });
-              }
-      });
-    }
-    return false;
-
-	});
+$(document).on('keypress', '.js-only-interger', function(e) {  
+		if (e.which != 13 && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+		}
+});
