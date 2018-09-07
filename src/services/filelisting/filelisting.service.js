@@ -1,22 +1,22 @@
-// Initializes the `webpackApi` service on path `/webpack-api`
-const createService = require('./webpack-api.class.js');
-const hooks = require('./webpack-api.hooks');
-const filters = require('./webpack-api.filters');
+// Initializes the `webpackApi` service on path `/filelisting`
+const createService = require('./filelisting.class.js');
+const hooks = require('./filelisting.hooks');
+const filters = require('./filelisting.filters');
 
 module.exports = function () {
   const app = this;
   const paginate = app.get('paginate');
 
   const options = {
-    name: 'webpack-api',
+    name: 'filelisting',
     paginate
   };
 
   // Initialize our service with any options it requires
-  app.use('/webpack-api', createService(options));
+  app.use('/filelisting', createService(options));
 
   // Get our initialized service so that we can register hooks and filters
-  const service = app.service('webpack-api');
+  const service = app.service('filelisting');
 
   service.hooks(hooks);
 
