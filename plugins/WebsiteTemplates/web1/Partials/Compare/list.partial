@@ -235,7 +235,7 @@ span.color {
                                 </a>
                                 <hr/>
                                 <div class="product-price">
-                                    <div id="js-price-per-qty-#data.id#" style="float:left;	margin-left:25px">
+                                    <div id="js-price-per-qty-#data.id#" style="float:left;">
 								        <span class="priceProd">#data.price#</span>
                                     </div>
                                     <span>qty
