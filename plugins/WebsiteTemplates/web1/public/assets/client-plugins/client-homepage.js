@@ -86,7 +86,7 @@ let catDetails = function () {
     return tmp;
 }();
 
-if(catDetails.length > 0) {
+if(Array.isArray(catDetails) && catDetails.length > 0) {
     let catHtml = "";
     $.each( catDetails, function( key, catArray ) {
         catHtml += '<div class="in-box-cont"><div class="right-part"><a href="search.html?SearchSensor='+catArray.name+'"><img class="lazyLoad" data-src="'+catArray.icon+'" alt="'+catArray.name+'" title="'+catArray.name+'"></a></div><div class="left-part"><div class="pro-title"><a href="search.html?SearchSensor='+catArray.name+'" data-item-type="product-category">'+catArray.name+'</a></div></div></div>';

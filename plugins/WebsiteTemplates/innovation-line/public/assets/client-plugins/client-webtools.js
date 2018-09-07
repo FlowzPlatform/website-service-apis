@@ -64,10 +64,10 @@ async function webtools_data(webtools) {
     }
     else {
         if($('#myArtTemplates .js-list').html() !== undefined) {
-            $('#myArtTemplates .listing').html('No records found.');
+            $('#myArtTemplates .js-product-grid').html('No records found.');
         }
         else if($('#myvideoLibrary .js-list').html() !== undefined) {
-            $('#myvideoLibrary .listing').html('No records found.');
+            $('#myvideoLibrary .js-product-grid').html('No records found.');
         }
     }
 }
