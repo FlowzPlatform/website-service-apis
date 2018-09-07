@@ -46,6 +46,7 @@
         "ecatalog_category_api_url":"https://api.flowzcluster.tk/serverapi/ecatalog-category",
         "ecatalogs_api_url":"https://api.flowzcluster.tk/serverapi/ecatalogs",
 	"webtools_api_url": "https://api.flowzcluster.tk/serverapi/webtools",
-	"download_pdf_api_url": "https://api.flowzcluster.tk/serverapi/download-pdf"
+	"download_pdf_api_url": "https://api.flowzcluster.tk/serverapi/download-pdf",
+	"category_api_url": "https://api.flowzcluster.tk/serverapi/category"
       }
 }
