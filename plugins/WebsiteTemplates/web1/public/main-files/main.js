@@ -1892,7 +1892,8 @@ function showCompareList(recetAdded=false)
                     var itemTitleHtml = itemTitleHtml.replace('#data.product_link#',detailLink);
 
                     var itemTitleHtml = itemTitleHtml.replace(/#data.title#/g,productData[0]._source.product_name);
-                    if(user_id == null){
+                    
+                    if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                       var itemTitleHtml = itemTitleHtml.replace('#data.price#',"");
                       var itemTitleHtml = itemTitleHtml.replace(/#data.min_qty#/g,"");
                     }
@@ -2859,74 +2860,78 @@ $(document).on('click','.send-friend-email',function (e)
             var compareData = [];
             for (item in compare_values)
             {
-              let showItem = false;
-              if(user_details != null && user_id == compare_values[item].val.user_id)
+              if(item<4)
               {
-                showItem = true;
-              }
-              else if(user_details == null)
-              {
-                showItem = true;
-              }
-
-              if(showItem)
-              {
-                if(user_details != null){
-                  var prodId = compare_values[item]['product_id'];
+                let showItem = false;
+                if(user_details != null && user_id == compare_values[item].val.user_id)
+                {
+                  showItem = true;
                 }
-                else{
-                  var prodId = compare_values[item]['product_id'];
+                else if(user_details == null)
+                {
+                  showItem = true;
                 }
 
-                $.ajax({
-                  type: 'GET',
-                  url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
-                  async: false,
-                  beforeSend: function (xhr) {
-                    xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
-                  },
-                  dataType: 'json',
-                  success: async function (data)
-                  {
-                    rawData = data.hits.hits;
-                    productData = rawData;
-                    if(productData.length >0)
-                    {
-                      productJsonData = {};
-
-                      if(productData[0]._source.images != undefined){
-                          productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
-                      }else{
-                          productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                      }
-
-                      productJsonData['product_name'] = productData[0]._source.product_name;
-
-                      if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
-                        productJsonData['price'] = "";
-                      }else{
-                        productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
-                      }
-                      if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
-                        productJsonData['min_qty'] = "";
-                      }else{
-                        productJsonData['min_qty'] = "Qty "+$("#listing .product-"+productData[0]._id).find(".js_quantity_input").val();
-                      }
-                      
-                      productJsonData['sku'] = productData[0]._source.sku;
-                      productJsonData['description'] = productData[0]._source.description;
-
-                      var fetureList = '';
-                      for (let [i, features] of productData[0]._source.features.entries() ) {
-                        fetureList += features.key+": "+features.value+"<br>";
-                      }
-                      productJsonData['features'] = fetureList;
-                      compareData.push(productJsonData);
-                    }
+                if(showItem)
+                {
+                  if(user_details != null){
+                    var prodId = compare_values[item]['product_id'];
                   }
-                });
+                  else{
+                    var prodId = compare_values[item]['product_id'];
+                  }
+
+                  $.ajax({
+                    type: 'GET',
+                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
+                    async: false,
+                    beforeSend: function (xhr) {
+                      xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
+                    },
+                    dataType: 'json',
+                    success: async function (data)
+                    {
+                      rawData = data.hits.hits;
+                      productData = rawData;
+                      if(productData.length >0)
+                      {
+                        productJsonData = {};
+
+                        if(productData[0]._source.images != undefined){
+                            productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
+                        }else{
+                            productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                        }
+
+                        productJsonData['product_name'] = productData[0]._source.product_name;
+
+                        if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
+                          productJsonData['price'] = "";
+                        }else{
+                          productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
+                        }
+                        if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
+                          productJsonData['min_qty'] = "";
+                        }else{
+                          productJsonData['min_qty'] = "Qty "+$("#listing .product-"+productData[0]._id).find(".js_quantity_input").val();
+                        }
+                        
+                        productJsonData['sku'] = productData[0]._source.sku;
+                        productJsonData['description'] = productData[0]._source.description;
+
+                        var fetureList = '';
+                        for (let [i, features] of productData[0]._source.features.entries() ) {
+                          fetureList += features.key+": "+features.value+"<br>";
+                        }
+                        productJsonData['features'] = fetureList;
+                        compareData.push(productJsonData);
+                      }
+                    }
+                  });
+                }
               }
             }
+
             let productJsonData1 = {};
             productJsonData1['data'] = compareData;
 
