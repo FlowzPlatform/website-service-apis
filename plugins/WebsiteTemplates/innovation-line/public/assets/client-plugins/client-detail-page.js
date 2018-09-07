@@ -100,7 +100,7 @@ if(pid != null) {
 }
 
 function recentlyViewedProducts(recentViewedProducts) {
-    if(recentViewedProducts != null && recentViewedProducts.length > 0)
+    if(recentViewedProducts != null && recentViewedProducts.length > 1)
     {
         let recentLoop = recentViewedProducts;
         let cIndex = recentLoop.indexOf(pid);
