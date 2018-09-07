@@ -47,6 +47,18 @@ $(document).ready(async function(){
         }
     }
 
+    // Awards
+    $(".owl-brand").closest(".row").css({"display": "flex"});
+    $(".owl-brand").owlCarousel({
+        stopOnHover : true,
+        navigation:true,
+        items : 7,
+        itemsDesktop: [1199, 7],
+        itemsDesktopSmall: [979, 7],
+        itemsTablet: [767, 2],
+        itemsMobile: [479, 2]
+    });
+
     //Featured PRODUCTS Listing
 
     /*if($(".js-tag-product-list").length > 0){
@@ -129,18 +141,6 @@ $(document).ready(async function(){
             }
         }
     }
-
-    // Awards
-    $(".owl-brand").closest(".row").css({"display": "flex"});
-    $(".owl-brand").owlCarousel({
-        stopOnHover : true,
-        navigation:true,
-        items : 7,
-        itemsDesktop: [1199, 7],
-        itemsDesktopSmall: [979, 7],
-        itemsTablet: [767, 2],
-        itemsMobile: [479, 2]
-    });
 
 })
 
