@@ -37,9 +37,14 @@ button.multiselect.dropdown-toggle.btn.btn-default b.caret {float: right;margin-
 .ob-product-grid .pro-box .video_sku_block { min-height: 55px;width: 100px;text-align: center;display: block;margin: 19px auto 0;background: no-repeat;}
 /* .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default, input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover */
 .js-shippingMethod-section{padding: 15px 2px !important}
+.product-section-box .quantity-table .print_product_col{ background-color: white;color: black;border: 1px solid #ccc}
+.print-product-detail .quantity-table-title .table-content, .print-product-detail .quantity-table .table-content,.print-product-detail .quantity-table-title .table-content, .print-product-detail .quantity-table .table-heading{width:50% !important}
 @media (min-width: 768px){
 #myModal .modal-dialog {
     width: 615px;
     margin: 30px auto;
 }
+}
+@media print {
+.product-section-box .quantity-table .table-heading,.product-section-box .quantity-table .table-content{ background-color: white;color: black;border: 1px solid #ccc}
 }

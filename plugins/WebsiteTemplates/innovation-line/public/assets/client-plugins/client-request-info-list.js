@@ -370,7 +370,7 @@ function detailRequestQuote(thisObj){
                     if(typeof imprint_info.artwork.artwork_thumb != "undefined"){
                         for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries()){
                             let j = i+1;
-                            thumbImg += 'Uploaded Artwork '+j+': <img alt="" src="'+artwork_thumb+'" style="max-width:50px;max-height:50px;"><br><br>';
+                            thumbImg += 'Uploaded Artwork '+j+': <img class="lazyLoad" alt="artwork" title="artwork" src="'+artwork_thumb+'" style="max-width:50px;max-height:50px;"><br><br>';
                         }
                     }
 

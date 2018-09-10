@@ -43,7 +43,7 @@ body {
           <div class="row">
               <div id="owl-carousel-related-products" class="owl-carousel suggested-products-slider owl-loaded owl-drag js-tag-listing">
                   <div class="item">
-                      <a href="#data.tagLink#"><img src="#data.image#"></a>
+                      <a href="#data.tagLink#"><img src="#data.image#" class="lazyLoad" alt="#data.tagName#" title="#data.tagName#"></a>
                       <span>#data.tagName#</span>
                   </div>
               </div>

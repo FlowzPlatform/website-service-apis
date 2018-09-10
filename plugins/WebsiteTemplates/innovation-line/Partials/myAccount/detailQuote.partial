@@ -97,7 +97,7 @@ body {
                         <div class="row">
                             <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 padding-right-0">
                                 <div class="detail-image">
-                                    <a target="_blank" href="#data.product_link#"><img class="img-responsive" src="#data.imageUrl#"/></a>
+                                    <a target="_blank" href="#data.product_link#"><img class="img-responsive lazyLoad" src="#data.imageUrl#" alt="#data.title#" title="#data.title#" /></a>
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">

@@ -98,7 +98,7 @@ button.remove {
     <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 product-wrap js-product-box product-#data-id#">
         <div class="pro-box">
             <div class="pro-image box01">
-                <div class="product-img-blk"><a class="item-title js-product-title" href="#data.product_link#"><img class="img-responsive center-block" src="#data.image#"/></a>
+                <div class="product-img-blk"><a class="item-title js-product-title" href="#data.product_link#"><img class="img-responsive center-block lazyLoad" src="#data.image#" alt="#data.title#" title="#data.title#" /></a>
                 </div>
             </div>
             <div class="pro-desc"><a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>

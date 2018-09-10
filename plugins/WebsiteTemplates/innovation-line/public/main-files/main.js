@@ -5,7 +5,7 @@ let timeStamp = Math.floor(Date.now() / 1000);
 let TaxCloud = null;
 
 var website_info = function () {
-  var tmp = null;
+  let tmp = null;
   $.ajax({
       'async': false,
       'type': "GET",
@@ -28,7 +28,7 @@ var website_settings = website_info[0];
 var project_settings = website_settings.project_settings;
 
 var websiteConfiguration = function () {
-  var tmp = null;
+  let tmp = null;
   $.ajax({
     url: project_settings.website_configuration_api_url+ "?website_id=" + website_settings['projectID'],
     dataType: 'json',
@@ -41,7 +41,7 @@ var websiteConfiguration = function () {
 }();
 
 var cloudinaryDetails = function () {
-  var tmp = null;
+  let tmp = null;
   $.ajax({
     url: project_settings.project_configuration_api_url + "/" + website_settings['projectID'],
     dataType: 'json',
@@ -54,7 +54,7 @@ var cloudinaryDetails = function () {
 }();
 
 function getWebsiteInfoById(websiteId,webInfoAPi) {
-      var returnData = null;
+      let returnData = null;
       $.ajax({
           'async': false,
           'type': "GET",
@@ -69,7 +69,7 @@ function getWebsiteInfoById(websiteId,webInfoAPi) {
 }
 
 async function getProductDetailById(id) {
-      var returnData = null;
+      let returnData = null;
     	await axios({
     			method: 'GET',
     			url: project_settings.product_api_url+"?_id="+id,
@@ -111,7 +111,7 @@ async function getProductDetailBySource(id,source) {
 }
 
 async function getStreetLocation(ZipCode){
-   var resp = "";
+    let resp = "";
     await axios({
         method: 'GET',
         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&address={"+ZipCode+"}&sensor=true",
@@ -126,7 +126,7 @@ async function getStreetLocation(ZipCode){
 }
 
 async function getStreetData(location){
-    var resp = "";
+    let resp = "";
     await axios({
         method: 'GET',
         url: "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8lRsIznCRCJAWjf8-Zd-NjOAdxXZW680&latlng="+location+"&sensor=true",
@@ -185,7 +185,7 @@ if(getParameterByName('token')) {
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
@@ -193,7 +193,7 @@ function getParameterByName(name, url) {
 }
 
 function validateEmail(sEmail) {
- var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  let filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
  if (filter.test(sEmail)) {
    return true;
  }
@@ -203,8 +203,8 @@ function validateEmail(sEmail) {
 }
 
 function getCookie(name) {
-  var re = new RegExp(name + "=([^;]+)");
-  var value = re.exec(document.cookie);
+  let re = new RegExp(name + "=([^;]+)");
+  let value = re.exec(document.cookie);
   return (value != null) ? unescape(value[1]) : null;
 }
 
@@ -213,7 +213,7 @@ let userFrontId = getCookie('user_id');
 
 if((userToken != null && userFrontId != null) || getParameterByName('token')) {
     var user_details = function () {
-      var tmp = null;
+      let tmp = null;
       $.ajax({
           'async': false,
           'type': "GET",
@@ -260,7 +260,7 @@ if (user_id != null ) {
 //alert(admin_role_flag)
 
 function $_GET(param) {
-	var vars = {};
+	let vars = {};
 	window.location.href.replace( location.hash, '' ).replace(
 		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
 		function( m, key, value ) { // callback
@@ -275,7 +275,7 @@ function $_GET(param) {
 }
 
 function validateEmail(sEmail) {
-  var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  let filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
   if (filter.test(sEmail)) {
     return true;
   }
@@ -285,7 +285,7 @@ function validateEmail(sEmail) {
 }
 
 function getUserInfo(){
-  var userDetail = {};
+  let userDetail = {};
   $.ajax({
     'async': false,
     'type': "GET",
@@ -325,7 +325,7 @@ var init = function() {
       localStorage.setItem("savedWishlistRegister",'');
       
       wishlist_values = function () {
-          var tmp = null;
+          let tmp = null;
           $.ajax({
               'async': false,
               'type': "GET",
@@ -342,7 +342,7 @@ var init = function() {
 
         if(wishlist_values.length >0)
         {
-          var recentAddedInWishlist = [];
+          let recentAddedInWishlist = [];
 
           for(let item in wishlist_values)
           {
@@ -356,7 +356,7 @@ var init = function() {
       ////////////////// quick quote ///////////////////
       localStorage.setItem("savedQuickQuoteRegister",'');  
       quickquote_values = function () {
-        var tmp = null;
+        let tmp = null;
         $.ajax({
             'async': false,
             'type': "GET",
@@ -372,7 +372,7 @@ var init = function() {
       }();
       if(quickquote_values.length >0)
       {
-        var recentAddedInQuotelist = [];
+        let recentAddedInQuotelist = [];
 
         for(let item in quickquote_values)
         {
@@ -388,7 +388,7 @@ var init = function() {
       localStorage.setItem("savedComparedRegister",''); 
       
       compare_values = function () {
-        var tmp = null;
+        let tmp = null;
         $.ajax({
             'async': false,
             'type': "GET",
@@ -404,7 +404,7 @@ var init = function() {
 
       if(compare_values.length >0)
       {
-        var recentAddedInComparelist = [];
+        let recentAddedInComparelist = [];
 
         for(let item in compare_values)
         {
@@ -459,25 +459,28 @@ var init = function() {
   // Compare, whishlist and cart count in header
   if(websiteConfiguration.transaction.compare_product.status != 0 || websiteConfiguration.transaction.compare_product.parent_status != 0)
   {
-    if(user_id == null && localStorage.getItem("savedCompared") != null){
-      document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem("savedCompared")).length;
+    let decideLocalStorageKey = decide_localStorage_key(3)
+    if(user_id == null && localStorage.getItem(decideLocalStorageKey) != null){
+      document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
   }
 
   
   if($("#wishlistCount").length>0)
   {
-    if(user_id == null && localStorage.getItem("savedWishlist") != null)
+    let decideLocalStorageKey = decide_localStorage_key(1)
+    if(user_id == null && localStorage.getItem(decideLocalStorageKey) != null)
     {
-      document.getElementById("wishlistCount").innerHTML =  JSON.parse(localStorage.getItem("savedWishlist")).length;
+      document.getElementById("wishlistCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
   }
 
   if($("#quickQuoteCount").length>0)
   {
-    if(user_id == null && localStorage.getItem("savedQuickQuote") != null)
+    let decideLocalStorageKey = decide_localStorage_key(4)
+    if(user_id == null && localStorage.getItem(decideLocalStorageKey) != null)
     {
-      document.getElementById("quickQuoteCount").innerHTML =  JSON.parse(localStorage.getItem("savedQuickQuote")).length;
+      document.getElementById("quickQuoteCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
   }
 
@@ -639,7 +642,7 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
  //});
 
 
-  $('.header-search-col').find('.btn-search').click(function(){
+  $(document).on('click','.header-search-col .btn-search',function() {
     if($.trim($('input[name="search"]').val()) != '') {
         window.location.href = website_settings.BaseURL+'search.html?SearchSensor='+$('input[name="search"]').val()
     // window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + "\""+$('input[name="search"]').val()+"\""
@@ -732,14 +735,14 @@ function dataSaveToLocal(type,product_id,show_msg=true){
     }
 
   }else{
-    var data = [];
+    let data = [];
     data.push({ 'type': type,'product_id': product_id,'id': product_id,'website_id':website_settings['projectID'] });
     localStorage.setItem(decideLocalStorageKey , JSON.stringify(data))
 
-    var recentAddedInWishlist = [];
+    let recentAddedInWishlist = [];
     recentAddedInWishlist.push({ 'type': type,'product_id': product_id,'id': product_id,'website_id':website_settings['projectID']});
     
-    var addedTo = "";
+    let addedTo = "";
     if(type == 1)
     {
       addedTo = " to wishlist";
@@ -763,7 +766,8 @@ function dataSaveToLocal(type,product_id,show_msg=true){
 function deleteFromLocal(type,product_id){
   if(type == 1) {
     /////////////// xxxxx ////////////////////
-    let values = JSON.parse(localStorage.getItem("savedWishlist"));
+    let decideLocalStorageKey = decide_localStorage_key(1)
+    let values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     for( let [i, obj] of values.entries()) {
       if(obj.id == product_id)
       {
@@ -771,11 +775,11 @@ function deleteFromLocal(type,product_id){
         $("#myWishList .listing .product-"+product_id).remove();
       }
     }
-    localStorage.setItem("savedWishlist" , JSON.stringify(values))
+    localStorage.setItem(decideLocalStorageKey , JSON.stringify(values))
 
-    if(localStorage.getItem("savedWishlist") != null && JSON.parse(localStorage.getItem("savedWishlist")).length == 0)
+    if(localStorage.getItem(decideLocalStorageKey) != null && JSON.parse(localStorage.getItem(decideLocalStorageKey)).length == 0)
     {
-      localStorage.removeItem('savedWishlist');
+      localStorage.removeItem(decideLocalStorageKey);
       $('#myWishList .listing').html('No records found.');
       if($(".wishlist-view-tab").length > 0 ) {
         $(".wishlist-view-tab").hide()
@@ -784,14 +788,15 @@ function deleteFromLocal(type,product_id){
     }
     else
     {
-      document.getElementById("wishlistCount").innerHTML =  JSON.parse(localStorage.getItem("savedWishlist")).length;
+      document.getElementById("wishlistCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
     /////////////// xxxxx ////////////////////
   }
 
   if(type == 4) {
     /////////////// xxxxx ////////////////////
-    let values = JSON.parse(localStorage.getItem("savedQuickQuote"));
+    let decideLocalStorageKey = decide_localStorage_key(4);
+    let values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     for( let [i, obj] of values.entries()) {
       if(obj.id == product_id)
       {
@@ -799,26 +804,26 @@ function deleteFromLocal(type,product_id){
         $("#myQuickQuoteList .listing .product-"+product_id).remove();
       }
     }
-    localStorage.setItem("savedQuickQuote" , JSON.stringify(values))
+    localStorage.setItem(decideLocalStorageKey , JSON.stringify(values))
 
-    if(localStorage.getItem("savedQuickQuote") != null && JSON.parse(localStorage.getItem("savedQuickQuote")).length == 0)
+    if(localStorage.getItem(decideLocalStorageKey) != null && JSON.parse(localStorage.getItem(decideLocalStorageKey)).length == 0)
     {
-      localStorage.removeItem('savedQuickQuote');
+      localStorage.removeItem(decideLocalStorageKey);
       $('#myQuickQuoteList .listing').html('No records found.');      
       document.getElementById("quickQuoteCount").innerHTML =  0;
       $('#myQuickQuoteList .quick-quote-form').addClass('hide');
     }
     else
     {
-      document.getElementById("quickQuoteCount").innerHTML =  JSON.parse(localStorage.getItem("savedQuickQuote")).length;
+      document.getElementById("quickQuoteCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
     /////////////// xxxxx ////////////////////
   }
 
   if(type == 3) {
-
+    let decideLocalStorageKey = decide_localStorage_key(3);    
     /////////////// xxxxx ////////////////////
-    let values = JSON.parse(localStorage.getItem("savedCompared"));
+    let values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     for( let [i, obj] of values.entries()) {
       if(obj.id == product_id)
       {
@@ -826,11 +831,11 @@ function deleteFromLocal(type,product_id){
         $("#myCompareList #listing .product-"+product_id).remove();
       }
     }
-    localStorage.setItem("savedCompared" , JSON.stringify(values))
+    localStorage.setItem(decideLocalStorageKey , JSON.stringify(values))
 
-    if(localStorage.getItem("savedCompared") != null && JSON.parse(localStorage.getItem("savedCompared")).length == 0)
+    if(localStorage.getItem(decideLocalStorageKey) != null && JSON.parse(localStorage.getItem(decideLocalStorageKey)).length == 0)
     {
-      localStorage.removeItem('savedCompared');
+      localStorage.removeItem(decideLocalStorageKey);
       $("#myCompareList #listing div:first").addClass("hide");
       if($('#myCompareList #listing .js-no-records').length == 0)
       {
@@ -844,15 +849,15 @@ function deleteFromLocal(type,product_id){
     }
     else
     {
-      if(JSON.parse(localStorage.getItem("savedCompared")).length>4)
+      if(JSON.parse(localStorage.getItem(decideLocalStorageKey)).length>4)
       {
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*JSON.parse(localStorage.getItem("savedCompared")).length+'px')
+        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*JSON.parse(localStorage.getItem(decideLocalStorageKey)).length+'px')
       }
       else{
         $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
       }
       $("#myCompareList").find(".js-compare-btns").show()
-      document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem("savedCompared")).length;
+      document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
     /////////////// xxxxx ////////////////////
   }
@@ -860,7 +865,7 @@ function deleteFromLocal(type,product_id){
 }
 
 function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
-  var data = { 'type': type,'product_id': product_id,'user_id' : user_id,'website_id':website_settings['projectID'] };
+  let data = { 'type': type,'product_id': product_id,'user_id' : user_id,'website_id':website_settings['projectID'] };
   $.ajax({
     type : 'POST',
     url : project_settings.shopping_api_url,
@@ -872,13 +877,13 @@ function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
           updateShoppingDatabaseCount(type,'+');
         }
 
-        var recentAddedInWishlist = [];
+        let recentAddedInWishlist = [];
         data['id'] = response_data.data.id;
         recentAddedInWishlist.push(data);
       }
       if(show_msg != false) {
         if(response_data.status == 200) {
-          var addedTo = "";
+          let addedTo = "";
           if(type == 1)
           {
             addedTo = " to wishlist";
@@ -894,7 +899,7 @@ function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
           showSuccessMessage(response_data.message+addedTo)
         }
         else{
-          var alreadyAddedIn = "";
+          let alreadyAddedIn = "";
           if(type == 1)
           {
             alreadyAddedIn = " in wishlist";
@@ -927,7 +932,7 @@ function deleteFromDatabase(type,id,user_id){
       if(response_data != '') {
         // updateShoppingDatabaseCount(type,'-');
 
-        // var recentAddedInWishlist = data;
+        // let recentAddedInWishlist = data;
         // recentAddedInWishlist.push(data);
         if(type == 1)
         {
@@ -950,7 +955,7 @@ function deleteFromDatabase(type,id,user_id){
           updateShoppingDatabaseCount(type,'-');
           $("#myQuickQuoteList .listing .product-"+id).remove();
 
-          if(websiteConfiguration.transaction.wishlist.status != 0)
+          if(websiteConfiguration.transaction.quick_quote.status != 0)
           {
             if(document.getElementById("quickQuoteCount").innerHTML == 0)
             {
@@ -1148,12 +1153,12 @@ function decide_localStorage_key(type){
 
 
 function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=true) {  // The last one is array
-  // var count = array.length + 1;
-  var found = array.some(function (el) {
+  // let count = array.length + 1;
+  let found = array.some(function (el) {
     return el.product_id == product_id;
   });
 
-  var addedTo = "";
+  let addedTo = "";
   if(type == 1)
   {
     addedTo = " to wishlist";
@@ -1167,7 +1172,7 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
     addedTo = " to quick quote";
   }
 
-  var alreadyAddedIn = "";
+  let alreadyAddedIn = "";
   if(type == 1)
   {
     alreadyAddedIn = " in wishlist";
@@ -1185,7 +1190,7 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
   {
     array.push({ type: type , 'product_id': product_id,'id': product_id,'website_id':website_settings['projectID']  });
 
-    var recentAddedInWishlist = [];
+    let recentAddedInWishlist = [];
     recentAddedInWishlist.push({ 'type': type,'product_id': product_id, 'id': product_id});
 
     if(show_msg != false) {
@@ -1201,7 +1206,7 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
 
 
 function getProductDetailBysku(sku){
-      var settings = {
+      let settings = {
         "crossDomain": true,
         "url": "https://ae3f5d08fa1ec79613b0b307dadb0834.us-east-1.aws.found.io:9243/pdm1/_search",
         "method": "POST",
@@ -1221,8 +1226,8 @@ function getProductDetailBysku(sku){
 (function ($) {
     $.fn.serializeFormJSON = function () {
 
-        var o = {};
-        var a = this.serializeArray();
+        let o = {};
+        let a = this.serializeArray();
         $.each(a, function () {
             if (o[this.name]) {
                 if (!o[this.name].push) {
@@ -1285,7 +1290,7 @@ function hideAlertBar(){
 }
 function showPageAjaxLoading(){
 	if (!$('.widget-box-overlay').length) {
-		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
+		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img class="lazyLoad" alt="loader" title="loader" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
 	}
 }
 function hidePageAjaxLoading(){
@@ -1294,7 +1299,7 @@ function hidePageAjaxLoading(){
 
 function showQuickQuoteList()
 {
-  if(websiteConfiguration.transaction.wishlist.status == 0)
+  if(websiteConfiguration.transaction.quick_quote.status == 0)
   {
     let html = 'Access Denied';
     $('.myaccount-my-wishlist').html(html);
@@ -1316,10 +1321,11 @@ function showQuickQuoteList()
     }
     else {
         $('#myQuickQuoteList .listing').html('');
-        var wishlist_values = JSON.parse(localStorage.getItem("savedQuickQuote"));
+        let decideLocalStorageKey = decide_localStorage_key(4);
+        var wishlist_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     }
-    var productHtml='';
-    var productData;
+    let productHtml='';
+    let productData;
     if($("#myQuickQuoteList").length > 0)
     {
       $('#myQuickQuoteList .listing').addClass('hide');
@@ -1327,7 +1333,7 @@ function showQuickQuoteList()
       if (typeof(listHtml) !== "undefined" && wishlist_values != "" ) {
           for (item in wishlist_values)
           {
-            var showItem = false;
+            let showItem = false;
             if(user_details != null && user_id == wishlist_values[item].user_id)
             {
               showItem = true;
@@ -1369,7 +1375,7 @@ function showQuickQuoteList()
                       }
                       var listHtml1 = listHtml.replace('#data.image#',product_image);
                       listHtml1 = listHtml1.replace(/#data.id#/g,wishlist_values[item].id);
-                      listHtml1 = listHtml1.replace('#data.title#',productResponseData[0]._source.product_name);
+                      listHtml1 = listHtml1.replace(/#data.title#/g,productResponseData[0]._source.product_name);
                       listHtml1 = listHtml1.replace('#data.sku#',productResponseData[0]._source.sku);
                       listHtml1 = listHtml1.replace('#data.price#',parseFloat(productResponseData[0]._source.min_price).toFixed(project_settings.price_decimal));
                       listHtml1 = listHtml1.replace('#data.currency#',productResponseData[0]._source.currency);
@@ -1471,7 +1477,8 @@ function showQuickQuoteList()
 
                       }
                     }
-                    if(user_id == null){
+                    // if(user_id == null){
+                    if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){  
                       $("#myQuickQuoteLists .listing").find(".item-price").remove()
                     }
                   }
@@ -1520,7 +1527,7 @@ function showQuickQuoteList()
       if (wishlist_values != "" ) {
         for (item in wishlist_values)
         {
-          var showItem = false;
+          let showItem = false;
           if(user_details != null && user_id == wishlist_values[item].user_id)
           {
             showItem = true;
@@ -1585,7 +1592,8 @@ function showWishList(recetAdded=false)
     }
     else {
       $('#myWishList .listing').html('');
-      var wishlist_values = JSON.parse(localStorage.getItem("savedWishlist"));
+      let decideLocalStorageKey = decide_localStorage_key(1)
+      var wishlist_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     }
 
     // return false;
@@ -1644,7 +1652,7 @@ function showWishList(recetAdded=false)
                     }
                       var listHtml1 = listHtml.replace('#data.image#',product_image);
                       listHtml1 = listHtml1.replace(/#data.id#/g,wishlist_values[item].id);
-                      listHtml1 = listHtml1.replace('#data.title#',productData[0]._source.product_name);
+                      listHtml1 = listHtml1.replace(/#data.title#/g,productData[0]._source.product_name);
                       listHtml1 = listHtml1.replace('#data.sku#',productData[0]._source.sku);
                       listHtml1 = listHtml1.replace('#data.price#',parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
                       listHtml1 = listHtml1.replace('#data.currency#',productData[0]._source.currency);
@@ -1680,7 +1688,8 @@ function showWishList(recetAdded=false)
                     {
                       $('#myWishList .listing').append(listHtml1);
                     }
-                    if(user_id == null){
+                    // if(user_id == null){
+                    if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){  
                       $("#myWishList .listing").find(".item-price").remove()
                     }
                     // productHtml += listHtml1;
@@ -1726,7 +1735,7 @@ function showWishList(recetAdded=false)
       if (wishlist_values != "" ) {
         for (item in wishlist_values)
         {
-          var showItem = false;
+          let showItem = false;
           if(user_details != null && user_id == wishlist_values[item].user_id)
           {
             showItem = true;
@@ -1788,8 +1797,9 @@ function showCompareList(recetAdded=false)
         var compare_values = '';        
       }
      }
-     else {      
-        var compare_values = JSON.parse(localStorage.getItem("savedCompared"));
+     else {
+        let decideLocalStorageKey = decide_localStorage_key(3);      
+        var compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
      }
 
     if($("#myCompareList").length > 0)
@@ -1806,7 +1816,7 @@ function showCompareList(recetAdded=false)
       if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) {
             for (item in compare_values)
             {
-              var showItem = false;
+              let showItem = false;
               if(user_details != null && user_id == compare_values[item].user_id)
               {
                 showItem = true;
@@ -1852,12 +1862,13 @@ function showCompareList(recetAdded=false)
                     let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                     var itemTitleHtml = itemTitleHtml.replace('#data.product_link#',detailLink);
 
-                    var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
+                    var itemTitleHtml = itemTitleHtml.replace(/#data.title#/g,productData[0]._source.product_name);
                     
-                    if(user_id == null){
+                    if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                       var itemTitleHtml = itemTitleHtml.replace('#data.price#',"");
                       var itemTitleHtml = itemTitleHtml.replace(/#data.min_qty#/g,"");
-                    }else
+                    }
+                    else
                     {
                       var itemTitleHtml = itemTitleHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
                       var itemTitleHtml = itemTitleHtml.replace(/#data.min_qty#/g,productData[0]._source.pricing[0].price_range[0].qty.gte);
@@ -1894,7 +1905,7 @@ function showCompareList(recetAdded=false)
                       compareHtml.find("#item_summary1").html("<td><strong>SUMMARY</strong></td>"+activeSummaryHtml)
                       compareHtml.find("#item_features1").html("<td><strong>FEATURES</strong></td>"+itemFeaturesHtml)
                       $('#myCompareList #listing').html(compareHtml.html());
-                      if(user_id == null){
+                      if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                         $("#listing .product-"+productData[0]._id).find(".js_quantity_input").parent().remove();
                       }
                     }
@@ -1904,7 +1915,7 @@ function showCompareList(recetAdded=false)
                       compareHtml.find("#item_summary1").append(activeSummaryHtml)
                       compareHtml.find("#item_features1").append(itemFeaturesHtml)
                       $('#myCompareList #listing').html(compareHtml.html());
-                      if(user_id == null){
+                      if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                         $("#listing .product-"+productData[0]._id).find(".js_quantity_input").parent().remove();
                       }
                     }
@@ -1960,7 +1971,7 @@ function showCompareList(recetAdded=false)
       if (compare_values != null && compare_values.length > 0 ) {
         for (item in compare_values)
         {
-          var showItem = false;
+          let showItem = false;
           if(user_details != null && user_id == compare_values[item].user_id)
           {
             showItem = true;
@@ -2040,7 +2051,7 @@ function removeSpecialCharacters(str)
 
 /* get city , state and country name by id */
 async function getCountryStateCityById(id,type){
-  var resp = "";
+  let resp = "";
   await axios({
       method: 'GET',
       url: project_settings.city_country_state_api,
@@ -2066,7 +2077,7 @@ async function getCountryStateCityById(id,type){
 }
 
 var returnAddressBookDetailById = async function(addressBookId) {
-	var returnData = null;
+	let returnData = null;
 	await axios({
 			method: 'GET',
 			url: project_settings.address_book_api_url+'/'+addressBookId,
@@ -2109,7 +2120,7 @@ async function getStateAndCityVal(countryVal,stateVal,dataFrom){
 
 $(document).ready(function(){
   if( $('.js-phone')){
-    var cntkey=0;
+      let cntkey=0;
       $(document).on('keypress', '.js-phone', function (event)
       {
           cntkey=$(this).val().length;
@@ -2139,7 +2150,7 @@ $(document).ready(function(){
 })
 
 function nl2br (str, is_xhtml) {
-  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+  let breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
   return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }
 
@@ -2147,8 +2158,8 @@ localStorage.setItem("vOneLocalStorage", user_id);
 
 
 Date.prototype.format = function(format) {
-  var returnStr = '';
-  var replace = Date.replaceChars;
+  let returnStr = '';
+  let replace = Date.replaceChars;
   for (var i = 0; i < format.length; i++) {
         var curChar = format.charAt(i);
         if (i - 1 >= 0 && format.charAt(i - 1) == "\\") {
@@ -2229,10 +2240,10 @@ Date.replaceChars = {
 };
 
 function formatDate(date,format) {
-  var formatdate = '-';
+  let formatdate = '-';
   if(date!='' && format!=''){
     let strdate = new Date(date);
-    var formatdate = strdate.format(format);
+    formatdate = strdate.format(format);
   }
   return formatdate
 };
@@ -2281,7 +2292,7 @@ let replaceColorSwatchWithHexaCodes = function(attribute_value,attribute_name) {
     return new Promise(async (resolve , reject ) => {
       let returnColorVal = null;
       if(attribute_value != undefined && attribute_value.length > 0) {
-        var data = {'colorname':attribute_value};
+        let data = {'colorname':attribute_value};
         await axios({
           method: 'GET',
           url : project_settings.color_table_api_url+'?vid='+website_settings.Projectvid.vid+'&websiteid='+website_settings['projectID']+'&attribute_name='+attribute_name,
@@ -2359,7 +2370,8 @@ async function printDiv(printDiv=true) {
       var compare_values = JSON.parse(localStorage.getItem("savedComparedRegister"));
     }
     else {
-        var compare_values = JSON.parse(localStorage.getItem("savedCompared"));
+        let decideLocalStorageKey = decide_localStorage_key(3);
+        var compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     }
       var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
       var productData;
@@ -2375,7 +2387,7 @@ async function printDiv(printDiv=true) {
             {
               if(item<4)
               {
-                var showItem = false;
+                let showItem = false;
                 if(user_details != null && user_id == compare_values[item].user_id)
                 {
                   showItem = true;
@@ -2417,11 +2429,11 @@ async function printDiv(printDiv=true) {
                       var itemTitleHtml = itemTitleHtml.replace('#data.image#',product_image);
 
 
-                      var itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
+                      var itemTitleHtml = itemTitleHtml.replace(/#data.title#/g,productData[0]._source.product_name);
                       productTitleHtml = itemTitleHtml;
 
                       var itemPriceHtml = html;
-                      if(user_id == null){
+                      if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                         var itemPriceHtml = itemPriceHtml.replace('#data.price#',"");
                       }else
                       {
@@ -2458,7 +2470,7 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_summary").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").html("<td class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
                         $('#print-comparision').html(compareHtml.html());
-                        if(user_id == null){
+                        if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();
                         }
                       }
@@ -2469,7 +2481,7 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_summary").append(activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").append(itemFeaturesHtml)
                         $('#print-comparision').html(compareHtml.html());
-                        if(user_id == null){
+                        if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();                          
                         }
                       }
@@ -2502,9 +2514,9 @@ $.validator.addMethod(
    function(value, element) {
        if (this.optional(element)) // return true on optional element
            return true;
-       var emails = value.split(/[;,]+/); // split element by , and ;
+           let emails = value.split(/[;,]+/); // split element by , and ;
        valid = true;
-       for (var i in emails) {
+       for (let i in emails) {
            value = emails[i];
            valid = valid &&
                    jQuery.validator.methods.email.call(this, $.trim(value), element);
@@ -2558,7 +2570,8 @@ $(document).on('click','.js-email_quick_quote',function (e)
             var quote_values = JSON.parse(localStorage.getItem("savedQuickQuoteRegister"));
           }
           else {
-              var quote_values = JSON.parse(localStorage.getItem("savedQuickQuote"));
+              let decideLocalStorageKey = decide_localStorage_key(4);
+              var quote_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
           }
 
           var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
@@ -2569,7 +2582,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
             var quoteData = [];
             for (item in quote_values)
             {
-              var showItem = false;
+              let showItem = false;
               if(user_details != null && user_id == quote_values[item].user_id)
               {
                 showItem = true;
@@ -2612,7 +2625,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
 
                       productJsonData['product_name'] = productData[0]._source.product_name;
 
-                      if(user_id == null){
+                      if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                         productJsonData['price'] = "";
                       }else{
                         productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
@@ -2621,7 +2634,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
                       productJsonData['sku'] = productData[0]._source.sku;
                       productJsonData['description'] = productData[0]._source.description;
 
-                      var fetureList = '';
+                      let fetureList = '';
                       for (let [i, features] of productData[0]._source.features.entries() ) {
                         fetureList += features.key+": "+features.value+"<br>";
                       }
@@ -2702,7 +2715,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
             var emailToFriend = {};
 
             for (var input in form_data){
-              var name = form_data[input]['value'];
+              let name = form_data[input]['value'];
               emailToFriend[form_data[input]['name']] = name;
               emailToFriend['slug'] = 'quick-quote';
             }
@@ -2785,7 +2798,8 @@ $(document).on('click','.send-friend-email',function (e)
             var compare_values = JSON.parse(localStorage.getItem("savedComparedRegister"));
           }
           else {
-              var compare_values = JSON.parse(localStorage.getItem("savedCompared"));
+              let decideLocalStorageKey = decide_localStorage_key(3);
+              var compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
           }
 
           var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
@@ -2801,79 +2815,83 @@ $(document).on('click','.send-friend-email',function (e)
             var compareData = [];
             for (item in compare_values)
             {
-              var showItem = false;
-              if(user_details != null && user_id == compare_values[item].val.user_id)
+              if(item<4)
               {
-                showItem = true;
-              }
-              else if(user_details == null)
-              {
-                showItem = true;
-              }
-
-              if(showItem)
-              {
-                if(user_details != null){
-                  var prodId = compare_values[item]['product_id'];
+                let showItem = false;
+                if(user_details != null && user_id == compare_values[item].val.user_id)
+                {
+                  showItem = true;
                 }
-                else{
-                  var prodId = compare_values[item]['product_id'];
+                else if(user_details == null)
+                {
+                  showItem = true;
                 }
 
-                $.ajax({
-                  type: 'GET',
-                  url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
-                  async: false,
-                  beforeSend: function (xhr) {
-                    xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
-                  },
-                  dataType: 'json',
-                  success: async function (data)
-                  {
-                    rawData = data.hits.hits;
-                    productData = rawData;
-                    if(productData.length >0)
-                    {
-                      productJsonData = {};
-
-                      if(productData[0]._source.images != undefined){
-                          productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
-                      }else{
-                          productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                      }
-
-                      productJsonData['product_name'] = productData[0]._source.product_name;
-
-                      if(user_id == null){
-                        productJsonData['price'] = "";
-                      }else{
-                        productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
-                      }
-                      if(user_id == null){
-                        productJsonData['min_qty'] = "";
-                      }else{
-                        productJsonData['min_qty'] = $("#listing #js-price-per-qty-"+productData[0]._id).find(".priceProd").html();
-                      }
-                      
-                      productJsonData['sku'] = productData[0]._source.sku;
-                      productJsonData['description'] = productData[0]._source.description;
-
-                      var fetureList = '';
-                      for (let [i, features] of productData[0]._source.features.entries() ) {
-                        fetureList += features.key+": "+features.value+"<br>";
-                      }
-                      productJsonData['features'] = fetureList;
-                      compareData.push(productJsonData);
-                    }
+                if(showItem)
+                {
+                  if(user_details != null){
+                    var prodId = compare_values[item]['product_id'];
                   }
-                });
+                  else{
+                    var prodId = compare_values[item]['product_id'];
+                  }
+
+                  $.ajax({
+                    type: 'GET',
+                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
+                    async: false,
+                    beforeSend: function (xhr) {
+                      xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
+                    },
+                    dataType: 'json',
+                    success: async function (data)
+                    {
+                      rawData = data.hits.hits;
+                      productData = rawData;
+                      if(productData.length >0)
+                      {
+                        productJsonData = {};
+
+                        if(productData[0]._source.images != undefined){
+                            productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
+                        }else{
+                            productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                        }
+
+                        productJsonData['product_name'] = productData[0]._source.product_name;
+
+                        if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
+                          productJsonData['price'] = "";
+                        }else{
+                          productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
+                        }
+                        if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
+                          productJsonData['min_qty'] = "";
+                        }else{
+                          productJsonData['min_qty'] = "Qty "+$("#listing .product-"+productData[0]._id).find(".js_quantity_input").val();
+                        }
+                        
+                        productJsonData['sku'] = productData[0]._source.sku;
+                        productJsonData['description'] = productData[0]._source.description;
+
+                        var fetureList = '';
+                        for (let [i, features] of productData[0]._source.features.entries() ) {
+                          fetureList += features.key+": "+features.value+"<br>";
+                        }
+                        productJsonData['features'] = fetureList;
+                        compareData.push(productJsonData);
+                      }
+                    }
+                  });
+                }
               }
             }
-            var productJsonData1 = {};
+
+            let productJsonData1 = {};
             productJsonData1['data'] = compareData;
 
-            var form_data= formObj.serializeArray();
-            var emailToFriend = {};
+            let form_data= formObj.serializeArray();
+            let emailToFriend = {};
 
             for (var input in form_data){
               var name = form_data[input]['value'];
@@ -2920,7 +2938,7 @@ $(document).on('click', '.js-btn-delete-all-compare-product',function(e) {
       showPageAjaxLoading();
       await sleep(300)
 
-      var values = "";
+      let values = "";
       if(user_details != null)
       {
         values = JSON.parse(localStorage.getItem("savedComparedRegister"));
@@ -2941,7 +2959,8 @@ $(document).on('click', '.js-btn-delete-all-compare-product',function(e) {
       }
       else{
         try {
-          localStorage.removeItem("savedCompared");
+          let decideLocalStorageKey = decide_localStorage_key(3);
+          localStorage.removeItem(decideLocalStorageKey);
           $("#myCompareList #listing div:first").addClass("hide");
           if($('#myCompareList #listing .js-no-records').length == 0)
           {
@@ -2973,15 +2992,33 @@ document.addEventListener("DOMContentLoaded", function(event){
   {
     $("#comparedCount").closest('a').parent().remove();
   }
+  else{
+    $("#comparedCount").closest('a').parent().removeClass('hide');    
+  }
 
   if(websiteConfiguration.transaction.wishlist.status == 0)
   {
     $("#wishlistCount").closest('a').parent().remove();
   }
+  else{
+    $("#wishlistCount").closest('a').parent().removeClass('hide');    
+  }
+
+  if(websiteConfiguration.transaction.quick_quote.status == 0)
+  {
+    $("#quickQuoteCount").closest('a').parent().remove();
+  }
+  else{
+    $("#quickQuoteCount").closest('a').parent().removeClass('hide');    
+  }
+
 
   if(websiteConfiguration.transaction.place_order.cart_list.parent_status == 0 && websiteConfiguration.transaction.place_order.cart_list.status == 0){
     $("#cartCount").closest('a').parent().remove();
     $("#js-place-order").find('.place-order-submit').remove();
+  }
+  else{
+    $("#cartCount").closest('a').parent().removeClass('hide');
   }
 
   if(websiteConfiguration.transaction.compare_product.print_page.status == 0)
@@ -3028,7 +3065,7 @@ document.addEventListener("DOMContentLoaded", function(event){
 
 function readImgUrl(input,e,imgId) {
   if (input.files && input.files[0]) {
-      var reader = new FileReader();
+      let reader = new FileReader();
       reader.onload = function(e) {
         $('#'+imgId).attr('src', e.target.result);
         if($('#'+imgId).hasClass( "hide" )) {
@@ -3080,7 +3117,7 @@ function timeAgo(selector) {
 
   var elements = document.getElementsByClassName('timeago');
   for (var i in elements) {
-      var $this = elements[i];
+      let $this = elements[i];
       if (typeof $this === 'object') {
           $this.innerHTML = timer($this.getAttribute('title') || $this.getAttribute('datetime'));
       }
@@ -3143,89 +3180,90 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
   {
     for (item in compare_values)
     {
-        let prodId = compare_values[item]['product_id'];
+        if(item<4)
+        {
+          let prodId = compare_values[item]['product_id'];
 
-        $.ajax({
-          type: 'GET',
-          url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
-          async: false,
-          beforeSend: function (xhr) {
-            xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
-          },
-          dataType: 'json',
-          success: async function (data)
-          {
-            productData = data.hits.hits;
-            if(productData.length >0)
+          $.ajax({
+            type: 'GET',
+            url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
+            async: false,
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
+            },
+            dataType: 'json',
+            success: async function (data)
             {
-            compareValuesCount = compareValuesCount+1;
-
-            let itemTitleHtml = html;
-            
-            let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-            
-            if( productData[0]._source.images != undefined ){
-              product_image = productData[0]._source.images[0].images[0].secure_url;
-            }
-
-            itemTitleHtml = itemTitleHtml.replace('#data.image#',product_image);
-
-            itemTitleHtml = itemTitleHtml.replace('#data.title#',productData[0]._source.product_name);
-
-            productHtml = itemTitleHtml;
-
-            let itemPriceHtml = itemPrice;
-            if(user_id != null)
-            {
-              itemPriceHtml = itemPriceHtml.replace('#data.price#',$("#listing #js-price-per-qty-"+productData[0]._id).find(".priceProd").html());
-              itemPriceHtml = itemPriceHtml.replace('#data.min_qty#',$("#listing .product-"+productData[0]._id).find(".js_quantity_input").val());
-            }
-            let itemSkuHtml1 = item_sku;
-            itemSkuHtml1 = itemSkuHtml1.replace('#data.sku#',productData[0]._source.sku);
-            itemSkuHtml = itemSkuHtml1;
-
-            let itemSummaryHtml = activeSummary;
-            itemSummaryHtml = itemSummaryHtml.replace('#data.summary#',stripHtml(productData[0]._source.description));
-            activeSummaryHtml = itemSummaryHtml;
-
-            let itemFeaturesHtml1 = item_features;
-            
-            let fetureList = '';
-            for (let [i, features] of productData[0]._source.features.entries() ) {
-              fetureList += features.key+": "+features.value+"<br>";
-            }
-
-            itemFeaturesHtml1 = itemFeaturesHtml1.replace('#data.features#',fetureList);
-            itemFeaturesHtml = itemFeaturesHtml1;
-
-            if(item == 0 || compareValuesCount == 1)
-            {
-              compareHtml.find("#product_img").html("<td style='width:20%' class='feature-block'></td>"+productHtml)
-              if(user_id == null)
+              productData = data.hits.hits;
+              if(productData.length >0)
               {
-                compareHtml.find("#product_price").remove();
+              compareValuesCount = compareValuesCount+1;
+
+              let itemTitleHtml = html;
+              
+              let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+              
+              if( productData[0]._source.images != undefined ){
+                product_image = productData[0]._source.images[0].images[0].secure_url;
               }
-              else
+
+              itemTitleHtml = itemTitleHtml.replace('#data.image#',product_image);
+
+            itemTitleHtml = itemTitleHtml.replace(/#data.title#/g,productData[0]._source.product_name);
+
+              productHtml = itemTitleHtml;
+
+              let itemPriceHtml = itemPrice;
+              if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 1)
               {
-                compareHtml.find("#product_price").addClass('hide').html("<td style='width:20%' class='feature-block'>PRICE</td>"+itemPriceHtml)
+                itemPriceHtml = itemPriceHtml.replace('#data.price#',$("#listing #js-price-per-qty-"+productData[0]._id).find(".priceProd").html());
+                itemPriceHtml = itemPriceHtml.replace('#data.min_qty#',$("#listing .product-"+productData[0]._id).find(".js_quantity_input").val());
               }
-              compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM CODE</td>"+itemSkuHtml)
-              compareHtml.find("#product_summary").html("<td style='width:20%'class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
-              compareHtml.find("#product_features").html("<td style='width:20%' class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
-            }
-            else{
-              compareHtml.find("#product_img").append(productHtml)
-              if(user_id != null)
+              let itemSkuHtml1 = item_sku;
+              itemSkuHtml1 = itemSkuHtml1.replace('#data.sku#',productData[0]._source.sku);
+              itemSkuHtml = itemSkuHtml1;
+
+              let itemSummaryHtml = activeSummary;
+              itemSummaryHtml = itemSummaryHtml.replace('#data.summary#',stripHtml(productData[0]._source.description));
+              activeSummaryHtml = itemSummaryHtml;
+
+              let itemFeaturesHtml1 = item_features;
+              
+              let fetureList = '';
+              for (let [i, features] of productData[0]._source.features.entries() ) {
+                fetureList += features.key+": "+features.value+"<br>";
+              }
+
+              itemFeaturesHtml1 = itemFeaturesHtml1.replace('#data.features#',fetureList);
+              itemFeaturesHtml = itemFeaturesHtml1;
+
+              if(item == 0 || compareValuesCount == 1)
               {
-                compareHtml.find("#product_price").append(itemPriceHtml)
+                compareHtml.find("#product_img").html("<td style='width:20%' class='feature-block'></td>"+productHtml)
+                if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
+                  compareHtml.find("#product_price").remove();
+                }
+                else
+                {
+                  compareHtml.find("#product_price").addClass('hide').html("<td style='width:20%' class='feature-block'>PRICE</td>"+itemPriceHtml)
+                }
+                compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM CODE</td>"+itemSkuHtml)
+                compareHtml.find("#product_summary").html("<td style='width:20%'class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
+                compareHtml.find("#product_features").html("<td style='width:20%' class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
               }
-              compareHtml.find("#product_sku").append(itemSkuHtml)
-              compareHtml.find("#product_summary").append(activeSummaryHtml)
-              compareHtml.find("#product_features").append(itemFeaturesHtml)
+              else{
+                compareHtml.find("#product_img").append(productHtml)
+                if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 1){
+                  compareHtml.find("#product_price").append(itemPriceHtml)
+                }
+                compareHtml.find("#product_sku").append(itemSkuHtml)
+                compareHtml.find("#product_summary").append(activeSummaryHtml)
+                compareHtml.find("#product_features").append(itemFeaturesHtml)
+              }
             }
-          }
-          }
-        });
+            }
+          });
+        }
     }
 
     axios({
@@ -3253,6 +3291,50 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
   }
   return false;
 });
+
+$(document).on('change', '#listing .js_quantity_input', async function(e) {
+  this.PreviousVal = $(this).val();
+  let thisPreviousVal = this.PreviousVal ;
+  let QtyBox = $(this);
+  let qty = QtyBox.val();
+  let product_id = QtyBox.data('product-id');
+  let minQty = QtyBox.data('min-qty');
+  
+  if(qty == "" || qty == 0){
+    $(".product-"+product_id).find(".js_quantity_input").val(minQty);
+    qty = minQty;
+  }
+  
+  let data = { productId:product_id, qty:qty };
+  // showTopAjaxLoading();
+  $(".product-"+product_id).find(".js_quantity_input").attr("value",qty);
+  
+  let productPricing = await getProductDetailBySource(product_id,'pricing,currency')
+
+  if(productPricing.pricing != undefined){
+    let priceRang = '';
+    $.each(productPricing.pricing, function(index,element){
+            if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
+                 $.each(element.price_range,function(index,element2){
+                    if(element2.qty.lte != undefined){
+                        if(qty>=element2.qty.gte && qty<=element2.qty.lte){
+                          $("#js-price-per-qty-"+product_id).find(".priceProd").html(productPricing.currency+" "+element2.price.toFixed(project_settings.price_decimal));
+                          return false;
+                        }
+                      }
+                      else
+                      {
+                        $("#js-price-per-qty-"+product_id).find(".priceProd").html(element2.price.toFixed(project_settings.price_decimal));
+                        return false;                          
+                      }
+                   });
+            }
+    });
+  }
+  return false;
+
+});
+
 // END - can move to different js - used in compare page only
 
 function stripHtml(html){
@@ -3270,38 +3352,9 @@ function addOptimizeImgUrl(imgUrl, wparam)
 	b.splice(6, 0, wparam);
 	return b.join('/');
 }
-$(document).on('change', '#listing .js_quantity_input', async function(e) {
-    this.PreviousVal = $(this).val();
-		var QtyBox = $(this);
-		var qty = QtyBox.val();
-		var thisPreviousVal = this.PreviousVal ;
-		var product_id = QtyBox.data('product-id');
-    var data = { productId:product_id, qty:qty };
-		// showTopAjaxLoading();
-    $(".product-"+product_id).find(".js_quantity_input").attr("value",qty);
-    
-    let productPricing = await getProductDetailBySource(product_id,'pricing,currency')
 
-    if(productPricing.pricing != undefined){
-      let priceRang = '';
-      $.each(productPricing.pricing, function(index,element){
-              if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
-                   $.each(element.price_range,function(index,element2){
-                      if(element2.qty.lte != undefined){
-                          if(qty>=element2.qty.gte && qty<=element2.qty.lte){
-                            $("#js-price-per-qty-"+product_id).find(".priceProd").html(productPricing.currency+" "+element2.price.toFixed(project_settings.price_decimal));
-                            return false;
-                          }
-                        }
-                        else
-                        {
-                          $("#js-price-per-qty-"+product_id).find(".priceProd").html(element2.price.toFixed(project_settings.price_decimal));
-                          return false;                          
-                        }
-                     });
-              }
-      });
-    }
-    return false;
-
-	});
+$(document).on('keypress', '.js-only-interger', function(e) {  
+		if (e.which != 13 && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+		}
+});

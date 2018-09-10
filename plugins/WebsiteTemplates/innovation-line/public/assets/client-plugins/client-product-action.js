@@ -39,14 +39,17 @@ $(document).ready(function(){
 
     $(document).on('click','#js-show_play_video', async function (e) {
         let productResponse = await getProductDetailById(pid)
-        $('#modal-table').attr('class','modal fade model-popup-black');
-        $("#modal-table").find(".modal-title").html('<i class="strip video-popup-strip"></i>Play Video');
-        $("#modal-table").find(".modal-dialog").addClass("play-video");
-        let guestUserHtml = $(".js-play_video_block").html();
-        let replaceHtml = guestUserHtml.replace("#data.video_url#",productResponse.video_url);
-        $(".js_add_html").html(replaceHtml)
-        $('#modal-table').modal('show');
-        return false;
+        if(productResponse.video_url.trim() != '') {
+            $('#modal-table').attr('class','modal fade model-popup-black');
+            $("#modal-table").find(".modal-title").html('<i class="strip video-popup-strip"></i>Play Video');
+            $("#modal-table").find(".modal-dialog").addClass("play-video");
+            $(".js-play_video_block .play-video-block").html('<iframe frameborder="0" allowfullscreen="1" title="YouTube video player" width="573" height="350" src="'+productResponse.video_url+'"></iframe>');
+            let guestUserHtml = $(".js-play_video_block").html();
+            //let replaceHtml = guestUserHtml.replace("#data.video_url#",productResponse.video_url);
+            $(".js_add_html").html(guestUserHtml)
+            $('#modal-table').modal('show');
+            return false;
+        }
     });
 
     $(document).on('click','#js-share_product', function (e) {
@@ -186,12 +189,13 @@ $(document).on('click','.send-email-product', function (e) {
                     dataType : 'json',
                         success : function(response_data) {
                             // $('#emailProduct').modal('toggle');
-                            console.log('response_data',response_data)
+                            //console.log('response_data',response_data)
                             if(response_data!= "") {
                                 // $("#email_product").find("input,textarea").val('');
                                 hidePageAjaxLoading()
                                 showSuccessMessage("Email Sent Successfully.");
-                                window.location = "thankYou.html";
+                                $('#emailProduct').modal('toggle');
+                                // window.location = "thankYou.html";
                                 return false;
                             }
                             else if(response_data.status == 400) {
@@ -222,11 +226,11 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
                         $.each(element.price_range,function(index,element2){
                         // console.log("in each condition");
                         if(element2.qty.lte != undefined){
-                            priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
+                            priceRang += '<div><div class="table-heading print_product_col">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content print_product_col">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                         }
                         else
                         {
-                            priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
+                            priceRang += '<div><div class="table-heading print_product_col">'+ element2.qty.gte + '+' + '</div><div class="table-content print_product_col">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                         }
                             });
                         $("#print-product").find(".quantity-table-col").html(priceRang);    
@@ -237,7 +241,7 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
 
     let guestUserHtml = $("#print-product").html();
 
-    guestUserHtml = guestUserHtml.replace('#data.product_name#',productResponse.product_name);
+    guestUserHtml = guestUserHtml.replace(/#data.product_name#/g,productResponse.product_name);
     guestUserHtml = guestUserHtml.replace('#data.sku#',productResponse.sku);
     guestUserHtml = guestUserHtml.replace('#data.description#',productResponse.description);
     guestUserHtml = guestUserHtml.replace('#data.colors#',productResponse.attributes.colors);

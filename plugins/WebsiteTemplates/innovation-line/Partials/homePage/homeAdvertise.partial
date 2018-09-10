@@ -1,10 +1,10 @@
  <div class="container">
         <div class="banner-box">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12"><a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532085105/websites/InnovationLine/images/Catalog.jpg" alt="catalog image" class="img-responsive"/></a>
+                <div class="col-lg-6 col-md-6 col-sm-12"><a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532085105/websites/InnovationLine/images/Catalog.jpg" alt="catalog image" class="img-responsive lazyLoad" alt="catalog" title="catalog" /></a>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 cat-right-side">
-                    <div class="deal-banner"><a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532085265/websites/InnovationLine/images/cat-banner1.png" alt="Text"/></a>
+                    <div class="deal-banner"><a href="javascript:void(0);"><img src="https://res.cloudinary.com/flowz/image/upload/v1532085265/websites/InnovationLine/images/cat-banner1.png" class="lazyLoad" alt="category banner" title="category banner" /></a>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-6">

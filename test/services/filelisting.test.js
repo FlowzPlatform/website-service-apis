@@ -1,9 +1,9 @@
 const assert = require('assert');
 const app = require('../../src/app');
 
-describe('\'webpackApi\' service', () => {
+describe('\'filelisting\' service', () => {
   it('registered the service', () => {
-    const service = app.service('webpack-api');
+    const service = app.service('filelisting');
 
     assert.ok(service, 'Registered the service');
   });

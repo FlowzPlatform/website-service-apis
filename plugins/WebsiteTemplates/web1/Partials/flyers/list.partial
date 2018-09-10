@@ -83,7 +83,7 @@ button.remove {
     <div class="col-sm-6 col-md-4 col-lg-3 col-xs-12 js-product-box product-#flyer-id#">
         
         <div class="catelogue pro-box">
-            <div class="catelogue-image-wrap pro-image box01"><a href="#flyer-image-link#" target="_blank"><img src="#flyer-image#" class="img-responsive center-block"/></a>
+            <div class="catelogue-image-wrap pro-image box01"><a href="#flyer-image-link#" target="_blank"><img src="#flyer-image#" class="img-responsive center-block lazyLoad" alt="#flyer-title#" title="#flyer-title#" /></a>
             </div>
             <div class="pro-desc">
                 <div class="pro-button flyer_button">

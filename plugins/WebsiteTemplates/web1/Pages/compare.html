@@ -155,17 +155,20 @@ aria-hidden="false" class="modal fade model-popup-black print-comparision in c61
                                 <tr id="js-print_item_title" class="dark-bg">
                                     <td>
                                         <div class="pro-img">
-                                            <div class="img-block">
-                                                <img width="100px" src="#data.image#" alt="" class="img-responsive center-block"
+                                            <div class="img-block" style="min-height:120px">
+                                                <img width="100px;" src="#data.image#" alt="#data.title#" title="#data.title#" class="img-responsive center-block lazyLoad"
                                                 />
                                             </div>
                                         </div>
-                                        <div class="product-name">#data.title#</div>
+                                        <div class="product-name" style="min-height:70px;">#data.title#</div>
                                     </td>
                                 </tr>
                                 <tr id="js-print_item_price" class="feature dark-bg pro-title">
                                     <td class="price-rang-brd">
-                                        <div class="product-price">#data.price#</div>
+                                        <div class="product-price" style="text-align:center">
+                                            <div style="float:left;"><span class="priceProd">#data.price#</span></div>
+                                            <span style="display:inline-block;vertical-align:top;margin-left:8px">Qty #data.min_qty#</span>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr id="js-print_item_sku" class="feature light-bg">
@@ -237,3 +240,4 @@ aria-hidden="false" class="modal fade model-popup-black print-comparision in c61
         </div>
     </div>
 </div>
+<script src="./assets/client-plugins/client-compare-page.js" defer="defer"></script>
