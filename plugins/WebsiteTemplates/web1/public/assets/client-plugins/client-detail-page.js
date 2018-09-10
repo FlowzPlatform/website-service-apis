@@ -32,7 +32,7 @@ let verifyAddress = function (ADD, codes) {
             dataType: 'json',
             data: add, 
             success: function (data) {
-                console.log('Dataa:: ', data)
+                //console.log('Dataa:: ', data)
                 if (data.ErrNumber == '0') {
                   flag = true;
                 } else {
@@ -78,7 +78,7 @@ if(pid != null) {
       return tmp;
     }();
     // var get_product_details = getProductDetailById(pid)
-    
+
     if(get_product_details != null && get_product_details != undefined) {
         // RECENTLY VIEWED PRODUCTS
         let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
@@ -522,7 +522,7 @@ $(document).ready( async function(){
                                     let hexCodeBgColor = $(this).parent().attr("style");
                                     let id = $(this).attr("id");
                                     Quantity = "<div class='quntity-count js_color_wise_qty' id='js_request_quote_qty_box_"+id+"'><div class='color-input' style='"+hexCodeBgColor+"' title='"+$(this).val()+"'><br></div><div class='selector-quantity js-quantity-section'><div class='selector-btn'><div class='sp-minus'><a data-multi='-1' href='javascript:void(0)' class='js-quantity-selector'>-</a></div>"+
-                                    "<div class='selector-input'> <input type='text' value='"+response_data.color[$(this).val()]+"' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
+                                    "<div class='selector-input'> <input type='text' value='"+response_data.color[$(this).val()]+"' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty ui-icon-delete' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
 
                                     $(this).prop("checked",true);
                                     // $(".js_add_imprint_location_request_quote").prop("checked",true);
@@ -550,7 +550,7 @@ $(document).ready( async function(){
                                         let color_name = $(this).attr('id');
                                         let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
 
-                                        qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
+                                        qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td width="20%">'+colorName+' </td><td><span>: '+qty+'</span></td></tr>';
 
                                         totalQty = totalQty + parseFloat(qty);
                                     });
@@ -2656,7 +2656,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         let hexCodeBgColor = $(this).parent().attr("style");
 
         Quantity = "<div class='quntity-count js_color_wise_qty' id='js_request_quote_qty_box_"+id+"'><div class='color-input' style='"+hexCodeBgColor+"' title='"+$(this).val()+"'><br></div><div class='selector-quantity js-quantity-section'><div class='selector-btn'><div class='sp-minus'><a data-multi='-1' href='javascript:void(0)' class='js-quantity-selector'>-</a></div>"+
-        "<div class='selector-input'> <input type='text' value='0' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
+        "<div class='selector-input'> <input type='text' value='0' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty ui-icon-delete' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
 
         $(this).prop("checked",true);
         if($(activetab).find("#js_request_quote_qty_box").html() !=""){
@@ -2715,7 +2715,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
             let color_name = $(this).attr('id');
             let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
 
-            qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
+            qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td width="20%">'+colorName+' </td><td><span>: '+qty+'</span></td></tr>';
 
             totalQty = totalQty + parseFloat(qty);
         });
@@ -3079,6 +3079,7 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
     let qtyShow = "";
     let totalQty = 0; //summary
     let totalPrice = 0.00; //summary
+    
     $('.js_color_checkbox:checked').each(function() {
         let colorName = $(this).val();
         let color_name = $(this).attr('id');
@@ -3086,7 +3087,7 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
         colors_qty[colorName] = qty;
 
         //summary for quantity selection
-        qtyShow = qtyShow + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
+        qtyShow = qtyShow + '<tr id="js_row_summary_qty_'+color_name+'"><td width="20%">'+colorName+' </td><td><span>: '+qty+'</span></td></tr>';
 
         totalQty = totalQty + parseFloat(qty);
     });
@@ -3290,12 +3291,12 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
                   // "email": "shippotle@goshippo.com",//optional
                   // "validate": true//optional
               };
-              console.log('addressFrom ::', addressFrom);
+              //console.log('addressFrom ::', addressFrom);
               let sCode = await getStateCode(returnData.state, 2)
               if (sCode != null) {
                 let verify_address_to = await verifyAddress(addressTo, sCode)
                 let verify_address_from = await verifyAddress(addressFrom, sCode)
-                console.log('verify_address ::', verify_address_to, verify_address_from)
+                //console.log('verify_address ::', verify_address_to, verify_address_from)
                 if(!verify_address_to){
                     hidePageAjaxLoading()
                     showErrorMessage("Please add correct shipping address.")
@@ -3552,8 +3553,8 @@ $(document).on('click','.js-submit-btn',function (e) {
           },
           errorElement: "li",
           errorPlacement: function(error, element) {
-            console.log("error",error);
-            console.log("element",element);
+            //console.log("error",error);
+            //console.log("element",element);
             error.appendTo(element.closest("div"));
             $(element).closest('div').find('ul').addClass('red')
           },
