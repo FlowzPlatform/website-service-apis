@@ -95,11 +95,11 @@ if(pid != null) {
         }
         localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
 
-        recentlyViewedProducts(recentViewedProducts);
+        recentlyViewedProducts(recentProductsName,recentViewedProducts);
     }
 }
 
-function recentlyViewedProducts(recentViewedProducts) {
+function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
     if(recentViewedProducts != null && recentViewedProducts.length > 1)
     {
         let recentLoop = recentViewedProducts;
@@ -119,23 +119,30 @@ function recentlyViewedProducts(recentViewedProducts) {
                 },
                 dataType: 'json',
                 success: function (data) {
-                    let productData = data.hits.hits[0]._source;
-                    if(!isEmpty(productData))
-                    {
-                        let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                        if(productData.images != undefined){
-                            productImage = productData.images[0].images[0].secure_url
-                        }
-                        let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
-                        let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
+                    if(data.hits.hits.length > 0) {
+                        if(data.hits.hits[0]._source != 'undefined' && !isEmpty(data.hits.hits[0]._source))
+                        {
+                            let productData = data.hits.hits[0]._source;
+                            let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                            if(productData.images != undefined){
+                                productImage = productData.images[0].images[0].secure_url
+                            }
+                            let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
+                            let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
 
-                        recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
+                            recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
+                        }
+                        else {
+                            let AIndex = recentLoop.indexOf(productId);
+                            if (AIndex > -1) {
+                                recentLoop.splice(AIndex, 1);
+                            }
+                            localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
+                        }
                     }
                     else {
-                        let AIndex = recentLoop.indexOf(productId);
-                        if (AIndex > -1) {
-                            recentLoop.splice(AIndex, 1);
-                        }
+                        recentLoop = [];
+                        recentLoop.push(pid);
                         localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
                     }
                 }
