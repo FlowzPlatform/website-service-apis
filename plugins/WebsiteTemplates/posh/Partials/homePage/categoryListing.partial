@@ -1,0 +1,16 @@
+<div class="col-lg-12 product-category-item-view js-category-list hide">
+    <div class="common-title">
+        <h4 class="most-popular-title">Product Categories</h4>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="ob-product-grid js-product-grid pro-rel-cat">
+            <div class="row">
+                <ul class="product-wrap js-show-category">
+                </ul>                            
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

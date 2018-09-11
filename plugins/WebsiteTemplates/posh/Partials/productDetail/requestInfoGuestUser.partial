@@ -1,0 +1,48 @@
+<div class="js_guest_info hide">
+    <div class="info-popup product-section-box">
+       <form name='guestuser' id='guestuser' method='POST' action=''>
+                 <div class="row">
+                   <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                            <label class="checkout-label">Name</label> : <span class="red">*</span></p>
+                            <input type="text" id="fullName" name="fullName" placeholder="Enter name" class="input">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                            <label class="checkout-label">Phone</label> : <span class="red">*</span></p>
+                            <input type="text" id="phone" name="phone" placeholder="Enter phone" class="input js-phone">
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                            <label class="checkout-label">Email</label> : <span class="red">*</span></p>
+                            <input type="text" id="email" name="email" placeholder="Enter email" class="input">
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                            <label class="checkout-label">Company</label> : <span class="red">*</span></p>
+                            <input type="text" id="company_name" name="company_name" placeholder="Enter company name" class="input">
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                      <div class="form-group">
+                            <label class="checkout-label">Zip Code</label> : <span class="red">*</span></p>
+                            <input type="text" id="zipcode" name="zipcode" placeholder="Enter zipcode" class="input" tabindex="1">
+                      </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                  <input class="small-but btn-default js-submit-btn" value="Submit Request" type="submit">
+                </div>  
+       </form>
+     </div>
+</div>
