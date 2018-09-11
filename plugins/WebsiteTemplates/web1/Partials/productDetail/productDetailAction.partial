@@ -44,7 +44,7 @@ body {
 </style>
 
 
-<script type="text/javascript" src="http://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js" defer="defer"></script>
+<script type="text/javascript" src="https://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js" defer="defer"></script>
 <div class="product-section-box">
     <div class="detail-popup-block">
         <ul>
@@ -132,7 +132,7 @@ body {
 <div id="print-product" class="hide">
     <div class="row">
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 print-logo">
-            <img src="http://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png" class="lazyLoad" alt="logo" title="logo">
+            <img src="https://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png" class="lazyLoad" alt="logo" title="logo">
         </div>
     </div>
     <div class="row">
