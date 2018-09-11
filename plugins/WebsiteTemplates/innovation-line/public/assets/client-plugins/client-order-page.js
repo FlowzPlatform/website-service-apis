@@ -117,7 +117,7 @@ function showOrders()
           imgSkuReplace = imgSkuReplace.replace('#data.image#',productImage);
           // let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+product_details.product_id;
           // imgSkuReplace = imgSkuReplace.replace(/#data.product_link#/g,detailLink);
-          imgSkuReplace = imgSkuReplace.replace('#data.title#',productData.product_name);
+          imgSkuReplace = imgSkuReplace.replace(/#data.title#/g,productData.product_name);
 
           //Imprint Information
           imprintHtml = '';
@@ -169,7 +169,7 @@ function showOrders()
                     if(typeof imprint_info.artwork.artwork_thumb != "undefined"){
                         for (let [i,artwork_thumb] of imprint_info.artwork.artwork_thumb.entries()){
                             let j = i+1;
-                            thumbImg += 'Uploaded Artwork '+j+': <img alt="" src="'+artwork_thumb+'" style="max-width:50px;max-height:50px;"><br><br>';
+                            thumbImg += 'Uploaded Artwork '+j+': <img class="lazyLoad" alt="artwork" title="artwork" src="'+artwork_thumb+'" style="max-width:50px;max-height:50px;"><br><br>';
                         }
                     }
                     // thumbImg += '</div>'

@@ -487,96 +487,96 @@ try {
 }
 
 // Image gradient animation js
-try {
-    var color1 = $('imageanimation').attr('color1');
-    var color2 = $('imageanimation').attr('color2');
-    var color3 = $('imageanimation').attr('color3');
-    var color4 = $('imageanimation').attr('color4');
-    var color5 = $('imageanimation').attr('color5');
-    var color6 = $('imageanimation').attr('color6');
+// try {
+//     var color1 = $('imageanimation').attr('color1');
+//     var color2 = $('imageanimation').attr('color2');
+//     var color3 = $('imageanimation').attr('color3');
+//     var color4 = $('imageanimation').attr('color4');
+//     var color5 = $('imageanimation').attr('color5');
+//     var color6 = $('imageanimation').attr('color6');
 
-    function hex_to_RGB(hex) {
-        var m = hex.match(/^#?([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i);
-        return [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)]
-    }
+//     function hex_to_RGB(hex) {
+//         var m = hex.match(/^#?([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i);
+//         return [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)]
+//     }
 
-    var color1 = hex_to_RGB(color1)
-    var color2 = hex_to_RGB(color2)
-    var color3 = hex_to_RGB(color3)
-    var color4 = hex_to_RGB(color4)
-    var color5 = hex_to_RGB(color5)
-    var color6 = hex_to_RGB(color6)
+//     var color1 = hex_to_RGB(color1)
+//     var color2 = hex_to_RGB(color2)
+//     var color3 = hex_to_RGB(color3)
+//     var color4 = hex_to_RGB(color4)
+//     var color5 = hex_to_RGB(color5)
+//     var color6 = hex_to_RGB(color6)
 
-    var colors = new Array(
-        color1,
-        color2,
-        color3,
-        color4,
-        color5,
-        color6);
+//     var colors = new Array(
+//         color1,
+//         color2,
+//         color3,
+//         color4,
+//         color5,
+//         color6);
 
-    var step = 0;
-    //color table indices for:
-    // current color left
-    // next color left
-    // current color right
-    // next color right
-    var colorIndices = [0, 1, 2, 3];
+//     var step = 0;
+//     //color table indices for:
+//     // current color left
+//     // next color left
+//     // current color right
+//     // next color right
+//     var colorIndices = [0, 1, 2, 3];
 
-    //transition speed
-    var gradientSpeed = 0.002;
+//     //transition speed
+//     var gradientSpeed = 0.002;
 
-    function updateGradient() {
+//     function updateGradient() {
 
-        if ($ === undefined) return;
+//         if ($ === undefined) return;
 
-        var c0_0 = colors[colorIndices[0]];
-        var c0_1 = colors[colorIndices[1]];
-        var c1_0 = colors[colorIndices[2]];
-        var c1_1 = colors[colorIndices[3]];
+//         var c0_0 = colors[colorIndices[0]];
+//         var c0_1 = colors[colorIndices[1]];
+//         var c1_0 = colors[colorIndices[2]];
+//         var c1_1 = colors[colorIndices[3]];
 
-        var istep = 1 - step;
-        var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
-        var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
-        var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
-        var color1 = "rgb(" + r1 + "," + g1 + "," + b1 + ")";
+//         var istep = 1 - step;
+//         var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+//         var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+//         var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+//         var color1 = "rgb(" + r1 + "," + g1 + "," + b1 + ")";
 
-        var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
-        var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
-        var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
-        var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
+//         var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+//         var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+//         var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+//         var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
 
-        $('#gradient').css({
-            background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
-        }).css({
-            background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
-        });
+//         $('#gradient').css({
+//             background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
+//         }).css({
+//             background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+//         });
 
-        step += gradientSpeed;
-        if (step >= 1) {
-            step %= 1;
-            colorIndices[0] = colorIndices[1];
-            colorIndices[2] = colorIndices[3];
+//         step += gradientSpeed;
+//         if (step >= 1) {
+//             step %= 1;
+//             colorIndices[0] = colorIndices[1];
+//             colorIndices[2] = colorIndices[3];
 
-            //pick two new target color indices
-            //do not pick the same as the current one
-            colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-            colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+//             //pick two new target color indices
+//             //do not pick the same as the current one
+//             colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+//             colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
 
-        }
-    }
+//         }
+//     }
 
-    setInterval(updateGradient, 10);
-} catch (err) {
-    console.log('Image gradient animation not found!', err);
-}
+//     setInterval(updateGradient, 10);
+// } catch (err) {
+//     console.log('Image gradient animation not found!', err);
+// }
 // Image gradient animation ends
 
 // Navbar Plugins JS
 try {
     var menuData;
 
-    $(document).ready(function() {
+    // $(document).ready(function() {
         var menuJsonName = './assets/' + $('.customMenu').attr('menuId') + '.json';
 
         $.getJSON({
@@ -612,7 +612,7 @@ try {
                 });
             }
         });
-    });
+    // });
 
 
 
@@ -1340,7 +1340,7 @@ try {
 
 //Contact Form 1
 try {
-  $(document).ready(() => {
+  // $(document).ready(() => {
     let contactid = '#frmContact1'
       // console.log("contactid:", contactid)
       
@@ -1405,7 +1405,7 @@ try {
               }
           })
         },
-    });
+    // });
   })
 
 } catch (e) {
@@ -1413,7 +1413,7 @@ try {
 }
 //Contact 2
 try {
-  $(document).ready(() => {
+  // $(document).ready(() => {
       let contactid = '#frmContact2'
 
       $('form#frmContact2').validate({
@@ -1475,7 +1475,7 @@ try {
               }
           })
         },
-    });
+    // });
   })
 
 } catch (e) {
@@ -1483,7 +1483,7 @@ try {
 }
 //Contact 3
 try {
-  $(document).ready(() => {
+  // $(document).ready(() => {
       let contactid = '#frmContact3'
 
       $('form#frmContact3').validate({
@@ -1541,7 +1541,7 @@ try {
               }
           })
         },
-    });
+    // });
   })
 
 } catch (e) {
@@ -1549,7 +1549,7 @@ try {
 }
 //Contact 4
 try {
-  $(document).ready(() => {
+  // $(document).ready(() => {
       let contactid = '#frmContact4'
 
       $('form#frmContact4').validate({
@@ -1610,7 +1610,7 @@ try {
               }
           })
         },
-    });
+    // });
   })
 
 } catch (e) {
@@ -1618,7 +1618,7 @@ try {
 }
 //Contact 5
 try {
-  $(document).ready(() => {
+  // $(document).ready(() => {
       let contactid = '#frmContact5'
       $('form#frmContact5').validate({
         rules: {
@@ -1675,7 +1675,7 @@ try {
               }
           })
         },
-    });
+    // });
   })
 
 } catch (e) {
@@ -1684,7 +1684,7 @@ try {
 
 //Contact 6
 try {
-  $(document).ready(() => {
+  // $(document).ready(() => {
       let contactid = '#frmContact6'
 
       $('form#frmContact6').validate({
@@ -1748,7 +1748,7 @@ try {
               }
           })
         },
-    });
+    // });
   })
 
 } catch (e) {
@@ -1757,7 +1757,7 @@ try {
 
 //Contact 7
 try {
-  $(document).ready(() => {
+  // $(document).ready(() => {
       let contactid = '#frmContact7'
       
       $('form#frmContact7').validate({
@@ -1815,7 +1815,7 @@ try {
               }
           })
         },
-    });
+    // });
   })
 
 } catch (e) {
@@ -1824,7 +1824,7 @@ try {
 
 //Contact 8
 try {
-  $(document).ready(() => {
+  // $(document).ready(() => {
       let contactid = '#frmContact8'
 
       $('form#frmContact8').validate({
@@ -1888,7 +1888,7 @@ try {
               }
           })
         },
-    });
+    // });
   })
 
 } catch (e) {
@@ -1897,7 +1897,7 @@ try {
 
 //Contact 10
 try {
-  $(document).ready(() => {
+  // $(document).ready(() => {
       let contactid = '#frmContact10'
 
       $('form#frmContact10').validate({
@@ -1955,9 +1955,11 @@ try {
               }
           })
         },
-    });
+    // });
   })
 
 } catch (e) {
   console.log(e)
 }
+})
+

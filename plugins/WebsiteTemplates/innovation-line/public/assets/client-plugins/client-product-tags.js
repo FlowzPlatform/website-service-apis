@@ -34,7 +34,7 @@ async function product_tag_data(product_tags) {
         $.each( product_tags, function( key, tagArray ) {
             $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+tagArray.product_id+"&source=default_image,product_id,sku,product_name,currency,min_price,description",
+                url: project_settings.product_api_url+"?_id="+tagArray.product_id+"&source=default_image,product_id,sku,product_name,currency,min_price,description,images",
                 async: false,
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -54,7 +54,7 @@ async function product_tag_data(product_tags) {
 
                         listHtml1 = listHtml1.replace(/#data.id#/g,tagArray.id);
 
-                        listHtml1 = listHtml1.replace('#data.title#',productData[0]._source.product_name);
+                        listHtml1 = listHtml1.replace(/#data.title#/g,productData[0]._source.product_name);
 
                         listHtml1 = listHtml1.replace('#data.sku#',productData[0]._source.sku);
 

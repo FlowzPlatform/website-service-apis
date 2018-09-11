@@ -509,24 +509,15 @@ nav.navbar {
 
 </style>
 
-
-<script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
-<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://res.cloudinary.com/flowz/raw/upload/v1533193147/websites/js/bootstrap-multiselect.js"></script>
-<script src="./main-files/main.js"></script>
-<script src="./assets/client-plugins/client-cart.js"></script>
-<script src="./assets/client-plugins/client-advance-search.js"></script>
 <div>
     <link rel="stylesheet" href="./main-files/main.css" />
-    <link href="http://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/base.css"
+    <link href="https://res.cloudinary.com/flowz/raw/upload/v1519382415/websites/distributor/css/base.css"
     rel="stylesheet" type="text/css" />
     <link href="https://res.cloudinary.com/flowz/raw/upload/v1533193176/websites/distributor/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700"
     rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
     rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
     <div id="js-fix-header-controller">
         <div class="ob-header">
             <div class="main-logo-part">
@@ -565,7 +556,7 @@ nav.navbar {
                 <div class="ob-logo-block">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"><a href="index.html"><img src="http://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png"/></a>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 logo-col"><a href="index.html"><img src="https://res.cloudinary.com/flowz/raw/upload/v1519216585/websites/distributor/images/img_logo.png" class="lazyLoad" alt="logo" title="logo" /></a>
                             </div>
                         </div>
                         <div class="row header-search-col">

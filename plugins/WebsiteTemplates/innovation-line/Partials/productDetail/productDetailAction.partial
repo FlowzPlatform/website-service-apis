@@ -44,7 +44,7 @@ body {
 </style>
 
 
-<script type="text/javascript" src="http://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js"></script>
+<script type="text/javascript" src="https://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js" defer="defer"></script>
 <div class="product-section-box">
     <div class="detail-popup-block">
         <ul>
@@ -81,11 +81,11 @@ body {
     </div>
 </div>
 
-<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5b62f774f3742d0012c886ab&product=inline-share-buttons' defer='defer'></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
-<script type="text/javascript" src="./assets/client-plugins/client-product-action.js"></script>
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5b62f774f3742d0012c886ab&product=inline-share-buttons"  defer="defer"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.js" defer="defer"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.js" defer="defer"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js" defer="defer"></script>
+<script type="text/javascript" src="./assets/client-plugins/client-product-action.js" defer="defer"></script>
 
 <div id="emailProduct" role="dialog" class="modal fade model-popup-black">
     <div class="modal-dialog">
@@ -135,18 +135,49 @@ body {
 <div id="print-product" class="hide">
     <div class="row">
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 print-logo">
-            <img src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png" alt="">
+            <img class="lazyLoad" src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png" alt="logo" title="logo">
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <h3>#data.product_name#</h3>
-            <div class="print-main-img"><img src="#data.product_img#" alt="Product image" class="img-responsive"></div>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+            <div class="print-main-img"><img src="#data.product_img#" alt="#data.product_name#" title="#data.product_name#" class="img-responsive lazyLoad"></div>
             <div class="print-total-thumb"></div>
             <div class="clearfix"></div>
             <div class="print-product-desc">
                 <h3 class="print-sub-title">Description</h3>
                 <p>#data.description#</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+            <div class="skuprice">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 print-code">Item Number: <span>#data.sku#</span></div>
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="product-print-price">
+                <div class="row">
+                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-6"></div>
+                </div>
+                <div class="product-section-box">
+                <h2 class="heading-block no-tag">   Quantity and Price </h2>
+                <div class="quantity-table">
+                    <div class="quantity-table-title">
+                        <div class="table-heading js-product-price-unit" data-product-price-unit="each">Quantity </div>
+                        <div class="table-content">Price</div>
+                    </div>
+                    <div class="quantity-table-disc">
+                        <div class="quantity-table-col owl-theme">
+                            #data.quantity_and_price#
+                        </div>    
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                </div>
+                <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
             <div class="print-product-detail">
@@ -178,35 +209,6 @@ body {
                 </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-            <div class="skuprice">
-                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 print-code">Item Number :<span>#data.sku#</span></div>
-            </div>
-            
-            <div class="clearfix"></div>
-            <div class="product-print-price">
-                <div class="row">
-                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-6"></div>
-                </div>
-                <div class="product-section-box">
-                <h2 class="heading-block no-tag">   Quantity and Price </h2>
-                <div class="quantity-table">
-                    <div class="quantity-table-title">
-                        <div class="table-heading js-product-price-unit" data-product-price-unit="each">Quantity </div>
-                        <div class="table-content">Price</div>
-                    </div>
-                    <div class="quantity-table-disc">
-                        <div class="quantity-table-col owl-theme">
-                            #data.quantity_and_price#
-                        </div>    
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
     <div class="row">

@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="product-img-blk">
                                         <a class="item-title js-product-title" href="#data.product_link#">
-                                            <img class="img-responsive center-block" src="#data.image#"/>
+                                            <img class="img-responsive center-block lazyLoad" src="#data.image#" alt="#data.title#" title="#data.title#" />
                                         </a>
                                     </div>
                                 </div>

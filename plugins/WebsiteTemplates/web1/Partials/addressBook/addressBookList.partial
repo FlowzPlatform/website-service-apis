@@ -78,4 +78,4 @@ body {
         </div>
     </div>
 </section>
-<script type="text/javascript" src="./assets/client-plugins/client-address-book.js"></script>
+<script type="text/javascript" src="./assets/client-plugins/client-address-book.js" defer="defer"></script>

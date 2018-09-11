@@ -86,7 +86,7 @@ $(document).on('click', '.js-upload-art-image', function(e) {
 	// let index = $(this).attr('data-index'); //summary
 	// let art_heading = $(this).closest(".art-pos-value").find('li.active a').text(); //summary
 	// let art_heading_undescore = replaceWithUnderscore(art_heading); //summary
-	console.log('cloudinaryDetails',cloudinaryDetails)
+	//console.log('cloudinaryDetails',cloudinaryDetails)
 	cloudinary.openUploadWidget({
 			cloud_name: cloudinaryDetails.cloudName,
 			api_key: cloudinaryDetails.apiKey,

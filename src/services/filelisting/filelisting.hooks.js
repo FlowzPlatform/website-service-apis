@@ -1,4 +1,5 @@
 let shell = require('shelljs')
+var fs = require('fs');
 
 module.exports = {
   before: {
@@ -15,9 +16,7 @@ module.exports = {
 
   after: {
     all: [],
-    find: [
-      hook => after_create_ms(hook)
-    ],
+    find: [],
     get: [],
     create: [],
     update: [],
@@ -38,14 +37,12 @@ module.exports = {
 
 
 function before_create_ms(hook) {
-  hook.result = hook.data;
-}
+   return new Promise((resolve, reject) => {
 
-function after_create_ms(hook) {
-  return new Promise((resolve, reject) => {
-       shell.exec('pwd');
-       shell.exec('NODE_ENV='+hook.params.query.path + ' webpack' );
-       hook.result = {"data":hook.data,code:200}
-      // resolve(hook);
-  })
+    fs.readdir(hook.params.query.path, function(err, items) {
+    hook.result = {"data":items};
+    resolve(hook)
+    });
+   })
+
 }

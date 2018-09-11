@@ -30,6 +30,7 @@ input[type="submit"], input[type="button"], input[type="reset"], button[type="su
   text-decoration: none;
   box-shadow: none !important;
   border: none;
+  font-size:12px !important;
 }
 
 input[type="submit"]:focus, input[type="submit"].focus, input[type="button"]:focus, input[type="button"].focus, input[type="reset"]:focus, input[type="reset"].focus, button[type="submit"]:focus, button[type="submit"].focus, button[type="reset"]:focus, button[type="reset"].focus {

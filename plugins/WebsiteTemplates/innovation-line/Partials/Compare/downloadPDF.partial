@@ -2,7 +2,7 @@
         <style>#download-comparision{font-size:12px;}#download-comparision product_features{word-break: break-word;}#download-comparision table{font-family: arial, sans-serif; border-collapse: collapse; width: 100%;}#download-comparision td,#download-comparision th{border: 1px solid #dddddd; text-align: left; padding: 1px;}#download-comparision tr:nth-child(even){background-color: #dddddd;}#download-comparision .img-block img{width:70px;height:70px;display:block;margin: 0 auto;}#download-comparision .ob-product-compare .color-block{border:1px solid #000;display:inline-block;height:18px;margin-right:7px;vertical-align:top;width:18px;border-radius:10px}#download-comparision .ob-product-compare .pro-img {margin: 20px 0;display: block;background: #FFF;position: relative; }#download-comparision .ob-product-compare .product-name{text-align: center;min-height: 75px;}</style>
                         <div class="row print-head">
                         <div class="col-xs-7">
-                                <img src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png" style="width:250px;padding-bottom: 10px;" alt="logo">
+                                <img src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png" style="width:250px;padding-bottom: 10px;" alt="logo" title="logo" class="lazyLoad">
                         </div>
                         <div class="col-xs-5"></div>
                         </div>
@@ -13,14 +13,17 @@
                                 <tr class="dark-bg" id="product_img">
                                         <td style="width:20%" class=" ">
                                         <div class="pro-img">
-                                        <div class="img-block"><img src="#data.image#" class="img-responsive center-block" alt=""></div>
+                                        <div class="img-block"><img src="#data.image#" class="img-responsive center-block lazyLoad" alt="#data.title#" title="#data.title#"></div>
                                         </div>
                                         <div class="product-name">#data.title#</div>
                                         </td>
                                 </tr>
                                 <tr class="feature dark-bg pro-title" id="product_price">
                                         <td style="width:20%" class="price-rang-brd ">
-                                            <div class="product-price"> #data.price#</div>
+                                                <div class="product-price" style="text-align:center">
+                                                        <div style="float:left;"><span class="priceProd">#data.price#</span></div>
+                                                        <span style="display:inline-block;vertical-align:top;margin-left:8px">Qty #data.min_qty#</span>
+                                                </div>
                                         </td>
                                 </tr>
                                 <tr class="feature light-bg" id="product_sku">

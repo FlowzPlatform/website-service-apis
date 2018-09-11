@@ -108,7 +108,7 @@ $(document).on('click','.send-email-product', function (e) {
             showPageAjaxLoading();
             let productResponse = $.ajax({
                 type: 'GET',
-                url: project_settings.product_api_url+"?_id="+pid+"&source=default_image,sku,product_name,pricing,features",
+                url: project_settings.product_api_url+"?_id="+pid+"&source=default_image,sku,product_name,pricing,features,images",
                 async: false,
                 beforeSend: function (xhr) {
                   xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -175,7 +175,7 @@ $(document).on('click','.send-email-product', function (e) {
                         });
                         productJsonData['quantity_pricing'] = priceRang;
                     }
-
+                    
                     if(productJsonData['data'].images != undefined){
                         productJsonData['image'] = productJsonData['data'].images[0].images[0].secure_url;
                     }else{
@@ -189,12 +189,13 @@ $(document).on('click','.send-email-product', function (e) {
                     dataType : 'json',
                         success : function(response_data) {
                             // $('#emailProduct').modal('toggle');
-                            console.log('response_data',response_data)
+                            //console.log('response_data',response_data)
                             if(response_data!= "") {
                                 // $("#email_product").find("input,textarea").val('');
                                 hidePageAjaxLoading()
                                 showSuccessMessage("Email Sent Successfully.");
-                                window.location = "thankYou.html";
+                                $('#emailProduct').modal('toggle');
+                                // window.location = "thankYou.html";
                                 return false;
                             }
                             else if(response_data.status == 400) {
@@ -225,11 +226,11 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
                         $.each(element.price_range,function(index,element2){
                         // console.log("in each condition");
                         if(element2.qty.lte != undefined){
-                            priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
+                            priceRang += '<div><div class="table-heading print_product_col">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content print_product_col">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                         }
                         else
                         {
-                            priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
+                            priceRang += '<div><div class="table-heading print_product_col">'+ element2.qty.gte + '+' + '</div><div class="table-content print_product_col">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                         }
                             });
                         $("#print-product").find(".quantity-table-col").html(priceRang);    
@@ -240,7 +241,7 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
 
     let guestUserHtml = $("#print-product").html();
 
-    guestUserHtml = guestUserHtml.replace('#data.product_name#',productResponse.product_name);
+    guestUserHtml = guestUserHtml.replace(/#data.product_name#/g,productResponse.product_name);
     guestUserHtml = guestUserHtml.replace('#data.sku#',productResponse.sku);
     guestUserHtml = guestUserHtml.replace('#data.description#',productResponse.description);
     guestUserHtml = guestUserHtml.replace('#data.colors#',productResponse.attributes.colors);
@@ -275,7 +276,7 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
                 guestUserHtml = guestUserHtml.replace('#data.fob#',fob);
             }
             else{
-                guestUserHtml = guestUserHtml.replace('#data.fob#',fob);
+                guestUserHtml = guestUserHtml.replace('#data.fob#','-');
             }
             
             // if(productResponse.shipping[0].carton_length != undefined && productResponse.shipping[0].carton_length != ''){
@@ -295,6 +296,10 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
             else{
                 guestUserHtml = guestUserHtml.replace('#data.qty_per_carton#','-');
             }
+        }
+        else{
+            guestUserHtml = guestUserHtml.replace('#data.qty_per_carton#','-');
+            guestUserHtml = guestUserHtml.replace('#data.fob#','-');
         }
     }
     

@@ -32,7 +32,7 @@ let verifyAddress = function (ADD, codes) {
             dataType: 'json',
             data: add, 
             success: function (data) {
-                console.log('Dataa:: ', data)
+                //console.log('Dataa:: ', data)
                 if (data.ErrNumber == '0') {
                   flag = true;
                 } else {
@@ -79,27 +79,28 @@ if(pid != null) {
     }();
     // var get_product_details = getProductDetailById(pid)
 
-    
-    // RECENTY VIEWED PRODUCTS
-    let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
-    let recentViewedProducts = [];
-    if (localStorage.getItem(recentProductsName) != null) {
-        recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
-    }
-    
-    if(!(recentViewedProducts.includes(pid))) {
-        if(recentViewedProducts.length > 5) {
-            recentViewedProducts.splice(0, 1);
+    if(get_product_details != null && get_product_details != undefined) {
+        // RECENTLY VIEWED PRODUCTS
+        let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
+        let recentViewedProducts = [];
+        if (localStorage.getItem(recentProductsName) != null) {
+            recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
         }
-        recentViewedProducts.push(pid);
-    }
-    localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
+        
+        if(!(recentViewedProducts.includes(pid))) {
+            if(recentViewedProducts.length > 5) {
+                recentViewedProducts.splice(0, 1);
+            }
+            recentViewedProducts.push(pid);
+        }
+        localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
 
-    recentlyViewedProducts(recentViewedProducts);
+        recentlyViewedProducts(recentProductsName,recentViewedProducts);
+    }
 }
 
-function recentlyViewedProducts(recentViewedProducts) {
-    if(recentViewedProducts != null && recentViewedProducts.length > 0)
+function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
+    if(recentViewedProducts != null && recentViewedProducts.length > 1)
     {
         let recentLoop = recentViewedProducts;
         let cIndex = recentLoop.indexOf(pid);
@@ -118,23 +119,30 @@ function recentlyViewedProducts(recentViewedProducts) {
                 },
                 dataType: 'json',
                 success: function (data) {
-                    let productData = data.hits.hits[0]._source;
-                    if(!isEmpty(productData))
-                    {
-                        let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                        if(productData.images != undefined){
-                            productImage = productData.images[0].images[0].secure_url
-                        }
-                        let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
-                        let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
+                    if(data.hits.hits.length > 0) {
+                        if(data.hits.hits[0]._source != 'undefined' && !isEmpty(data.hits.hits[0]._source))
+                        {
+                            let productData = data.hits.hits[0]._source;
+                            let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                            if(productData.images != undefined){
+                                productImage = productData.images[0].images[0].secure_url
+                            }
+                            let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
+                            let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
 
-                        recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block" alt=""> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
+                            recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
+                        }
+                        else {
+                            let AIndex = recentLoop.indexOf(productId);
+                            if (AIndex > -1) {
+                                recentLoop.splice(AIndex, 1);
+                            }
+                            localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
+                        }
                     }
                     else {
-                        let AIndex = recentLoop.indexOf(productId);
-                        if (AIndex > -1) {
-                            recentLoop.splice(AIndex, 1);
-                        }
+                        recentLoop = [];
+                        recentLoop.push(pid);
                         localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
                     }
                 }
@@ -265,10 +273,10 @@ $(document).ready( async function(){
 
                   // $('#product_name').html(ProductName)
                   let listHtml = $('#title .row').html();
-                  let titleAndSkuHtml = listHtml.replace('#data.product_name#',ProductName);
+                  let titleAndSkuHtml = listHtml.replace(/#data.product_name#/g,ProductName);
                   titleAndSkuHtml = titleAndSkuHtml.replace('#data.sku#',ProductSku);
                   let breadcrumbHtml = $(".breadcrumb").html();
-                  breadcrumbHtml = breadcrumbHtml.replace("#data.title#",ProductName)
+                  breadcrumbHtml = breadcrumbHtml.replace(/#data.title#/g,ProductName)
                   $(".breadcrumb").html(breadcrumbHtml);
                   // console.log(titleAndSkuHtml);
                   // productHtml += listHtml1;
@@ -291,11 +299,11 @@ $(document).ready( async function(){
     		                  let color = element.color;
                           color = color.toLowerCase().replace(/\s/g, '-');
                           imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
-                          imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+'" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
+                          imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+' lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></div>';
     		               }
     		          }else{
                     imageGallaryHtml += '<div class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_default_link" data-zoom-image="'+productImageUrl+'">';
-                    imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default" alt="product-image"/></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
+                    imageGallaryHtml += '<img data-orig-img-default="'+productImageUrl+'" src="'+productImageUrl+'" class="clr_default lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_default"/></div>';
                   }
 
                 $(".js-image-gallery").html(imageGallaryHtml);
@@ -521,7 +529,7 @@ $(document).ready( async function(){
                                     let hexCodeBgColor = $(this).parent().attr("style");
                                     let id = $(this).attr("id");
                                     Quantity = "<div class='quntity-count js_color_wise_qty' id='js_request_quote_qty_box_"+id+"'><div class='color-input' style='"+hexCodeBgColor+"' title='"+$(this).val()+"'><br></div><div class='selector-quantity js-quantity-section'><div class='selector-btn'><div class='sp-minus'><a data-multi='-1' href='javascript:void(0)' class='js-quantity-selector'>-</a></div>"+
-                                    "<div class='selector-input'> <input type='text' value='"+response_data.color[$(this).val()]+"' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
+                                    "<div class='selector-input'> <input type='text' value='"+response_data.color[$(this).val()]+"' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty ui-icon-delete' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
 
                                     $(this).prop("checked",true);
                                     // $(".js_add_imprint_location_request_quote").prop("checked",true);
@@ -549,7 +557,7 @@ $(document).ready( async function(){
                                         let color_name = $(this).attr('id');
                                         let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
 
-                                        qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
+                                        qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td width="20%">'+colorName+' </td><td><span>: '+qty+'</span></td></tr>';
 
                                         totalQty = totalQty + parseFloat(qty);
                                     });
@@ -1034,7 +1042,7 @@ $(document).ready( async function(){
     });
     // END QUANTITY PRICE TABLE END
 
-    //RECENTY VIEWED PRODUCTS
+    //RECENTLY VIEWED PRODUCTS
     $("#owl-carousel-recently-products").owlCarousel({
         navigation: true,
         items:4,
@@ -2396,7 +2404,7 @@ $(document).on("click",activetab + " .js-upload-art-radio",function(){
     let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
     let art_heading_undescore = replaceWithUnderscore(art_heading);
     $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
-    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src=""></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src=""></span></div><br></div>');
+    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src="#"></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src="#"></span></div><br></div>');
 });
 
 $(document).on("click",activetab + " .js-upload-email-radio",function(){
@@ -2426,7 +2434,7 @@ $(document).on("click",activetab + " .js-upload-art-type-radio",function(){
     let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
     let art_heading_undescore = replaceWithUnderscore(art_heading);
     $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
-    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src=""></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src=""></span></div><div class="estimate-row js_sum_art_text_1 hide">Text 1 : <span></span></div><div class="estimate-row js_sum_art_text_2 hide">Text 2 : <span></span></div><div class="estimate-row js_sum_art_textarea hide">Instructions: <span class="content-inline"></span></div><br></div>');
+    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src="#"></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src="#"></span></div><div class="estimate-row js_sum_art_text_1 hide">Text 1 : <span></span></div><div class="estimate-row js_sum_art_text_2 hide">Text 2 : <span></span></div><div class="estimate-row js_sum_art_textarea hide">Instructions: <span class="content-inline"></span></div><br></div>');
 });
 
 $(document).on("click",activetab + " .js-upload-email-type-radio",function(){
@@ -2655,7 +2663,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
         let hexCodeBgColor = $(this).parent().attr("style");
 
         Quantity = "<div class='quntity-count js_color_wise_qty' id='js_request_quote_qty_box_"+id+"'><div class='color-input' style='"+hexCodeBgColor+"' title='"+$(this).val()+"'><br></div><div class='selector-quantity js-quantity-section'><div class='selector-btn'><div class='sp-minus'><a data-multi='-1' href='javascript:void(0)' class='js-quantity-selector'>-</a></div>"+
-        "<div class='selector-input'> <input type='text' value='0' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
+        "<div class='selector-input'> <input type='text' value='0' class='selector-input js_request_quote_qty js_request_quote_nosize_qty' ></div><div class='sp-plus'><a data-multi='1' href='javascript:void(0)' class='js-quantity-selector'>+</a></div></div><div class='clearfix'></div></div><a href='javascript:void(0)' data-toggle='tooltip' class='js_request_quote_qty_remove remove-qty ui-icon-delete' data-id='"+id+"'>"+"<i class='fa fa-trash-o'></i></a></div>";
 
         $(this).prop("checked",true);
         if($(activetab).find("#js_request_quote_qty_box").html() !=""){
@@ -2714,7 +2722,7 @@ $(document).on("change", activetab + ' .js_color_checkbox',function(){
             let color_name = $(this).attr('id');
             let qty = parseInt($("#js_request_quote_qty_box_"+color_name+" input.js_request_quote_qty").val());
 
-            qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
+            qtyMerge = qtyMerge + '<tr id="js_row_summary_qty_'+color_name+'"><td width="20%">'+colorName+' </td><td><span>: '+qty+'</span></td></tr>';
 
             totalQty = totalQty + parseFloat(qty);
         });
@@ -3086,7 +3094,7 @@ $(document).on("blur", activetab + ' .js-quantity-section .js_request_quote_nosi
         colors_qty[colorName] = qty;
 
         //summary for quantity selection
-        qtyShow = qtyShow + '<tr id="js_row_summary_qty_'+color_name+'"><td>'+colorName+' </td><td><span>: '+qty+'</span></td><td><strong>Total : <span class="js_total_qty">'+qty+'</span></strong></td></tr>';
+        qtyShow = qtyShow + '<tr id="js_row_summary_qty_'+color_name+'"><td width="20%">'+colorName+' </td><td><span>: '+qty+'</span></td></tr>';
 
         totalQty = totalQty + parseFloat(qty);
     });
@@ -3177,9 +3185,12 @@ function attachDeleteEvent(parentDiv){
                 let setActivetab = activetab.replace(/\#/g, '');
                 if(setActivetab == "js-request-quote" && user_details == null)
                 {
-                    let addressRemove = JSON.parse(localStorage.getItem('requestQuoteAddress'));
-                    addressRemove.splice(parseInt(currentAddressCounter1)-1, 1);
-                    localStorage.setItem('requestQuoteAddress',JSON.stringify(addressRemove));
+                    if(localStorage.getItem('requestQuoteAddress') != null)
+                    {
+                        let addressRemove = JSON.parse(localStorage.getItem('requestQuoteAddress'));
+                        addressRemove.splice(parseInt(currentAddressCounter1)-1, 1);
+                        localStorage.setItem('requestQuoteAddress',JSON.stringify(addressRemove));
+                    }
                 }
 				//summary for shipping address split
 				$('#js_shipp_address_details_'+currentAddressCounter).remove();
@@ -3287,12 +3298,12 @@ function setSelectedAddress(addressBookId,shippigCounter,carrierData = null)
                   // "email": "shippotle@goshippo.com",//optional
                   // "validate": true//optional
               };
-              console.log('addressFrom ::', addressFrom);
+              //console.log('addressFrom ::', addressFrom);
               let sCode = await getStateCode(returnData.state, 2)
               if (sCode != null) {
                 let verify_address_to = await verifyAddress(addressTo, sCode)
                 let verify_address_from = await verifyAddress(addressFrom, sCode)
-                console.log('verify_address ::', verify_address_to, verify_address_from)
+                //console.log('verify_address ::', verify_address_to, verify_address_from)
                 if(!verify_address_to){
                     hidePageAjaxLoading()
                     showErrorMessage("Please add correct shipping address.")
@@ -3549,8 +3560,8 @@ $(document).on('click','.js-submit-btn',function (e) {
           },
           errorElement: "li",
           errorPlacement: function(error, element) {
-            console.log("error",error);
-            console.log("element",element);
+            //console.log("error",error);
+            //console.log("element",element);
             error.appendTo(element.closest("div"));
             $(element).closest('div').find('ul').addClass('red')
           },

@@ -63,7 +63,7 @@ body {
                                     </thead>
                                     <tbody>
                                        <tr>
-                                          <td><a href="#data.product_link#"><img src="#data.image#" alt="" class="img-responsive"></a></td>
+                                          <td><a href="#data.product_link#"><img src="#data.image#" alt="#data.product_name#" title="#data.product_name#" class="img-responsive lazyLoad"></a></td>
                                           <td>#data.sku#</td>
                                           <td>#data.product_name#</td>
                                           <td>#data.quantitye#</td>

@@ -1,10 +1,10 @@
-<div class="in-prod-main">
+<div class="in-prod-main js-category-list hide">
             <h1 class="heading">Branded Products That Build Relationships With Your Brand</h1>
             <div class="in-prod-under">
                 <div class="in-prod-main">
-                    <div class="in-prod-under">
+                    <div class="in-prod-under js-show-category">
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="Awareness"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603027/websites/images/1490051271_awards.PNG" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="Awareness"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1518603027/websites/images/1490051271_awards.PNG" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="Awareness"' data-item-type="product-category">Awards &amp; awareness</a></div>
                                 <div class="pro-cat">
@@ -16,7 +16,19 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="bags"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305487/websites/images/1490051371_bags2.png" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="Awareness"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1518603027/websites/images/1490051271_awards.PNG" alt=""></a></div>
+                            <div class="left-part">
+                                <div class="pro-title"><a href='search.html?SearchSensor="Awareness"' data-item-type="product-category">Awards &amp; awareness</a></div>
+                                <div class="pro-cat">
+                                    <ul>
+                                        <li><a href='search.html?SearchSensor="BRACELETS"' data-item-type="category-product-list">Bracelets</a></li>
+                                        <li><a href='search.html?SearchSensor="earth day"' data-item-type="category-product-list">Earth Day</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="in-box-cont">
+                            <div class="right-part"><a href='search.html?SearchSensor="bags"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1519305487/websites/images/1490051371_bags2.png" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="bags"' data-item-type="product-category">Bags</a></div>
                                 <div class="pro-cat">
@@ -29,7 +41,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="Drinkware"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305410/websites/images/1490051413_beverage4.PNG" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="Drinkware"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1519305410/websites/images/1490051413_beverage4.PNG" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="Drinkware"' data-item-type="product-category">Drinkware</a></div>
                                 <div class="pro-cat">
@@ -43,7 +55,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="summer fun"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052081_fun.jpg" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="summer fun"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052081_fun.jpg" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="summer fun"' data-item-type="product-category">Fun &amp; outdoor</a></div>
                                 <div class="pro-cat">
@@ -55,7 +67,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="Golf Packs/Kits"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052125_golf.jpg" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="Golf Packs/Kits"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490052125_golf.jpg" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="Golf Packs/Kits"' data-item-type="product-category">Golf &amp; sport</a></div>
                                 <div class="pro-cat">
@@ -69,7 +81,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="all"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305704/websites/images/1490057507_travel.png" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="all"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1519305704/websites/images/1490057507_travel.png" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="all"' data-item-type="product-category">Other</a></div>
                                 <div class="pro-cat">
@@ -81,7 +93,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="Tech Industry"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1518603010/websites/images/1490056747_tech.png" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="Tech Industry"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1518603010/websites/images/1490056747_tech.png" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="Tech Industry"' data-item-type="product-category">Tech Industry</a></div>
                                 <div class="pro-cat">
@@ -95,7 +107,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="AUTOMOTIVE"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1519305759/websites/images/1490057043_tools.png" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="AUTOMOTIVE"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1519305759/websites/images/1490057043_tools.png" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="AUTOMOTIVE"' data-item-type="product-category">Automotive</a></div>
                                 <div class="pro-cat">
@@ -108,7 +120,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="fire prevention"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056898_tradeshow.jpg" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="fire prevention"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056898_tradeshow.jpg" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="fire prevention"' data-item-type="product-category">Tradeshow &amp; events</a></div>
                                 <div class="pro-cat">
@@ -121,7 +133,7 @@
                             </div>
                         </div>
                         <div class="in-box-cont">
-                            <div class="right-part"><a href='search.html?SearchSensor="safety"'><img class="lazyLoad" data-src="http://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056982_FITNESS-PRODUCTS-Banner-for-website2.jpg" alt=""></a></div>
+                            <div class="right-part"><a href='search.html?SearchSensor="safety"'><img class="lazyLoad" data-src="https://res.cloudinary.com/flowz/raw/upload/v1515671288/websites/images/1490056982_FITNESS-PRODUCTS-Banner-for-website2.jpg" alt=""></a></div>
                             <div class="left-part">
                                 <div class="pro-title"><a href='search.html?SearchSensor="safety"' data-item-type="product-category">Wellness &amp; safety</a></div>
                                 <div class="pro-cat">

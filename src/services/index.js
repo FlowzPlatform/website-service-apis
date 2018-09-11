@@ -11,7 +11,7 @@ const register = require('./register/register.service.js');
 const requestInfo = require('./request-info/request-info.service.js');
 const publishNow = require('./publish-now/publish-now.service.js');
 const projectConfiguration = require('./project-configuration/project-configuration.service.js');
-const webpackApi = require('./webpack-api/webpack-api.service.js');
+const filelisting = require('./filelisting/filelisting.service.js');
 
 const addressBook = require('./address-book/address-book.service.js');
 const emailSubscribers = require('./email-subscribers/email-subscribers.service.js');
@@ -132,7 +132,7 @@ module.exports = function() {
     app.configure(requestInfo);
     app.configure(publishNow);
     app.configure(projectConfiguration);
-    app.configure(webpackApi);
+    app.configure(filelisting);
     app.configure(publishSurge);
     app.configure(copyWebsite);
 

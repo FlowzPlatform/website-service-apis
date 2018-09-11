@@ -63,7 +63,7 @@ $('.user-signup').on('click',function() {
 										  data: signUpJSON
 										})
 										.then(function(res) {
-											console.log('created new entry')
+											//console.log('created new entry')
 										})
 								}
 						}

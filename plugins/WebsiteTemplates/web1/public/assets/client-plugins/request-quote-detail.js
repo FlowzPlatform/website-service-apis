@@ -53,7 +53,7 @@ function detailRequestQuote() {
       {
         var shipping_detail = quote_data.shipping_method.shipping_detail;
 
-        console.log(quote_data);
+        //console.log(quote_data);
         for(var shippingKey in shipping_detail)
         {
           var shippingHtml1 = shippingSectionHtml.html();
@@ -123,7 +123,7 @@ function detailRequestQuote() {
     var detailHtmlReplace = quoteDetailHtml.html();
     var detailHtmlReplace = detailHtmlReplace.replace("#data.product_link#",detailLink);
     var detailHtmlReplace = detailHtmlReplace.replace("#data.imageUrl#", productData.default_image.images[0].images[0].secure_url);
-    var detailHtmlReplace = detailHtmlReplace.replace("#data.title#", productData.product_name);
+    var detailHtmlReplace = detailHtmlReplace.replace(/#data.title#/g, productData.product_name);
     var detailHtmlReplace = detailHtmlReplace.replace("#data.itemCode#", productData.sku);
     var detailHtmlReplace = detailHtmlReplace.replace("#data.shippingCharge#", 0);
     var detailHtmlReplace = detailHtmlReplace.replace("#data.zipCode#", 0);

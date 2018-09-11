@@ -449,13 +449,6 @@ nav.navbar {
 
 
 
-
-<script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
-<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://res.cloudinary.com/flowz/raw/upload/v1533193147/websites/js/bootstrap-multiselect.js"></script>
-<script src="./main-files/main.js"></script>
-<script src="./assets/client-plugins/client-cart.js"></script>
-<script src="./assets/client-plugins/client-advance-search.js"></script>
 <div>
     <link rel="stylesheet" href="./main-files/main.css" />
     <link href="./assets/css/base.css" rel="stylesheet" type="text/css" />
@@ -465,8 +458,6 @@ nav.navbar {
     rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
     rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
     <div id="js-fix-header-controller">
         <div class="ui-header">
             <div class="main-logo-part">
@@ -483,13 +474,13 @@ nav.navbar {
                     </div>
                     <div class="slidemenu shop-menu pull-right">
                         <ul class="header-loging">
-                            <li class="dropdown cart-popup header-login-text"><a href="cartPage.html" class="dropdown-toggle"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (<span id="cartCount">0</span>)</span> </a>
+                            <li class="dropdown cart-popup header-login-text hide"><a href="cartPage.html" class="dropdown-toggle"> <span class="fa fa-shopping-cart"></span> <span class="login-text"><span>Cart</span> (<span id="cartCount">0</span>)</span> </a>
                             </li>
-                            <li class="dropdown cart-popup header-login-text"><a href="compare.html" class="dropdown-toggle"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span> </a>
+                            <li class="dropdown cart-popup header-login-text hide"><a href="compare.html" class="dropdown-toggle"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span> </a>
                             </li>
-                            <li class="dropdown cart-popup header-login-text"><a href="wishList.html" class="dropdown-toggle"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
+                            <li class="dropdown cart-popup header-login-text hide"><a href="wishList.html" class="dropdown-toggle"> <span class="fa fa-heart"></span> <span class="login-text"><span>Wish list</span> (<span id="wishlistCount">0</span>)</span> </a>
                             </li>
-                            <li class="dropdown cart-popup header-login-text"><a href="quickQuoteList.html" class="dropdown-toggle"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>QuickQuote</span> (<span id="quickQuoteCount">0</span>)</span> </a>
+                            <li class="dropdown cart-popup header-login-text hide"><a href="quickQuoteList.html" class="dropdown-toggle"> <span class="fa fa-retweet fa-fw"></span> <span class="login-text"><span>QuickQuote</span> (<span id="quickQuoteCount">0</span>)</span> </a>
                             </li>
                         </ul>
                         </li>
@@ -500,7 +491,7 @@ nav.navbar {
             </div>
             <div class="ob-logo-block">
                 <div class="container">
-                    <div class="logo-col pull-left"><a href="index.html"><img src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png"/></a>
+                    <div class="logo-col pull-left"><a href="index.html"><img src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png" class="lazyLoad" alt="logo" title="logo" /></a>
                     </div>
                     <div class="ui-advance-search">
                         <div class="dropdown nav-search-btn js-advance-menu position-inherit">

@@ -229,12 +229,19 @@ span.color {
                             <div class="product">
                                 <a class="delete-block js-remove-compare" data-id="#data.id#" href="javascript:void(0);" data-placement="left" data-toggle="tooltip" data-original-title="Remove"><i class="fa  fa-times-circle fa-fw"></i></a>
                                 <a href="#data.product_link#">
-                                    <img class="img-responsive compare_img mb-4" src="#data.image#" alt="product image" />
+                                    <img class="img-responsive compare_img mb-4 lazyLoad" src="#data.image#" alt="#data.title#" title="#data.title#" />
 
                                     <h5 class="productTitle"><strong>#data.title#</strong></h5>
                                 </a>
                                 <hr/>
-                                <h3>#data.price#</h3>
+                                <div class="product-price">
+                                    <div id="js-price-per-qty-#data.id#" style="float:left;">
+								        <span class="priceProd">#data.price#</span>
+                                    </div>
+                                    <span>qty
+		                                <input type="text" class="js-only-interger js_quantity_input" value="#data.min_qty#" name="qty" data-min-qty="#data.min_qty#" data-product-id="#data.id#">
+                                    </span>
+                                </div>
                             </div>
                         </td>
                     </tr>
