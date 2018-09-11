@@ -349,7 +349,7 @@ var init = function() {
           return tmp;
         }();
 
-        if(wishlist_values.length >0)
+        if(Array.isArray(wishlist_values) && wishlist_values.length >0)
         {
           let recentAddedInWishlist = [];
 
@@ -380,7 +380,7 @@ var init = function() {
         return tmp;
       }();
       //console.log('quickquote_values',quickquote_values)
-      if(quickquote_values.length >0)
+      if(Array.isArray(quickquote_values) && quickquote_values.length >0)
       {
         let recentAddedInQuotelist = [];
 
@@ -413,7 +413,7 @@ var init = function() {
       }();
       //console.log('compare_values',compare_values)
 
-      if(compare_values.length >0)
+      if(Array.isArray(compare_values) && compare_values.length >0)
       {
         let recentAddedInComparelist = [];
 
