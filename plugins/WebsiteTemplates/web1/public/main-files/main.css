@@ -26,8 +26,17 @@
 .header-search-col .btn-search { display: inline; float: left; }
 .row.header-search-col { width:500px;}
 
-/* advance search */
+/* check inventory */
+.inventory-main-block {padding: 30px 30px 10px;}
+.inventory-table.table-body > tbody > tr > td {padding: 0 19px;border: 1px solid #ddd;vertical-align: middle;}
+.inventory-table .color-block {height: 19px;width: 19px;border: 1px solid #000;display: block;padding: 0;}
+.inventory-table .dropdown-toggle .caret {position: absolute;top: 50%;border-width: 6px;right: 0;margin-top: -2px;}
+.inventory-table .dropdown-menu {min-width: 0;margin: 0 auto;border-radius: 0;top: 28px;left: -1px;right: -1px;}
+.inventory-table .dropdown-menu .Color-box {margin-bottom: 0;margin-top: 0;min-height: 40px;}
+.dropdown-menu > li > a {padding: 3px 22px !important;}
+.inventory-msg {text-align: center;}
 
+/* advance search */
 .col-lg-12.col-md-12.col-sm-12.col-xs-12.advance-search-col{clear: both;position: absolute !important;z-index: 999;top: 20px;background: #DDD;}
 a.btn.btn-primary.adv-search-btn {position: absolute;right: 25%;top: 26px;background-color: #0e406d;height: 37px;}
 div#collapseExample {height: auto !important;}
@@ -39,12 +48,14 @@ button.multiselect.dropdown-toggle.btn.btn-default b.caret {float: right;margin-
 .js-shippingMethod-section{padding: 15px 2px !important}
 .product-section-box .quantity-table .print_product_col{ background-color: white;color: black;border: 1px solid #ccc}
 .print-product-detail .quantity-table-title .table-content, .print-product-detail .quantity-table .table-content,.print-product-detail .quantity-table-title .table-content, .print-product-detail .quantity-table .table-heading{width:50% !important}
+
+/* media css */
 @media (min-width: 768px){
-#myModal .modal-dialog {
-    width: 615px;
-    margin: 30px auto;
-}
+    #myModal .modal-dialog {
+        width: 615px;
+        margin: 30px auto;
+    }
 }
 @media print {
-.product-section-box .quantity-table .table-heading,.product-section-box .quantity-table .table-content{ background-color: white;color: black;border: 1px solid #ccc}
+    .product-section-box .quantity-table .table-heading,.product-section-box .quantity-table .table-content{ background-color: white;color: black;border: 1px solid #ccc}
 }

@@ -1858,47 +1858,6 @@ function replaceWithUnderscore(value){
   return returnVal;
 }
 
-// function replaceColorSwatchWithHexaCodes(attribute_value,attribute_name){
-//   if(attribute_value != undefined && attribute_value.length > 0) {
-//       var data = {'colorname':attribute_value};
-//       //var data = {'colorname':all_colors,'skip':0,'limit':all_colors.length};
-//       $.ajax({
-//         type : 'GET',
-//         url : project_settings.color_table_api_url+'?vid=a40c858d-42f4-4d1e-9905-42a4a81ceca5&websiteid=2cfbe41a-f320-429e-add0-f0aaa4e61cfe&attribute_name='+attribute_name,
-//         data : data,
-//         dataType : 'json',
-//         success : function(response_data) {
-//           console.log("response_data",response_data);
-//           $( ".js_color_checkbox" ).each(function( index ) {
-//             //var bgColor = $( this ).parent().css("background-color");
-//             var bgColor = $( this ).data("hex-code");
-//             var checkboxObj = $( this )
-//             if(typeof response_data.data != 'undefined')
-//             {
-//               $.each(response_data.data, function( index, value ) {
-//
-//                 if(typeof value.colorname != 'undefined')
-//                 {
-//                   if(value.colorname.toLowerCase() == bgColor.toLowerCase())
-//                   {
-//                     if(typeof value.hexcode != 'undefined')
-//                     {
-//                         checkboxObj.attr("data-hex-code",value.hexcode)
-//                         checkboxObj.parent().css('background-color',value.hexcode)
-//                     }else if (typeof value.file != 'undefined') {
-//                         checkboxObj.parent().css('background-color','')
-//                         checkboxObj.parent().css("background-image",'url('+value.file.url+')')
-//                     }
-//                   }
-//                 }
-//               });
-//             }
-//           });
-//         }
-//       })
-//     }
-// }
-
 let returnshippingData = async function(selected_address_id) {
     let shipping_address = {}
     let shipping_info_data = []
