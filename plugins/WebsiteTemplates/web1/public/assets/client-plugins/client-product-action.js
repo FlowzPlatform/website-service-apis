@@ -1,11 +1,13 @@
 $(document).ready(function(){
     let pid = getParameterByName('pid');
+
     if($("#order_sample").length > 0){
-        let link = $("#order_sample").attr("href")//.replace("#data.productId#",pid)
+        let link = $("#order_sample").attr("href")
         link = link.replace("#data.productId#",pid)
         $("#order_sample").attr("href",link)
 
     }
+
     // download variation images
     $("#download_image").on("click",async function(){
         let productResponse = await getProductDetailById(pid)
@@ -15,7 +17,6 @@ $(document).ready(function(){
             let count = 0;
             let zipFilename = productResponse.sku+".zip";
             let urls = productResponse.images[0].images;
-// console.log("urls",urls,zipFilename);
             urls.forEach(function(urlObj){
               let filename = urlObj.web_image;
               // loading a file and add it in a zip file
@@ -69,6 +70,67 @@ $(document).ready(function(){
 
         return false;
     });
+
+    // inventory start
+    let inventoryData = [];
+    $(document).on('click','#js-check-inventory', async function (e) {
+        $('.js-inventory-colors').html('');
+        let productResponse = await getProductDetailById(pid)
+        if(productResponse.inventory != 'undefined' && productResponse.inventory.length > 0) {
+            $.each(productResponse.inventory, function(i,element){
+                let colorInventoryColors = "";
+                $.each(element.attributes.colors, async function(j,color){
+                    inventoryData[color] = parseInt(element.qty_on_hand);
+                    let element_color_style = "background-color:"+color+";"
+                    let colorsHexVal = await replaceColorSwatchWithHexaCodes(color,"color");
+                    if(colorsHexVal != null && colorsHexVal[color] != undefined){
+                        if(typeof colorsHexVal[color].hexcode != 'undefined'){
+                            element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
+                        }
+                        else if (typeof colorsHexVal[element_color].file != 'undefined') {
+                            element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
+                        }
+                    }
+                    colorInventoryColors = '<li role="presentation"><a class="Color-box" data-value="'+color+'" style="'+element_color_style+'" role="menuitem" tabindex="-1" href="javascript:;"></a></li>';
+                    $('.js-inventory-colors').append(colorInventoryColors);
+                });
+            });
+        }
+    });
+    $(document).on('click','.js-inventory-colors li', function (e) {
+        if($(this).find('a').attr("style") != 'undefined' && $(this).find('a').attr("style") != '') {
+            $('.js-current-color').attr('data-value',$(this).find('a').data("value"))
+            $('.js-current-color').attr('style',$(this).find('a').attr("style"))
+        }
+    });
+    $(document).on('click','.js-inventory-submit', function (e) {
+        let colorName = $('.js-current-color').attr('data-value');
+        let enteredQty = $('.js-inventory-quantity').val();
+
+        if(colorName == undefined || colorName == '') {
+            $('.js-inventory-msg').css('color','red');
+            $('.js-inventory-msg').html('Please select color.');
+            return false;
+        }
+        else if(Math.floor(enteredQty) == enteredQty && $.isNumeric(enteredQty)) {
+            if(enteredQty <= inventoryData[colorName]) {
+                $('.js-inventory-msg').css('color','green');
+                $('.js-inventory-msg').html('In Stock');
+                return false;
+            }
+            else {
+                $('.js-inventory-msg').css('color','red');
+                $('.js-inventory-msg').html('Not in Stock');
+                return false;
+            }
+        }
+        else {
+            $('.js-inventory-msg').css('color','red');
+            $('.js-inventory-msg').html('Please enter valid quantity.');
+            return false;
+        }
+    });
+    // inventory end
 });
 
 $(document).on('click','.send-email-product', function (e) {
@@ -189,7 +251,6 @@ $(document).on('click','.send-email-product', function (e) {
                     dataType : 'json',
                         success : function(response_data) {
                             // $('#emailProduct').modal('toggle');
-                            //console.log('response_data',response_data)
                             if(response_data!= "") {
                                 // $("#email_product").find("input,textarea").val('');
                                 hidePageAjaxLoading()
