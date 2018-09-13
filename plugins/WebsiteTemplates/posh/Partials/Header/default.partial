@@ -8,28 +8,10 @@
     rel="stylesheet" />
 
     <div class="ui-header">
-        <div class="social-icon-box">
-            <div class="pull-left">
-                <ul>
-                    <li class="social-icon">
-                        <a href="javascript:void(0)"><i class="yt-icon strip-icon"></i></a>
-                    </li>
-                        <li class="social-icon">
-                        <a href="javascript:void(0)"><i class="pinterest-icon strip-icon"></i></a>
-                    </li>
-                    <li class="social-icon">
-                        <a href="javascript:void(0)"><i class="instagram-icon strip-icon"></i></a>
-                    </li>
-                    <li class="social-icon">
-                        <a href="javascript:void(0)"><i class="fb-icon strip-icon"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
+        
         <div class="main-logo-part">
             <div class="ob-top-menu">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="logo-col pull-left">
                         <a href="index.html"><img src="https://res.cloudinary.com/flowz/image/upload/v1536650231/websites/POSH-ACCESSORIES/images/logo.png" alt="Text"></a>
                     </div>
@@ -59,6 +41,25 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
+                    <div class="social-icon-box">
+                        <div class="pull-left">
+                            <ul>
+                                <li class="social-icon">
+                                    <a href="javascript:void(0)"><i class="yt-icon strip-icon"></i></a>
+                                </li>
+                                    <li class="social-icon">
+                                    <a href="javascript:void(0)"><i class="pinterest-icon strip-icon"></i></a>
+                                </li>
+                                <li class="social-icon">
+                                    <a href="javascript:void(0)"><i class="instagram-icon strip-icon"></i></a>
+                                </li>
+                                <li class="social-icon">
+                                    <a href="javascript:void(0)"><i class="fb-icon strip-icon"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
             </div>
             
@@ -67,7 +68,7 @@
     </div>
 
     <div class="ui-menu-nav">
-        <div class="container-fluid">
+        <div class="container">
             <!--MENU-->                  
             <div class="navbar2 navbar-default menu-box" role="navigation" id="mainmenu-nav">
                 <div class="navbar-header2">

@@ -159,25 +159,32 @@ let tagProductList = function(tagObj,productBoxHtml) {
               if(productResponse.length > 0){
                   for(let [key,value] of productResponse.entries()){
                           let productRes = await getProductDetailById(value.product_id)
-                          productBoxHtml1 = productBoxHtml.replace(/#data.id#/g,value.product_id)
-                          productBoxHtml1 = productBoxHtml1.replace(/#data.product_link#/g,'productdetail.html?locale='+project_settings.default_culture+'&pid='+value.product_id)
-                          ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                          if(productRes !== undefined)  {
-								if(productRes.images !== undefined) {
-                                      ProductImage = productRes.images[0].images[0].secure_url;
-                                      ProductImage = addOptimizeImgUrl(ProductImage,'w_210');
-								}
-                          }
+                          if(productRes !== undefined && productRes != null)  
+                          {
+                            productBoxHtml1 = productBoxHtml.replace(/#data.id#/g,value.product_id)
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.product_link#/g,'productdetail.html?locale='+project_settings.default_culture+'&pid='+value.product_id)
+                            ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                            
+                            if(productRes.images !== undefined) {
+                                ProductImage = productRes.images[0].images[0].secure_url;
+                                ProductImage = addOptimizeImgUrl(ProductImage,'w_210');
+                            }
+                            
 
-                          productBoxHtml1 = productBoxHtml1.replace('#data.image#',ProductImage)
-                          productBoxHtml1 = productBoxHtml1.replace('#data.sku#',productRes.sku)
-                          productBoxHtml1 = productBoxHtml1.replace('#data.currency#','$')
-                          productBoxHtml1 = productBoxHtml1.replace('#data.price#',productRes.min_price.toFixed(project_settings.price_decimal))
-                          productBoxHtml1 = productBoxHtml1.replace(/#data.title#/g,productRes.product_name)
-                          productBoxHtml1 = productBoxHtml1.replace(/#data.tagSlug#/g,responseTag[0].tag_slug)
-                          productBoxHtml1 = productBoxHtml1.replace(/#data.tagColor#/g,responseTag[0].tag_color)
-                          productBoxHtml1 = productBoxHtml1.replace(/#data.tagName#/g,responseTag[0].tag_name)
-                          replaceProductBox += productBoxHtml1
+                            productBoxHtml1 = productBoxHtml1.replace('#data.image#',ProductImage)
+                            productBoxHtml1 = productBoxHtml1.replace('#data.sku#',productRes.sku)
+                            productBoxHtml1 = productBoxHtml1.replace('#data.currency#','$')
+                            productBoxHtml1 = productBoxHtml1.replace('#data.price#',productRes.min_price.toFixed(project_settings.price_decimal))
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.title#/g,productRes.product_name)
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.tagSlug#/g,responseTag[0].tag_slug)
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.tagColor#/g,responseTag[0].tag_color)
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.tagName#/g,responseTag[0].tag_name)
+                            replaceProductBox += productBoxHtml1
+                        }
+                        else{
+                            replaceProductBox += '';
+                            
+                        }
                   }
                   resolve(replaceProductBox)
               }
