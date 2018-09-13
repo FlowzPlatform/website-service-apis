@@ -1,7 +1,7 @@
- <div class="js-play_video_block hide">
+<div class="js-play_video_block hide">
  	<div class="embed-main-block">
 		<div class="play-video-block">
-			<iframe frameborder="0" allowfullscreen="1" title="YouTube video player" width="573" height="350" src="#data.video_url#"></iframe>
+			
 		</div>
 		<div class="play-video-shw"></div>
 	</div>

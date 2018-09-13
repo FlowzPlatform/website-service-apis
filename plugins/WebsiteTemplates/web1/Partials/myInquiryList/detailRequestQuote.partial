@@ -24,7 +24,7 @@
                                       <div class="row">
                                           <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 padding-right-0">
                                               <div class="detail-image">
-                                                  <a target="_blank" href="#data.product_link#"><img alt="" src="#data.productImage#" id="order_product_image" class="img-responsive"></a>
+                                                  <a target="_blank" href="#data.product_link#"><img alt="#data.productName#" title="#data.productName#" src="#data.productImage#" id="order_product_image" class="img-responsive lazyLoad"></a>
                                               </div>
                                           </div>
                                           <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">

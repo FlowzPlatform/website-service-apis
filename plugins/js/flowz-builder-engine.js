@@ -1,201 +1,219 @@
-$(document).ready(async function(){
-var baseURL = '';
-var socketHost = '';
-var projectID = '';
-var userID = '';
-var userEmail = '';
-var configDataUrl = '';
+$(document).ready(async function() {
+    var baseURL = '';
+    var socketHost = '';
+    var projectID = '';
+    var userID = '';
+    var userEmail = '';
+    var configDataUrl = '';
 
-// async function getProjectInfo() {
-await $.getJSON( "./assets/project-details.json", function( data ) {  
-    var configData = data;
-    userEmail = data[0].projectOwner;
-    projectID = data[0].projectID;
-    userID = data[0].UserID;
-    baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
-    socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+    // async function getProjectInfo() {
+    await $.getJSON("./assets/project-details.json", function(data) {
+        var configData = data;
+        userEmail = data[0].projectOwner;
+        projectID = data[0].projectID;
+        userID = data[0].UserID;
+        baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+        socketHost = 'https://ws.' + data[0].domainkey + ':4032';
 
-    configDataUrl = baseURL + "/project-configuration/" + projectID;
-    // console.log('configDataUrl:',configDataUrl)
-});
-
-// }
-
-// Activate smooth scroll
-$(document).on("click", ".smooth-scroll", function(event) {
-    event.preventDefault();
-    $("html, body").animate({
-        scrollTop: $($.attr(this, "href")).offset().top
-    }, 500);
-});
-// G-Form custom components
-try {
-    var class_g_form = '.g-form';
-    var class_g_form_panel = '.g-form-panel';
-    var class_g_form_group_button = '.g-form-group-button';
-    var entitys = [];
-    var data = [];
-    var schemaarr = {}
-    var configs = {};
-    window.addEventListener("message", function(event) {
-        if (event.data && event.data.entity) {
-            entitys = event.data.entity
-        }
-        if (event.data && event.data.formData && event.data.schema) {
-            data = event.data.formData
-            schemaarr = event.data.schema
-            configs = event.data.configs
-            this.setValue()
-        }
+        configDataUrl = baseURL + "/project-configuration/" + projectID;
+        // console.log('configDataUrl:',configDataUrl)
     });
-    var setValue = () => {
-        AWS.config.update({
-            accessKeyId: configs.accesskey,
-            secretAccessKey: configs.secretkey
+
+    // }
+
+    // Activate smooth scroll
+    $(document).on("click", ".smooth-scroll", function(event) {
+        event.preventDefault();
+        $("html, body").animate({
+            scrollTop: $($.attr(this, "href")).offset().top
+        }, 500);
+    });
+    // G-Form custom components
+    try {
+        var class_g_form = '.g-form';
+        var class_g_form_panel = '.g-form-panel';
+        var class_g_form_group_button = '.g-form-group-button';
+        var entitys = [];
+        var data = [];
+        var schemaarr = {}
+        var configs = {};
+        window.addEventListener("message", function(event) {
+            if (event.data && event.data.entity) {
+                entitys = event.data.entity
+            }
+            if (event.data && event.data.formData && event.data.schema) {
+                data = event.data.formData
+                schemaarr = event.data.schema
+                configs = event.data.configs
+                this.setValue()
+            }
         });
-        AWS.config.region = 'us-west-2';
-        var $form = document.querySelector(class_g_form);
-        // console.log('schemaarr', schemaarr)
-        setRecursiveValues(data, entitys, $form)
-    }
-    var setRecursiveValues = (data, entitys, $form) => {
-        // console.log('...... setRecursiveValues :: ', data, entitys, $form)
-        var clone_panel = $form.querySelector(class_g_form_panel).cloneNode(true)
-        if (data != undefined) {
-            for (var [index, item] of data.entries()) {
-                var $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
-                if (index > 0) {
-                    $panels[$panels.length - 1].insertAdjacentHTML('afterend', clone_panel.outerHTML)
-                }
-                for (var [inx, entity] of entitys.entries()) {
-                    $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
-                    if (entity.hasOwnProperty('customtype') && entity.customtype) {
-                        if ($panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]')) {
-                            setRecursiveValues(item[entity.name], entity.entity, $panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form))
-                        }
-                    } else {
-                        // console.log('entity:: ', entity)
-                        if (entity.type == 'file') {
-                            if (item[entity.name] != undefined || item[entity.name] != null) {
-                                $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = []
-                                var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html();
-                                var template = Handlebars.compile(source);
-                                // $panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')
-                                console.log('item >>>>>>>>', item)
-                                $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(template(item));
+        var setValue = () => {
+            AWS.config.update({
+                accessKeyId: configs.accesskey,
+                secretAccessKey: configs.secretkey
+            });
+            AWS.config.region = 'us-west-2';
+            var $form = document.querySelector(class_g_form);
+            // console.log('schemaarr', schemaarr)
+            setRecursiveValues(data, entitys, $form)
+        }
+        var setRecursiveValues = (data, entitys, $form) => {
+            // console.log('...... setRecursiveValues :: ', data, entitys, $form)
+            var clone_panel = $form.querySelector(class_g_form_panel).cloneNode(true)
+            if (data != undefined) {
+                for (var [index, item] of data.entries()) {
+                    var $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
+                    if (index > 0) {
+                        $panels[$panels.length - 1].insertAdjacentHTML('afterend', clone_panel.outerHTML)
+                    }
+                    for (var [inx, entity] of entitys.entries()) {
+                        $panels = $form.querySelectorAll(':scope >' + class_g_form_panel)
+                        if (entity.hasOwnProperty('customtype') && entity.customtype) {
+                            if ($panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]')) {
+                                setRecursiveValues(item[entity.name], entity.entity, $panels[$panels.length - 1].querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form))
                             }
                         } else {
-                            if (item[entity.name] != undefined || item[entity.name] != null) {
-                                $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = item[entity.name]
+                            // console.log('entity:: ', entity)
+                            if (entity.type == 'file') {
+                                if (item[entity.name] != undefined || item[entity.name] != null) {
+                                    $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = []
+                                    var source = $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html();
+                                    var template = Handlebars.compile(source);
+                                    // $panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')
+                                    console.log('item >>>>>>>>', item)
+                                    $($panels[$panels.length - 1].querySelector('div[data-display-file-for="' + entity.name + '"]')).html(template(item));
+                                }
+                            } else {
+                                if (item[entity.name] != undefined || item[entity.name] != null) {
+                                    $panels[$panels.length - 1].querySelector('[name="' + entity.name + '"]').value = item[entity.name]
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
-    var getValidate = (event, schema, form) => {
-        let self = this
-        let err = []
-        let val, result, element, newSchema
-        schema === undefined ? newSchema = self.customSchema : newSchema = schema
-        let emailRegEx = '(\\w+)\\@(\\w+)\\.[a-zA-Z]'
-        let numberRegEx = '^[0-9]+$'
-        let phoneRegEx = '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
-        let dateRegEx = '(0?[1-9]|[12]\\d|30|31)[^\\w\\d\\r\\n:](0?[1-9]|1[0-2])[^\\w\\d\\r\\n:](\\d{4}|\\d{2})'
-        Object.keys(event).forEach(function(key, index) {
-                for (var i = 0; i < newSchema.length; i++) {
-                    if (key === newSchema[i].name || Array.isArray(newSchema[i])) {
-                        val = event[key]
-                        result = newSchema[i]
-                        element = {
-                            value: event[key],
-                            name: key,
-                            // type: newSchema[i].customtype ? 'customtype' : newSchema[i].type
-                            type: Array.isArray(newSchema[i]) ? 'customtype' : newSchema[i].type
-                        }
-                        if (element.type === 'customtype') {
-                            var inndervalidate = self.getValidate(event[key], newSchema[i], form.querySelector(class_g_form))
-                        } else {
-                            if (result.property.optional === false) {
-                                if (val === '' || val === null || val === undefined || (Array.isArray(val) && val.length === 0)) {
-                                    err.push(element.name + ' - is required..!')
-                                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - is required..!')
-                                } else {
-                                    // console.log(element.name, ' >>> ', element.type)
-                                    if (element.type === 'text') {
-                                        if (result.property.regEx !== null && result.property.regEx !== undefined) {
-                                            let pttrn = new RegExp(result.property.regEx)
-                                            let regEx = pttrn.test(val)
-                                            if (!regEx) {
-                                                err.push(element.name + ' - Enter proper format..!')
-                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter proper format..!')
-                                            } else {
-                                                if (result.property.max != 0 && val.length > result.property.max) {
+        var getValidate = (event, schema, form) => {
+            let self = this
+            let err = []
+            let val, result, element, newSchema
+            schema === undefined ? newSchema = self.customSchema : newSchema = schema
+            let emailRegEx = '(\\w+)\\@(\\w+)\\.[a-zA-Z]'
+            let numberRegEx = '^[0-9]+$'
+            let phoneRegEx = '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
+            let dateRegEx = '(0?[1-9]|[12]\\d|30|31)[^\\w\\d\\r\\n:](0?[1-9]|1[0-2])[^\\w\\d\\r\\n:](\\d{4}|\\d{2})'
+            Object.keys(event).forEach(function(key, index) {
+                    for (var i = 0; i < newSchema.length; i++) {
+                        if (key === newSchema[i].name || Array.isArray(newSchema[i])) {
+                            val = event[key]
+                            result = newSchema[i]
+                            element = {
+                                value: event[key],
+                                name: key,
+                                // type: newSchema[i].customtype ? 'customtype' : newSchema[i].type
+                                type: Array.isArray(newSchema[i]) ? 'customtype' : newSchema[i].type
+                            }
+                            if (element.type === 'customtype') {
+                                var inndervalidate = self.getValidate(event[key], newSchema[i], form.querySelector(class_g_form))
+                            } else {
+                                if (result.property.optional === false) {
+                                    if (val === '' || val === null || val === undefined || (Array.isArray(val) && val.length === 0)) {
+                                        err.push(element.name + ' - is required..!')
+                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - is required..!')
+                                    } else {
+                                        // console.log(element.name, ' >>> ', element.type)
+                                        if (element.type === 'text') {
+                                            if (result.property.regEx !== null && result.property.regEx !== undefined) {
+                                                let pttrn = new RegExp(result.property.regEx)
+                                                let regEx = pttrn.test(val)
+                                                if (!regEx) {
                                                     err.push(element.name + ' - Enter proper format..!')
-                                                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - max ' + result.property.max + ' character allowed..!')
+                                                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter proper format..!')
                                                 } else {
-                                                    let exist = false
-                                                    if (result.property.allowedValue.length != 0) {
-                                                        for (let i = 0; i < result.property.allowedValue.length; i++) {
-                                                            if (result.property.allowedValue[i] == val) {
+                                                    if (result.property.max != 0 && val.length > result.property.max) {
+                                                        err.push(element.name + ' - Enter proper format..!')
+                                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - max ' + result.property.max + ' character allowed..!')
+                                                    } else {
+                                                        let exist = false
+                                                        if (result.property.allowedValue.length != 0) {
+                                                            for (let i = 0; i < result.property.allowedValue.length; i++) {
+                                                                if (result.property.allowedValue[i] == val) {
+                                                                    exist = true
+                                                                }
+                                                            }
+                                                        } else {
+                                                            exist = true
+                                                        }
+                                                        if (!exist) {
+                                                            err.push(element.name + ' - Not allowed value, please enter allow one..!')
+                                                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
+                                                        } else {
+                                                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } else if (element.type === 'email') {
+                                            let re = new RegExp(emailRegEx)
+                                            let testEmail = re.test(val)
+                                            if (!testEmail) {
+                                                err.push(element.name + ' - Enter valid email address..!')
+                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter valid email address..!')
+                                            } else {
+                                                let exist = false
+                                                if (result.property.allowedValue.length != 0) {
+                                                    for (let i = 0; i < result.property.allowedValue.length; i++) {
+                                                        if (result.property.allowedValue[i] == val) {
+                                                            exist = true
+                                                        }
+                                                    }
+                                                } else {
+                                                    exist = true
+                                                }
+                                                if (!exist) {
+                                                    err.push(element.name + ' - Not allowed value, please enter allow one..!')
+                                                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
+                                                } else {
+                                                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
+                                                }
+                                            }
+                                        } else if (element.type === 'number') {
+                                            let re = new RegExp(numberRegEx)
+                                            if (result.property.regEx != '' && result.property.regEx != null && result.property.regEx != undefined) {
+                                                re = new RegExp(result.property.regEx)
+                                            }
+                                            testEmail = re.test(val)
+                                            if (!testEmail) {
+                                                err.push(element.name + ' - Enter numbers only..!')
+                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter numbers only..!')
+                                            } else {
+                                                if (result.property.max != '' && result.property.max != undefined && result.property.min != '' && result.property.max != undefined) {
+                                                    if (result.property.max != 0 && result.property.min != 0) {
+                                                        if (val < result.property.min) {
+                                                            err.push(element.name + ' - Value must be greater than !' + result.property.min)
+                                                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Value must be greater than or equal ' + result.property.min + ' ..!')
+                                                        } else if (val > result.property.max) {
+                                                            err.push(element.name + ' - Value must be less than !' + result.property.max)
+                                                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Value must be less than or equal ' + result.property.max + ' ..!')
+                                                        } else {
+                                                            let exist = false
+                                                            if (result.property.allowedValue.length != 0) {
+                                                                for (let i = 0; i < result.property.allowedValue.length; i++) {
+                                                                    if (result.property.allowedValue[i] == val) {
+                                                                        exist = true
+                                                                    }
+                                                                }
+                                                            } else {
                                                                 exist = true
                                                             }
+                                                            if (!exist) {
+                                                                err.push(element.name + ' - Not allowed value, please enter allow one..!')
+                                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
+                                                            } else {
+                                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
+                                                            }
                                                         }
-                                                    } else {
-                                                        exist = true
-                                                    }
-                                                    if (!exist) {
-                                                        err.push(element.name + ' - Not allowed value, please enter allow one..!')
-                                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
-                                                    } else {
-                                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    } else if (element.type === 'email') {
-                                        let re = new RegExp(emailRegEx)
-                                        let testEmail = re.test(val)
-                                        if (!testEmail) {
-                                            err.push(element.name + ' - Enter valid email address..!')
-                                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter valid email address..!')
-                                        } else {
-                                            let exist = false
-                                            if (result.property.allowedValue.length != 0) {
-                                                for (let i = 0; i < result.property.allowedValue.length; i++) {
-                                                    if (result.property.allowedValue[i] == val) {
-                                                        exist = true
-                                                    }
-                                                }
-                                            } else {
-                                                exist = true
-                                            }
-                                            if (!exist) {
-                                                err.push(element.name + ' - Not allowed value, please enter allow one..!')
-                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
-                                            } else {
-                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                                            }
-                                        }
-                                    } else if (element.type === 'number') {
-                                        let re = new RegExp(numberRegEx)
-                                        if (result.property.regEx != '' && result.property.regEx != null && result.property.regEx != undefined) {
-                                            re = new RegExp(result.property.regEx)
-                                        }
-                                        testEmail = re.test(val)
-                                        if (!testEmail) {
-                                            err.push(element.name + ' - Enter numbers only..!')
-                                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter numbers only..!')
-                                        } else {
-                                            if (result.property.max != '' && result.property.max != undefined && result.property.min != '' && result.property.max != undefined) {
-                                                if (result.property.max != 0 && result.property.min != 0) {
-                                                    if (val < result.property.min) {
-                                                        err.push(element.name + ' - Value must be greater than !' + result.property.min)
-                                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Value must be greater than or equal ' + result.property.min + ' ..!')
-                                                    } else if (val > result.property.max) {
-                                                        err.push(element.name + ' - Value must be less than !' + result.property.max)
-                                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Value must be less than or equal ' + result.property.max + ' ..!')
                                                     } else {
                                                         let exist = false
                                                         if (result.property.allowedValue.length != 0) {
@@ -232,6 +250,16 @@ try {
                                                         $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
                                                     }
                                                 }
+                                            }
+                                        } else if (element.type === 'phone') {
+                                            let re = new RegExp(phoneRegEx)
+                                            if (result.property.regEx != '' && result.property.regEx != null && result.property.regEx != undefined) {
+                                                re = new RegExp(result.property.regEx)
+                                            }
+                                            testEmail = re.test(val)
+                                            if (!testEmail) {
+                                                err.push(element.name + ' - Enter valid phone number..!')
+                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter valid phone number..!')
                                             } else {
                                                 let exist = false
                                                 if (result.property.allowedValue.length != 0) {
@@ -250,21 +278,30 @@ try {
                                                     $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
                                                 }
                                             }
-                                        }
-                                    } else if (element.type === 'phone') {
-                                        let re = new RegExp(phoneRegEx)
-                                        if (result.property.regEx != '' && result.property.regEx != null && result.property.regEx != undefined) {
-                                            re = new RegExp(result.property.regEx)
-                                        }
-                                        testEmail = re.test(val)
-                                        if (!testEmail) {
-                                            err.push(element.name + ' - Enter valid phone number..!')
-                                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Enter valid phone number..!')
-                                        } else {
+                                        } else if (element.type === 'date') {
+                                            if (result.property.maxdate != '' && result.property.maxdate != undefined && result.property.mindate != '' && result.property.maxdate != undefined) {
+                                                if (result.property.maxdate != '' && result.property.mindate != '') {
+                                                    if (val < result.property.mindate) {
+                                                        err.push(element.name + ' - Date must be greater than !' + result.property.mindate)
+                                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Date must be greater than or equal ' + result.property.mindate + ' ..!')
+                                                    } else if (val > result.property.maxdate) {
+                                                        err.push(element.name + ' - Date must be less than !' + result.property.maxdate)
+                                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Date must be less than or equal ' + result.property.maxdate + ' ..!')
+                                                    } else {
+                                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
+                                                    }
+                                                } else {
+                                                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
+                                                }
+                                            } else {
+                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
+                                            }
+                                        } else if (element.type === 'dropdown') {
+                                            // console.log('>>>>', element.name, ' >>> ', element.type, result.property)
                                             let exist = false
-                                            if (result.property.allowedValue.length != 0) {
-                                                for (let i = 0; i < result.property.allowedValue.length; i++) {
-                                                    if (result.property.allowedValue[i] == val) {
+                                            if (result.property.options.length != 0) {
+                                                for (let i = 0; i < result.property.options.length; i++) {
+                                                    if (result.property.options[i] == val) {
                                                         exist = true
                                                     }
                                                 }
@@ -272,311 +309,274 @@ try {
                                                 exist = true
                                             }
                                             if (!exist) {
-                                                err.push(element.name + ' - Not allowed value, please enter allow one..!')
-                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Not allowed value, please enter allow one..!')
-                                            } else {
-                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                                            }
-                                        }
-                                    } else if (element.type === 'date') {
-                                        if (result.property.maxdate != '' && result.property.maxdate != undefined && result.property.mindate != '' && result.property.maxdate != undefined) {
-                                            if (result.property.maxdate != '' && result.property.mindate != '') {
-                                                if (val < result.property.mindate) {
-                                                    err.push(element.name + ' - Date must be greater than !' + result.property.mindate)
-                                                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Date must be greater than or equal ' + result.property.mindate + ' ..!')
-                                                } else if (val > result.property.maxdate) {
-                                                    err.push(element.name + ' - Date must be less than !' + result.property.maxdate)
-                                                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + ' - Date must be less than or equal ' + result.property.maxdate + ' ..!')
-                                                } else {
-                                                    $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                                                }
+                                                err.push(element.name + ' - Please Select input!')
+                                                $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Please Select input!')
                                             } else {
                                                 $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
                                             }
                                         } else {
                                             $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
                                         }
-                                    } else if (element.type === 'dropdown') {
-                                        // console.log('>>>>', element.name, ' >>> ', element.type, result.property)
-                                        let exist = false
-                                        if (result.property.options.length != 0) {
-                                            for (let i = 0; i < result.property.options.length; i++) {
-                                                if (result.property.options[i] == val) {
-                                                    exist = true
-                                                }
-                                            }
-                                        } else {
-                                            exist = true
-                                        }
-                                        if (!exist) {
-                                            err.push(element.name + ' - Please Select input!')
-                                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text(element.name + '- Please Select input!')
-                                        } else {
-                                            $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
-                                        }
-                                    } else {
-                                        $(form.querySelector('span[data-validate-for="' + element.name + '"]')).text('')
                                     }
                                 }
                             }
                         }
                     }
-                }
-            })
-            // console.log('ERROR:: ', err)
-        if (err.length > 0) {
-            return false
-        } else {
-            return true
+                })
+                // console.log('ERROR:: ', err)
+            if (err.length > 0) {
+                return false
+            } else {
+                return true
+            }
         }
-    }
-    var getValues = async() => {
-        var $form = document.querySelector(class_g_form)
-        var _tempdata = await getRecursiveValues($form, entitys, schemaarr)
-        console.log('............................ _tempdata:: ', _tempdata)
-        if (_tempdata.msg) {
-            console.log('Validated..')
-            parent.postMessage(_tempdata.data, "*");
+        var getValues = async() => {
+            var $form = document.querySelector(class_g_form)
+            var _tempdata = await getRecursiveValues($form, entitys, schemaarr)
+            console.log('............................ _tempdata:: ', _tempdata)
+            if (_tempdata.msg) {
+                console.log('Validated..')
+                parent.postMessage(_tempdata.data, "*");
+            }
         }
-    }
-    var getRecursiveValues = async($form, entitys, schema) => {
-        var datas = [];
-        var validarr = [];
-        for (let [i, form] of $form.querySelectorAll(':scope >' + class_g_form_panel).entries()) {
-            var mdata = {}
-            for (var [index, entity] of entitys.entries()) {
-                if (entity.customtype) {
-                    if (form.querySelector('[attr-id="' + entity.name + '"]')) {
-                        var s = await getRecursiveValues(form.querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form), entity.entity, schema[index])
-                        mdata[entity.name] = s.data
-                        validarr.push(s.msg)
-                    } else {
-                        mdata[entity.name] = ''
-                    }
-                } else {
-                    // console.log('.............', entity.name, form.querySelector('[name="' + entity.name + '"]'))
-                    if (form.querySelector('[name="' + entity.name + '"]') !== null) {
-                        if (form.querySelector('[name="' + entity.name + '"]').type != null && form.querySelector('[name="' + entity.name + '"]').type == 'file') {
-                            let bucket = new AWS.S3({
-                                params: {
-                                    Bucket: 'airflowbucket1/obexpense/expenses'
-                                }
-                            });
-                            let fileChooser = form.querySelector('[name="' + entity.name + '"]');
-                            console.log('fileChooser', fileChooser, fileChooser.files)
-
-                            let filearr = []
-                            for (let f = 0; f < fileChooser.files.length; f++) {
-                                let file = fileChooser.files[f];
-                                if (file) {
-                                    let fileurl = await getFileUrl(file, f)
-                                    console.log('fileurl multi............', fileurl)
-                                    filearr.push(fileurl)
-                                } else {
-                                    filearr.push('')
-                                }
-                            }
-                            if (data !== undefined && data[i] != undefined && data[i][entity.name] !== undefined && data[i][entity.name].length > 0) {
-                                for (let j of data[i][entity.name]) {
-                                    filearr.push(j)
-                                }
-                            }
-                            // console.log('data........', data[i][entity.name], filearr)
-                            mdata[entity.name] = filearr
+        var getRecursiveValues = async($form, entitys, schema) => {
+            var datas = [];
+            var validarr = [];
+            for (let [i, form] of $form.querySelectorAll(':scope >' + class_g_form_panel).entries()) {
+                var mdata = {}
+                for (var [index, entity] of entitys.entries()) {
+                    if (entity.customtype) {
+                        if (form.querySelector('[attr-id="' + entity.name + '"]')) {
+                            var s = await getRecursiveValues(form.querySelector('[attr-id="' + entity.name + '"]').querySelector(class_g_form), entity.entity, schema[index])
+                            mdata[entity.name] = s.data
+                            validarr.push(s.msg)
                         } else {
-                            mdata[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
+                            mdata[entity.name] = ''
                         }
                     } else {
-                        mdata[entity.name] = ''
+                        // console.log('.............', entity.name, form.querySelector('[name="' + entity.name + '"]'))
+                        if (form.querySelector('[name="' + entity.name + '"]') !== null) {
+                            if (form.querySelector('[name="' + entity.name + '"]').type != null && form.querySelector('[name="' + entity.name + '"]').type == 'file') {
+                                let bucket = new AWS.S3({
+                                    params: {
+                                        Bucket: 'airflowbucket1/obexpense/expenses'
+                                    }
+                                });
+                                let fileChooser = form.querySelector('[name="' + entity.name + '"]');
+                                console.log('fileChooser', fileChooser, fileChooser.files)
+
+                                let filearr = []
+                                for (let f = 0; f < fileChooser.files.length; f++) {
+                                    let file = fileChooser.files[f];
+                                    if (file) {
+                                        let fileurl = await getFileUrl(file, f)
+                                        console.log('fileurl multi............', fileurl)
+                                        filearr.push(fileurl)
+                                    } else {
+                                        filearr.push('')
+                                    }
+                                }
+                                if (data !== undefined && data[i] != undefined && data[i][entity.name] !== undefined && data[i][entity.name].length > 0) {
+                                    for (let j of data[i][entity.name]) {
+                                        filearr.push(j)
+                                    }
+                                }
+                                // console.log('data........', data[i][entity.name], filearr)
+                                mdata[entity.name] = filearr
+                            } else {
+                                mdata[entity.name] = await form.querySelector('[name="' + entity.name + '"]').value
+                            }
+                        } else {
+                            mdata[entity.name] = ''
+                        }
+                        // if (form.querySelector('[name="' + entity.name + '"]').type == 'file') {
+                        //   let bucket = new AWS.S3({
+                        //     params: {
+                        //       Bucket: 'airflowbucket1/obexpense/expenses'
+                        //     }
+                        //   });
+                        //   let fileChooser = form.querySelector('[name="' + entity.name + '"]');
+                        //   let file = fileChooser.files[0];
+                        //   if (file) {
+                        //     let fileurl = await getFileUrl(file)
+                        //     data[entity.name] = fileurl
+                        //   } else {
+                        //     data[entity.name] = ''
+                        //   }
+                        // } else {
+                        // }
                     }
-                    // if (form.querySelector('[name="' + entity.name + '"]').type == 'file') {
-                    //   let bucket = new AWS.S3({
-                    //     params: {
-                    //       Bucket: 'airflowbucket1/obexpense/expenses'
-                    //     }
-                    //   });
-                    //   let fileChooser = form.querySelector('[name="' + entity.name + '"]');
-                    //   let file = fileChooser.files[0];
-                    //   if (file) {
-                    //     let fileurl = await getFileUrl(file)
-                    //     data[entity.name] = fileurl
-                    //   } else {
-                    //     data[entity.name] = ''
-                    //   }
-                    // } else {
-                    // }
+                }
+                validated = this.getValidate(mdata, schema, form)
+                    // console.log('validated....', validated, validarr)
+                validarr.push(validated)
+                datas.push(mdata)
+            }
+            let valid = true
+            for (let i = 0; i < validarr.length; i++) {
+                if (!validarr[i]) {
+                    valid = false
                 }
             }
-            validated = this.getValidate(mdata, schema, form)
-                // console.log('validated....', validated, validarr)
-            validarr.push(validated)
-            datas.push(mdata)
-        }
-        let valid = true
-        for (let i = 0; i < validarr.length; i++) {
-            if (!validarr[i]) {
-                valid = false
+            return {
+                data: datas,
+                msg: valid
             }
         }
-        return {
-            data: datas,
-            msg: valid
-        }
-    }
-    var getFileUrl = (file, f) => {
-        // console.log('file', file)
-        return new Promise((resolve, reject) => {
-            let bucket = new AWS.S3({
-                params: {
-                    Bucket: 'airflowbucket1/obexpense/expenses'
-                }
-            });
-            var params = {
-                Key: moment().valueOf().toString() + f + file.name,
-                ContentType: file.type,
-                Body: file
-            };
-            bucket.upload(params).on('httpUploadProgress', function(evt) {}).send(function(err, data) {
-                if (err) {
-                    console.log('>>>>>>>>>>>>>>>>>>>. File Error:: ', err)
-                    resolve('')
-                }
-                resolve(data.Location)
+        var getFileUrl = (file, f) => {
+            // console.log('file', file)
+            return new Promise((resolve, reject) => {
+                let bucket = new AWS.S3({
+                    params: {
+                        Bucket: 'airflowbucket1/obexpense/expenses'
+                    }
+                });
+                var params = {
+                    Key: moment().valueOf().toString() + f + file.name,
+                    ContentType: file.type,
+                    Body: file
+                };
+                bucket.upload(params).on('httpUploadProgress', function(evt) {}).send(function(err, data) {
+                    if (err) {
+                        console.log('>>>>>>>>>>>>>>>>>>>. File Error:: ', err)
+                        resolve('')
+                    }
+                    resolve(data.Location)
+                })
             })
-        })
-    }
-    var handleAdd = (event) => {
-        var target = event.target || event.srcElement;
-        var $buttonGroup = target.closest(class_g_form_group_button)
-        var $parent = target.closest(class_g_form)
-        var $cloneMain = $parent.querySelector(class_g_form_panel).cloneNode(true)
-        getHtml($cloneMain)
-        $buttonGroup.insertAdjacentHTML('beforebegin', $cloneMain.outerHTML);
-    }
-    var getHtml = ($cloneMain) => {
-        if ($cloneMain.querySelector(class_g_form)) {
-            var $cloneChild = $cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel).cloneNode(true);
-            while ($cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel)) {
-                $cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel).remove()
+        }
+        var handleAdd = (event) => {
+            var target = event.target || event.srcElement;
+            var $buttonGroup = target.closest(class_g_form_group_button)
+            var $parent = target.closest(class_g_form)
+            var $cloneMain = $parent.querySelector(class_g_form_panel).cloneNode(true)
+            getHtml($cloneMain)
+            $buttonGroup.insertAdjacentHTML('beforebegin', $cloneMain.outerHTML);
+        }
+        var getHtml = ($cloneMain) => {
+            if ($cloneMain.querySelector(class_g_form)) {
+                var $cloneChild = $cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel).cloneNode(true);
+                while ($cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel)) {
+                    $cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel).remove()
+                }
+                $cloneMain.querySelector(class_g_form).querySelector(class_g_form_group_button).insertAdjacentHTML('beforebegin', $cloneChild.outerHTML)
+                getHtml($cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel))
             }
-            $cloneMain.querySelector(class_g_form).querySelector(class_g_form_group_button).insertAdjacentHTML('beforebegin', $cloneChild.outerHTML)
-            getHtml($cloneMain.querySelector(class_g_form).querySelector(class_g_form_panel))
         }
-    }
-    var handleDelete = (event) => {
-        var target = event.target || event.srcElement;
-        var $parent = target.closest(class_g_form_panel);
-        if ($parent.closest(class_g_form).querySelectorAll(':scope > ' + class_g_form_panel).length > 1) {
-            $parent.remove();
+        var handleDelete = (event) => {
+            var target = event.target || event.srcElement;
+            var $parent = target.closest(class_g_form_panel);
+            if ($parent.closest(class_g_form).querySelectorAll(':scope > ' + class_g_form_panel).length > 1) {
+                $parent.remove();
+            }
         }
+    } catch (err) {
+        console.log(err)
     }
-} catch (err) {
-    console.log(err)
-}
-// G-Form JS ends
-// Progressbar component
-try {
-    var progress = $('progressbar').attr('progress');
-    $(document).ready(function() {
-        $('.progress-bar').attr('aria-valuenow', progress);
-        $('.progress-bar').css('width', progress + "%");
-        $('.progress-bar').text(progress + "%")
-    });
-} catch (err) {
-    console.log('Progressbar not found!', err);
-}
-
-// Image gradient animation js
-try {
-    var color1 = $('imageanimation').attr('color1');
-    var color2 = $('imageanimation').attr('color2');
-    var color3 = $('imageanimation').attr('color3');
-    var color4 = $('imageanimation').attr('color4');
-    var color5 = $('imageanimation').attr('color5');
-    var color6 = $('imageanimation').attr('color6');
-
-    function hex_to_RGB(hex) {
-        var m = hex.match(/^#?([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i);
-        return [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)]
-    }
-
-    var color1 = hex_to_RGB(color1)
-    var color2 = hex_to_RGB(color2)
-    var color3 = hex_to_RGB(color3)
-    var color4 = hex_to_RGB(color4)
-    var color5 = hex_to_RGB(color5)
-    var color6 = hex_to_RGB(color6)
-
-    var colors = new Array(
-        color1,
-        color2,
-        color3,
-        color4,
-        color5,
-        color6);
-
-    var step = 0;
-    //color table indices for:
-    // current color left
-    // next color left
-    // current color right
-    // next color right
-    var colorIndices = [0, 1, 2, 3];
-
-    //transition speed
-    var gradientSpeed = 0.002;
-
-    function updateGradient() {
-
-        if ($ === undefined) return;
-
-        var c0_0 = colors[colorIndices[0]];
-        var c0_1 = colors[colorIndices[1]];
-        var c1_0 = colors[colorIndices[2]];
-        var c1_1 = colors[colorIndices[3]];
-
-        var istep = 1 - step;
-        var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
-        var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
-        var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
-        var color1 = "rgb(" + r1 + "," + g1 + "," + b1 + ")";
-
-        var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
-        var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
-        var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
-        var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
-
-        $('#gradient').css({
-            background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
-        }).css({
-            background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+    // G-Form JS ends
+    // Progressbar component
+    try {
+        var progress = $('progressbar').attr('progress');
+        $(document).ready(function() {
+            $('.progress-bar').attr('aria-valuenow', progress);
+            $('.progress-bar').css('width', progress + "%");
+            $('.progress-bar').text(progress + "%")
         });
-
-        step += gradientSpeed;
-        if (step >= 1) {
-            step %= 1;
-            colorIndices[0] = colorIndices[1];
-            colorIndices[2] = colorIndices[3];
-
-            //pick two new target color indices
-            //do not pick the same as the current one
-            colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-            colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-
-        }
+    } catch (err) {
+        console.log('Progressbar not found!', err);
     }
 
-    setInterval(updateGradient, 10);
-} catch (err) {
-    console.log('Image gradient animation not found!', err);
-}
-// Image gradient animation ends
+    // Image gradient animation js
+    // try {
+    //     var color1 = $('imageanimation').attr('color1');
+    //     var color2 = $('imageanimation').attr('color2');
+    //     var color3 = $('imageanimation').attr('color3');
+    //     var color4 = $('imageanimation').attr('color4');
+    //     var color5 = $('imageanimation').attr('color5');
+    //     var color6 = $('imageanimation').attr('color6');
 
-// Navbar Plugins JS
-try {
-    var menuData;
+    //     function hex_to_RGB(hex) {
+    //         var m = hex.match(/^#?([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i);
+    //         return [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)]
+    //     }
 
-    $(document).ready(function() {
+    //     var color1 = hex_to_RGB(color1)
+    //     var color2 = hex_to_RGB(color2)
+    //     var color3 = hex_to_RGB(color3)
+    //     var color4 = hex_to_RGB(color4)
+    //     var color5 = hex_to_RGB(color5)
+    //     var color6 = hex_to_RGB(color6)
+
+    //     var colors = new Array(
+    //         color1,
+    //         color2,
+    //         color3,
+    //         color4,
+    //         color5,
+    //         color6);
+
+    //     var step = 0;
+    //     //color table indices for:
+    //     // current color left
+    //     // next color left
+    //     // current color right
+    //     // next color right
+    //     var colorIndices = [0, 1, 2, 3];
+
+    //     //transition speed
+    //     var gradientSpeed = 0.002;
+
+    //     function updateGradient() {
+
+    //         if ($ === undefined) return;
+
+    //         var c0_0 = colors[colorIndices[0]];
+    //         var c0_1 = colors[colorIndices[1]];
+    //         var c1_0 = colors[colorIndices[2]];
+    //         var c1_1 = colors[colorIndices[3]];
+
+    //         var istep = 1 - step;
+    //         var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+    //         var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+    //         var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+    //         var color1 = "rgb(" + r1 + "," + g1 + "," + b1 + ")";
+
+    //         var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+    //         var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+    //         var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+    //         var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
+
+    //         $('#gradient').css({
+    //             background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
+    //         }).css({
+    //             background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+    //         });
+
+    //         step += gradientSpeed;
+    //         if (step >= 1) {
+    //             step %= 1;
+    //             colorIndices[0] = colorIndices[1];
+    //             colorIndices[2] = colorIndices[3];
+
+    //             //pick two new target color indices
+    //             //do not pick the same as the current one
+    //             colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+    //             colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+
+    //         }
+    //     }
+
+    //     setInterval(updateGradient, 10);
+    // } catch (err) {
+    //     console.log('Image gradient animation not found!', err);
+    // }
+    // Image gradient animation ends
+
+    // Navbar Plugins JS
+    try {
+        var menuData;
+
+        // $(document).ready(function() {
         var menuJsonName = './assets/' + $('.customMenu').attr('menuId') + '.json';
 
         $.getJSON({
@@ -612,352 +612,281 @@ try {
                 });
             }
         });
-    });
+        // });
 
 
 
-    function makeUL(lst, topLevelUl, rootLvl) {
-        var html = [];
-        if (topLevelUl) {
-            html.push('<ul class="nav navbar-nav  ui-navigation" id="menu">');
-            topLevelUl = false;
-        } else {
-            html.push('<ul class="dropdown-menu" role="menu">');
-        }
-
-        $(lst).each(function() {
-            html.push(makeLI(this, topLevelUl, rootLvl))
-        });
-        html.push('</ul>');
-        rootLvl = true;
-        return html.join("\n");
-    }
-
-    function makeLI(elem, topLevelUl, rootLvl) {
-        var html = [];
-        if (elem.children && !rootLvl) {
-            html.push('<li>');
-        } else if (elem.children && rootLvl) {
-            html.push('<li class="dropdown">');
-        } else {
-            html.push('<li>');
-            rootLvl = false;
-        }
-        if (elem.title) {
-            if (elem.children != undefined) {
-                html.push("<a class='dropdown-toggle' data-toggle='dropdown' href='" + elem.customSelect + "''>" + elem.title + " </a>");
+        function makeUL(lst, topLevelUl, rootLvl) {
+            var html = [];
+            if (topLevelUl) {
+                html.push('<ul class="nav navbar-nav  ui-navigation" id="menu">');
+                topLevelUl = false;
             } else {
-                html.push("<a href='" + elem.customSelect + "'>" + elem.title + " </a>");
+                html.push('<ul class="dropdown-menu" role="menu">');
+            }
+
+            $(lst).each(function() {
+                html.push(makeLI(this, topLevelUl, rootLvl))
+            });
+            html.push('</ul>');
+            rootLvl = true;
+            return html.join("\n");
+        }
+
+        function makeLI(elem, topLevelUl, rootLvl) {
+            var html = [];
+            if (elem.children && !rootLvl) {
+                html.push('<li>');
+            } else if (elem.children && rootLvl) {
+                html.push('<li class="dropdown">');
+            } else {
+                html.push('<li>');
+                rootLvl = false;
+            }
+            if (elem.title) {
+                if (elem.children != undefined) {
+                    html.push("<a class='dropdown-toggle' data-toggle='dropdown' href='" + elem.customSelect + "''>" + elem.title + " </a>");
+                } else {
+                    html.push("<a href='" + elem.customSelect + "'>" + elem.title + " </a>");
+                }
+            }
+
+            if (elem.children) {
+                html.push(makeUL(elem.children, topLevelUl, rootLvl));
+            }
+            html.push('</li>');
+            return html.join("\n");
+        }
+
+        // $(document).ready(function() {
+        //     $('.navbar a.dropdown-toggle').on('click', function(e) {
+        //         var $el = $(this);
+        //         var $parent = $(this).offsetParent(".dropdown-menu");
+        //         $(this).parent("li").toggleClass('open');
+
+        //         if(!$parent.parent().hasClass('nav')) {
+        //             $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+        //         }
+
+        //         $('.nav li.open').not($(this).parents("li")).removeClass("open");
+
+        //         return false;
+        //     });
+        // });
+    } catch (err) {
+        console.log('Navigation menu not found!', err);
+    }
+    // Navbar Plugins JS ends
+
+    // Pagination Plugin
+    try {
+        var nameAZ = $('Pagination').attr('nameaz');
+        var nameZA = $('Pagination').attr('nameza');
+        var priceLH = $('Pagination').attr('pricelh');
+        var priceHL = $('Pagination').attr('pricehl');
+        var itemAZ = $('Pagination').attr('itemaz');
+        var itemZA = $('Pagination').attr('itemza');
+        var options;
+
+        if (nameAZ == 'true') {
+            options = options + '<option value="nameAZ">Name [A-Z]</option>'
+        }
+
+        if (nameZA == 'true') {
+            options = options + '<option value="nameZA">Name [Z-A]</option>'
+        }
+
+        if (priceLH == 'true') {
+            options = options + '<option value="priceLH">Price [Low-High]</option>'
+        }
+
+        if (priceHL == 'true') {
+            options = options + '<option value="priceLH">Price [High-Low]</option>'
+        }
+
+        if (itemAZ == 'true') {
+            options = options + '<option value="priceLH">#Item [A-Z]</option>'
+        }
+
+        if (itemZA == 'true') {
+            options = options + '<option value="itemZA"># Item [Z-A]</option>'
+        }
+
+        var PaginationHTML = '<Pagination style="display:block; min-height: 20px; padding: 20px;"><head><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><style>.fa{margin-top:24px;float: left;font-size: x-large;} select{margin-top:18px; height: 30px;float:left; width:auto;/* display:table-cell; */}a{color: #0088cc; text-decoration: none;}a:hover{color: #005580; text-decoration: underline;}h2{padding-top: 20px;}h2:first-of-type{padding-top: 0;}ul{padding: 0;}.pagination{height: 30px;/* margin: 18px 0; */ float:right;}.pagination ul{/* display: table-cell; */ /* IE7 inline-block hack */ *zoom: 1; margin-left: 0; margin-bottom: 0; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);}.pagination li{display: inline;}.pagination a{float: left; padding: 0 14px; line-height: 34px; text-decoration: none; border: 1px solid #ddd; border-left-width: 0;}.pagination a:hover,.pagination .active a{background-color: #f5f5f5;}.pagination .active a{color: #999999; cursor: default;}.pagination .disabled span,.pagination .disabled a,.pagination .disabled a:hover{color: #999999; background-color: transparent; cursor: default;}.pagination li:first-child a{border-left-width: 1px; -webkit-border-radius: 3px 0 0 3px; -moz-border-radius: 3px 0 0 3px; border-radius: 3px 0 0 3px;}.pagination li:last-child a{-webkit-border-radius: 0 3px 3px 0; -moz-border-radius: 0 3px 3px 0; border-radius: 0 3px 3px 0;}.pagination-centered{text-align: center;}.pagination-right{text-align: right;}.button{background-color: #e7e7e7; /* Green */ border: none; color: black; padding: 10px 32px; text-align: center; text-decoration: none;/* display: table-cell; */ font-size: 16px; margin: 14px 2px; cursor: pointer; float:right;}.paginationtext{margin-top:20px; font-size:medium; color:black; float:left;}</style></head><div class="container"> <div class="row" style="background-color:rgba(208, 208, 208, 0.33); border:groove; margin:5px;"> <div class="col-sm-3"><i style="margin-top:24px;float: left;font-size: x-large;" aria-hidden=true class="fa fa-list fa-2x"><span style=display:inline-block;width:10px></span> </i><i style="margin-top:24px;float: left;" aria-hidden=true class="fa fa-table fa-2x"><span style=display:inline-block;width:15px></span></i> <select style="margin-top:20px;"> <option value="nameAZ"> ' + options + '</option> </select> </div><div class="col-sm-4"> <p class="paginationtext"> Showing 130 Products</p><button class="button">Show All</button> </div><div class="col-sm-5"> <div class="pagination"> <ul> <li><a href="#">Prev</a></li><li class="active"> <a href="#">1</a> </li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">Next</a></li></ul> </div></div></div></div></Pagination>'
+
+        $('Pagination').html(PaginationHTML);
+    } catch (err) {
+        console.log('Pagination not found!', err);
+    }
+    // Pagination JS ends
+
+    // Popular products slider
+    try {
+        var projectName = 'setNameHere';
+        var rawData = {};
+        var productData = {};
+        var productHtml = "";
+        var id = $("popularProducts").attr("id");
+        var apiUrl = $('popularProducts').attr('apiurl');
+        var apiUsername = $('popularProducts').attr('apiusername');
+        var apiPassword = $('popularProducts').attr('apipassword');
+        var numberOfItems = $('popularProducts').attr('numberofitems');
+
+        $('#sliderListItems').html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw">');
+
+        $.ajax({
+            type: 'GET',
+            url: apiUrl,
+            async: false,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Basic " + btoa(apiUsername + ":" + apiPassword));
+            },
+            dataType: 'json',
+            success: function(data) {
+                rawData = data.hits.hits;
+                productData = rawData;
+            }
+        });
+
+        if (numberOfItems == 'all' || numberOfItems == '') {
+            productHtml = '';
+            for (var i in productData) {
+                productHtml += '<div class="col-sm-3"> <a href="http://localhost/websites/' + projectName + '/product-detail.layout?sku=' + productData[i]._source.sku + '"> <div class="col-item"> <div class="photo"> <img src="http://104.239.249.114/live-api/web/images/' + productData[i]._source.default_image + '" class="img-responsive" alt="a"/> </div><div class="info"> <div class="row"> <div class="price col-md-6"> <h5>' + productData[i]._source.product_name + '</h5> <h5 class="price-text-color">$ ' + productData[i]._source.price_1 + '</h5> </div><div class="rating hidden-sm col-md-6"> <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> </i><i class="fa fa-star"></i> </div></div><div class="separator clear-left"> <p class="btn-add"> <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a></p><p class="btn-details"> <i class="fa fa-list"></i><a href="http://localhost/websites/' + projectName + '/product-detail.layout?sku=" class="hidden-sm">More details</a></p></div><div class="clearfix"> </div></div></div></a> </div>';
+            }
+        } else {
+            productHtml = '';
+            for (var i = 0; i < numberOfItems; i++) {
+                productHtml += '<div class="col-sm-3"> <a href="http://localhost/websites/' + projectName + '/product-detail.layout?sku=' + productData[i]._source.sku + '"> <div class="col-item"> <div class="photo"> <img src="http://104.239.249.114/live-api/web/images/' + productData[i]._source.default_image + '" class="img-responsive" alt="a"/> </div><div class="info"> <div class="row"> <div class="price col-md-6"> <h5>' + productData[i]._source.product_name + '</h5> <h5 class="price-text-color">$ ' + productData[i]._source.price_1 + '</h5> </div><div class="rating hidden-sm col-md-6"> <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> </i><i class="fa fa-star"></i> </div></div><div class="separator clear-left"> <p class="btn-add"> <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a></p><p class="btn-details"> <i class="fa fa-list"></i><a href="http://localhost/websites/' + projectName + '/product-detail.layout?sku=" class="hidden-sm">More details</a></p></div><div class="clearfix"> </div></div></div></a> </div>';
             }
         }
 
-        if (elem.children) {
-            html.push(makeUL(elem.children, topLevelUl, rootLvl));
-        }
-        html.push('</li>');
-        return html.join("\n");
+        $('#sliderListItems').html(productHtml);
+    } catch (err) {
+        console.log('Popular products slider not found!', err);
     }
+    // Popular products ends
 
-    // $(document).ready(function() {
-    //     $('.navbar a.dropdown-toggle').on('click', function(e) {
-    //         var $el = $(this);
-    //         var $parent = $(this).offsetParent(".dropdown-menu");
-    //         $(this).parent("li").toggleClass('open');
 
-    //         if(!$parent.parent().hasClass('nav')) {
-    //             $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
-    //         }
+    ///////////////////////// Payment JS
+    // try {
+    //     var paymentgateways = [];
 
-    //         $('.nav li.open').not($(this).parents("li")).removeClass("open");
+    //     var userEmail = '';
+    //     var projectName = '';
+    //     var configDataUrl = '';
+    //     var ProjectbaseURL = '';
+    //     // var baseURL = 'http://localhost:3032';
+    //     // var socketURL = 'http://localhost:4032';
+    //     var baseURL = '';
+    //     var socketHost = '';
 
-    //         return false;
+    //     $(document).ready(function() {
+    //         getProjectInfo();
+    //         // ImpletementSocekt();
     //     });
-    // });
-} catch (err) {
-    console.log('Navigation menu not found!', err);
-}
-// Navbar Plugins JS ends
 
-// Pagination Plugin
-try {
-    var nameAZ = $('Pagination').attr('nameaz');
-    var nameZA = $('Pagination').attr('nameza');
-    var priceLH = $('Pagination').attr('pricelh');
-    var priceHL = $('Pagination').attr('pricehl');
-    var itemAZ = $('Pagination').attr('itemaz');
-    var itemZA = $('Pagination').attr('itemza');
-    var options;
+    //     async function getProjectInfo() {
+    //         await $.getJSON("./assets/project-details.json", function(data) {
+    //             var configData = data;
+    //             userEmail = data[0].projectOwner;
+    //             projectName = data[0].projectName;
+    //             baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+    //             socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+    //             configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
+    //         });
+    //         getConfigData();
+    //     }
 
-    if (nameAZ == 'true') {
-        options = options + '<option value="nameAZ">Name [A-Z]</option>'
-    }
+    //     async function getConfigData() {
 
-    if (nameZA == 'true') {
-        options = options + '<option value="nameZA">Name [Z-A]</option>'
-    }
-
-    if (priceLH == 'true') {
-        options = options + '<option value="priceLH">Price [Low-High]</option>'
-    }
-
-    if (priceHL == 'true') {
-        options = options + '<option value="priceLH">Price [High-Low]</option>'
-    }
-
-    if (itemAZ == 'true') {
-        options = options + '<option value="priceLH">#Item [A-Z]</option>'
-    }
-
-    if (itemZA == 'true') {
-        options = options + '<option value="itemZA"># Item [Z-A]</option>'
-    }
-
-    var PaginationHTML = '<Pagination style="display:block; min-height: 20px; padding: 20px;"><head><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><style>.fa{margin-top:24px;float: left;font-size: x-large;} select{margin-top:18px; height: 30px;float:left; width:auto;/* display:table-cell; */}a{color: #0088cc; text-decoration: none;}a:hover{color: #005580; text-decoration: underline;}h2{padding-top: 20px;}h2:first-of-type{padding-top: 0;}ul{padding: 0;}.pagination{height: 30px;/* margin: 18px 0; */ float:right;}.pagination ul{/* display: table-cell; */ /* IE7 inline-block hack */ *zoom: 1; margin-left: 0; margin-bottom: 0; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);}.pagination li{display: inline;}.pagination a{float: left; padding: 0 14px; line-height: 34px; text-decoration: none; border: 1px solid #ddd; border-left-width: 0;}.pagination a:hover,.pagination .active a{background-color: #f5f5f5;}.pagination .active a{color: #999999; cursor: default;}.pagination .disabled span,.pagination .disabled a,.pagination .disabled a:hover{color: #999999; background-color: transparent; cursor: default;}.pagination li:first-child a{border-left-width: 1px; -webkit-border-radius: 3px 0 0 3px; -moz-border-radius: 3px 0 0 3px; border-radius: 3px 0 0 3px;}.pagination li:last-child a{-webkit-border-radius: 0 3px 3px 0; -moz-border-radius: 0 3px 3px 0; border-radius: 0 3px 3px 0;}.pagination-centered{text-align: center;}.pagination-right{text-align: right;}.button{background-color: #e7e7e7; /* Green */ border: none; color: black; padding: 10px 32px; text-align: center; text-decoration: none;/* display: table-cell; */ font-size: 16px; margin: 14px 2px; cursor: pointer; float:right;}.paginationtext{margin-top:20px; font-size:medium; color:black; float:left;}</style></head><div class="container"> <div class="row" style="background-color:rgba(208, 208, 208, 0.33); border:groove; margin:5px;"> <div class="col-sm-3"><i style="margin-top:24px;float: left;font-size: x-large;" aria-hidden=true class="fa fa-list fa-2x"><span style=display:inline-block;width:10px></span> </i><i style="margin-top:24px;float: left;" aria-hidden=true class="fa fa-table fa-2x"><span style=display:inline-block;width:15px></span></i> <select style="margin-top:20px;"> <option value="nameAZ"> ' + options + '</option> </select> </div><div class="col-sm-4"> <p class="paginationtext"> Showing 130 Products</p><button class="button">Show All</button> </div><div class="col-sm-5"> <div class="pagination"> <ul> <li><a href="#">Prev</a></li><li class="active"> <a href="#">1</a> </li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">Next</a></li></ul> </div></div></div></div></Pagination>'
-
-    $('Pagination').html(PaginationHTML);
-} catch (err) {
-    console.log('Pagination not found!', err);
-}
-// Pagination JS ends
-
-// Popular products slider
-try {
-    var projectName = 'setNameHere';
-    var rawData = {};
-    var productData = {};
-    var productHtml = "";
-    var id = $("popularProducts").attr("id");
-    var apiUrl = $('popularProducts').attr('apiurl');
-    var apiUsername = $('popularProducts').attr('apiusername');
-    var apiPassword = $('popularProducts').attr('apipassword');
-    var numberOfItems = $('popularProducts').attr('numberofitems');
-
-    $('#sliderListItems').html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw">');
-
-    $.ajax({
-        type: 'GET',
-        url: apiUrl,
-        async: false,
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader("Authorization", "Basic " + btoa(apiUsername + ":" + apiPassword));
-        },
-        dataType: 'json',
-        success: function(data) {
-            rawData = data.hits.hits;
-            productData = rawData;
-        }
-    });
-
-    if (numberOfItems == 'all' || numberOfItems == '') {
-        productHtml = '';
-        for (var i in productData) {
-            productHtml += '<div class="col-sm-3"> <a href="http://localhost/websites/' + projectName + '/product-detail.layout?sku=' + productData[i]._source.sku + '"> <div class="col-item"> <div class="photo"> <img src="http://104.239.249.114/live-api/web/images/' + productData[i]._source.default_image + '" class="img-responsive" alt="a"/> </div><div class="info"> <div class="row"> <div class="price col-md-6"> <h5>' + productData[i]._source.product_name + '</h5> <h5 class="price-text-color">$ ' + productData[i]._source.price_1 + '</h5> </div><div class="rating hidden-sm col-md-6"> <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> </i><i class="fa fa-star"></i> </div></div><div class="separator clear-left"> <p class="btn-add"> <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a></p><p class="btn-details"> <i class="fa fa-list"></i><a href="http://localhost/websites/' + projectName + '/product-detail.layout?sku=" class="hidden-sm">More details</a></p></div><div class="clearfix"> </div></div></div></a> </div>';
-        }
-    } else {
-        productHtml = '';
-        for (var i = 0; i < numberOfItems; i++) {
-            productHtml += '<div class="col-sm-3"> <a href="http://localhost/websites/' + projectName + '/product-detail.layout?sku=' + productData[i]._source.sku + '"> <div class="col-item"> <div class="photo"> <img src="http://104.239.249.114/live-api/web/images/' + productData[i]._source.default_image + '" class="img-responsive" alt="a"/> </div><div class="info"> <div class="row"> <div class="price col-md-6"> <h5>' + productData[i]._source.product_name + '</h5> <h5 class="price-text-color">$ ' + productData[i]._source.price_1 + '</h5> </div><div class="rating hidden-sm col-md-6"> <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> </i><i class="fa fa-star"></i> </div></div><div class="separator clear-left"> <p class="btn-add"> <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a></p><p class="btn-details"> <i class="fa fa-list"></i><a href="http://localhost/websites/' + projectName + '/product-detail.layout?sku=" class="hidden-sm">More details</a></p></div><div class="clearfix"> </div></div></div></a> </div>';
-        }
-    }
-
-    $('#sliderListItems').html(productHtml);
-} catch (err) {
-    console.log('Popular products slider not found!', err);
-}
-// Popular products ends
+    //         await $.getJSON(configDataUrl, function(data) {
+    //             var configData = data.data[0].configData;
+    //             // globalVariables = configData[1].projectSettings[1].GlobalVariables;
+    //             paymentgateways = configData[1].projectSettings[1].PaymentGateways
+    //             ProjectbaseURL = configData[0].repoSettings[0].BaseURL;
+    //         });
+    //         Paymentgateways();
+    //     }
 
 
-///////////////////////// Payment JS
-// try {
-//     var paymentgateways = [];
+    //     async function Paymentgateways() {
+    //         var paymentbuttons = ''
+    //         for (let i = 0; i < paymentgateways.length; i++) {
+    //             if (paymentgateways[i].checked == true) {
+    //                 paymentbuttons = paymentbuttons + '<button type="button" class="btn" data-id="' + paymentgateways[i].name + '" title="' + paymentgateways[i].description + '">' + paymentgateways[i].gateway + '</button>'
+    //             }
+    //         }
+    //         $('paymentgateway').replaceWith(paymentbuttons);
 
-//     var userEmail = '';
-//     var projectName = '';
-//     var configDataUrl = '';
-//     var ProjectbaseURL = '';
-//     // var baseURL = 'http://localhost:3032';
-//     // var socketURL = 'http://localhost:4032';
-//     var baseURL = '';
-//     var socketHost = '';
+    //     }
+    // } catch (err) {
+    //     console.log('Error in Payment Module: ', err);
+    // }
+    ///////////////////////// Payment JS Ends
 
-//     $(document).ready(function() {
-//         getProjectInfo();
-//         // ImpletementSocekt();
-//     });
+    ////////////////////////Following is the global-variable-plugin js code
+    try {
+        var globalVariables = [];
+        var brandName;
 
-//     async function getProjectInfo() {
-//         await $.getJSON("./assets/project-details.json", function(data) {
-//             var configData = data;
-//             userEmail = data[0].projectOwner;
-//             projectName = data[0].projectName;
-//             baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
-//             socketHost = 'https://ws.' + data[0].domainkey + ':4032';
-//             configDataUrl = baseURL + "/project-configuration?userEmail=" + userEmail + "&websiteName=" + projectName;
-//         });
-//         getConfigData();
-//     }
+        // var userEmail = '';
+        // var projectID = '';
+        // var configDataUrl = '';
 
-//     async function getConfigData() {
+        // var baseURL = 'https://api.flowzcluster.tk/serverapi';
+        // var socketHost = 'https://ws.flowzcluster.tk:4032';
 
-//         await $.getJSON(configDataUrl, function(data) {
-//             var configData = data.data[0].configData;
-//             // globalVariables = configData[1].projectSettings[1].GlobalVariables;
-//             paymentgateways = configData[1].projectSettings[1].PaymentGateways
-//             ProjectbaseURL = configData[0].repoSettings[0].BaseURL;
-//         });
-//         Paymentgateways();
-//     }
+        // var baseURL = '';
+        // var socketHost = '';
 
-
-//     async function Paymentgateways() {
-//         var paymentbuttons = ''
-//         for (let i = 0; i < paymentgateways.length; i++) {
-//             if (paymentgateways[i].checked == true) {
-//                 paymentbuttons = paymentbuttons + '<button type="button" class="btn" data-id="' + paymentgateways[i].name + '" title="' + paymentgateways[i].description + '">' + paymentgateways[i].gateway + '</button>'
-//             }
-//         }
-//         $('paymentgateway').replaceWith(paymentbuttons);
-
-//     }
-// } catch (err) {
-//     console.log('Error in Payment Module: ', err);
-// }
-///////////////////////// Payment JS Ends
-
-////////////////////////Following is the global-variable-plugin js code
-try{
-    var globalVariables = [];
-    var brandName;
-
-    // var userEmail = '';
-    // var projectID = '';
-    // var configDataUrl = '';
-
-    // var baseURL = 'https://api.flowzcluster.tk/serverapi';
-    // var socketHost = 'https://ws.flowzcluster.tk:4032';
-
-    // var baseURL = '';
-    // var socketHost = '';
-
-    // $(document).ready(async function() {
+        // $(document).ready(async function() {
         // await getProjectInfo();
         // console.log('configDataUrl inside global',this.configDataUrl)
         await getConfigData();
         ImplementSocket();
-    // });
+        // });
 
-    // async function getProjectInfo() {
-    //     await $.getJSON( "./assets/project-details.json", function( data ) {  
-    //         var configData = data;
-    //         userEmail = data[0].projectOwner;
-    //         projectID = data[0].projectID;
+        // async function getProjectInfo() {
+        //     await $.getJSON( "./assets/project-details.json", function( data ) {  
+        //         var configData = data;
+        //         userEmail = data[0].projectOwner;
+        //         projectID = data[0].projectID;
 
-    //         baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
-    //         socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+        //         baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+        //         socketHost = 'https://ws.' + data[0].domainkey + ':4032';
 
-    //         configDataUrl = baseURL + "/project-configuration/" + projectID;
-    //     });
+        //         configDataUrl = baseURL + "/project-configuration/" + projectID;
+        //     });
 
-        
-    // }
 
-    async function getConfigData () {
+        // }
 
-        await $.getJSON( configDataUrl , function( data ) {  
-            var configData = data.configData;
-            globalVariables = configData[1].projectSettings[1].GlobalVariables;
-        }); 
+        async function getConfigData() {
 
-        updateGlobalVariables();
-    }
+            await $.getJSON(configDataUrl, function(data) {
+                var configData = data.configData;
+                globalVariables = configData[1].projectSettings[1].GlobalVariables;
+            });
 
-    async function updateGlobalVariables () {
-        $('body [id="brandName"]').html(brandName);
-      
-        // Replace all global variables
-        for (var i = 0; i < globalVariables.length; i++){
-
-            switch(globalVariables[i].variableType){
-                case 'text':
-                    if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
-                        $('body [data-global-id="' + globalVariables[i].variableId + '"]').text(globalVariables[i].variableValue);
-                    } 
-                    break;
-                case 'image':
-                    var _varId = globalVariables[i].variableId;
-                    var _varValue = globalVariables[i].variableValue;
-                    if(($('body [data-global-id="' + _varId + '"]').length > 0)){
-
-                        $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
-
-                        // if(globalVariables[i].isImageUrl == true){
-                        //     $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
-                        // } else {
-                        //     var getImageData = await $.ajax({
-                        //       url:'./assets/' + _varValue,
-                        //       method: 'GET',
-                        //       type: 'HEAD',
-                        //       async: true,
-                        //       error: function(err)
-                        //       {
-                        //         return false;
-                        //       },
-                        //       success: function(res)
-                        //       {
-                        //         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
-                        //         return true;
-                        //       }
-                        //     });
-                        // }
-                      
-                    } 
-                    break;
-                case 'hyperlink':
-                    if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
-                        $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].text = globalVariables[i].variableTitle;
-                        $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].href = globalVariables[i].variableValue;
-                    }
-                    break; 
-                case 'html':
-                    if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
-                        $('body [data-global-id="' + globalVariables[i].variableId + '"]').html(globalVariables[i].variableValue);
-                    } 
-                    break;
-                default:
-                    console.log('No Variables Found'); 
-            }
-
+            updateGlobalVariables();
         }
-    }
 
-    function ImplementSocket() {
-      var socket = io(socketHost);
-      var client = feathers()
-          .configure(feathers.hooks())
-          .configure(feathers.socketio(socket));
-      var flowzDirectoryService = client.service('project-configuration');
+        async function updateGlobalVariables() {
+            $('body [id="brandName"]').html(brandName);
 
-      flowzDirectoryService.on('updated', async function(flowzDirectoryService) {
-        console.log('Configurations Updated:', flowzDirectoryService);
-
-        getConfigData();
-
-        $('body [id="brandName"]').html(brandName);
-            $('body [id="brandLogo"]').attr('src', './assets/brand-logo.png');
-        
             // Replace all global variables
-            for (var i = 0; i < globalVariables.length; i++){
+            for (var i = 0; i < globalVariables.length; i++) {
 
-                switch(globalVariables[i].variableType){
+                switch (globalVariables[i].variableType) {
                     case 'text':
-                        if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                        if (($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)) {
                             $('body [data-global-id="' + globalVariables[i].variableId + '"]').text(globalVariables[i].variableValue);
-                        } 
+                        }
                         break;
                     case 'image':
                         var _varId = globalVariables[i].variableId;
                         var _varValue = globalVariables[i].variableValue;
-                        if(($('body [data-global-id="' + _varId + '"]').length > 0)){
+                        if (($('body [data-global-id="' + _varId + '"]').length > 0)) {
 
                             $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
 
@@ -965,999 +894,1071 @@ try{
                             //     $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
                             // } else {
                             //     var getImageData = await $.ajax({
-                            //     url:'./assets/' + _varValue,
-                            //     method: 'GET',
-                            //     type: 'HEAD',
-                            //     async: true,
-                            //     error: function(err)
-                            //     {
+                            //       url:'./assets/' + _varValue,
+                            //       method: 'GET',
+                            //       type: 'HEAD',
+                            //       async: true,
+                            //       error: function(err)
+                            //       {
                             //         return false;
-                            //     },
-                            //     success: function(res)
-                            //     {
+                            //       },
+                            //       success: function(res)
+                            //       {
                             //         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
                             //         return true;
-                            //     }
+                            //       }
                             //     });
                             // }
-                        
-                        } 
+
+                        }
                         break;
                     case 'hyperlink':
-                        if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                        if (($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)) {
                             $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].text = globalVariables[i].variableTitle;
                             $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].href = globalVariables[i].variableValue;
                         }
-                        break; 
+                        break;
                     case 'html':
-                        if(($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)){
+                        if (($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)) {
                             $('body [data-global-id="' + globalVariables[i].variableId + '"]').html(globalVariables[i].variableValue);
-                        } 
+                        }
                         break;
                     default:
-                        console.log('No Variables Found'); 
+                        console.log('No Variables Found');
                 }
 
-            }    
-        
-      });
+            }
+        }
+
+        function ImplementSocket() {
+            var socket = io(socketHost);
+            var client = feathers()
+                .configure(feathers.hooks())
+                .configure(feathers.socketio(socket));
+            var flowzDirectoryService = client.service('project-configuration');
+
+            flowzDirectoryService.on('updated', async function(flowzDirectoryService) {
+                console.log('Configurations Updated:', flowzDirectoryService);
+
+                getConfigData();
+
+                $('body [id="brandName"]').html(brandName);
+                $('body [id="brandLogo"]').attr('src', './assets/brand-logo.png');
+
+                // Replace all global variables
+                for (var i = 0; i < globalVariables.length; i++) {
+
+                    switch (globalVariables[i].variableType) {
+                        case 'text':
+                            if (($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)) {
+                                $('body [data-global-id="' + globalVariables[i].variableId + '"]').text(globalVariables[i].variableValue);
+                            }
+                            break;
+                        case 'image':
+                            var _varId = globalVariables[i].variableId;
+                            var _varValue = globalVariables[i].variableValue;
+                            if (($('body [data-global-id="' + _varId + '"]').length > 0)) {
+
+                                $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
+
+                                // if(globalVariables[i].isImageUrl == true){
+                                //     $('body [data-global-id="' + _varId + '"]').children('img').attr('src', _varValue);
+                                // } else {
+                                //     var getImageData = await $.ajax({
+                                //     url:'./assets/' + _varValue,
+                                //     method: 'GET',
+                                //     type: 'HEAD',
+                                //     async: true,
+                                //     error: function(err)
+                                //     {
+                                //         return false;
+                                //     },
+                                //     success: function(res)
+                                //     {
+                                //         $('body [data-global-id="' + _varId + '"]').children('img').attr('src', res);
+                                //         return true;
+                                //     }
+                                //     });
+                                // }
+
+                            }
+                            break;
+                        case 'hyperlink':
+                            if (($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)) {
+                                $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].text = globalVariables[i].variableTitle;
+                                $('body [data-global-id="' + globalVariables[i].variableId + '"]').children('a')[0].href = globalVariables[i].variableValue;
+                            }
+                            break;
+                        case 'html':
+                            if (($('body [data-global-id="' + globalVariables[i].variableId + '"]').length > 0)) {
+                                $('body [data-global-id="' + globalVariables[i].variableId + '"]').html(globalVariables[i].variableValue);
+                            }
+                            break;
+                        default:
+                            console.log('No Variables Found');
+                    }
+
+                }
+
+            });
+        }
+    } catch (e) {
+        console.log(e)
     }
-}catch(e){
-    console.log(e)
-}
 
-// CustomSliderComponent
-try {
+    // CustomSliderComponent
+    try {
 
-    // let baseURL = '';
-    // let socketHost = '';
-    // let projectID = '';
-    // let userID = '';
+        // let baseURL = '';
+        // let socketHost = '';
+        // let projectID = '';
+        // let userID = '';
 
-    // $(document).ready(async function() {
+        // $(document).ready(async function() {
         // await getProjectInfo();
         await ImplementSocket();
         let $form = document.querySelectorAll('customslidercomponent')
         if ($form.length > 0) {
             await setBanners($form)
         }
-    // });
+        // });
 
-    // async function getProjectInfo() {
-    //     await $.getJSON("./assets/project-details.json", function(data) {
-    //         projectID = data[0].projectID;
-    //         // baseURL = 'http://localhost:3032'
-    //         // socketHost= 'http://localhost:4032'
-    //         baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
-    //         socketHost = 'https://ws.' + data[0].domainkey + ':4032';
-    //         userID = data[0].UserID
-    //             // configDataUrl = baseURL + "/project-configuration/" + projectID;
-    //     });
-    // }
+        // async function getProjectInfo() {
+        //     await $.getJSON("./assets/project-details.json", function(data) {
+        //         projectID = data[0].projectID;
+        //         // baseURL = 'http://localhost:3032'
+        //         // socketHost= 'http://localhost:4032'
+        //         baseURL = 'https://api.' + data[0].domainkey + '/serverapi';
+        //         socketHost = 'https://ws.' + data[0].domainkey + ':4032';
+        //         userID = data[0].UserID
+        //             // configDataUrl = baseURL + "/project-configuration/" + projectID;
+        //     });
+        // }
 
-    function S4() {
-        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    }
-
-    function getUUID() {
-        let guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
-        return guid
-    }
-
-
-    async function setBanners($form, data) {
-        if (!$('.widget-box-overlay').length) {
-            $('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
+        function S4() {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
         }
-        // console.log('$form:: ', $form)
-        for (let item of $form) {
-            $(item).closest(".row").css({
-                "display": "flex"
-            });
-            let bannertype_id = $(item).attr('slidercustom')
-            let btype = $(item).attr('btype')
-            let aplay = $(item).attr('aplay')
-            let prebtn = $(item).attr('prev')
-            let nexbtn = $(item).attr('next')
-            let nav = $(item).attr('navigation')
-            let slidespeed = $(item).attr('slidespeed')
-            let pagination = $(item).attr('pagination')
-            let ditems = $(item).attr('ditems')
 
-            let bid = getUUID()
-                // console.log('\nbannertype_id', bannertype_id, '\nbtype', btype, '\nautoplay', aplay, '\nprebtn', prebtn, '\nnexbtn', nexbtn, '\nnavigation', nav, '\npagination', pagination, '\nslidespeed', slidespeed, '\nditems', ditems)
-            let mSider = ''
-            if (bannertype_id != undefined && bannertype_id != '') {
-                let checkBtype;
-                if (data != undefined) {
-                    checkBtype = data
-                } else {
-                    checkBtype = await getBannerType(bannertype_id)
-                }
-                // console.log('checkBtype::::', checkBtype)
-                if (Object.keys(checkBtype).length != 0 && checkBtype.status && checkBtype.website_id == projectID) {
-                    let banners = await getBanners(bannertype_id)
-                    console.log('banners', banners)
-                    $(item).html('<div id="BannerSlider' + bid + '" class="owl-carousel owl-theme"></div>')
-                    let content = '';
-                    if (banners.length > 0) {
+        function getUUID() {
+            let guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+            return guid
+        }
 
-                        for (let [inx, slide] of banners.entries()) {
-                            let img = slide.banner_img
-                            let alt = slide.banner_name
-                            if (slide.banner_linkurl == '') {
-                                content += "<img style='display: block;width: 100%;height: auto;' src=\"" + img + "\" alt=\"" + alt + "\">"
-                            } else {
-                                if (slide.linkurl_target == 'same') {
-                                    content += "<a href=" + slide.banner_linkurl + "><img style='display: block;width: 100%;height: auto;' src=\"" + img + "\" alt=\"" + alt + "\"></a>"
+
+        async function setBanners($form, data) {
+            if (!$('.widget-box-overlay').length) {
+                $('body').prepend('<div class="widget-box-overlay" style="display: block;"><img alt="" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
+            }
+            // console.log('$form:: ', $form)
+            for (let item of $form) {
+                $(item).closest(".row").css({
+                    "display": "flex"
+                });
+                let bannertype_id = $(item).attr('slidercustom')
+                let btype = $(item).attr('btype')
+                let aplay = $(item).attr('aplay')
+                let prebtn = $(item).attr('prev')
+                let nexbtn = $(item).attr('next')
+                let nav = $(item).attr('navigation')
+                let slidespeed = $(item).attr('slidespeed')
+                let pagination = $(item).attr('pagination')
+                let ditems = $(item).attr('ditems')
+
+                let bid = getUUID()
+                    // console.log('\nbannertype_id', bannertype_id, '\nbtype', btype, '\nautoplay', aplay, '\nprebtn', prebtn, '\nnexbtn', nexbtn, '\nnavigation', nav, '\npagination', pagination, '\nslidespeed', slidespeed, '\nditems', ditems)
+                let mSider = ''
+                if (bannertype_id != undefined && bannertype_id != '') {
+                    let checkBtype;
+                    if (data != undefined) {
+                        checkBtype = data
+                    } else {
+                        checkBtype = await getBannerType(bannertype_id)
+                    }
+                    // console.log('checkBtype::::', checkBtype)
+                    if (Object.keys(checkBtype).length != 0 && checkBtype.status && checkBtype.website_id == projectID) {
+                        let banners = await getBanners(bannertype_id)
+                        console.log('banners', banners)
+                        $(item).html('<div id="BannerSlider' + bid + '" class="owl-carousel owl-theme"></div>')
+                        let content = '';
+                        if (banners.length > 0) {
+
+                            for (let [inx, slide] of banners.entries()) {
+                                let img = slide.banner_img
+                                let alt = slide.banner_name
+                                if (slide.banner_linkurl == '') {
+                                    content += "<img style='display: block;width: 100%;height: auto;' src=\"" + img + "\" alt=\"" + alt + "\">"
                                 } else {
-                                    content += "<a href=" + slide.banner_linkurl + " target=" + slide.linkurl_target + "><img style='display: block;width: 100%;height: auto;' src=\"" + img + "\" alt=\"" + alt + "\"></a>"
+                                    if (slide.linkurl_target == 'same') {
+                                        content += "<a href=" + slide.banner_linkurl + "><img style='display: block;width: 100%;height: auto;' src=\"" + img + "\" alt=\"" + alt + "\"></a>"
+                                    } else {
+                                        content += "<a href=" + slide.banner_linkurl + " target=" + slide.linkurl_target + "><img style='display: block;width: 100%;height: auto;' src=\"" + img + "\" alt=\"" + alt + "\"></a>"
+                                    }
                                 }
                             }
+
+                            $("#BannerSlider" + bid).html(content);
+
+                            let bannerconfig = {
+                                autoPlay: 5000
+                            }
+                            if (btype == 'brand') {
+                                bannerconfig.items = 5
+                                if (ditems != undefined && ditems != '') {
+                                    bannerconfig.items = ditems
+                                }
+                            } else {
+                                bannerconfig.singleItem = true
+                            }
+                            if (aplay != undefined && aplay != '') {
+                                bannerconfig.autoPlay = aplay
+                            }
+                            if (pagination != undefined) {
+                                bannerconfig.pagination = true
+                            } else {
+                                bannerconfig.pagination = false
+                            }
+                            if (nav != undefined) {
+                                bannerconfig.navigation = true
+                                bannerconfig.navigationText = ['prev', 'next']
+                                if (prebtn != undefined && prebtn != '') {
+                                    bannerconfig.navigationText[0] = prebtn
+                                }
+                                if (nexbtn != undefined && nexbtn != '') {
+                                    bannerconfig.navigationText[1] = nexbtn
+                                }
+                            } else {
+                                bannerconfig.navigation = false
+                            }
+                            if (slidespeed != undefined && slidespeed != '') {
+                                bannerconfig.slideSpeed = slidespeed
+                            }
+                            // console.log('bannerconfig', bannerconfig)
+                            $("#BannerSlider" + bid).owlCarousel(bannerconfig);
                         }
 
-                        $("#BannerSlider" + bid).html(content);
-
-                        let bannerconfig = {
-                            autoPlay: 5000
-                        }
-                        if (btype == 'brand') {
-                            bannerconfig.items = 5
-                            if (ditems != undefined && ditems != '') {
-                                bannerconfig.items = ditems
-                            }
-                        } else {
-                            bannerconfig.singleItem = true
-                        }
-                        if (aplay != undefined && aplay != '') {
-                            bannerconfig.autoPlay = aplay
-                        }
-                        if (pagination != undefined) {
-                            bannerconfig.pagination = true
-                        } else {
-                            bannerconfig.pagination = false
-                        }
-                        if (nav != undefined) {
-                            bannerconfig.navigation = true
-                            bannerconfig.navigationText = ['prev', 'next']
-                            if (prebtn != undefined && prebtn != '') {
-                                bannerconfig.navigationText[0] = prebtn
-                            }
-                            if (nexbtn != undefined && nexbtn != '') {
-                                bannerconfig.navigationText[1] = nexbtn
-                            }
-                        } else {
-                            bannerconfig.navigation = false
-                        }
-                        if (slidespeed != undefined && slidespeed != '') {
-                            bannerconfig.slideSpeed = slidespeed
-                        }
-                        // console.log('bannerconfig', bannerconfig)
-                        $("#BannerSlider" + bid).owlCarousel(bannerconfig);
                     }
-
                 }
+                // $(item).html(mSider)
             }
-            // $(item).html(mSider)
+            $('.widget-box-overlay').remove();
+            // await startBanners()
         }
-        $('.widget-box-overlay').remove();
-        // await startBanners()
-    }
 
-    // function getBannerConfigs(type, attr) {
+        // function getBannerConfigs(type, attr) {
 
-    // }
+        // }
 
-    function startBanners() {
-        $(".owl-carousel1").owlCarousel({
-            autoPlay: true,
-            slideSpeed: 100,
-            stopOnHover: true,
-            navigation: false,
-            // navigationText: ['<', '>'],
-            items: 8,
-            itemsDesktop: [1199, 4],
-            itemsDesktopSmall: [979, 4],
-            itemsTablet: [767, 2],
-            itemsMobile: [479, 2]
-        });
-        $(".owl-carousel2").owlCarousel({
-            autoPlay: true,
-            navigation: false, // Show next and prev buttons
-            slideSpeed: 300,
-            paginationSpeed: 400,
-            // navigationText: ['Prev', 'Next'],
-            items: 1,
-            itemsDesktop: false,
-            itemsDesktopSmall: false,
-            itemsTablet: false,
-            itemsMobile: false
-        });
-    }
+        function startBanners() {
+            $(".owl-carousel1").owlCarousel({
+                autoPlay: true,
+                slideSpeed: 100,
+                stopOnHover: true,
+                navigation: false,
+                // navigationText: ['<', '>'],
+                items: 8,
+                itemsDesktop: [1199, 4],
+                itemsDesktopSmall: [979, 4],
+                itemsTablet: [767, 2],
+                itemsMobile: [479, 2]
+            });
+            $(".owl-carousel2").owlCarousel({
+                autoPlay: true,
+                navigation: false, // Show next and prev buttons
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                // navigationText: ['Prev', 'Next'],
+                items: 1,
+                itemsDesktop: false,
+                itemsDesktopSmall: false,
+                itemsTablet: false,
+                itemsMobile: false
+            });
+        }
 
-    async function getBanners(id) {
-        if (baseURL != '') {
-            let bannerUrl = baseURL + '/banners?userId=' + userID + '&banner_type=' + id + '&banner_status=true&$paginate=false';
+        async function getBanners(id) {
+            if (baseURL != '') {
+                let bannerUrl = baseURL + '/banners?userId=' + userID + '&banner_type=' + id + '&banner_status=true&$paginate=false';
 
-            let resp = await $.getJSON(bannerUrl).then(res => {
-                // console.log('res', res)
-                return res
-            }).catch(err => {
-                console.log(':: Error :: ', err)
+                let resp = await $.getJSON(bannerUrl).then(res => {
+                    // console.log('res', res)
+                    return res
+                }).catch(err => {
+                    console.log(':: Error :: ', err)
+                    return []
+                })
+                return resp
+            } else {
                 return []
-            })
-            return resp
-        } else {
-            return []
+            }
         }
-    }
 
-    async function getBannerType(id) {
-        if (baseURL != '') {
-            let bannerTypeUrl = baseURL + '/bannertype/' + id;
-            // console.log('userID::', userID, 'projectID:::', projectID, bannerTypeUrl)
-            let resp = await $.getJSON(bannerTypeUrl).then(res => {
-                return res
-            }).catch(err => {
-                console.log(':: Error :: ', err)
+        async function getBannerType(id) {
+            if (baseURL != '') {
+                let bannerTypeUrl = baseURL + '/bannertype/' + id;
+                // console.log('userID::', userID, 'projectID:::', projectID, bannerTypeUrl)
+                let resp = await $.getJSON(bannerTypeUrl).then(res => {
+                    return res
+                }).catch(err => {
+                    console.log(':: Error :: ', err)
+                    return {}
+                })
+                return resp
+            } else {
                 return {}
-            })
-            return resp
-        } else {
-            return {}
+            }
         }
-    }
 
-    async function updateBanners($sform, data, type) {
-        let banners = [];
-        let checkBtype = '';
-        if (type == 'bannertype') {
-            checkBtype = data
-            banners = await getBanners(data.id)
-        } else {
-            checkBtype = await getBannerType(data.banner_type)
-            banners = await getBanners(data.banner_type)
-        }
-        let mSider = ''
-            // console.log(checkBtype, banners, type)
-        if (Object.keys(checkBtype).length != 0 && checkBtype.status) {
-            if (banners.length > 0) {
+        async function updateBanners($sform, data, type) {
+            let banners = [];
+            let checkBtype = '';
+            if (type == 'bannertype') {
+                checkBtype = data
+                banners = await getBanners(data.id)
+            } else {
+                checkBtype = await getBannerType(data.banner_type)
+                banners = await getBanners(data.banner_type)
+            }
+            let mSider = ''
+                // console.log(checkBtype, banners, type)
+            if (Object.keys(checkBtype).length != 0 && checkBtype.status) {
+                if (banners.length > 0) {
 
-                if (checkBtype.bt_category == 'brand_slider') {
-                    mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
-                    for (let [inx, slide] of banners.entries()) {
-                        if (slide.banner_linkurl == '') {
-                            mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <img src="' + slide.banner_img + '" alt="' + slide.banner_name + '"></div>'
-                        } else if (slide.linkurl_target == 'same') {
-                            mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img src="' + slide.banner_img + '" alt="' + slide.banner_name + '"> </a> </div>'
-                        } else {
-                            mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="' + slide.linkurl_target + '"> <img src="' + slide.banner_img + '" alt="' + slide.banner_name + '"> </a> </div>'
-                        }
-                    }
-                    mSider += '</div></div>'
-                } else {
-                    if (banners.length == 1) {
-                        if (banners[0].banner_linkurl == '') {
-                            mSider += '<img src="' + banners[0].banner_img + '" class="img-responsive" style="width: -webkit-fill-available;height:auto;" alt="' + banners[0].banner_name + '">'
-                        } else {
-                            mSider += '<a href="' + banners[0].banner_linkurl + '" target="' + banners[0].linkurl_target + '"><img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '" style="width: -webkit-fill-available;height:auto;"></a>'
-                        }
-                    } else {
-                        mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
+                    if (checkBtype.bt_category == 'brand_slider') {
+                        mSider += '<div class="owlcarouselcat"><div  class="owl-carousel1 owl-theme">'
                         for (let [inx, slide] of banners.entries()) {
                             if (slide.banner_linkurl == '') {
-                                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"><img  class="img-responsive" src="' + slide.banner_img + '" alt="' + slide.banner_name + '" style="width: -webkit-fill-available;height:auto;"></div>'
+                                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <img src="' + slide.banner_img + '" alt="' + slide.banner_name + '"></div>'
                             } else if (slide.linkurl_target == 'same') {
-                                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img  class="img-responsive" src="' + slide.banner_img + '" alt="' + slide.banner_name + '" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+                                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img src="' + slide.banner_img + '" alt="' + slide.banner_name + '"> </a> </div>'
                             } else {
-                                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="' + slide.linkurl_target + '"> <img  class="img-responsive" src="' + slide.banner_img + '" alt="' + slide.banner_name + '" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+                                mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="' + slide.linkurl_target + '"> <img src="' + slide.banner_img + '" alt="' + slide.banner_name + '"> </a> </div>'
                             }
                         }
                         mSider += '</div></div>'
-                    }
-                }
-
-            }
-        }
-        for (let item of $sform) {
-            $(item).html(mSider)
-        }
-        await startBanners()
-    }
-
-    function ImplementSocket() {
-        if (socketHost != '') {
-            let socket = io(socketHost);
-            let client = feathers()
-                .configure(feathers.hooks())
-                .configure(feathers.socketio(socket));
-            let BannersService = client.service('banners');
-            let BannerTypeService = client.service('bannertype');
-
-            BannersService.on('updated', async function(data) {
-                if (data.userId == userID) {
-                    console.log('Updated......................Banners')
-                    let $sform = $('customslidercomponent[slidercustom= ' + data.banner_type + ']')
-                    console.log($sform)
-                    if ($sform.length > 0) {
-                        await setBanners($sform)
-                            // await updateBanners($sform, data, 'banners')
-                    }
-                }
-            })
-
-            BannersService.on('created', async function(data) {
-                if (data.userId == userID) {
-                    let $sform = $('customslidercomponent[slidercustom= ' + data.banner_type + ']')
-                    if ($sform.length > 0) {
-                        await setBanners($sform)
-                            // await updateBanners($sform, data)
-                    }
-                }
-            })
-
-            BannersService.on('removed', async function(data) {
-                if (data.userId == userID) {
-                    let $sform = $('customslidercomponent[slidercustom= ' + data.banner_type + ']')
-                    if ($sform.length > 0) {
-                        await setBanners($sform)
-                            // await updateBanners($sform, data)
-                    }
-                }
-            })
-
-            BannerTypeService.on('updated', async function(data) {
-                if (data.userId == userID && data.website_id == projectID) {
-                    console.log('Updated BannerType ::::::::::::::::::::: ')
-                    let $sform = $('customslidercomponent[slidercustom= ' + data.id + ']')
-                    if ($sform.length > 0) {
-                        await setBanners($sform, data)
-                            // await updateBanners($sform, data, 'bannertype')
-                    }
-                }
-            })
-
-            BannerTypeService.on('removed', async function(data) {
-                if (data.userId == userID && data.website_id == projectID) {
-                    console.log('Removed BannerType ::::::::::::::::::::: ')
-                    let $sform = $('customslidercomponent[slidercustom= ' + data.id + ']')
-                    if ($sform.length > 0) {
-                        for (let item of $sform) {
-                            $(item).html('')
+                    } else {
+                        if (banners.length == 1) {
+                            if (banners[0].banner_linkurl == '') {
+                                mSider += '<img src="' + banners[0].banner_img + '" class="img-responsive" style="width: -webkit-fill-available;height:auto;" alt="' + banners[0].banner_name + '">'
+                            } else {
+                                mSider += '<a href="' + banners[0].banner_linkurl + '" target="' + banners[0].linkurl_target + '"><img src="' + banners[0].banner_img + '" class="img-responsive" alt="' + banners[0].banner_name + '" style="width: -webkit-fill-available;height:auto;"></a>'
+                            }
+                        } else {
+                            mSider += '<div class="owlcarouselcat"><div class="owl-carousel2 owl-theme" style="width:100%;height:auto;display:block;">'
+                            for (let [inx, slide] of banners.entries()) {
+                                if (slide.banner_linkurl == '') {
+                                    mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"><img  class="img-responsive" src="' + slide.banner_img + '" alt="' + slide.banner_name + '" style="width: -webkit-fill-available;height:auto;"></div>'
+                                } else if (slide.linkurl_target == 'same') {
+                                    mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '"> <img  class="img-responsive" src="' + slide.banner_img + '" alt="' + slide.banner_name + '" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+                                } else {
+                                    mSider += '<div class="item" style="text-align: center;position:relative;max-width:100%;margin:0px;border:0px;"> <a href="' + slide.banner_linkurl + '" target="' + slide.linkurl_target + '"> <img  class="img-responsive" src="' + slide.banner_img + '" alt="' + slide.banner_name + '" style="width: -webkit-fill-available;height:auto;"> </a> </div>'
+                                }
+                            }
+                            mSider += '</div></div>'
                         }
                     }
-                }
-            })
 
+                }
+            }
+            for (let item of $sform) {
+                $(item).html(mSider)
+            }
+            await startBanners()
         }
 
+        function ImplementSocket() {
+            if (socketHost != '') {
+                let socket = io(socketHost);
+                let client = feathers()
+                    .configure(feathers.hooks())
+                    .configure(feathers.socketio(socket));
+                let BannersService = client.service('banners');
+                let BannerTypeService = client.service('bannertype');
+
+                BannersService.on('updated', async function(data) {
+                    if (data.userId == userID) {
+                        console.log('Updated......................Banners')
+                        let $sform = $('customslidercomponent[slidercustom= ' + data.banner_type + ']')
+                        console.log($sform)
+                        if ($sform.length > 0) {
+                            await setBanners($sform)
+                                // await updateBanners($sform, data, 'banners')
+                        }
+                    }
+                })
+
+                BannersService.on('created', async function(data) {
+                    if (data.userId == userID) {
+                        let $sform = $('customslidercomponent[slidercustom= ' + data.banner_type + ']')
+                        if ($sform.length > 0) {
+                            await setBanners($sform)
+                                // await updateBanners($sform, data)
+                        }
+                    }
+                })
+
+                BannersService.on('removed', async function(data) {
+                    if (data.userId == userID) {
+                        let $sform = $('customslidercomponent[slidercustom= ' + data.banner_type + ']')
+                        if ($sform.length > 0) {
+                            await setBanners($sform)
+                                // await updateBanners($sform, data)
+                        }
+                    }
+                })
+
+                BannerTypeService.on('updated', async function(data) {
+                    if (data.userId == userID && data.website_id == projectID) {
+                        console.log('Updated BannerType ::::::::::::::::::::: ')
+                        let $sform = $('customslidercomponent[slidercustom= ' + data.id + ']')
+                        if ($sform.length > 0) {
+                            await setBanners($sform, data)
+                                // await updateBanners($sform, data, 'bannertype')
+                        }
+                    }
+                })
+
+                BannerTypeService.on('removed', async function(data) {
+                    if (data.userId == userID && data.website_id == projectID) {
+                        console.log('Removed BannerType ::::::::::::::::::::: ')
+                        let $sform = $('customslidercomponent[slidercustom= ' + data.id + ']')
+                        if ($sform.length > 0) {
+                            for (let item of $sform) {
+                                $(item).html('')
+                            }
+                        }
+                    }
+                })
+
+            }
+
+        }
+    } catch (err) {
+        console.log('Error in CustomSliderComponent Module: ', err)
     }
-} catch (err) {
-    console.log('Error in CustomSliderComponent Module: ', err)
-}
-// CustomSliderComponent JS
+    // CustomSliderComponent JS
 
 
-//Contact Form 1
-try {
-  $(document).ready(() => {
-    let contactid = '#frmContact1'
-      // console.log("contactid:", contactid)
-      
-    $('form#frmContact1').validate({
-        rules: {
-              "fname":"required",
-              "lname": "required",
-              "email": "required",
-              "subject": "required",
-              "fcontent": "required"
-        },
-        messages: {
-          "fname": "Enter Valid First Name!",
-          "lname": "Enter Valid Last Name!",
-          "email": "Enter Valid Email ID!",
-          "subject": "Enter Valid Subject!",
-          "fcontent": "Enter Valid Content!"
-        },
-        errorElement: "li",
-        errorPlacement: function(error, element) {
-          error.appendTo(element.closest("div"));
-          $(element).closest('div').find('ul').addClass('red')
-        },
-        errorLabelContainer: "#errors",
-        wrapper: "ul",
-        submitHandler: function(form) {
-          // $('form#frmContact1').preventDefault();
-          let to_email = $(contactid + "> fcontact").attr("email")
-          let email = $(contactid).find('.email').val()
-          let subject = $(contactid).find('.fsubject').val()
-          let content = $(contactid).find('.fcontent').val()
-          let userName = $(contactid).find('.fname').val() + ' ' + $(contactid).find('.lname').val();
-          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
-          let data1 = {
-              "to": to_email,
-              "subject": subject,
-              "body": body
-          };
-           $.ajax({
-              url: './assets/project-details.json',
-              dataType: 'json',
-              success: function(data) {
-                  axios({
-                      method: 'post',
-                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                      data: data1,
-                      config: {
-                          headers: {
-                              "contentType": "application/json"
-                          }
-                      }
-                  }).then((res) => {
-                      // console.log("res", res.data.success)
-                      showSuccessMessage(res.data.success);
-                      form.reset();
-                      // alert(res.data.success)
-                  }).catch((err) => {
-                      console.log("err", err)
-                      showErrorMessage(err);
-                      form.reset();
-                  })
-              }
-          })
-        },
-    });
-  })
+    //Contact Form 1
+    try {
+        // $(document).ready(() => {
+        let contactid = '#frmContact1'
+            // console.log("contactid:", contactid)
 
-} catch (e) {
-  console.log(e)
-}
-//Contact 2
-try {
-  $(document).ready(() => {
-      let contactid = '#frmContact2'
+        $('form#frmContact1').validate({
+            rules: {
+                "fname": "required",
+                "lname": "required",
+                "email": "required",
+                "subject": "required",
+                "fcontent": "required"
+            },
+            messages: {
+                "fname": "Enter Valid First Name!",
+                "lname": "Enter Valid Last Name!",
+                "email": "Enter Valid Email ID!",
+                "subject": "Enter Valid Subject!",
+                "fcontent": "Enter Valid Content!"
+            },
+            errorElement: "li",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.closest("div"));
+                $(element).closest('div').find('ul').addClass('red')
+            },
+            errorLabelContainer: "#errors",
+            wrapper: "ul",
+            submitHandler: function(form) {
+                // $('form#frmContact1').preventDefault();
+                let to_email = $(contactid + "> fcontact").attr("email")
+                let email = $(contactid).find('.email').val()
+                let subject = $(contactid).find('.fsubject').val()
+                let content = $(contactid).find('.fcontent').val()
+                let userName = $(contactid).find('.fname').val() + ' ' + $(contactid).find('.lname').val();
+                let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :' + userName + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :' + email + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :' + content + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+                let data1 = {
+                    "to": to_email,
+                    "subject": subject,
+                    "body": body
+                };
+                $.ajax({
+                    url: './assets/project-details.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        axios({
+                            method: 'post',
+                            url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                            data: data1,
+                            config: {
+                                headers: {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }).then((res) => {
+                            // console.log("res", res.data.success)
+                            showSuccessMessage(res.data.success);
+                            form.reset();
+                            // alert(res.data.success)
+                        }).catch((err) => {
+                            console.log("err", err)
+                            showErrorMessage(err);
+                            form.reset();
+                        })
+                    }
+                })
+            },
+            // });
+        })
 
-      $('form#frmContact2').validate({
-        rules: {
-              "name":"required",
-              "email": "required",
-              "subject": "required",
-              "message": "required"
-        },
-        messages: {
-          "name": "Enter Valid Name!",
-          "email": "Enter Valid Email ID!",
-          "subject": "Enter Valid Subject!",
-          "message": "Enter Valid Content!"
-        },
-        errorElement: "li",
-        errorPlacement: function(error, element) {
-          error.appendTo(element.closest("div"));
-          $(element).closest('div').find('ul').addClass('red')
-        },
-        errorLabelContainer: "#errors",
-        wrapper: "ul",
-        submitHandler: function(form) {
-          // form.preventDefault();
-          let to_email = $(contactid + "> fcontact").attr("email")
-          let email = $(contactid).find('input[name="email"]').val()
-          let phnNo = $(contactid).find('input[name="phone"]').val()
-          let subject = $(contactid).find('input[name="subject"]').val()
-          let content = $(contactid).find('textarea[name="message"]').val()
-          let userName = $(contactid).find('input[name="name"]').val();
-          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
-          let data1 = {
-              "to": to_email,
-              "subject": subject,
-              "body": body
-          };
-           $.ajax({
-              url: './assets/project-details.json',
-              dataType: 'json',
-              success: function(data) {
-                  axios({
-                      method: 'post',
-                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                      data: data1,
-                      config: {
-                          headers: {
-                              "contentType": "application/json"
-                          }
-                      }
-                  }).then((res) => {
-                      // console.log("res", res.data.success)
-                      showSuccessMessage(res.data.success);
-                      form.reset();
-                  }).catch((err) => {
-                      console.log("err", err)
-                      showErrorMessage(err);
-                      form.reset();
-                  })
-              }
-          })
-        },
-    });
-  })
+    } catch (e) {
+        console.log(e)
+    }
+    //Contact 2
+    try {
+        // $(document).ready(() => {
+        let contactid = '#frmContact2'
 
-} catch (e) {
-  console.log(e)
-}
-//Contact 3
-try {
-  $(document).ready(() => {
-      let contactid = '#frmContact3'
+        $('form#frmContact2').validate({
+            rules: {
+                "name": "required",
+                "email": "required",
+                "subject": "required",
+                "message": "required"
+            },
+            messages: {
+                "name": "Enter Valid Name!",
+                "email": "Enter Valid Email ID!",
+                "subject": "Enter Valid Subject!",
+                "message": "Enter Valid Content!"
+            },
+            errorElement: "li",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.closest("div"));
+                $(element).closest('div').find('ul').addClass('red')
+            },
+            errorLabelContainer: "#errors",
+            wrapper: "ul",
+            submitHandler: function(form) {
+                // form.preventDefault();
+                let to_email = $(contactid + "> fcontact").attr("email")
+                let email = $(contactid).find('input[name="email"]').val()
+                let phnNo = $(contactid).find('input[name="phone"]').val()
+                let subject = $(contactid).find('input[name="subject"]').val()
+                let content = $(contactid).find('textarea[name="message"]').val()
+                let userName = $(contactid).find('input[name="name"]').val();
+                let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :' + userName + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :' + email + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :' + content + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+                let data1 = {
+                    "to": to_email,
+                    "subject": subject,
+                    "body": body
+                };
+                $.ajax({
+                    url: './assets/project-details.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        axios({
+                            method: 'post',
+                            url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                            data: data1,
+                            config: {
+                                headers: {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }).then((res) => {
+                            // console.log("res", res.data.success)
+                            showSuccessMessage(res.data.success);
+                            form.reset();
+                        }).catch((err) => {
+                            console.log("err", err)
+                            showErrorMessage(err);
+                            form.reset();
+                        })
+                    }
+                })
+            },
+            // });
+        })
 
-      $('form#frmContact3').validate({
-        rules: {
-              "email": "required",
-              "subject": "required",
-              "message": "required"
-        },
-        messages: {
-          "email": "Enter Valid Email ID!",
-          "subject": "Enter Valid Subject!",
-          "message": "Enter Valid Content!"
-        },
-        errorElement: "li",
-        errorPlacement: function(error, element) {
-          error.appendTo(element.closest("div"));
-          $(element).closest('div').find('ul').addClass('red')
-        },
-        errorLabelContainer: "#errors",
-        wrapper: "ul",
-        submitHandler: function(form) {
-          // form.preventDefault();
-          let to_email = $(contactid + "> fcontact").attr("email")
-          let email = $(contactid).find('input[name="email"]').val()
-          let subject = $(contactid).find('input[name="subject"]').val()
-          let content = $(contactid).find('textarea[name="message"]').val()
-          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
-          let data1 = {
-              "to": to_email,
-              "subject": subject,
-              "body": body
-          };
-           $.ajax({
-              url: './assets/project-details.json',
-              dataType: 'json',
-              success: function(data) {
-                  axios({
-                      method: 'post',
-                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                      data: data1,
-                      config: {
-                          headers: {
-                              "contentType": "application/json"
-                          }
-                      }
-                  }).then((res) => {
-                      // console.log("res", res.data.success)
-                      showSuccessMessage(res.data.success);
-                      form.reset();
-                  }).catch((err) => {
-                      console.log("err", err)
-                      showErrorMessage(err);
-                      form.reset();
-                  })
-              }
-          })
-        },
-    });
-  })
+    } catch (e) {
+        console.log(e)
+    }
+    //Contact 3
+    try {
+        // $(document).ready(() => {
+        let contactid = '#frmContact3'
 
-} catch (e) {
-  console.log(e)
-}
-//Contact 4
-try {
-  $(document).ready(() => {
-      let contactid = '#frmContact4'
+        $('form#frmContact3').validate({
+            rules: {
+                "email": "required",
+                "subject": "required",
+                "message": "required"
+            },
+            messages: {
+                "email": "Enter Valid Email ID!",
+                "subject": "Enter Valid Subject!",
+                "message": "Enter Valid Content!"
+            },
+            errorElement: "li",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.closest("div"));
+                $(element).closest('div').find('ul').addClass('red')
+            },
+            errorLabelContainer: "#errors",
+            wrapper: "ul",
+            submitHandler: function(form) {
+                // form.preventDefault();
+                let to_email = $(contactid + "> fcontact").attr("email")
+                let email = $(contactid).find('input[name="email"]').val()
+                let subject = $(contactid).find('input[name="subject"]').val()
+                let content = $(contactid).find('textarea[name="message"]').val()
+                let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :' + email + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :' + content + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+                let data1 = {
+                    "to": to_email,
+                    "subject": subject,
+                    "body": body
+                };
+                $.ajax({
+                    url: './assets/project-details.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        axios({
+                            method: 'post',
+                            url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                            data: data1,
+                            config: {
+                                headers: {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }).then((res) => {
+                            // console.log("res", res.data.success)
+                            showSuccessMessage(res.data.success);
+                            form.reset();
+                        }).catch((err) => {
+                            console.log("err", err)
+                            showErrorMessage(err);
+                            form.reset();
+                        })
+                    }
+                })
+            },
+            // });
+        })
 
-      $('form#frmContact4').validate({
-        rules: {
-              "name":"required",
-              "email": "required",
-              "subject": "required",
-              "message": "required"
-        },
-        messages: {
-          "name": "Enter Valid Name!",
-          "email": "Enter Valid Email ID!",
-          "subject": "Enter Valid Subject!",
-          "message": "Enter Valid Content!"
-        },
-        errorElement: "li",
-        errorPlacement: function(error, element) {
-          error.appendTo(element.closest("div"));
-          $(element).closest('div').find('ul').addClass('red')
-        },
-        errorLabelContainer: "#errors",
-        wrapper: "ul",
-        submitHandler: function(form) {
-          // form.preventDefault();
-          let to_email = $(contactid + "> fcontact").attr("email")
-          let userName = $(contactid).find('input[name="name"]').val();
-          let email = $(contactid).find('input[name="email"]').val()
-          let subject = $(contactid).find('input[name="subject"]').val()
-          let content = $(contactid).find('textarea[name="message"]').val()
-          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
-          let data1 = {
-              "to": to_email,
-              "subject": subject,
-              "body": body
-          };
-           $.ajax({
-              url: './assets/project-details.json',
-              dataType: 'json',
-              success: function(data) {
-                  axios({
-                      method: 'post',
-                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                      data: data1,
-                      config: {
-                          headers: {
-                              "contentType": "application/json"
-                          }
-                      }
-                  }).then((res) => {
-                      // console.log("res", res.data.success)
-                      showSuccessMessage(res.data.success);
-                      form.reset();
-                  }).catch((err) => {
-                      console.log("err", err)
-                      showErrorMessage(err);
-                      form.reset();
-                  })
-              }
-          })
-        },
-    });
-  })
+    } catch (e) {
+        console.log(e)
+    }
+    //Contact 4
+    try {
+        // $(document).ready(() => {
+        let contactid = '#frmContact4'
 
-} catch (e) {
-  console.log(e)
-}
-//Contact 5
-try {
-  $(document).ready(() => {
-      let contactid = '#frmContact5'
-      $('form#frmContact5').validate({
-        rules: {
-              "email": "required",
-              "subject": "required",
-              "message": "required"
-        },
-        messages: {
-          "email": "Enter Valid Email ID!",
-          "subject": "Enter Valid Subject!",
-          "message": "Enter Valid Content!"
-        },
-        errorElement: "li",
-        errorPlacement: function(error, element) {
-          error.appendTo(element.closest("div"));
-          $(element).closest('div').find('ul').addClass('red')
-        },
-        errorLabelContainer: "#errors",
-        wrapper: "ul",
-        submitHandler: function(form) {
-          // form.preventDefault();
-          let to_email = $(contactid + "> fcontact").attr("email")
-          let email = $(contactid).find('input[name="email"]').val()
-          let subject = $(contactid).find('input[name="subject"]').val()
-          let content = $(contactid).find('textarea[name="message"]').val()
-          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
-          let data1 = {
-              "to": to_email,
-              "subject": subject,
-              "body": body
-          };
-           $.ajax({
-              url: './assets/project-details.json',
-              dataType: 'json',
-              success: function(data) {
-                  axios({
-                      method: 'post',
-                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                      data: data1,
-                      config: {
-                          headers: {
-                              "contentType": "application/json"
-                          }
-                      }
-                  }).then((res) => {
-                      // console.log("res", res.data.success)
-                      showSuccessMessage(res.data.success);
-                      form.reset();
-                  }).catch((err) => {
-                      console.log("err", err)
-                      showErrorMessage(err);
-                      form.reset();
-                  })
-              }
-          })
-        },
-    });
-  })
+        $('form#frmContact4').validate({
+            rules: {
+                "name": "required",
+                "email": "required",
+                "subject": "required",
+                "message": "required"
+            },
+            messages: {
+                "name": "Enter Valid Name!",
+                "email": "Enter Valid Email ID!",
+                "subject": "Enter Valid Subject!",
+                "message": "Enter Valid Content!"
+            },
+            errorElement: "li",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.closest("div"));
+                $(element).closest('div').find('ul').addClass('red')
+            },
+            errorLabelContainer: "#errors",
+            wrapper: "ul",
+            submitHandler: function(form) {
+                // form.preventDefault();
+                let to_email = $(contactid + "> fcontact").attr("email")
+                let userName = $(contactid).find('input[name="name"]').val();
+                let email = $(contactid).find('input[name="email"]').val()
+                let subject = $(contactid).find('input[name="subject"]').val()
+                let content = $(contactid).find('textarea[name="message"]').val()
+                let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :' + userName + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :' + email + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :' + content + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+                let data1 = {
+                    "to": to_email,
+                    "subject": subject,
+                    "body": body
+                };
+                $.ajax({
+                    url: './assets/project-details.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        axios({
+                            method: 'post',
+                            url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                            data: data1,
+                            config: {
+                                headers: {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }).then((res) => {
+                            // console.log("res", res.data.success)
+                            showSuccessMessage(res.data.success);
+                            form.reset();
+                        }).catch((err) => {
+                            console.log("err", err)
+                            showErrorMessage(err);
+                            form.reset();
+                        })
+                    }
+                })
+            },
+            // });
+        })
 
-} catch (e) {
-  console.log(e)
-}
+    } catch (e) {
+        console.log(e)
+    }
+    //Contact 5
+    try {
+        // $(document).ready(() => {
+        let contactid = '#frmContact5'
+        $('form#frmContact5').validate({
+            rules: {
+                "email": "required",
+                "subject": "required",
+                "message": "required"
+            },
+            messages: {
+                "email": "Enter Valid Email ID!",
+                "subject": "Enter Valid Subject!",
+                "message": "Enter Valid Content!"
+            },
+            errorElement: "li",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.closest("div"));
+                $(element).closest('div').find('ul').addClass('red')
+            },
+            errorLabelContainer: "#errors",
+            wrapper: "ul",
+            submitHandler: function(form) {
+                // form.preventDefault();
+                let to_email = $(contactid + "> fcontact").attr("email")
+                let email = $(contactid).find('input[name="email"]').val()
+                let subject = $(contactid).find('input[name="subject"]').val()
+                let content = $(contactid).find('textarea[name="message"]').val()
+                let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :' + email + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :' + content + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+                let data1 = {
+                    "to": to_email,
+                    "subject": subject,
+                    "body": body
+                };
+                $.ajax({
+                    url: './assets/project-details.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        axios({
+                            method: 'post',
+                            url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                            data: data1,
+                            config: {
+                                headers: {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }).then((res) => {
+                            // console.log("res", res.data.success)
+                            showSuccessMessage(res.data.success);
+                            form.reset();
+                        }).catch((err) => {
+                            console.log("err", err)
+                            showErrorMessage(err);
+                            form.reset();
+                        })
+                    }
+                })
+            },
+            // });
+        })
 
-//Contact 6
-try {
-  $(document).ready(() => {
-      let contactid = '#frmContact6'
+    } catch (e) {
+        console.log(e)
+    }
 
-      $('form#frmContact6').validate({
-        rules: {
-              "fname":"required",
-              "lname": "required",
-              "email": "required",
-              "subject": "required",
-              "message": "required"
-        },
-        messages: {
-          "fname": "Enter Valid First Name!",
-          "lname": "Enter Valid Last Name!",
-          "email": "Enter Valid Email ID!",
-          "subject": "Enter Valid Subject!",
-          "message": "Enter Valid Content!"
-        },
-        errorElement: "li",
-        errorPlacement: function(error, element) {
-          error.appendTo(element.closest("div"));
-          $(element).closest('div').find('ul').addClass('red')
-        },
-        errorLabelContainer: "#errors",
-        wrapper: "ul",
-        submitHandler: function(form) {
-          // form.preventDefault();
-          let to_email = $(contactid + "> fcontact").attr("email")
-          let userName = $(contactid).find('input[name="fname"]').val() + ' ' + $(contactid).find('input[name="lname"]').val()
-          let email = $(contactid).find('input[name="email"]').val()
-          let subject = $(contactid).find('input[name="subject"]').val()
-          let content = $(contactid).find('textarea[name="message"]').val()
-          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
-          let data1 = {
-              "to": to_email,
-              "subject": subject,
-              "body": body
-          };
-           $.ajax({
-              url: './assets/project-details.json',
-              dataType: 'json',
-              success: function(data) {
-                  axios({
-                      method: 'post',
-                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                      data: data1,
-                      config: {
-                          headers: {
-                              "contentType": "application/json"
-                          }
-                      }
-                  }).then((res) => {
-                      // console.log("res", res.data.success)
-                      showSuccessMessage(res.data.success);
-                      form.reset();
-                      // alert(res.data.success)
-                  }).catch((err) => {
-                      console.log("err", err)
-                      showErrorMessage(err);
-                      form.reset();
-                  })
-              }
-          })
-        },
-    });
-  })
+    //Contact 6
+    try {
+        // $(document).ready(() => {
+        let contactid = '#frmContact6'
 
-} catch (e) {
-  console.log(e)
-}
+        $('form#frmContact6').validate({
+            rules: {
+                "fname": "required",
+                "lname": "required",
+                "email": "required",
+                "subject": "required",
+                "message": "required"
+            },
+            messages: {
+                "fname": "Enter Valid First Name!",
+                "lname": "Enter Valid Last Name!",
+                "email": "Enter Valid Email ID!",
+                "subject": "Enter Valid Subject!",
+                "message": "Enter Valid Content!"
+            },
+            errorElement: "li",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.closest("div"));
+                $(element).closest('div').find('ul').addClass('red')
+            },
+            errorLabelContainer: "#errors",
+            wrapper: "ul",
+            submitHandler: function(form) {
+                // form.preventDefault();
+                let to_email = $(contactid + "> fcontact").attr("email")
+                let userName = $(contactid).find('input[name="fname"]').val() + ' ' + $(contactid).find('input[name="lname"]').val()
+                let email = $(contactid).find('input[name="email"]').val()
+                let subject = $(contactid).find('input[name="subject"]').val()
+                let content = $(contactid).find('textarea[name="message"]').val()
+                let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :' + userName + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :' + email + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :' + content + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+                let data1 = {
+                    "to": to_email,
+                    "subject": subject,
+                    "body": body
+                };
+                $.ajax({
+                    url: './assets/project-details.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        axios({
+                            method: 'post',
+                            url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                            data: data1,
+                            config: {
+                                headers: {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }).then((res) => {
+                            // console.log("res", res.data.success)
+                            showSuccessMessage(res.data.success);
+                            form.reset();
+                            // alert(res.data.success)
+                        }).catch((err) => {
+                            console.log("err", err)
+                            showErrorMessage(err);
+                            form.reset();
+                        })
+                    }
+                })
+            },
+            // });
+        })
 
-//Contact 7
-try {
-  $(document).ready(() => {
-      let contactid = '#frmContact7'
-      
-      $('form#frmContact7').validate({
-        rules: {
-              "email": "required",
-              "subject": "required",
-              "message": "required"
-        },
-        messages: {
-          "email": "Enter Valid Email ID!",
-          "subject": "Enter Valid Subject!",
-          "message": "Enter Valid Content!"
-        },
-        errorElement: "li",
-        errorPlacement: function(error, element) {
-          error.appendTo(element.closest("div"));
-          $(element).closest('div').find('ul').addClass('red')
-        },
-        errorLabelContainer: "#errors",
-        wrapper: "ul",
-        submitHandler: function(form) {
-          // form.preventDefault();
-          let to_email = $(contactid + "> fcontact").attr("email")
-          let email = $(contactid).find('input[name="email"]').val()
-          let subject = $(contactid).find('input[name="subject"]').val()
-          let content = $(contactid).find('textarea[name="message"]').val()
-          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
-          let data1 = {
-              "to": to_email,
-              "subject": subject,
-              "body": body
-          };
-           $.ajax({
-              url: './assets/project-details.json',
-              dataType: 'json',
-              success: function(data) {
-                  axios({
-                      method: 'post',
-                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                      data: data1,
-                      config: {
-                          headers: {
-                              "contentType": "application/json"
-                          }
-                      }
-                  }).then((res) => {
-                      // console.log("res", res.data.success)
-                      showSuccessMessage(res.data.success);
-                      form.reset();
-                  }).catch((err) => {
-                      console.log("err", err)
-                      showErrorMessage(err);
-                      form.reset();
-                  })
-              }
-          })
-        },
-    });
-  })
+    } catch (e) {
+        console.log(e)
+    }
 
-} catch (e) {
-  console.log(e)
-}
+    //Contact 7
+    try {
+        // $(document).ready(() => {
+        let contactid = '#frmContact7'
 
-//Contact 8
-try {
-  $(document).ready(() => {
-      let contactid = '#frmContact8'
+        $('form#frmContact7').validate({
+            rules: {
+                "email": "required",
+                "subject": "required",
+                "message": "required"
+            },
+            messages: {
+                "email": "Enter Valid Email ID!",
+                "subject": "Enter Valid Subject!",
+                "message": "Enter Valid Content!"
+            },
+            errorElement: "li",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.closest("div"));
+                $(element).closest('div').find('ul').addClass('red')
+            },
+            errorLabelContainer: "#errors",
+            wrapper: "ul",
+            submitHandler: function(form) {
+                // form.preventDefault();
+                let to_email = $(contactid + "> fcontact").attr("email")
+                let email = $(contactid).find('input[name="email"]').val()
+                let subject = $(contactid).find('input[name="subject"]').val()
+                let content = $(contactid).find('textarea[name="message"]').val()
+                let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :' + email + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span> :' + content + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+                let data1 = {
+                    "to": to_email,
+                    "subject": subject,
+                    "body": body
+                };
+                $.ajax({
+                    url: './assets/project-details.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        axios({
+                            method: 'post',
+                            url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                            data: data1,
+                            config: {
+                                headers: {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }).then((res) => {
+                            // console.log("res", res.data.success)
+                            showSuccessMessage(res.data.success);
+                            form.reset();
+                        }).catch((err) => {
+                            console.log("err", err)
+                            showErrorMessage(err);
+                            form.reset();
+                        })
+                    }
+                })
+            },
+            // });
+        })
 
-      $('form#frmContact8').validate({
-        rules: {
-              "fname":"required",
-              "lname": "required",
-              "email": "required",
-              "subject": "required",
-              "message": "required"
-        },
-        messages: {
-          "fname": "Enter Valid First Name!",
-          "lname": "Enter Valid Last Name!",
-          "email": "Enter Valid Email ID!",
-          "subject": "Enter Valid Subject!",
-          "message": "Enter Valid Content!"
-        },
-        errorElement: "li",
-        errorPlacement: function(error, element) {
-          error.appendTo(element.closest("div"));
-          $(element).closest('div').find('ul').addClass('red')
-        },
-        errorLabelContainer: "#errors",
-        wrapper: "ul",
-        submitHandler: function(form) {
-          // form.preventDefault();
-          let to_email = $(contactid + "> fcontact").attr("email")
-          let email = $(contactid).find('input[name="email"]').val()
-          let subject = $(contactid).find('input[name="subject"]').val()
-          let content = $(contactid).find('textarea[name="message"]').val()
-          let userName = $(contactid).find('input[name="fname"]').val() + ' ' + $(contactid).find('input[name="lname"]').val();
-          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :'+userName+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span>:'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
-          let data1 = {
-              "to": to_email,
-              "subject": subject,
-              "body": body
-          };
-           $.ajax({
-              url: './assets/project-details.json',
-              dataType: 'json',
-              success: function(data) {
-                  axios({
-                      method: 'post',
-                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                      data: data1,
-                      config: {
-                          headers: {
-                              "contentType": "application/json"
-                          }
-                      }
-                  }).then((res) => {
-                      // console.log("res", res.data.success)
-                      showSuccessMessage(res.data.success);
-                      form.reset();
-                      // alert(res.data.success)
-                  }).catch((err) => {
-                      console.log("err", err)
-                      showErrorMessage(err);
-                      form.reset();
-                  })
-              }
-          })
-        },
-    });
-  })
+    } catch (e) {
+        console.log(e)
+    }
 
-} catch (e) {
-  console.log(e)
-}
+    //Contact 8
+    try {
+        // $(document).ready(() => {
+        let contactid = '#frmContact8'
 
-//Contact 10
-try {
-  $(document).ready(() => {
-      let contactid = '#frmContact10'
+        $('form#frmContact8').validate({
+            rules: {
+                "fname": "required",
+                "lname": "required",
+                "email": "required",
+                "subject": "required",
+                "message": "required"
+            },
+            messages: {
+                "fname": "Enter Valid First Name!",
+                "lname": "Enter Valid Last Name!",
+                "email": "Enter Valid Email ID!",
+                "subject": "Enter Valid Subject!",
+                "message": "Enter Valid Content!"
+            },
+            errorElement: "li",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.closest("div"));
+                $(element).closest('div').find('ul').addClass('red')
+            },
+            errorLabelContainer: "#errors",
+            wrapper: "ul",
+            submitHandler: function(form) {
+                // form.preventDefault();
+                let to_email = $(contactid + "> fcontact").attr("email")
+                let email = $(contactid).find('input[name="email"]').val()
+                let subject = $(contactid).find('input[name="subject"]').val()
+                let content = $(contactid).find('textarea[name="message"]').val()
+                let userName = $(contactid).find('input[name="fname"]').val() + ' ' + $(contactid).find('input[name="lname"]').val();
+                let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Name</span> :' + userName + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :' + email + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span>:' + content + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+                let data1 = {
+                    "to": to_email,
+                    "subject": subject,
+                    "body": body
+                };
+                $.ajax({
+                    url: './assets/project-details.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        axios({
+                            method: 'post',
+                            url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                            data: data1,
+                            config: {
+                                headers: {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }).then((res) => {
+                            // console.log("res", res.data.success)
+                            showSuccessMessage(res.data.success);
+                            form.reset();
+                            // alert(res.data.success)
+                        }).catch((err) => {
+                            console.log("err", err)
+                            showErrorMessage(err);
+                            form.reset();
+                        })
+                    }
+                })
+            },
+            // });
+        })
 
-      $('form#frmContact10').validate({
-        rules: {
-              "email": "required",
-              "subject": "required",
-              "message": "required"
-        },
-        messages: {
-          "email": "Enter Valid Email ID!",
-          "subject": "Enter Valid Subject!",
-          "message": "Enter Valid Content!"
-        },
-        errorElement: "li",
-        errorPlacement: function(error, element) {
-          error.appendTo(element.closest("div"));
-          $(element).closest('div').find('ul').addClass('red')
-        },
-        errorLabelContainer: "#errors",
-        wrapper: "ul",
-        submitHandler: function(form) {
-          // form.preventDefault();
-          let to_email = $(contactid + "> fcontact").attr("email")
-          let email = $(contactid).find('input[name="email"]').val()
-          let subject = $(contactid).find('input[name="subject"]').val()
-          let content = $(contactid).find('textarea[name="message"]').val()
-          let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :'+email+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span>:'+content+'</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
-          let data1 = {
-              "to": to_email,
-              "subject": subject,
-              "body": body
-          };
-           $.ajax({
-              url: './assets/project-details.json',
-              dataType: 'json',
-              success: function(data) {
-                  axios({
-                      method: 'post',
-                      url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
-                      data: data1,
-                      config: {
-                          headers: {
-                              "contentType": "application/json"
-                          }
-                      }
-                  }).then((res) => {
-                      // console.log("res", res.data.success)
-                      showSuccessMessage(res.data.success);
-                      form.reset();
-                  }).catch((err) => {
-                      console.log("err", err)
-                      showErrorMessage(err);
-                      form.reset();
-                  })
-              }
-          })
-        },
-    });
-  })
+    } catch (e) {
+        console.log(e)
+    }
 
-} catch (e) {
-  console.log(e)
-}
+    //Contact 10
+    try {
+        // $(document).ready(() => {
+        let contactid = '#frmContact10'
+
+        $('form#frmContact10').validate({
+            rules: {
+                "email": "required",
+                "subject": "required",
+                "message": "required"
+            },
+            messages: {
+                "email": "Enter Valid Email ID!",
+                "subject": "Enter Valid Subject!",
+                "message": "Enter Valid Content!"
+            },
+            errorElement: "li",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.closest("div"));
+                $(element).closest('div').find('ul').addClass('red')
+            },
+            errorLabelContainer: "#errors",
+            wrapper: "ul",
+            submitHandler: function(form) {
+                // form.preventDefault();
+                let to_email = $(contactid + "> fcontact").attr("email")
+                let email = $(contactid).find('input[name="email"]').val()
+                let subject = $(contactid).find('input[name="subject"]').val()
+                let content = $(contactid).find('textarea[name="message"]').val()
+                let body = '<body> <div> <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%;"> <tbody> <tr> <td style="border:1px solid #ddd;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;"> <div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td style=" font-size: 20px;color: red;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Contact Us</span> </td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div><div style="Margin:0px auto;max-width:600px;"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;"> <tbody> <tr> <td style="direction:ltr;font-size:0px;padding:10px 20px 10px;text-align:center;vertical-align:top;"> <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> <mj-column> <tbody> <tr> <td align="left" valign="top" width="20"></td><td align="left" valign="top" width="550"> <table border="0" cellspacing="0" cellpadding="0" width="100%"> <tbody> <tr> <td style="border: 1px solid #C2C2C2;" align="left" valign="top" bgcolor="#FFF"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left" valign="middle" width="20"></td><td align="left" valign="middle"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td align="left " valign="top" height="15"></td></tr><tr> <td align="left " valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="0"> <tbody> <tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Email Address</span> :' + email + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;line-height: 30px;" align="left " valign="top"><span style="font-weight: bold;">Message</span>:' + content + '</td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"><span style="font-weight: bold;"></span> </td></tr><tr> <td style=" font-size: 13px;color: red;line-height: 20px;" align="center " valign="top"><span style="font-weight: bold;">We will direct your request to the appropriate department and someone will get back to you shortly.</span> </td></tr><tr> <td style=" font-size: 13px;color: #404040;height: 30px;" align="left " valign="top"> </td></tr></tbody> </table> </td></tr><tr> <td align="left" valign="top" height="15"></td></tr></tbody> </table> </td><td align="left" valign="middle" width="25"></td></tr></tbody> </table> </td></tr></tbody> </table> </td><td align="left" valign="top" width="20"></td></tr></tbody> </mj-column> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </div></div></body>'
+                let data1 = {
+                    "to": to_email,
+                    "subject": subject,
+                    "body": body
+                };
+                $.ajax({
+                    url: './assets/project-details.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        axios({
+                            method: 'post',
+                            url: 'https://api.' + data[0].domainkey + '/vmailmicro/sendemaildata',
+                            data: data1,
+                            config: {
+                                headers: {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }).then((res) => {
+                            // console.log("res", res.data.success)
+                            showSuccessMessage(res.data.success);
+                            form.reset();
+                        }).catch((err) => {
+                            console.log("err", err)
+                            showErrorMessage(err);
+                            form.reset();
+                        })
+                    }
+                })
+            },
+            // });
+        })
+
+    } catch (e) {
+        console.log(e)
+    }
+})

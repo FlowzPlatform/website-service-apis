@@ -25,7 +25,7 @@ $(document).ready(async function(){
                   for (let [key,tagRes] of responseTagList.entries()) {
                       categoryHtml1 = categoryHtml.replace("#data.tagLink#","productTags.html?locale=en_us&tid="+tagRes.id)
                       categoryHtml1 = categoryHtml1.replace("#data.image#",tagRes.tag_icon)
-                      categoryHtml1 = categoryHtml1.replace("#data.tagName#",tagRes.tag_name)
+                      categoryHtml1 = categoryHtml1.replace(/#data.tagName#/g,tagRes.tag_name)
                       catHtml +=categoryHtml1
                   }
                   $(".js-tag-listing").html(catHtml)
@@ -46,6 +46,18 @@ $(document).ready(async function(){
             }
         }
     }
+
+    // Awards
+    $(".owl-brand").closest(".row").css({"display": "flex"});
+    $(".owl-brand").owlCarousel({
+        stopOnHover : true,
+        navigation:true,
+        items : 7,
+        itemsDesktop: [1199, 7],
+        itemsDesktopSmall: [979, 7],
+        itemsTablet: [767, 2],
+        itemsMobile: [479, 2]
+    });
 
     //Featured PRODUCTS Listing
 
@@ -130,18 +142,6 @@ $(document).ready(async function(){
         }
     }
 
-    // Awards
-    $(".owl-brand").closest(".row").css({"display": "flex"});
-    $(".owl-brand").owlCarousel({
-        stopOnHover : true,
-        navigation:true,
-        items : 7,
-        itemsDesktop: [1199, 7],
-        itemsDesktopSmall: [979, 7],
-        itemsTablet: [767, 2],
-        itemsMobile: [479, 2]
-    });
-
 })
 
 let tagProductList = function(tagObj,productBoxHtml) {
@@ -159,7 +159,8 @@ let tagProductList = function(tagObj,productBoxHtml) {
                           ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                           if(productRes !== undefined)  {
 								if(productRes.images !== undefined) {
-                              		ProductImage = productRes.images[0].images[0].secure_url;
+                                      ProductImage = productRes.images[0].images[0].secure_url;
+                                      ProductImage = addOptimizeImgUrl(ProductImage,'w_210');
 								}
                           }
 
@@ -167,7 +168,7 @@ let tagProductList = function(tagObj,productBoxHtml) {
                           productBoxHtml1 = productBoxHtml1.replace('#data.sku#',productRes.sku)
                           productBoxHtml1 = productBoxHtml1.replace('#data.currency#','$')
                           productBoxHtml1 = productBoxHtml1.replace('#data.price#',productRes.min_price.toFixed(project_settings.price_decimal))
-                          productBoxHtml1 = productBoxHtml1.replace('#data.title#',productRes.product_name)
+                          productBoxHtml1 = productBoxHtml1.replace(/#data.title#/g,productRes.product_name)
                           productBoxHtml1 = productBoxHtml1.replace(/#data.tagSlug#/g,responseTag[0].tag_slug)
                           productBoxHtml1 = productBoxHtml1.replace(/#data.tagColor#/g,responseTag[0].tag_color)
                           productBoxHtml1 = productBoxHtml1.replace(/#data.tagName#/g,responseTag[0].tag_name)
