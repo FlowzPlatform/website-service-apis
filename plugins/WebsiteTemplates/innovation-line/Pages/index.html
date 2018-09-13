@@ -7,6 +7,15 @@ body {
     margin: 0;
 }
 
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
 :root {
     margin-top: 0px;
 }
@@ -17,6 +26,15 @@ body {
 
 .clearfix {
     clear: both;
+}
+
+.row {
+    display: table;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 .gjs-am-file-uploader > form {
@@ -322,12 +340,6 @@ div#slides + div#controls {
     min-height: 20px;
 }
 
-.c25690 {
-    display: block;
-    width: 100%;
-    min-height: 20px;
-}
-
 .c33826 {
     display: block;
     width: 100%;
@@ -354,17 +366,19 @@ div#slides + div#controls {
                     />
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css"
                     />
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
+                    defer="defer"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"
+                    defer="defer"></script>
                     <customslidercomponent aplay="5000" pagination prev="prev" next="next"
-                    slidespeed="200" ditems="5"
-                    class="c-slider c5097">
+                    slidespeed="200" ditems="5" class="c-slider c5097">
                         <div id="ifvwi"></div>
                     </customslidercomponent>
                 </div>
                 <div class="clearfix"></div>
-                    <reusecomponent class="c33826">{{> homePage id='tagCategory.partial' }}</reusecomponent>
-                        <reusecomponent class="c25640">{{> homePage id='featuredProduct.partial' }}</reusecomponent>
+                <reusecomponent class="c33826">{{> homePage id='tagCategory.partial' }}</reusecomponent>
+                <reusecomponent
+                class="c25640">{{> homePage id='featuredProduct.partial' }}</reusecomponent>
             </div>
         </div>
     </div>
@@ -372,4 +386,4 @@ div#slides + div#controls {
     <div class="clearfix"></div>
     <reusecomponent class="c16713">{{> homePage id='homeAdvertise.partial' }}</reusecomponent>
 </div>
-<script src="./assets/client-plugins/client-homepage.js"></script>
+<script src="./assets/client-plugins/client-homepage.js" defer="defer"></script>

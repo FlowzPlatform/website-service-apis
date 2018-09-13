@@ -1,0 +1,23 @@
+ <div class="js-share_product_html hide">
+ <div class="row">
+    <div class="col-sm-12">
+        <div class="share-icon-wrap">
+            <a href="javascript:void(0);" data-network="twitter" class="st-custom-button share-icon tt-share">
+                <span class='st_twitter_large' displayText='Twitter'>Twitter</span>
+            </a>
+            <a href="javascript:void(0);" data-network="facebook" class="st-custom-button share-icon fb-share">
+                <span class='st_facebook_large' displayText='Facebook'>Facebook</span>
+            </a>
+            <a href="javascript:void(0);" data-network="linkedin" class="st-custom-button share-icon ld-share">
+                <span class='st_linkedin_large' displayText='LinkedIn'>LinkedIn</span>
+            </a>
+            <a href="javascript:void(0);" data-network="googleplus" class="st-custom-button share-icon gp-share">
+                <span class="st_googleplus_large" displaytext="googleplus">Google plus</span>
+            </a>
+            <a href="javascript:void(0);" data-network="pinterest" class="st-custom-button share-icon in-share">
+                <span class='st_pinterest_large' displayText='Pinterest'>Pinterest</span>
+            </a>
+        </div>
+    </div>
+</div>
+</div>

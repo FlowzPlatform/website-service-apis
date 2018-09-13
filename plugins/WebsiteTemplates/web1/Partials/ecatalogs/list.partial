@@ -60,7 +60,7 @@ button.remove {
 <div class="js-list hide">
     <div class="col-sm-6 col-md-4 col-lg-3 col-xs-12 product-#ecatalog-id#">
         <div class="catelogue pro-box">
-            <div class="catelogue-image-wrap pro-image box01"><a href="#ecatalog-image-link#" target="_blank"><img src="#ecatalog-image#" class="img-responsive center-block"/></a>
+            <div class="catelogue-image-wrap pro-image box01"><a href="#ecatalog-image-link#" target="_blank"><img src="#ecatalog-image#" class="img-responsive center-block lazyLoad" alt="#ecatalog-title#" title="#ecatalog-title#" /></a>
             </div>
             <div class="pro-desc">
                 <div class="pro-button">

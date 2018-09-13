@@ -133,14 +133,14 @@ body {
     <aside class="quick-view-left">
         <div class="product-big-image">
             <div class="zoom product-gallery" id="c53481">
-                <img class="img-responsive virt-img" id="product_img" alt="Product image"
+                <img class="img-responsive virt-img lazyLoad" id="product_img" alt="Product image" title="Product image"
                 />
                 <div class="zoom-col"><i class="fa"></i>
                 </div>
             </div>
         </div>
         <div class="product-big-image-thumbnails js-image-gallery" id="c53515">
-            <div class="slide" id="c53543"><a class="product-thumb-img-anchar" href="javascript:void(0);"><img alt="product-image"/></a>
+            <div class="slide" id="c53543"><a class="product-thumb-img-anchar" href="javascript:void(0);"><img class="lazyLoad" alt="product-image" title="product-image" /></a>
                 <input
                 type="hidden" id="var_img_clr_id" value="clr_" />
             </div>

@@ -45,7 +45,8 @@
         "flyers_api_url":"https://api.flowzqa.tk/serverapi/flyers",
         "ecatalog_category_api_url":"https://api.flowzqa.tk/serverapi/ecatalog-category",
         "ecatalogs_api_url":"https://api.flowzqa.tk/serverapi/ecatalogs",
-		"webtools_api_url":"https://api.flowzqa.tk/serverapi/webtools",
-		"download_pdf_api_url": "https://api.flowzqa.tk/serverapi/download-pdf"
+        "webtools_api_url":"https://api.flowzqa.tk/serverapi/webtools",
+        "download_pdf_api_url": "https://api.flowzqa.tk/serverapi/download-pdf",
+        "category_api_url": "https://api.flowzqa.tk/serverapi/category"
       }
 }

@@ -103,7 +103,7 @@ body {
     </div>
 </div>
 <div class="bottom-footer">
-    <div class="container"><span class="pull-left">Powered by : <a href="#" class="footer_logo"><img src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/footer_logo.png" style="height:30px;width:auto;"/></a></span>
+    <div class="container"><span class="pull-left">Powered by : <a href="#" class="footer_logo"><img src="https://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/images/footer_logo.png" style="height:30px;width:auto;"/></a></span>
         <span
         class="col-xs-8 text-center">Copyright &copy; 2017 Key Innovations Inc. All rights reserved</span>
     </div>

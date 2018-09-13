@@ -18,57 +18,57 @@ ecatalogs = function () {
     return tmp;
 }();
 
-ecatalog_categories = function () {
-    let tmp = null;
-    $.ajax({
-        'async': false,
-        'type': "GET",
-        'global': false,
-        'dataType': 'json',
-        'url': project_settings.ecatalog_category_api_url+"?website="+website_settings['projectID'],
-        'success': function (res) {
-            tmp = res.data;
+// ecatalog_categories = function () {
+//     let tmp = null;
+//     $.ajax({
+//         'async': false,
+//         'type': "GET",
+//         'global': false,
+//         'dataType': 'json',
+//         'url': project_settings.ecatalog_category_api_url+"?website="+website_settings['projectID'],
+//         'success': function (res) {
+//             tmp = res.data;
+//         }
+//     });
+//     return tmp;
+// }();
+
+if(ecatalogs != null && ecatalogs.length > 0)
+{
+    ecatalog_data(ecatalogs);
+}
+else {
+    $('#myEcatalogs .listing').html('No records found.');
+}
+
+async function ecatalog_data(ecatalogs) {
+    showPageAjaxLoading();
+    await sleep(100);
+
+    let listHtml = $('#myEcatalogs .js-list').html();
+    $.each( ecatalogs, function( key, ecatalogArray ) {
+        let listHtml1 = "";
+
+        listHtml1 = listHtml.replace('#ecatalog-image#',ecatalogArray.ecatalog_image);
+
+        listHtml1 = listHtml1.replace(/#ecatalog-id#/g,ecatalogArray.id);
+
+        listHtml1 = listHtml1.replace(/#ecatalog-title#/g,ecatalogArray.ecatalog_name);
+
+        listHtml1 = listHtml1.replace(/#ecatalog-image-link#/g,ecatalogArray.ecatalog_image);
+
+        if(ecatalogArray.ecatalog_url == ""){
+            listHtml1 = listHtml1.replace(/#data.pdflink#/g,ecatalogArray.ecatalog_pdf);
+        }else{
+            listHtml1 = listHtml1.replace(/#data.pdflink#/g,ecatalogArray.ecatalog_url);
+        }
+        $('#myEcatalogs .listing').append(listHtml1);
+        if(ecatalogArray.ecatalog_url == ""){
+            $(".download-pdf-"+ecatalogArray.id).attr("download",true)
         }
     });
-    return tmp;
-}();
 
-ecatalog_data(ecatalogs);
-async function ecatalog_data(ecatalogs) {
-    if(ecatalogs != null && ecatalogs.length > 0)
-    {
-        showPageAjaxLoading();
-        await sleep(100);
-
-        let listHtml = $('#myEcatalogs .js-list').html();
-        $.each( ecatalogs, function( key, ecatalogArray ) {
-            let listHtml1 = "";
-
-            listHtml1 = listHtml.replace('#ecatalog-image#',ecatalogArray.ecatalog_image);
-
-            listHtml1 = listHtml1.replace(/#ecatalog-id#/g,ecatalogArray.id);
-
-            listHtml1 = listHtml1.replace('#ecatalog-title#',ecatalogArray.ecatalog_name);
-
-            listHtml1 = listHtml1.replace(/#ecatalog-image-link#/g,ecatalogArray.ecatalog_image);
-
-            if(ecatalogArray.ecatalog_url == ""){
-                listHtml1 = listHtml1.replace(/#data.pdflink#/g,ecatalogArray.ecatalog_pdf);
-            }else{
-                listHtml1 = listHtml1.replace(/#data.pdflink#/g,ecatalogArray.ecatalog_url);
-            }
-            $('#myEcatalogs .listing').append(listHtml1);
-            if(ecatalogArray.ecatalog_url == ""){
-                $(".download-pdf-"+ecatalogArray.id).attr("download",true)
-            }
-        });
-
-
-        hidePageAjaxLoading();
-    }
-    else {
-        $('#myEcatalogs .listing').html('No records found.');
-    }
+    hidePageAjaxLoading();
 }
 
 
