@@ -132,6 +132,95 @@ $(document).on('click','.js-inventory-submit', function (e) {
 });
 // inventory end
 
+// order sample start
+$(document).on('click','#sample_submit',function (e) {
+    $("form#sample_order_form").validate({
+        rules: {
+            "sample_fname" : "required",
+            "sample_lname" : "required",
+            "sample_phone" : {
+                required:true,
+                minlength: 10
+            },
+            "sample_email":{
+                required:true,
+                email: true
+            }
+        },
+        messages: {
+            "sample_fname" : "Enter valid first name.",
+            "sample_lname" : "Enter valid last name.",
+            "phone" : {
+                required : "Please enter phone number.",
+                minlength: "Please enter valid phone number."
+            },
+            "sample_email":{
+                required:"Please enter email",
+                email: "Please enter valid email."
+            }
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+            error.appendTo(element.closest("div"));
+            $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+            let form_data = $(form).serializeArray();
+            let orderSample = {};
+            let productJsonData = {};
+            let sampleColors = [];
+
+            $('input[name^="sample_quantity"]').each(function() {
+                let qty = $(this).val();
+                if(Math.floor(qty) == qty && $.isNumeric(qty)) {
+                    let clr = $(this).closest('tr').find('.js_color_checkbox').val();
+                    sampleColors.push({'color':clr,'qty':qty});
+                }
+            });
+            
+            for (var input in form_data){
+                let value = form_data[input]['value'];
+                orderSample[form_data[input]['name']] = value;
+            }
+            orderSample['sampleColors'] = sampleColors;
+
+            delete orderSample['sample_quantity[]'];
+            delete orderSample['sample_submit'];
+
+            productJsonData['form_data'] = orderSample;
+            productJsonData['website_id'] = website_settings['projectID'];
+
+            //console.log('productJsonData == ',productJsonData)
+
+            // $.ajax({
+            //     type : 'POST',
+            //     url : project_settings.request_quote_api_url,
+            //     data : productJsonData,
+            //     cache: false,
+            //     dataType : 'json',
+            //     success : function(response_data) {
+            //         if(response_data!= "") {
+            //             hidePageAjaxLoading()
+            //             showSuccessMessage("Email Sent Successfully.");
+            //             window.location = "orderSampleSuccess.html";
+            //             return false;
+            //         }
+            //         else if(response_data.status == 400) {
+            //             hidePageAjaxLoading()
+            //             showErrorMessage("Internal Server Error.");
+            //             return false;
+            //         }
+            //     }
+            // });
+        
+            return false;
+        }
+    }).form()
+});
+// order sample end
+
 $(document).on('click','.send-email-product', function (e) {
     $('form#email_product').validate({
         rules: {
