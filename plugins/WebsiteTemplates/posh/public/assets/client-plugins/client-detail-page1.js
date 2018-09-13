@@ -81,7 +81,33 @@ $(document).ready( async function(){
     $('#product_img').data("orig-img",productImageUrl)
 
     $('.js-product_sku').html(ProductSku);
-    
+
+    // product colors
+    if(productDetails.attributes.colors != undefined && productDetails.attributes.colors.length > 0) {
+        let sampleColorHtml = '';
+        $('.sample_color_append').html('');
+        let colorsHexVal = await replaceColorSwatchWithHexaCodes(productDetails.attributes.colors,"color");
+        $.each(productDetails.attributes.colors, function(index_color,element_color){
+            let colorVal = element_color.toLowerCase();
+            colorVal = colorVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
+            
+            let element_color_style = "background-color:"+element_color+";"
+            if(colorsHexVal != null && colorsHexVal[element_color] != undefined){
+                if(typeof colorsHexVal[element_color].hexcode != 'undefined'){
+                    element_color_style = "background-color:"+colorsHexVal[element_color].hexcode+";"
+                }
+                else if (typeof colorsHexVal[element_color].file != 'undefined') {
+                    element_color_style = "background-image:url("+colorsHexVal[element_color].file.url+");"
+                }
+            }
+
+            //order sample start
+            sampleColorHtml += '<tr> <td> <div class="checkbox_color" style="'+element_color_style+'" title="'+element_color+'"> <input class="js_color_checkbox" type="checkbox" name="sample_color[]" id="sample_'+colorVal+'" value="'+element_color+'" data-hex-code="'+element_color+'" /> <label for="Decoration_'+colorVal+'"></label> </div></td><td> <input type="text" name="sample_quantity[]" class="input" placeholder="Enter Quantity"> </td></tr>';
+            //order sample end
+        });
+
+        $('.sample_color_append').html(sampleColorHtml);
+    }
 
     // Add Variation Images
     let imageGallaryHtml = '<ul>';
