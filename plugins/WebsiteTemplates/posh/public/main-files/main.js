@@ -69,24 +69,26 @@ function getWebsiteInfoById(websiteId,webInfoAPi) {
 }
 
 async function getProductDetailById(id) {
-      let returnData = null;
-    	await axios({
-    			method: 'GET',
-    			url: project_settings.product_api_url+"?_id="+id,
-    			headers: {'vid' : website_settings.Projectvid.vid},
-    		})
-    	.then(response => {
-         productData = response.data;
-         if(typeof productData.hits.hits[0] != "undefined")
-         {
-          returnData = productData.hits.hits[0]._source;
-         }
-    		 return returnData
-    	})
-    	.catch(function (error){
+    showPageAjaxLoading();
+    let returnData = null;
+    await axios({
+        method: 'GET',
+        url: project_settings.product_api_url+"?_id="+id,
+        headers: {'vid' : website_settings.Projectvid.vid},
+    })
+    .then(response => {
+        hidePageAjaxLoading();
+        productData = response.data;
+        if(typeof productData.hits.hits[0] != "undefined")
+        {
+        returnData = productData.hits.hits[0]._source;
+        }
+        return returnData
+    })
+    .catch(function (error){
 
-    	})
-    	return returnData;
+    })
+    return returnData;
 }
 
 async function getProductDetailBySource(id,source) {

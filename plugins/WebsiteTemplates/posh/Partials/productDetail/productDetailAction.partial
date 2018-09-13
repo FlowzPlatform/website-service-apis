@@ -73,6 +73,7 @@ body {
             <li><a href="javascript:void(0);" id="download_art_template" target="_blank"><i class="strip download-img-strip"></i>Art Template</a></li>
             <li><a href="javascript:void(0);" id="download_gcc_template" target="_blank"><i class="strip download-img-strip"></i>Safety Document</a></li>
             <li><a href="javascript:void(0);" id="download_special_pricing" target="_blank"><i class="strip download-img-strip"></i>Special Pricing</a></li>
+            <li><a href="javascript:void(0);" id="js-check-inventory" data-toggle="modal" data-target="#checkInventory"><i class="strip inventory-strip"></i>Check Inventory</a></li>
             <li class="hide">
                 <a href="javascript:void(0);" id="js-share_product" target="_blank"><i class="strip share-strip"></i>Share Product</a>
             </li>
@@ -221,4 +222,49 @@ body {
             <a class="btn-default" href="javascript:void(0)" data-toggle="modal" aria-label="Close" data-dismiss="modal"> Close </a>
         </div>
     </div>
+</div>
+
+<div id="checkInventory" role="dialog" class="modal fade model-popup-black">
+    <div class="modal-dialog">
+		<div class="modal-content">
+            <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-label="Close">&times;</a>
+			<div class="modal-header">
+				<h1 class="modal-title" ><i class="strip inventory-popup-strip"></i> Inventory look-up</h1>
+			</div>
+			<div class="modal-body">
+					<div class="inventory-main-block">
+					<table class="table table-head inventory-table table-responsive">
+	                    <tbody>
+	                    	<tr>
+	                            <th>Color </th>
+	                            <th>Quantity </th>
+	                            <th>Check Inventory </th>
+	                        </tr>
+	                    </tbody>
+	               	</table>
+	                <table class="table table-body inventory-table table-responsive">
+	                    <tbody>
+		                    <tr>
+		                        <td>
+		                            <div class="dropdown open">
+		                                <div class="dropdown-toggle" data-toggle="dropdown">
+		                                    <div class="color-block js-current-color"></div>
+		                                    <span class="caret"></span>
+		                                </div>
+		                                <ul class="dropdown-menu animated fadeIn js-inventory-colors" role="menu" aria-labelledby="dropdownMenu1">
+		                                </ul>
+		                            </div>
+		                        </td>
+		                        <td><input type="text" name="text" class="input js-inventory-quantity" placeholder="Enter Quantity"> </td>
+		                        <td class="inventry-btn"><input type="submit" class="btn-default js-inventory-submit" value="Check"> </td>
+		                    </tr>
+	                	</tbody>
+	                </table>
+                    <div class="inventory-msg">
+                        <span class="js-inventory-msg"></span>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
