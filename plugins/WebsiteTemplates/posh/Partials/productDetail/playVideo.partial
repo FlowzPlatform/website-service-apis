@@ -1,0 +1,8 @@
+<div class="js-play_video_block hide">
+ 	<div class="embed-main-block">
+		<div class="play-video-block">
+			
+		</div>
+		<div class="play-video-shw"></div>
+	</div>
+</div>

@@ -71,25 +71,27 @@ function getWebsiteInfoById(websiteId,webInfoAPi) {
 
 // console.log("website_settings",website_settings);
 async function getProductDetailById(id) {
-      let returnData = null;
-    	await axios({
-    			method: 'GET',
-    			url: project_settings.product_api_url+"?_id="+id,
-    			headers: {'vid' : website_settings.Projectvid.vid},
-    		})
-    	.then(response => {
-         productData = response.data;
-        //  console.log("productData",productData);
-         if(typeof productData.hits.hits[0] != "undefined")
-         {
-          returnData = productData.hits.hits[0]._source;
-         }
-    		 return returnData
-    	})
-    	.catch(function (error){
+    showPageAjaxLoading();
+    let returnData = null;
+    await axios({
+        method: 'GET',
+        url: project_settings.product_api_url+"?_id="+id,
+        headers: {'vid' : website_settings.Projectvid.vid},
+      })
+    .then(response => {
+        hidePageAjaxLoading();
+        productData = response.data;
+      //  console.log("productData",productData);
+        if(typeof productData.hits.hits[0] != "undefined")
+        {
+        returnData = productData.hits.hits[0]._source;
+        }
+        return returnData
+    })
+    .catch(function (error){
 
-    	})
-    	return returnData;
+    })
+    return returnData;
 }
 
 async function getStreetLocation(ZipCode){
@@ -349,7 +351,7 @@ var init = function() {
           return tmp;
         }();
 
-        if(wishlist_values.length >0)
+        if(Array.isArray(wishlist_values) && wishlist_values.length >0)
         {
           let recentAddedInWishlist = [];
 
@@ -380,7 +382,7 @@ var init = function() {
         return tmp;
       }();
       //console.log('quickquote_values',quickquote_values)
-      if(quickquote_values.length >0)
+      if(Array.isArray(quickquote_values) && quickquote_values.length >0)
       {
         let recentAddedInQuotelist = [];
 
@@ -413,7 +415,7 @@ var init = function() {
       }();
       //console.log('compare_values',compare_values)
 
-      if(compare_values.length >0)
+      if(Array.isArray(compare_values) && compare_values.length >0)
       {
         let recentAddedInComparelist = [];
 

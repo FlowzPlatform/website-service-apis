@@ -40,7 +40,7 @@ let tagInfo = function () {
     return tmp;
 }();
 
-if(tagInfo.length > 0) {
+if(Array.isArray(tagInfo) && tagInfo.length > 0) {
     let tagHtml = "";
     $.each( tagInfo, function( key, tagArray ) {
         tagHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="productTags.html?locale=en_us&tid='+tagArray.id+'" target="_blank"><img src="'+tagArray.tag_icon+'" class="img-responsive center-block lazyLoad" alt="'+tagArray.tag_name+'" title="'+tagArray.tag_name+'"> </a> </div></div><div class="pro-desc" style="min-height:0"> <a href="productTags.html?locale=en_us&tid='+tagArray.id+'" target="_blank"> '+tagArray.tag_name+' </a></div><div class="clearfix"></div></div></div>';

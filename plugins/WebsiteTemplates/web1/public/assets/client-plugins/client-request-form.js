@@ -176,28 +176,28 @@ let ecatalogs = function () {
 	});
 	return tmp;
 }();
-ecatalog_data(ecatalogs);
+
+if(ecatalogs != null && ecatalogs.length > 0) {
+		ecatalog_data(ecatalogs);
+}
 
 function ecatalog_data(ecatalogs) {
-	if(ecatalogs != null && ecatalogs.length > 0)
-	{
-			let listHtml = $('#ecatalog_list .js-list').html();
-			$.each( ecatalogs, function( key, ecatalogArray ) {            
-					let listHtml1 = "";
+		let listHtml = $('#ecatalog_list .js-list').html();
+		$.each( ecatalogs, function( key, ecatalogArray ) {            
+				let listHtml1 = "";
 
-					listHtml1 = listHtml.replace('#ecatalog-image#',ecatalogArray.ecatalog_image);
+				listHtml1 = listHtml.replace('#ecatalog-image#',ecatalogArray.ecatalog_image);
 
-					listHtml1 = listHtml1.replace(/#ecatalog-id#/g,ecatalogArray.id);
-					
-					listHtml1 = listHtml1.replace(/#ecatalog-title#/g,ecatalogArray.ecatalog_name);
-													
-					listHtml1 = listHtml1.replace(/#ecatalog-image-link#/g,ecatalogArray.ecatalog_image);
+				listHtml1 = listHtml1.replace(/#ecatalog-id#/g,ecatalogArray.id);
+				
+				listHtml1 = listHtml1.replace(/#ecatalog-title#/g,ecatalogArray.ecatalog_name);
+												
+				listHtml1 = listHtml1.replace(/#ecatalog-image-link#/g,ecatalogArray.ecatalog_image);
 
-					listHtml1 = listHtml1.replace(/#ecatalog-pdf-link#/g,ecatalogArray.ecatalog_pdf);
-					
-					$('#ecatalog_list .listing').append(listHtml1);
-			});
-	}
+				listHtml1 = listHtml1.replace(/#ecatalog-pdf-link#/g,ecatalogArray.ecatalog_pdf);
+				
+				$('#ecatalog_list .listing').append(listHtml1);
+		});
 }
 
 //end
