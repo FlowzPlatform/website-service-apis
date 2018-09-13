@@ -1,4 +1,4 @@
-<div>
+<header>
     <link href="./assets/css/base.css" rel="stylesheet" type="text/css" />
     <link href="https://res.cloudinary.com/flowz/raw/upload/v1533193176/websites/distributor/css/bootstrap-multiselect.css"
     rel="stylesheet" type="text/css" />
@@ -188,6 +188,6 @@
             
         </div>
     </div>
-</div>
+</header>
 
 

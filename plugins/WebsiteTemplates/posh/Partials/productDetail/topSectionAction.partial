@@ -1,0 +1,49 @@
+<div class="std_text2">
+    <div class="buttonRow">
+        <a href="javascript:void(0);" class="myButton" id="js-check-inventory" data-toggle="modal" data-target="#checkInventory">Check Inventory</a>
+        <a href="#" id="shippingEstButton" class="myButton" data-toggle="modal" data-target="#shipping-estimator">Shipping Estimator</a>
+        <div id="bySampleLink"></div>
+        <a href="javascript:void(0);" id="js-order-sample" data-toggle="modal" data-target="#orderSample" class="myButton">Order Sample</a>                
+        <style>
+        .virtual-button {
+            background: #ee0000!important;
+            text-align: center;
+            min-width: 139px;
+            min-height: 29px;
+            padding: 8px;
+            color: #fff !important;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            position: absolute;
+            top: 79px;
+            right: 97px;
+            left: auto;
+            border-radius: 4px;
+            max-width: 21px;
+            background-color: #ee0000;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-weight: bold;
+            font-family: Arial;
+            font-size: 13px;
+            padding: 6px 20px;
+            margin-top: 5px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #854629;
+            text-transform: capitalize;
+}
+        </style>
+        <div id="ob-virtualmarketingcart">
+            <input type="hidden" value="DW-5366" id="ob-virtualmarketingcart-sku">
+            <input type="hidden" value="1331" id="ob-virtualmarketingcart-supplier">
+            <input type="hidden" value="en_us" id="ob-virtualmarketingcart-culture">
+            <input type="button" style="display:none" class="ob-btvirtualloadcontent">
+            <input type="hidden" id="virtual_product_id" value="5b8534db85eff4b43a02bb23"><a class="opn obv-modale-open virtual-button" data-toggle="modal" href="javascript:void(0);" data-target=".obvirtual-modal-div" onclick="javascript:openVirtualTool()" id="virtual_btn"><i class="fa fa-paint-brush"></i>Virtual</a><div id="virtual_bg_site" class="bg_site"><div id="uploadModal" data-backdrop="static" class="modal fade obvirtual-modal-div" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-keyboard="false"></div></div></div>
+    </div>
+</div>
