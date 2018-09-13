@@ -1,206 +1,151 @@
-<div class="container-fluid main">
-        <div class="innerpage ob-product-detail-page">
-            <div class="breadcrumb">
-                <ul>
-                    <li><a href="index.php">Home</a><i class="fa fa-angle-right fa-fw"></i></li>
-                    <li><strong>#data.title#</strong></li>
-                </ul>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-left">
-                <reusecomponent class="c22805">{{> productDetail id='productDetailLeft.partial' }}</reusecomponent>   
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-right">
-                <div id="title" class="title-block">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
-                            <h1 class="heading-2">#data.product_name#</h1>
-                        </div>
-            
-                    </div>
-            
-                </div>
+<style>
+* {
+    box-sizing: border-box;
+}
 
-                <div class="colorSkus">
-                    <div class="colorBoxTitle">
-                        <strong>Item #:</strong>
-                    </div>
-                    <div class="colorBoxItems">
-                        <div class="colorItem js-product_sku">#data.sku#</div>
-                    </div>
-            
-                </div>
-            
-                <div class="short-description-no-box">
-                    <div class="std_text2">
-                        <div class="buttonRow">
-                            <a href="#" id="checkInv" class="myButton" data-toggle="modal" data-target="#inventory-look">Check Inventory</a>
-                            <a href="#" id="shippingEstButton" class="myButton" data-toggle="modal" data-target="#shipping-estimator">Shipping Estimator</a>
-                            <div id="bySampleLink"></div>
-                            <a href="javascript:void(0);" id="js-order-sample" data-toggle="modal" data-target="#orderSample" class="myButton">Order Sample</a>
-                            <a class="opn obv-modale-open myButton" data-toggle="modal" href="javascript:void(0);" data-target=".obvirtual-modal-div" onclick="javascript:openVirtualTool()" id="virtual_btn">Virtual Sample</a>
-                            <!-- Virtual Code -->
-                            <div id="ob-virtualmarketingcart">
-                                     <input type="hidden" value="DW-5366" id="ob-virtualmarketingcart-sku">
-                                     <input type="hidden" value="1331" id="ob-virtualmarketingcart-supplier">
-                                     <input type="hidden" value="en_us" id="ob-virtualmarketingcart-culture">
-                                     <input type="button" style="display:none" class="ob-btvirtualloadcontent">
-                                     <input type="hidden" id="virtual_product_id" value="5b8534db85eff4b43a02bb23">
-                                    <div id="virtual_bg_site" class="bg_site"><div id="uploadModal" data-backdrop="static" class="modal fade obvirtual-modal-div" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-keyboard="false">
+body {
+    margin: 0;
+}
 
-                                    </div>
-                                </div>
-                            </div>
-                                
-                            <!-- EO Virtual Code -->
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <div>
-                    <div class="product-section-box dec-price">
-                        <h2 class="heading-block no-tag">Decorated  Pricing<span class="img-b"> <img class="img-responsive" src="http://www.ameriknmx.com/media/icon/usflag.png"></span> <a href="#" class="myButton setup" data-toggle="modal" data-target="#setup">Setup Charges</a></h2>
-            
-                        <div class="quantity-table">
-                            <div class="quantity-table-title">
-                                <div class="table-heading">Qty</div>
-                                <div class="table-content">(5r)</div>
-                            </div>
-                            <div class="quantity-table-disc">
-                                <div class="quantity-table-col owl-carousel owl-theme" id="c204962">
-                                    
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <span>
-                            <strong>Includes: </strong>One color one location screen or pad print <br>
-                            <strong> Options: </strong>
-                        </span>
-                    </div>
-                    <div class="product-section-box det-pop">
-                        <div class="short-description2">
-                            <div class="overview-title">Actions</div>
-                            <div class="product-functions">
-                                <div class="productFL">
-                                    <div class="pfunction"><img src="http://www.ameriknmx.com/media/icon/salesheet.png"><a href="">Sell Sheet</a></div>
-                                    <div class="pfunction"><img src="http://www.ameriknmx.com/media/icon/art.png"><a href="http://www.ameriknmx.com/media/art-template/DW-5266.pdf" target="popup" onclick="window.open('http://demo.officebrain.com/html/PoshXessories/DW-5266.pdf', 'popup', 'width=600,height=600'); return false;">Art Template</a></div>
-                                    <div class="pfunction"><img src="http://www.ameriknmx.com/media/icon/images.png"><a href="http://demo.officebrain.com/html/PoshXessories/productimages.zip">&nbsp;Hi-Res Images</a></div>
-            
-                                </div>
-                                <div class="productFL">        
-                                    <div class="pfunction"><img src="http://www.ameriknmx.com/media/icon/emailicon.png">		                        
-                                        <a href="javascript:void(0);" id="js-email-product" data-toggle="modal" data-target="#emailProduct">
-                                            Email This Page
-                                        </a>
-                                    </div>
-                                    <div class="pfunction"><img src="http://www.ameriknmx.com/media/icon/print.png">
-                                        <a href="javascript:void(0)" class="js-product-detail-print-product">
-                                            Print Page
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-            
-                        </div>
-                    </div>
-            
-                </div>
-                <div class="product-section-box overview">
-                    <div class="panel-group" id="product_detail_product-description-tab" role="tablist" aria-multiselectable="true">
-                        <!-- HEADING -->
-                        <div class="panel-heading open" role="tab">
-                            <h2 class="heading-block over">Overview</h2>  </div>
-                        <!-- HEADING -->
-                        <!-- CONTENT -->
-                        <div id="product_detail_product-description-tab-block" class="panel-collapse collapse in" role="tabpanel" style="height: auto;">
-                            <div class="panel-body">
-                                <div class="inner-tab-content">
-            
-                                    <ul class="info">
-                                        <p class="js-product_description_text">Overview</p>
-                                    </ul>
-            
-                                </div>
-            
-                            </div>
-                        </div>
-            
-                        <div class="specifiction">
-                            <h2 class="heading-block">Specifications</h2>
-                            <ul class="spec js-specification">
-                            </ul>
-                        </div>
-                        <div class="prod-shipp js-product-shipping-text">
-                            <h2 class="heading-block">Production &amp; Shipping</h2>
-                        </div>
-                        <!-- CONTENT -->
-                    </div>
-                </div>
-            
-            
-            </div>
+:root {
+    margin-top: 0px;
+}
+
+:root {
+    margin-top: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.gjs-am-file-uploader > form {
+    min-height: 325px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+#product_detail_product-description-tab-block {
+    height: auto;
+}
+
+#ivmhc {
+    height: auto;
+}
+
+.c11521 {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+}
+</style>
 
 
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="product-section-box decoration-option">
-                        <div class="panel-group">
-                            <!-- HEADING -->
-                            <div class="panel-heading open" role="tab">
-                                <h2 class="heading-block over">Decoration Options <a href="#" class="myButton setup" data-toggle="modal" data-target="#setup">Setup Charges</a></h2>  </div>
-                            <!-- HEADING -->
-                            <!-- CONTENT -->
-                            <div class="panel-collapse collapse in" role="tabpanel" style="height: auto;">
-                                <div class="panel-body">
-                                    <div class="inner-tab-content js-decoration_option">
-                                        
-                                        <div class="col-lg-4 col-sm-6 col-md-3 col-xs-12">
-                                            <div class="specifiction">
-                                                <div class="decoMethodBox">
-                                                    <strong>Method:</strong>&nbsp;Screen Print Set up: $55.00(v)/color<br>
-                                                    <strong>Location:</strong>&nbsp;Center<br>
-                                                    <strong>Max Colors:</strong>&nbsp;3, where applicable<br>
-                                                    <strong>Decoration Size:</strong>&nbsp;2 1/2"W x 2 1/4"H<br>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-md-3 col-xs-12">
-                                            <div class="specifiction">
-                                                <div class="decoMethodBox">
-                                                    <strong>Method:</strong>&nbsp;Pad Print Set up: $55.00(v)/color<br>
-                                                    <strong>Location:</strong>&nbsp;Center<br>
-                                                    <strong>Max Colors:</strong>&nbsp;2<br>
-                                                    <strong>Decoration Size:</strong>&nbsp;1 1/2"W x 2"H<br>
-                                                </div>
-                                            </div>
-                                        </div>        
-                                    </div>
-        
-                                </div>
-                            </div>
-        
-                          
-                            
-                            <!-- CONTENT -->
-                        </div>
-                    </div>
-                    </div>
 
-
-
+<div class="container main">
+    <div class="innerpage ob-product-detail-page">
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="index.php">Home</a><i class="fa fa-angle-right fa-fw"></i>
+                </li>
+                <li><strong>#data.title#</strong>
+                </li>
+            </ul>
         </div>
-        <div class="js-play_video_block hide">
-                <div class="embed-main-block">
-                   <div class="play-video-block">
-                       
-                   </div>
-                   <div class="play-video-shw"></div>
-               </div>
-           </div>
-           <script type="text/javascript" src="./assets/client-plugins/client-product-action.js" defer="defer"></script>
-</div>           
-
-<script type="text/javascript" src="https://res.cloudinary.com/flowz/raw/upload/v1519215927/websites/js/jquery.zoom.js" defer="defer"></script>
-<script type="text/javascript" src="https://res.cloudinary.com/flowz/raw/upload/v1519215927/websites/js/jquery.elevatezoom.js" defer="defer"></script>
-<script type="text/javascript" src="./assets/client-plugins/client-detail-page1.js" defer="defer"></script>
+        <div class="product-showcase row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-left">
+            <reusecomponent class="c22805">{{> productDetail id='productDetailLeft.partial' }}</reusecomponent>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-right">
+            <reusecomponent class="c313421">{{> productDetail id='titleSku.partial' }}</reusecomponent>
+            <div class="short-description-no-box"><reusecomponent class="c11521">{{> productDetail id='topSectionAction.partial' }}</reusecomponent></div>
+            <div class="clearfix"></div>
+            <div>
+                <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
+                <div
+                class="product-section-box det-pop">
+                    <div class="short-description2">
+                            <reusecomponent class="c9910">{{> productDetail id='productDetailAction.partial' }}</reusecomponent>
+                    </div>
+            </div>
+        </div>
+    <div class="product-section-box overview">
+        <div id="product_detail_product-description-tab" role="tablist" aria-multiselectable="true"
+        class="panel-group">
+            <div role="tab" class="panel-heading open">
+                <h2 class="heading-block over">Overview</h2>
+            </div>
+            <div id="product_detail_product-description-tab-block" role="tabpanel"
+            class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="inner-tab-content">
+                        <ul class="info">
+                            <p class="js-product_description_text">Overview</p>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="specifiction">
+                <h2 class="heading-block">Specifications</h2>
+                <ul class="spec js-specification"></ul>
+            </div>
+            <div class="prod-shipp js-product-shipping-text">
+                <h2 class="heading-block">Production & Shipping</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="product-section-box decoration-option">
+        <div class="panel-group">
+            <div role="tab" class="panel-heading open">
+                <h2 class="heading-block over">Decoration Options <a href="#" data-toggle="modal" data-target="#setup" class="myButton setup">Setup Charges</a></h2>
+            </div>
+            <div role="tabpanel" id="ivmhc" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="inner-tab-content js-decoration_option">
+                        <div class="col-lg-4 col-sm-6 col-md-3 col-xs-12">
+                            <div class="specifiction">
+                                <div class="decoMethodBox"><strong>Method:</strong> Screen Print Set up: $55.00(v)/color
+                                    <br/><strong>Location:</strong> Center
+                                    <br/><strong>Max Colors:</strong> 3, where applicable
+                                    <br/><strong>Decoration Size:</strong> 2 1/2"W x 2 1/4"H
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-md-3 col-xs-12">
+                            <div class="specifiction">
+                                <div class="decoMethodBox"><strong>Method:</strong> Pad Print Set up: $55.00(v)/color
+                                    <br/><strong>Location:</strong> Center
+                                    <br/><strong>Max Colors:</strong> 2
+                                    <br/><strong>Decoration Size:</strong> 1 1/2"W x 2"H
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="https://res.cloudinary.com/flowz/raw/upload/v1519215927/websites/js/jquery.zoom.js"
+defer="defer"></script>
+<script type="text/javascript" src="https://res.cloudinary.com/flowz/raw/upload/v1519215927/websites/js/jquery.elevatezoom.js"
+defer="defer"></script>
+<script type="text/javascript" src="./assets/client-plugins/client-detail-page1.js"
+defer="defer"></script>

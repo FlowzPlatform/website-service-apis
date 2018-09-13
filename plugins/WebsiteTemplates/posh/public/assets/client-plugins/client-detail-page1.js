@@ -81,8 +81,8 @@ $(document).ready( async function(){
     $('#product_img').data("orig-img",productImageUrl)
 
     $('.js-product_sku').html(ProductSku);
-
-    // product colors
+    
+    // product colors for sample order
     if(productDetails.attributes.colors != undefined && productDetails.attributes.colors.length > 0) {
         let sampleColorHtml = '';
         $('.sample_color_append').html('');
@@ -254,4 +254,47 @@ $(document).ready( async function(){
         {
             $("#js-show_play_video").parent().remove();
         }
+
+        //Webtools
+        axios({
+            method: 'GET',
+            url: project_settings.webtools_api_url+'?website='+website_settings['projectID']+'&sku='+ProductSku,
+        })
+        .then(async response => {
+            if(response.data.data.length > 0){
+                let webtoolData = response.data.data[0];
+
+                if(webtoolData.product_pdf != undefined && webtoolData.product_pdf != '') {
+                    $('#download_product_template').attr('href',webtoolData.product_pdf)
+                }
+                else {
+                    $('#download_product_template').parent('div').remove()
+                }
+
+                if(webtoolData.art_pdf != undefined && webtoolData.art_pdf != '') {
+                    $('#download_art_template').attr('href',webtoolData.art_pdf)
+                }
+                else {
+                    $('#download_art_template').parent('div').remove()
+                }
+
+                if(webtoolData.gcc_pdf != undefined && webtoolData.gcc_pdf != '') {
+                    $('#download_gcc_template').attr('href',webtoolData.gcc_pdf)
+                }
+                else {
+                    $('#download_gcc_template').parent('div').remove()
+                }
+
+                if(webtoolData.special_pricing != undefined && webtoolData.special_pricing != '') {
+                    $('#download_special_pricing').attr('href',webtoolData.special_pricing)
+                }
+                else {
+                    $('#download_special_pricing').parent('div').remove()
+                }
+            }
+            else {
+                $('#download_product_template, #download_art_template, #download_gcc_template, #download_special_pricing').parent('li').remove()
+            }
+        })
+        //End
 })
