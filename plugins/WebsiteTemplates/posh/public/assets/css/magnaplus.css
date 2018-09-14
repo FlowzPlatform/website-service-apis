@@ -1129,7 +1129,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Lato', sans-
 .menu-box .multiselect-container.dropdown-menu > li > a { padding: 5px 20px; border-bottom: none }
 .multiselect-container>li>a>label { padding: 0; line-height: 12px }
 .btn-group.mar_bot.open .dropdown-toggle { box-shadow: none }
-.menu-box .dropdown-menu.header-advace-search { box-shadow: none; border-top: #CCC 1px solid }
+.menu-box .dropdown-menu.header-advace-search { box-shadow: none; border-top: #CCC 1px solid;z-index: 99 !important}
 .ob-scroll-nav.open .nav>li, .ob-scroll-nav.open .position-inherit, .ob-scroll-nav.open .dropdown { position: static!important }
 .header-search.search-field.advance-search-wrap.dropdown { position: relative!important }
 .fliter-flag-list { margin-left: 0; margin-top: 0; width: 100%; display: table }
@@ -4814,7 +4814,7 @@ ul.product-wrap li {
 .top-advance-search .header-advace-search {
     top: 38px;
 }
-div#add-new-address .colorSkus{margin-top: 20px}
+/*div#add-new-address .colorSkus{margin-top: 20px}*/
 div#add-new-address .inp-parts .checkout-select-wrapper, div#add-new-address .inp-parts .checkout-select-wrapper select{    line-height: 23px !important;}
  div#add-new-address .modal-dialog.modal-lg {
     width: 650px;
@@ -4837,6 +4837,12 @@ div#add-new-address .inp-parts .checkout-select-wrapper, div#add-new-address .in
 .decoMethodBox {
     text-align: left;
     margin-bottom: 20px;
+}
+/*div#add-new-address table.table.table-body.inventory-table.table-responsive {
+    width: 294px;
+}*/
+table.ent-qua {
+    width: 48%;
 }
 /*END PRODUCT CATEGORY ITEM*/
  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -5018,11 +5024,21 @@ span.imprint-lbl-method{text-overflow: ellipsis;}
 .ob-contact-main-block input[type="reset"]{margin-top: 0px}
 .quantity-table .quantity-table-title{width: 23% !important;}
 .quick-view-left .product-big-image {width: 100% !important;}
-.search-in-dropdown {margin-top: 0px !important;margin-bottom: 25px}
+.search-in-dropdown {;margin-bottom: 25px}
 .ob-product-detail-right .quantity-table{width: 99%;}
 .ob-product-detail-right .quantity-table .quantity-table-disc {width: 77%;}
 .banner-box .cat-left-side {background: url(../images/Flyer-Add.jpg) 96% 85% no-repeat #bc252a;}
+ul.product-wrap li {
+    width: 17.8%;
 }
+.ob-product-detail-right .quantity-table{margin-top: 38px}
+
+.ui-advance-search a.header-search-medium{color: #FFF}
+.header-search.search-field.advance-search-wrap.dropdown{ WIDTH: 43% !important;}
+.dropdown.top-advance-search.advance-search-btn{width: 140px;}
+.top-advance-search.open .header-advace-search{    top: -73px;}
+}
+
 
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
@@ -5068,7 +5084,7 @@ header {position: relative !important;}
 .contry-logo img {max-width: 23px !important;max-height: 30px !important;}
 .ob-gosh-ua .upload-logo+div{width: 100% !important}
 .ob-catalog-block .pro-desc .pro-button ul li:first-child {width: auto !important;}
-.ob-product-detail-right .quantity-table .quantity-table-col.owl-carousel .owl-item {width: 58px !important;}
+/*.ob-product-detail-right .quantity-table .quantity-table-col.owl-carousel .owl-item {width: 58px !important;}*/
 .shipping-option p {min-width: 120px !important;}
 .shipping-option .ship-col-left .selection-common-box {width: 71% !important;}
 .color-selected-col {width: 161px !important;}
@@ -5085,6 +5101,16 @@ header {position: relative !important;}
 .col-lg-6.col-md-6.col-sm-5.col-xs-12.radio-but {width: 100%;}
 .banner-box .cat-left-side {background: url(../images/Flyer-Add.jpg) 96% 85% no-repeat #bc252a;}
 .quick-view-left .product-big-image{width: 100% !important}
+ul.product-wrap li {
+    width: 15%;
+}
+.ob-product-detail-right .quantity-table {
+    width: 100%;
+    margin-top: 38px;
+}
+.product-section-box.dec-price{width: 100%;}
+.product-section-box.det-pop{width: 100%;border-left: 1px solid #DDD}
+
 }
 
 
@@ -5168,7 +5194,21 @@ body.modal-open {overflow: hidden !important;position: fixed !important}
 .saved-searches-tab .tab-block .tab-content .table-list li{text-align: center;}
 #mainmenu-nav .navbar-toggle {padding: 0px !important;}
 .ui-advance-search a.header-search-medium{padding: 6px 0 8px !important}
-.nav-search-btn.sea-open .header-search-medium::after {bottom: -22px;}
+/*.nav-search-btn.sea-open .header-search-medium::after {bottom: -22px;}*/
+.info-menu ul {margin-top: 0;}
+ul.product-wrap li {width: 29%;}
+.middle-footer .col-lg-3{min-height: 0;border-right: 0}
+.ui-advance-search a.header-search-medium {
+    padding: 15px 0 8px !important;
+}
+.ui-menu-nav #mainmenu-nav{    margin-top: 10px;}
+.header-search.search-field.advance-search-wrap.dropdown > input{width: 100%}
+.detail-popup-block > ul > li {
+    width: 28.8%;
+}
+.product-section-box.det-pop,.product-section-box.dec-price{width: 100%}
+.product-section-box.det-pop{border-left: 1px solid #DDD}
+.ob-product-detail-right .quantity-table{margin-top: 45px}
 }
 @media (min-width:1100px) and (max-width: 2800px) {.shipping-option p{ min-width:103px;}}
 @media screen and (max-width:1024px){
@@ -5214,6 +5254,9 @@ body.modal-open {overflow: hidden !important;position: fixed !important}
     width: 16%;
     margin: 5px 4%;
 }
+#ob-virtualmarketingcart a,.myButton{min-width: 156px;}
+.virtual-button {right: 24px !important;top: 140px !important;}
+.product-section-box h2.over, .heading-block.no-tag, .ob-product-detail-page .common-title .most-popular-title{    padding: 8px 25px 8px 5px;;font-size: 15px}
  }
 @media (max-width: 560px){
 .upload-logo {width: 100%;}
@@ -5228,10 +5271,15 @@ body.modal-open {overflow: hidden !important;position: fixed !important}
 .my-logo-wrapper #media-library-list-page-container #mediaLibraryListTabContent .col-lg-4.col-md-4.col-sm-6 {width: 169px;padding-left: 5px;padding-right: 5px;float: none;display: inline-block;vertical-align: top;}
 .product-description .nav-tabs li {border: 1px #a7a7a7 solid !important;}
 .ob-product-detail-right .quantity-table .quantity-table-col.owl-carousel .owl-item {width: 58px !important;}
+
 }
 @media screen and (max-width:400px){
 .product-description .tab-content .shipping-method p {font-size: 13px;}
 .product-description .tab-content .shipping-method a.rush-service{font-size: 13px;padding-left: 0px}
+.ob-top-menu .info-menu.slidemenu{width: 100%}
+ .pro-desc .item-title{min-height: 64px;}
+ .pro-box .product-img-blk {height: 130px;}
+ ul.product-wrap li {width: 44%;}
 
 }
 @media screen and (max-width:374px){
