@@ -37,7 +37,7 @@ if(pid != null) {
           }
           
           if(!(recentViewedProducts.includes(pid))) {
-              if(recentViewedProducts.length > 5) {
+              if(recentViewedProducts.length > 6) {
                   recentViewedProducts.splice(0, 1);
               }
               recentViewedProducts.push(pid);
@@ -344,7 +344,7 @@ if(get_product_details != null && get_product_details != undefined) {
     }
     
     if(!(recentViewedProducts.includes(pid))) {
-        if(recentViewedProducts.length > 5) {
+        if(recentViewedProducts.length > 6) {
             recentViewedProducts.splice(0, 1);
         }
         recentViewedProducts.push(pid);
@@ -384,7 +384,10 @@ function recentlyViewedProducts(recentViewedProducts) {
                         let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
                         let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
 
-                        recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div></div>';
+                        // recentProductHtml += '<div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="price">'+productData.currency+' '+price+'</div></div><div class="clearfix"></div></div>';
+
+                        recentProductHtml += '<div class="pro-box "><div class="pro-image box01"><div class="product-img-blk"><a href="'+detailLink+'"><img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"></a></div></div><div class="pro-desc"><div class="item-code">Item# '+productData.sku+'</div><a href="'+detailLink+'" class="item-title">'+productData.product_name+'</a><div class="item-price"> '+productData.currency+' '+price+'</div><div class="clearfix"></div></div><div class="clearfix"></div></div>';
+
                     }
                     else {
                         let AIndex = recentLoop.indexOf(productId);

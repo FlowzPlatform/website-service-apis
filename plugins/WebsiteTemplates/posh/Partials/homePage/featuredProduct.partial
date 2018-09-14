@@ -38,7 +38,6 @@
                                             <div class="pro-button">
                                                 <ul>
                                                     <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-quote"><i class="fa fa-comment quote-icon"><span>,,</span></i></a></li>
-                                                    <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-wishlist"><i class="fa fa-heart fa-fw"></i></a></li>
                                                     <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li>
                                                 </ul>
                                             </div>

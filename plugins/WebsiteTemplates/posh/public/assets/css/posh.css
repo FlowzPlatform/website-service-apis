@@ -1571,7 +1571,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Lato', sans-
 .tab-block .nav-tabs > li.active { border-top: 2px #f5f5f5 solid; border-right: 2px #f5f5f5 solid; border-left: 2px #f5f5f5 solid; padding: 1px; margin-bottom: -2px }
 .tab-block .nav-tabs li a:hover { color: #e70000 }
 .tab-block .nav-tabs > li.active > a, .tab-block .nav-tabs > li.active > a:hover, .tab-block .nav-tabs > li.active > a:focus { background: #ececec; background: -moz-linear-gradient(top, #ececec 0%, #fdfdfd 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ececec), color-stop(100%, #fdfdfd)); background: -webkit-linear-gradient(top, #ececec 0%, #fdfdfd 100%); background: -o-linear-gradient(top, #ececec 0%, #fdfdfd 100%); background: -ms-linear-gradient(top, #ececec 0%, #fdfdfd 100%); background: linear-gradient(to bottom, #ececec 0%, #fdfdfd 100%);  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ececec', endColorstr='#fdfdfd', GradientType=0)
-margin: 0; border: none; color: #e70000 }
+;margin: 0; border: none; color: #e70000 }
 .tab-block .nav-tabs li a i.hot { background: url(../images/hot.png) no-repeat }
 .tab-block .nav-tabs li.active a i.hot, .tab-block .nav-tabs li.hover a i.hot { background: url(../images/hot-active.png) no-repeat }
 .tab-block .nav-tabs li a i.new { background: url(../images/new.png) no-repeat }
