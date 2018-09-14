@@ -155,7 +155,7 @@ $(document).ready( async function(){
         // QUANTITY PRICE TABLE START
         $(".quantity-table-col").owlCarousel({ 
             loop:false,
-            items:3,
+            items:5,
             responsiveClass:true,
             nav:true,
             responsive:{
