@@ -168,23 +168,49 @@ $(document).on('click','#sample_submit',function (e) {
         wrapper: "ul",
         submitHandler: function(form) {
             let form_data = $(form).serializeArray();
-            let orderSample = {};
-            let productJsonData = {};
+            let orderSample = productJsonData = {};
             let sampleColors = [];
+            let qtyTotal = singlePrice = 0;
 
             $('input[name^="sample_quantity"]').each(function() {
                 let qty = $(this).val();
                 if(Math.floor(qty) == qty && $.isNumeric(qty)) {
                     let clr = $(this).closest('tr').find('.js_color_checkbox').val();
                     sampleColors.push({'color':clr,'qty':qty});
+                    qtyTotal += parseInt(qty);
                 }
             });
+
+            if(get_product_details.pricing != undefined){
+                $.each(get_product_details.pricing, function(index,element){
+                    if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global") {
+                        $.each(element.price_range,function(index,element2){
+                            if(element2.qty.lte != undefined){
+                                if(qtyTotal >= element2.qty.gte && qtyTotal <= element2.qty.lte) {
+                                    singlePrice = parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                                }
+                            }
+                            else
+                            {
+                                if(qtyTotal >= element2.qty.gte) {
+                                    singlePrice = parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+            let samplePrice = parseFloat(singlePrice * qtyTotal).toFixed(project_settings.price_decimal);
             
             for (var input in form_data){
                 let value = form_data[input]['value'];
                 orderSample[form_data[input]['name']] = value;
             }
             orderSample['sampleColors'] = sampleColors;
+            orderSample['samplePrice'] = samplePrice;
+            orderSample['singlePrice'] = singlePrice;
+            orderSample['totalQty'] = qtyTotal;
 
             delete orderSample['sample_quantity[]'];
             delete orderSample['sample_submit'];

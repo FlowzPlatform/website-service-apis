@@ -47,6 +47,7 @@
         "ecatalogs_api_url":"https://api.flowzqa.tk/serverapi/ecatalogs",
         "webtools_api_url":"https://api.flowzqa.tk/serverapi/webtools",
         "download_pdf_api_url": "https://api.flowzqa.tk/serverapi/download-pdf",
-        "category_api_url":"https://api.flowzqa.tk/serverapi/category"
+        "category_api_url":"https://api.flowzqa.tk/serverapi/category",
+	"admin_email": "admin@cenacle.io"
       }
 }
