@@ -37,7 +37,7 @@
                                     <span class="login-text"><span>LOGIN</span></span>
                                 </a>
                             </li>
-                            <li class="log"><a href="javascript:void(0)">Register</a></li>
+                            <li class="log"><a href="signup.html">Register</a></li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>

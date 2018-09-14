@@ -67,64 +67,339 @@ body {
     margin-left: auto;
 }
 </style>
-
-
-
-
-<div class="cssImports"></div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-/>
-<section class="fdb-block">
-    <div class="signup-section">
-        <div class="innerpage">
-            <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                    <div class="fdb-box fdb-touch">
-                        <div class="row">
-                            <div class="col">
-                                <h1>Register</h1>
+<div class="container">
+    <div class="innerpage register-page">
+        <!--BREADCRUMB-->
+        <div class="breadcrumb">
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right fa-fw"></i>
+                </li>
+                <li>
+                    <strong>Register Account</strong>
+                </li>
+            </ul>
+        </div>
+        <!--END BREADCRUMB-->
+        <h1 class="main-title">
+            <i class="fa fa-user"></i> Register account
+        </h1>
+        <div class="row">
+            <form name="signUp" id="signUp">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 pull-right">
+                    <!--                    <h1 class="main-title"><i class="fa fa-user"></i>Create an account</h1>     -->
+                    <div class="ob-login-block">
+                        <div class="sub-form-box">
+                            <!--                            <p>Join our inner circle to receive sale previews, share your wishlist, track your orders, attend exclusive events and so much more...</p>-->
+                            <div class="rightloginBlock">
+                                <h1>Sign Up today and receive valuable benefits and information from Posh Xessories </h1>
+                                <!--                                <h2>Benefits include:</h2>-->
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-check" aria-hidden="true"></i>Sample Request
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check" aria-hidden="true"></i>Save Art
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check" aria-hidden="true"></i>Wish List
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check" aria-hidden="true"></i>Sample Requests - Tracking
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check" aria-hidden="true"></i>Upload Purchase Orders | PO Art Files
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-check" aria-hidden="true"></i>Create & Save Distributor & Client Friendly Flyers and Catalogs
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check" aria-hidden="true"></i>Exclusive Deals & Unlimited Time Offers
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check" aria-hidden="true"></i>Order Status
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check" aria-hidden="true"></i>And more
+                                    </li>
+                                </ul>
+                                <!--                              <a class="send-email" href="register.php">Register</a>-->
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col mt-4">
-                                <input class="form-control fullname" type="text" placeholder="Full Name"
-                                name="fullname" required="true" />
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col">
-                                <input class="form-control useremail" type="email" placeholder="Email"
-                                name="useremail" required="true" />
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col">
-                                <input class="form-control mb-1 userpass" type="password" placeholder="Password"
-                                name="userpass" required="true" />
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col">
-                                <input class="form-control mb-1 userpass2" type="password" placeholder="Confirm Password"
-                                name="userpass2" required="true" />
-                                <p class="text-right"><a href="login.html">Already have an account?</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col">
-                                <button class="btn user-signup" type="button">Submit</button>
-                            </div>
-                        </div>
-                        <div class="row mt-4 error-message hide">
-                            <div class="col red">Please enter valid data</div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <div class="ob-membership-info">
+                        <div class="sub-form-box">
+                            <h2>Membership Information</h2>
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label>ASI#</label>
+                                        <input type="text" name="ASI" data-original-title="asi" tabindex="1" class="input">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label>DISTRIBUTOR CENTRAL#</label>
+                                        <input type="text" name="DistributorCentral" data-original-title="upic" tabindex="1" class="input">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label>PPAI#</label>
+                                        <input type="text" name="PPAI" data-original-title="ppai" tabindex="1" class="input">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label>SAGE#</label>
+                                        <input type="text" name="SAGE" data-original-title="sage" tabindex="1" class="input">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!--Block1 -->
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
+                    <div class="ob-contact-user">
+                        <div class="sub-form-box">
+                            <h2>Company Information</h2>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group tab-marging">
+                                        <label>Company Name </label>
+                                        <input type="text" name="companyName" class="input" tabindex="17" data-original-title="Company Number">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group tab-marging">
+                                        <label>Phone</label>
+                                        <input type="text" name="Phone" class="input" tabindex="17" data-original-title="Website">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group tab-marging">
+                                        <label>Fax</label>
+                                        <input type="text" name="Fax" class="input" tabindex="17" data-original-title="Website">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group tab-marging">
+                                        <label>Website</label>
+                                        <input type="text" name="Website" class="input" tabindex="17" data-original-title="Website">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                            <div class="ob-personal-info-block"><div class="sub-form-box"><h2>Personal Information</h2><div class="row"><div class="col-sm-6 col-xs-12"><div class="form-group"><label>Company Name</label><input type="text" name="text"  data-original-title="Company Name" tabindex="4" class="input"></div></div></div></div></div>-->
+                    <div class="ob-personal-info-block">
+                        <div class="sub-form-box">
+                            <h2>Login Information</h2>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Email Address (ex. abc123@yahoo.com)</label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="userEmail" data-original-title="Email Address" tabindex="5" class="input userEmail">
+                                        <!-- <ul class="error-message"><li>Enter Valid Email ID!</li></ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <span class="red">*</span>
+                                        <input type="password" name="password" data-original-title="Password" tabindex="6" class="input password">
+                                        <!-- <ul class="error-message"><li>Enter Valid Password!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Confirm Password</label>
+                                        <span class="red">*</span>
+                                        <input type="password" name="confirmPassword" data-original-title="Confirm Password" tabindex="7" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid Confirm Password!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="form-group inp-parts">
+                                        <label for="ob_user_stateId" class="required">Security Question</label>
+                                        <span class="checkout-select-wrapper">
+																						<select id="ob_user_stateId" name="SecurityQuestion" required="required" class="custom-select  js-state" data-original-title="Fylke" data-placement="bottom" data-fv-field="ob_user[stateId]">
+																							<option value="1" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
+																							<option value="2" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
+																							<option value="3" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
+																							<option value="4" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
+																						</select>
+																					</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Security Answer</label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="SecurityAnswer" data-original-title="Confirm Password" tabindex="7" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid Answer!</li></ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
+                    <div class="ob-contact-info-block">
+                        <div class="sub-form-box">
+                            <h2>Contact Information</h2>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="firstName" data-original-title="First Name" tabindex="1" class="input firstName">
+                                        <!-- <ul class="error-message"><li>Enter Valid First Name!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="lastName" data-original-title="Last Name" tabindex="3" class="input lastName">
+                                        <!-- <ul class="error-messag e"><li>Enter Valid Last Name!</li></ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Address 1 </label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="address1" data-original-title="Address 1" tabindex="8" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid Address 1!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Address 2 </label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="address2" data-original-title="Address 2" tabindex="9" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid Address 2!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>City </label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="city" data-original-title="City" tabindex="10" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid City!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>State/Province </label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="state" data-original-title="State" tabindex="11" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid State/Province!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Country </label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="country" data-original-title="Country" tabindex="12" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid Country!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Zip code </label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="zipCode" data-original-title="Zip code" tabindex="13" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid Zip Code!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Phone </label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="phone" data-original-title="Phone" tabindex="14" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid Phone!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Fax</label>
+                                        <input type="text" name="fax" data-original-title="Fax" tabindex="15" class="input">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Email Address (ex. abc123@yahoo.com)</label>
+                                        <span class="red">*</span>
+                                        <input type="text" name="email" data-original-title="Email Address" tabindex="5" class="input">
+                                        <!-- <ul class="error-message"><li>Enter Valid Email ID!</li></ul> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="check-box-privacy">
+                                        <div class="checkbox check-block">
+                                            <input type="checkbox" id="checkbox-bill" tabindex="16">
+                                            <label for="checkbox-bill">
+				                            Use as my default billing address
+				                        </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="check-box-privacy">
+                                        <div class="checkbox check-block">
+                                            <input type="checkbox" id="checkbox-address" tabindex="16">
+                                            <label for="checkbox-address">
+				                            Use as my default shipping address
+				                        </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                            <div class="col-sm-6 col-xs-12"><div class="check-box-privacy"><div class="checkbox check-block"><input type="checkbox" id="checkbox-address" tabindex="16"><label for="checkbox-address">
+				                            Use as my default shipping address
+				                        </label></div></div></div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ob-contact-info-block">
+                        <div class="sub-form-box">
+                            <div class="check-box-privacy">
+                                <div class="checkbox check-block">
+                                    <input type="checkbox" id="checkbox-mailing">
+                                    <label for="checkbox-mailing">
+	                            Yes, I would like to join the mailing list for the least product releases, promotion and industry news.
+	                        </label>
+                                </div>
+                            </div>
+                            <div class="btn-box-main ob-btn-reg-block">
+                                <input type="submit" tabindex="17" value="Submit" class="btn btn-default signupPosh-click">
+                                <input type="submit" tabindex="17" value="Cancel" class="btn btn-default" data-toggle="modal" data-target="#cancle-login">
+                            </div>
+                        </div>
+                    </div>
+                    <span class="required-field">* Required Fields</span>
+                </div>
+                <div class="clearfix"></div>
+                <!-- SUBMIT FORM -->
+            </form>
         </div>
     </div>
-</section>
+</div>
 <script src="./assets/client-plugins/client-signup-page.js" defer="defer"></script>
