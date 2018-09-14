@@ -42,15 +42,18 @@ body {
     width: 1028px;
 }
 .checkbox_color {
- float: left;
- margin: 2px;
+    width: 30px;
+	height: 30px;
+	float: left;
+	margin: 2px;
+	border: #CCC 2px solid;
 }
 .checkbox_color input {
- display: none;
+    display: none;
 }
 .checkbox_color label {
- width: 30px;
- height: 30px;
+    width: 30px;
+    height: 30px;
 }
 </style>
 
