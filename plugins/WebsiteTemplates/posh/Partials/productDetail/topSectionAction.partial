@@ -39,11 +39,18 @@
             text-transform: capitalize;
 }
         </style>
-        <div id="ob-virtualmarketingcart">
-            <input type="hidden" value="DW-5366" id="ob-virtualmarketingcart-sku">
-            <input type="hidden" value="1331" id="ob-virtualmarketingcart-supplier">
-            <input type="hidden" value="en_us" id="ob-virtualmarketingcart-culture">
-            <input type="button" style="display:none" class="ob-btvirtualloadcontent">
-            <input type="hidden" id="virtual_product_id" value="5b8534db85eff4b43a02bb23"><a class="opn obv-modale-open virtual-button" data-toggle="modal" href="javascript:void(0);" data-target=".obvirtual-modal-div" onclick="javascript:openVirtualTool()" id="virtual_btn"><i class="fa fa-paint-brush"></i>Virtual</a><div id="virtual_bg_site" class="bg_site"><div id="uploadModal" data-backdrop="static" class="modal fade obvirtual-modal-div" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-keyboard="false"></div></div></div>
+
+        <div id="ob_virtual_list">
+            <div id="ob-virtualmarketingcart">
+                <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"
+                />
+                <input id="ob-virtualmarketingcart-supplier" type="hidden" value="#data.spplierId#"
+                />
+                <input id="ob-virtualmarketingcart-culture" type="hidden" value="#data.culture#"
+                />
+                <input class="ob-btvirtualloadcontent" id="c70827" type="button" />
+            </div>
+        </div>
+        
     </div>
 </div>

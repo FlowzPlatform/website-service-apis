@@ -52,7 +52,7 @@ body {
 
 
 
-<div class="container main">
+<div class="container main js-hide-div">
     <div class="innerpage ob-product-detail-page">
         <div class="breadcrumb">
             <ul>
@@ -63,85 +63,90 @@ body {
             </ul>
         </div>
         <div class="product-showcase row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-left">
-            <reusecomponent class="c22805">{{> productDetail id='productDetailLeft.partial' }}</reusecomponent>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-right">
-            <reusecomponent class="c313421">{{> productDetail id='titleSku.partial' }}</reusecomponent>
-            <div class="short-description-no-box"><reusecomponent class="c11521">{{> productDetail id='topSectionAction.partial' }}</reusecomponent></div>
-            <div class="clearfix"></div>
-            <div>
-                <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
-                <div
-                class="product-section-box det-pop">
-                    <div class="short-description2">
-                            <reusecomponent class="c9910">{{> productDetail id='productDetailAction.partial' }}</reusecomponent>
-                    </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-left">
+                <reusecomponent class="c22805">{{> productDetail id='productDetailLeft.partial' }}</reusecomponent>
             </div>
-        </div>
-    <div class="product-section-box overview">
-        <div id="product_detail_product-description-tab" role="tablist" aria-multiselectable="true"
-        class="panel-group">
-            <div role="tab" class="panel-heading open">
-                <h2 class="heading-block over">Overview</h2>
-            </div>
-            <div id="product_detail_product-description-tab-block" role="tabpanel"
-            class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <div class="inner-tab-content">
-                        <ul class="info">
-                            <p class="js-product_description_text">Overview</p>
-                        </ul>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ob-product-detail-right">
+                <reusecomponent class="c313421">{{> productDetail id='titleSku.partial' }}</reusecomponent>
+                <div class="short-description-no-box"><reusecomponent class="c11521">{{> productDetail id='topSectionAction.partial' }}</reusecomponent></div>
+                <div class="clearfix"></div>
+                <div>
+                    <reusecomponent class="c69153">{{> productDetail id='quantityWisePrice.partial' }}</reusecomponent>
+                    <div
+                    class="product-section-box det-pop">
+                        <div class="short-description2">
+                                <reusecomponent class="c9910">{{> productDetail id='productDetailAction.partial' }}</reusecomponent>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="specifiction">
-                <h2 class="heading-block">Specifications</h2>
-                <ul class="spec js-specification"></ul>
-            </div>
-            <div class="prod-shipp js-product-shipping-text">
-                <h2 class="heading-block">Production & Shipping</h2>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="product-section-box decoration-option">
-        <div class="panel-group">
-            <div role="tab" class="panel-heading open">
-                <h2 class="heading-block over">Decoration Options <a href="#" data-toggle="modal" data-target="#setup" class="myButton setup">Setup Charges</a></h2>
-            </div>
-            <div role="tabpanel" id="ivmhc" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <div class="inner-tab-content js-decoration_option">
-                        <div class="col-lg-4 col-sm-6 col-md-3 col-xs-12">
-                            <div class="specifiction">
-                                <div class="decoMethodBox"><strong>Method:</strong> Screen Print Set up: $55.00(v)/color
-                                    <br/><strong>Location:</strong> Center
-                                    <br/><strong>Max Colors:</strong> 3, where applicable
-                                    <br/><strong>Decoration Size:</strong> 2 1/2"W x 2 1/4"H
-                                    <br/>
+                <div class="product-section-box overview">
+                    <div id="product_detail_product-description-tab" role="tablist" aria-multiselectable="true"
+                    class="panel-group">
+                        <div role="tab" class="panel-heading open">
+                            <h2 class="heading-block over">Overview</h2>
+                        </div>
+                        <div id="product_detail_product-description-tab-block" role="tabpanel"
+                        class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="inner-tab-content">
+                                    <ul class="info">
+                                        <p class="js-product_description_text">Overview</p>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-md-3 col-xs-12">
-                            <div class="specifiction">
-                                <div class="decoMethodBox"><strong>Method:</strong> Pad Print Set up: $55.00(v)/color
-                                    <br/><strong>Location:</strong> Center
-                                    <br/><strong>Max Colors:</strong> 2
-                                    <br/><strong>Decoration Size:</strong> 1 1/2"W x 2"H
-                                    <br/>
-                                </div>
-                            </div>
+                        <div class="specifiction">
+                            <h2 class="heading-block">Specifications</h2>
+                            <ul class="spec js-specification"></ul>
+                        </div>
+                        <div class="prod-shipp js-product-shipping-text">
+                            <h2 class="heading-block">Production & Shipping</h2>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-section-box decoration-option">
+                    <div class="panel-group">
+                        <div role="tab" class="panel-heading open">
+                            <h2 class="heading-block over">Decoration Options <a href="#" data-toggle="modal" data-target="#setup" class="myButton setup">Setup Charges</a></h2>
+                        </div>
+                        <div role="tabpanel" id="ivmhc" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="inner-tab-content js-decoration_option">
+                                    <div class="col-lg-4 col-sm-6 col-md-3 col-xs-12">
+                                        <div class="specifiction">
+                                            <div class="decoMethodBox"><strong>Method:</strong> Screen Print Set up: $55.00(v)/color
+                                                <br/><strong>Location:</strong> Center
+                                                <br/><strong>Max Colors:</strong> 3, where applicable
+                                                <br/><strong>Decoration Size:</strong> 2 1/2"W x 2 1/4"H
+                                                <br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6 col-md-3 col-xs-12">
+                                        <div class="specifiction">
+                                            <div class="decoMethodBox"><strong>Method:</strong> Pad Print Set up: $55.00(v)/color
+                                                <br/><strong>Location:</strong> Center
+                                                <br/><strong>Max Colors:</strong> 2
+                                                <br/><strong>Decoration Size:</strong> 1 1/2"W x 2"H
+                                                <br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <reusecomponent class="c25962">{{> productDetail id='recentViewedProducts.partial' }}</reusecomponent>
+            </div>
         </div>
     </div>
-</div>
-</div>
-</div>
 </div>
 <script type="text/javascript" src="https://res.cloudinary.com/flowz/raw/upload/v1519215927/websites/js/jquery.zoom.js"
 defer="defer"></script>

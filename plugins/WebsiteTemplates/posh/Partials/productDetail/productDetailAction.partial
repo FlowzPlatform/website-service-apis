@@ -379,3 +379,17 @@ body {
       </div>
    </div>
 </div>
+
+<div class="modal fade model-popup-black " id="setup" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">×</a>
+			<div class="modal-header">
+				<h1 class="modal-title"><i class="strip inventory-popup-strip"></i> Setup Charges</h1>
+			</div>
+			<div class="modal-body">
+                <img src="https://res.cloudinary.com/flowz/image/upload/v1536835846/websites/POSH-ACCESSORIES/images/poshsetupcharges.jpg" class="img-responsive">
+			</div>
+		</div>
+	</div>
+</div>
