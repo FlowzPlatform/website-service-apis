@@ -102,19 +102,26 @@ $(document).ready(async function(){
                 tagHtmlList.find('.js-list').html(replaceProductBox)
                 tagHtmlList.removeClass('hide')
                 tagHtmlList.find("#owl-carousel-recommeded").closest(".row").css({"display": "flex"});
+                
                 $("#owl-carousel-recommeded").owlCarousel({
-                    loop:true,
-                    margin:0,
-                    responsiveClass:true,
-                    nav:false,
-                    responsive:{
-                        0:{items:2,nav:false,},
-                        500:{items:2,nav:false,},
-                        600:{items:3,nav:false,},
-                        700:{items:3,nav:false,},
-                        800:{items:3,nav:false,},
-                        1000:{items:4,nav:true},
-                        1200:{items:6,nav:true}
+                    navigation: true,
+                    items:6,
+                    autoPlay: 3200,
+                    margin: 10,
+                    autoplayHoverPause: true,
+                    lazyLoad: true,
+                    stopOnHover: true,
+                    itemsCustom: false,
+                    itemsDesktop: [1170, 6],
+                    itemsDesktop: [1024, 3],
+                    itemsTabletSmall: false,
+                    itemsMobile: [400, 2],
+                    itemsMobile: [399, 1],
+                    singleItem: false,
+                    itemsScaleUp: false,
+                    afterInit: function (elem) {
+                        var that = this
+                        that.owlControls.prependTo(elem)
                     }
                 });
             }
