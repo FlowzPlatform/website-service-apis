@@ -43,7 +43,7 @@
     .product-compare-list .compare-btn-wrap { width: 12%;}
     .ob-quick-view-product .col-lg-5{ width:46%;}
     .ob-quick-view-product .col-lg-7{ width:54%;}
-    .top-advance-search{ position: inherit;}
+    .top-advance-search{ position: inherit !important;}
     .top-ui-navigation.slidemenu .inner-box{ width: 1170px;}
     .ob-forgot-pass-col{ padding: 0 15px;}
     .top-ui-navigation.slidemenu .login-col .inner-box{ padding-top:45px;}

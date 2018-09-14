@@ -174,9 +174,25 @@ $(document).ready(function() {
     }
   }
 
-  if(getParameterByName('SearchSensor')){
-      $('input[name="search"]').val(getParameterByName('SearchSensor').replace (/(^")|("$)/g, ''))
-  }
+/////////////////////////    Changes ////////////////////////////  
+  
+if(getParameterByName('Search')){
+    $('input[name="search"]').val(getParameterByName('Search').replace (/(^")|("$)/g, ''));      
+}
+if(getParameterByName('Category')){
+  $('input[name="search"]').val(getParameterByName('Category').replace (/(^")|("$)/g, ''))
+  $("#main_filter").val("categories");
+}
+if(getParameterByName('Keyword')){
+  $('input[name="search"]').val(getParameterByName('Keyword').replace (/(^")|("$)/g, ''))
+  $("#main_filter").val("search_keyword");
+}
+if(getParameterByName('Sku')){
+  $('input[name="search"]').val(getParameterByName('Sku').replace (/(^")|("$)/g, ''))
+  $("#main_filter").val("sku"); 
+}
+ 
+///////////////////////////////////////////////////////////////
 
 })
 
@@ -529,7 +545,7 @@ var init = function() {
     showCompareList();
   }
 
-  let total_hits;
+let total_hits;
 let myarr = [];
 let result = [];
 let HeaderSearchValue;
@@ -646,16 +662,16 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
 
   $(document).on('click','.header-search-col .btn-search',function() {
     if($.trim($('input[name="search"]').val()) != '') {
-        window.location.href = website_settings.BaseURL+'search.html?SearchSensor='+$('input[name="search"]').val()
-    // window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + "\""+$('input[name="search"]').val()+"\""
+        window.location.href = website_settings.BaseURL+'search.html?Search='+$('input[name="search"]').val()
+    // window.location.href = website_settings.BaseURL+'search.html?Search=' + "\""+$('input[name="search"]').val()+"\""
         if(HeaderSearchValue === "categories"){
-          window.location.href = website_settings.BaseURL+'search.html?CategorySensor='+$('input[name="search"]').val()
+          window.location.href = website_settings.BaseURL+'search.html?Category='+$('input[name="search"]').val()
         }
         else if(HeaderSearchValue === "search_keyword"){
-          window.location.href = website_settings.BaseURL+'search.html?KeywordSensor='+$('input[name="search"]').val()
+          window.location.href = website_settings.BaseURL+'search.html?Keyword='+$('input[name="search"]').val()
         }
         else if(HeaderSearchValue === "sku"){
-          window.location.href = website_settings.BaseURL+'search.html?SkuSensor='+$('input[name="search"]').val()
+          window.location.href = website_settings.BaseURL+'search.html?Sku='+$('input[name="search"]').val()
         }
         // $('#main_filter :selected').val(HeaderSearchValue)
     }
