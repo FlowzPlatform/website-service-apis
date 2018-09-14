@@ -35,7 +35,8 @@ margin-left: 3%;
     height: auto;
     margin: 0 0.5% 20px 0.5%;
     max-width: inherit;
-    width: 24%;
+    /* width: 24%;  //// 4 card ////     */   
+    width:15.5%;
     -webkit-box-pack: start;
     justify-content: start;
     flex-grow: 0;
