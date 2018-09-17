@@ -325,7 +325,7 @@ $(document).ready( async function(){
                 }
             }
             else {
-                $('#download_product_template, #download_art_template, #download_gcc_template, #download_special_pricing').parent('li').remove()
+                $('#download_product_template, #download_art_template, #download_gcc_template, #download_special_pricing,#sell_sheet').parent('div').remove()
             }
         })
         //End

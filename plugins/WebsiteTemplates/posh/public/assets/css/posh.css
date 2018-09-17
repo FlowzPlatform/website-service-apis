@@ -89,3 +89,6 @@
 
 /* .product-print-shipping .col-xs-6,.print-product-detail .col-xs-6,.print-close,.print-btn-product{width:50%!important}
 .print-product-detail span{padding-bottom:10px} */
+.info-menu ul li > a{border-right: 0;}
+.header-loging .dropdown-menu.user-dropdown li{ text-align: left; padding: 0; width: 100%;}
+.pfunction a { margin-left: 1px; }
