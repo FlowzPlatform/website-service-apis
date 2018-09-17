@@ -35,7 +35,8 @@
                 <ul class="list-unstyled footer-link">
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Decoration Price Guide</a></li>
-                    <li><a href="#">E-Flyers &amp; Catalogs</a></li>
+                    <li><a href="flyers.html">Flyers</a></li>
+                    <li><a href="ecatalogs.html">E-Catalogs</a></li>
                     <li><a href="#">How To Order</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     
@@ -47,10 +48,10 @@
                 </div>
                 <div class="clearfix"></div>
                 <ul class="list-unstyled footer-link">
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">YouTube Channel </a></li>
-                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="https://www.facebook.com/poshxessories" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/poshxessories/?hl=en" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCGHArm6PIDyMAH6UsrBDHeg" target="_blank">YouTube Channel </a></li>
+                    <li><a href="register.html">Sign Up</a></li>
                     <li><a href="#">News, Updates &amp; Special Offers</a></li>
                     
                     
