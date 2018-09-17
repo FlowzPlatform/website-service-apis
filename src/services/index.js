@@ -98,8 +98,6 @@ const ecatalogCategory = require('./ecatalog-category/ecatalog-category.service.
 const ecatalogs = require('./ecatalogs/ecatalogs.service.js');
 
 
-
-
 const category = require('./category/category.service.js');
 
 
@@ -113,7 +111,7 @@ const webtools = require('./webtools/webtools.service.js');
 const downloadPdf = require('./download-pdf/download-pdf.service.js');
 
 
-
+const rateCalculation = require('./rate-calculation/rate-calculation.service.js');
 
 module.exports = function() {
     const app = this; // eslint-disable-line no-unused-vars
@@ -175,4 +173,5 @@ module.exports = function() {
     app.configure(category);
     app.configure(webtools);
     app.configure(downloadPdf);
+    app.configure(rateCalculation);
 };
