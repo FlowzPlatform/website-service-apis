@@ -55,7 +55,7 @@
     </div>
 </div>
 
-<div class="modal fade model-popup-black " id="shipping-estimator" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade model-popup-black " id="shipping_estimator_model" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md shippingng-estimator-model">
         <div class="modal-content">
             <a href="#" class="close" data-dismiss="modal" aria-label="Close">&times;</a>
