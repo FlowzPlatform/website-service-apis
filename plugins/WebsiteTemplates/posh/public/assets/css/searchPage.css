@@ -379,3 +379,10 @@ visibility : hidden;
 .product-img-blk{height: 250px;}
 .css-omf3o4 a.e1cc0ogo1 article {padding-top:0px}
 /* .css-omf3o4 a.e1cc0ogo1 {padding: 5px} */
+
+.ob-top-menu .info-menu.slidemenu { padding: 1px 0; position: inherit; width: 55%; float: left; }
+.menu-box .navbar-nav > li > a {
+    font-family: 'Lato', sans-serif !important;
+    color: #fff !important;
+    margin-right: 20px !important;
+}

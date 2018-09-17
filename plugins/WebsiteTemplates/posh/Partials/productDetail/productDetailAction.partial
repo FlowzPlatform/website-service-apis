@@ -64,7 +64,7 @@ body {
 <div class="product-functions">
 <div class="productFL">
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" /><a href="">Sell Sheet</a>
+        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" /><a href="javascript:void(0);" id="sell_sheet" target="_blank">Sell Sheet</a>
     </div>
     <div class="pfunction">
         <img src="http://www.ameriknmx.com/media/icon/art.png" /><a href="javascript:void(0);" id="download_art_template" target="_blank">Art Template</a>
