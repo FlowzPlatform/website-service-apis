@@ -61,7 +61,6 @@ RUN sed -i 's/# gzip_types/gzip_types/' /etc/nginx/nginx.conf
 
 WORKDIR /var/www/html
 RUN npm install
-RUN npm install xml2json
 RUN apt-get install -y default-jre
 
 WORKDIR /opt/app
