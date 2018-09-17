@@ -165,16 +165,16 @@ $('.signupPosh-click').on('click',function() {
 								'url': baseURL + '/website-users?websiteId='+projectID+'&userEmail='+email,
 								'success': function (res) {
 									if (res.data.length > 0) {
-                      alert("User already exist")
+                    //   console.log("User already exist")
                   } else {
-                      alert("New User");
+                    //   console.log("New User");
                       axios({
 											  method: 'post',
 											  url: baseURL + '/website-users',
 											  data: signUpJSON
 											})
 											.then(function(res) {
-												alert('sucessfully entered in website user')
+												// console.log('sucessfully entered in website user')
 											})
 		              }
 								}
