@@ -8,7 +8,7 @@ module.exports = {
     // gitLabUrl: 'fsaiyed',
     gitLabUsername: 'cenacle-devops',
     // mailSendApi: "http://api.flowzcluster.tk/sendmail/email/send",
-    mailSendApi: "http://api."+process.env.domainKey+"/sendmail/email/send",
+    mailSendApi: "https://api."+process.env.domainKey+"/sendmail/email/send",
     // gitLabToken: 'eQ1-V9hyB9PN_XYnYfkV'
     gitLabToken: 'UbYWRfyi44mGR_PJr9nh'
 }
