@@ -68,3 +68,6 @@
 .recommeded-product-slider .owl-next:hover, .owl-next:hover, .ob-related-product .owl-next:hover { background: #fff url(../images/black_arrows.png) no-repeat !important; background-position: -12px !important; }
 .recommeded-product-slider .owl-prev, .owl-prev { background: url(../images/pink_arrows.png) no-repeat !important; width: 15px !important; height: 15px !important; border-radius: 0 !important; padding: 10px !important; background-position: 2px !important; background-color: #888 !important; }
 .recommeded-product-slider .owl-prev:hover, .owl-prev:hover, .ob-related-product .owl-prev:hover { background: #fff url(../images/black_arrows.png) no-repeat !important; background-position: 2px !important;}
+
+/* **************** */
+.js-view-ecatalog-image{ margin: 0 auto !important }
