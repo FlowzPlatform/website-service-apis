@@ -1,7 +1,7 @@
 /*body { word-break: normal; background: url(../images/newbg.jpg) no-repeat fixed center #333; background-size: cover; }*/
 /*--HEADER--*/
 
-.menu-box .navbar-nav > li > a { font-family: 'Lato', sans-serif; color: #fff; margin-right: 20px; }
+.menu-box .navbar-nav > li > a { font-family: 'Lato', sans-serif; color: #fff!important; margin-right: 20px; }
 .ui-header .ob-top-menu { background: #FFF; }
 /*.ui-header .ob-logo-block { background: #000; }*/
 /*.ui-menu-nav { background: #7d1216 url(../images/menu-slice.png) repeat-x 0 bottom; z-index: 2; box-shadow: -1px 2px 4px 0 rgba(0, 0, 0, 0.30); }*/
@@ -1126,10 +1126,10 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Lato', sans-
 .dropdown-toggle.select_box_caret2.btn-default { position: absolute; right: 0; height: 40px; border: none; color: #000; border: 1px solid #e6e6e6; border-left: none; background: #FFF }
 .dropdown-toggle.select_box_caret2.btn-default:hover, .dropdown-toggle.select_box_caret2.btn-default:focus, .dropdown-toggle.select_box_caret2.btn-default:active { background: #fff; box-shadow: none }
 .arrow-hover-color .caret { color: #000!important }
-.menu-box .multiselect-container.dropdown-menu > li > a { padding: 5px 20px; border-bottom: none }
+.menu-box .multiselect-container.dropdown-menu > li > a { padding: 5px 5px; border-bottom: none;line-height: 55px }
 .multiselect-container>li>a>label { padding: 0; line-height: 12px }
 .btn-group.mar_bot.open .dropdown-toggle { box-shadow: none }
-.menu-box .dropdown-menu.header-advace-search { box-shadow: none; border-top: #CCC 1px solid;z-index: 99 !important}
+.menu-box .dropdown-menu.header-advace-search { box-shadow: none; border-top: #CCC 1px solid }
 .ob-scroll-nav.open .nav>li, .ob-scroll-nav.open .position-inherit, .ob-scroll-nav.open .dropdown { position: static!important }
 .header-search.search-field.advance-search-wrap.dropdown { position: relative!important }
 .fliter-flag-list { margin-left: 0; margin-top: 0; width: 100%; display: table }
@@ -2152,7 +2152,7 @@ input[type="submit"].pull-right { text-transform: initial; font-size: 16px; font
 input[type="submit"].save-button:hover { background-color: #e70000 }
 input[type="submit"].search-button:hover { background-color: #000465 }
 .input-colum.two-colum { float: left; width: 46% }
-.space-col { color: #000; width: 8%; float: left; padding-top: 35px; text-align: center }
+.space-col { color: #000; width: 8%; float: left; padding-top: 42px; text-align: center }
 .button-colum { padding-top: 36px }
 .ob-mask, .ui-mask { background: #000; position: fixed; top: 0; right: 0; bottom: 0; left: 0; visibility: hidden; opacity: 0; z-index: -100 }
 .header-advace-search .advance-search-col .button-colum a.save-button-link { background: #000465!important; color: #FFF; text-align: center; height: 40px; display: inline-block; padding: 0 10px; line-height: 40px; border-radius: 3px }
@@ -3770,7 +3770,7 @@ h1.modal-title i.quote-icon span { color: #000; }
 .ui-advance-search .top-search-block .search-form { float: left; width: auto }
 .dropdown.top-advance-search.advance-search-btn { width: 110px; padding: 0; text-align: center }
 .header-search.search-field.advance-search-wrap.dropdown { width: 420px }
-.header-search.search-field.advance-search-wrap.dropdown > input { width: 330px; padding-right: 95px;font-style: normal; height: 33px; line-height: 33px; }
+.header-search.search-field.advance-search-wrap.dropdown > input { width: 330px; /* padding-right: 95px;*/ font-style: normal; height: 33px; line-height: 33px; }
 header { margin: 0; transition: all .8s }
 header.fixed-header { margin-top: -195px; transition: all .8s }
 header.fixed-header.fixed-header-top { margin-top: -138px }
@@ -4484,7 +4484,7 @@ ul.product-wrap li {
 }
 .search-in-dropdown .ob-gender-select-box span.checkout-select-wrapper, .search-in-dropdown .ob-gender-select-box span.checkout-select-wrapper .custom-select, .search-in-dropdown .inp-parts.ob-gender-select-box{
      line-height: 30px;
-    font-size: 13px;}
+    font-size: 12px;}
 .header-search.search-field button, .header-search.search-field button:hover, .header-search.search-field button:focus{    font-size: 13px;color: #000}
 .pro-sku-img ul li {
     float: left;
@@ -4808,7 +4808,7 @@ ul.product-wrap li {
 .ob-top-menu .info-menu.slidemenu {
     padding: 1px 0;
     position: inherit;
-    width: 56%;
+    width: 55%;
     float: left;
 }
 .top-advance-search .header-advace-search {
@@ -4859,7 +4859,7 @@ table.ent-qua {
    .request-info-popup-modal .detail-image img {height: 100%;margin: 0 auto;}
    .quantity-table .quantity-table-title{width: 20%;}
    .ob-product-detail-right .quantity-table .quantity-table-disc{width: 80%;}
-  .top-search-block .advance-search-col .multiselect-container .checkbox input[type="checkbox"]{margin-top: 0px}
+  .top-search-block .advance-search-col .multiselect-container .checkbox input[type="checkbox"]{margin-top: 3px}
   .middle-footer h3.footer-heading{font-size: 18px !important;padding: 0 !important;}
   .irs-with-grid .irs-grid{display: none !important}
   .irs-slider{top:8px !important}
