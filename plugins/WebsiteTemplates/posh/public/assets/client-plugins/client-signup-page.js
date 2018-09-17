@@ -179,7 +179,7 @@ $('.signupPosh-click').on('click',function() {
 		              }
 								}
 							});
-							// window.location = "login.html";
+							window.location = "login.html";
 						},
 						error: function(err) {
 							showErrorMessage(err.responseText)
