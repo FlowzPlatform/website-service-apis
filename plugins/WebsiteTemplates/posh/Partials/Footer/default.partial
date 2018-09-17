@@ -55,50 +55,7 @@
                     
                     
                 </ul>
-            </div>
-            
-            <div class="hidden-lg hidden-md hidden-sm col-xs-12">
-            	<div class="common-title">
-                	<h3 class="footer-heading">Feedback form</h3>
-                </div>
-                <div class="clearfix"></div>
-                <div class="feedback-responsive footer-link">
-	                <form>
-	                	<div class="row">
-	                		<div class="col-xs-12">
-	                			<div class="form-group">
-					                 <label for="FirstName" class="checkout-label">First Name<i class="check-out-mandatory-field">*</i></label>
-					                 <input type="text" data-original-title="First Name" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
-					            </div>	
-	                		</div>
-	                		<div class="col-xs-12">
-	                			<div class="form-group">
-					                 <label for="LastName" class="checkout-label">Last Name<i class="check-out-mandatory-field">*</i></label>
-			                 		 <input type="text" data-original-title="Last Name" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
-					            </div>	
-	                		</div>
-	                		<div class="col-xs-12">
-	                			<div class="form-group">
-					                 <label for="Email" class="checkout-label">Email</label>
-			                 		 <input type="text" data-original-title="Email" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
-					            </div>	
-	                		</div>
-	                		<div class="col-xs-12">
-	                			<div class="form-group">
-					                 <label for="Message" class="checkout-label">Message</label>
-			                 		 <textarea data-original-title="Message" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="textarea"></textarea>
-					            </div>	
-	                		</div>
-	                		<div class="col-xs-12">
-	                			<input type="submit" tabindex="17" value="Submit" class="btn btn-default">
-			            		<input type="submit" tabindex="17" value="Reset" class="btn btn-default">
-			            		<span class="required">* Required Fields</span>
-	                		</div>
-	                	</div>        
-					</form>
-				</div>
-            </div>
-            
+            </div>            
         </div>
         
     </div>

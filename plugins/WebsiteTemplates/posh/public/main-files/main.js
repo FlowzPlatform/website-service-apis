@@ -1320,7 +1320,7 @@ function showQuickQuoteList()
   if(websiteConfiguration.transaction.quick_quote.status == 0)
   {
     let html = 'Access Denied';
-    $('.myaccount-my-wishlist').html(html);
+    $('#myQuickQuoteList .myaccount-my-wishlist').html(html);
     return false;
   }
   else{
@@ -1592,7 +1592,7 @@ function showWishList(recetAdded=false)
   if(websiteConfiguration.transaction.wishlist.status == 0)
   {
     let html = 'Access Denied';
-    $('.myaccount-my-wishlist').html(html);
+    $('#myWishList .myaccount-my-wishlist').html(html);
     return false;
   }
   else{
