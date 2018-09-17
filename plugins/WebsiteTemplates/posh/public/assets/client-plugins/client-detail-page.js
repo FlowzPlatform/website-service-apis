@@ -417,3 +417,128 @@ function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
 }
 
 //END -  RECENTLY VIEWED PRODUCTS
+
+
+// Recommended Products start
+
+let tagProductList = function(tagObj,productBoxHtml) {
+    return new Promise(async (resolve , reject ) => {
+          let responseTag = await getTagListByObj(tagObj)
+          let replaceProductBox = ''
+          // console.log("responseTag",tagObj,responseTag);
+          if(responseTag != null){
+              let productResponse = await fetchProductsByTagId(responseTag[0].id)
+              if(productResponse.length > 0){
+                  for(let [key,value] of productResponse.entries()){
+                          let productRes = await getProductDetailById(value.product_id)
+                          if(productRes !== undefined && productRes != null)  
+                          {
+                            productBoxHtml1 = productBoxHtml.replace(/#data.id#/g,value.product_id)
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.product_link#/g,'productdetail.html?locale='+project_settings.default_culture+'&pid='+value.product_id)
+                            ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                            
+                            if(productRes.images !== undefined) {
+                                ProductImage = productRes.images[0].images[0].secure_url;
+                                ProductImage = addOptimizeImgUrl(ProductImage,'w_210');
+                            }
+                            
+
+                            productBoxHtml1 = productBoxHtml1.replace('#data.image#',ProductImage)
+                            productBoxHtml1 = productBoxHtml1.replace('#data.sku#',productRes.sku)
+                            productBoxHtml1 = productBoxHtml1.replace('#data.currency#','$')
+                            productBoxHtml1 = productBoxHtml1.replace('#data.price#',productRes.min_price.toFixed(project_settings.price_decimal))
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.title#/g,productRes.product_name)
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.tagSlug#/g,responseTag[0].tag_slug)
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.tagColor#/g,responseTag[0].tag_color)
+                            productBoxHtml1 = productBoxHtml1.replace(/#data.tagName#/g,responseTag[0].tag_name)
+                            replaceProductBox += productBoxHtml1
+                        }
+                        else{
+                            replaceProductBox += '';
+                            
+                        }
+                  }
+                  resolve(replaceProductBox)
+              }
+          }
+    })
+}
+
+async function getTagListByObj(obj) {
+      let returnData = null;
+    	await axios({
+    			method: 'GET',
+    			url: project_settings.tags_api_url+"?website="+ website_settings['projectID']+"&tag_status=true&"+obj,
+    	})
+    	.then(response => {
+        // console.log("returnData",response);
+          if(response.data.data.length > 0){
+              returnData = response.data.data;
+          }
+          return returnData
+    	})
+      .catch(function (error) {
+      });
+    	return returnData;
+}
+
+async function fetchProductsByTagId(tagId){
+    let returnData = null;
+    await axios({
+        method: 'GET',
+        url: project_settings.product_tags_api_url+"?website="+ website_settings['projectID']+"&tag_id="+tagId,
+    })
+    .then(response => {
+      // console.log("returnData",response);
+        if(response.data.data.length > 0){
+            returnData = response.data.data;
+        }
+        return returnData
+    })
+    .catch(function (error) {
+        console.log("error",error.response);
+    });
+    return returnData;
+}
+
+recommededProducts();
+async function recommededProducts(){
+    if($(".js-tag-recommended-product-list").length > 0){
+        let tagHtmlList = $(".js-tag-recommended-product-list");
+        let productBoxHtml = $(".js-tag-recommended-product-list").find('.js-list').html()
+        let productSlug = $(".js-tag-recommended-product-list").attr("data-slug")
+        if(productSlug != ""){
+            let replaceProductBox = await tagProductList("tag_slug="+productSlug,productBoxHtml)
+            console.log('replaceProductBox ==',replaceProductBox)
+            if(replaceProductBox != ''){
+                tagHtmlList.find('.js-list').html(replaceProductBox)
+                tagHtmlList.removeClass('hide')
+                tagHtmlList.find("#owl-carousel-recommeded").closest(".row").css({"display": "flex"});
+                
+                $("#owl-carousel-recommeded-products").owlCarousel({
+                    navigation: true,
+                    items:6,
+                    autoPlay: 3200,
+                    margin: 10,
+                    autoplayHoverPause: true,
+                    lazyLoad: true,
+                    stopOnHover: true,
+                    itemsCustom: false,
+                    itemsDesktop: [1170, 6],
+                    itemsDesktop: [1024, 3],
+                    itemsTabletSmall: false,
+                    itemsMobile: [400, 2],
+                    itemsMobile: [399, 1],
+                    singleItem: false,
+                    itemsScaleUp: false,
+                    afterInit: function (elem) {
+                        var that = this
+                        that.owlControls.prependTo(elem)
+                    }
+                });
+            }
+        }
+    }
+}
+
+// Recommended Products end
