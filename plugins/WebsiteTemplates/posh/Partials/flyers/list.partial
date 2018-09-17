@@ -89,9 +89,9 @@ button.remove {
             <a class="item-title" href="javascript:void(0);">#flyer-title#</a>
             <div class="pro-button">
                 <ul>
-                    <li><a title="View" data-placement="top" data-toggle="modal" data-target="#view-flyer" href="javascript:void(0);" data-original-title="View Flyer"><i class="fa fa-eye"></i>View Flyer</a>
+                    <li><a href="#flyer-image-link#" target="_blank" title="View" data-placement="top" data-toggle="modal" data-target="#view-flyer#" data-original-title="View Flyer"><i class="fa fa-eye"></i>View Flyer</a>
                     </li>
-                    <li><a title="Download" data-placement="top" data-toggle="tooltip" href="javascript:void(0);" data-original-title="Download"><i class="fa fa-download"></i></a>
+                    <li><a data-placement="top" href="#flyer-pdf-link#" title="Download" data-original-title="Download"><i class="fa fa-download"></i></a>
                     </li>
                 </ul>
             </div>
