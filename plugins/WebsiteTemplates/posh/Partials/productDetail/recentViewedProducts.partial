@@ -1,5 +1,5 @@
 <section class="fdb-block js-recent-viewed-products hide">
-    <div class="row">
+    <div class="row" style="display: block">
         <div class="ob-related-product">
             <div class="pro-overflow">
                 <div class="slider-wrapper">           
