@@ -6,6 +6,10 @@ var LIVE_API = 'onlinetools.ups.com';
 
 let errors = require('@feathersjs/errors') ;
 
+// let parseString = require('xml2js').parseString;
+
+const X2JS = require('x2js')
+
 var USE_JSON = false;
 //var Rating;
 var Rating = function (licenseId, userId, password) {
@@ -42,9 +46,19 @@ Rating.prototype.makeRequest = function(options, callback) {
 	var shell_exec = require('shell_exec').shell_exec;
 	var responseData = shell_exec(command);
 
-	var parser = require('xml2json');
- 	var xmltojson = parser.toJson(responseData);
- 	var json= JSON.parse(xmltojson);
+	// var parser = require('xml2json');
+ 	// var xmltojson = parser.toJson(responseData);
+	 // var json= JSON.parse(xmltojson);
+	 
+	// let json;
+	// await parseString(responseData, function (err, result) {
+	// 	console.dir('result------------',result)
+	// 	json = result;
+	// });
+
+	let x2js = new X2JS()
+	let json = x2js.xml2js(responseData)
+	
 	var rate = 	{};
 	if(json.RatingServiceSelectionResponse.Response.ResponseStatusCode == 1)
 	{
