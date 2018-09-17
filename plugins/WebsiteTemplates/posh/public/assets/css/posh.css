@@ -71,3 +71,21 @@
 
 /* **************** */
 .js-view-ecatalog-image{ margin: 0 auto !important }
+.quantity-table .table-heading, .quantity-table .table-content{font-size: 12px;}
+.quantity-table .table-heading{ padding:0px}
+.print-product-detail .quantity-table .table-heading{ padding: 6px }
+.print-product-detail .quantity-table .quantity-table-title,
+.print-product-detail .quantity-table .quantity-table-disc {width:100%}
+.print-product-detail .quantity-table-title .table-heading,
+.print-product-detail .quantity-table .quantity-table-disc .table-heading,
+.print-product-detail .quantity-table-title .table-content, 
+.print-product-detail .quantity-table .table-content {width:49%; float:left;line-height: 25px;min-height: 32px;}
+.print-product-detail .owl-carousel .owl-wrapper {width: 100% !important;}
+.print-product-detail .owl-carousel .owl-item {width: 100% !important;}
+
+.print-product-detail label{color:#404040;font-size:15px;font-weight:700;text-transform:uppercase;line-height:20px}
+.print-product-detail span{color:#5e5e5e;font-size:14px;font-weight:400;line-height:20px}
+.print-product-detail p{color:#5e5e5e;font-size:14px;font-weight:300;padding:10px 0 20px;line-height:20px}
+
+/* .product-print-shipping .col-xs-6,.print-product-detail .col-xs-6,.print-close,.print-btn-product{width:50%!important}
+.print-product-detail span{padding-bottom:10px} */
