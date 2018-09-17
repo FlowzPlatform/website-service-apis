@@ -55,30 +55,26 @@ button.remove {
 </style>
 
 
-
-
 <div class="js-list hide">
-    <div class="col-sm-6 col-md-4 col-lg-3 col-xs-12 product-#ecatalog-id#">
-        <div class="catelogue pro-box">
-            <div class="catelogue-image-wrap pro-image box01"><a href="#ecatalog-image-link#" target="_blank"><img src="#ecatalog-image#" class="img-responsive center-block lazyLoad" alt="#ecatalog-title#" title="#ecatalog-title#" /></a>
-            </div>
-            <div class="pro-desc">
-                <div class="pro-button">
-                    <ul>
-                        <li>
-                          <a href="javascript:void(0);" data-image="#ecatalog-image-link#" data-toggle="tooltip" data-placement="top" title="" data-original-title="" class="js-open-modal-ecatalog"><i class="fa fa-eye"></i>View</a>
-                        </li>
-                        <li><a href="#data.pdflink#" target="_blank" class="download-pdf-#ecatalog-id#"><i class="fa fa-download"></i> Download</a>
-                        </li>
-                    </ul>
-                </div><a href="#ecatalog-image-link#" class="item-title">#ecatalog-title#</a>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="col-xs-12" align="center">
-            <a href="requestForm.html" style="font-size: 15px;color: #005dab;font-weight: normal;">Fill Online Form</a>
-        </div>
-    </div>
+  <div class="col-sm-6 col-md-4 col-lg-3 col-xs-12 product-#ecatalog-id#">
+      <div class="catelogue">
+      <!-- <div class="catelogue pro-box"> -->
+          <div class="catelogue-image-wrap">
+          <!-- <div class="catelogue-image-wrap pro-image box01"> -->
+                <img src="#ecatalog-image#" class="img-responsive center-block lazyLoad" alt="#ecatalog-title#" title="#ecatalog-title#" />
+          </div>
+           <!-- <div class="catelogue-title-text">
+               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div> -->
+          <div class="catelogue-title">
+               #ecatalog-title#
+          </div>
+          <div class="pro-box-btn">
+              <a class="btn btn-default js-open-modal-ecatalog" href="javascript:void(0);" data-image="#ecatalog-image-link#" >Digital</a>
+              <a href="#data.pdflink#" target="_blank" class="btn btn-default download-pdf-#ecatalog-id#"> Download</a>
+          </div>
+      </div>
+  </div>
 </div>
-<div class="listing"></div>
+<div class="listing" style="padding-top: 15px;"></div>
 <reusecomponent class="c49533">{{> ecatalogs id='viewEcatalogue.partial' }}</reusecomponent>

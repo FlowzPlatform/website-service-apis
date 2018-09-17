@@ -15,7 +15,7 @@ $(document).ready(function(){
             let count = 0;
             let zipFilename = productResponse.sku+".zip";
             let urls = productResponse.images[0].images;
-// console.log("urls",urls,zipFilename);
+        // console.log("urls",urls,zipFilename);
             urls.forEach(function(urlObj){
               let filename = urlObj.web_image;
               // loading a file and add it in a zip file
@@ -69,6 +69,109 @@ $(document).ready(function(){
 
         return false;
     });
+
+    //shipping estimator
+    $('#shippingEstButton').on('click', async function() {
+        $('form#calculate_shipping_estimator')[0].reset();
+        $(".js-country").html('');
+        let productResponse = await getProductDetailById(pid)
+        console.log('productresponse',productResponse);
+        getCountry();
+        if(productResponse != null){
+          $('.estimatorProductSku').text(' SKU : '+productResponse.sku)
+          $('.estimatorProductName').text(productResponse.product_name)
+          // $('.itemCode').text('( Item Code:'+productResponse.sku+')')
+        }
+        $('.js-submit-btn-rate-calculation').on('click', async function() {
+          $('#estimatorError').css({"display":"none"})
+          $('#estimatorResponse').css({"display":"none"})
+          let formData = $('form#calculate_shipping_estimator').serializeArray()
+          console.log('------formData',formData)
+          let shipInfo = {};
+          let shippingType = []
+          for (var input in formData){
+              var value = formData[input]['value'];
+              if (formData[input]['name'] == 'shipping_type') {
+                  shippingType.push(value)
+              }
+              else {
+                  shipInfo[formData[input]['name']] = value;
+              }
+          }
+          shipInfo['shippingType'] = shippingType;
+          if (shipInfo.qty != '' && shipInfo.zip_code != '' && shipInfo.country != '' && shipInfo.shippingType.length > 0) {
+              if (shipInfo.qty > 0) {
+                  showPageAjaxLoading();
+                  let estimatorObject = {
+                      'shipperInfo' : productResponse.shipping[0],
+                      'shipToInfo' : shipInfo
+                  };
+                  console.log('estimatorObject',estimatorObject)
+                  $.ajax({
+                      type: 'POST',
+                      url: project_settings.shipping_estimator_api_url,
+                      async: true,
+                      data:  estimatorObject,
+                      dataType: 'json',
+                      success: function (result) {
+                          console.log('result',result);
+                          // let old_tbody = document.getElementsByTagName('tbody')[0];
+                          let tableMain = document.getElementById('estimatorResponse');
+                          $('#estimatorResponse tbody').remove();
+                          var tableBody = document.createElement('TBODY');
+                          tableMain.append(tableBody);
+                          let markUpPer = 5;
+                          let markUpValue;
+                          Object.keys(result).forEach(function eachKey(key) {
+                              var tr = document.createElement('TR');
+                              tableBody.appendChild(tr);
+                              var td = document.createElement('TD');
+                              td.className="estimatorResult"
+                              // td.className="text-right"
+                              // td.className="right-padding"
+                              // td.width = "35%"
+                              // td.style={'padding': '0px 10px;'}
+                              td.appendChild(document.createTextNode(key));
+                              tr.appendChild(td);
+                              td = document.createElement('TD');
+                              td.className="estimatorResult"
+                              markUpValue = (Number(result[key]) * markUpPer)/100;
+                              result[key] += markUpValue;
+                              td.appendChild(document.createTextNode(result[key].toFixed(2)));
+                              tr.appendChild(td);
+                          });
+                          // console.log('tableBody',tableBody)
+                          // old_tbody = tableBody;
+                          // console.log('old_tbody-----',old_tbody)
+                          // old_tbody.parentNode.replaceChild(tableBody,old_tbody);
+                          hidePageAjaxLoading()
+                          $('#estimatorResponse').css({"display":"block"})
+                          $(".estimatorResult").css({"padding": "3px 5px"});
+                      },
+                      error: function(err) {
+                          hidePageAjaxLoading()
+                          // console.log('error',err.responseJSON.message);
+                          $('#estimatorError').css({"display":"block"})
+                          $('#estimatorError').text(err.responseJSON.message)
+                          // showErrorMessage(err.responseJSON.message)
+                      }
+                  });
+              }
+              else {
+                  $('#estimatorError').css({"display":"block"})
+                  $('#estimatorError').text('Quantity must be greater than zero')
+              }
+          }
+          else {
+              $('#estimatorError').css({"display":"block"})
+              $('#estimatorError').text('Please fill all the required fields correctly')
+          }
+        })
+    })
+
+    $('.js-reset-btn-rate-calculation').on('click', async function() { 
+        $('form#calculate_shipping_estimator')[0].reset();
+    })
 });
 
 // inventory start
@@ -514,3 +617,38 @@ function printElement(elem) {
     },2000);
 }
 // END - Print Product
+
+function getCountry(countryId=0) {
+    if( $(".js-country").length > 0 ) {
+
+        let countryList = [];
+        //short_name
+        $.each(project_settings.country_data,function(key,country){
+            countryList.push(country.short_name);
+        })
+        axios({
+            method: 'GET',
+            url: project_settings.city_country_state_api,
+            params: {
+                'country_data':countryList,
+                'data_from' : 'country_code',
+                'type' : 1
+            }
+        })
+        .then(response => {
+            let countryHtml = $(".js-country").html('');
+            if(response.data.length > 0){
+                countryHtml = '<option value="" selected="selected">Select Country</option>'
+                $.each(response.data,function(key,country){
+                    countryHtml += '<option value="'+country.country_code+'">'+country.country_name+'</option>'
+                })
+                $('.js-country').html(countryHtml)
+                // doSelection('country',countryId);
+            }
+        })
+        .catch(error => {
+        // console.log('Error fetching and parsing data', error);
+        });
+    }
+
+}
