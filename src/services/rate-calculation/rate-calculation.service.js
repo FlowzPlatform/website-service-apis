@@ -2,8 +2,8 @@
 const createService = require('./rate-calculation.class.js');
 const hooks = require('./rate-calculation.hooks');
 
-module.exports = function (app) {
-  
+module.exports = function () {
+  const app = this;
   const paginate = app.get('paginate');
 
   const options = {
