@@ -45,16 +45,16 @@
                         <div class="pull-left">
                             <ul>
                                 <li class="social-icon">
-                                    <a href="javascript:void(0)"><i class="yt-icon strip-icon"></i></a>
-                                </li>
-                                    <li class="social-icon">
-                                    <a href="javascript:void(0)"><i class="pinterest-icon strip-icon"></i></a>
+                                    <a href="https://www.youtube.com/channel/UCGHArm6PIDyMAH6UsrBDHeg" target="_blank"><i class="yt-icon strip-icon"></i></a>
                                 </li>
                                 <li class="social-icon">
-                                    <a href="javascript:void(0)"><i class="instagram-icon strip-icon"></i></a>
+                                    <a href="https://www.pinterest.com/poshxessories" target="_blank"><i class="pinterest-icon strip-icon"></i></a>
                                 </li>
                                 <li class="social-icon">
-                                    <a href="javascript:void(0)"><i class="fb-icon strip-icon"></i></a>
+                                    <a href="https://www.instagram.com/poshxessories/?hl=en" target="_blank"><i class="instagram-icon strip-icon"></i></a>
+                                </li>
+                                <li class="social-icon">
+                                    <a href="https://www.facebook.com/poshxessories" target="_blank"><i class="fb-icon strip-icon"></i></a>
                                 </li>
                             </ul>
                         </div>

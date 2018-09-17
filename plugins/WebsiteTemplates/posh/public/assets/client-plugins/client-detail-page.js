@@ -271,6 +271,9 @@ $(document).ready( async function(){
             }
             $('.js-decoration_option').html(decorationSectionHtml);
         }
+        else{
+            $(".product-section-box.decoration-option").parent().remove();
+        }
         //END
         if(productDetails.video_url == "" && $("#js-show_play_video").length > 0)
         {
