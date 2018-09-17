@@ -2527,23 +2527,6 @@ async function printDiv(printDiv=true) {
     }
     hidePageAjaxLoading()
 }
-$.validator.addMethod(
-  "multiemails",
-   function(value, element) {
-       if (this.optional(element)) // return true on optional element
-           return true;
-           let emails = value.split(/[;,]+/); // split element by , and ;
-       valid = true;
-       for (let i in emails) {
-           value = emails[i];
-           valid = valid &&
-                   jQuery.validator.methods.email.call(this, $.trim(value), element);
-       }
-       return valid;
-   },
-
- $.validator.messages.multiemails
-);
 
 
 $(document).on('click','.js-email_quick_quote',function (e)
@@ -3002,6 +2985,25 @@ $(document).ready(function(){
     _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
     $.src="https://v2.zopim.com/?5djwAvXR04Z6LOgDZK23L8hn7QXFldZY";z.t=+new Date;$.
     type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+
+    //email
+    $.validator.addMethod(
+      "multiemails",
+       function(value, element) {
+           if (this.optional(element)) // return true on optional element
+               return true;
+               let emails = value.split(/[;,]+/); // split element by , and ;
+           valid = true;
+           for (let i in emails) {
+               value = emails[i];
+               valid = valid &&
+                       jQuery.validator.methods.email.call(this, $.trim(value), element);
+           }
+           return valid;
+       },
+    
+     $.validator.messages.multiemails
+    );
 })
 
 //////////////////////////////////////////////////////////////////////////
