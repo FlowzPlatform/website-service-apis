@@ -30,14 +30,25 @@
                                 </a>
                                 
                             </li>
-                            
-                            <li class="dropdown login-col header-login-text">
+                            <li class="dropdown login-col header-login-text login-show hide">
                                 <a href="login.html" class="dropdown-toggle">
                                     <img src="https://res.cloudinary.com/flowz/image/upload/v1536650605/websites/POSH-ACCESSORIES/images/distributer.png">
                                     <span class="login-text"><span>LOGIN</span></span>
                                 </a>
                             </li>
-                            <li class="log"><a href="signup.html">Register</a></li>
+                            <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
+                                    <ul
+                                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
+                                        <li><a href="myaccount.html">MY ACCOUNT</a>
+                                        </li>
+                                        <li><a class="js_change_password" href="changePassword.html">CHANGE PASSWORD</a>
+                                        </li>
+                                        <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
+                                        </li>
+                                    </ul>
+                            </li>    
+                                        
+                            <li class="log login-show hide"><a href="signup.html">Register</a></li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
