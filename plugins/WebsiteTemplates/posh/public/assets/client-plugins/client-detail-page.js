@@ -393,9 +393,10 @@ function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
                                 productImage = productData.images[0].images[0].secure_url
                             }
                             let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
-                            let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
+                            // let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
+                            let price = parseFloat(productData.min_price).toFixed(project_settings.price_decimal)
 
-                            recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"> <img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="item-price">'+productData.currency+' '+price+'</div><div class="list-quantity-block"></div><div class="pro-button"> <ul> <li><a href="javascript:void(0);" data-id="'+productData.product_id+'" class="js-add-to-quote"><i class="fa fa-comment quote-icon"><span>,,</span></i></a></li><li><a href="javascript:void(0);" data-id="'+productData.product_id+'" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li></ul> </div><div class="clearfix"></div></div><div class="clearfix"></div></div></div>';
+                            recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"> <img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="item-price">$ '+price+'</div><div class="list-quantity-block"></div><div class="pro-button"> <ul> <li><a href="javascript:void(0);" data-id="'+productData.product_id+'" class="js-add-to-quote"><i class="fa fa-comment quote-icon"><span>,,</span></i></a></li><li><a href="javascript:void(0);" data-id="'+productData.product_id+'" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li></ul> </div><div class="clearfix"></div></div><div class="clearfix"></div></div></div>';
                         }
                         else {
                             let AIndex = recentLoop.indexOf(productId);
@@ -433,7 +434,7 @@ let tagProductList = function(tagObj,productBoxHtml) {
               let productResponse = await fetchProductsByTagId(responseTag[0].id)
               if(productResponse.length > 0){
                   for(let [key,value] of productResponse.entries()){
-                          let productRes = await getProductDetailById(value.product_id)
+                          let productRes = await getProductDetailBySource(value.product_id,"product_id,sku,product_name,currency,min_price,price_1,images")
                           if(productRes !== undefined && productRes != null)  
                           {
                             productBoxHtml1 = productBoxHtml.replace(/#data.id#/g,value.product_id)
@@ -474,7 +475,6 @@ async function getTagListByObj(obj) {
     			url: project_settings.tags_api_url+"?website="+ website_settings['projectID']+"&tag_status=true&"+obj,
     	})
     	.then(response => {
-        // console.log("returnData",response);
           if(response.data.data.length > 0){
               returnData = response.data.data;
           }
@@ -492,7 +492,6 @@ async function fetchProductsByTagId(tagId){
         url: project_settings.product_tags_api_url+"?website="+ website_settings['projectID']+"&tag_id="+tagId,
     })
     .then(response => {
-      // console.log("returnData",response);
         if(response.data.data.length > 0){
             returnData = response.data.data;
         }
@@ -512,7 +511,6 @@ async function recommededProducts(){
         let productSlug = $(".js-tag-recommended-product-list").attr("data-slug")
         if(productSlug != ""){
             let replaceProductBox = await tagProductList("tag_slug="+productSlug,productBoxHtml)
-            console.log('replaceProductBox ==',replaceProductBox)
             if(replaceProductBox != ''){
                 tagHtmlList.find('.js-list').html(replaceProductBox)
                 tagHtmlList.removeClass('hide')
