@@ -237,7 +237,7 @@ body {
                                     <div class="form-group inp-parts">
                                         <label for="ob_user_stateId" class="required">Security Question</label>
                                         <span class="checkout-select-wrapper">
-																						<select id="ob_user_stateId" name="SecurityQuestion" required="required" class="custom-select  js-state" data-original-title="Fylke" data-placement="bottom" data-fv-field="ob_user[stateId]">
+																						<select id="ob_user_stateId" name="SecurityQuestion" required="required" class="custom-select" data-original-title="Fylke" data-placement="bottom" data-fv-field="ob_user[stateId]">
 																							<option value="1" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
 																							<option value="2" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
 																							<option value="3" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
@@ -298,29 +298,33 @@ body {
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>City </label>
-                                        <span class="red">*</span>
-                                        <input type="text" name="city" data-original-title="City" tabindex="10" class="input">
-                                        <!-- <ul class="error-message"><li>Enter Valid City!</li></ul> -->
+                                    <div class="form-group inp-parts">
+                                        <label class="checkout-label">Country<span class="mandatory-field">*</span>
+                                        </label>
+                                        <select class="custom-select js-country" tabindex="1" id="addresstbook_country" name="country">
+                                            <option value="" selected="selected">Select Country</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>State/Province </label>
-                                        <span class="red">*</span>
-                                        <input type="text" name="state" data-original-title="State" tabindex="11" class="input">
-                                        <!-- <ul class="error-message"><li>Enter Valid State/Province!</li></ul> -->
+                                    <div class="form-group inp-parts">
+                                        <label class="checkout-label">State/Province<span class="mandatory-field">*</span>
+                                        </label>
+                                        <select class="custom-select js-state" tabindex="1" id="addresstbook_state" name="state">
+                                            <option value="" selected="selected">Select State</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Country </label>
-                                        <span class="red">*</span>
-                                        <input type="text" name="country" data-original-title="Country" tabindex="12" class="input">
-                                        <!-- <ul class="error-message"><li>Enter Valid Country!</li></ul> -->
+                                    <div class="form-group inp-parts">
+                                        <label class="checkout-label">City<span class="mandatory-field">*</span>
+                                        </label>
+                                        <select class="custom-select js-city" tabindex="1" id="addresstbook_city" name="city">
+                                            <option value="" selected="selected">Select city</option>
+                                        </select>
                                     </div>
                                 </div>
+    
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Zip code </label>

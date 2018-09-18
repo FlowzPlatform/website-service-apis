@@ -194,3 +194,37 @@ $('.socialMedCls').on('click',function(){
 	$('#form-social-icons').attr('action', project_settings.social_auth_api+action_url);
 	$( "#form-social-icons" ).submit();
 });
+getCountryData()
+/*  Get country Data from project_settings */
+function getCountryData(countryId=0){
+	if( $(".js-country").length > 0 ){
+		let countryHtml = $(".js-country").html();
+		let countryList = [];
+		//short_name
+		$.each(project_settings.country_data,function(key,country){
+		  countryList.push(country.short_name);
+		})
+		axios({
+			method: 'GET',
+			url: project_settings.city_country_state_api,
+			params: {
+				'country_data':countryList,
+				'data_from' : 'country_code',
+				'type' : 1
+			}
+		  })
+		.then(response => {
+			if(response.data.length > 0){
+			  $.each(response.data,function(key,country){
+				countryHtml += '<option value="'+country.id+'">'+country.country_name+'</option>'
+			  })
+			  $('.js-country').html(countryHtml)
+			  doSelection('country',countryId);
+			}
+		})
+		.catch(error => {
+		  // console.log('Error fetching and parsing data', error);
+		});
+	}
+  
+  }
