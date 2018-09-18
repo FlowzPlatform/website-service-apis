@@ -80,7 +80,6 @@
 
     <div class="ui-menu-nav">
         <div class="container">
-            <!--MENU-->                  
             <div class="navbar2 navbar-default menu-box" role="navigation" id="mainmenu-nav">
                 <div class="navbar-header2">
                     <a class="navbar-toggle">
@@ -90,7 +89,7 @@
                         <span class="icon-bar"></span>
                     </a>
                 </div>
-            <div id="mainmenu">
+                <div id="mainmenu">
                     <nav menuid="default" class="customMenu">
                         <div id="mainmenu-nav" class="">
                             <div id="navigationDiv" class="">
@@ -101,118 +100,111 @@
                             </div>
                         </div>
                     </nav>
-                    
-                    <!--ADVANCE SEARCH BLOCK-->
-                    <div class="ui-advance-search">
-                        <div class="dropdown nav-search-btn js-advance-menu position-inherit">
-                                <div class="top-search-block">
-                                    <div class="search-form pull-left header-search-col">
-                                        <div class="search-in-dropdown">
-                                            <div class="form-group inp-parts ob-gender-select-box">
-                                                <select id="main_filter" name="main_filter" title="select" class="custom-select">
-                                                    <option value="searchAll">SEARCH IN ALL</option>
-                                                    <option value="categories">CATEGORY</option>
-                                                    <option value="search_keyword">KEYWORD</option>
-                                                    <option value="sku">ITEM CODE</option>
+                </div>
+                <div id="navbar-height-col2"></div>
+            </div>
+
+            <div class="ui-advance-search">
+                <div class="dropdown nav-search-btn js-advance-menu position-inherit">
+                    <a href="javascript:void(0)" class="header-search-medium dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        <i class="fa fa-search"></i>Search In All
+                    </a>
+                    <div class="top-search-block">
+                        <div class="search-form pull-left header-search-col">
+                            <div class="search-in-dropdown">
+                                <div class="form-group inp-parts ob-gender-select-box">
+                                    <select id="main_filter" name="main_filter" title="select" class="custom-select">
+                                        <option value="searchAll">SEARCH IN ALL</option>
+                                        <option value="categories">CATEGORY</option>
+                                        <option value="search_keyword">KEYWORD</option>
+                                        <option value="sku">ITEM CODE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="header-search search-field advance-search-wrap js-advance-search-wrap dropdown">
+                                <input placeholder="Search Product Here" type="text" name="search" class="form-control" />
+                                <button type="submit" class="btn-search"><i class="fa fa-search fa-fw"> </i> Search</button>
+                            </div>
+                        </div>
+
+                        <div class="dropdown top-advance-search advance-search-btn" id="myDropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle js-advace-search-but adv-search-btn" data-toggle="dropdown" aria-expanded="true">Advanced Search</a>
+                            <div class="dropdown-menu header-advace-search">
+                                <form id="top_advance_search_form" name="product_advance_search" method="get" action="">
+                                    <div class="advance-search-col">
+                                        <a href="javascript:void(0);" class="advace-close-but js-search-close-but" data-toggle="dropdown"><i class="fa fa-times"></i></a>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="input-colum">
+                                                <label>Keyword</label>
+                                                <div class="input-field form-group">
+                                                    <input class="js-advance-search-submit" type="text" id="Keyword" name="Keyword" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="dropdown dropdown-colum">
+                                                <label>Select Category</label>
+                                                <select id="Category" name="Category" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="header-search search-field advance-search-wrap js-advance-search-wrap dropdown">
-                                            <input placeholder="Search Product Here" type="text" name="search" class="form-control"
-                                            />
-                                            <button type="submit" class="btn-search"><i class="fa fa-search fa-fw"> </i> Search</button>
-                                        </div>
-                                    </div>
-
-                                        <div class="dropdown top-advance-search advance-search-btn" id="myDropdown">
-                                            <a href="javascript:void(0)" class="dropdown-toggle js-advace-search-but adv-search-btn" data-toggle="dropdown" aria-expanded="true">Advanced Search</a>
-                                            <div class="dropdown-menu header-advace-search">
-                                                <form id="top_advance_search_form" name="product_advance_search" method="get" action="">
-                                                    <div class="advance-search-col">
-                                                        <a href="javascript:void(0);" class="advace-close-but js-search-close-but" data-toggle="dropdown"><i class="fa fa-times"></i></a>
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                                            <div class="input-colum">
-                                                                <label>Keyword</label>
-                                                                <div class="input-field form-group">
-                                                                    <input class="js-advance-search-submit" type="text" id="Keyword" name="Keyword" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                                            <div class="dropdown dropdown-colum">
-                                                                <label>Select Category</label>
-                                                                <select id="Category" name="Category" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                                            <div class="input-colum">
-                                                                <label>Search By Item/Sku Number</label>
-                                                                <div class="input-field form-group ob-qa-input-field form-group-sku">
-                                                                    <input class="js-advance-search-submit" type="text" id="Sku" name="Sku" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                                            <div class="input-colum two-colum pull-left">
-                                                                <label>Min. Price</label>
-                                                                <div class="input-field form-group ob-qa-input-field form-group-mp">
-                                                                    <input class="js-advance-search-submit" id="min_price" type="text" name="min_price" value="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="space-col">-</div>
-                                                            <div class="input-colum two-colum pull-right">
-                                                                <label>Max Price</label>
-                                                                <div class="input-field form-group ob-qa-input-field form-group-mxp">
-                                                                    <input class="js-advance-search-submit" id="max_price" type="text" name="max_price" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                                            <div class="dropdown-colum">
-                                                                <label>Select Brand</label>
-                                                                <select id="Brand" name="Brand" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                                            <div class="dropdown-colum">
-                                                                <label>Select Color</label>
-                                                                <select id="Color" name="Color" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
-                                                                </select>
-                                                            </div>
-                                                        </div> 
-
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pull-right">
-                                                            <div class="button-colum">
-                                                                <div class="form-group">
-                                                                    <input type="submit" name="" value="SEARCH" class="search-button pull-right ob-qa-search-button pull-right-srch">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </form>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="input-colum">
+                                                <label>Search By Item/Sku Number</label>
+                                                <div class="input-field form-group ob-qa-input-field form-group-sku">
+                                                    <input class="js-advance-search-submit" type="text" id="Sku" name="Sku" value="">
+                                                </div>
                                             </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="input-colum two-colum pull-left">
+                                                <label>Min. Price</label>
+                                                <div class="input-field form-group ob-qa-input-field form-group-mp">
+                                                    <input class="js-advance-search-submit" id="min_price" type="text" name="min_price" value="">
+                                                </div>
+                                            </div>
+                                            <div class="space-col">-</div>
+                                            <div class="input-colum two-colum pull-right">
+                                                <label>Max Price</label>
+                                                <div class="input-field form-group ob-qa-input-field form-group-mxp">
+                                                    <input class="js-advance-search-submit" id="max_price" type="text" name="max_price" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <div class="dropdown-colum">
+                                                <label>Select Brand</label>
+                                                <select id="Brand" name="Brand" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <div class="dropdown-colum">
+                                                <label>Select Color</label>
+                                                <select id="Color" name="Color" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pull-right">
+                                            <div class="button-colum">
+                                                <div class="form-group">
+                                                    <input type="submit" name="" value="SEARCH" class="search-button pull-right ob-qa-search-button pull-right-srch">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
-
-
-                                </div>
-                            </div>                               
-                    </div>       
-                    <!--ADVANCE SEARCH BLOCK-->
-
-                
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            <div id="navbar-height-col2"></div></div>
-            <!--MENU-->
-            
-            
-            
+            </div>
         </div>
     </div>
 </header>
