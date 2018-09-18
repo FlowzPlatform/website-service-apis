@@ -867,13 +867,13 @@ function deleteFromLocal(type,product_id){
     }
     else
     {
-      if(JSON.parse(localStorage.getItem(decideLocalStorageKey)).length>4)
-      {
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*JSON.parse(localStorage.getItem(decideLocalStorageKey)).length+'px')
-      }
-      else{
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
-      }
+      // if(JSON.parse(localStorage.getItem(decideLocalStorageKey)).length>4)
+      // {
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*JSON.parse(localStorage.getItem(decideLocalStorageKey)).length+'px')
+      // }
+      // else{
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
+      // }
       $("#myCompareList").find(".js-compare-btns").show()
       document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
@@ -1006,13 +1006,13 @@ function deleteFromDatabase(type,id,user_id){
                 }
                 else
                 {
-                  if(parseInt(document.getElementById("comparedCount").innerHTML)>4)
-                  {
-                    $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*parseInt(document.getElementById("comparedCount").innerHTML)+'px')
-                  }
-                  else{
-                    $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
-                  }
+                  // if(parseInt(document.getElementById("comparedCount").innerHTML)>4)
+                  // {
+                  //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*parseInt(document.getElementById("comparedCount").innerHTML)+'px')
+                  // }
+                  // else{
+                  //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
+                  // }
                   $("#myCompareList").find(".js-compare-btns").show();
                 }
               }
@@ -1965,13 +1965,13 @@ function showCompareList(recetAdded=false)
       }
       $('#myCompareList #listing').removeClass('hide');
 
-      if(compareValuesCount>4)
-      {
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*compareValuesCount+'px')
-      }
-      else{
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
-      }
+      // if(compareValuesCount>4)
+      // {
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*compareValuesCount+'px')
+      // }
+      // else{
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
+      // }
       if(websiteConfiguration.transaction.compare_product.status != 0 || websiteConfiguration.transaction.compare_product.parent_status != 0)
       {
         if(compareValuesCount)
@@ -2005,13 +2005,13 @@ function showCompareList(recetAdded=false)
         }
       }
 
-      if(compareValuesCount>4)
-      {
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*compareValuesCount+'px')
-      }
-      else{
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
-      }
+      // if(compareValuesCount>4)
+      // {
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*compareValuesCount+'px')
+      // }
+      // else{
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
+      // }
 
       if(compareValuesCount)
       {
@@ -2980,11 +2980,11 @@ $(document).on('click', '.js-btn-delete-all-compare-product',function(e) {
 });
 
 $(document).ready(function(){
-      window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
-    $.src="https://v2.zopim.com/?5djwAvXR04Z6LOgDZK23L8hn7QXFldZY";z.t=+new Date;$.
-    type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    //   window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+    // d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    // _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+    // $.src="https://v2.zopim.com/?5djwAvXR04Z6LOgDZK23L8hn7QXFldZY";z.t=+new Date;$.
+    // type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 
     //email
     $.validator.addMethod(
