@@ -80,4 +80,5 @@
 <script type="text/javascript" src="https://widget.cloudinary.com/global/all.js" type="text/javascript" defer="defer"></script>
 <script type="text/javascript" src="https://res.cloudinary.com/flowz/raw/upload/v1531977244/websites/InnovationLine/js/wow.js" defer="defer"></script>
 <script type="text/javascript" src="./assets/client-plugins/script.js" defer="defer"></script>
+<script type="text/javascript" src="./assets/client-plugins/slide-menu.js" defer="defer"></script>
 <link href="./assets/css/posh.css" rel="stylesheet" type="text/css" />
