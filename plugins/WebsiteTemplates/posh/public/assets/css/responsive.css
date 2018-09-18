@@ -1223,7 +1223,7 @@
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus,
     .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{color: #e70000;}
  	.ui-header .logo-col{margin: 10px 0;}
-    body.slide-active{margin-left:265px;width:100%;position:fixed;overflow:hidden;}
+    body.slide-active{margin-left:265px !important;width:100%;position:fixed;overflow:hidden;}
     .ui-menu-nav{height: auto;}
     .menu-box .navbar-nav li{position:relative;}
     .dropdown-submenu.open > .dropdown-menu{display:block!important;}
