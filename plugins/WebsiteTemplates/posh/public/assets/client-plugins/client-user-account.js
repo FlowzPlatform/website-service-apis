@@ -5,6 +5,7 @@ if (user_id == null ) {
 
 let user_unique_id = 0;
 /* for listing User data */
+
 $.ajax({
     type: 'GET',
     async: false,
@@ -13,7 +14,7 @@ $.ajax({
         if( response.data.length > 0){
             let userDetail = response.data[0];
             user_unique_id = userDetail.id;
-            let formObj = $('form#user_account');
+            let formObj = $('form#myAccountEdit');
 
             $.each(userDetail,function(element,value){
                 $(formObj.find('input[type="text"][name*="'+element+'"]')).val(value);
@@ -35,37 +36,51 @@ $.ajax({
 
 $(function() {
     // Add User data
-    $('form#user_account').validate({
-  			rules: {
-          "firstname":"required",
-          // "email":{
-          //   required:true,
-          //   email: true
-          // },
-          "address1":"required",
-          "country":"required",
-          "state":"required",
-          "city":"required",
-          "postalcode":"required",
-          "phone":{
-              required:true
-          }
-  			},
-  			messages: {
-          "username":"Please enter first name.",
-          // "email":{
-          //   required:"Please enter email",
-          //   email: "Please enter valid email."
-          // },
-          "address1":"Please enter address 1",
-          "country":"Please select country",
-          "state":"Please select state",
-          "city":"Please select city",
-          "postalcode":"Please enter postal code",
-          "phone":{
-            required:"Please enter phone"
-          }
-  			},
+    let projectID;
+    let baseURL;
+    setTimeout(() => {
+      $.getJSON("./assets/project-details.json", function(data) {
+            projectID = data[0].projectID;
+            baseURL = data[0].builder_service_api;
+        })
+    },1000)
+    $('form#myAccountEdit').validate({
+      rules: {
+      "userEmail": "required",
+      "password": "required",
+      "confirmPassword": "required",
+      "securityQuestion": "required",
+      "securityAnswer": "required",
+          "firstName":"required",
+          "lastName": "required",
+          "address1": "required",
+          "country": "required",
+          "state": "required",
+          "city": "required",
+          "zipCode": "required",
+          "phone": {
+            required: true
+          },
+          "email": "required",
+      },
+      messages: {
+      "userEmail": "Enter Valid Email ID!",
+      "password": "Enter Valid Password!",
+      "confirmPassword": "Enter Valid Confirm Password!",
+      "securityQuestion": "Enter Valid Question!",
+      "securityAnswer": "Enter Valid Security Answer!",
+        "firstName": "Enter Valid First Name!",
+        "lastName": "Enter Valid Last Name!",
+        "address1": "Enter Valid Address 1!",
+        "country": "Enter Valid Country!",
+        "state": "Enter Valid State/Province!",
+        "city": "Enter Valid City!",
+        "zipCode": "Enter Valid Zip Code!",
+        "phone": {
+          required: "Enter phone number!"
+        },
+      "email": "Enter Valid Email ID!",
+      },
         errorElement: "li",
         errorPlacement: function(error, element) {
           error.appendTo(element.closest("div"));
@@ -74,28 +89,41 @@ $(function() {
         errorLabelContainer: "#errors",
         wrapper: "ul",
         submitHandler: function(form) {
-            let formObj = $(form);
-            if(user_unique_id != 0) {
-                $.ajax({
-                    type: "PATCH",
-                    url: project_settings.user_account_api_url+"/"+user_unique_id,
-                    data: formObj.serialize()+'&userId='+user_id,
-                    cache: false,
-                    dataType: 'json',
-                    success: function(response){
-                        if(response.id != undefined && response.id != '' ){
-                            showSuccessMessage("Your account details are updated successfully.","myaccount.html");
-                            return false;
-                        }
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                    }
-                });
+          showPageAjaxLoading();
+          let formData = $(form).serializeArray();
+          let editAccJSON = {};
+          for (let input of formData) {
+            if (input.name != 'confirmPassword') {
+              editAccJSON[input.name] = input.value;
             }
-            else {
-                showErrorMessage("Your account details are not updated.");
-                return false;
-            }
+          }
+          // signUpJSON['isActive'] = true;
+          // signUpJSON['isDeleted'] = false;
+          // signUpJSON['websiteId'] = projectID;
+          // signUpJSON['userRole'] = 'registered';
+
+          // return false;
+          // let fullname = $('.firstName').val().trim() + ' ' + $('.lastName').val().trim();
+          // let email = $('.userEmail').val().trim();
+          // let password = $('.password').val().trim();
+          // var userDetails = {"password":password ,"email":email ,"fullname":fullname};
+          // console.log('setup url', project_settings.api_url+"setup")
+          // console.log('JSON.stringify(userDetails)',JSON.stringify(userDetails));
+          // console.log("baseURL + '/website-users'", baseURL + '/website-users');
+          // console.log('signUp data',signUpJSON);
+          axios({
+            method: 'patch',
+            url: baseURL + '/website-users/'+user_unique_id,
+            data: editAccJSON
+          })
+          .then(function(res) {
+            hidePageAjaxLoading();
+             // window.location = "myaccount.html";
+            // console.log('sucessfully entered in website user')
+          })
+          .catch(function(err) {
+            hidePageAjaxLoading();
+          })
         },
     });
 
@@ -118,30 +146,6 @@ $(function() {
   	});
 
 
-    /* for Listing User data */
-
-    axios({
-        method: 'GET',
-        url: project_settings.user_account_api_url+'/'+user_id,
-      })
-    .then(response => {
-        if(response.data != undefined ){
-            let formObj = $('form#user_account');
-            let addressBookDetail = response.data;
-            $.each(addressBookDetail,function(element,value){
-                $(formObj.find('input[type="text"][name*="'+element+'"]')).val(value);
-            });
-            getCountryData(response.data.country)
-            getStateAndCityData(formObj,response.data.country,response.data.state,"",'country_code','js-state')
-            getStateAndCityData(formObj,response.data.country,response.data.state,response.data.city,'state_code','js-city')
-        }
-        else {
-          getCountryData();
-        }
-    })
-    .catch(error => {
-      console.log('Error fetching and parsing data', error);
-    });
 
 
     /*  On change Country get state and city data from database */
@@ -150,7 +154,7 @@ $(function() {
           let form = $(this).closest('form');
           let countryVal = form.find('.js-country').val();
           form.find('.js-state').val('');
-
+          form.find('.js-state').before('<div class="loadinggif"></div>');
           let response = await getStateAndCityVal(countryVal,"","country_code")
           first = form.find('.js-state option:first');
           form.find('.js-state').html("");
@@ -162,7 +166,7 @@ $(function() {
           })
           form.find('.js-state').change();
           form.find('.js-state').find("option").first().click();
-
+          form.find('.js-state').prev('.loadinggif').remove();
       })
 
       $(".js-state").on("change",async function(){
@@ -170,7 +174,7 @@ $(function() {
           let countryVal = form.find('.js-country').val();
           let stateVal = form.find('.js-state').val();
           form.find('.js-city').val('');
-
+          form.find('.js-city').before('<div class="loadinggif"></div>');
           let response = await getStateAndCityVal(countryVal,stateVal,"state_code")
 
           first = form.find('.js-city option:first');
@@ -181,6 +185,7 @@ $(function() {
              options.append(new Option(city.city_name,city.id));
           })
           form.find('.js-city').find("option").first().click();
+          form.find('.js-city').prev('.loadinggif').remove();
       })
     }
 });
