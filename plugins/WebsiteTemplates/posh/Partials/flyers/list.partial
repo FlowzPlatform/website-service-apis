@@ -89,9 +89,11 @@ button.remove {
             <a class="item-title" href="javascript:void(0);">#flyer-title#</a>
             <div class="pro-button">
                 <ul>
-                    <li><a href="#flyer-image-link#" target="_blank" title="View" data-placement="top" data-toggle="modal" data-target="#view-flyer#" data-original-title="View Flyer"><i class="fa fa-eye"></i>View Flyer</a>
+                    <li>
+                        <a href="javascript:void(0);" class="js-open-modal-flyer" title="View Flyer" data-image="#flyer-image-link#" data-original-title="View Flyer"><i class="fa fa-eye"></i>View Flyer</a>
                     </li>
-                    <li><a data-placement="top" href="#flyer-pdf-link#" target="_blank" title="Download" data-original-title="Download"><i class="fa fa-download"></i></a>
+                    <li>
+                        <a data-placement="top" href="#flyer-pdf-link#" target="_blank" title="Download" data-original-title="Download"><i class="fa fa-download"></i></a>
                     </li>
                 </ul>
             </div>
@@ -102,3 +104,5 @@ button.remove {
 
 </div>
 <div class="listing"></div>
+
+<reusecomponent class="c49533">{{> flyers id='viewFlyerImage.partial' }}</reusecomponent>

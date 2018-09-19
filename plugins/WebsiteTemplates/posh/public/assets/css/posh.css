@@ -51,7 +51,7 @@
 .recommeded-product-slider .owl-prev:hover, .owl-prev:hover, .ob-related-product .owl-prev:hover { background: #fff url(../images/black_arrows.png) no-repeat !important; background-position: 2px !important;}
 
 /* **************** */
-.js-view-ecatalog-image{ margin: 0 auto !important }
+.js-view-ecatalog-image, .js-view-flyer-image{ margin: 0 auto !important }
 .quantity-table .table-heading, .quantity-table .table-content{font-size: 12px;}
 .quantity-table .table-heading{ padding:0px}
 .print-product-detail .quantity-table .table-heading{ padding: 6px }
