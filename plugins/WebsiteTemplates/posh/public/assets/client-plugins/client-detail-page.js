@@ -50,12 +50,13 @@ if(pid != null) {
 // console.log('get_product_details',get_product_details)
 
 $(document).ready( async function(){
-    $("#flowz_content").closest('.row').css('display','flex');
     if(get_product_details == null ){
         hidePageAjaxLoading()
         window.location = "error404.html";
         return false;
     }
+    $("#flowz_content").closest('.row').css('display','flex');
+    recommededProducts();
     var productDetails = get_product_details;
     ProductName = productDetails.product_name;
     ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
@@ -511,7 +512,6 @@ async function fetchProductsByTagId(tagId){
     return returnData;
 }
 
-recommededProducts();
 async function recommededProducts(){
     if($(".js-tag-recommended-product-list").length > 0){
         let tagHtmlList = $(".js-tag-recommended-product-list");

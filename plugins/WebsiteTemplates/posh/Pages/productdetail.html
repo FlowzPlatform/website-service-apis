@@ -56,7 +56,7 @@
             <div class="innerpage ob-product-detail-page">
                 <div class="breadcrumb">
                     <ul>
-                        <li><a href="index.php">Home</a><i class="fa fa-angle-right fa-fw"></i>
+                        <li><a href="index.html">Home</a><i class="fa fa-angle-right fa-fw"></i>
                         </li>
                         <li><strong>#data.title#</strong>
                         </li>
@@ -123,12 +123,10 @@
                     </div>
                 </div>
 
-                <div class="row" style="display: block">
+                <div class="row js-recent-recommended-products" style="display: block">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <reusecomponent class="c25962">{{> productDetail id='recommendedProducts.partial' }}</reusecomponent>
+                        <reusecomponent class="c25962">{{> productDetail id='recommendedProducts.partial' }}</reusecomponent>
                     </div>
-                </div>
-                <div class="row" style="display: block">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <reusecomponent class="c25962">{{> productDetail id='recentViewedProducts.partial' }}</reusecomponent>
                     </div>
