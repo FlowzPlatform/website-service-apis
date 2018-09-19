@@ -1,0 +1,190 @@
+<div class="std_text2">
+    <div class="buttonRow">
+        <a href="javascript:void(0);" class="myButton" id="js-check-inventory" data-toggle="modal" data-target="#checkInventory">Check Inventory</a>
+        <a href="#" id="shippingEstButton" class="myButton" data-toggle="modal" data-target="#shipping_estimator_model">Shipping Estimator</a>
+        <div id="bySampleLink"></div>
+        <a href="javascript:void(0);" id="js-order-sample" data-toggle="modal" data-target="#orderSample" class="myButton">Order Sample</a>                
+        <style>
+        .virtual-button {
+            background: #ee0000!important;
+            text-align: center;
+            min-width: 139px;
+            min-height: 29px;
+            padding: 8px;
+            color: #fff !important;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            position: absolute;
+            top: 79px;
+            right: 97px;
+            left: auto;
+            border-radius: 4px;
+            max-width: 21px;
+            background-color: #ee0000;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-weight: bold;
+            font-family: Arial;
+            font-size: 13px;
+            padding: 6px 20px;
+            margin-top: 5px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #854629;
+            text-transform: capitalize;
+}
+        </style>
+
+        <div id="ob_virtual_list">
+            <div id="ob-virtualmarketingcart">
+                <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"
+                />
+                <input id="ob-virtualmarketingcart-supplier" type="hidden" value="#data.spplierId#"
+                />
+                <input id="ob-virtualmarketingcart-culture" type="hidden" value="#data.culture#"
+                />
+                <input class="ob-btvirtualloadcontent" id="c70827" type="button" />
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="modal fade model-popup-black " id="shipping_estimator_model" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md shippingng-estimator-model">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">&times;</a>
+            <div class="modal-header">
+                <h1 class="modal-title"><i class="strip estimator-popup-strip"></i>Shipping Estimator </h1>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h3><span class="estimatorProductName"></span><span class="item-code-no estimatorProductSku"></span></h3>
+                    </div>
+                </div>
+                <form name="shipping_estimator" id="calculate_shipping_estimator">
+                    <div class="shippingng-estimator-popup">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Quantity :</label><span class="red">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <input type="text" name="qty" data-original-title="quantity" data-placement="bottom" tabindex="1" class="input">
+                                        <!-- <ul class="error-message">
+                                            <li>Enter Quantity</li>
+                                        </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row">
+                              <div class="col-sm-3 col-xs-12">
+                                  <div class="form-group">
+                                      <label>Country :</label><span class="red">*</span>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6 col-xs-12">
+                                  <div class="form-group inp-parts">
+                                      <select class="custom-select js-country" style="width: 100%;height: 30px;" id="shipping_estimator_country" name="country" tabindex="2" data-placement="bottom">
+                                        <option value="" selected="selected">Select Country</option>
+                                      </select>
+                                      <!-- <ul class="error-message">
+                                          <li>Enter Valid Country!</li>
+                                      </ul> -->
+                                  </div>
+                              </div>
+
+                          </div>
+                                  </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Zip Code :</label><span class="red">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <input type="text" name="zip_code" data-original-title="Zip Code" data-placement="bottom" tabindex="3" class="input">
+                                        <!-- <ul class="error-message">
+                                            <li>Enter Valid Zipcode!</li>
+                                        </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ship-option">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group pull-left">
+                                        <label>Residential Address? :</label>
+                                    </div>
+                                    <div class="form-group form-option pull-left">
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="checkbox-mailing">
+                                            <label for="checkbox-mailing"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ship-option">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group pull-left">
+                                        <label>Shipping Method <span class="red">*</span></label>
+                                    </div>
+                                    <div class="form-group form-option pull-left">
+                                        <div class="checkbox">
+                                            <input id="checkbox18" name="shipping_type" class="css-checkbox" value="ups" type="checkbox" />
+                                            <label for="checkbox18" class="css-label font-style-normal">UPS</label>
+                                        </div>
+                                        <!-- <div class="checkbox">
+                                            <input id="checkbox19" class="css-checkbox" type="checkbox" />
+                                            <label for="checkbox19" class="css-label font-style-normal">FEDEX</label>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="text-center">
+                                <input type="button" value="Submit" class="virtual-modal-btn js-submit-btn-rate-calculation">
+                                <input type="reset" value="Reset" class="virtual-modal-btn js-reset-btn-rate-calculation">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 5px 45px 12px 45px;">
+                                <table id="estimatorResponse" style="width: 100% ! important; padding-bottom: 10px; display:none;">
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div id="estimatorError" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 5px 45px 12px 45px; color:red;display:none;"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span>Note: This is a Shipping Estimate only</span>
+                <p> Actual shipping cost may be higher or lower ipsum dolor sit amet, consectetur adipiscing elit. Duis tincidunt condimentum felis, et tempor neque rhoncus ac.Maenas ultricies tellus sed convalls luctus. Proin vitae condi entum purus. Etiam
+                    nec accu msan erat.</p>
+            </div>
+        </div>
+    </div>
+</div>

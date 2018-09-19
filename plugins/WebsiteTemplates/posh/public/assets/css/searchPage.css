@@ -35,7 +35,8 @@ margin-left: 3%;
     height: auto;
     margin: 0 0.5% 20px 0.5%;
     max-width: inherit;
-    width: 24%;
+    /* width: 24%;  //// 4 card ////     */   
+    width:15.5%;
     -webkit-box-pack: start;
     justify-content: start;
     flex-grow: 0;
@@ -236,7 +237,7 @@ section.css-8523a9.css-7bb100 {
 
 .header-loging li.header-login-text a .svg-inline--fa {
 font-size: 11px !important;
-}
+color: #000;}
 .header-loging li.header-login-text.login-show .svg-inline--fa.fa-fw {display:none}
 .header-loging li.header-login-text.login-show .login-text:after {content: "\f090";position: absolute;width: 1em;display: inline-block;font: normal normal normal 14px/1 FontAwesome;font-size: inherit;text-rendering: auto;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;left:  10px;top: 3px;font-size:  11px;}
 
@@ -378,3 +379,10 @@ visibility : hidden;
 .product-img-blk{height: 250px;}
 .css-omf3o4 a.e1cc0ogo1 article {padding-top:0px}
 /* .css-omf3o4 a.e1cc0ogo1 {padding: 5px} */
+
+.ob-top-menu .info-menu.slidemenu { padding: 1px 0; position: inherit; width: 55%; float: left; }
+.menu-box .navbar-nav > li > a {
+    font-family: 'Lato', sans-serif !important;
+    color: #fff !important;
+    margin-right: 20px !important;
+}

@@ -103,7 +103,7 @@ button.remove {
             </div>
             <div class="pro-desc"><a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
                 <div
-                class="item-code">Item Code : #data.sku#</div>
+                class="item-code">Item#: #data.sku#</div>
             <div class="item-price">#data.currency# #data.price#</div>
             <div class="carousel-color-section checkbox_colors js-color-section color-box owl-carousel" id="carousel-color-section">
                 <div class="checkbox_color" style="#data.colorCodeStyle#" title="#data.colorVal#">

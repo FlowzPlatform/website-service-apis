@@ -174,9 +174,25 @@ $(document).ready(function() {
     }
   }
 
-  if(getParameterByName('SearchSensor')){
-      $('input[name="search"]').val(getParameterByName('SearchSensor').replace (/(^")|("$)/g, ''))
-  }
+/////////////////////////    Changes ////////////////////////////  
+  
+if(getParameterByName('Search')){
+    $('input[name="search"]').val(getParameterByName('Search').replace (/(^")|("$)/g, ''));      
+}
+if(getParameterByName('Category')){
+  $('input[name="search"]').val(getParameterByName('Category').replace (/(^")|("$)/g, ''))
+  $("#main_filter").val("categories");
+}
+if(getParameterByName('Keyword')){
+  $('input[name="search"]').val(getParameterByName('Keyword').replace (/(^")|("$)/g, ''))
+  $("#main_filter").val("search_keyword");
+}
+if(getParameterByName('Sku')){
+  $('input[name="search"]').val(getParameterByName('Sku').replace (/(^")|("$)/g, ''))
+  $("#main_filter").val("sku"); 
+}
+ 
+///////////////////////////////////////////////////////////////
 
 })
 
@@ -529,7 +545,7 @@ var init = function() {
     showCompareList();
   }
 
-  let total_hits;
+let total_hits;
 let myarr = [];
 let result = [];
 let HeaderSearchValue;
@@ -646,16 +662,16 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
 
   $(document).on('click','.header-search-col .btn-search',function() {
     if($.trim($('input[name="search"]').val()) != '') {
-        window.location.href = website_settings.BaseURL+'search.html?SearchSensor='+$('input[name="search"]').val()
-    // window.location.href = website_settings.BaseURL+'search.html?SearchSensor=' + "\""+$('input[name="search"]').val()+"\""
+        window.location.href = website_settings.BaseURL+'search.html?Search='+$('input[name="search"]').val()
+    // window.location.href = website_settings.BaseURL+'search.html?Search=' + "\""+$('input[name="search"]').val()+"\""
         if(HeaderSearchValue === "categories"){
-          window.location.href = website_settings.BaseURL+'search.html?CategorySensor='+$('input[name="search"]').val()
+          window.location.href = website_settings.BaseURL+'search.html?Category='+$('input[name="search"]').val()
         }
         else if(HeaderSearchValue === "search_keyword"){
-          window.location.href = website_settings.BaseURL+'search.html?KeywordSensor='+$('input[name="search"]').val()
+          window.location.href = website_settings.BaseURL+'search.html?Keyword='+$('input[name="search"]').val()
         }
         else if(HeaderSearchValue === "sku"){
-          window.location.href = website_settings.BaseURL+'search.html?SkuSensor='+$('input[name="search"]').val()
+          window.location.href = website_settings.BaseURL+'search.html?Sku='+$('input[name="search"]').val()
         }
         // $('#main_filter :selected').val(HeaderSearchValue)
     }
@@ -851,13 +867,13 @@ function deleteFromLocal(type,product_id){
     }
     else
     {
-      if(JSON.parse(localStorage.getItem(decideLocalStorageKey)).length>4)
-      {
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*JSON.parse(localStorage.getItem(decideLocalStorageKey)).length+'px')
-      }
-      else{
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
-      }
+      // if(JSON.parse(localStorage.getItem(decideLocalStorageKey)).length>4)
+      // {
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*JSON.parse(localStorage.getItem(decideLocalStorageKey)).length+'px')
+      // }
+      // else{
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
+      // }
       $("#myCompareList").find(".js-compare-btns").show()
       document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
     }
@@ -990,13 +1006,13 @@ function deleteFromDatabase(type,id,user_id){
                 }
                 else
                 {
-                  if(parseInt(document.getElementById("comparedCount").innerHTML)>4)
-                  {
-                    $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*parseInt(document.getElementById("comparedCount").innerHTML)+'px')
-                  }
-                  else{
-                    $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
-                  }
+                  // if(parseInt(document.getElementById("comparedCount").innerHTML)>4)
+                  // {
+                  //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*parseInt(document.getElementById("comparedCount").innerHTML)+'px')
+                  // }
+                  // else{
+                  //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
+                  // }
                   $("#myCompareList").find(".js-compare-btns").show();
                 }
               }
@@ -1304,7 +1320,7 @@ function showQuickQuoteList()
   if(websiteConfiguration.transaction.quick_quote.status == 0)
   {
     let html = 'Access Denied';
-    $('.myaccount-my-wishlist').html(html);
+    $('#myQuickQuoteList .myaccount-my-wishlist').html(html);
     return false;
   }
   else{
@@ -1462,7 +1478,7 @@ function showQuickQuoteList()
                         $(".quantity-table-col").owlCarousel({
                             stopOnHover : true,
                             navigation:true,
-                            items : 4,
+                            items : 5,
                             itemsDesktop: [1199, 4],
                             itemsDesktopSmall: [979, 4],
                             itemsTablet: [767, 2],
@@ -1576,7 +1592,7 @@ function showWishList(recetAdded=false)
   if(websiteConfiguration.transaction.wishlist.status == 0)
   {
     let html = 'Access Denied';
-    $('.myaccount-my-wishlist').html(html);
+    $('#myWishList .myaccount-my-wishlist').html(html);
     return false;
   }
   else{
@@ -1903,7 +1919,7 @@ function showCompareList(recetAdded=false)
                       $("#myCompareList #listing div:first").removeClass("hide");
 
                       compareHtml.find("#item_title_price1").html("<td></td>"+productHtml)
-                      compareHtml.find("#item_sku1").html("<td><strong>ITEM CODE</strong></td>"+itemSkuHtml)
+                      compareHtml.find("#item_sku1").html("<td><strong>ITEM#</strong></td>"+itemSkuHtml)
                       compareHtml.find("#item_summary1").html("<td><strong>SUMMARY</strong></td>"+activeSummaryHtml)
                       compareHtml.find("#item_features1").html("<td><strong>FEATURES</strong></td>"+itemFeaturesHtml)
                       $('#myCompareList #listing').html(compareHtml.html());
@@ -1949,13 +1965,13 @@ function showCompareList(recetAdded=false)
       }
       $('#myCompareList #listing').removeClass('hide');
 
-      if(compareValuesCount>4)
-      {
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*compareValuesCount+'px')
-      }
-      else{
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
-      }
+      // if(compareValuesCount>4)
+      // {
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*compareValuesCount+'px')
+      // }
+      // else{
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
+      // }
       if(websiteConfiguration.transaction.compare_product.status != 0 || websiteConfiguration.transaction.compare_product.parent_status != 0)
       {
         if(compareValuesCount)
@@ -1989,13 +2005,13 @@ function showCompareList(recetAdded=false)
         }
       }
 
-      if(compareValuesCount>4)
-      {
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*compareValuesCount+'px')
-      }
-      else{
-        $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
-      }
+      // if(compareValuesCount>4)
+      // {
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*compareValuesCount+'px')
+      // }
+      // else{
+      //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
+      // }
 
       if(compareValuesCount)
       {
@@ -2468,7 +2484,7 @@ async function printDiv(printDiv=true) {
                       {
                         $(compareHtml).find("#js-print_item_title").html("<td class='feature-block'></td>"+productTitleHtml)
                         $(compareHtml).find("#js-print_item_price").html("<td class='feature-block'></td>"+productPriceHtml)
-                        $(compareHtml).find("#js-print_item_sku").html("<td class='feature-block'>ITEM CODE</td>"+itemSkuHtml)
+                        $(compareHtml).find("#js-print_item_sku").html("<td class='feature-block'>ITEM#</td>"+itemSkuHtml)
                         $(compareHtml).find("#js-print_item_summary").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").html("<td class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
                         $('#print-comparision').html(compareHtml.html());
@@ -2511,23 +2527,6 @@ async function printDiv(printDiv=true) {
     }
     hidePageAjaxLoading()
 }
-$.validator.addMethod(
-  "multiemails",
-   function(value, element) {
-       if (this.optional(element)) // return true on optional element
-           return true;
-           let emails = value.split(/[;,]+/); // split element by , and ;
-       valid = true;
-       for (let i in emails) {
-           value = emails[i];
-           valid = valid &&
-                   jQuery.validator.methods.email.call(this, $.trim(value), element);
-       }
-       return valid;
-   },
-
- $.validator.messages.multiemails
-);
 
 
 $(document).on('click','.js-email_quick_quote',function (e)
@@ -2981,11 +2980,30 @@ $(document).on('click', '.js-btn-delete-all-compare-product',function(e) {
 });
 
 $(document).ready(function(){
-      window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
-    $.src="https://v2.zopim.com/?5djwAvXR04Z6LOgDZK23L8hn7QXFldZY";z.t=+new Date;$.
-    type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    //   window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+    // d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    // _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+    // $.src="https://v2.zopim.com/?5djwAvXR04Z6LOgDZK23L8hn7QXFldZY";z.t=+new Date;$.
+    // type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+
+    //email
+    $.validator.addMethod(
+      "multiemails",
+       function(value, element) {
+           if (this.optional(element)) // return true on optional element
+               return true;
+               let emails = value.split(/[;,]+/); // split element by , and ;
+           valid = true;
+           for (let i in emails) {
+               value = emails[i];
+               valid = valid &&
+                       jQuery.validator.methods.email.call(this, $.trim(value), element);
+           }
+           return valid;
+       },
+    
+     $.validator.messages.multiemails
+    );
 })
 
 //////////////////////////////////////////////////////////////////////////
@@ -3249,7 +3267,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 {
                   compareHtml.find("#product_price").addClass('hide').html("<td style='width:20%' class='feature-block'>PRICE</td>"+itemPriceHtml)
                 }
-                compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM CODE</td>"+itemSkuHtml)
+                compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM#</td>"+itemSkuHtml)
                 compareHtml.find("#product_summary").html("<td style='width:20%'class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                 compareHtml.find("#product_features").html("<td style='width:20%' class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
               }

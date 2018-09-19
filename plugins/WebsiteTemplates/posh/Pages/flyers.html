@@ -62,14 +62,15 @@ body {
     <div class="innerpage row">
         <div class="ob-catalog-block">
             <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                    <h1 class="catalogue-title"><span>Flyers</span></h1>
-                    <div id="product-list-container" class="cat-pro-list">
-                        <reusecomponent class="c67694">{{> flyers id='list.partial' }}</reusecomponent>
-                    </div>
+                <!-- right sidebar product start -->
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 flyer-wrapper">
+                    <h1 class="main-title"><i class="fa fa-file-image-o"></i>Flyer</h1>
+                    <reusecomponent class="c67694">{{> flyers id='list.partial' }}</reusecomponent>
+                    
                 </div>
+                <!-- right sidebar product end -->
             </div>
         </div>
-    </div>
+      </div>
 </div>
 <script src="./assets/client-plugins/client-flyers.js" defer="defer"></script>

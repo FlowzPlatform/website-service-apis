@@ -54,7 +54,7 @@ body {
                                     <thead>
                                        <tr class="order-item-title">
                                           <th>Product Image</th>
-                                          <th>Item Code</th>
+                                          <th>Item#</th>
                                           <th>Product Name</th>
                                           <th>Quantity</th>
                                           <th>Unit Price</th>

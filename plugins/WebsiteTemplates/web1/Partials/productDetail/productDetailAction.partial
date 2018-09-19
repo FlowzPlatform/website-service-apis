@@ -77,6 +77,7 @@ body {
             <li class="hide">
                 <a href="javascript:void(0);" id="js-share_product" target="_blank"><i class="strip share-strip"></i>Share Product</a>
             </li>
+            <li><a href="javascript:void(0)"  id="js_open_modal_shipping_estimator" data-toggle="modal" data-target="#shipping_estimator_model"><i class="strip estimator-strip"></i>Shipping Estimator</a></li>
         </ul>
         <div class="clearfix"></div>
     </div>
@@ -265,4 +266,138 @@ body {
 			</div>
 		</div>
 	</div>
+</div>
+
+
+<div id="shipping_estimator_model" role="dialog" class="modal fade model-popup-black">
+    <div class="modal-dialog">
+        <div class="modal-content"><a aria-label="Close" data-dismiss="modal" href="javascript:void(0);"
+            class="close">×</a>
+            <div class="modal-header">
+                <h1 class="modal-title"><i class="strip estimator-popup-strip"></i>Shipping Estimator</h1>
+            </div>
+            <div class="modal-body ">
+            <div class="row">
+                <form name="shipping_estimator" method="post" id="calculate_shipping_estimator">
+                    <div class="shippingng-estimator-popup">
+                        <div class="row">
+                            <div class="col-sm-12 text-center" style="font-size:17px;">
+                                <span style="font-weight:bold;">Product:</span> <span class="productName"> </span>  <span class="item-code-no itemCode"> </span> </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="shipping_estimator_qty">Quantity</label><span class="red" title="This field is required">*</span></div>
+                                </div>
+                                <div class="col-sm-8 col-xs-12">
+                                    <div class="form-group">
+                                        <input id="shipping_estimator_qty" name="qty" class="input" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="shipping_estimator_country">Country</label><span class="red" title="This field is required">*</span></div>
+                                </div>
+                                <div class="col-sm-8 col-xs-12">
+                                    <div class="form-group">
+                                        <select class="custom-select js-country" style="width: 100%;height: 30px;" id="shipping_estimator_country" name="country" data-toggle="tooltip" data-placement="bottom" title="Country">
+                                            <option value="" selected="selected">Select Country</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="shipping_estimator_zip_code">Zip/Postal Code</label><span class="red" title="This field is required">*</span></div>
+                                </div>
+                                <div class="col-sm-8 col-xs-12">
+                                    <div class="form-group">
+                                        <input id="shipping_estimator_zip_code" name="zip_code" class="input" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="shipping_estimator_shipping_type" class="required">Shipping Type</label><span class="red" title="This field is required">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-6 col-lg-2">
+                                    <div class="form-group">
+                                        <div class="radio ob-subshop-storeprogram">
+                                            <input id="shipping_estimator_shipping_type" name="shipping_type" class="input" value="ups" type="checkbox"><span style="color:#404040;padding: 5px;">UPS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-6 col-lg-2">
+                                    <div class="form-group">
+                                        <div class="radio ob-subshop-storeprogram">
+                                            <input id="shipping_estimator_shipping_type" name="shipping_type" class="input" value="fedex" type="checkbox"><span style="color:#404040;padding: 5px;">FEDEX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="shipping_estimator_is_resident" class="required">Residential Address?</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 col-xs-12 col-lg-4">
+                                    <div class="form-group">
+                                        <div class="radio ob-subshop-storeprogram">
+                                            <input id="shipping_estimator_is_resident" name="is_resident" required="required" class="input" value="1" type="checkbox">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="text-center">
+                                <input value="Submit" class="button-secondary-pink js-submit-btn-rate-calculation" type="button">
+                                <input class="button-secondary js-reset-btn-rate-calculation" value="Reset" type="button">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--<input name="type" value="rate" type="hidden">-->
+                    <!--<input name="productId" value="1293098" type="hidden">-->
+                    <div class="text-center" id="message"></div>
+                    <!--<input id="shipping_estimator_country" name="country" value="US" type="hidden">-->
+                    <!--<input id="shipping_estimator_shipping_type" name="shipping_type" value="ups" type="hidden">-->
+                    <!--<input id="shipping_estimator__token" name="shipping_estimator[_token]" value="tpG8_aHhw7_anDUeteealae33VGANAGVR_9mtT6jZFo" type="hidden">-->
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 5px 45px 12px 45px;">
+                <table id="estimatorResponse" style="border:0;width:70%;display:none;">
+                    <tbody style="border:0;">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div id="estimatorError" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 5px 45px 12px 45px; color:red;text-align: center;display:none;"></div>
+        </div>
+        
+        <div class="modal-footer" style="text-align:center;"><span style="color:red;">Note: This is a Shipping Estimate only</span>
+            <p>The actual shipping cost may vary.</p>
+        </div>
+        </div>
+    </div>
 </div>
