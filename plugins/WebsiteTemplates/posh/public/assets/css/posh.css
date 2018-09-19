@@ -73,6 +73,19 @@
 .info-menu ul li > a{border-right: 0;}
 .header-loging .dropdown-menu.user-dropdown li{ text-align: left; padding: 0; width: 100%;}
 .pfunction a { margin-left: 1px; }
+.product-showcase {
+    padding-top: 15px !important;
+    font-family: 'Lato', sans-serif !important;
+}
+.ob-product-detail-page .product-showcase {
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+    width: auto !important;
+}
+.js-product_description_text{ padding-bottom: 15px !important; }
+#owl-carousel-recommeded-products .item { margin: 0 1px; }
+.owl-carousel .owl-wrapper-outer { position: relative; overflow: hidden; width:100%;-webkit-transform: translate3d(0px, 0px, 0px); }
+
 
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) 

@@ -2,6 +2,10 @@ if(user_id != null) {
 	window.location = "index.html";
 }
 
+$(function() {
+	getCountryData()
+});
+
 $('.user-signup').on('click',function() {
 	let projectID;
 	let baseURL;
@@ -194,7 +198,7 @@ $('.socialMedCls').on('click',function(){
 	$('#form-social-icons').attr('action', project_settings.social_auth_api+action_url);
 	$( "#form-social-icons" ).submit();
 });
-getCountryData()
+
 /*  Get country Data from project_settings */
 function getCountryData(countryId=0){
 	if( $(".js-country").length > 0 ){
@@ -228,3 +232,60 @@ function getCountryData(countryId=0){
 	}
   
   }
+
+  /*  On change Country get state and city data from database */
+  if( $('.js-country') &&  $('.js-state')){
+	$(".js-country").on("change",async function(){
+		let form = $(this).closest('form');
+		let countryVal = form.find('.js-country').val();
+		form.find('.js-state').val('');
+
+		form.find('.js-state').before('<div class="loadinggif"></div>');
+
+		let response = await getStateAndCityVal(countryVal,"","country_code")
+		first = form.find('.js-state option:first');
+		form.find('.js-state').html("");
+		let options = form.find('.js-state');
+		options.append(first);
+
+		$.each(response.data,function(key,state){
+		   options.append(new Option(state.state_name,state.id));
+		})
+		form.find('.js-state').change();
+		form.find('.js-state').find("option").first().click();
+		form.find('.js-state').prev('.loadinggif').remove();
+
+	})
+
+	$(".js-state").on("change",async function(){
+		let form = $(this).closest('form');
+		let countryVal = form.find('.js-country').val();
+		let stateVal = form.find('.js-state').val();
+		form.find('.js-city').val('');
+
+		form.find('.js-city').before('<div class="loadinggif"></div>');
+
+		let response = await getStateAndCityVal(countryVal,stateVal,"state_code")
+
+		first = form.find('.js-city option:first');
+		form.find('.js-city').html("");
+		let options = form.find('.js-city');
+		options.append(first);
+		$.each(response.data,function(key,city){
+		   options.append(new Option(city.city_name,city.id));
+		})
+		form.find('.js-city').find("option").first().click();
+		form.find('.js-city').prev('.loadinggif').remove();
+	})
+  }
+
+function doSelection(element,value)
+{
+  if(value > 0)
+  {
+    $('option:selected', 'select[name="'+element,+'"]').removeAttr('selected');
+    $('select[name="'+element+'"]').find('option[value="'+value+'"]').attr("selected",true);
+    let selectedtext = $('select[name="'+element+'"] option:selected').text()
+    $('select[name*="'+element+'"]').parent('span').find(".checkout-holder").text(selectedtext)
+  }
+}

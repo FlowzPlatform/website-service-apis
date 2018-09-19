@@ -50,6 +50,7 @@ if(pid != null) {
 // console.log('get_product_details',get_product_details)
 
 $(document).ready( async function(){
+    $("#flowz_content").closest('.row').css('display','flex');
     if(get_product_details == null ){
         hidePageAjaxLoading()
         window.location = "error404.html";
@@ -155,23 +156,30 @@ $(document).ready( async function(){
         // QUANTITY PRICE TABLE START
         $(".quantity-table-col").owlCarousel({ 
             loop:false,
+            navigation: true,
             items:5,
-            responsiveClass:true,
-            nav:true,
-            responsive:{
-                0:{items:2,},
-                500:{items:2,},
-                600:{items:3,},
-                800:{items:3,},
-                900:{items:3,},
-                1024:{items:3,},
-                1200:{items:5,}
+            autoPlay: 3200,
+            margin: 10,
+            autoplayHoverPause: true,
+            lazyLoad: true,
+            stopOnHover: true,
+            itemsCustom: false,
+            itemsDesktop: [1170, 5],
+            itemsDesktop: [1024, 3],
+            itemsTabletSmall: false,
+            itemsMobile: [400, 2],
+            itemsMobile: [399, 1],
+            singleItem: false,
+            itemsScaleUp: false,
+            afterInit: function (elem) {
+                var that = this
+                that.owlControls.prependTo(elem)
             }
         });
         // END QUANTITY PRICE TABLE END
         //RECENTLY VIEWED PRODUCTS
             $("#owl-carousel-recently-products").owlCarousel({
-                navigation: true,
+                // navigation: true,
                 items:6,
                 autoPlay: 3200,
                 margin: 10,
@@ -186,10 +194,10 @@ $(document).ready( async function(){
                 itemsMobile: [399, 1],
                 singleItem: false,
                 itemsScaleUp: false,
-                afterInit: function (elem) {
-                    var that = this
-                    that.owlControls.prependTo(elem)
-                }
+                // afterInit: function (elem) {
+                //     var that = this
+                //     that.owlControls.prependTo(elem)
+                // }
             });
         // Zoom Image
         $('.product-gallery').zoom({ on:'click' });
