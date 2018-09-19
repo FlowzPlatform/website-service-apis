@@ -150,6 +150,7 @@ $(document).ready( async function(){
                         }
                          });
                      $(".quantity-table-col").html(priceRang);
+                     $(".js-responsive-qunatity").html(priceRang);
                 }
             });
        }
