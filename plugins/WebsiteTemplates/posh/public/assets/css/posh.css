@@ -108,8 +108,7 @@
 .request-info-modal .quantity-table-col .owl-buttons.disabled {display: block;top: 7px;}
 .slidemenu .login-col .dropdown-menu.user-dropdown{display: none}
 li.dropdown.login-col.header-login-text.logout-show.open .dropdown-menu.user-dropdown{display: block;top: 31px;}
-.login-col .dropdown-menu-arrow.user-dropdown::before {
-    left: -95px;}
+.login-col .dropdown-menu-arrow.user-dropdown::before {left: -95px;}
 .login-section{width:100%;}
 }
 
