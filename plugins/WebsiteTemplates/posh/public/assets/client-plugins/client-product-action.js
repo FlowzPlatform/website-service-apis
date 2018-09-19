@@ -78,8 +78,9 @@ $(document).ready(function(){
         console.log('productresponse',productResponse);
         getCountry();
         if(productResponse != null){
-          $('.estimatorProductSku').text(' Item#: '+productResponse.sku)
+          $('.estimatorProductSku').text(' SKU : '+productResponse.sku)
           $('.estimatorProductName').text(productResponse.product_name)
+          // $('.itemCode').text('( Item Code:'+productResponse.sku+')')
         }
         $('.js-submit-btn-rate-calculation').on('click', async function() {
           $('#estimatorError').css({"display":"none"})

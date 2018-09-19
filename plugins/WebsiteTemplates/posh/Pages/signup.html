@@ -230,18 +230,18 @@ body {
                                         <!-- <ul class="error-message"><li>Enter Valid Confirm Password!</li></ul> -->
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="form-group inp-parts">
-                                        <label for="ob_user_stateId" class="required">Security Question
+                                        <label>Security Question
                                         <span class="red">*</span></label>
-                                        <span class="checkout-select-wrapper">
-											<select id="ob_user_stateId" name="SecurityQuestion" required="required" class="custom-select" data-original-title="Fylke" data-placement="bottom" data-fv-field="ob_user[stateId]">
-												<option value="1" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
-												<option value="2" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
-												<option value="3" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
-												<option value="4" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
-											</select>
-										</span>
+                                        <select class="custom-select" tabindex="1" id="SecurityQuestion" name="SecurityQuestion">
+                                            <option value="" selected="selected">Pick a security question</option>
+                                            <option value="What city were you born in?" selected="">What city were you born in?</option>
+                                            <option value="Where is your favorite place to vacation?" selected="">Where is your favorite place to vacation?</option>
+                                            <option value="What was the first company that you worked for?" selected="">What was the first company that you worked for?</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-xs-12">
@@ -276,14 +276,14 @@ body {
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6 col-xs-12 col-lg-6 col-md-12">
+                                <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Address 1<span class="red">*</span></label>
                                         <input type="text" name="address1" data-original-title="Address 1" tabindex="8" class="input">
                                         <!-- <ul class="error-message"><li>Enter Valid Address 1!</li></ul> -->
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xs-6 col-lg-12 col-md-12">
+                                <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Address 2</label>
                                         <input type="text" name="address2" data-original-title="Address 2" tabindex="9" class="input">
