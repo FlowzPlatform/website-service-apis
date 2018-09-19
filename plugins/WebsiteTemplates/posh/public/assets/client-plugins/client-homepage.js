@@ -300,7 +300,7 @@ if(Array.isArray(catDetails) && catDetails.length > 0) {
     let catHtml = "";
     $.each( catDetails, function( key, catArray ) {
         // catHtml += '<div class="in-box-cont"><div class="right-part"><a href="search.html?SearchSensor='+catArray.name+'"><img class="lazyLoad" data-src="'+catArray.icon+'" alt="'+catArray.name+'" title="'+catArray.name+'"></a></div><div class="left-part"><div class="pro-title"><a href="search.html?SearchSensor='+catArray.name+'" data-item-type="product-category">'+catArray.name+'</a></div></div></div>';
-        catHtml += '<li><a href="search.html?SearchSensor='+catArray.name+'"><div class="pro-box product-cat-box"><div class="pro-image"><img src="'+catArray.icon+'" class="img-responsive center-block" alt="'+catArray.name+'" title="'+catArray.icon+'"></div></div><div class="item-title product-cat-title">'+catArray.name+'</div></a></li>';
+        catHtml += '<li><a href="search.html?Categorylist='+catArray.name+'"><div class="pro-box product-cat-box"><div class="pro-image"><img src="'+catArray.icon+'" class="img-responsive center-block" alt="'+catArray.name+'" title="'+catArray.icon+'"></div></div><div class="item-title product-cat-title">'+catArray.name+'</div></a></li>';
     });
     $('.js-show-category').html(catHtml);
     $('.js-category-list').removeClass('hide');

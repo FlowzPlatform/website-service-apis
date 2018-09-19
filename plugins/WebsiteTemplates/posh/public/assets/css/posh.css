@@ -85,7 +85,7 @@
 .js-product_description_text{ padding-bottom: 15px !important; }
 #owl-carousel-recommeded-products .item { margin: 0 1px; }
 .owl-carousel .owl-wrapper-outer { position: relative; overflow: hidden; width:100%;-webkit-transform: translate3d(0px, 0px, 0px); }
-
+.responsive-qty-table{ display: none;}
 
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) 
@@ -117,4 +117,12 @@ li.dropdown.login-col.header-login-text.logout-show.open .dropdown-menu.user-dro
  width: 1170px;
  padding: 0;
  }
+ 
+}
+@media (max-width: 1200px) {
+    .print-product-detail .quantity-table .quantity-table-title{width: 100% !important;}
+    .ob-product-detail-right .quantity-table{display: none}
+    .ob-product-detail-right .quantity-table-disc{width: 100% !important}
+    .js-responsive-qunatity .table-heading,.js-responsive-qunatity .table-content{ background: white !important;color: black;border: 1px solid #999 }
+    .responsive-qty-table{ display: block !important;margin-top: 1px !important}
 }
