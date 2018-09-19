@@ -1919,7 +1919,7 @@ function showCompareList(recetAdded=false)
                       $("#myCompareList #listing div:first").removeClass("hide");
 
                       compareHtml.find("#item_title_price1").html("<td></td>"+productHtml)
-                      compareHtml.find("#item_sku1").html("<td><strong>ITEM CODE</strong></td>"+itemSkuHtml)
+                      compareHtml.find("#item_sku1").html("<td><strong>ITEM#</strong></td>"+itemSkuHtml)
                       compareHtml.find("#item_summary1").html("<td><strong>SUMMARY</strong></td>"+activeSummaryHtml)
                       compareHtml.find("#item_features1").html("<td><strong>FEATURES</strong></td>"+itemFeaturesHtml)
                       $('#myCompareList #listing').html(compareHtml.html());
@@ -2484,7 +2484,7 @@ async function printDiv(printDiv=true) {
                       {
                         $(compareHtml).find("#js-print_item_title").html("<td class='feature-block'></td>"+productTitleHtml)
                         $(compareHtml).find("#js-print_item_price").html("<td class='feature-block'></td>"+productPriceHtml)
-                        $(compareHtml).find("#js-print_item_sku").html("<td class='feature-block'>ITEM CODE</td>"+itemSkuHtml)
+                        $(compareHtml).find("#js-print_item_sku").html("<td class='feature-block'>ITEM#</td>"+itemSkuHtml)
                         $(compareHtml).find("#js-print_item_summary").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").html("<td class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
                         $('#print-comparision').html(compareHtml.html());
@@ -3267,7 +3267,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 {
                   compareHtml.find("#product_price").addClass('hide').html("<td style='width:20%' class='feature-block'>PRICE</td>"+itemPriceHtml)
                 }
-                compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM CODE</td>"+itemSkuHtml)
+                compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM#</td>"+itemSkuHtml)
                 compareHtml.find("#product_summary").html("<td style='width:20%'class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                 compareHtml.find("#product_features").html("<td style='width:20%' class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
               }

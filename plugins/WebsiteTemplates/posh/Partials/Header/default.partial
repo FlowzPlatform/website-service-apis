@@ -23,13 +23,6 @@
                                     <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span>
                                 </a>
                             </li>
-                            <li class="dropdown quote-popup header-login-text">
-                                <a href="quickQuoteList.html" class="dropdown-toggle">
-                                    <i class="fa fa-comment quote-icon"><span>,,</span></i>
-                                    <span class="login-text"><span>Quick quote</span> (<span id="quickQuoteCount">0</span>)</span>
-                                </a>
-                                
-                            </li>
                             <li class="dropdown login-col header-login-text login-show hide">
                                 <a href="login.html" class="dropdown-toggle">
                                     <img src="https://res.cloudinary.com/flowz/image/upload/v1536650605/websites/POSH-ACCESSORIES/images/distributer.png">
@@ -117,7 +110,7 @@
                                         <option value="searchAll">SEARCH IN ALL</option>
                                         <option value="categories">CATEGORY</option>
                                         <option value="search_keyword">KEYWORD</option>
-                                        <option value="sku">ITEM CODE</option>
+                                        <option value="sku">ITEM#</option>
                                     </select>
                                 </div>
                             </div>
