@@ -199,6 +199,9 @@ $(document).on('click','#js-check-inventory', async function (e) {
             });
         });
     }
+    else {
+      $('#inventoryBlock').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>')
+    }
 });
 $(document).on('click','.js-inventory-colors li', function (e) {
     if($(this).find('a').attr("style") != 'undefined' && $(this).find('a').attr("style") != '') {

@@ -182,8 +182,7 @@
             </div>
             <div class="modal-footer">
                 <span>Note: This is a Shipping Estimate only</span>
-                <p> Actual shipping cost may be higher or lower ipsum dolor sit amet, consectetur adipiscing elit. Duis tincidunt condimentum felis, et tempor neque rhoncus ac.Maenas ultricies tellus sed convalls luctus. Proin vitae condi entum purus. Etiam
-                    nec accu msan erat.</p>
+                <p> Actual shipping cost may be higher or lower.</p>
             </div>
         </div>
     </div>

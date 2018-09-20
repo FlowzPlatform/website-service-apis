@@ -253,7 +253,7 @@ body {
 				<h1 class="modal-title" ><i class="strip inventory-popup-strip"></i> Inventory look-up</h1>
 			</div>
 			<div class="modal-body">
-					<div class="inventory-main-block">
+				<div class="inventory-main-block" id="inventoryBlock">
 					<table class="table table-head inventory-table table-responsive">
 	                    <tbody>
 	                    	<tr>
