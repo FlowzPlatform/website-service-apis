@@ -95,9 +95,10 @@ $(document).ready(async function(){
         let tagHtmlList = $(".js-tag-featured-product-list");
         let productBoxHtml = $(".js-tag-featured-product-list").find('.js-list').html()
         let productSlug = $(".js-tag-featured-product-list").attr("data-slug")
-        let replaceProductBox = ''
+        
         if(productSlug != ""){
-            let replaceProductBox = await tagProductList("tag_slug="+productSlug,productBoxHtml)
+            let replaceProductBox = '';
+            replaceProductBox = await tagProductList("tag_slug="+productSlug,productBoxHtml)
             if(replaceProductBox != ''){
                 tagHtmlList.find('.js-list').html(replaceProductBox)
                 tagHtmlList.removeClass('hide')
@@ -127,33 +128,6 @@ $(document).ready(async function(){
             }
         }
     }
-
-    // featured product
-    if($(".js-best-seller-product-list").length > 0){
-        let tagHtmlList = $(".js-best-seller-product-list");
-        let productBoxHtml = $(".js-best-seller-product-list").find('.js-list').html()
-        let productSlug = $(".js-best-seller-product-list").attr("data-slug")
-        let replaceProductBox = ''
-        if(productSlug != ""){
-            let replaceProductBox = await tagProductList("tag_slug="+productSlug,productBoxHtml)
-            if(replaceProductBox != ''){
-                tagHtmlList.find('.js-list').html(replaceProductBox)
-                tagHtmlList.removeClass('hide')
-                tagHtmlList.find("#owl-carousel-best-seller").closest(".row").css({"display": "flex"});
-                $("#owl-carousel-best-seller").owlCarousel({
-                    stopOnHover : true,
-                    navigation:true,
-                    pagination:true,
-                    items : 2,
-                    itemsDesktop: [1199, 2],
-                    itemsDesktopSmall: [979, 2],
-                    itemsTablet: [767, 2],
-                    itemsMobile: [479, 2]
-                });
-            }
-        }
-    }
-
 })
 
 let tagProductList = function(tagObj,productBoxHtml) {
