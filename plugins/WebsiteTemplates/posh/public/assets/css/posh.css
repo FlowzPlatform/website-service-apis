@@ -86,7 +86,11 @@
 #owl-carousel-recommeded-products .item { margin: 0 1px; }
 .owl-carousel .owl-wrapper-outer { position: relative; overflow: hidden; width:100%;-webkit-transform: translate3d(0px, 0px, 0px); }
 .responsive-qty-table{ display: none;}
-
+.ob-personal-info-block .inp-parts .checkout-select-wrapper .checkout-holder {
+    margin-left: 5px;
+    width: 204px;
+    text-overflow: ellipsis;
+}
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) 
 {

@@ -17,6 +17,12 @@
                     </div>
                     <div class="info-menu slidemenu">
                         <ul class="header-loging pull-right">
+                            <li class="dropdown header-login-text hide">
+                                <a href="quickQuoteList.html" class="dropdown-toggle"> 
+                                    <span class="fa fa-retweet fa-fw"></span> 
+                                    <span class="login-text"><span>QuickQuote</span> (<span id="quickQuoteCount">0</span>)</span> 
+                                </a>
+                            </li>
                             <li class="header-login-text dropdown dropdown-popup">
                                 <a href="compare.html" class="dropdown-toggle">
                                     <span class="fa fa-retweet fa-fw"></span>
