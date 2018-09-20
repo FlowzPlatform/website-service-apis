@@ -114,6 +114,7 @@
 li.dropdown.login-col.header-login-text.logout-show.open .dropdown-menu.user-dropdown{display: block;top: 31px;}
 .login-col .dropdown-menu-arrow.user-dropdown::before {left: -95px;}
 .login-section{width:100%;}
+.rightloginBlock ul { width: 100%; }
 }
 
 @media (min-width: 1200px) {
