@@ -106,6 +106,7 @@
 
 
 @media screen and (max-width: 767px) {
+#owl-carousel-recommeded .owl-buttons { display: none; }
 .model-popup-black .compare-product-slide .quantity-table .owl-buttons.disabled {display: inline-block;}
 .quantity-table-col .owl-buttons{margin: -35px -5px 22px 0;}
 .quantity-table-col .owl-buttons.disabled {display: block !important;}
