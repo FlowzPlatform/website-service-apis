@@ -1,14 +1,20 @@
-@font-face {
-    font-family: 'roboto_condensedbold';
-    src: url('../fonts/RobotoCondensed-Bold-webfont.eot');
-    src: url('../fonts/RobotoCondensed-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/RobotoCondensed-Bold-webfont.woff2') format('woff2'),
-         url('../fonts/RobotoCondensed-Bold-webfont.woff') format('woff'),
-         url('../fonts/../fonts/RobotoCondensed-Bold-webfont.ttf') format('truetype'),
-         url('../fonts/RobotoCondensed-Bold-webfont.svg#roboto_condensedbold') format('svg');
+/*@font-face {
+	font-family: 'Lato', sans-serif;
+	src: url('../fonts/gothic.eot');
+	src: local('../fonts/gothic'), url('../fonts/gothic.woff') format('woff'), url('../fonts/gothic.ttf') format('truetype');
+}*/
+
+/*@font-face {
+    font-family: 'Lato', sans-serif;
+    src: url('../fonts/Century Gothic.eot');
+    src: url('../fonts/Century Gothic.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Century Gothic.woff2') format('woff2'),
+         url('../fonts/Century Gothic.woff') format('woff'),
+         url('../fonts/Century Gothic.ttf') format('truetype'),
+         url('../fonts/Century Gothic') format('svg');
     font-weight: normal;
     font-style: normal;
-}
+}*/
 /*@font-face {
     font-family: 'roboto_condensedbold';
     src: url('../fonts/InfoText-Bold.eot');
@@ -21,7 +27,7 @@
     font-style: normal;
 
 }*/
-@font-face {
+/*@font-face {
     font-family: 'roboto_condensedlight';
     src: url('../fonts/RobotoCondensed-Light-webfont.eot');
     src: url('../fonts/RobotoCondensed-Light-webfont.eot?#iefix') format('embedded-opentype'),
@@ -31,7 +37,7 @@
          url('../fonts/RobotoCondensed-Light-webfont.svg#roboto_condensedlight') format('svg');
     font-weight: normal;
     font-style: normal;
-}
+}*/
 /*@font-face {
     font-family: 'roboto_condensedlight';
     src: url('../fonts/InfoText-Normal.eot');
@@ -44,7 +50,7 @@
     font-style: normal;
 
 }*/
-@font-face {
+/*@font-face {
     font-family: 'roboto_condensedregular';
     src: url('../fonts/RobotoCondensed-Regular-webfont.eot');
     src: url('../fonts/RobotoCondensed-Regular-webfont.eot?#iefix') format('embedded-opentype'),
@@ -54,7 +60,7 @@
          url('../fonts/RobotoCondensed-Regular-webfont.svg#roboto_condensedregular') format('svg');
     font-weight: normal;
     font-style: normal;
-}
+}*/
 /*@font-face {
     font-family: 'roboto_condensedregular';
     src: url('../fonts/InfoText-Normal.eot');
@@ -67,7 +73,7 @@
     font-style: normal;
 
 }*/
-@font-face {
+/*@font-face {
     font-family: 'robotoregular';
     src: url('../fonts/Roboto-Regular-webfont.eot');
     src: url('../fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
@@ -77,7 +83,7 @@
          url('../fonts/Roboto-Regular-webfont.svg#robotoregular') format('svg');
     font-weight: normal;
     font-style: normal;
-}
+}*/
 /*@font-face {
     font-family: 'robotoregular';
     src: url('../fonts/InfoText-Normal.eot');
@@ -113,7 +119,7 @@
     font-style: normal;
 
 }*/
-@font-face {
+/*@font-face {
     font-family: 'robotolight';
     src: url('../fonts/Roboto-Light-webfont.eot');
     src: url('../fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
@@ -124,7 +130,7 @@
     font-weight: normal;
     font-style: normal;
 }
-/*@font-face {
+@font-face {
     font-family: 'robotolight';
     src: url('../fonts/InfoText-Normal.eot');
     src: url('../fonts/InfoText-Normal.eot?#iefix') format('embedded-opentype'),
@@ -135,7 +141,7 @@
     font-weight: normal;
     font-style: normal;
 
-}*/
+}
 @font-face {
     font-family: 'robotomedium';
     src: url('../fonts/Roboto-Medium-webfont.eot');
@@ -147,7 +153,7 @@
     font-weight: normal;
     font-style: normal;
 }
-/*@font-face {
+@font-face {
     font-family: 'robotomedium';
     src: url('../fonts/InfoText-Bold.eot');
     src: url('../fonts/InfoText-Bold.eot?#iefix') format('embedded-opentype'),
@@ -158,7 +164,7 @@
     font-weight: normal;
     font-style: normal;
 
-}*/
+}
 
 @font-face {
     font-family: 'robotolight_italic';
@@ -172,7 +178,7 @@
     font-style: normal;
 }
 
-/*@font-face {
+@font-face {
     font-family: 'robotolight_italic';
     src: url('../fonts/InfoText-Normal.eot');
     src: url('../fonts/InfoText-Normal.eot?#iefix') format('embedded-opentype'),
@@ -183,9 +189,9 @@
     font-weight: normal;
     font-style: normal;
 
-}*/
-/*
-*/@font-face {
+}
+
+@font-face {
     font-family: 'robotoblack_italic';
     src: url('../fonts/Roboto-BlackItalic-webfont.eot');
     src: url('../fonts/Roboto-BlackItalic-webfont.eot?#iefix') format('embedded-opentype'),
@@ -196,7 +202,7 @@
     font-style: normal;
 }
 
-/*@font-face {
+@font-face {
     font-family: 'robotoblack_italic';
     src: url('../fonts/InfoText-Normal.eot');
     src: url('../fonts/InfoText-Normal.eot?#iefix') format('embedded-opentype'),
@@ -207,7 +213,7 @@
     font-weight: normal;
     font-style: normal;
 
-}*/
+}
 @font-face {
     font-family: 'robotoblack';
     src: url('../fonts/roboto-black-webfont.eot');
@@ -220,7 +226,7 @@
     font-style: normal;
 
 }
-/*@font-face {
+@font-face {
     font-family: 'robotoblack';
     src: url('../fonts/InfoText-Bold.eot');
     src: url('../fonts/InfoText-Bold.eot?#iefix') format('embedded-opentype'),
@@ -231,12 +237,12 @@
     font-weight: normal;
     font-style: normal;
 
-}*/
+}
 @font-face {
     font-family: 'robotoitalic';
     src: url('../fonts/roboto-italic-webfont.eot');
     src: url('../fonts/roboto-italic-webfont.eot?#iefix') format('embedded-opentype'),
-/*         url('../fonts/roboto-italic-webfont.woff2') format('woff2'),*/
+         url('../fonts/roboto-italic-webfont.woff2') format('woff2'),
          url('../fonts/roboto-italic-webfont.woff') format('woff'),
          url('../fonts/roboto-italic-webfont.ttf') format('truetype'),
          url('../fonts/roboto-italic-webfont.svg#robotoitalic') format('svg');
@@ -245,7 +251,7 @@
 
 }
 
-/*@font-face {
+@font-face {
     font-family: 'robotobold';
     src: url('../fonts/InfoText-Bold.eot');
     src: url('../fonts/InfoText-Bold.eot?#iefix') format('embedded-opentype'),
@@ -256,9 +262,9 @@
     font-weight: normal;
     font-style: normal;
 
-}*/
+}
 
-/*@font-face {
+@font-face {
     font-family: 'infonormal';
     src: url('../fonts/InfoText-Normal.eot');
     src: url('../fonts/InfoText-Normal.eot?#iefix') format('embedded-opentype'),
@@ -269,5 +275,5 @@
     font-weight: normal;
     font-style: normal;
 
-}*/
-
+}
+*/

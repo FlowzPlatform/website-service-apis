@@ -15,7 +15,7 @@ $(document).ready(function(){
             let count = 0;
             let zipFilename = productResponse.sku+".zip";
             let urls = productResponse.images[0].images;
-// console.log("urls",urls,zipFilename);
+        // console.log("urls",urls,zipFilename);
             urls.forEach(function(urlObj){
               let filename = urlObj.web_image;
               // loading a file and add it in a zip file
@@ -69,6 +69,108 @@ $(document).ready(function(){
 
         return false;
     });
+
+    //shipping estimator
+    $('#shippingEstButton').on('click', async function() {
+        $('form#calculate_shipping_estimator')[0].reset();
+        $(".js-country").html('');
+        let productResponse = await getProductDetailById(pid)
+        console.log('productresponse',productResponse);
+        getCountry();
+        if(productResponse != null){
+          $('.estimatorProductSku').text(' Item#: '+productResponse.sku)
+          $('.estimatorProductName').text(productResponse.product_name)
+        }
+        $('.js-submit-btn-rate-calculation').on('click', async function() {
+          $('#estimatorError').css({"display":"none"})
+          $('#estimatorResponse').css({"display":"none"})
+          let formData = $('form#calculate_shipping_estimator').serializeArray()
+          console.log('------formData',formData)
+          let shipInfo = {};
+          let shippingType = []
+          for (var input in formData){
+              var value = formData[input]['value'];
+              if (formData[input]['name'] == 'shipping_type') {
+                  shippingType.push(value)
+              }
+              else {
+                  shipInfo[formData[input]['name']] = value;
+              }
+          }
+          shipInfo['shippingType'] = shippingType;
+          if (shipInfo.qty != '' && shipInfo.zip_code != '' && shipInfo.country != '' && shipInfo.shippingType.length > 0) {
+              if (shipInfo.qty > 0) {
+                  showPageAjaxLoading();
+                  let estimatorObject = {
+                      'shipperInfo' : productResponse.shipping[0],
+                      'shipToInfo' : shipInfo
+                  };
+                  console.log('estimatorObject',estimatorObject)
+                  $.ajax({
+                      type: 'POST',
+                      url: project_settings.shipping_estimator_api_url,
+                      async: true,
+                      data:  estimatorObject,
+                      dataType: 'json',
+                      success: function (result) {
+                          console.log('result',result);
+                          // let old_tbody = document.getElementsByTagName('tbody')[0];
+                          let tableMain = document.getElementById('estimatorResponse');
+                          $('#estimatorResponse tbody').remove();
+                          var tableBody = document.createElement('TBODY');
+                          tableMain.append(tableBody);
+                          let markUpPer = 5;
+                          let markUpValue;
+                          Object.keys(result).forEach(function eachKey(key) {
+                              var tr = document.createElement('TR');
+                              tableBody.appendChild(tr);
+                              var td = document.createElement('TD');
+                              td.className="estimatorResult"
+                              // td.className="text-right"
+                              // td.className="right-padding"
+                              // td.width = "35%"
+                              // td.style={'padding': '0px 10px;'}
+                              td.appendChild(document.createTextNode(key));
+                              tr.appendChild(td);
+                              td = document.createElement('TD');
+                              td.className="estimatorResult"
+                              markUpValue = (Number(result[key]) * markUpPer)/100;
+                              result[key] += markUpValue;
+                              td.appendChild(document.createTextNode(result[key].toFixed(2)));
+                              tr.appendChild(td);
+                          });
+                          // console.log('tableBody',tableBody)
+                          // old_tbody = tableBody;
+                          // console.log('old_tbody-----',old_tbody)
+                          // old_tbody.parentNode.replaceChild(tableBody,old_tbody);
+                          hidePageAjaxLoading()
+                          $('#estimatorResponse').css({"display":"block"})
+                          $(".estimatorResult").css({"padding": "3px 5px"});
+                      },
+                      error: function(err) {
+                          hidePageAjaxLoading()
+                          // console.log('error',err.responseJSON.message);
+                          $('#estimatorError').css({"display":"block"})
+                          $('#estimatorError').text(err.responseJSON.message)
+                          // showErrorMessage(err.responseJSON.message)
+                      }
+                  });
+              }
+              else {
+                  $('#estimatorError').css({"display":"block"})
+                  $('#estimatorError').text('Quantity must be greater than zero')
+              }
+          }
+          else {
+              $('#estimatorError').css({"display":"block"})
+              $('#estimatorError').text('Please fill all the required fields correctly')
+          }
+        })
+    })
+
+    $('.js-reset-btn-rate-calculation').on('click', async function() { 
+        $('form#calculate_shipping_estimator')[0].reset();
+    })
 });
 
 // inventory start
@@ -76,7 +178,7 @@ let inventoryData = [];
 $(document).on('click','#js-check-inventory', async function (e) {
     $('.js-inventory-colors').html('');
     let productResponse = await getProductDetailById(pid)
-    if(productResponse.inventory != 'undefined' && productResponse.inventory.length > 0) {
+    if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) {
         $.each(productResponse.inventory, function(i,element){
             let colorInventoryColors = "";
             $.each(element.attributes.colors, async function(j,color){
@@ -131,6 +233,125 @@ $(document).on('click','.js-inventory-submit', function (e) {
     }
 });
 // inventory end
+
+// order sample start
+$(document).on('click','#sample_submit',function (e) {
+    $("form#sample_order_form").validate({
+        rules: {
+            "sample_fname" : "required",
+            "sample_lname" : "required",
+            "sample_phone" : {
+                required:true,
+                minlength: 10
+            },
+            "sample_email":{
+                required:true,
+                email: true
+            }
+        },
+        messages: {
+            "sample_fname" : "Enter valid first name.",
+            "sample_lname" : "Enter valid last name.",
+            "phone" : {
+                required : "Please enter phone number.",
+                minlength: "Please enter valid phone number."
+            },
+            "sample_email":{
+                required:"Please enter email",
+                email: "Please enter valid email."
+            }
+        },
+        errorElement: "li",
+        errorPlacement: function(error, element) {
+            error.appendTo(element.closest("div"));
+            $(element).closest('div').find('ul').addClass('red')
+        },
+        errorLabelContainer: "#errors",
+        wrapper: "ul",
+        submitHandler: function(form) {
+            let formObj = $(form);
+            let form_data = formObj.serializeArray();
+            let orderSample = {};
+            let productJsonData = {};
+            let sampleColors = [];
+            let qtyTotal = singlePrice = 0;
+
+            $('input[name^="sample_quantity"]').each(function() {
+                let qty = $(this).val();
+                if(Math.floor(qty) == qty && $.isNumeric(qty)) {
+                    let clr = $(this).closest('tr').find('.js_color_checkbox').val();
+                    sampleColors.push({'color':clr,'qty':qty});
+                    qtyTotal += parseInt(qty);
+                }
+            });
+
+            if(get_product_details.pricing != undefined){
+                $.each(get_product_details.pricing, function(index,element){
+                    if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global") {
+                        $.each(element.price_range,function(index,element2){
+                            if(element2.qty.lte != undefined){
+                                if(qtyTotal >= element2.qty.gte && qtyTotal <= element2.qty.lte) {
+                                    singlePrice = parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                                }
+                            }
+                            else
+                            {
+                                if(qtyTotal >= element2.qty.gte) {
+                                    singlePrice = parseFloat(element2.price).toFixed(project_settings.price_decimal);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+            let samplePrice = parseFloat(singlePrice * qtyTotal).toFixed(project_settings.price_decimal);
+            
+            for (var input in form_data){
+                let value = form_data[input]['value'];
+                orderSample[form_data[input]['name']] = value;
+            }
+            orderSample['sampleColors'] = sampleColors;
+            orderSample['samplePrice'] = samplePrice;
+            orderSample['singlePrice'] = singlePrice;
+            orderSample['totalQty'] = qtyTotal;
+            orderSample['email'] = orderSample['sample_email'];
+            orderSample['slug'] = 'order-sample';
+
+            delete orderSample['sample_quantity[]'];
+            delete orderSample['sample_submit'];
+
+            productJsonData['form_data'] = orderSample;
+            productJsonData['website_id'] = website_settings['projectID'];
+
+            // console.log('productJsonData == ',productJsonData)
+
+            $.ajax({
+                type : 'POST',
+                url : project_settings.request_quote_api_url,
+                data : productJsonData,
+                cache: false,
+                dataType : 'json',
+                success : function(response_data) {
+                    if(response_data!= "") {
+                        hidePageAjaxLoading()
+                        showSuccessMessage("Email Sent Successfully.");
+                        window.location = "orderSampleSuccess.html";
+                        return false;
+                    }
+                    else if(response_data.status == 400) {
+                        hidePageAjaxLoading()
+                        showErrorMessage("Internal Server Error.");
+                        return false;
+                    }
+                }
+            });
+        
+            return false;
+        }
+    }).form()
+});
+// order sample end
 
 $(document).on('click','.send-email-product', function (e) {
     $('form#email_product').validate({
@@ -395,3 +616,38 @@ function printElement(elem) {
     },2000);
 }
 // END - Print Product
+
+function getCountry(countryId=0) {
+    if( $(".js-country").length > 0 ) {
+
+        let countryList = [];
+        //short_name
+        $.each(project_settings.country_data,function(key,country){
+            countryList.push(country.short_name);
+        })
+        axios({
+            method: 'GET',
+            url: project_settings.city_country_state_api,
+            params: {
+                'country_data':countryList,
+                'data_from' : 'country_code',
+                'type' : 1
+            }
+        })
+        .then(response => {
+            let countryHtml = $(".js-country").html('');
+            if(response.data.length > 0){
+                countryHtml = '<option value="" selected="selected">Select Country</option>'
+                $.each(response.data,function(key,country){
+                    countryHtml += '<option value="'+country.country_code+'">'+country.country_name+'</option>'
+                })
+                $('.js-country').html(countryHtml)
+                // doSelection('country',countryId);
+            }
+        })
+        .catch(error => {
+        // console.log('Error fetching and parsing data', error);
+        });
+    }
+
+}

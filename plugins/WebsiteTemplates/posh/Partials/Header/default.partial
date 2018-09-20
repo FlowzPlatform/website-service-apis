@@ -1,4 +1,4 @@
-<div>
+<header>
     <link href="./assets/css/base.css" rel="stylesheet" type="text/css" />
     <link href="https://res.cloudinary.com/flowz/raw/upload/v1533193176/websites/distributor/css/bootstrap-multiselect.css"
     rel="stylesheet" type="text/css" />
@@ -8,28 +8,10 @@
     rel="stylesheet" />
 
     <div class="ui-header">
-        <div class="social-icon-box">
-            <div class="pull-left">
-                <ul>
-                    <li class="social-icon">
-                        <a href="javascript:void(0)"><i class="yt-icon strip-icon"></i></a>
-                    </li>
-                        <li class="social-icon">
-                        <a href="javascript:void(0)"><i class="pinterest-icon strip-icon"></i></a>
-                    </li>
-                    <li class="social-icon">
-                        <a href="javascript:void(0)"><i class="instagram-icon strip-icon"></i></a>
-                    </li>
-                    <li class="social-icon">
-                        <a href="javascript:void(0)"><i class="fb-icon strip-icon"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
+        
         <div class="main-logo-part">
             <div class="ob-top-menu">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="logo-col pull-left">
                         <a href="index.html"><img src="https://res.cloudinary.com/flowz/image/upload/v1536650231/websites/POSH-ACCESSORIES/images/logo.png" alt="Text"></a>
                     </div>
@@ -41,22 +23,45 @@
                                     <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span>
                                 </a>
                             </li>
-                            <li class="dropdown quote-popup header-login-text">
-                                <a href="quickQuoteList.html" class="dropdown-toggle">
-                                    <i class="fa fa-comment quote-icon"><span>,,</span></i>
-                                    <span class="login-text"><span>Quick quote</span> (<span id="quickQuoteCount">0</span>)</span>
-                                </a>
-                                
-                            </li>
-                            
-                            <li class="dropdown login-col header-login-text">
+                            <li class="dropdown login-col header-login-text login-show hide">
                                 <a href="login.html" class="dropdown-toggle">
                                     <img src="https://res.cloudinary.com/flowz/image/upload/v1536650605/websites/POSH-ACCESSORIES/images/distributer.png">
-                                    <span class="login-text"><span>login</span></span>
+                                    <span class="login-text"><span>LOGIN</span></span>
                                 </a>
                             </li>
-                            <li class="log"><a href="javascript:void(0)">Register</a></li>
+                            <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
+                                    <ul
+                                    class="dropdown-menu dropdown-menu-arrow user-dropdown">
+                                        <li><a href="myaccount.html">MY ACCOUNT</a>
+                                        </li>
+                                        <li><a class="js_change_password" href="changePassword.html">CHANGE PASSWORD</a>
+                                        </li>
+                                        <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
+                                        </li>
+                                    </ul>
+                            </li>    
+                                        
+                            <li class="log login-show hide"><a href="signup.html">Register</a></li>
                         </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="social-icon-box">
+                        <div class="pull-left">
+                            <ul>
+                                <li class="social-icon">
+                                    <a href="https://www.youtube.com/channel/UCGHArm6PIDyMAH6UsrBDHeg" target="_blank"><i class="yt-icon strip-icon"></i></a>
+                                </li>
+                                <li class="social-icon">
+                                    <a href="https://www.pinterest.com/poshxessories" target="_blank"><i class="pinterest-icon strip-icon"></i></a>
+                                </li>
+                                <li class="social-icon">
+                                    <a href="https://www.instagram.com/poshxessories/?hl=en" target="_blank"><i class="instagram-icon strip-icon"></i></a>
+                                </li>
+                                <li class="social-icon">
+                                    <a href="https://www.facebook.com/poshxessories" target="_blank"><i class="fb-icon strip-icon"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -67,8 +72,7 @@
     </div>
 
     <div class="ui-menu-nav">
-        <div class="container-fluid">
-            <!--MENU-->                  
+        <div class="container">
             <div class="navbar2 navbar-default menu-box" role="navigation" id="mainmenu-nav">
                 <div class="navbar-header2">
                     <a class="navbar-toggle">
@@ -78,7 +82,7 @@
                         <span class="icon-bar"></span>
                     </a>
                 </div>
-            <div id="mainmenu">
+                <div id="mainmenu">
                     <nav menuid="default" class="customMenu">
                         <div id="mainmenu-nav" class="">
                             <div id="navigationDiv" class="">
@@ -89,104 +93,113 @@
                             </div>
                         </div>
                     </nav>
-                    
-                    <!--ADVANCE SEARCH BLOCK-->
-                    <div class="ui-advance-search">
-                        <div class="dropdown nav-search-btn js-advance-menu position-inherit">
-                                <div class="top-search-block">
-                                    <div class="search-form pull-left header-search-col">
-                                        <div class="search-in-dropdown">
-                                            <div class="form-group inp-parts ob-gender-select-box">
-                                                <select id="main_filter" name="main_filter" title="select" class="custom-select">
-                                                    <option value="searchAll">SEARCH IN ALL</option>
-                                                    <option value="categories">CATEGORY</option>
-                                                    <option value="search_keyword">KEYWORD</option>
-                                                    <option value="sku">ITEM CODE</option>
+                </div>
+                <div id="navbar-height-col2"></div>
+            </div>
+
+            <div class="ui-advance-search">
+                <div class="dropdown nav-search-btn js-advance-menu position-inherit">
+                    <a href="javascript:void(0)" class="header-search-medium dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        <i class="fa fa-search"></i>Search In All
+                    </a>
+                    <div class="top-search-block">
+                        <div class="search-form pull-left header-search-col">
+                            <div class="search-in-dropdown">
+                                <div class="form-group inp-parts ob-gender-select-box">
+                                    <select id="main_filter" name="main_filter" title="select" class="custom-select">
+                                        <option value="searchAll">SEARCH IN ALL</option>
+                                        <option value="categories">CATEGORY</option>
+                                        <option value="search_keyword">KEYWORD</option>
+                                        <option value="sku">ITEM#</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="header-search search-field advance-search-wrap js-advance-search-wrap dropdown">
+                                <input placeholder="Search Product Here" type="text" name="search" class="form-control" />
+                                <button type="submit" class="btn-search"><i class="fa fa-search fa-fw"> </i> Search</button>
+                            </div>
+                        </div>
+
+                        <div class="dropdown top-advance-search advance-search-btn" id="myDropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle js-advace-search-but adv-search-btn" data-toggle="dropdown" aria-expanded="true">Advanced Search</a>
+                            <div class="dropdown-menu header-advace-search">
+                                <form id="top_advance_search_form" name="product_advance_search" method="get" action="">
+                                    <div class="advance-search-col">
+                                        <a href="javascript:void(0);" class="advace-close-but js-search-close-but" data-toggle="dropdown"><i class="fa fa-times"></i></a>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="input-colum">
+                                                <label>Keyword</label>
+                                                <div class="input-field form-group">
+                                                    <input class="js-advance-search-submit" type="text" id="Keyword" name="Keyword" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="dropdown dropdown-colum">
+                                                <label>Select Category</label>
+                                                <select id="Category" name="Category" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="header-search search-field advance-search-wrap js-advance-search-wrap dropdown">
-                                            <input placeholder="Search Product Here" type="text" name="search" class="form-control"
-                                            />
-                                            <button type="submit" class="btn-search"><i class="fa fa-search fa-fw"> </i> Search</button>
-                                        </div>
-                                    </div>
-
-                                        <div class="dropdown top-advance-search advance-search-btn" id="myDropdown">
-                                            <a href="javascript:void(0)" class="dropdown-toggle js-advace-search-but adv-search-btn" data-toggle="dropdown" aria-expanded="true">Advanced Search</a>
-                                            <div class="dropdown-menu header-advace-search">
-                                                <form id="top_advance_search_form" name="product_advance_search" method="get" action="">
-                                                    <div class="advance-search-col">
-                                                        <a href="javascript:void(0);" class="advace-close-but js-search-close-but" data-toggle="dropdown"><i class="fa fa-times"></i></a>
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                                            <div class="input-colum">
-                                                                <label>Keyword</label>
-                                                                <div class="input-field form-group">
-                                                                    <input class="js-advance-search-submit" type="text" id="KeywordSensor" name="KeywordSensor" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                                            <div class="dropdown dropdown-colum">
-                                                                <label>Select Category</label>
-                                                                <select id="CategorySensor" name="CategorySensor[]" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                                            <div class="input-colum">
-                                                                <label>Search By Item/Sku Number</label>
-                                                                <div class="input-field form-group ob-qa-input-field form-group-sku">
-                                                                    <input class="js-advance-search-submit" type="text" id="SkuSensor" name="SkuSensor" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                                            <div class="input-colum two-colum pull-left">
-                                                                <label>Min. Price</label>
-                                                                <div class="input-field form-group ob-qa-input-field form-group-mp">
-                                                                    <input class="js-advance-search-submit" id="min_price" type="text" name="min_price" value="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="space-col">-</div>
-                                                            <div class="input-colum two-colum pull-right">
-                                                                <label>Max Price</label>
-                                                                <div class="input-field form-group ob-qa-input-field form-group-mxp">
-                                                                    <input class="js-advance-search-submit" id="max_price" type="text" name="max_price" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pull-right">
-                                                            <div class="button-colum">
-                                                                <div class="form-group">
-                                                                    <input type="submit" name="" value="SEARCH" class="search-button pull-right ob-qa-search-button pull-right-srch">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </form>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="input-colum">
+                                                <label>Search By Item/Sku Number</label>
+                                                <div class="input-field form-group ob-qa-input-field form-group-sku">
+                                                    <input class="js-advance-search-submit" type="text" id="Sku" name="Sku" value="">
+                                                </div>
                                             </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="input-colum two-colum pull-left">
+                                                <label>Min. Price</label>
+                                                <div class="input-field form-group ob-qa-input-field form-group-mp">
+                                                    <input class="js-advance-search-submit" id="min_price" type="text" name="min_price" value="">
+                                                </div>
+                                            </div>
+                                            <div class="space-col">-</div>
+                                            <div class="input-colum two-colum pull-right">
+                                                <label>Max Price</label>
+                                                <div class="input-field form-group ob-qa-input-field form-group-mxp">
+                                                    <input class="js-advance-search-submit" id="max_price" type="text" name="max_price" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <div class="dropdown-colum">
+                                                <label>Select Brand</label>
+                                                <select id="Brand" name="Brand" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <div class="dropdown-colum">
+                                                <label>Select Color</label>
+                                                <select id="Color" name="Color" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pull-right">
+                                            <div class="button-colum">
+                                                <div class="form-group">
+                                                    <input type="submit" name="" value="SEARCH" class="search-button pull-right ob-qa-search-button pull-right-srch">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
-
-
-                                </div>
-                            </div>                               
-                    </div>       
-                    <!--ADVANCE SEARCH BLOCK-->
-
-                
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            <div id="navbar-height-col2"></div></div>
-            <!--MENU-->
-            
-            
-            
+            </div>
         </div>
     </div>
-</div>
+</header>
 
 

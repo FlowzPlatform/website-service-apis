@@ -1,5 +1,5 @@
 <div class="middle-footer">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             	<div class="common-title">
@@ -24,23 +24,8 @@
                 <ul class="footer-contact-detail footer-link">
                      <li class="address-contact"><a href="#"> Chino, CA 91710 , USA</a></li>
                 	<li class="phone-number">909-628-9870</li>
-<!--                	<li class="fax-number">Fax. 909.628.8565</li>-->
-                	<li class="email-contact"><a href="mailto:sales@poshxessories.com">sales@poshxessories.com</a></li>
-                       
-<!--                        <li class="address-contact"><a href="javascript:void(0)">Contact Us</a></li>-->
-<!--                        <li><img src="images/asi-ppai.png" alt=""></li>-->
+                	<li class="email-contact"><a href="mailto:sales@poshxessories.com">sales@poshxessories.com</a></li>                       
                 </ul>
-                
-                
-                
-                
-                
-                <!--<ul class="list-unstyled footer-link">
-                	<li class="contact-icon1"><span>+47 51 90 57 50</span></li>
-                    <li class="contact-icon2"><a href="javascript:void(0)">+47 51 90 57 57 </a></li>
-                    <li class="contact-icon3"><a href="mailto:kontakt@respond.no">kontakt@respond.no</a></li>
-                    <li class="contact-icon4"><a href="javascript:void(0)">Madlaveien 499,4020 Stavanger,Norway</a></li>
-                </ul>-->
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             	<div class="common-title">
@@ -50,7 +35,8 @@
                 <ul class="list-unstyled footer-link">
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Decoration Price Guide</a></li>
-                    <li><a href="#">E-Flyers & Catalogs</a></li>
+                    <li><a href="flyers.html">Flyers</a></li>
+                    <li><a href="ecatalogs.html">E-Catalogs</a></li>
                     <li><a href="#">How To Order</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     
@@ -62,64 +48,21 @@
                 </div>
                 <div class="clearfix"></div>
                 <ul class="list-unstyled footer-link">
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">YouTube Channel </a></li>
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="#">News, Updates & Special Offers</a></li>
+                    <li><a href="https://www.facebook.com/poshxessories" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/poshxessories/?hl=en" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCGHArm6PIDyMAH6UsrBDHeg" target="_blank">YouTube Channel </a></li>
+                    <li><a href="register.html">Sign Up</a></li>
+                    <li><a href="#">News, Updates &amp; Special Offers</a></li>
                     
                     
                 </ul>
-            </div>
-            
-            <div class="hidden-lg hidden-md hidden-sm col-xs-12">
-            	<div class="common-title">
-                	<h3 class="footer-heading">Feedback form</h3>
-                </div>
-                <div class="clearfix"></div>
-                <div class="feedback-responsive footer-link">
-	                <form>
-	                	<div class="row">
-	                		<div class="col-xs-12">
-	                			<div class="form-group">
-					                 <label for="FirstName" class="checkout-label">First Name<i class="check-out-mandatory-field">*</i></label>
-					                 <input type="text" data-original-title="First Name" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
-					            </div>	
-	                		</div>
-	                		<div class="col-xs-12">
-	                			<div class="form-group">
-					                 <label for="LastName" class="checkout-label">Last Name<i class="check-out-mandatory-field">*</i></label>
-			                 		 <input type="text" data-original-title="Last Name" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
-					            </div>	
-	                		</div>
-	                		<div class="col-xs-12">
-	                			<div class="form-group">
-					                 <label for="Email" class="checkout-label">Email</label>
-			                 		 <input type="text" data-original-title="Email" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
-					            </div>	
-	                		</div>
-	                		<div class="col-xs-12">
-	                			<div class="form-group">
-					                 <label for="Message" class="checkout-label">Message</label>
-			                 		 <textarea data-original-title="Message" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="textarea"></textarea>
-					            </div>	
-	                		</div>
-	                		<div class="col-xs-12">
-	                			<input type="submit" tabindex="17" value="Submit" class="btn btn-default">
-			            		<input type="submit" tabindex="17" value="Reset" class="btn btn-default">
-			            		<span class="required">* Required Fields</span>
-	                		</div>
-	                	</div>        
-					</form>
-				</div>
-            </div>
-            
+            </div>            
         </div>
         
     </div>
 </div>
 <div class="bottom-footer">
-	<div class="container-fluid">
+	<div class="container">
         <span class="pull-left">Copyright &copy; 2018 PoshXessories. All rights reserved</span>
         <span class="pull-right">Powered by : <a href="http://www.officebeacon.com" target="_blank">www.officebrain.com</a></span>
     </div>
@@ -137,3 +80,5 @@
 <script type="text/javascript" src="https://widget.cloudinary.com/global/all.js" type="text/javascript" defer="defer"></script>
 <script type="text/javascript" src="https://res.cloudinary.com/flowz/raw/upload/v1531977244/websites/InnovationLine/js/wow.js" defer="defer"></script>
 <script type="text/javascript" src="./assets/client-plugins/script.js" defer="defer"></script>
+<script type="text/javascript" src="./assets/client-plugins/slide-menu.js" defer="defer"></script>
+<link href="./assets/css/posh.css" rel="stylesheet" type="text/css" />

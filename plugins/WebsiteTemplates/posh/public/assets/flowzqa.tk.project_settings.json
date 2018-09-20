@@ -28,7 +28,7 @@
         "city_country_state_api":"https://api.flowzqa.tk/serverapi/city-state-country-list",
         "color_table_api_url": "https://api.flowzqa.tk/serverapi/color-table",
         "color_swatch_filter_api": "https://api.flowzqa.tk/pdmnew/filters/",
-        "shipping_estimator_api_url": "https://api.flowzqa.tk/serverapi/shipping-estimator",
+        "shipping_estimator_api_url": "https://api.flowzqa.tk/serverapi/rate-calculation",
         "shipping_estimator_key": "shippo_test_3be31f8493f2ad8630b07fdd688dc2324054d1bb",
         "carrier_account": {"ups":"17bd3f6701a44108b5487370fb93224d","fedex":"de32f747140c459f8b02dd6c0bfab0e8"},
         "request_quote_api_url": "https://api.flowzqa.tk/serverapi/request-quote",
@@ -47,6 +47,7 @@
         "ecatalogs_api_url":"https://api.flowzqa.tk/serverapi/ecatalogs",
         "webtools_api_url":"https://api.flowzqa.tk/serverapi/webtools",
         "download_pdf_api_url": "https://api.flowzqa.tk/serverapi/download-pdf",
-        "category_api_url":"https://api.flowzqa.tk/serverapi/category"
+        "category_api_url":"https://api.flowzqa.tk/serverapi/category",
+	"admin_email": "admin@cenacle.io"
       }
 }
