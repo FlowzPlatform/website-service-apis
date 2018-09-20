@@ -78,7 +78,7 @@ body {
         <a href="javascript:void(0);" id="js-email-product" data-toggle="modal"
         data-target="#emailProduct">Email This Page</a>
     </div>
-    <div class="pfunction">
+    <div class="pfunction js-product-detail-print-section">
         <img src="http://www.ameriknmx.com/media/icon/print.png">
         <a href="javascript:void(0)" class="js-product-detail-print-product">Print Page</a></div>
     </div>

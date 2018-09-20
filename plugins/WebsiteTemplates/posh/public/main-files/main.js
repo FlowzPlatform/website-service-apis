@@ -660,7 +660,7 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
  //});
 
 
-  $(document).on('click','.header-search-col .btn-search',function() {
+  $(document).on('click touchstart','.header-search-col .btn-search',function() {
     if($.trim($('input[name="search"]').val()) != '') {
         window.location.href = website_settings.BaseURL+'search.html?Search='+$('input[name="search"]').val()
     // window.location.href = website_settings.BaseURL+'search.html?Search=' + "\""+$('input[name="search"]').val()+"\""
@@ -3379,3 +3379,37 @@ $(document).on('keypress', '.js-only-interger', function(e) {
             return false;
 		}
 });
+
+//download Pdf using URL - href and data-title required
+
+$(document).on("click", '.js-download_pdf_from_url', function(e){
+  e.preventDefault();
+  let oReq = new XMLHttpRequest();
+  let pdfLink = $(this).attr('href');
+  let title = $(this).data('title');
+
+  // The Endpoint of your server 
+  let URLToPDF = pdfLink;
+
+  // Configure XMLHttpRequest
+  oReq.open("GET", URLToPDF, true);
+
+  // Important to use the blob response type
+  oReq.responseType = "blob";
+
+  // When the file request finishes
+  // Is up to you, the configuration for error events etc.
+  oReq.onload = function() {
+      // Once the file is downloaded, open a new window with the PDF
+      // Remember to allow the POP-UPS in your browser
+      var file = new Blob([oReq.response], { 
+          type: 'application/pdf' 
+      });
+      
+      // Generate file download directly in the browser !
+      saveAs(file, title);
+  };
+
+  oReq.send();
+});
+// END
