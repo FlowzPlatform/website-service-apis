@@ -77,11 +77,23 @@
     padding-top: 15px !important;
     font-family: 'Lato', sans-serif !important;
 }
+/* margin issues */
 .ob-product-detail-page .product-showcase,.ob-product-detail-page .js-recent-recommended-products {
     margin-right: -15px !important;
     margin-left: -15px !important;
     width: auto !important;
 }
+.banner-box .row, .middle-footer .row, .ob-product-detail-page .product-showcase,.ob-product-detail-page .js-recent-recommended-products {
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+    width: auto !important;
+}
+
+.ob-product-grid .row{
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+}
+/* end - margin issues */
 .js-product_description_text{ padding-bottom: 15px !important; }
 #owl-carousel-recommeded-products .item { margin: 0 1px; }
 .owl-carousel .owl-wrapper-outer { position: relative; overflow: hidden; width:100%;-webkit-transform: translate3d(0px, 0px, 0px); }
