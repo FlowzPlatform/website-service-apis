@@ -124,6 +124,7 @@ li.dropdown.login-col.header-login-text.logout-show.open .dropdown-menu.user-dro
  
 }
 @media (max-width: 1200px) {
+    .js-product-detail-print-section { display: none; }
     .print-product-detail .quantity-table .quantity-table-title{width: 100% !important;}
     .ob-product-detail-right .quantity-table{display: none}
     .ob-product-detail-right .quantity-table-disc{width: 100% !important}
