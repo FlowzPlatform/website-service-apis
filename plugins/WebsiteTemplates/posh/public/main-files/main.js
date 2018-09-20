@@ -1871,10 +1871,11 @@ function showCompareList(recetAdded=false)
 
                     var itemTitleHtml = html;
                     var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].id);
-		    let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                  if( productData[0]._source.images != undefined ){
-                    product_image = productData[0]._source.images[0].images[0].secure_url;
-                  }
+		                let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                    if( productData[0]._source.images != undefined ){
+                      product_image = productData[0]._source.images[0].images[0].secure_url;
+                      product_image = addOptimizeImgUrl(product_image,'w_203,h_200');
+                    }
                     var itemTitleHtml = itemTitleHtml.replace('#data.image#',product_image);
 
                     let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;

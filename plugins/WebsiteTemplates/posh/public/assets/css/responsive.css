@@ -607,7 +607,7 @@
 
 @media screen and (max-width: 1024px) {
 	.nav-search-btn.open .top-search-block{ top:37px;}
-	.ui-advance-search a.header-search-medium{ float: right; border: 0; background:none; padding:10px 0 8px; color:#444;font-size:13px;font-family: 'robotoregular'; text-transform:uppercase; position:relative;}
+	.ui-advance-search a.header-search-medium{ float: right; border: 0; background:none; padding:10px 0 8px; color:#444;font-size:13px;font-family: 'Lato', sans-serif; text-transform:uppercase; position:relative;}
 	.quick-quote-list.list-view .pro-box .product-img-blk{ height:200px;}
 	.quick-quote-list.list-view .pro-desc{ padding-top:5px;}
 	.product-cat-title{ margin-bottom:5px;}
@@ -990,7 +990,7 @@
 	.ui-menu-nav .ui-advance-search{ padding-left:40px; float:left;}
 	a.member-col i {font-size: 14px; margin-right: 4px;}
 	/*--QUOTE CSS--*/
-    .ui-advance-search a.header-search-medium{ float: right; border: 0; background:none; padding:16px 0 8px; color:#69717E;font-size:12px;font-family: 'robotoregular'; text-transform:uppercase;}
+    .ui-advance-search a.header-search-medium{ float: right; border: 0; background:none; padding:16px 0 8px; color:#69717E;font-size:12px;font-family: 'Lato', sans-serif; text-transform:uppercase;}
 	ui-advance-search a.header-search-medium i{ padding-right:7px;}
     #mainmenu-nav #mainmenu .navbar-nav.ui-advance-search {display: block !important; width: 100% !important;}
     #mainmenu-nav #mainmenu{ position: absolute;}
@@ -1223,7 +1223,7 @@
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus,
     .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{color: #e70000;}
  	.ui-header .logo-col{margin: 10px 0;}
-    body.slide-active{margin-left:265px !important;width:100%;position:fixed;overflow:hidden;}
+    body.slide-active{margin-left:265px;width:100%;position:fixed;overflow:hidden;}
     .ui-menu-nav{height: auto;}
     .menu-box .navbar-nav li{position:relative;}
     .dropdown-submenu.open > .dropdown-menu{display:block!important;}
