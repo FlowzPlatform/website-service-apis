@@ -552,3 +552,22 @@ async function recommededProducts(){
 }
 
 // Recommended Products end
+
+//seo
+let el = document.createElement('script');
+el.type = 'application/ld+json';
+el.text = JSON.stringify({
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "description": get_product_details.description,
+    "name": get_product_details.product_name,
+    "brand": get_product_details.categories[0],
+    "image": get_product_details.default_image,
+    "offers": {
+        "@type": "Offer",
+        "availability": "http://schema.org/InStock",
+        "price": get_product_details.price_1,
+        "priceCurrency": get_product_details.currency
+    }
+});
+document.querySelector('body').appendChild(el);
