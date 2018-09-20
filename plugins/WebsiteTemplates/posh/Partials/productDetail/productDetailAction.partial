@@ -41,44 +41,65 @@ body {
 .obv-virtualbrochurelibrary-main-div .row.obv-padding-top-50.obv-padding-bottom-15 {
     width: 1028px;
 }
+.checkbox_color {
+    width: 30px;
+	height: 30px;
+	float: left;
+	margin: 2px;
+	border: #CCC 2px solid;
+}
+.checkbox_color input {
+    display: none;
+}
+.checkbox_color label {
+    width: 30px;
+    height: 30px;
+}
 </style>
 
 
 <script type="text/javascript" src="https://virtualmarketingcart.com/bundles/bazingajstranslation/js/translator.min.js" defer="defer"></script>
-<div class="product-section-box">
-    <div class="detail-popup-block">
-        <ul>
-            <li id="ob_virtual_list">
-                <div id="ob-virtualmarketingcart">
-                    <input id="ob-virtualmarketingcart-sku" type="hidden" value="#data.sku#"
-                    />
-                    <input id="ob-virtualmarketingcart-supplier" type="hidden" value="#data.spplierId#"
-                    />
-                    <input id="ob-virtualmarketingcart-culture" type="hidden" value="#data.culture#"
-                    />
-                    <input class="ob-btvirtualloadcontent" id="c70827" type="button" />
-                </div>
-            </li>
-            <li><a href="virtualsample.html"><i class="strip order-strip"></i>Virtual Sample</a></li>
-            <li class="hide"><a href="javascript:void(0);" id="download_image" ><i class="strip download-img-strip"></i>Download Image</a></li>
-            <li class="mobile-print-btn">
-                <a href="javascript:void(0)" class="js-product-detail-print-product"><i class="strip print-strip"></i>
-                    Print Product
-			    </a>
-            </li>
-            <li><a href="javascript:void(0);" id="js-show_play_video" ><i class="strip play-strip"></i>Play Video</a></li>
-            <li><a href="orderSample.html?pid=#data.productId#" id="order_sample"><i class="strip order-strip"></i>Order Sample</a></li>
-            <li><a href="javascript:void(0);" id="js-email-product" data-toggle="modal" data-target="#emailProduct"><i class="strip email-strip"></i>Email Product</a></li>
-	    <li><a href="javascript:void(0);" id="download_product_template" target="_blank"><i class="strip download-img-strip"></i>Product Template</a></li>
-            <li><a href="javascript:void(0);" id="download_art_template" target="_blank"><i class="strip download-img-strip"></i>Art Template</a></li>
-            <li><a href="javascript:void(0);" id="download_gcc_template" target="_blank"><i class="strip download-img-strip"></i>Safety Document</a></li>
-            <li><a href="javascript:void(0);" id="download_special_pricing" target="_blank"><i class="strip download-img-strip"></i>Special Pricing</a></li>
-            <li><a href="javascript:void(0);" id="js-check-inventory" data-toggle="modal" data-target="#checkInventory"><i class="strip inventory-strip"></i>Check Inventory</a></li>
-            <li class="hide">
-                <a href="javascript:void(0);" id="js-share_product" target="_blank"><i class="strip share-strip"></i>Share Product</a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
+
+<div class="overview-title">Actions</div>
+<div class="product-functions">
+<div class="productFL">
+    <div class="pfunction">
+        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" /><a href="javascript:void(0);" id="sell_sheet" target="_blank">Sell Sheet</a>
+    </div>
+    <div class="pfunction">
+        <img src="http://www.ameriknmx.com/media/icon/art.png" /><a href="javascript:void(0);" id="download_art_template" target="_blank">Art Template</a>
+    </div>
+    <div class="pfunction">
+        <img src="http://www.ameriknmx.com/media/icon/images.png" /><a href="javascript:void(0);" id="download_image"> Hi-Res Images</a>
+    </div>
+
+    <div class="pfunction">
+        <img src="http://www.ameriknmx.com/media/icon/emailicon.png">    
+        <a href="javascript:void(0);" id="js-email-product" data-toggle="modal"
+        data-target="#emailProduct">Email This Page</a>
+    </div>
+    <div class="pfunction">
+        <img src="http://www.ameriknmx.com/media/icon/print.png">
+        <a href="javascript:void(0)" class="js-product-detail-print-product">Print Page</a></div>
+    </div>
+
+    <div class="pfunction">
+        <img src="http://www.ameriknmx.com/media/icon/art.png" />
+        <a href="javascript:void(0);" id="download_product_template" target="_blank">
+            Product Template
+        </a>
+    </div>
+    <div class="pfunction">
+        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" />
+        <a href="javascript:void(0);" id="download_gcc_template" target="_blank">
+            Safety Document
+        </a>
+    </div>
+    <div class="pfunction">
+        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" />
+        <a href="javascript:void(0);" id="download_special_pricing" target="_blank">
+            Special Pricing
+        </a>
     </div>
 </div>
 
@@ -136,7 +157,7 @@ body {
 <div id="print-product" class="hide">
     <div class="row">
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 print-logo">
-            <img class="lazyLoad" src="https://res.cloudinary.com/flowz/image/upload/v1531905314/websites/InnovationLine/images/logo.png" alt="logo" title="logo">
+            <img class="lazyLoad" src="https://res.cloudinary.com/flowz/image/upload/v1536650231/websites/POSH-ACCESSORIES/images/logo.png" alt="logo" title="logo">
         </div>
     </div>
     <div class="row">
@@ -264,6 +285,107 @@ body {
                         <span class="js-inventory-msg"></span>
                     </div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="js-play_video_block hide">
+    <div class="embed-main-block">
+        <div class="play-video-block"></div>
+        <div class="play-video-shw"></div>
+    </div>
+</div>
+
+<div id="orderSample" role="dialog" class="modal fade model-popup-black">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <a href="#" class="close" data-dismiss="modal" aria-label="Close">&times;</a> 
+         <div class="modal-header">
+            <h1 class="modal-title">Order a Sample</h1>
+         </div>
+         <div class="modal-body">
+            <form name="sample_order_form" id="sample_order_form" method="POST">
+               <div class="title-block">
+                  <div class="row">
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
+                        <h1 class="heading-2">iPosh Stainless Steel 16oz Tumbler</h1>
+                     </div>
+                  </div>
+                  <div class="colorSkus">
+                     <div class="colorBoxTitle"> <strong>Item #:</strong> </div>
+                     <div class="colorBoxItems">
+                        <div class="colorItem">White&nbsp;DW-536698;</div>
+                        <div class="colorItem">Black&nbsp;DW-536699;</div>
+                     </div>
+                  </div>
+                  <table class="table table-body inventory-table table-responsive">
+                     <tbody class="sample_color_append">
+                        <tr>
+                           <td>
+                              <div class="checkbox_color" style="" title="Red"> <input class="js_color_checkbox" type="checkbox" name="sample_color[]" id="sample_red" value="Red" data-hex-code="Red" /> <label for="Decoration_red"></label> </div>
+                           </td>
+                           <td> <input type="text" name="sample_quantity[]" class="input" placeholder="Enter Quantity"> </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                     <div class="form-group">
+                        <label>First Name</label> <span class="mandatory-field">*</span> <input type="text" name="sample_fname" tabindex="1" class="input"> 
+                        <ul class="error-message fname-error hide">
+                           <li>Enter Valid First Name!</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                     <div class="form-group">
+                        <label>Last Name</label> <span class="mandatory-field">*</span> <input type="text" name="sample_lname" tabindex="1" class="input"> 
+                        <ul class="error-message lname-error hide">
+                           <li>Enter Valid Last Name!</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                     <div class="form-group">
+                        <label>Email </label> <span class="mandatory-field">*</span> <input type="text" name="sample_email" class="input"> 
+                        <ul class="error-message email-error hide">
+                           <li>Enter Valid Email!</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                     <div class="form-group">
+                        <label> Phone</label> <span class="mandatory-field">*</span> <input type="text" name="sample_phone" tabindex="1" class="input"> 
+                        <ul class="error-message phone-error hide">
+                           <li>Enter valid Phone!</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-sm-12 col-xs-12">
+                     <div class="form-group"> <label>Message</label> <textarea id="sample_message" name="sample_message" class="form-control" rows="4"></textarea> </div>
+                  </div>
+                  <div class="col-sm-12 col-xs-12"> <span class="required-field">* Required Fields</span> </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                     <div class="text-center"> <input type="submit" id="sample_submit" name="sample_submit" value="Submit" class="virtual-modal-btn"> </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade model-popup-black " id="setup" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">×</a>
+			<div class="modal-header">
+				<h1 class="modal-title"><i class="strip inventory-popup-strip"></i> Setup Charges</h1>
+			</div>
+			<div class="modal-body">
+                <img src="https://res.cloudinary.com/flowz/image/upload/v1536835846/websites/POSH-ACCESSORIES/images/poshsetupcharges.jpg" class="img-responsive">
 			</div>
 		</div>
 	</div>

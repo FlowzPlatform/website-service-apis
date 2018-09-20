@@ -89,7 +89,7 @@ button.remove {
             </div>
             <div class="pro-desc">
                 <a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
-                <br /><div class="item-code">Item Code : #data.sku#</div>
+                <br /><div class="item-code">Item#: #data.sku#</div>
                 <br /><div class="item-price">#data.currency# #data.price#</div>
                 <br /><div class="list-quantity-block">
                     <p><b>Description :</b> #data.description#</p>

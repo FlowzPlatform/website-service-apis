@@ -78,28 +78,31 @@ button.remove {
 </style>
 
 
+<div class="row js-list hide">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 js-product-box product-#flyer-id#">
+    <div class="pro-box">
+        <div class="pro-image box01">
+            <a href="#flyer-image-link#" target="_blank">
+              <img alt="Text" class="img-responsive center-block lazyLoad" src="#flyer-image#" alt="#flyer-title#" title="#flyer-title#">
+        </div>
+        <div class="pro-desc">
+            <a class="item-title" href="javascript:void(0);">#flyer-title#</a>
+            <div class="pro-button">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0);" class="js-open-modal-flyer" title="View Flyer" data-image="#flyer-image-link#" data-original-title="View Flyer"><i class="fa fa-eye"></i>View Flyer</a>
+                    </li>
+                    <li>
+                        <a data-placement="top" href="#flyer-pdf-link#" target="_blank" title="Download" data-original-title="Download"><i class="fa fa-download"></i></a>
+                    </li>
+                </ul>
+            </div>
 
-<div class="js-list hide">
-    <div class="col-sm-6 col-md-4 col-lg-3 col-xs-12 js-product-box product-#flyer-id#">
-        
-        <div class="catelogue pro-box">
-            <div class="catelogue-image-wrap pro-image box01"><a href="#flyer-image-link#" target="_blank"><img src="#flyer-image#" class="img-responsive center-block lazyLoad" alt="#flyer-title#" title="#flyer-title#" /></a>
-            </div>
-            <div class="pro-desc">
-                <div class="pro-button flyer_button">
-                    <ul>
-                        <li>
-                            <a class="" href="#flyer-pdf-link#" target="_blank"><i class="fa fa-download"></i> Download Flyer</a>
-                        </li>
-                        <li>
-                          <a class="js_client_friendly_pdf" href="#flyer-client_friendly-link#" target="_blank"><i class="fa fa-download"></i> Download Client Friendly</a>
-                        </li>
-                    </ul>
-                </div>
-                <a href="#flyer-image-link#" class="item-title" target="_blank">#flyer-title#</a>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>
+
+</div>
 <div class="listing"></div>
+
+<reusecomponent class="c49533">{{> flyers id='viewFlyerImage.partial' }}</reusecomponent>

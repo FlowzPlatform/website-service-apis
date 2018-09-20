@@ -71,3 +71,14 @@ async function flyer_data(flyers) {
         $('#myFlyers .listing').html('No records found.');
     }
 }
+
+$(document).on("click", '.js-open-modal-flyer', function(e){
+    $('#modal-table').addClass('model-popup-black');
+    $('#modal-table').addClass('banner-copy-block add-flyer-modal');
+    $("#modal-table").find(".modal-title").html('<i class="fa fa-eye"></i> View Flyer');
+    $("#modal-table").find(".modal-dialog").addClass("modal-lg");
+    let flyerHtml = $(".js_display_flyer").html();
+    flyerHtml = flyerHtml.replace("#flyer-image-link#",$(this).attr("data-image"));
+    $(".js_add_html").html(flyerHtml);
+    $('#modal-table').modal('show');
+});
