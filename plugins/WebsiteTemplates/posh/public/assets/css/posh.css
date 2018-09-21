@@ -99,9 +99,16 @@
     margin-left: -15px !important;
 }
 /* end - margin issues */
+
+/*checkbox arrow placement, reset button alignment issue for signup*/
 .checkbox label::before {top: 0px !important;}
 :root .check-box-privacy .checkbox label::after {top: 0px !important;}
 input[type="reset"] {margin-top: 0px;}
+/*checkbox arrow placement, reset button alignment issue for signup*/
+
+/*productDetail page title placement*/
+.productDetailTitle { padding-left: 0px;}
+/*productDetail page title placement*/
 .ob-product-compare .product-price .priceProd{
     color: #e70000;
     font-size: 22px;
