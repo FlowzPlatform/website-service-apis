@@ -1453,7 +1453,7 @@ function showQuickQuoteList()
                       listHtml1 = listHtml1.replace(/#data.title#/g,productResponseData[0]._source.product_name);
                       listHtml1 = listHtml1.replace('#data.sku#',productResponseData[0]._source.sku);
                       listHtml1 = listHtml1.replace('#data.price#',parseFloat(productResponseData[0]._source.min_price).toFixed(project_settings.price_decimal));
-                      listHtml1 = listHtml1.replace('#data.currency#',productResponseData[0]._source.currency);
+                      listHtml1 = listHtml1.replace('#data.currency#','$');
 
                       let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                       listHtml1 = listHtml1.replace(/#data.product_link#/g,detailLink);
@@ -1730,7 +1730,7 @@ function showWishList(recetAdded=false)
                       listHtml1 = listHtml1.replace(/#data.title#/g,productData[0]._source.product_name);
                       listHtml1 = listHtml1.replace('#data.sku#',productData[0]._source.sku);
                       listHtml1 = listHtml1.replace('#data.price#',parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
-                      listHtml1 = listHtml1.replace('#data.currency#',productData[0]._source.currency);
+                      listHtml1 = listHtml1.replace('#data.currency#','$');
 
                       let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+prodId;
                       listHtml1 = listHtml1.replace(/#data.product_link#/g,detailLink);
@@ -1951,7 +1951,7 @@ function showCompareList(recetAdded=false)
                     }
                     else
                     {
-                      var item_price_rowHtml = item_price_rowHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
+                      var item_price_rowHtml = item_price_rowHtml.replace('#data.price#',"$ "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
                       var item_price_rowHtml = item_price_rowHtml.replace(/#data.min_qty#/g,productData[0]._source.pricing[0].price_range[0].qty.gte);
                     }
                     //end - price
@@ -2692,7 +2692,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
                       if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                         productJsonData['price'] = "";
                       }else{
-                        productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
+                        productJsonData['price'] = "$ "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
                       }
 
                       productJsonData['sku'] = productData[0]._source.sku;
@@ -2927,7 +2927,8 @@ $(document).on('click','.send-friend-email',function (e)
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           productJsonData['price'] = "";
                         }else{
-                          productJsonData['price'] = productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
+                          // productData[0]._source.currency
+                          productJsonData['price'] = "$ "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal);
                         }
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           productJsonData['min_qty'] = "";
@@ -3401,13 +3402,13 @@ $(document).on('change', '#listing .js_quantity_input', async function(e) {
                  $.each(element.price_range,function(index,element2){
                     if(element2.qty.lte != undefined){
                         if(qty>=element2.qty.gte && qty<=element2.qty.lte){
-                          $("#js-price-per-qty-"+product_id).find(".priceProd").html(productPricing.currency+" "+element2.price.toFixed(project_settings.price_decimal));
+                          $("#js-price-per-qty-"+product_id).find(".priceProd").html("$ "+element2.price.toFixed(project_settings.price_decimal));
                           return false;
                         }
                       }
                       else
                       {
-                        $("#js-price-per-qty-"+product_id).find(".priceProd").html(productPricing.currency+" "+element2.price.toFixed(project_settings.price_decimal));
+                        $("#js-price-per-qty-"+product_id).find(".priceProd").html("$ "+element2.price.toFixed(project_settings.price_decimal));
                         return false;                          
                       }
                    });
