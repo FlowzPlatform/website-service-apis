@@ -15,13 +15,13 @@
                                         <div class="pro-img">
                                         <div class="img-block"><img src="#data.image#" class="img-responsive center-block lazyLoad" alt="#data.title#" title="#data.title#"></div>
                                         </div>
-                                        <div class="product-name">#data.title#</div>
+                                        <div class="product-name" style="text-align:center;">#data.title#</div>
                                         </td>
                                 </tr>
                                 <tr class="feature dark-bg pro-title" id="product_price">
                                         <td style="width:20%" class="price-rang-brd ">
                                                 <div class="product-price" style="text-align:center">
-                                                        <div style="float:left;"><span class="priceProd">#data.price#</span></div>
+                                                        <i><i class="priceProd">#data.price#</i></i>
                                                         <span style="display:inline-block;vertical-align:top;margin-left:8px">Qty #data.min_qty#</span>
                                                 </div>
                                         </td>
@@ -30,10 +30,10 @@
                                         <td style="width:20%;text-align: center;" class=" ">#data.sku#</td>
                                 </tr>
                                 <tr class="feature dark-bg" id="product_features">
-                                        <td style="width:20%" class=" ">#data.features#</td>
+                                        <td style="width:20%;" class=" "><p style="text-align:justify">#data.features#</p></td>
                                 </tr>
                                 <tr class="feature summary light-bg" id="product_summary">
-                                        <td style="width:20%" class=" ">#data.summary#</td>
+                                        <td style="width:20%;" class=" "><p style="text-align:justify">#data.summary#</p></td>
                                 </tr>
                                 </tbody>
                         </table>
