@@ -94,15 +94,14 @@
     margin-left: -15px !important;
 }
 /* end - margin issues */
+.checkbox label::before {top: 0px !important;}
+:root .check-box-privacy .checkbox label::after {top: 0px !important;}
+input[type="reset"] {margin-top: 0px;}
+
 .js-product_description_text{ padding-bottom: 15px !important; }
 #owl-carousel-recommeded-products .item { margin: 0 1px; }
 .owl-carousel .owl-wrapper-outer { position: relative; overflow: hidden; width:100%;-webkit-transform: translate3d(0px, 0px, 0px); }
 .responsive-qty-table{ display: none;}
-.ob-personal-info-block .inp-parts .checkout-select-wrapper .checkout-holder {
-    margin-left: 5px;
-    width: 204px;
-    text-overflow: ellipsis;
-}
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) 
 {
@@ -114,8 +113,8 @@
 .cart-item-view .size-quantity-table .quantity-table {max-width: 440px;}.quantity-table-col .owl-buttons {margin: -35px -5px 22px 0;}
 .request-info-popup-modal .quantity-table-col .owl-buttons{margin: -26px -5px 22px 0px;}
 .quantity-table-col .owl-buttons.disabled{display: block !important;}
+.ob-membership-info .form-group label { font-size: 12px; }
 }
-
 
 @media screen and (max-width: 767px) {
 #owl-carousel-recommeded .owl-buttons { display: none; }
@@ -128,6 +127,19 @@ li.dropdown.login-col.header-login-text.logout-show.open .dropdown-menu.user-dro
 .login-col .dropdown-menu-arrow.user-dropdown::before {left: -95px;}
 .login-section{width:100%;}
 .rightloginBlock ul { width: 100%; }
+.ob-personal-info-block .inp-parts .checkout-select-wrapper .checkout-holder {
+    margin-left: 5px;
+    width: 204px;
+    text-overflow: ellipsis;
+}
+}
+
+@media screen and (max-width: 767px) {
+    .ob-personal-info-block .inp-parts .checkout-select-wrapper .checkout-holder {
+        margin-left: 5px;
+        width: 161px;
+        text-overflow: ellipsis;
+    }
 }
 
 @media (min-width: 1200px) {

@@ -48,7 +48,7 @@ $('.signupPosh-click').on('click',function() {
   			"city": "Enter Valid City!",
   			"zipCode": "Enter Valid Zip Code!",
   			"phone": {
-  				required: "Enter phone number!"
+  				required: "Enter Phone Number!"
   			},
 			"email": "Enter Valid Email ID!",
   		},
