@@ -187,8 +187,10 @@ let tagProducts = function(tagObj,productBoxHtml) {
                   ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                   
                   if(productRes.images !== undefined) {
+                    if(productRes.images[0].images[0].secure_url != undefined && productRes.images[0].images[0].secure_url != '') {
                       ProductImage = productRes.images[0].images[0].secure_url;
                       ProductImage = addOptimizeImgUrl(ProductImage,'w_210');
+                    }
                   }
 
                   productBoxHtml1 = productBoxHtml1.replace('#data.image#',ProductImage)
@@ -1454,7 +1456,9 @@ function showQuickQuoteList()
                       wishlistValuesCount = wishlistValuesCount+1;
 		                  let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                       if(productResponseData[0]._source.images != undefined){
+                        if(productResponseData[0]._source.images[0].images[0].secure_url != undefined && productResponseData[0]._source.images[0].images[0].secure_url != '') {
                           product_image = productResponseData[0]._source.images[0].images[0].secure_url;
+                        }
                       }
                       var listHtml1 = listHtml.replace('#data.image#',product_image);
                       listHtml1 = listHtml1.replace(/#data.id#/g,wishlist_values[item].id);
@@ -1729,10 +1733,12 @@ function showWishList(recetAdded=false)
                     if(productData.length > 0)
                     {
                       wishlistValuesCount = wishlistValuesCount+1;
-		    let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                    if(productData[0]._source.images != undefined){
-                        product_image = productData[0]._source.images[0].images[0].secure_url;
-                    }
+                      let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                      if(productData[0]._source.images != undefined){
+                        if(productData[0]._source.images[0].images[0].secure_url != undefined && productData[0]._source.images[0].images[0].secure_url != '') {
+                          product_image = productData[0]._source.images[0].images[0].secure_url;
+                        }
+                      }
                       var listHtml1 = listHtml.replace('#data.image#',product_image);
                       listHtml1 = listHtml1.replace(/#data.id#/g,wishlist_values[item].id);
                       listHtml1 = listHtml1.replace(/#data.title#/g,productData[0]._source.product_name);
@@ -1939,8 +1945,10 @@ function showCompareList(recetAdded=false)
                     var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].id);
 		                let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                     if( productData[0]._source.images != undefined ){
-                      product_image = productData[0]._source.images[0].images[0].secure_url;
-                      product_image = addOptimizeImgUrl(product_image,'w_203,h_200');
+                      if(productData[0]._source.images[0].images[0].secure_url != undefined && productData[0]._source.images[0].images[0].secure_url != '') {
+                        product_image = productData[0]._source.images[0].images[0].secure_url;
+                        product_image = addOptimizeImgUrl(product_image,'w_203,h_200');
+                      }
                     }
                     var itemTitleHtml = itemTitleHtml.replace('#data.image#',product_image);
 
@@ -2513,7 +2521,9 @@ async function printDiv(printDiv=true) {
                       var itemTitleHtml = titleHtml;
                       let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                       if(productData[0]._source.images != undefined){
-                          product_image = productData[0]._source.images[0].images[0].secure_url;
+                          if(productData[0]._source.images[0].images[0].secure_url != undefined && productData[0]._source.images[0].images[0].secure_url != '') {
+                            product_image = productData[0]._source.images[0].images[0].secure_url;
+                          }
                       }
                       var itemTitleHtml = itemTitleHtml.replace('#data.image#',product_image);
 
@@ -2690,7 +2700,12 @@ $(document).on('click','.js-email_quick_quote',function (e)
                       productJsonData = {};
 
                       if(productData[0]._source.images != undefined){
-                          productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
+                          if(productData[0]._source.images[0].images[0].secure_url != undefined && productData[0]._source.images[0].images[0].secure_url != '') {
+                            productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
+                          }
+                          else {
+                            productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                          }
                       }else{
                           productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                       }
@@ -2929,7 +2944,12 @@ $(document).on('click','.send-friend-email',function (e)
                         productJsonData = {};
 
                         if(productData[0]._source.images != undefined){
-                            productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
+                            if(productData[0]._source.images[0].images[0].secure_url != undefined && productData[0]._source.images[0].images[0].secure_url != '') {
+                              productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
+                            }
+                            else {
+                              productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                            }
                         }else{
                             productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                         }
@@ -3300,7 +3320,10 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
               let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
               
               if( productData[0]._source.images != undefined ){
-                product_image = productData[0]._source.images[0].images[0].secure_url;
+                if(productData[0]._source.images[0].images[0].secure_url != undefined && productData[0]._source.images[0].images[0].secure_url != '') {
+                  product_image = productData[0]._source.images[0].images[0].secure_url;
+                }
+               
               }
 
               itemTitleHtml = itemTitleHtml.replace('#data.image#',product_image);
