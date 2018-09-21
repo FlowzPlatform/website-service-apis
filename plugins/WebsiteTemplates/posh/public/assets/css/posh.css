@@ -89,7 +89,7 @@
     width: auto !important;
 }
 
-.ob-product-grid .row{
+.myCompareList .row, .ob-product-grid .row{
     margin-right: -15px !important;
     margin-left: -15px !important;
 }
@@ -97,7 +97,11 @@
 .checkbox label::before {top: 0px !important;}
 :root .check-box-privacy .checkbox label::after {top: 0px !important;}
 input[type="reset"] {margin-top: 0px;}
-
+.ob-product-compare .product-price .priceProd{
+    color: #e70000;
+    font-size: 22px;
+}
+.feature.dark-bg p, .feature.light-bg p { text-align: justify; }
 .js-product_description_text{ padding-bottom: 15px !important; }
 #owl-carousel-recommeded-products .item { margin: 0 1px; }
 .owl-carousel .owl-wrapper-outer { position: relative; overflow: hidden; width:100%;-webkit-transform: translate3d(0px, 0px, 0px); }

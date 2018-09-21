@@ -1885,6 +1885,7 @@ function showCompareList(recetAdded=false)
       var itemTitleHtml='';
       let html = $('.js-list #item_title_price').html();
       let item_sku = $('.js-list #item_sku').html();
+      let item_price_row = $('.js-list #item_price_row').html();
       let activeSummary = $('.js-list #item_summary').html();
       let item_features = $('.js-list #item_features').html();
 
@@ -1940,18 +1941,20 @@ function showCompareList(recetAdded=false)
 
                     var itemTitleHtml = itemTitleHtml.replace(/#data.title#/g,productData[0]._source.product_name);
                     
+                    productHtml = itemTitleHtml;
+                    //price
+                    var item_price_rowHtml = item_price_row;
+                    var item_price_rowHtml = item_price_rowHtml.replace(/#data.id#/g,compare_values[item].id);
                     if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
-                      var itemTitleHtml = itemTitleHtml.replace('#data.price#',"");
-                      var itemTitleHtml = itemTitleHtml.replace(/#data.min_qty#/g,"");
+                      var item_price_rowHtml = item_price_rowHtml.replace('#data.price#',"");
+                      var item_price_rowHtml = item_price_rowHtml.replace(/#data.min_qty#/g,"");
                     }
                     else
                     {
-                      var itemTitleHtml = itemTitleHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
-                      var itemTitleHtml = itemTitleHtml.replace(/#data.min_qty#/g,productData[0]._source.pricing[0].price_range[0].qty.gte);
+                      var item_price_rowHtml = item_price_rowHtml.replace('#data.price#',productData[0]._source.currency+" "+parseFloat(productData[0]._source.min_price).toFixed(project_settings.price_decimal));
+                      var item_price_rowHtml = item_price_rowHtml.replace(/#data.min_qty#/g,productData[0]._source.pricing[0].price_range[0].qty.gte);
                     }
-                    
-                    productHtml = itemTitleHtml;
-
+                    //end - price
                     var itemTitleHtml = item_sku;
                     var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].id);
                     var itemTitleHtml = itemTitleHtml.replace('#data.sku#',productData[0]._source.sku);
@@ -1976,10 +1979,11 @@ function showCompareList(recetAdded=false)
                       $("#myCompareList #listing .js-no-records").remove();
                       $("#myCompareList #listing div:first").removeClass("hide");
 
-                      compareHtml.find("#item_title_price1").html("<td></td>"+productHtml)
-                      compareHtml.find("#item_sku1").html("<td><strong>ITEM#</strong></td>"+itemSkuHtml)
-                      compareHtml.find("#item_summary1").html("<td><strong>SUMMARY</strong></td>"+activeSummaryHtml)
-                      compareHtml.find("#item_features1").html("<td><strong>FEATURES</strong></td>"+itemFeaturesHtml)
+                      compareHtml.find("#item_title_price1").html("<td class='feature-block'></td>"+productHtml)
+                      compareHtml.find("#item_price_row1").html("<td class='feature-block'></td>"+item_price_rowHtml)
+                      compareHtml.find("#item_sku1").html("<td class='feature-block'>ITEM#</td>"+itemSkuHtml)
+                      compareHtml.find("#item_summary1").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
+                      compareHtml.find("#item_features1").html("<td class='feature-block'>FEATURES</td>"+itemFeaturesHtml)
                       $('#myCompareList #listing').html(compareHtml.html());
                       if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                         $("#listing .product-"+productData[0]._id).find(".js_quantity_input").parent().remove();
@@ -1987,6 +1991,7 @@ function showCompareList(recetAdded=false)
                     }
                     else{
                       compareHtml.find("#item_title_price1").append(productHtml)
+                      compareHtml.find("#item_price_row1").append(item_price_rowHtml)
                       compareHtml.find("#item_sku1").append(itemSkuHtml)
                       compareHtml.find("#item_summary1").append(activeSummaryHtml)
                       compareHtml.find("#item_features1").append(itemFeaturesHtml)
