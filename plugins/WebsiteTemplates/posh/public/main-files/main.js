@@ -69,7 +69,7 @@ function getWebsiteInfoById(websiteId,webInfoAPi) {
 }
 
 async function getProductDetailById(id) {
-    showPageAjaxLoading();
+    //showPageAjaxLoading();
     let returnData = null;
     await axios({
         method: 'GET',
@@ -77,7 +77,7 @@ async function getProductDetailById(id) {
         headers: {'vid' : website_settings.Projectvid.vid},
     })
     .then(response => {
-        hidePageAjaxLoading();
+        //hidePageAjaxLoading();
         productData = response.data;
         if(typeof productData.hits.hits[0] != "undefined")
         {
@@ -162,6 +162,63 @@ let getStateCode = async function (id, type) {
       console.log('Error::::', errr)
     })
     return code;
+}
+
+let tagProducts = function(tagObj,productBoxHtml) {
+  return new Promise(async (resolve , reject ) => {
+      let replaceProductBox = '';
+      let productResponse = await fetchProductsBySlug(tagObj)
+      if(Array.isArray(productResponse) && productResponse.length > 0){
+          for(let [key,value] of productResponse.entries()){
+              let productRes = await getProductDetailById(value.product_id)
+              let productBoxHtml1 = '';
+              if(productRes !== undefined && productRes != null)  
+              {
+                  productBoxHtml1 = productBoxHtml.replace(/#data.id#/g,value.product_id)
+                  productBoxHtml1 = productBoxHtml1.replace(/#data.product_link#/g,'productdetail.html?locale='+project_settings.default_culture+'&pid='+value.product_id)
+                  ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                  
+                  if(productRes.images !== undefined) {
+                      ProductImage = productRes.images[0].images[0].secure_url;
+                      ProductImage = addOptimizeImgUrl(ProductImage,'w_210');
+                  }
+
+                  productBoxHtml1 = productBoxHtml1.replace('#data.image#',ProductImage)
+                  productBoxHtml1 = productBoxHtml1.replace('#data.sku#',productRes.sku)
+                  productBoxHtml1 = productBoxHtml1.replace('#data.currency#','$')
+                  productBoxHtml1 = productBoxHtml1.replace('#data.price#',productRes.min_price.toFixed(project_settings.price_decimal))
+                  productBoxHtml1 = productBoxHtml1.replace(/#data.title#/g,productRes.product_name)
+                  productBoxHtml1 = productBoxHtml1.replace(/#data.tagSlug#/g,value.tag_slug)
+                  productBoxHtml1 = productBoxHtml1.replace(/#data.tagColor#/g,value.tag_color)
+                  productBoxHtml1 = productBoxHtml1.replace(/#data.tagName#/g,value.tag_name)
+                  replaceProductBox += productBoxHtml1
+              }
+              else{
+                  replaceProductBox += '';
+                  
+              }
+          }
+          resolve(replaceProductBox)
+      }
+  })
+}
+
+async function fetchProductsBySlug(tagObj){
+  let returnData = null;
+  await axios({
+      method: 'GET',
+      url: project_settings.tags_api_url+"?website="+ website_settings['projectID']+"&tag_status=true&"+tagObj,
+  })
+  .then(response => {
+      if(response.data.length > 0){
+          returnData = response.data;
+      }
+      return returnData
+  })
+  .catch(function (error) {
+      console.log("error == ",error.response);
+  });
+  return returnData;
 }
 
 $(document).ready(function() {
