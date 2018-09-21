@@ -3,7 +3,7 @@
     padding-top: 0px !important;
 }
 
-.pro-desc .item-title {
+/* .pro-desc .item-title {
     min-height: 46px !important;
     max-height: 47px !important;
     overflow-y: auto !important;
@@ -14,4 +14,22 @@
 
  .css-1ylpwy7 .rheostat-progress {
     background-color: #999 !important;
- }   
+ }    */
+
+ .ListView1 .pro-box .pro-desc .item-price {
+    background: transparent !important;
+    color: #000 !important;
+}
+
+ /* .ListView1 .pro-box {
+    margin-right: -22px;
+    margin-left: -10px;
+}  */
+
+@media (min-width: 1200px) {
+    .ListView1 .pro-box {
+        margin-right: -22px;
+        margin-left: -10px;
+    }
+    
+   }
