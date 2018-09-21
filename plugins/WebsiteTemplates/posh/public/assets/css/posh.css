@@ -89,7 +89,12 @@
     width: auto !important;
 }
 
-.myCompareList .row, .ob-product-grid .row{
+.myCompareList .row{
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+}
+.js-tag-featured-product-list .row, .myCompareList .row,.product-category-item-view .js-home-cat-section{
+    width: 1200px;
     margin-right: -15px !important;
     margin-left: -15px !important;
 }
@@ -151,7 +156,7 @@ li.dropdown.login-col.header-login-text.logout-show.open .dropdown-menu.user-dro
  width: 1170px;
  padding: 0;
  }
- 
+ .owl-carousel-recommeded ul li.owl-item{ width: 200px !important}
 }
 @media (max-width: 1200px) {
     .js-product-detail-print-section { display: none; }
