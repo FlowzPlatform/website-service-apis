@@ -31,7 +31,7 @@
                             </li>
                             <li class="dropdown login-col header-login-text login-show hide">
                                 <a href="login.html" class="dropdown-toggle">
-                                    <img src="https://res.cloudinary.com/flowz/image/upload/v1536650605/websites/POSH-ACCESSORIES/images/distributer.png">
+                                    <span class="fa fa-user"></span>
                                     <span class="login-text"><span>LOGIN</span></span>
                                 </a>
                             </li>
