@@ -343,28 +343,27 @@ $(document).ready( async function(){
             }
         });
         document.querySelector('body').appendChild(el);
-})
 
-// RECENTLY VIEWED PRODUCTS
+        // RECENTLY VIEWED PRODUCTS
+        if(get_product_details != null && get_product_details != undefined) {
+            // RECENTLY VIEWED PRODUCTS
+            let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
+            let recentViewedProducts = [];
+            if (localStorage.getItem(recentProductsName) != null) {
+                recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
+            }
+            
+            if(!(recentViewedProducts.includes(pid))) {
+                if(recentViewedProducts.length > 6) {
+                    recentViewedProducts.splice(0, 1);
+                }
+                recentViewedProducts.push(pid);
+            }
+            localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
 
-if(get_product_details != null && get_product_details != undefined) {
-    // RECENTLY VIEWED PRODUCTS
-    let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
-    let recentViewedProducts = [];
-    if (localStorage.getItem(recentProductsName) != null) {
-        recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
-    }
-    
-    if(!(recentViewedProducts.includes(pid))) {
-        if(recentViewedProducts.length > 6) {
-            recentViewedProducts.splice(0, 1);
+            recentlyViewedProducts(recentProductsName,recentViewedProducts);
         }
-        recentViewedProducts.push(pid);
-    }
-    localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
-
-    recentlyViewedProducts(recentProductsName,recentViewedProducts);
-}
+})
 
 function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
     if(recentViewedProducts != null && recentViewedProducts.length > 1)
@@ -400,7 +399,7 @@ function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
                             // let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
                             let price = parseFloat(productData.min_price).toFixed(project_settings.price_decimal)
 
-                            recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"> <img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="item-price">$ '+price+'</div><div class="list-quantity-block"></div><div class="pro-button"> <ul> <li><a href="javascript:void(0);" data-id="'+productId+'" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li></ul> </div><div class="clearfix"></div></div><div class="clearfix"></div></div></div>';
+                            recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"> <img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <div class="item-code"> Item # : '+productData.sku+' </div><a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-price">$ '+price+'</div><div class="list-quantity-block"></div><div class="pro-button"> <ul> <li><a href="javascript:void(0);" data-id="'+productId+'" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li></ul> </div><div class="clearfix"></div></div><div class="clearfix"></div></div></div>';
                         }
                         else {
                             let AIndex = recentLoop.indexOf(productId);

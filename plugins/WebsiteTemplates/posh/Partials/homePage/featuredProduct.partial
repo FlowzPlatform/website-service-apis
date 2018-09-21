@@ -31,8 +31,8 @@
                                             </div>
                                         </div>
                                         <div class="pro-desc">
-                                            <a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
                                             <div class="item-code">Item# : #data.sku#</div>
+                                            <a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
                                             <div class="item-price">#data.currency# #data.price#</div>
                                             <div class="list-quantity-block"></div>
                                             <div class="pro-button">
