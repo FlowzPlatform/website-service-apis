@@ -369,7 +369,7 @@ if(get_product_details != null && get_product_details != undefined) {
 function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
     if(recentViewedProducts != null && recentViewedProducts.length > 1)
     {
-        let recentLoop = recentViewedProducts;
+        let recentLoop = recentViewedProducts.reverse();
         let cIndex = recentLoop.indexOf(pid);
         if (cIndex > -1) {
             recentLoop.splice(cIndex, 1);

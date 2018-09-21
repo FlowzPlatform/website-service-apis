@@ -78,7 +78,6 @@ async function fetchTagProducts(hook)
                 if (error) throw error;
                 cursor.toArray(function(err, result) {
                     if (err) throw err;
-                    console.log("result+++",result);
                     resolve(result)
                 });
             })
