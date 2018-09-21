@@ -26,6 +26,8 @@
     margin-left: -10px;
 }  */
 
+/*--------------- List view ------------ */ 
+
 @media (min-width: 1200px) {
     .ListView1 .pro-box {
         margin-right: -22px;
@@ -33,3 +35,24 @@
     }
     
    }
+
+/*--------- No Result found ------------- */     
+svg.svg-inline--fa.fa-search.fa-w-16.fa-fw.search_icon.trigger{
+   z-index: 9;
+    display: block;
+    position: absolute; 
+    float: left;
+    font-size: small;
+    margin-top: 12px;
+    margin-left: 4px;
+}
+
+input#input-text {
+    padding-left: 20px;
+}
+
+svg.svg-inline--fa.fa-search.fa-w-16.fa-fw.search_icon_no_result_found.top_search {
+    font-size: 60px;
+}
+
+/* -------------------------------------- */ 
