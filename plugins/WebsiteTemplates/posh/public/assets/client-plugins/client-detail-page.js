@@ -59,9 +59,11 @@ $(document).ready( async function(){
     recommededProducts();
     var productDetails = get_product_details;
     ProductName = productDetails.product_name;
-    ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+    let ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
     if(productDetails.images != undefined)  {
-        ProductImage = productDetails.images[0].images[0].secure_url;//productDetails.default_image;
+        if(productDetails.images[0].images[0].secure_url != undefined && productDetails.images[0].images[0].secure_url != '') {
+            ProductImage = productDetails.images[0].images[0].secure_url;
+        }
     }
     else {
     $("#download_image").parent('li').remove()
@@ -93,8 +95,15 @@ $(document).ready( async function(){
             let imageUrl = element.secure_url;
             let color = element.color;
             color = color.toLowerCase().replace(/\s/g, '-');
-            imageGallaryHtml += '<li class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
-            imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+' lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></li>';
+            if(imageUrl != undefined && imageUrl != '') {
+                imageGallaryHtml += '<li class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
+                imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+' lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></li>';
+            }
+            else {
+                let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                imageGallaryHtml += '<li class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+productImage+'">';
+                imageGallaryHtml += '<img data-orig-img-'+color+'="'+productImage+'" src="'+productImage+'" class="clr_'+color+' lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></li>';
+            }
         }
     }
     else

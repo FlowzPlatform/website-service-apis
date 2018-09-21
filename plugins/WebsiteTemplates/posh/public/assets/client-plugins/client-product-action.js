@@ -473,7 +473,12 @@ $(document).on('click','.send-email-product', function (e) {
                     }
                     
                     if(productJsonData['data'].images != undefined){
-                        productJsonData['image'] = productJsonData['data'].images[0].images[0].secure_url;
+                        if(productJsonData['data'].images[0].images[0].secure_url != undefined && productJsonData['data'].images[0].images[0].secure_url != '') {
+                            productJsonData['image'] = productJsonData['data'].images[0].images[0].secure_url;
+                        }
+                        else {
+                            productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                        }
                     }else{
                         productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                     }
@@ -543,7 +548,13 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
     guestUserHtml = guestUserHtml.replace('#data.colors#',productResponse.attributes.colors);
 
     if(productResponse.images != undefined){
-        guestUserHtml = guestUserHtml.replace('#data.product_img#',productResponse.images[0].images[0].secure_url);
+        if(productResponse.images[0].images[0].secure_url != undefined && productResponse.images[0].images[0].secure_url != '') {
+            guestUserHtml = guestUserHtml.replace('#data.product_img#',productResponse.images[0].images[0].secure_url);
+        }
+        else {
+            guestUserHtml = guestUserHtml.replace('#data.product_img#','https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png');
+        }
+        
     }else{
         guestUserHtml = guestUserHtml.replace('#data.product_img#','https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png');        
     }
