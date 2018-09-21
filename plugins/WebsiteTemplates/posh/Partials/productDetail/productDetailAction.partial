@@ -315,8 +315,7 @@ body {
                   <div class="colorSkus">
                      <div class="colorBoxTitle"> <strong>Item #:</strong> </div>
                      <div class="colorBoxItems">
-                        <div class="colorItem">White&nbsp;DW-536698;</div>
-                        <div class="colorItem">Black&nbsp;DW-536699;</div>
+                        <div class="colorItem"></div>
                      </div>
                   </div>
                   <table class="table table-body inventory-table table-responsive">
