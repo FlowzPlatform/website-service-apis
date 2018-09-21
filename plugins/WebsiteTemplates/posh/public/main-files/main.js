@@ -2825,6 +2825,10 @@ $(document).on('click','.js-email_quick_quote',function (e)
   }).form()
 });
 
+$(document).on('click','.js_open_modal_email_to_friend',function() {
+  $('form#send_email_to_friend')[0].reset();
+})
+
 $(document).on('click','.send-friend-email',function (e)
 {
   $('form#send_email_to_friend').validate({
@@ -2841,16 +2845,16 @@ $(document).on('click','.send-friend-email',function (e)
       "message":"required",
     },
     messages: {
-      "name":"Please enter name.",
+      "name":"Please Enter Name.",
       "email":{
-        required:"Please enter sender email",
-        email: "Please enter valid sender email."
+        required:"Please Enter Sender Email",
+        email: "Please Enter Valid Sender Email."
       },
       "to_email":{
-        required:"Please enter receiver email",
-        multiemails: "Please enter valid receiver email."
+        required:"Please Enter Recipient Email",
+        multiemails: "Please Enter Valid Recipient Email."
       },
-      "message":"Please enter message.",
+      "message":"Please Enter Message.",
     },
     errorElement: "li",
     errorPlacement: function(error, element) {
