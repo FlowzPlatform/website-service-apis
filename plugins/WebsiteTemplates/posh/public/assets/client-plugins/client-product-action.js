@@ -73,7 +73,8 @@ $(document).ready(function(){
     //shipping estimator
     $('#shippingEstButton').on('click', async function() {
         $('form#calculate_shipping_estimator')[0].reset();
-        $(".js-country").html('');
+        $('.checkout-holder').html('Select Country');
+        // $(".js-country").html('');
         let productResponse = await getProductDetailById(pid)
         console.log('productresponse',productResponse);
         getCountry();
@@ -177,8 +178,13 @@ $(document).ready(function(){
 // inventory start
 let inventoryData = [];
 $(document).on('click','#js-check-inventory', async function (e) {
+    $('.js-inventory-msg').addClass('hide')
     $('.js-inventory-colors').html('');
+    $('.js-inventory-quantity').val('');
+    $('.js-current-color').attr('data-value', '')
+    $('.js-current-color').attr('style','')
     let productResponse = await getProductDetailById(pid)
+    console.log('productResponse',productResponse)
     if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) {
         $.each(productResponse.inventory, function(i,element){
             let colorInventoryColors = "";
@@ -214,23 +220,27 @@ $(document).on('click','.js-inventory-submit', function (e) {
     let enteredQty = $('.js-inventory-quantity').val();
 
     if(colorName == undefined || colorName == '') {
+        $('.js-inventory-msg').removeClass('hide')
         $('.js-inventory-msg').css('color','red');
         $('.js-inventory-msg').html('Please select color.');
         return false;
     }
     else if(Math.floor(enteredQty) == enteredQty && $.isNumeric(enteredQty)) {
         if(enteredQty <= inventoryData[colorName]) {
+            $('.js-inventory-msg').removeClass('hide')
             $('.js-inventory-msg').css('color','green');
             $('.js-inventory-msg').html('In Stock');
             return false;
         }
         else {
+            $('.js-inventory-msg').removeClass('hide')
             $('.js-inventory-msg').css('color','red');
             $('.js-inventory-msg').html('Not in Stock');
             return false;
         }
     }
     else {
+        $('.js-inventory-msg').removeClass('hide')
         $('.js-inventory-msg').css('color','red');
         $('.js-inventory-msg').html('Please enter valid quantity.');
         return false;
@@ -655,3 +665,7 @@ function getCountry(countryId=0) {
     }
 
 }
+
+$(document).on('click','#js-email-product', function() {
+  $("form#email_product")[0].reset();
+})

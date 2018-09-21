@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="form-group form-option pull-left">
                                         <div class="checkbox">
-                                            <input type="checkbox" id="checkbox-mailing">
+                                            <input type="checkbox" id="checkbox-mailing" tabindex="4">
                                             <label for="checkbox-mailing"></label>
                                         </div>
                                     </div>
@@ -148,7 +148,7 @@
                                     </div>
                                     <div class="form-group form-option pull-left">
                                         <div class="checkbox">
-                                            <input id="checkbox18" name="shipping_type" class="css-checkbox" value="ups" type="checkbox" />
+                                            <input id="checkbox18" tabindex="5" name="shipping_type" class="css-checkbox" value="ups" type="checkbox" />
                                             <label for="checkbox18" class="css-label font-style-normal">UPS</label>
                                         </div>
                                         <!-- <div class="checkbox">
