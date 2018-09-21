@@ -1,5 +1,13 @@
 /* Add your custom JavaScript/jQuery functions here. It will be automatically included in every page. */
 
+document.onreadystatechange = function () {
+    var state = document.readyState
+    if (state == 'complete') {
+        document.getElementById('interactive');
+        $('#preloader').css("visibility","hidden");
+    }
+}
+
 let user_id = user_details = null;
 let timeStamp = Math.floor(Date.now() / 1000);
 let TaxCloud = null;
