@@ -438,6 +438,7 @@ function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
 if(get_product_details != null && get_product_details != undefined) {
     $(document).on('click','#js-order-sample',async function () {
         $("form#sample_order_form")[0].reset();
+        $("form#sample_order_form").find("ul.red").remove();
         $('#sample_order_form .colorBoxItems').html('');
         $('#sample_order_form .heading-2').html(get_product_details.product_name);
         $('#sample_order_form .colorBoxItems').append('<div class="colorItem">'+get_product_details.sku+';</div>');

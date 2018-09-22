@@ -2842,6 +2842,7 @@ $(document).on('click','.js-email_quick_quote',function (e)
 
 $(document).on('click','.js_open_modal_email_to_friend',function() {
   $('form#send_email_to_friend')[0].reset();
+  $("form#send_email_to_friend").find("ul.red").remove();
 })
 
 $(document).on('click','.send-friend-email',function (e)
