@@ -109,6 +109,14 @@ input[type="reset"] {margin-top: 0px;}
 /*productDetail page title placement*/
 .productDetailTitle { padding-left: 0px;}
 /*productDetail page title placement*/
+
+/*shipping estimator model*/
+.shippingng-estimator-model h3 { margin: 10px auto 8px; }
+.shippingng-estimator-model .shippingEstimatorCountry span {color: #7E7E7E;}
+.shippingEstimator-checkbox label::after { padding-top: 1px !important; }
+.shippingEstimator-checkbox .form-option { padding-left: 11px !important; }
+/*shipping estimator model*/
+
 .ob-product-compare .product-price .priceProd{
     color: #e70000;
     font-size: 22px;

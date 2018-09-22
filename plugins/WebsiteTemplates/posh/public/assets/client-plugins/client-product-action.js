@@ -160,18 +160,19 @@ $(document).ready(function(){
               }
               else {
                   $('#estimatorError').css({"display":"block"})
-                  $('#estimatorError').text('Quantity must be greater than zero')
+                  $('#estimatorError').text('Quantity Must Be Greater Than Zero')
               }
           }
           else {
               $('#estimatorError').css({"display":"block"})
-              $('#estimatorError').text('Please fill all the required fields correctly')
+              $('#estimatorError').text('Please Fill All The Required Fields Correctly')
           }
         })
     })
 
     $('.js-reset-btn-rate-calculation').on('click', async function() { 
         $('form#calculate_shipping_estimator')[0].reset();
+        $('.checkout-holder').html('Select Country');
     })
 });
 
@@ -222,7 +223,7 @@ $(document).on('click','.js-inventory-submit', function (e) {
     if(colorName == undefined || colorName == '') {
         $('.js-inventory-msg').removeClass('hide')
         $('.js-inventory-msg').css('color','red');
-        $('.js-inventory-msg').html('Please select color.');
+        $('.js-inventory-msg').html('Please Select Color.');
         return false;
     }
     else if(Math.floor(enteredQty) == enteredQty && $.isNumeric(enteredQty)) {
@@ -235,14 +236,14 @@ $(document).on('click','.js-inventory-submit', function (e) {
         else {
             $('.js-inventory-msg').removeClass('hide')
             $('.js-inventory-msg').css('color','red');
-            $('.js-inventory-msg').html('Not in Stock');
+            $('.js-inventory-msg').html('Not In Stock');
             return false;
         }
     }
     else {
         $('.js-inventory-msg').removeClass('hide')
         $('.js-inventory-msg').css('color','red');
-        $('.js-inventory-msg').html('Please enter valid quantity.');
+        $('.js-inventory-msg').html('Please Enter Valid Quantity.');
         return false;
     }
 });
