@@ -332,34 +332,22 @@ body {
                <div class="row">
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                      <div class="form-group">
-                        <label>First Name</label> <span class="mandatory-field">*</span> <input type="text" name="sample_fname" tabindex="1" class="input"> 
-                        <ul class="error-message fname-error hide">
-                           <li>Enter Valid First Name!</li>
-                        </ul>
+                        <label>First Name</label> <span class="mandatory-field">*</span> <input type="text" name="sample_fname" class="input">
                      </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                      <div class="form-group">
-                        <label>Last Name</label> <span class="mandatory-field">*</span> <input type="text" name="sample_lname" tabindex="1" class="input"> 
-                        <ul class="error-message lname-error hide">
-                           <li>Enter Valid Last Name!</li>
-                        </ul>
+                        <label>Last Name</label> <span class="mandatory-field">*</span> <input type="text" name="sample_lname" class="input"> 
                      </div>
                   </div>
                   <div class="col-sm-6 col-xs-12">
                      <div class="form-group">
                         <label>Email </label> <span class="mandatory-field">*</span> <input type="text" name="sample_email" class="input"> 
-                        <ul class="error-message email-error hide">
-                           <li>Enter Valid Email!</li>
-                        </ul>
                      </div>
                   </div>
                   <div class="col-sm-6 col-xs-12">
                      <div class="form-group">
-                        <label> Phone</label> <span class="mandatory-field">*</span> <input type="text" name="sample_phone" tabindex="1" class="input"> 
-                        <ul class="error-message phone-error hide">
-                           <li>Enter valid Phone!</li>
-                        </ul>
+                        <label> Phone</label> <span class="mandatory-field">*</span> <input type="text" name="sample_phone" class="input js-phone"> 
                      </div>
                   </div>
                   <div class="col-sm-12 col-xs-12">

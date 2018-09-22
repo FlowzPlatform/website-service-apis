@@ -126,7 +126,10 @@ input[type="reset"] {margin-top: 0px;}
 #owl-carousel-recommeded-products .item { margin: 0 1px; }
 .owl-carousel .owl-wrapper-outer { position: relative; overflow: hidden; width:100%;-webkit-transform: translate3d(0px, 0px, 0px); }
 .responsive-qty-table{ display: none;}
-
+ul.red li.error {
+    text-transform: capitalize;
+}
+.form-control:focus{ border-color: #e70000 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) 
 {
 .cart-item-view .size-quantity-table .quantity-table {max-width: 440px;}.quantity-table-col .owl-buttons {margin: -35px -5px 22px 0;}

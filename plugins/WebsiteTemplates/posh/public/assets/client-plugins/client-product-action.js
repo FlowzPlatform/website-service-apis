@@ -257,7 +257,7 @@ $(document).on('click','#sample_submit',function (e) {
             "sample_lname" : "required",
             "sample_phone" : {
                 required:true,
-                minlength: 10
+                // minlength: 10
             },
             "sample_email":{
                 required:true,
@@ -265,11 +265,11 @@ $(document).on('click','#sample_submit',function (e) {
             }
         },
         messages: {
-            "sample_fname" : "Enter valid first name.",
-            "sample_lname" : "Enter valid last name.",
-            "phone" : {
+            "sample_fname" : "Please Enter first name.",
+            "sample_lname" : "Please Enter last name.",
+            "sample_phone" : {
                 required : "Please enter phone number.",
-                minlength: "Please enter valid phone number."
+                // minlength: "Please enter valid phone number."
             },
             "sample_email":{
                 required:"Please enter email",
@@ -389,8 +389,8 @@ $(document).on('click','.send-email-product', function (e) {
                 email: "Please enter valid sender email."
             },
             "to_email":{
-                required:"Please enter receiver email",
-                multiemails: "Please enter valid receiver email."
+                required:"Please enter Recipient email",
+                multiemails: "Please enter valid Recipient email."
             },
             "message":"Please enter message.",
         },
@@ -680,4 +680,5 @@ function getCountry(countryId=0) {
 
 $(document).on('click','#js-email-product', function() {
   $("form#email_product")[0].reset();
+  $("form#email_product").find("ul.red").remove();
 })
