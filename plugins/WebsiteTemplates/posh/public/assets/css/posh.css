@@ -115,6 +115,9 @@ input[type="reset"] {margin-top: 0px;}
 .shippingng-estimator-model .shippingEstimatorCountry span {color: #7E7E7E;}
 .shippingEstimator-checkbox label::after { padding-top: 1px !important; }
 .shippingEstimator-checkbox .form-option { padding-left: 11px !important; }
+@media screen and (max-width: 767px) {
+    .shippingEstimator-checkbox label::after { margin-left: -4px; !important; }
+}
 /*shipping estimator model*/
 
 .ob-product-compare .product-price .priceProd{

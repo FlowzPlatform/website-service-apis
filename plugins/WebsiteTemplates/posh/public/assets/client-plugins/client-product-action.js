@@ -72,8 +72,11 @@ $(document).ready(function(){
 
     //shipping estimator
     $('#shippingEstButton').on('click', async function() {
-        $('form#calculate_shipping_estimator')[0].reset();
-        $('.checkout-holder').html('Select Country');
+        $('form#calculate_shipping_estimator')[0].reset(); //clear form
+        $('.checkout-holder').html('Select Country'); //clear country dropdown
+        $('#estimatorResponse tbody').remove(); //removes table body of response
+        $('#estimatorError').css({"display":"none"}) //hide error message
+        $('#estimatorResponse').css({"display":"none"}) // hide response table
         // $(".js-country").html('');
         let productResponse = await getProductDetailById(pid)
         console.log('productresponse',productResponse);
@@ -84,8 +87,6 @@ $(document).ready(function(){
           // $('.itemCode').text('( Item Code:'+productResponse.sku+')')
         }
         $('.js-submit-btn-rate-calculation').on('click', async function() {
-          $('#estimatorError').css({"display":"none"})
-          $('#estimatorResponse').css({"display":"none"})
           let formData = $('form#calculate_shipping_estimator').serializeArray()
           console.log('------formData',formData)
           let shipInfo = {};
@@ -173,6 +174,8 @@ $(document).ready(function(){
     $('.js-reset-btn-rate-calculation').on('click', async function() { 
         $('form#calculate_shipping_estimator')[0].reset();
         $('.checkout-holder').html('Select Country');
+        $('#estimatorError').css({"display":"none"}) //hide error message
+        $('#estimatorResponse').css({"display":"none"}) // hide response table
     })
 });
 
@@ -383,16 +386,16 @@ $(document).on('click','.send-email-product', function (e) {
             "message":"required",
         },
         messages: {
-            "name":"Please enter sender name.",
+            "name":"Please Enter Sender Name.",
             "from_email":{
-                required:"Please enter sender email",
-                email: "Please enter valid sender email."
+                required:"Please Enter Sender Email",
+                email: "Please Enter Valid Sender Email."
             },
             "to_email":{
-                required:"Please enter Recipient email",
-                multiemails: "Please enter valid Recipient email."
+                required:"Please Enter Receiver Email",
+                multiemails: "Please Enter Valid Receiver Email."
             },
-            "message":"Please enter message.",
+            "message":"Please Enter Message.",
         },
         errorElement: "li",
         errorPlacement: function(error, element) {
