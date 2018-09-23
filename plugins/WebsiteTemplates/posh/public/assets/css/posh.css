@@ -89,7 +89,7 @@
     width: auto !important;
 }
 
-.myCompareList .row{
+.myCompareList .row,.js-print-product-detail .row{
     margin-right: -15px !important;
     margin-left: -15px !important;
 }
