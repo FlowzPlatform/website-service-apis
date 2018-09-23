@@ -140,7 +140,7 @@ body {
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 center-block">
-                                    <div class="btn-box-main">
+                                    <div class="btn-box-main text-center">
                                         <input type="submit" value="Send" class="btn btn-default send-email-product" />
                                         <input type="reset" value="Reset" class="btn btn-default" />
                                     </div>    
