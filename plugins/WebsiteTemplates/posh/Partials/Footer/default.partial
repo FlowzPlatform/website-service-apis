@@ -33,12 +33,12 @@
                 </div>
                 <div class="clearfix"></div>
                 <ul class="list-unstyled footer-link">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Decoration Price Guide</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="decorationPriceGuide.html">Decoration Price Guide</a></li>
                     <li><a href="flyers.html">Flyers</a></li>
                     <li><a href="ecatalogs.html">E-Catalogs</a></li>
-                    <li><a href="#">How To Order</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="howToOrder.html">How To Order</a></li>
+                    <li><a href="privacyPolicy.html">Privacy Policy</a></li>
                     
                 </ul>
             </div>

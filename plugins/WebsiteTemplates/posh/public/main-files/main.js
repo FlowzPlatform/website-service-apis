@@ -2947,12 +2947,15 @@ $(document).on('click','.send-friend-email',function (e)
                         if(productData[0]._source.images != undefined){
                             if(productData[0]._source.images[0].images[0].secure_url != undefined && productData[0]._source.images[0].images[0].secure_url != '') {
                               productJsonData['image'] = productData[0]._source.images[0].images[0].secure_url;
+                              productJsonData['image'] = addOptimizeImgUrl(productJsonData['image'],'w_100,h_100')
                             }
                             else {
                               productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                              productJsonData['image'] = addOptimizeImgUrl(productJsonData['image'],'w_100,h_100')
                             }
                         }else{
                             productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                            productJsonData['image'] = addOptimizeImgUrl(productJsonData['image'],'w_100,h_100')
                         }
 
                         productJsonData['product_name'] = productData[0]._source.product_name;
@@ -2994,7 +2997,7 @@ $(document).on('click','.send-friend-email',function (e)
             for (var input in form_data){
               var name = form_data[input]['value'];
               emailToFriend[form_data[input]['name']] = name;
-              emailToFriend['slug'] = 'email-to-friend';
+              emailToFriend['slug'] = 'posh-email-to-friend';
             }
             productJsonData1['form_data'] = emailToFriend;
             productJsonData1['website_id'] = website_settings['projectID'];

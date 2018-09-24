@@ -334,7 +334,7 @@ $(document).on('click','#sample_submit',function (e) {
             orderSample['singlePrice'] = singlePrice;
             orderSample['totalQty'] = qtyTotal;
             orderSample['email'] = orderSample['sample_email'];
-            orderSample['slug'] = 'order-sample';
+            orderSample['slug'] = 'posh-order-sample';
 
             delete orderSample['sample_quantity[]'];
             delete orderSample['sample_submit'];
@@ -425,7 +425,7 @@ $(document).on('click','.send-email-product', function (e) {
                     for (var input in form_data){
                         var name = form_data[input]['value'];
                         emailProduct[form_data[input]['name']] = name;
-                        emailProduct['slug'] = 'email-product';
+                        emailProduct['slug'] = 'posh-email-product';
                         emailProduct['email'] = emailProduct['from_email'];
                     }
                     productJsonData['form_data'] = emailProduct;
