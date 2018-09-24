@@ -35,7 +35,6 @@ for (var i = 0, len = items.length; i < len; i++) {
 					new_password: $(".user_pass").val(),
 					token : getParameterByName('forget_token')
                 }).then(function(response) {
-                    console.log('response == ',response)
 					hidePageAjaxLoading();
 					setTimeout(function() {
 						showSuccessMessage('Your password updated successfully.');
@@ -45,7 +44,11 @@ for (var i = 0, len = items.length; i < len; i++) {
                 }).catch(function(error) {
                     console.log('error == ',error)
                     hidePageAjaxLoading();
-                    //showErrorMessage(error.response.data);
+                    $(".alert-box").addClass("show");
+                    $("#error-message").text(error.response.data);
+                    setTimeout(function() {
+                        $(".alert-box").removeClass("show")
+                    }, 5000)
                 })
             } 
             else {
