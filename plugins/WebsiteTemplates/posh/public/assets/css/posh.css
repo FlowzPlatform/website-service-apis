@@ -77,28 +77,6 @@
     padding-top: 15px !important;
     font-family: 'Lato', sans-serif !important;
 }
-/* margin issues */
-.ob-product-detail-page .product-showcase,.ob-product-detail-page .js-recent-recommended-products {
-    margin-right: -15px !important;
-    margin-left: -15px !important;
-    width: auto !important;
-}
-.banner-box .row, .middle-footer .row, .ob-product-detail-page .product-showcase,.ob-product-detail-page .js-recent-recommended-products {
-    margin-right: -15px !important;
-    margin-left: -15px !important;
-    width: auto !important;
-}
-
-.myCompareList .row,.js-print-product-detail .row{
-    margin-right: -15px !important;
-    margin-left: -15px !important;
-}
-.js-tag-featured-product-list .row, .myCompareList .row,.product-category-item-view .js-home-cat-section{
-    width: 1200px;
-    margin-right: -15px !important;
-    margin-left: -15px !important;
-}
-/* end - margin issues */
 
 /*checkbox arrow placement, reset button alignment issue for signup*/
 .checkbox label::before {top: 0px !important;}
@@ -177,6 +155,28 @@ li.dropdown.login-col.header-login-text.logout-show.open .dropdown-menu.user-dro
  width: 1170px;
  padding: 0;
  }
+ .js-tag-featured-product-list .row, .myCompareList .row,.product-category-item-view .js-home-cat-section{
+    width: 1200px;
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+ }
+ /* margin issues */
+.ob-product-detail-page .product-showcase,.ob-product-detail-page .js-recent-recommended-products {
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+    width: auto !important;
+}
+.banner-box .row, .middle-footer .row, .ob-product-detail-page .product-showcase,.ob-product-detail-page .js-recent-recommended-products {
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+    width: auto !important;
+}
+
+.myCompareList .row,.js-print-product-detail .row{
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+}
+/* end - margin issues */
  .owl-carousel-recommeded ul li.owl-item{ width: 200px !important}
 }
 @media (max-width: 1200px) {
