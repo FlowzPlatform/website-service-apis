@@ -40,6 +40,7 @@
 .owl-carousel .owl-buttons .owl-prev,.owl-carousel .owl-buttons .owl-next{position: relative;background-image: none !important;}
 .owl-carousel .owl-buttons .owl-prev:hover:after{background-position:-3px -121px !important;}
 .owl-carousel .owl-buttons .owl-next:hover:after{background-position:-17px -121px !important;}
+.home-content .recommeded-product-slider .owl-next, .home-content .recommeded-product-slider .owl-prev, .owl-next, .owl-prev{ margin: 0px 3px 0 3px !important }
 /***** Combine images using CSS sprites F(45) END ***/
 
 
