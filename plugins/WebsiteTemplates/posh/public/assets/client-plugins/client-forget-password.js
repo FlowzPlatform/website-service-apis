@@ -41,7 +41,11 @@ for (var i = 0, len = items.length; i < len; i++) {
 					}, 5000)
                 }).catch(function(error) {
                     hidePageAjaxLoading();
-                    showErrorMessage(error.response.data);
+                    $(".alert-box").addClass("show");
+                    $("#error-message").text(error.response.data);
+                    setTimeout(function() {
+                        $(".alert-box").removeClass("show")
+                    }, 5000)
                 })
             } 
             else {
