@@ -477,7 +477,7 @@ padding: 0;
 
 </style>
 
-<script type="text/javascript" src="./assets/client-plugins/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <div>
     <link href="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites/distributor/css/base.css"
     rel="stylesheet" type="text/css" />
