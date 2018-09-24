@@ -4915,6 +4915,27 @@ div#add-new-address .title-block {
     text-align: center;
 }
 .sales { margin-top: -2px;opacity: .5}
+div#inventory-look .modal-dialog {
+    width: 750px;
+}
+
+/*TAGS*/
+.pro-box .product-flag-block {
+    display: block;
+    width: 93%;
+}
+.sales{width: 100%;max-width: inherit;opacity: 1}
+.product-label{width: 94%;}
+.product-label h2 {
+    font-size: 10px;
+    font-weight: 800;
+}
+.product-label h2.logo i{display: none;}
+.memb-info label {
+    
+    min-height: auto;
+}
+/*TAGS*/
 /*END PRODUCT CATEGORY ITEM*/
  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .check-box-privacy .checkbox label::after {top: -2px !important}  
@@ -5280,6 +5301,10 @@ ul.product-wrap li {width: 29%;}
 .product-section-box.det-pop,.product-section-box.dec-price{width: 100%}
 .product-section-box.det-pop{border-left: 1px solid #DDD}
 .ob-product-detail-right .quantity-table{margin-top: 45px}
+.embed-main-block ul.cancle > li{ margin-left: 12px;}
+div#inventory-look .modal-dialog {
+    width: 750px;
+}
 }
 @media (min-width:1100px) and (max-width: 2800px) {.shipping-option p{ min-width:103px;}}
 @media screen and (max-width:1024px){
