@@ -48,6 +48,8 @@
         "webtools_api_url":"https://api.flowzdigital.com/serverapi/webtools",
         "download_pdf_api_url": "https://api.flowzdigital.com/serverapi/download-pdf",
         "category_api_url":"https://api.flowzdigital.com/serverapi/category",
-	"admin_email": "admin@cenacle.io"
+        "admin_email": "admin@cenacle.io",
+        "forget_password_api":"https://api.flowzdigital.com/auth/api/forgetpassword",
+        "reset_password_api":"https://api.flowzdigital.com/auth/api/resetpassword"
       }
 }
