@@ -392,8 +392,8 @@ $(document).on('click','.send-email-product', function (e) {
                 email: "Please Enter Valid Sender Email."
             },
             "to_email":{
-                required:"Please Enter Receiver Email",
-                multiemails: "Please Enter Valid Receiver Email."
+                required:"Please enter Recipient email",
+                multiemails: "Please enter valid Recipient email."
             },
             "message":"Please Enter Message.",
         },
