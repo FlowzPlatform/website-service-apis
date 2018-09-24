@@ -352,27 +352,27 @@ $(document).ready( async function(){
             }
         });
         document.querySelector('body').appendChild(el);
-
-        // RECENTLY VIEWED PRODUCTS
-        if(get_product_details != null && get_product_details != undefined) {
-            // RECENTLY VIEWED PRODUCTS
-            let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
-            let recentViewedProducts = [];
-            if (localStorage.getItem(recentProductsName) != null) {
-                recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
-            }
-            
-            if(!(recentViewedProducts.includes(pid))) {
-                if(recentViewedProducts.length > 6) {
-                    recentViewedProducts.splice(0, 1);
-                }
-                recentViewedProducts.push(pid);
-            }
-            localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
-
-            recentlyViewedProducts(recentProductsName,recentViewedProducts);
-        }
 })
+
+// RECENTLY VIEWED PRODUCTS
+if(get_product_details != null && get_product_details != undefined) {
+    // RECENTLY VIEWED PRODUCTS
+    let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
+    let recentViewedProducts = [];
+    if (localStorage.getItem(recentProductsName) != null) {
+        recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
+    }
+    
+    if(!(recentViewedProducts.includes(pid))) {
+        if(recentViewedProducts.length > 6) {
+            recentViewedProducts.splice(0, 1);
+        }
+        recentViewedProducts.push(pid);
+    }
+    localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
+
+    recentlyViewedProducts(recentProductsName,recentViewedProducts);
+}
 
 function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
     if(recentViewedProducts != null && recentViewedProducts.length > 1)
