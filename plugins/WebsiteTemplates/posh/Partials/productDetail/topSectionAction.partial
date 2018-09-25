@@ -1,9 +1,11 @@
 <div class="std_text2">
     <div class="buttonRow">
         <a href="javascript:void(0);" class="myButton" id="js-check-inventory" data-toggle="modal" data-target="#checkInventory">Check Inventory</a>
-        <a href="#" id="shippingEstButton" class="myButton" data-toggle="modal" data-target="#shipping_estimator_model">Shipping Estimator</a>
+        <a href="javascript:void(0);" id="shippingEstButton" class="myButton" data-toggle="modal" data-target="#shipping_estimator_model">Shipping Estimator</a>
         <div id="bySampleLink"></div>
-        <a href="javascript:void(0);" id="js-order-sample" data-toggle="modal" data-target="#orderSample" class="myButton">Order Sample</a>                
+        <a href="javascript:void(0);" id="js-order-sample" data-toggle="modal" data-target="#orderSample" class="myButton">Order Sample</a>
+        <a href="javascript:void(0);" id="js-quote" class="myButton" data-toggle="modal" data-target="#">Quote</a>                
+        <a href="javascript:void(0);" id="js-virtual" class="myButton hide" data-toggle="modal" data-target="#">Virtual</a>
         <style>
         .virtual-button {
             background: #ee0000!important;

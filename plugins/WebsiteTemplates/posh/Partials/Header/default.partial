@@ -175,14 +175,6 @@
 
                                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                             <div class="dropdown-colum">
-                                                <label>Select Brand</label>
-                                                <select id="Brand" name="Brand" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                            <div class="dropdown-colum">
                                                 <label>Select Color</label>
                                                 <select id="Color" name="Color" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple">
                                                 </select>
