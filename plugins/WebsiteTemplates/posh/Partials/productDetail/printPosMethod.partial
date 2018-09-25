@@ -120,7 +120,7 @@ body {
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
-                                                        <img id="logo_show_#printPosMethodId#_1" class="hide lazyLoad" alt="print position method" title="print position method" src="" width="30" height="30">
+                                                        <img id="logo_show_#printPosMethodId#_1" class="hide lazyLoad" alt="print position method" title="print position method" src="#" width="30" height="30">
                                                         <input type="hidden" id="logo_save_#printPosMethodId#_1" class="js-save-artwork-logo" value="" />
                                                     </div>
                                                     <div class="info-icons pull-right">
@@ -140,7 +140,7 @@ body {
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
-                                                        <img id="logo_show_#printPosMethodId#_2" class="hide lazyLoad" alt="print position method" title="print position method" src="" width="30" height="30">
+                                                        <img id="logo_show_#printPosMethodId#_2" class="hide lazyLoad" alt="print position method" title="print position method" src="#" width="30" height="30">
                                                         <input type="hidden" id="logo_save_#printPosMethodId#_2" class="js-save-artwork-logo" value="" />
                                                     </div>
                                                     <div class="info-icons pull-right">
@@ -237,7 +237,7 @@ body {
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
-                                                            <img id="logo_type_show_#printPosMethodId#_1" class="hide lazyLoad" alt="print position method" title="print position method" src="" width="30" height="30">
+                                                            <img id="logo_type_show_#printPosMethodId#_1" class="hide lazyLoad" alt="print position method" title="print position method" src="#" width="30" height="30">
                                                             <input type="hidden" id="logo_type_save_#printPosMethodId#_1" class="js-save-artwork-logo" value="" />
                                                         </div>
          
@@ -258,7 +258,7 @@ body {
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 pull-left">
-                                                            <img id="logo_type_show_#printPosMethodId#_2" class="hide lazyLoad" alt="print position method" title="print position method" src="" width="30" height="30">
+                                                            <img id="logo_type_show_#printPosMethodId#_2" class="hide lazyLoad" alt="print position method" title="print position method" src="#" width="30" height="30">
                                                             <input type="hidden" id="logo_type_save_#printPosMethodId#_2" class="js-save-artwork-logo" value="" />
                                                         </div>
          

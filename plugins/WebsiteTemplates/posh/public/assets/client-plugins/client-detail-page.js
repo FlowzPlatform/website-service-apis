@@ -46,21 +46,24 @@ if(pid != null) {
   
         //   recentlyViewedProducts(recentViewedProducts);
       }
-  }
+}
 // console.log('get_product_details',get_product_details)
 
 $(document).ready( async function(){
-    $("#flowz_content").closest('.row').css('display','flex');
     if(get_product_details == null ){
         hidePageAjaxLoading()
         window.location = "error404.html";
         return false;
     }
+    $("#flowz_content").closest('.row').css('display','flex');
+    recommededProducts();
     var productDetails = get_product_details;
     ProductName = productDetails.product_name;
-    ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+    let ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
     if(productDetails.images != undefined)  {
-        ProductImage = productDetails.images[0].images[0].secure_url;//productDetails.default_image;
+        if(productDetails.images[0].images[0].secure_url != undefined && productDetails.images[0].images[0].secure_url != '') {
+            ProductImage = productDetails.images[0].images[0].secure_url;
+        }
     }
     else {
     $("#download_image").parent('li').remove()
@@ -84,33 +87,6 @@ $(document).ready( async function(){
 
     $('.js-product_sku').html(ProductSku);
     
-    // product colors for sample order
-    if(productDetails.attributes.colors != undefined && productDetails.attributes.colors.length > 0) {
-        let sampleColorHtml = '';
-        $('.sample_color_append').html('');
-        let colorsHexVal = await replaceColorSwatchWithHexaCodes(productDetails.attributes.colors,"color");
-        $.each(productDetails.attributes.colors, function(index_color,element_color){
-            let colorVal = element_color.toLowerCase();
-            colorVal = colorVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
-            
-            let element_color_style = "background-color:"+element_color+";"
-            if(colorsHexVal != null && colorsHexVal[element_color] != undefined){
-                if(typeof colorsHexVal[element_color].hexcode != 'undefined'){
-                    element_color_style = "background-color:"+colorsHexVal[element_color].hexcode+";"
-                }
-                else if (typeof colorsHexVal[element_color].file != 'undefined') {
-                    element_color_style = "background-image:url("+colorsHexVal[element_color].file.url+");"
-                }
-            }
-
-            //order sample start
-            sampleColorHtml += '<tr> <td> <div class="checkbox_color" style="'+element_color_style+'" title="'+element_color+'"> <input class="js_color_checkbox" type="checkbox" name="sample_color[]" id="sample_'+colorVal+'" value="'+element_color+'" data-hex-code="'+element_color+'" /> <label for="Decoration_'+colorVal+'"></label> </div></td><td> <input type="text" name="sample_quantity[]" class="input" placeholder="Enter Quantity"> </td></tr>';
-            //order sample end
-        });
-
-        $('.sample_color_append').html(sampleColorHtml);
-    }
-
     // Add Variation Images
     let imageGallaryHtml = '<ul>';
     
@@ -119,8 +95,15 @@ $(document).ready( async function(){
             let imageUrl = element.secure_url;
             let color = element.color;
             color = color.toLowerCase().replace(/\s/g, '-');
-            imageGallaryHtml += '<li class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
-            imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+' lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></li>';
+            if(imageUrl != undefined && imageUrl != '') {
+                imageGallaryHtml += '<li class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+imageUrl+'">';
+                imageGallaryHtml += '<img data-orig-img-'+color+'="'+imageUrl+'" src="'+imageUrl+'" class="clr_'+color+' lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></li>';
+            }
+            else {
+                let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                imageGallaryHtml += '<li class="slide"><a href="javascript:void(0);" class="product-thumb-img-anchar  clr_'+color+'_link" data-zoom-image="'+productImage+'">';
+                imageGallaryHtml += '<img data-orig-img-'+color+'="'+productImage+'" src="'+productImage+'" class="clr_'+color+' lazyLoad" alt="'+ProductName+'" title="'+ProductName+'" /></a><input type="hidden" id="var_img_clr_id" value="clr_'+element.color+'"/></li>';
+            }
         }
     }
     else
@@ -149,6 +132,7 @@ $(document).ready( async function(){
                         }
                          });
                      $(".quantity-table-col").html(priceRang);
+                     $(".js-responsive-qunatity").html(priceRang);
                 }
             });
        }
@@ -349,10 +333,28 @@ $(document).ready( async function(){
 
         $('.js-hide-div').removeClass("js-hide-div");
         hidePageAjaxLoading();
+
+        //seo
+        let el = document.createElement('script');
+        el.type = 'application/ld+json';
+        el.text = JSON.stringify({
+            "@context": "http://schema.org",
+            "@type": "Product",
+            "description": get_product_details.description,
+            "name": get_product_details.product_name,
+            "brand": get_product_details.categories[0],
+            "image": get_product_details.default_image,
+            "offers": {
+                "@type": "Offer",
+                "availability": "http://schema.org/InStock",
+                "price": get_product_details.price_1,
+                "priceCurrency": get_product_details.currency
+            }
+        });
+        document.querySelector('body').appendChild(el);
 })
 
 // RECENTLY VIEWED PRODUCTS
-
 if(get_product_details != null && get_product_details != undefined) {
     // RECENTLY VIEWED PRODUCTS
     let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
@@ -375,7 +377,7 @@ if(get_product_details != null && get_product_details != undefined) {
 function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
     if(recentViewedProducts != null && recentViewedProducts.length > 1)
     {
-        let recentLoop = recentViewedProducts;
+        let recentLoop = recentViewedProducts.reverse();
         let cIndex = recentLoop.indexOf(pid);
         if (cIndex > -1) {
             recentLoop.splice(cIndex, 1);
@@ -398,13 +400,15 @@ function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
                             let productData = data.hits.hits[0]._source;
                             let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                             if(productData.images != undefined){
-                                productImage = productData.images[0].images[0].secure_url
+                                if(productData.images[0].images[0].secure_url != undefined && productData.images[0].images[0].secure_url != '') {
+                                    productImage = productData.images[0].images[0].secure_url
+                                }
                             }
                             let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
                             // let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
                             let price = parseFloat(productData.min_price).toFixed(project_settings.price_decimal)
 
-                            recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"> <img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-code"> Item # : '+productData.sku+' </div><div class="item-price">$ '+price+'</div><div class="list-quantity-block"></div><div class="pro-button"> <ul> <li><a href="javascript:void(0);" data-id="'+productData.product_id+'" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li></ul> </div><div class="clearfix"></div></div><div class="clearfix"></div></div></div>';
+                            recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"> <img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <div class="item-code"> Item # : '+productData.sku+' </div><a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-price">$ '+price+'</div><div class="list-quantity-block"></div><div class="pro-button"> <ul> <li><a href="javascript:void(0);" data-id="'+productId+'" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li></ul> </div><div class="clearfix"></div></div><div class="clearfix"></div></div></div>';
                         }
                         else {
                             let AIndex = recentLoop.indexOf(productId);
@@ -430,95 +434,48 @@ function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
 
 //END -  RECENTLY VIEWED PRODUCTS
 
+//sample order
+if(get_product_details != null && get_product_details != undefined) {
+    $(document).on('click','#js-order-sample',async function () {
+        $("form#sample_order_form")[0].reset();
+        $("form#sample_order_form").find("ul.red").remove();
+        $('#sample_order_form .colorBoxItems').html('');
+        $('#sample_order_form .heading-2').html(get_product_details.product_name);
+        $('#sample_order_form .colorBoxItems').append('<div class="colorItem">'+get_product_details.sku+';</div>');
+        if(get_product_details.attributes.colors != undefined && get_product_details.attributes.colors.length > 0) {
+            let sampleColorHtml = '';
+            $('.sample_color_append').html('');
+            let colorsHexVal = await replaceColorSwatchWithHexaCodes(get_product_details.attributes.colors,"color");
+            $.each(get_product_details.attributes.colors, function(index_color,element_color){
+                let colorVal = element_color.toLowerCase();
+                colorVal = colorVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
+                
+                let element_color_style = "background-color:"+element_color+";"
+                if(colorsHexVal != null && colorsHexVal[element_color] != undefined){
+                    if(typeof colorsHexVal[element_color].hexcode != 'undefined'){
+                        element_color_style = "background-color:"+colorsHexVal[element_color].hexcode+";"
+                    }
+                    else if (typeof colorsHexVal[element_color].file != 'undefined') {
+                        element_color_style = "background-image:url("+colorsHexVal[element_color].file.url+");"
+                    }
+                }
 
-// Recommended Products start
+                sampleColorHtml += '<tr> <td> <div class="checkbox_color" style="'+element_color_style+'" title="'+element_color+'"> <input class="js_color_checkbox" type="checkbox" name="sample_color[]" id="sample_'+colorVal+'" value="'+element_color+'" data-hex-code="'+element_color+'" /> <label for="Decoration_'+colorVal+'"></label> </div></td><td> <input type="text" name="sample_quantity[]" class="input" placeholder="Enter Quantity"> </td></tr>';
+            });
 
-let tagProductList = function(tagObj,productBoxHtml) {
-    return new Promise(async (resolve , reject ) => {
-          let responseTag = await getTagListByObj(tagObj)
-          let replaceProductBox = ''
-          // console.log("responseTag",tagObj,responseTag);
-          if(responseTag != null){
-              let productResponse = await fetchProductsByTagId(responseTag[0].id)
-              if(productResponse.length > 0){
-                  for(let [key,value] of productResponse.entries()){
-                          let productRes = await getProductDetailBySource(value.product_id,"product_id,sku,product_name,currency,min_price,price_1,images")
-                          if(productRes !== undefined && productRes != null)  
-                          {
-                            productBoxHtml1 = productBoxHtml.replace(/#data.id#/g,value.product_id)
-                            productBoxHtml1 = productBoxHtml1.replace(/#data.product_link#/g,'productdetail.html?locale='+project_settings.default_culture+'&pid='+value.product_id)
-                            ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                            
-                            if(productRes.images !== undefined) {
-                                ProductImage = productRes.images[0].images[0].secure_url;
-                                ProductImage = addOptimizeImgUrl(ProductImage,'w_210');
-                            }
-                            
-
-                            productBoxHtml1 = productBoxHtml1.replace('#data.image#',ProductImage)
-                            productBoxHtml1 = productBoxHtml1.replace('#data.sku#',productRes.sku)
-                            productBoxHtml1 = productBoxHtml1.replace('#data.currency#','$')
-                            productBoxHtml1 = productBoxHtml1.replace('#data.price#',productRes.min_price.toFixed(project_settings.price_decimal))
-                            productBoxHtml1 = productBoxHtml1.replace(/#data.title#/g,productRes.product_name)
-                            productBoxHtml1 = productBoxHtml1.replace(/#data.tagSlug#/g,responseTag[0].tag_slug)
-                            productBoxHtml1 = productBoxHtml1.replace(/#data.tagColor#/g,responseTag[0].tag_color)
-                            productBoxHtml1 = productBoxHtml1.replace(/#data.tagName#/g,responseTag[0].tag_name)
-                            replaceProductBox += productBoxHtml1
-                        }
-                        else{
-                            replaceProductBox += '';
-                            
-                        }
-                  }
-                  resolve(replaceProductBox)
-              }
-          }
-    })
-}
-
-async function getTagListByObj(obj) {
-      let returnData = null;
-    	await axios({
-    			method: 'GET',
-    			url: project_settings.tags_api_url+"?website="+ website_settings['projectID']+"&tag_status=true&"+obj,
-    	})
-    	.then(response => {
-          if(response.data.data.length > 0){
-              returnData = response.data.data;
-          }
-          return returnData
-    	})
-      .catch(function (error) {
-      });
-    	return returnData;
-}
-
-async function fetchProductsByTagId(tagId){
-    let returnData = null;
-    await axios({
-        method: 'GET',
-        url: project_settings.product_tags_api_url+"?website="+ website_settings['projectID']+"&tag_id="+tagId,
-    })
-    .then(response => {
-        if(response.data.data.length > 0){
-            returnData = response.data.data;
+            $('.sample_color_append').html(sampleColorHtml);
         }
-        return returnData
-    })
-    .catch(function (error) {
-        console.log("error",error.response);
     });
-    return returnData;
 }
 
-recommededProducts();
+// Recommended Products
 async function recommededProducts(){
     if($(".js-tag-recommended-product-list").length > 0){
         let tagHtmlList = $(".js-tag-recommended-product-list");
         let productBoxHtml = $(".js-tag-recommended-product-list").find('.js-list').html()
         let productSlug = $(".js-tag-recommended-product-list").attr("data-slug")
         if(productSlug != ""){
-            let replaceProductBox = await tagProductList("tag_slug="+productSlug,productBoxHtml)
+            let replaceProductBox = await tagProducts("tag_slug="+productSlug,productBoxHtml)
             if(replaceProductBox != ''){
                 tagHtmlList.find('.js-list').html(replaceProductBox)
                 tagHtmlList.removeClass('hide')
@@ -549,5 +506,3 @@ async function recommededProducts(){
         }
     }
 }
-
-// Recommended Products end

@@ -3,7 +3,7 @@
         <h4 class="most-popular-title">Product Categories</h4>
     </div>
     <div class="clearfix"></div>
-    <div class="row">
+    <div class="row js-home-cat-section">
         <div class="ob-product-grid js-product-grid pro-rel-cat">
             <div class="row">
                 <ul class="product-wrap js-show-category">

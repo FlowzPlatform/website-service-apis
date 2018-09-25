@@ -59,7 +59,8 @@ async function ecatalog_data(ecatalogs) {
             }
             $('#myEcatalogs .listing').append(listHtml1);
             if(ecatalogArray.ecatalog_url == ""){
-                $(".download-pdf-"+ecatalogArray.id).attr("download",true)
+                $(".download-pdf-"+ecatalogArray.id).attr("download",true);
+                $(".download-pdf-"+ecatalogArray.id).addClass("js-download_pdf_from_url");
             }
         });
 

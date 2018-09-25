@@ -18,19 +18,29 @@
     <div class="innerpage">
         <div class="row">
             <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-                <h1 class="main-title"><i class="fa fa-retweet"></i>PRODUCT COMPARE</h1>
+                <h1 class="main-title"><i class="fa fa-retweet fa-fw"></i>Product Compare</h1>
             </div>
             <div class="col-sm-12 col-md-8 col-lg-8 col-xs-12">
-                <div class="product-compare-top-navi js-compare-btns"><a href="javascript:void(0);" class="add-btn gray js-btn-delete-all-compare-product"><i class="fa fa-times-circle fa-fw"></i>clear all</a>
-                    <a
-                    href="javascript:void(0);" data-toggle="modal" data-target="#myModal" class="add-btn gray js_open_modal_email_to_friend"><i class="fa fa-envelope fa-fw"></i> Email to friend</a><a href="javascript:void(0);"
-                        onclick="printDiv()" class="add-btn gray js_open_modal_print"><i class="fa fa-print fa-fw"></i> Print</a>
-                        <a
-                        href="javascript:void(0)" class="add-btn gray js-btn-download-compare-product"><i class="fa fa-file-pdf-o fa-fw"></i> Download PDF</a><a href="search.html"
-                            class="continue-shopping-btn">Continue Shopping<i class="fa fa-angle-double-right"></i></a>
+                <div class="product-compare-top-navi js-compare-btns">
+                    <a class="add-btn gray js-btn-delete-all-compare-product" href="javascript:void(0)">
+                        <i class="fa fa-times-circle fa-fw"></i>Clear All
+                    </a>
+                    <a class="add-btn gray js_open_modal_email_to_friend" href="javascript:void(0)" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-envelope fa-fw"></i>Email to friend
+                    </a>
+                    <a class="add-btn gray js_open_modal_print" href="javascript:void(0);"
+                    onclick="printDiv()">
+                        <i class="fa fa-print fa-fw"></i>Print
+                    </a>
+                    <a class="add-btn gray js-btn-download-compare-product" href="javascript:void(0)">
+                        <i class="fa fa-file-pdf-o fa-fw"></i>Download PDF
+                    </a>
+                    <a href="search.html" class="continue-shopping-btn">Continue Shopping<i class="fa fa-angle-double-right"></i></a>
                 </div>
             </div>
         </div>
+
+
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
@@ -62,27 +72,27 @@ aria-hidden="false" class="modal fade model-popup-black print-comparision in c18
                                                 />
                                             </div>
                                         </div>
-                                        <div class="product-name" style="min-height:70px;">#data.title#</div>
+                                        <div class="product-name" style="min-height:70px;text-align:center;">#data.title#</div>
                                     </td>
                                 </tr>
                                 <tr id="js-print_item_price" class="feature dark-bg pro-title">
                                     <td class="price-rang-brd">
                                         <div class="product-price" style="text-align:center">
-                                            <div style="float:left;"><span class="priceProd">#data.price#</span></div>
+                                            <i><i class="priceProd">#data.price#</i></i>
                                             <span style="display:inline-block;vertical-align:top;margin-left:8px">Qty #data.min_qty#</span>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr id="js-print_item_sku" class="feature light-bg">
-                                    <td>#data.sku#</td>
+                                    <td style="text-align:center">#data.sku#</td>
                                 </tr>
                                 <tr id="js-print_item_features" class="feature dark-bg">
-                                    <td>#data.features#
+                                    <td style="text-align:justify">#data.features#
                                         <br/>
                                     </td>
                                 </tr>
                                 <tr id="js-print_item_summary" class="feature summary light-bg">
-                                    <td>#data.summary#</td>
+                                    <td style="text-align:justify">#data.summary#</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -132,7 +142,7 @@ aria-hidden="false" class="modal fade model-popup-black print-comparision in c18
                                 data-placement="" class="form-control form-control-tool-tip"></textarea>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 center-block">
+                                <div class="col-sm-12 center-block text-center">
                                     <div class="btn-box-main">
                                         <input type="submit" value="Send Email" class="btn btn-default js-submit-btn send-friend-email"
                                         />

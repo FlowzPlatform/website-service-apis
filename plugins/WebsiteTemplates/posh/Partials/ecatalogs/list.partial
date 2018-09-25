@@ -71,7 +71,7 @@ button.remove {
           </div>
           <div class="pro-box-btn">
               <a class="btn btn-default js-open-modal-ecatalog" href="javascript:void(0);" data-image="#ecatalog-image-link#" >Digital</a>
-              <a href="#data.pdflink#" target="_blank" class="btn btn-default download-pdf-#ecatalog-id#"> Download as PDF</a>
+              <a href="#data.pdflink#" target="_blank" data-title="#ecatalog-title#" class="btn btn-default download-pdf-#ecatalog-id#"> Download as PDF</a>
           </div>
       </div>
   </div>
