@@ -181,10 +181,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pull-right">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                             <div class="button-colum">
                                                 <div class="form-group">
-                                                    <input type="submit" name="" value="SEARCH" class="search-button pull-right ob-qa-search-button pull-right-srch">
+                                                    <input type="submit" name="" value="Search" class="search-button pull-right">
                                                 </div>
                                             </div>
                                         </div>

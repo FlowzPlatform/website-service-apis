@@ -177,6 +177,12 @@ li.dropdown.login-col.header-login-text.logout-show.open .dropdown-menu.user-dro
     margin-right: -15px !important;
     margin-left: -15px !important;
 }
+.js-register-account{
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+    width: 1200px !important;
+}
+.js-contactinfo-bottom, .js-contactinfo-top { width: 568px !important; margin-right: -15 !important; margin-left: -15 !important; }
 /* end - margin issues */
  .owl-carousel-recommeded ul li.owl-item{ width: 200px !important}
 }
