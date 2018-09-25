@@ -21,6 +21,10 @@
     color: #000 !important;
 }
 
+.css-1qsf8qg + label::after {
+    border-color: #555 !important; 
+}   
+
  /* .ListView1 .pro-box {
     margin-right: -22px;
     margin-left: -10px;
@@ -30,15 +34,15 @@
 
 @media (min-width: 1200px) {
     .ListView1 .pro-box {
-        margin-right: -22px;
-        margin-left: -10px;
+        margin-right: -22px !important;
+        margin-left: -10px !important;
     }
     
    }
 
 /*--------- No Result found ------------- */     
-svg.svg-inline--fa.fa-search.fa-w-16.fa-fw.search_icon.trigger{
-   z-index: 9;
+/* svg.svg-inline--fa.fa-search.fa-w-16.fa-fw.search_icon.trigger{
+    z-index: 9;
     display: block;
     position: absolute; 
     float: left;
@@ -51,8 +55,8 @@ input#input-text {
     padding-left: 20px;
 }
 
-svg.svg-inline--fa.fa-search.fa-w-16.fa-fw.search_icon_no_result_found.top_search {
+svg.svg-inline--fa.fa-search.fa-w-16.fa-fw.search_icon.top_search {
     font-size: 60px;
-}
-
+    float : none;
+} */
 /* -------------------------------------- */ 
