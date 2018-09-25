@@ -198,6 +198,16 @@ a.socialMedCls {
 ul#menu{
     display:block;
 }
+.input-fields, .text-fields {
+    max-width: 350px;
+    margin: 0 auto;
+}
+.text-fields a.floatLeft{
+    float: left;
+}
+.text-fields a.floatRight{
+    float: right;
+}
 </style>
 
 
@@ -238,8 +248,12 @@ ul#menu{
                                 <div class="col">
                                     <input class="form-control input-fields mb-1 user_pass" type="password"
                                     placeholder="Password" required="true" />
-                                    <p class="text-right"><a href="signup.html">New User?</a>
-                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-fields">
+                                    <a class="floatLeft" href="signup.html">Not Registered?</a>
+                                    <a class="floatRight" href="forgetPassword.html">Forgot Password?</a>
                                 </div>
                             </div>
                             <div class="row mt-4">

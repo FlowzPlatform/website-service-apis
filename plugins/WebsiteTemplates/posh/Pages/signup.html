@@ -66,6 +66,7 @@ body {
     margin-bottom: 0px;
     margin-left: auto;
 }
+
 </style>
 <div class="container">
     <div class="innerpage register-page">
@@ -207,10 +208,9 @@ body {
                         <div class="sub-form-box">
                             <h2>Login Information</h2>
                             <div class="row">
-                                <div class="col-sm-6 col-xs-12">
+                                <div class="col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label>Email Address (ex. abc123@yahoo.com)</label>
-                                        <span class="red">*</span>
+                                        <label>Email Address (ex. abc123@yahoo.com)<span class="red">*</span></label>
                                         <input type="text" name="userEmail" data-original-title="Email Address" tabindex="5" class="input userEmail">
                                         <!-- <ul class="error-message"><li>Enter Valid Email ID!</li></ul> -->
                                     </div>
@@ -219,38 +219,36 @@ body {
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label>Password</label>
-                                        <span class="red">*</span>
+                                        <label>Password<span class="red">*</span></label>
                                         <input type="password" name="password" data-original-title="Password" tabindex="6" class="input password">
                                         <!-- <ul class="error-message"><li>Enter Valid Password!</li></ul> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label>Confirm Password</label>
-                                        <span class="red">*</span>
+                                        <label>Confirm Password<span class="red">*</span></label>
                                         <input type="password" name="confirmPassword" data-original-title="Confirm Password" tabindex="7" class="input">
                                         <!-- <ul class="error-message"><li>Enter Valid Confirm Password!</li></ul> -->
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="form-group inp-parts">
-                                        <label for="ob_user_stateId" class="required">Security Question</label>
-                                        <span class="checkout-select-wrapper">
-																						<select id="ob_user_stateId" name="SecurityQuestion" required="required" class="custom-select" data-original-title="Fylke" data-placement="bottom" data-fv-field="ob_user[stateId]">
-																							<option value="1" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
-																							<option value="2" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
-																							<option value="3" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
-																							<option value="4" selected="selected">Pick a Security Question that is memorable but not easy for others to guess.</option>
-																						</select>
-																					</span>
+                                        <label>Security Question
+                                        <span class="red">*</span></label>
+                                        <select class="custom-select" tabindex="1" id="SecurityQuestion" name="SecurityQuestion">
+                                            <option value="" selected="selected">Pick a security question</option>
+                                            <option value="What city were you born in?" selected="">What city were you born in?</option>
+                                            <option value="Where is your favorite place to vacation?" selected="">Where is your favorite place to vacation?</option>
+                                            <option value="What was the first company that you worked for?" selected="">What was the first company that you worked for?</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label>Security Answer</label>
-                                        <span class="red">*</span>
-                                        <input type="text" name="SecurityAnswer" data-original-title="Confirm Password" tabindex="7" class="input">
+                                        <label>Security Answer<span class="red">*</span></label>
+                                        <input type="text" name="securityAnswer" data-original-title="securityAnswer" tabindex="7" class="input">
                                         <!-- <ul class="error-message"><li>Enter Valid Answer!</li></ul> -->
                                     </div>
                                 </div>
@@ -265,79 +263,73 @@ body {
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label>First Name</label>
-                                        <span class="red">*</span>
+                                        <label>First Name<span class="red">*</span></label>
                                         <input type="text" name="firstName" data-original-title="First Name" tabindex="1" class="input firstName">
                                         <!-- <ul class="error-message"><li>Enter Valid First Name!</li></ul> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label>Last Name</label>
-                                        <span class="red">*</span>
+                                        <label>Last Name<span class="red">*</span></label>
                                         <input type="text" name="lastName" data-original-title="Last Name" tabindex="3" class="input lastName">
                                         <!-- <ul class="error-messag e"><li>Enter Valid Last Name!</li></ul> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+                                <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label>Address 1 </label>
-                                        <span class="red">*</span>
+                                        <label>Address 1<span class="red">*</span></label>
                                         <input type="text" name="address1" data-original-title="Address 1" tabindex="8" class="input">
                                         <!-- <ul class="error-message"><li>Enter Valid Address 1!</li></ul> -->
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+                                <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label>Address 2 </label>
-                                        <span class="red">*</span>
+                                        <label>Address 2</label>
                                         <input type="text" name="address2" data-original-title="Address 2" tabindex="9" class="input">
                                         <!-- <ul class="error-message"><li>Enter Valid Address 2!</li></ul> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group inp-parts">
-                                        <label class="checkout-label">Country<span class="mandatory-field">*</span>
+                                        <label class="checkout-label">Country<span class="red">*</span>
                                         </label>
-                                        <select class="custom-select js-country" tabindex="1" id="addresstbook_country" name="country">
+                                        <select class="custom-select js-country" tabindex="1" id="signup_country" name="country">
                                             <option value="" selected="selected">Select Country</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group inp-parts">
-                                        <label class="checkout-label">State/Province<span class="mandatory-field">*</span>
+                                        <label class="checkout-label">State/Province<span class="red">*</span>
                                         </label>
-                                        <select class="custom-select js-state" tabindex="1" id="addresstbook_state" name="state">
+                                        <select class="custom-select js-state" tabindex="1" id="signup_state" name="state">
                                             <option value="" selected="selected">Select State</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group inp-parts">
-                                        <label class="checkout-label">City<span class="mandatory-field">*</span>
+                                        <label class="checkout-label">City<span class="red">*</span>
                                         </label>
-                                        <select class="custom-select js-city" tabindex="1" id="addresstbook_city" name="city">
+                                        <select class="custom-select js-city" tabindex="1" id="signup_city" name="city">
                                             <option value="" selected="selected">Select city</option>
                                         </select>
                                     </div>
                                 </div>
     
-                                <div class="col-sm-6 col-xs-12">
+                                <div class="col-sm-6 col-xs-12" style="height: 81px;">
                                     <div class="form-group">
-                                        <label>Zip code </label>
-                                        <span class="red">*</span>
+                                        <label>Zip code<span class="red">*</span></label>
                                         <input type="text" name="zipCode" data-original-title="Zip code" tabindex="13" class="input">
                                         <!-- <ul class="error-message"><li>Enter Valid Zip Code!</li></ul> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label>Phone </label>
-                                        <span class="red">*</span>
-                                        <input type="text" name="phone" data-original-title="Phone" tabindex="14" class="input">
+                                        <label>Phone<span class="red">*</span></label>
+                                        <input type="text" name="phone" data-original-title="Phone" tabindex="14" class="input js-phone">
                                         <!-- <ul class="error-message"><li>Enter Valid Phone!</li></ul> -->
                                     </div>
                                 </div>
@@ -347,15 +339,14 @@ body {
                                         <input type="text" name="fax" data-original-title="Fax" tabindex="15" class="input">
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xs-12">
+                                <div class="col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label>Email Address (ex. abc123@yahoo.com)</label>
-                                        <span class="red">*</span>
+                                        <label>Email Address (ex. abc123@yahoo.com)<span class="red">*</span></label>
                                         <input type="text" name="email" data-original-title="Email Address" tabindex="5" class="input">
                                         <!-- <ul class="error-message"><li>Enter Valid Email ID!</li></ul> -->
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xs-12">
+                                <div class="col-sm-12 col-xs-12">
                                     <div class="check-box-privacy">
                                         <div class="checkbox check-block">
                                             <input type="checkbox" id="checkbox-bill" tabindex="16">
@@ -366,7 +357,7 @@ body {
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
-                                <div class="col-sm-6 col-xs-12">
+                                <div class="col-sm-12 col-xs-12">
                                     <div class="check-box-privacy">
                                         <div class="checkbox check-block">
                                             <input type="checkbox" id="checkbox-address" tabindex="16">
@@ -394,7 +385,7 @@ body {
                             </div>
                             <div class="btn-box-main ob-btn-reg-block">
                                 <input type="submit" tabindex="17" value="Submit" class="btn btn-default signupPosh-click">
-                                <input type="submit" tabindex="17" value="Cancel" class="btn btn-default" data-toggle="modal" data-target="#cancle-login">
+                                <input type="reset" tabindex="17" value="Cancel" class="btn btn-default signUp-cancel">
                             </div>
                         </div>
                     </div>

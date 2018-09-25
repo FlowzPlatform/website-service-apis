@@ -72,18 +72,21 @@ $(document).ready(function(){
 
     //shipping estimator
     $('#shippingEstButton').on('click', async function() {
-        $('form#calculate_shipping_estimator')[0].reset();
-        $(".js-country").html('');
+        $('form#calculate_shipping_estimator')[0].reset(); //clear form
+        $('.checkout-holder').html('Select Country'); //clear country dropdown
+        $('#estimatorResponse tbody').remove(); //removes table body of response
+        $('#estimatorError').css({"display":"none"}) //hide error message
+        $('#estimatorResponse').css({"display":"none"}) // hide response table
+        // $(".js-country").html('');
         let productResponse = await getProductDetailById(pid)
         console.log('productresponse',productResponse);
         getCountry();
         if(productResponse != null){
           $('.estimatorProductSku').text(' Item#: '+productResponse.sku)
           $('.estimatorProductName').text(productResponse.product_name)
+          // $('.itemCode').text('( Item Code:'+productResponse.sku+')')
         }
         $('.js-submit-btn-rate-calculation').on('click', async function() {
-          $('#estimatorError').css({"display":"none"})
-          $('#estimatorResponse').css({"display":"none"})
           let formData = $('form#calculate_shipping_estimator').serializeArray()
           console.log('------formData',formData)
           let shipInfo = {};
@@ -158,26 +161,34 @@ $(document).ready(function(){
               }
               else {
                   $('#estimatorError').css({"display":"block"})
-                  $('#estimatorError').text('Quantity must be greater than zero')
+                  $('#estimatorError').text('Quantity Must Be Greater Than Zero')
               }
           }
           else {
               $('#estimatorError').css({"display":"block"})
-              $('#estimatorError').text('Please fill all the required fields correctly')
+              $('#estimatorError').text('Please Fill All The Required Fields Correctly')
           }
         })
     })
 
     $('.js-reset-btn-rate-calculation').on('click', async function() { 
         $('form#calculate_shipping_estimator')[0].reset();
+        $('.checkout-holder').html('Select Country');
+        $('#estimatorError').css({"display":"none"}) //hide error message
+        $('#estimatorResponse').css({"display":"none"}) // hide response table
     })
 });
 
 // inventory start
 let inventoryData = [];
 $(document).on('click','#js-check-inventory', async function (e) {
+    $('.js-inventory-msg').addClass('hide')
     $('.js-inventory-colors').html('');
+    $('.js-inventory-quantity').val('');
+    $('.js-current-color').attr('data-value', '')
+    $('.js-current-color').attr('style','')
     let productResponse = await getProductDetailById(pid)
+    console.log('productResponse',productResponse)
     if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) {
         $.each(productResponse.inventory, function(i,element){
             let colorInventoryColors = "";
@@ -198,6 +209,9 @@ $(document).on('click','#js-check-inventory', async function (e) {
             });
         });
     }
+    else {
+      $('#inventoryBlock').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>')
+    }
 });
 $(document).on('click','.js-inventory-colors li', function (e) {
     if($(this).find('a').attr("style") != 'undefined' && $(this).find('a').attr("style") != '') {
@@ -210,25 +224,29 @@ $(document).on('click','.js-inventory-submit', function (e) {
     let enteredQty = $('.js-inventory-quantity').val();
 
     if(colorName == undefined || colorName == '') {
+        $('.js-inventory-msg').removeClass('hide')
         $('.js-inventory-msg').css('color','red');
-        $('.js-inventory-msg').html('Please select color.');
+        $('.js-inventory-msg').html('Please Select Color.');
         return false;
     }
     else if(Math.floor(enteredQty) == enteredQty && $.isNumeric(enteredQty)) {
         if(enteredQty <= inventoryData[colorName]) {
+            $('.js-inventory-msg').removeClass('hide')
             $('.js-inventory-msg').css('color','green');
             $('.js-inventory-msg').html('In Stock');
             return false;
         }
         else {
+            $('.js-inventory-msg').removeClass('hide')
             $('.js-inventory-msg').css('color','red');
-            $('.js-inventory-msg').html('Not in Stock');
+            $('.js-inventory-msg').html('Not In Stock');
             return false;
         }
     }
     else {
+        $('.js-inventory-msg').removeClass('hide')
         $('.js-inventory-msg').css('color','red');
-        $('.js-inventory-msg').html('Please enter valid quantity.');
+        $('.js-inventory-msg').html('Please Enter Valid Quantity.');
         return false;
     }
 });
@@ -242,7 +260,7 @@ $(document).on('click','#sample_submit',function (e) {
             "sample_lname" : "required",
             "sample_phone" : {
                 required:true,
-                minlength: 10
+                // minlength: 10
             },
             "sample_email":{
                 required:true,
@@ -250,11 +268,11 @@ $(document).on('click','#sample_submit',function (e) {
             }
         },
         messages: {
-            "sample_fname" : "Enter valid first name.",
-            "sample_lname" : "Enter valid last name.",
-            "phone" : {
+            "sample_fname" : "Please Enter first name.",
+            "sample_lname" : "Please Enter last name.",
+            "sample_phone" : {
                 required : "Please enter phone number.",
-                minlength: "Please enter valid phone number."
+                // minlength: "Please enter valid phone number."
             },
             "sample_email":{
                 required:"Please enter email",
@@ -316,7 +334,7 @@ $(document).on('click','#sample_submit',function (e) {
             orderSample['singlePrice'] = singlePrice;
             orderSample['totalQty'] = qtyTotal;
             orderSample['email'] = orderSample['sample_email'];
-            orderSample['slug'] = 'order-sample';
+            orderSample['slug'] = 'posh-order-sample';
 
             delete orderSample['sample_quantity[]'];
             delete orderSample['sample_submit'];
@@ -368,16 +386,16 @@ $(document).on('click','.send-email-product', function (e) {
             "message":"required",
         },
         messages: {
-            "name":"Please enter sender name.",
+            "name":"Please Enter Sender Name.",
             "from_email":{
-                required:"Please enter sender email",
-                email: "Please enter valid sender email."
+                required:"Please Enter Sender Email",
+                email: "Please Enter Valid Sender Email."
             },
             "to_email":{
-                required:"Please enter receiver email",
-                multiemails: "Please enter valid receiver email."
+                required:"Please enter Recipient email",
+                multiemails: "Please enter valid Recipient email."
             },
-            "message":"Please enter message.",
+            "message":"Please Enter Message.",
         },
         errorElement: "li",
         errorPlacement: function(error, element) {
@@ -407,7 +425,7 @@ $(document).on('click','.send-email-product', function (e) {
                     for (var input in form_data){
                         var name = form_data[input]['value'];
                         emailProduct[form_data[input]['name']] = name;
-                        emailProduct['slug'] = 'email-product';
+                        emailProduct['slug'] = 'posh-email-product';
                         emailProduct['email'] = emailProduct['from_email'];
                     }
                     productJsonData['form_data'] = emailProduct;
@@ -459,7 +477,12 @@ $(document).on('click','.send-email-product', function (e) {
                     }
                     
                     if(productJsonData['data'].images != undefined){
-                        productJsonData['image'] = productJsonData['data'].images[0].images[0].secure_url;
+                        if(productJsonData['data'].images[0].images[0].secure_url != undefined && productJsonData['data'].images[0].images[0].secure_url != '') {
+                            productJsonData['image'] = productJsonData['data'].images[0].images[0].secure_url;
+                        }
+                        else {
+                            productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                        }
                     }else{
                         productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                     }
@@ -529,7 +552,13 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
     guestUserHtml = guestUserHtml.replace('#data.colors#',productResponse.attributes.colors);
 
     if(productResponse.images != undefined){
-        guestUserHtml = guestUserHtml.replace('#data.product_img#',productResponse.images[0].images[0].secure_url);
+        if(productResponse.images[0].images[0].secure_url != undefined && productResponse.images[0].images[0].secure_url != '') {
+            guestUserHtml = guestUserHtml.replace('#data.product_img#',productResponse.images[0].images[0].secure_url);
+        }
+        else {
+            guestUserHtml = guestUserHtml.replace('#data.product_img#','https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png');
+        }
+        
     }else{
         guestUserHtml = guestUserHtml.replace('#data.product_img#','https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png');        
     }
@@ -651,3 +680,8 @@ function getCountry(countryId=0) {
     }
 
 }
+
+$(document).on('click','#js-email-product', function() {
+  $("form#email_product")[0].reset();
+  $("form#email_product").find("ul.red").remove();
+})

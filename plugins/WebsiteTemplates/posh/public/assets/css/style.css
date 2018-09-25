@@ -531,7 +531,7 @@ input[type="submit"].virtual-modal-btn:hover,input[type="reset"].virtual-modal-b
 .feedback-content p{color:#404040;text-transform:none;font-size:14px;line-height:18px}
 .sample-request-table .table-striped > tbody > tr > td.table-text-left{color:#7f7f7f}
 .sample-request-table .table-striped > tbody > tr > td.table-text-left > span{color:#404040}
-.shopping_cart h1 i{background:url(../images/cart_title_icon.png) no-repeat scroll 0 0 rgba(0,0,0,0);display:inline-block;height:16px;width:20px;margin-right:7px}
+.shopping_cart h1 i{display:inline-block;height:16px;width:20px;margin-right:7px}
 .shopping_block{width:100%}
 .shopping_block thead{background:#f8f8f8;color:#666;border-bottom:1px #ddd solid}
 .shopping_block thead tr th{text-align:center;text-transform:uppercase;font-family:'roboto_condensedbold';padding:10px 0;border-right:1px #ddd solid;border-left:1px #ddd solid;border-top:1px #ddd solid;padding:10px 15px;font-weight:400;font-size:14px}
@@ -1565,7 +1565,7 @@ a.continue-shopping-btn i.fa{color:#db3745;margin-left:5px}
 .skuprice p.stars span{display:inline-block;float:none}
 .skuprice span{color:#969696}
 .skuprice > div:last-child{border-right:0}
-.skuprice span a{height:15px;width:15px;display:inline-block;background:url(../images/star.png) no-repeat;width:15px;height:15px;display:inline-block;background-position:0 0}
+.skuprice span a{height:15px;width:15px;display:inline-block;width:15px;height:15px;display:inline-block;background-position:0 0}
 .skuprice span a:hover,.skuprice span a.active{background-position:0 -15px}
 .product-description .nav-tabs{padding-bottom:25px;border:none}
 .product-description .nav-tabs li{position:relative;width:33.3%;float:left;text-align:center;background:#E6E6E6;border:1px #A7A7A7 solid;margin:0;border-right:0}
@@ -1668,7 +1668,7 @@ input[type="submit"].view-diagram{border:1px #db3745 solid;background:url(../ima
 .quantity-table .quantity-size li span{background:#fff url(../images/arrow-r.png) no-repeat 23px 0;display:inline-block;padding:7px 0 5px 7px;width:33px;height:29px}
 .quantity-table .quantity-size li input{width:30px;margin:0;padding:0;background:none;border:0;color:#555;text-align:center}
 .quantity-table .quantity-size.red-size li span{background:url(../images/r-arrow-i.png) no-repeat 0 0;color:#fff}
-.quantity-table .quantity-size.blue-size li span{background:url(../images/b-arrow-i.png) no-repeat 0 0;color:#fff}
+.quantity-table .quantity-size.blue-size li span{color:#fff}
 .quantity-table .quantity-size.edit-size li{background:none;border:none}
 .quantity-table .quantity-size.edit-size li span{background:none}
 .quantity-table .quantity-size.edit-size li em{font-style:normal}

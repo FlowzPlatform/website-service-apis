@@ -2397,7 +2397,7 @@ $(document).on("click",activetab + " .js-upload-art-radio",function(){
     let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
     let art_heading_undescore = replaceWithUnderscore(art_heading);
     $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
-    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src=""></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src=""></span></div><br></div>');
+    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src="#"></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src="#"></span></div><br></div>');
 });
 
 $(document).on("click",activetab + " .js-upload-email-radio",function(){
@@ -2427,7 +2427,7 @@ $(document).on("click",activetab + " .js-upload-art-type-radio",function(){
     let art_heading = $(this).closest(".art-pos-value").find('li.active a').text();
     let art_heading_undescore = replaceWithUnderscore(art_heading);
     $(".js_summary_artwork_"+pos+"_"+art_heading_undescore).remove();
-    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src=""></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src=""></span></div><div class="estimate-row js_sum_art_text_1 hide">Text 1 : <span></span></div><div class="estimate-row js_sum_art_text_2 hide">Text 2 : <span></span></div><div class="estimate-row js_sum_art_textarea hide">Instructions: <span class="content-inline"></span></div><br></div>');
+    $('.js_product_summary_imprint_location_'+pos).after('<div class="js_summary_artwork_'+pos+'_'+art_heading_undescore+'"><div class="estimate-row heading js_sum_art_head"><span>'+art_heading+'</span></div><div class="estimate-row js_sum_art_logo_1 hide">Uploaded Artwork 1 : <span><img src="#"></span></div><div class="estimate-row js_sum_art_logo_2 hide">Uploaded Artwork 2 : <span><img src="#"></span></div><div class="estimate-row js_sum_art_text_1 hide">Text 1 : <span></span></div><div class="estimate-row js_sum_art_text_2 hide">Text 2 : <span></span></div><div class="estimate-row js_sum_art_textarea hide">Instructions: <span class="content-inline"></span></div><br></div>');
 });
 
 $(document).on("click",activetab + " .js-upload-email-type-radio",function(){

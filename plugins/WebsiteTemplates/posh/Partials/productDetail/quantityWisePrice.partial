@@ -9,5 +9,24 @@
             <div id="c204962" class="quantity-table-col owl-carousel owl-theme"></div>
         </div>
         <div class="clearfix"></div>
-    </div><span><strong>Includes: </strong>One color one location screen or pad print <br/><strong> Options: </strong></span>
+    </div>
+    <div class="print-product-detail">
+        <div class="row">
+        <div class="col-lg-4 col-sm-4 col-md-4 col-xs-6"></div>
+        </div>
+        <div class="product-section-box">
+        <div class="responsive-qty-table quantity-table">
+            <div class="quantity-table-title">
+                <div class="table-heading js-product-price-unit" data-product-price-unit="each">Quantity </div>
+                <div class="table-content">Price</div>
+            </div>
+            <div class="quantity-table-disc">
+                <div class="js-responsive-qunatity">
+                </div>    
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
 </div>

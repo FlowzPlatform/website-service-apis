@@ -1,7 +1,3 @@
-
-
-
-
 <div class="js-list hide">
     <div>
         <div class="col-md-12 ob-product-compare">
@@ -12,23 +8,26 @@
                             <div class="product">
                                 <a class="delete-block js-remove-compare" data-id="#data.id#" href="javascript:void(0);" data-placement="left" data-toggle="tooltip" data-original-title="Remove"><i class="fa  fa-times-circle fa-fw"></i></a>
                                 <a href="#data.product_link#">
-                                    <img class="img-responsive compare_img mb-4 lazyLoad" src="#data.image#" alt="#data.title#" title="#data.title#" />
+                                    <img class="img-responsive center-block lazyLoad" src="#data.image#" alt="#data.title#" title="#data.title#" />
 
-                                    <h5 class="productTitle"><strong>#data.title#</strong></h5>
+                                    <h5 class="productTitle product-name"><strong>#data.title#</strong></h5>
                                 </a>
-                                <hr/>
-                                <div class="product-price">
-                                    <div id="js-price-per-qty-#data.id#" style="float:left;">
-								        <span class="priceProd">#data.price#</span>
-                                    </div>
-                                    <span>qty
-		                                <input type="text" class="js-only-interger js_quantity_input" value="#data.min_qty#" name="qty" data-min-qty="#data.min_qty#" data-product-id="#data.id#">
-                                    </span>
-                                </div>
                             </div>
                         </td>
                     </tr>
                     <tr></tr>
+                    <tr id="item_price_row">
+                        <td class="price-rang-brd product-#data-id#">
+                            <div class="product-price">
+                                <i id="js-price-per-qty-#data.id#">
+                                    <i class="priceProd">#data.price#</i>
+                                </i>
+                                <span>Qty.
+                                    <input type="text" class="js-only-interger js_quantity_input" value="#data.min_qty#" name="qty" data-min-qty="#data.min_qty#" data-product-id="#data.id#">
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
                     <tr id="item_sku">
                         <td class="product-#data-id#">#data.sku#</td>
                     </tr>
@@ -52,11 +51,12 @@
         <div class="scroll-block">
             <table class="compare-block" >
                 <tbody>
-                    <tr class="feature dark-bg" id="item_title_price1"></tr>
+                    <tr class="dark-bg" id="item_title_price1"></tr>
                     <tr class="feature dark-bg"></tr>
-                    <tr class="feature dark-bg" id="item_sku1"></tr>
+                    <tr class="feature dark-bg" id="item_price_row1"></tr>
+                    <tr class="feature light-bg" id="item_sku1"></tr>
                     <tr class="feature dark-bg" id="item_features1"></tr>
-                    <tr class="feature dark-bg" id="item_summary1"></tr>
+                    <tr class="feature light-bg" id="item_summary1"></tr>
                 </tbody>
             </table>
         </div>

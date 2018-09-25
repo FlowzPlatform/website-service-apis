@@ -6,7 +6,7 @@
     rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700"
     rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
     <div class="ui-header">
         
         <div class="main-logo-part">
@@ -17,15 +17,21 @@
                     </div>
                     <div class="info-menu slidemenu">
                         <ul class="header-loging pull-right">
+                            <li class="dropdown header-login-text hide">
+                                <a href="quickQuoteList.html" class="dropdown-toggle"> 
+                                    <span class="fa fa-retweet fa-fw"></span> 
+                                    <span class="login-text"><span>QuickQuote</span> (<i class="js-counter" id="quickQuoteCount">0</i>)</span> 
+                                </a>
+                            </li>
                             <li class="header-login-text dropdown dropdown-popup">
                                 <a href="compare.html" class="dropdown-toggle">
                                     <span class="fa fa-retweet fa-fw"></span>
-                                    <span class="login-text"><span>Compare</span> (<span id="comparedCount">0</span>)</span>
+                                    <span class="login-text"><span>Compare</span> (<i class="js-counter" id="comparedCount">0</i>)</span>
                                 </a>
                             </li>
                             <li class="dropdown login-col header-login-text login-show hide">
                                 <a href="login.html" class="dropdown-toggle">
-                                    <img src="https://res.cloudinary.com/flowz/image/upload/v1536650605/websites/POSH-ACCESSORIES/images/distributer.png">
+                                    <span class="fa fa-user"></span>
                                     <span class="login-text"><span>LOGIN</span></span>
                                 </a>
                             </li>

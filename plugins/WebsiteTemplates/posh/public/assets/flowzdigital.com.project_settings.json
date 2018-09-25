@@ -11,6 +11,7 @@
 	"user_detail_by_id":"https://api.flowzdigital.com/user/getuserdetails/",
         "change_password_api": "https://api.flowzdigital.com/auth/api/changepassword",
         "forgot_password_api": "https://api.flowzdigital.com/auth/api/forgetpassword",
+        "reset_password_api":"https://api.flowzdigital.com/auth/api/resetpassword",
         "social_auth_api": "https://api.flowzdigital.com/auth/",
         "social_process_api": "https://api.flowzdigital.com/auth/api/verifyemail",
         "default_culture": "en_us",
@@ -25,7 +26,7 @@
         "project_configuration_api_url": "https://api.flowzdigital.com/serverapi/project-configuration",
         "myorders_api_url": "https://api.flowzdigital.com/serverapi/myOrders",
         "country_data": [{"id": 233,"name": "USA","short_name": "US"},{"id": 105,"name": "India","short_name": "IN"}],
-        "city_country_state_api":"http://api.flowzdigital.com/serverapi/city-state-country-list",
+        "city_country_state_api":"https://api.flowzdigital.com/serverapi/city-state-country-list",
         "color_table_api_url": "https://api.flowzdigital.com/serverapi/color-table",
         "color_swatch_filter_api": "https://api.flowzdigital.com/pdmnew/filters/",
         "shipping_estimator_api_url": "https://api.flowzdigital.com/serverapi/rate-calculation",
@@ -48,6 +49,6 @@
         "webtools_api_url":"https://api.flowzdigital.com/serverapi/webtools",
         "download_pdf_api_url": "https://api.flowzdigital.com/serverapi/download-pdf",
         "category_api_url":"https://api.flowzdigital.com/serverapi/category",
-	"admin_email": "admin@cenacle.io"
+        "admin_email": "admin@cenacle.io"
       }
 }
