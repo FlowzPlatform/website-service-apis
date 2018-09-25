@@ -4,19 +4,17 @@ for (var i = 0, len = items.length; i < len; i++) {
         let BaseUrl = '';
         let forgetPasswordUrl = "";
         let adminEmail = "";
+
         $(document).ready(function() {
             if ($.cookie("user_id") != null && $.cookie("user_auth_token") != null) {
                 window.location = "index.html"
             } else {
-                $.getJSON("./assets/project-details.json", function(data) {
-                    forgetPasswordUrl = data[0].forget_password_api;
-                    BaseUrl = data[0].BaseURL;
-                    adminEmail = data[0].projectOwner;
-                    $(".success_url").val(data[0].BaseURL);
-                    $(".failure_url").val(data[0].BaseURL + 'error404.html')
-                })
+                forgetPasswordUrl = project_settings.forgot_password_api;
+                BaseUrl = website_settings.BaseURL;
+                adminEmail = project_settings.admin_email;
             }
         });
+
         $(".input-fields").keyup(function(e) {
             var code = e.which;
             if (code == 13) e.preventDefault();
@@ -24,6 +22,7 @@ for (var i = 0, len = items.length; i < len; i++) {
                 authenticateUser()
             }
         });
+
         $(".forget-submit").click(function() {
             authenticateUser()
         });
@@ -35,10 +34,11 @@ for (var i = 0, len = items.length; i < len; i++) {
 					email: $(".user_email").val(),
 					url : BaseUrl+'resetPassword.html'
                 }).then(function(response) {
-					hidePageAjaxLoading();
+                    hidePageAjaxLoading();
+                    showSuccessMessage('Your request for forgetpassword sent to your email');
 					setTimeout(function() {
-						showSuccessMessage('Your request for forgetpassword sent to your email');
-					}, 5000)
+						window.location = "index.html";
+					}, 3000)
                 }).catch(function(error) {
                     hidePageAjaxLoading();
                     $(".alert-box").addClass("show");

@@ -4,19 +4,18 @@ for (var i = 0, len = items.length; i < len; i++) {
         let BaseUrl = '';
         let resetPasswordUrl = "";
         let adminEmail = "";
+
         $(document).ready(function() {
             if ($.cookie("user_id") != null && $.cookie("user_auth_token") != null) {
                 window.location = "index.html"
-            } else {
-                $.getJSON("./assets/project-details.json", function(data) {
-                    resetPasswordUrl = data[0].reset_password_api;
-                    BaseUrl = data[0].BaseURL;
-                    adminEmail = data[0].projectOwner;
-                    $(".success_url").val(data[0].BaseURL);
-                    $(".failure_url").val(data[0].BaseURL + 'error404.html')
-                })
+            } 
+            else {
+                resetPasswordUrl = project_settings.reset_password_api;
+                BaseUrl = website_settings.BaseURL;
+                adminEmail = project_settings.admin_email;
             }
         });
+
         $(".input-fields").keyup(function(e) {
             var code = e.which;
             if (code == 13) e.preventDefault();
@@ -24,6 +23,7 @@ for (var i = 0, len = items.length; i < len; i++) {
                 authenticateUser()
             }
         });
+
         $(".reset-submit").click(function() {
             authenticateUser()
         });
@@ -32,15 +32,14 @@ for (var i = 0, len = items.length; i < len; i++) {
             if ($(".user_pass").val() != "") {
 				showPageAjaxLoading();
                 axios.post(resetPasswordUrl, {
-					new_password: $(".user_pass").val(),
-					token : getParameterByName('forget_token')
+					new_password: $(".user_pass").val().trim(),
+					token : decodeURI(getParameterByName('forget_token'))
                 }).then(function(response) {
-					hidePageAjaxLoading();
+                    hidePageAjaxLoading();
+                    showSuccessMessage('Your password updated successfully.');
 					setTimeout(function() {
-						showSuccessMessage('Your password updated successfully.');
-                    }, 5000)
-                    
-                    // window.location = "index.html"
+                        window.location = "login.html";
+                    }, 3000)
                 }).catch(function(error) {
                     console.log('error == ',error)
                     hidePageAjaxLoading();
