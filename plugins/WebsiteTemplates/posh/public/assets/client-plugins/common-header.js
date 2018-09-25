@@ -137,12 +137,12 @@ document.addEventListener("DOMContentLoaded", function(event){
 
 
 let optionsAsCategory = '';
-let optionsAsBrand = '';
+// let optionsAsBrand = '';
 let optionsAsColor = '';
 let CategoryArr = [];
 let ResultCategory = [];
-let BrandArr = [];
-let ResultBrand = [];
+// let BrandArr = [];
+// let ResultBrand = [];
 let ColorArr = [];
 let ResultColor =[];
 let MinPriceVal = '';
@@ -216,9 +216,9 @@ $(document).ready(function(){
                   ResultColor.sort();
                   
             });
-                BrandArr.push(value1._source.linename);
-                ResultBrand = _.uniq(BrandArr);
-                ResultBrand.sort();
+                // BrandArr.push(value1._source.linename);
+                // ResultBrand = _.uniq(BrandArr);
+                // ResultBrand.sort();
             $.each(value1._source.categories, function( CategoryIndex, CategoryVal ) {
                CategoryArr.push(CategoryVal);
                 ResultCategory = _.uniq(CategoryArr);
@@ -231,14 +231,14 @@ $(document).ready(function(){
                 optionsAsColor += "<option value='" + value + "'>" + value + "</option>";
             });
 
-            $.each(ResultBrand,  function( BrandIndex, BrandVal ) {
-                optionsAsBrand += "<option value='" + BrandVal + "'>" + BrandVal + "</option>"; 
-            });
+            // $.each(ResultBrand,  function( BrandIndex, BrandVal ) {
+            //     optionsAsBrand += "<option value='" + BrandVal + "'>" + BrandVal + "</option>"; 
+            // });
             $.each(ResultCategory,  function( index3, value3 ) {
                 optionsAsCategory += "<option value='" + value3 + "'>" + value3 + "</option>"; 
             });
                 $( 'select#Category' ).append( optionsAsCategory ); 
-                $( 'select#Brand' ).append( optionsAsBrand );
+              //  $( 'select#Brand' ).append( optionsAsBrand );
                 $( 'select#Color' ).append( optionsAsColor );
                 $(".multi_category").multiselect({
                 //  onChange:function(element,checked){
@@ -261,7 +261,7 @@ $(document).ready(function(){
              let KeywordVal = $('#Keyword').val();
              let SkuVal = $('#Sku').val();    
              let CategoryVal = $('#Category').val();    
-             let BrandVal = $('#Brand').val();       
+           //  let BrandVal = $('#Brand').val();       
              let ColorVal = $('#Color').val();          
              MinPriceVal = $('#min_price').val();          
              MaxPriceVal = $('#max_price').val();
@@ -270,9 +270,9 @@ $(document).ready(function(){
              if(CategoryVal.length != 0){
                 url += '&Categorylist='+CategoryVal
              }
-             if(BrandVal.length != 0){
-                url += '&Brand='+BrandVal
-             }
+            //  if(BrandVal.length != 0){
+            //     url += '&Brand='+BrandVal
+            //  }
              if(ColorVal.length != 0){
                 url += '&Color='+ColorVal
              }

@@ -86,7 +86,7 @@ body {
         <h1 class="main-title">
             <i class="fa fa-user"></i> Register account
         </h1>
-        <div class="row">
+        <div class="row js-register-account">
             <form name="signUp" id="signUp">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 pull-right">
                     <!--                    <h1 class="main-title"><i class="fa fa-user"></i>Create an account</h1>     -->
@@ -260,7 +260,7 @@ body {
                     <div class="ob-contact-info-block">
                         <div class="sub-form-box">
                             <h2>Contact Information</h2>
-                            <div class="row">
+                            <div class="row js-contactinfo-top">
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>First Name<span class="red">*</span></label>
@@ -276,15 +276,15 @@ body {
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
+                            <div class="row js-contactinfo-bottom">
+                                <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label>Address 1<span class="red">*</span></label>
                                         <input type="text" name="address1" data-original-title="Address 1" tabindex="8" class="input">
                                         <!-- <ul class="error-message"><li>Enter Valid Address 1!</li></ul> -->
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xs-12">
+                                <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label>Address 2</label>
                                         <input type="text" name="address2" data-original-title="Address 2" tabindex="9" class="input">
@@ -339,14 +339,14 @@ body {
                                         <input type="text" name="fax" data-original-title="Fax" tabindex="15" class="input">
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-xs-12">
+                                <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Email Address (ex. abc123@yahoo.com)<span class="red">*</span></label>
                                         <input type="text" name="email" data-original-title="Email Address" tabindex="5" class="input">
                                         <!-- <ul class="error-message"><li>Enter Valid Email ID!</li></ul> -->
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-xs-12">
+                                <div class="col-sm-6 col-xs-12">
                                     <div class="check-box-privacy">
                                         <div class="checkbox check-block">
                                             <input type="checkbox" id="checkbox-bill" tabindex="16">
@@ -355,18 +355,16 @@ body {
 				                        </label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-sm-12 col-xs-12">
                                     <div class="check-box-privacy">
                                         <div class="checkbox check-block">
                                             <input type="checkbox" id="checkbox-address" tabindex="16">
                                             <label for="checkbox-address">
-				                            Use as my default shipping address
-				                        </label>
+                                            Use as my default shipping address
+                                        </label>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="clearfix"></div>
                                 <!--                            <div class="col-sm-6 col-xs-12"><div class="check-box-privacy"><div class="checkbox check-block"><input type="checkbox" id="checkbox-address" tabindex="16"><label for="checkbox-address">
 				                            Use as my default shipping address
 				                        </label></div></div></div>-->
