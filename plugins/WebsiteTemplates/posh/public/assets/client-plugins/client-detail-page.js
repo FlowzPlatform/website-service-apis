@@ -209,21 +209,35 @@ $(document).ready( async function(){
         }
         // Shipping
         if(productDetails.shipping instanceof Array) {
-            if(productDetails.shipping[0].free_on_board != undefined && productDetails.shipping[0].free_on_board != ''){
-                fob = productDetails.shipping[0].free_on_board;
-                $('.js-product-shipping-text').append("<strong>FOB:</strong> "+fob+"<br/>");
-            }
-            if(productDetails.shipping[0].carton_length != undefined && productDetails.shipping[0].carton_length != ''){
-                carton_length = productDetails.shipping[0].carton_length+" "+productDetails.shipping[0].carton_size_unit;
-                $('.js-product-shipping-text').append("<strong>Carton Length:</strong> "+carton_length+"<br/>");
+            // if(productDetails.shipping[0].free_on_board != undefined && productDetails.shipping[0].free_on_board != ''){
+            //     fob = productDetails.shipping[0].free_on_board;
+            //     $('.js-product-shipping-text').append("<strong>FOB:</strong> "+fob+"<br/>");
+            // }
+            if(productDetails.shipping[0].carton_length != undefined && productDetails.shipping[0].carton_length != '' && productDetails.shipping[0].carton_width != undefined && productDetails.shipping[0].carton_width != '' &&productDetails.shipping[0].carton_height != undefined && productDetails.shipping[0].carton_height != '' && productDetails.shipping[0].carton_size_unit != undefined && productDetails.shipping[0].carton_size_unit != ''){
+                
+                let carton_size_unit = productDetails.shipping[0].carton_size_unit;
+                carton_size_unit = carton_size_unit.substring(0, 2).toLowerCase()+".";
+                let carton_length = productDetails.shipping[0].carton_length+carton_size_unit;
+                let carton_width = productDetails.shipping[0].carton_width+carton_size_unit;
+                let carton_height = productDetails.shipping[0].carton_height+carton_size_unit;
+
+                $('.js-product-shipping-text').append("<strong>Carton Size:</strong> "+carton_length+" x "+ carton_width+" x "+carton_height+"<br/>");
+                
             }
             if(productDetails.shipping[0].carton_weight != undefined  && productDetails.shipping[0].carton_weight != ''){
-                carton_weight = productDetails.shipping[0].carton_weight+" "+productDetails.shipping[0].carton_weight_unit;
-                $('.js-product-shipping-text').append("<strong>Carton Weight:</strong>"+carton_weight+"<br/>");
+                carton_weight = productDetails.shipping[0].carton_weight+" "+productDetails.shipping[0].carton_weight_unit.toLowerCase();
+                $('.js-product-shipping-text').append("<strong>Carton Weight:</strong> "+carton_weight+"<br/>");
             }
             if(productDetails.shipping[0].shipping_qty_per_carton !=undefined  && productDetails.shipping[0].shipping_qty_per_carton != ''){
                 shipping_qty_per_carton = productDetails.shipping[0].shipping_qty_per_carton;
-                $('.js-product-shipping-text').append("<strong>Qty Per Carton:</strong>"+shipping_qty_per_carton+"<br/>");
+                $('.js-product-shipping-text').append("<strong>Carton Quantity:</strong> "+shipping_qty_per_carton+" pcs.<br/>");
+            }
+
+            if(productDetails.imprint_data instanceof Array) {
+                let production_days = productDetails.imprint_data[0].production_days+" "+productDetails.imprint_data[0].production_unit;
+                if(typeof production_days !== "undefined" && production_days != '') {
+                    $('.js-product-shipping-text').append("<strong>Production Time:</strong> "+production_days+"<br/>");
+                }
             }
         }
         // END

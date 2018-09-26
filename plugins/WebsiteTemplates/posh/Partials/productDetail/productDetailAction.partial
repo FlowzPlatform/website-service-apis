@@ -377,3 +377,17 @@ body {
 		</div>
 	</div>
 </div>
+
+<div class="modal fade model-popup-black" id="prop-charges" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">×</a>
+			<div class="modal-header">
+				<h1 class="modal-title"><i class="fa fa-exclamation-triangle"></i> Prop 65 Warning</h1>
+			</div>
+			<div class="modal-body">
+                <img src="https://res.cloudinary.com/flowz/image/upload/v1537868027/websites/POSH-ACCESSORIES/images/warning-pop.png" class="img-responsive">
+			</div>
+		</div>
+	</div>
+</div>
