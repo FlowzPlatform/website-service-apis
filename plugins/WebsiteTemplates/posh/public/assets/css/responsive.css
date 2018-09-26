@@ -109,7 +109,7 @@
     .right-menu{display:none}
     .color-select{margin-right:15px;}
     .best-selling-products .ob-product-block .image{margin-bottom:98px}
-    .banner-box .cat-left-side{min-width:100%;min-height:365px;background:url(../images/cat-01.png) no-repeat scroll 96% 85% / 70% auto #fdc3c2}
+    .banner-box .cat-left-side{min-width:100%;min-height:365px;background:url(https://res.cloudinary.com/flowz/image/upload/v1537512328/websites/POSH-ACCESSORIES/images/cat-01.png) no-repeat scroll 96% 85% / 70% auto #fdc3c2}
     .cat-right-side .deal-banner{width:100%}
     .cat-right-side .right-banner-bg2{padding:22px 0 0 15px}
     .cat-right-side .deal-banner img{width:100%;height:auto}
@@ -288,8 +288,8 @@
     .product-big-image-thumbnails{width:100px;float:right;position:relative}
     .quick-view-left .bx-controls-direction a{color: #CACACA; height: 30px; width: 90px; display: inline-block; text-align: center; padding-top: 2px; position: absolute; opacity: 0.4;}
     .quick-view-left .bx-controls-direction a:hover{ opacity: 0.9;}
-    .quick-view-left .bx-controls-direction .bx-prev{ top: 0; left: 5px; background: #ddd url(../images/down-arrow-2.png) no-repeat  center center; text-indent: -9999px;}
-    .quick-view-left .bx-controls-direction .bx-next{ bottom: 0; left: 5px; background: #ddd url(../images/down-arrow-1.png) no-repeat  center center;text-indent: -9999px;}
+    .quick-view-left .bx-controls-direction .bx-prev{ top: 0; left: 5px; background: #ddd url(https://res.cloudinary.com/flowz/image/upload/v1537778690/websites/POSH-ACCESSORIES/images/down-arrow-2.png) no-repeat  center center; text-indent: -9999px;}
+    .quick-view-left .bx-controls-direction .bx-next{ bottom: 0; left: 5px; background: #ddd url(https://res.cloudinary.com/flowz/image/upload/v1537781137/websites/POSH-ACCESSORIES/images/down-arrow-1.png) no-repeat  center center;text-indent: -9999px;}
     .product-big-image-thumbnails .slide{ padding-left: 5px;}
     .full-image-editor{ margin-bottom:25px; clear: both; width: 100%; display: inline-block;}
     .full-image-editor .quick-view-left .product-big-image { width: 100%;}
@@ -396,7 +396,7 @@
     .pro-cat-list1{width:100%!important;text-align:center;padding-bottom:20px}
     .pro-category-list{margin-top:0;}
     .pro-category-list li{width:10%}
-    .banner-box .cat-left-side{background:url(../images/cat-01.png) no-repeat scroll 96% 80% / 45% auto #fdc3c2;min-height:270px;min-width:auto;margin-bottom:30px}
+    .banner-box .cat-left-side{background:url(https://res.cloudinary.com/flowz/image/upload/v1537512328/websites/POSH-ACCESSORIES/images/cat-01.png) no-repeat scroll 96% 80% / 45% auto #fdc3c2;min-height:270px;min-width:auto;margin-bottom:30px}
     .cat-right-side .deal-banner{width:100%}
 /*    .cat-right-side .right-banner-bg1{background:url(../images/cat-baner2.png) no-repeat scroll 100% 100% / 100% auto #f7f7f7}*/
 /*    .cat-right-side .right-banner-bg2{background:url(../images/cat-banner-log2.png) no-repeat scroll 100% 100% / 100% #f7f7f7; padding:15px 0 0 15px;}*/
@@ -589,7 +589,7 @@
 	.search-form{ float: none !important;}
     .advance-search-btn, .header-search .form-control, .header-search{margin: 0;}
     .search-in-dropdown{margin: 0;}
- 	.nav-search-btn.open .header-search-medium::after {background: rgba(0, 0, 0, 0) url("../images/a-shadow.png") no-repeat scroll 0 0; content: ""; display: inline-block; height: 17px; right:35px !important; position: absolute; bottom:-7px; width: 25px; z-index:9999;}
+ 	.nav-search-btn.open .header-search-medium::after {background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/flowz/image/upload/v1537778369/websites/POSH-ACCESSORIES/images/a-shadow.png") no-repeat scroll 0 0; content: ""; display: inline-block; height: 17px; right:35px !important; position: absolute; bottom:-7px; width: 25px; z-index:9999;}
     .top-search-block .header-search{width:76%; max-width: none; margin: 0;}
     .top-search-block.open{ display: block;}
     .dropdown.top-advance-search.advance-search-btn.open{ width: 100%;}
@@ -1025,12 +1025,12 @@
     .rang-qty tbody tr{width:100%!important}
     .rang-qty tbody tr td{width:20%!important}
     .help-img{border-right:none;margin-top:17px}
-    .help-content-block1{background:url(../images/help-order-status.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
-    .help-content-block2{background:url(../images/help-received-broken.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
-    .help-content-block3{background:url(../images/help-received-partial-order.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
-    .help-content-block4{background:url(../images/help-get-a-quote.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
-    .help-content-block5{background:url(../images/help-did-not-receive-sample-or-blank.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
-    .help-content-block6{background:url(../images/help-imprint-issue.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
+    .help-content-block1{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781204/websites/POSH-ACCESSORIES/images/help-order-status.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
+    .help-content-block2{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781229/websites/POSH-ACCESSORIES/images/help-received-broken.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
+    .help-content-block3{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781264/websites/POSH-ACCESSORIES/images/help-received-partial-order.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
+    .help-content-block4{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781283/websites/POSH-ACCESSORIES/images/help-get-a-quote.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
+    .help-content-block5{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781302/websites/POSH-ACCESSORIES/images/help-did-not-receive-sample-or-blank.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
+    .help-content-block6{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781321/websites/POSH-ACCESSORIES/images/help-imprint-issue.png) no-repeat center top;float:none;display:block;margin:0 auto;padding-top:80px;padding-left:0;text-align:center;margin:10px 0}
     .help-buttom-border{border-bottom:2px #f5f5f5;border-style:solid;border-bottom-style:dotted;padding-bottom:20px}
     .artwork-top-content{width:100%;display:block;float:none}
     .artwork-contact{width:100%;text-align:center}
@@ -1071,18 +1071,18 @@
     .ob-slide-box .carousel-caption{padding-bottom:5px}
     .ob-slide-box h1{font-size:25px}
     .ob-slide-box p.slide-text{margin:5px 0}
-    .banner-box .cat-left-side{background:url(../images/cat-01.png) no-repeat 60% 90% / 40% 65% #fdc3c2;min-height:270px;min-width:auto;margin-bottom:30px}
+    .banner-box .cat-left-side{background:url(https://res.cloudinary.com/flowz/image/upload/v1537512328/websites/POSH-ACCESSORIES/images/cat-01.png) no-repeat 60% 90% / 40% 65% #fdc3c2;min-height:270px;min-width:auto;margin-bottom:30px}
     .cat-right-side .deal-banner{width:100%}
     .cat-right-side .cat-width{width:50%;float:left}
-    .cat-right-side .right-banner-bg1{background:url(../images/cat-baner2.png) no-repeat scroll 100% 100% / 100% auto #f7f7f7}
-    .cat-right-side .right-banner-bg2{background:url(../images/cat-banner-log2.png) no-repeat scroll 100% 100% / 100% 100% #f7f7f7}
+    .cat-right-side .right-banner-bg1{background:url(https://res.cloudinary.com/flowz/image/upload/v1537512426/websites/POSH-ACCESSORIES/images/cat-baner2.png) no-repeat scroll 100% 100% / 100% auto #f7f7f7}
+    .cat-right-side .right-banner-bg2{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781372/websites/POSH-ACCESSORIES/images/cat-banner-log2.png) no-repeat scroll 100% 100% / 100% 100% #f7f7f7}
     .cat-right-side .deal-banner img{width:100%;height:auto}
     .help-products{text-align:center; margin-bottom:20px;}
     .help-products img{margin-bottom:10px}
     .pro-category-list .pro-cat-list1{width:100%;height:90px;text-align:center}
     .pro-category-list li{width:20%;float:left;height:130px}
     .ob-pro-category-box{padding-bottom:0;margin-top:20px}
-    .ob-product-block .cart a{background:url(../images/cart-icon.png) no-repeat scroll 3px 3px rgba(0,0,0,0);width:35px;padding:18px 0;border:1px solid silver}
+    .ob-product-block .cart a{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781430/websites/POSH-ACCESSORIES/images/cart-icon.png) no-repeat scroll 3px 3px rgba(0,0,0,0);width:35px;padding:18px 0;border:1px solid silver}
     .ob-product-block .cart a span{display:none}
     .ob-product-block .cart a:hover{background-position:3px -31px}
     .ob-product-block .product-meta{width:100%;text-align:center;background-color:#f0f0f0;bottom:-60px;position:absolute;-webkit-transition:none;transition:none}
@@ -1251,23 +1251,23 @@
     #mainmenu-nav #mainmenu{left:-265px;overflow-y:scroll;height:100%;width:265px;min-width:0;position:fixed;padding-left:0;z-index:5;top:5px;margin:0;}
     #mainmenu-nav #mainmenu .navbar-nav{min-width:0;width:100%;margin:0;/*display:block!important;*/}
     #mainmenu-nav #mainmenu .navbar-nav .dropdown-menu .dropdown-submenu .dropdown-menu{background:#353740;overflow:hidden;padding:10px 0;margin:0;width:100%;}
-    #mainmenu-nav #mainmenu .navbar-nav .dropdown-menu > .dropdown-submenu.open .menu-caret{background:url(../images/resp-arrow.png) no-repeat -6px -15px;}
-    #mainmenu-nav #mainmenu .navbar-nav .dropdown-menu .dropdown-submenu .menu-caret{background:url(../images/resp-arrow.png) no-repeat -6px -33px;margin-top:5px;height:11px;width:11px;}
+    #mainmenu-nav #mainmenu .navbar-nav .dropdown-menu > .dropdown-submenu.open .menu-caret{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781732/websites/POSH-ACCESSORIES/images/resp-arrow.png) no-repeat -6px -15px;}
+    #mainmenu-nav #mainmenu .navbar-nav .dropdown-menu .dropdown-submenu .menu-caret{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781732/websites/POSH-ACCESSORIES/images/resp-arrow.png) no-repeat -6px -33px;margin-top:5px;height:11px;width:11px;}
     #mainmenu-nav #mainmenu .navbar-nav .dropdown-menu li > a{min-width:0;width:100%;white-space:normal;padding:10px 25px;color:#adb1bb;margin:0;border-bottom:1px dotted #69717E;}
-    #mainmenu-nav #mainmenu .dropdown-submenu .dropdown-menu li a{background:url(../images/arrow.png) no-repeat 35px 11px;color:#ADAFBB;font-size:12px;padding:9px 10px 9px 53px;border-bottom:none;}
+    #mainmenu-nav #mainmenu .dropdown-submenu .dropdown-menu li a{background:url(https://res.cloudinary.com/flowz/image/upload/v1537517597/websites/POSH-ACCESSORIES/images/arrow.png) no-repeat 35px 11px;color:#ADAFBB;font-size:12px;padding:9px 10px 9px 53px;border-bottom:none;}
     #mainmenu-nav{border:0;background:transparent;}
     #mainmenu-nav.navbar-inverse #mainmenu{background:#333;}
     #mainmenu-nav #navbar-height-col2{position:fixed;top:0;height:100%;width:265px;left:-265px;background:#26262E;z-index:3;}
     #mainmenu-nav.navbar-inverse #navbar-height-col2{background:#333;z-index:1;border:0;}
     .menu-box .navbar-nav > li{padding:0;}
-    .menu-box .navbar-nav > li > a{line-height:28px;margin:0;padding:8px 15px;color:#69717E;background:url(../images/border-slice.png) repeat-x 0 bottom;}
-    .menu-box .navbar-default .navbar-nav > .open > a,.menu-box .navbar-default .navbar-nav > .open > a:hover,.menu-box .navbar-default .navbar-nav > .open > a:focus{background:url(../images/border-slice.png) repeat-x 0 bottom;}
+    .menu-box .navbar-nav > li > a{line-height:28px;margin:0;padding:8px 15px;color:#69717E;background:url(https://res.cloudinary.com/flowz/image/upload/v1537781874/websites/POSH-ACCESSORIES/images/border-slice.png) repeat-x 0 bottom;}
+    .menu-box .navbar-default .navbar-nav > .open > a,.menu-box .navbar-default .navbar-nav > .open > a:hover,.menu-box .navbar-default .navbar-nav > .open > a:focus{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781874/websites/POSH-ACCESSORIES/images/border-slice.png) repeat-x 0 bottom;}
     .menu-box .menu-pro-img{display:none;}
     .menu-box .dropdown-menu .dropdown-submenu .dropdown-menu li{width:100%;border-right:none;}
     .menu-box .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,.menu-box .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus{color:#ADAFBB;background-color:transparent;}
-    .menu-box .menu-caret1{background:url(../images/menu-arrow.png) no-repeat center center;width:25px;height:28px;position:absolute;right:8px;top:8px;z-index:9999;}
-    .menu-box .dropdown-submenu .menu-caret1{background:url(../images/resp-arrow.png) no-repeat center -30px;width:20px;right:10px;top:10px;height:17px;}
-    .menu-box .dropdown-submenu.open .menu-caret1{background:url(../images/resp-arrow.png) no-repeat center -12px;}
+    .menu-box .menu-caret1{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781933/websites/POSH-ACCESSORIES/images/menu-arrow.png) no-repeat center center;width:25px;height:28px;position:absolute;right:8px;top:8px;z-index:9999;}
+    .menu-box .dropdown-submenu .menu-caret1{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781732/websites/POSH-ACCESSORIES/images/resp-arrow.png) no-repeat center -30px;width:20px;right:10px;top:10px;height:17px;}
+    .menu-box .dropdown-submenu.open .menu-caret1{background:url(https://res.cloudinary.com/flowz/image/upload/v1537781732/websites/POSH-ACCESSORIES/images/resp-arrow.png) no-repeat center -12px;}
     .member-col .dropdown-menu{display:none;}
     .right-menu{display:block!important;float:right;}
     .right-menu .dropdown{float:right;}
@@ -1321,7 +1321,7 @@
     .bottom-footer .pull-right{padding-left:20px;}
     .search-in-dropdown{float: none; width: 100%;}
     .serach-col .header-search{margin: 10px 0 0 0; width: 100%; display: block; float: none; max-width: none; position: relative;}
-    .serach-col .inp-parts .checkout-select-wrapper{background: url("../images/checkout-select-arrow.png") no-repeat scroll 95% center #fff;}
+    .serach-col .inp-parts .checkout-select-wrapper{background: url("https://res.cloudinary.com/flowz/image/upload/v1537778015/websites/POSH-ACCESSORIES/images/checkout-select-arrow.png") no-repeat scroll 95% center #fff;}
     .serach-col .search-in-dropdown .ob-gender-select-box span.checkout-select-wrapper, .search-in-dropdown .ob-gender-select-box span.checkout-select-wrapper .custom-select, .search-in-dropdown .inp-parts.ob-gender-select-box{float: none;}
     .search-box{display:none;position:absolute;top:38px;left:0;width:100%;background:#666;padding:13px 15px;z-index:9999;}
     .search-box input[type="text"]{background:#fff;border:1px #f5f5f5 solid;padding:8px 80px 8px 10px;font-size:14px;color:#666;width:100%;border-radius:0;}
@@ -1402,8 +1402,8 @@
     .estimate-table.total-detail-price table th.total-price{ font-size: 16px;}
     .quick-view-left .bx-controls-direction a{color: #CACACA; height: 30px; width: 90px; display: inline-block; text-align: center; padding-top: 2px; opacity: 0.4;}
     .quick-view-left .bx-controls-direction a:hover{ opacity: 0.9;}
-    .quick-view-left .bx-controls-direction .bx-prev{ top: 0; left: 5px; background: #ddd url(../images/down-arrow-2.png) no-repeat  center center; text-indent: -9999px;}
-    .quick-view-left .bx-controls-direction .bx-next{ bottom: 0; left: 5px; background: #ddd url(../images/down-arrow-1.png) no-repeat  center center;text-indent: -9999px;}
+    .quick-view-left .bx-controls-direction .bx-prev{ top: 0; left: 5px; background: #ddd url(https://res.cloudinary.com/flowz/image/upload/v1537778690/websites/POSH-ACCESSORIES/images/down-arrow-2.png) no-repeat  center center; text-indent: -9999px;}
+    .quick-view-left .bx-controls-direction .bx-next{ bottom: 0; left: 5px; background: #ddd url(https://res.cloudinary.com/flowz/image/upload/v1537781137/websites/POSH-ACCESSORIES/images/down-arrow-1.png) no-repeat  center center;text-indent: -9999px;}
     .product-big-image, .bx-viewport{ margin-bottom: 10px;}
     .product-showcase .quick-view-left .bx-wrapper{ float:left; margin-left:0px !important;}
     .quick-view-left .product-big-image {height: 100% !important; width: 100% !important;}

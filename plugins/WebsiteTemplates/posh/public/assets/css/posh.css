@@ -78,7 +78,7 @@
     padding-top: 15px !important;
     font-family: 'Lato', sans-serif !important;
 }
-
+.js-inventory_color_box {width: 25px;height: 25px;display: block;} 
 /*checkbox arrow placement, reset button alignment issue for signup*/
 .checkbox label::before {top: 0px !important;}
 :root .check-box-privacy .checkbox label::after {top: 0px !important;}
@@ -95,7 +95,7 @@ input[type="reset"] {margin-top: 0px;}
 .shippingEstimator-checkbox label::after { padding-top: 1px !important; }
 .shippingEstimator-checkbox .form-option { padding-left: 11px !important; }
 @media screen and (max-width: 767px) {
-    .shippingEstimator-checkbox label::after { margin-left: -4px; !important; }
+    .shippingEstimator-checkbox label::after { margin-left: -4px !important; }
 }
 /*shipping estimator model*/
 

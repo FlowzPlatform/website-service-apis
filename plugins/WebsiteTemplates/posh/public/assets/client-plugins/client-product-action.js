@@ -182,18 +182,72 @@ $(document).ready(function(){
 // inventory start
 let inventoryData = [];
 $(document).on('click','#js-check-inventory', async function (e) {
-    $('.js-inventory-msg').addClass('hide')
-    $('.js-inventory-colors').html('');
-    $('.js-inventory-quantity').val('');
-    $('.js-current-color').attr('data-value', '')
-    $('.js-current-color').attr('style','')
+    showPageAjaxLoading();
+    // $('.js-inventory-msg').addClass('hide')
+    // $('.js-inventory-colors').html('');
+    // $('.js-inventory-quantity').val('');
+    // $('.js-current-color').attr('data-value', '')
+    // $('.js-current-color').attr('style','')
+    // let productResponse = await getProductDetailById(pid)
+    // console.log('productResponse',productResponse)
+    // if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) {
+    //     $.each(productResponse.inventory, function(i,element){
+    //         let colorInventoryColors = "";
+    //         $.each(element.attributes.colors, async function(j,color){
+    //             inventoryData[color] = parseInt(element.qty_on_hand);
+    //             let element_color_style = "background-color:"+color+";"
+    //             let colorsHexVal = await replaceColorSwatchWithHexaCodes(color,"color");
+    //             if(colorsHexVal != null && colorsHexVal[color] != undefined){
+    //                 if(typeof colorsHexVal[color].hexcode != 'undefined'){
+    //                     element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
+    //                 }
+    //                 else if (typeof colorsHexVal[element_color].file != 'undefined') {
+    //                     element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
+    //                 }
+    //             }
+    //             colorInventoryColors = '<li role="presentation"><a class="Color-box" data-value="'+color+'" style="'+element_color_style+'" role="menuitem" tabindex="-1" href="javascript:;"></a></li>';
+    //             $('.js-inventory-colors').append(colorInventoryColors);
+    //         });
+    //     });
+    // }
+    // else {
+    //   $('#inventoryBlock').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>')
+    // }
     let productResponse = await getProductDetailById(pid)
-    console.log('productResponse',productResponse)
-    if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) {
+    // console.log('productResponse',productResponse)
+    
+    if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) 
+    {
+        let colorSection = "<tr>";
+        colorSection += $(".js_inventory_color").html();
+        colorSection += "</tr>";
+
+        let colorInventoryColors = "";
+
         $.each(productResponse.inventory, function(i,element){
-            let colorInventoryColors = "";
+            // console.log('element',element)
+            let qty_on_hand = '';
+            
+            if(element.qty_on_hand != null && element.qty_on_hand != undefined && element.qty_on_hand != ""){
+                qty_on_hand = element.qty_on_hand;
+            }
+
+            if(element.min_qty != null && element.min_qty != undefined && element.min_qty != "" && qty_on_hand != ""){
+                if(qty_on_hand < element.min_qty){
+                    qty_on_hand = 'CALL';
+                }
+            }
+            
+            let product_sku = '';
+
+            if(element.sku != null && element.sku != undefined && element.sku != ""){
+                product_sku = element.sku;
+            }
+            
             $.each(element.attributes.colors, async function(j,color){
-                inventoryData[color] = parseInt(element.qty_on_hand);
+                // console.log('color',color)
+                let color_name = color;
+                
                 let element_color_style = "background-color:"+color+";"
                 let colorsHexVal = await replaceColorSwatchWithHexaCodes(color,"color");
                 if(colorsHexVal != null && colorsHexVal[color] != undefined){
@@ -204,52 +258,72 @@ $(document).on('click','#js-check-inventory', async function (e) {
                         element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
                     }
                 }
-                colorInventoryColors = '<li role="presentation"><a class="Color-box" data-value="'+color+'" style="'+element_color_style+'" role="menuitem" tabindex="-1" href="javascript:;"></a></li>';
-                $('.js-inventory-colors').append(colorInventoryColors);
+                
+                colorSection = colorSection.replace("#data.inventory_color_name#",color_name);
+                colorSection = colorSection.replace("#data.inventory_color_sku#",product_sku);
+                colorSection = colorSection.replace("#data.inventory_color#",'<span class="js-inventory_color_box" style="'+element_color_style+'"></span>');
+                colorSection = colorSection.replace("#data.qty_on_hand#",qty_on_hand);
+
+                if(element.inventory_expected != null && element.inventory_expected != undefined && element.inventory_expected != ""){
+                    colorSection = colorSection.replace("#data.inventory_expected#",element.inventory_expected);
+                }
+                else{
+                    colorSection = colorSection.replace("#data.inventory_expected#","-");                    
+                }
+                
+                if(element.inventory_arrival_date != null && element.inventory_arrival_date != undefined && element.inventory_arrival_date != ""){
+                    colorSection = colorSection.replace("#data.inventory_arrival_date#",element.inventory_arrival_date);
+                }
+                else{
+                    colorSection = colorSection.replace("#data.inventory_arrival_date#","-");                    
+                }
+                
+                $( colorSection ).insertAfter( ".js_inventory_color" );
             });
         });
     }
-    else {
-      $('#inventoryBlock').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>')
+    else{
+        $('#inventory-look').find('.modal-body').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>')
     }
+    hidePageAjaxLoading();
 });
-$(document).on('click','.js-inventory-colors li', function (e) {
-    if($(this).find('a').attr("style") != 'undefined' && $(this).find('a').attr("style") != '') {
-        $('.js-current-color').attr('data-value',$(this).find('a').data("value"))
-        $('.js-current-color').attr('style',$(this).find('a').attr("style"))
-    }
-});
-$(document).on('click','.js-inventory-submit', function (e) {
-    let colorName = $('.js-current-color').attr('data-value');
-    let enteredQty = $('.js-inventory-quantity').val();
+// $(document).on('click','.js-inventory-colors li', function (e) {
+//     if($(this).find('a').attr("style") != 'undefined' && $(this).find('a').attr("style") != '') {
+//         $('.js-current-color').attr('data-value',$(this).find('a').data("value"))
+//         $('.js-current-color').attr('style',$(this).find('a').attr("style"))
+//     }
+// });
+// $(document).on('click','.js-inventory-submit', function (e) {
+//     let colorName = $('.js-current-color').attr('data-value');
+//     let enteredQty = $('.js-inventory-quantity').val();
 
-    if(colorName == undefined || colorName == '') {
-        $('.js-inventory-msg').removeClass('hide')
-        $('.js-inventory-msg').css('color','red');
-        $('.js-inventory-msg').html('Please Select Color.');
-        return false;
-    }
-    else if(Math.floor(enteredQty) == enteredQty && $.isNumeric(enteredQty)) {
-        if(enteredQty <= inventoryData[colorName]) {
-            $('.js-inventory-msg').removeClass('hide')
-            $('.js-inventory-msg').css('color','green');
-            $('.js-inventory-msg').html('In Stock');
-            return false;
-        }
-        else {
-            $('.js-inventory-msg').removeClass('hide')
-            $('.js-inventory-msg').css('color','red');
-            $('.js-inventory-msg').html('Not In Stock');
-            return false;
-        }
-    }
-    else {
-        $('.js-inventory-msg').removeClass('hide')
-        $('.js-inventory-msg').css('color','red');
-        $('.js-inventory-msg').html('Please Enter Valid Quantity.');
-        return false;
-    }
-});
+//     if(colorName == undefined || colorName == '') {
+//         $('.js-inventory-msg').removeClass('hide')
+//         $('.js-inventory-msg').css('color','red');
+//         $('.js-inventory-msg').html('Please Select Color.');
+//         return false;
+//     }
+//     else if(Math.floor(enteredQty) == enteredQty && $.isNumeric(enteredQty)) {
+//         if(enteredQty <= inventoryData[colorName]) {
+//             $('.js-inventory-msg').removeClass('hide')
+//             $('.js-inventory-msg').css('color','green');
+//             $('.js-inventory-msg').html('In Stock');
+//             return false;
+//         }
+//         else {
+//             $('.js-inventory-msg').removeClass('hide')
+//             $('.js-inventory-msg').css('color','red');
+//             $('.js-inventory-msg').html('Not In Stock');
+//             return false;
+//         }
+//     }
+//     else {
+//         $('.js-inventory-msg').removeClass('hide')
+//         $('.js-inventory-msg').css('color','red');
+//         $('.js-inventory-msg').html('Please Enter Valid Quantity.');
+//         return false;
+//     }
+// });
 // inventory end
 
 // order sample start
