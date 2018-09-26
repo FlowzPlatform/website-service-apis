@@ -73,7 +73,7 @@
 .print-product-detail span{padding-bottom:10px} */
 .info-menu ul li > a{border-right: 0;}
 .header-loging .dropdown-menu.user-dropdown li{ text-align: left; padding: 0; width: 100%;}
-.pfunction a { margin-left: 1px; }
+/* .pfunction a { margin-left: 1px; } */
 .product-showcase {
     padding-top: 15px !important;
     font-family: 'Lato', sans-serif !important;
