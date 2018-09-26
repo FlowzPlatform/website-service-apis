@@ -64,39 +64,39 @@ body {
 <div class="product-functions">
 <div class="productFL">
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" /><a href="javascript:void(0);" id="sell_sheet" target="_blank">Sell Sheet</a>
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954933/websites/images/salesheet.png" /><a href="javascript:void(0);" id="sell_sheet" target="_blank">Sell Sheet</a>
     </div>
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/art.png" /><a href="javascript:void(0);" id="download_art_template" target="_blank">Art Template</a>
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954953/websites/images/art.png" /><a href="javascript:void(0);" id="download_art_template" target="_blank">Art Template</a>
     </div>
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/images.png" /><a href="javascript:void(0);" id="download_image"> Hi-Res Images</a>
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954970/websites/images/images.png" /><a href="javascript:void(0);" id="download_image">Hi-Res Images</a>
     </div>
 
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/emailicon.png">    
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954988/websites/images/emailicon.png">    
         <a href="javascript:void(0);" id="js-email-product" data-toggle="modal"
         data-target="#emailProduct">Email This Page</a>
     </div>
     <div class="pfunction js-product-detail-print-section">
-        <img src="http://www.ameriknmx.com/media/icon/print.png">
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537955007/websites/images/print.png">
         <a href="javascript:void(0)" class="js-product-detail-print-product">Print Page</a></div>
     </div>
 
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/art.png" />
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954953/websites/images/art.png" />
         <a href="javascript:void(0);" id="download_product_template" target="_blank">
             Product Template
         </a>
     </div>
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" />
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954933/websites/images/salesheet.png" />
         <a href="javascript:void(0);" id="download_gcc_template" target="_blank">
             Safety Document
         </a>
     </div>
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" />
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954933/websites/images/salesheet.png" />
         <a href="javascript:void(0);" id="download_special_pricing" target="_blank">
             Special Pricing
         </a>
@@ -112,7 +112,7 @@ body {
 <div id="emailProduct" role="dialog" class="modal fade model-popup-black">
     <div class="modal-dialog">
         <div class="modal-content"><a aria-label="Close" data-dismiss="modal" href="javascript:void(0);"
-            class="close">×</a>
+            class="close">x</a>
             <div class="modal-header">
                 <h1 class="modal-title"><i class="fa fa-envelope fa-fw"></i> Email Product</h1>
             </div>
@@ -559,7 +559,7 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
 <div class="modal fade model-popup-black " id="setup" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-            <a href="#" class="close" data-dismiss="modal" aria-label="Close">×</a>
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">x</a>
 			<div class="modal-header">
 				<h1 class="modal-title"><i class="strip inventory-popup-strip"></i> Setup Charges</h1>
 			</div>
@@ -573,7 +573,7 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
 <div class="modal fade model-popup-black" id="prop-charges" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-            <a href="#" class="close" data-dismiss="modal" aria-label="Close">×</a>
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">x</a>
 			<div class="modal-header">
 				<h1 class="modal-title"><i class="fa fa-exclamation-triangle"></i> Prop 65 Warning</h1>
 			</div>

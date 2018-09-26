@@ -182,6 +182,7 @@ $(document).ready(function(){
 // inventory start
 let inventoryData = [];
 $(document).on('click','#js-check-inventory', async function (e) {
+    $('#inventory-look').find('.modal-body').css('visibility','hidden');
     showPageAjaxLoading();
     // $('.js-inventory-msg').addClass('hide')
     // $('.js-inventory-colors').html('');
@@ -215,10 +216,11 @@ $(document).on('click','#js-check-inventory', async function (e) {
     // }
     let productResponse = await getProductDetailById(pid)
     // console.log('productResponse',productResponse)
-    
+    $(".inventory-table ").find("tr:gt(1)").remove();
+    let colorSection = "";
     if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) 
     {
-        let colorSection = "<tr>";
+        colorSection = "<tr>";
         colorSection += $(".js_inventory_color").html();
         colorSection += "</tr>";
 
@@ -281,9 +283,11 @@ $(document).on('click','#js-check-inventory', async function (e) {
                 $( colorSection ).insertAfter( ".js_inventory_color" );
             });
         });
+        $('#inventory-look').find('.modal-body').css('visibility','visible');
     }
     else{
-        $('#inventory-look').find('.modal-body').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>')
+        $('#inventory-look').find('.modal-body').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>');
+        $('#inventory-look').find('.modal-body').css('visibility','visible');
     }
     hidePageAjaxLoading();
 });
@@ -410,7 +414,7 @@ $(document).on('click','#sample_submit',function (e) {
             productJsonData['form_data'] = orderSample;
             productJsonData['website_id'] = website_settings['projectID'];
 
-            console.log('productJsonData == ',productJsonData)
+            // console.log('productJsonData == ',productJsonData)
 
             // $.ajax({
             //     type : 'POST',
