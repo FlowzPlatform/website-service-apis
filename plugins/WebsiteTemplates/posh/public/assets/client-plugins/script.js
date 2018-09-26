@@ -540,6 +540,17 @@ $(document).ready(function(){
         if(ww>1024) {$(".top-search-block").css({'display': ''});}
     });
 
+    // DATEPICKER START 
+	$('.date').each(function(){
+        $(this).datetimepicker({
+            format: 'MM/dd/yyyy',
+            pickTime: false
+            })
+        .on('changeDate', function(e){
+            $(this).datetimepicker('hide');
+        });
+    });
+    // DATEPICKER END
 });
 
 $( window ).resize(function() {

@@ -332,10 +332,7 @@ $(document).on('click','#sample_submit',function (e) {
         rules: {
             "sample_fname" : "required",
             "sample_lname" : "required",
-            "sample_phone" : {
-                required:true,
-                // minlength: 10
-            },
+            "sample_phone" : "required",
             "sample_email":{
                 required:true,
                 email: true
@@ -344,10 +341,7 @@ $(document).on('click','#sample_submit',function (e) {
         messages: {
             "sample_fname" : "Please Enter first name.",
             "sample_lname" : "Please Enter last name.",
-            "sample_phone" : {
-                required : "Please enter phone number.",
-                // minlength: "Please enter valid phone number."
-            },
+            "sample_phone" : "Please enter phone number.",
             "sample_email":{
                 required:"Please enter email",
                 email: "Please enter valid email."
@@ -416,28 +410,28 @@ $(document).on('click','#sample_submit',function (e) {
             productJsonData['form_data'] = orderSample;
             productJsonData['website_id'] = website_settings['projectID'];
 
-            // console.log('productJsonData == ',productJsonData)
+            console.log('productJsonData == ',productJsonData)
 
-            $.ajax({
-                type : 'POST',
-                url : project_settings.request_quote_api_url,
-                data : productJsonData,
-                cache: false,
-                dataType : 'json',
-                success : function(response_data) {
-                    if(response_data!= "") {
-                        hidePageAjaxLoading()
-                        showSuccessMessage("Email Sent Successfully.");
-                        window.location = "orderSampleSuccess.html";
-                        return false;
-                    }
-                    else if(response_data.status == 400) {
-                        hidePageAjaxLoading()
-                        showErrorMessage("Internal Server Error.");
-                        return false;
-                    }
-                }
-            });
+            // $.ajax({
+            //     type : 'POST',
+            //     url : project_settings.request_quote_api_url,
+            //     data : productJsonData,
+            //     cache: false,
+            //     dataType : 'json',
+            //     success : function(response_data) {
+            //         if(response_data!= "") {
+            //             hidePageAjaxLoading()
+            //             showSuccessMessage("Email Sent Successfully.");
+            //             window.location = "orderSampleSuccess.html";
+            //             return false;
+            //         }
+            //         else if(response_data.status == 400) {
+            //             hidePageAjaxLoading()
+            //             showErrorMessage("Internal Server Error.");
+            //             return false;
+            //         }
+            //     }
+            // });
         
             return false;
         }
