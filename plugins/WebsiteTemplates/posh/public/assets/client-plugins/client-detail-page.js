@@ -144,7 +144,7 @@ $(document).ready( async function(){
         // END QUANTITY PRICE TABLE END
         //RECENTLY VIEWED PRODUCTS
             $("#owl-carousel-recently-products").owlCarousel({
-                // navigation: true,
+                navigation: true,
                 items:6,
                 autoPlay: 3200,
                 margin: 10,
@@ -159,10 +159,10 @@ $(document).ready( async function(){
                 itemsMobile: [399, 1],
                 singleItem: false,
                 itemsScaleUp: false,
-                // afterInit: function (elem) {
-                //     var that = this
-                //     that.owlControls.prependTo(elem)
-                // }
+                afterInit: function (elem) {
+                    var that = this
+                    that.owlControls.prependTo(elem)
+                }
             });
         // Zoom Image
         $('.product-gallery').zoom({ on:'click' });
