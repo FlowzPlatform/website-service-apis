@@ -6,8 +6,10 @@
                     <div class="common-title">
                         <h4 class="most-popular-title">Recent Viewed Products</h4>
                     </div>                    
-                    <div id="owl-carousel-recently-products" class="owl-carousel">
-                    </div>
+                    <div class="row" style="display:flex;">
+                        <div id="owl-carousel-recently-products" class="owl-carousel">
+                        </div>
+                    </div>    
                 </div>
             </div>
         </div>
