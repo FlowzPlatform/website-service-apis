@@ -182,6 +182,7 @@ $(document).ready(function(){
 // inventory start
 let inventoryData = [];
 $(document).on('click','#js-check-inventory', async function (e) {
+    $('#inventory-look').find('.modal-body').css('visibility','hidden');
     showPageAjaxLoading();
     // $('.js-inventory-msg').addClass('hide')
     // $('.js-inventory-colors').html('');
@@ -215,10 +216,11 @@ $(document).on('click','#js-check-inventory', async function (e) {
     // }
     let productResponse = await getProductDetailById(pid)
     // console.log('productResponse',productResponse)
-    
+    $(".inventory-table ").find("tr:gt(1)").remove();
+    let colorSection = "";
     if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) 
     {
-        let colorSection = "<tr>";
+        colorSection = "<tr>";
         colorSection += $(".js_inventory_color").html();
         colorSection += "</tr>";
 
@@ -281,9 +283,11 @@ $(document).on('click','#js-check-inventory', async function (e) {
                 $( colorSection ).insertAfter( ".js_inventory_color" );
             });
         });
+        $('#inventory-look').find('.modal-body').css('visibility','visible');
     }
     else{
-        $('#inventory-look').find('.modal-body').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>')
+        $('#inventory-look').find('.modal-body').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>');
+        $('#inventory-look').find('.modal-body').css('visibility','visible');
     }
     hidePageAjaxLoading();
 });
@@ -332,10 +336,7 @@ $(document).on('click','#sample_submit',function (e) {
         rules: {
             "sample_fname" : "required",
             "sample_lname" : "required",
-            "sample_phone" : {
-                required:true,
-                // minlength: 10
-            },
+            "sample_phone" : "required",
             "sample_email":{
                 required:true,
                 email: true
@@ -344,10 +345,7 @@ $(document).on('click','#sample_submit',function (e) {
         messages: {
             "sample_fname" : "Please Enter first name.",
             "sample_lname" : "Please Enter last name.",
-            "sample_phone" : {
-                required : "Please enter phone number.",
-                // minlength: "Please enter valid phone number."
-            },
+            "sample_phone" : "Please enter phone number.",
             "sample_email":{
                 required:"Please enter email",
                 email: "Please enter valid email."
@@ -366,6 +364,8 @@ $(document).on('click','#sample_submit',function (e) {
             let orderSample = {};
             let productJsonData = {};
             let sampleColors = [];
+            let membershipInfo = [];
+            let sampleInfo = [];
             let qtyTotal = singlePrice = 0;
 
             $('input[name^="sample_quantity"]').each(function() {
@@ -377,6 +377,19 @@ $(document).on('click','#sample_submit',function (e) {
                 }
             });
 
+            $('input[name^="membership_info"]').each(function() {
+                if ($(this).is(':checked')) {
+                    membershipInfo.push($(this).val());
+                }
+            });
+            
+            $('input[name^="sample_info"]').each(function() {
+                if ($(this).is(':checked')) {
+                    sampleInfo.push($(this).val());
+                }
+            });
+
+            console.log('get_product_details.pricing == ',get_product_details.pricing)
             if(get_product_details.pricing != undefined){
                 $.each(get_product_details.pricing, function(index,element){
                     if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global") {
@@ -397,13 +410,20 @@ $(document).on('click','#sample_submit',function (e) {
                 });
             }
 
+            if(singlePrice == '0.00' || singlePrice <= 0) {
+                showErrorMessage("Please enter more number of quantites.");
+                return false;
+            }
+
             let samplePrice = parseFloat(singlePrice * qtyTotal).toFixed(project_settings.price_decimal);
             
             for (var input in form_data){
-                let value = form_data[input]['value'];
+                let value = form_data[input]['value'].trim();
                 orderSample[form_data[input]['name']] = value;
             }
             orderSample['sampleColors'] = sampleColors;
+            orderSample['membershipInfo'] = membershipInfo;
+            orderSample['sampleInfo'] = sampleInfo;
             orderSample['samplePrice'] = samplePrice;
             orderSample['singlePrice'] = singlePrice;
             orderSample['totalQty'] = qtyTotal;
@@ -411,6 +431,8 @@ $(document).on('click','#sample_submit',function (e) {
             orderSample['slug'] = 'posh-order-sample';
 
             delete orderSample['sample_quantity[]'];
+            delete orderSample['membership_info[]'];
+            delete orderSample['sample_info[]'];
             delete orderSample['sample_submit'];
 
             productJsonData['form_data'] = orderSample;
