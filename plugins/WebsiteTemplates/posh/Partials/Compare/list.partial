@@ -23,7 +23,7 @@
                                     <i class="priceProd">#data.price#</i>
                                 </i>
                                 <span>Qty.
-                                    <input type="text" class="js-only-interger js_quantity_input" value="#data.min_qty#" name="qty" data-min-qty="#data.min_qty#" data-product-id="#data.id#">
+                                    <input type="text" class="js-only-interger js_quantity_input" value="#data.min_qty#" name="qty" data-min-qty="#data.min_qty#" data-product-id="#data-product-id#" data-org-id="#data-id#">
                                 </span>
                             </div>
                         </td>
