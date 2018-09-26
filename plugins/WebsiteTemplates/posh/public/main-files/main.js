@@ -2,9 +2,14 @@
 
 document.onreadystatechange = function () {
     var state = document.readyState
-    if (state == 'complete') {
+    if (state == 'interactive') {
+        // $('#posh-contents').css("visibility","hidden");
+    } 
+    else if (state == 'complete') {
         document.getElementById('interactive');
         $('#preloader').css("visibility","hidden");
+        // $('#posh-load').css("visibility","hidden");
+        // $('#posh-contents').css("visibility","visible");
     }
 }
 
