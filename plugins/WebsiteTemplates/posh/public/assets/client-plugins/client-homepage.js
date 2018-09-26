@@ -1,3 +1,14 @@
+// $(function() {
+//     $('.lazyLoad').Lazy({
+//         scrollDirection: 'vertical',
+//         effect: 'fadeIn',
+//         visibleOnly: true,
+//         onError: function(element) {
+//             console.log('error loading ' + element.data('src'));
+//         }
+//     });
+// });
+
 $(document).ready(async function(){
     // Awards
     $(".owl-brand").closest(".row").css({"display": "flex"});
@@ -23,9 +34,9 @@ $(document).ready(async function(){
             if(replaceProductBox != ''){
                 tagHtmlList.find('.js-list').html(replaceProductBox)
                 tagHtmlList.removeClass('hide')
-                tagHtmlList.find("#owl-featured-products").closest(".row").css({"display": "flex"});
+                tagHtmlList.find("#owl-carousel-recommeded").closest(".row").css({"display": "flex"});
                 
-                $("#owl-featured-products").owlCarousel({
+                $("#owl-carousel-recommeded").owlCarousel({
                     navigation: true,
                     items:6,
                     autoPlay: 3200,

@@ -1,52 +1,52 @@
 <div class="col-lg-12 col-md-12 padding-0 hide js-tag-featured-product-list"  data-slug="featured-products">
     <div class="pro-overflow">
-        <div class="slider-wrapper">
-            <div class="common-title fpt">
-                <h4 class="most-popular-title">
-                    Featured Products
-                </h4>
-            </div>
-            <div class="row">
-                <div id="owl-featured-products" class="owl-carousel recommeded-product-slider owl-loaded owl-drag js-list">
-                    <div class="item js-product-box product-#data-id#">
-                        <div class="pro-box">
-                            <div class="pro-image box01">
-                                <div class="product-flag-block">
-                                    <style>
-                                        .product-flag-block .product-label.#data.tagSlug# { background: #data.tagColor#  }
-                                        .product-flag-block .product-label.#data.tagSlug#:before { border-top-color: #data.tagColor#  }
-                                        .product-flag-block .product-label.#data.tagSlug#:after { border-bottom-color: #data.tagColor#  }
-                                        </style>
-                                    <div class="sales">
-                                        <div class="product-label f-featured #data.tagSlug#">
-                                            <h2 class="logo">#data.tagName#</h2>
+            <div class="slider-wrapper">
+                <div class="common-title fpt">
+                    <h4 class="most-popular-title">
+                        Featured Products
+                    </h4>
+                </div>
+                <div class="row">
+                        <div id="owl-carousel-recommeded" class="owl-carousel recommeded-product-slider owl-loaded owl-drag js-list">
+                                <div class="item js-product-box product-#data-id#">
+                                    <div class="pro-box">
+                                        <div class="pro-image box01">
+                                            <div class="product-flag-block">
+                                                <style>
+                                                  .product-flag-block .product-label.#data.tagSlug# { background: #data.tagColor#  }
+                                                  .product-flag-block .product-label.#data.tagSlug#:before { border-top-color: #data.tagColor#  }
+                                                  .product-flag-block .product-label.#data.tagSlug#:after { border-bottom-color: #data.tagColor#  }
+                                                  </style>
+                                                <div class="sales">
+                                                    <div class="product-label f-featured #data.tagSlug#">
+                                                        <h2 class="logo">#data.tagName#</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="product-img-blk">
+                                                <a class="item-title js-product-title" href="#data.product_link#">
+                                                    <img class="img-responsive center-block lazyLoad" src="#data.image#" alt="#data.title#" title="#data.title#" />
+                                                </a>
+                                            </div>
                                         </div>
+                                        <div class="pro-desc">
+                                            <div class="item-code">Item# : #data.sku#</div>
+                                            <a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
+                                            <div class="item-price">#data.currency# #data.price#</div>
+                                            <div class="list-quantity-block"></div>
+                                            <div class="pro-button">
+                                                <ul>
+                                                    <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
-                                <div class="clearfix"></div>
-                                <div class="product-img-blk">
-                                    <a class="item-title js-product-title" href="#data.product_link#">
-                                        <img class="img-responsive center-block lazyLoad" src="#data.image#" alt="#data.title#" title="#data.title#" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="pro-desc">
-                                <div class="item-code">Item# : #data.sku#</div>
-                                <a class="item-title js-product-title" href="#data.product_link#">#data.title#</a>
-                                <div class="item-price">#data.currency# #data.price#</div>
-                                <div class="list-quantity-block"></div>
-                                <div class="pro-button">
-                                    <ul>
-                                        <li><a href="javascript:void(0);" data-id="#data-id#" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="clearfix"></div>
                         </div>
-                    </div>
                 </div>
             </div>
-        </div>
     </div>
  </div>
