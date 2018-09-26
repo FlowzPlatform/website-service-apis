@@ -56,136 +56,142 @@
     </div>
 </div>
 
-<div class="modal fade model-popup-black " id="shipping_estimator_model" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade model-popup-black " id="shipping_estimator_model" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-md shippingng-estimator-model">
         <div class="modal-content">
             <a href="#" class="close" data-dismiss="modal" aria-label="Close">&times;</a>
             <div class="modal-header">
-                <h1 class="modal-title"><i class="strip estimator-popup-strip"></i>Shipping Estimator </h1>
+                <h1 class="modal-title" ><i class="strip estimator-popup-strip"></i>Shipping Estimator </h1>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="padding: 0px;">
                 <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <h3><span class="estimatorProductName"></span></h3>
-                    </div>
-                    <div class="col-sm-12 text-center">
-                        <h3><span class="item-code-no estimatorProductSku"></span></h3>
+                    <div class="col-sm-12">
+                        <h3>SKU: <span class="estimatorProductSku" style="color: #000"></span> 
+                            <span class="item-code-no estimatorProductName" style="color: #000"></span>
+                        </h3>
                     </div>
                 </div>
                 <form name="shipping_estimator" id="calculate_shipping_estimator">
                     <div class="shippingng-estimator-popup">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="row">
-                                <div class="col-sm-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Quantity :</label><span class="red">*</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" name="qty" data-original-title="quantity" data-placement="bottom" tabindex="1" class="input">
-                                        <!-- <ul class="error-message">
-                                            <li>Enter Quantity</li>
-                                        </ul> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="row">
-                              <div class="col-sm-4 col-xs-12">
-                                  <div class="form-group">
-                                      <label>Country :</label><span class="red">*</span>
-                                  </div>
-                              </div>
-                              <div class="col-sm-6 col-xs-12">
-                                  <div class="form-group inp-parts shippingEstimatorCountry">
-                                      <select class="custom-select js-country" style="width: 100%;height: 30px;" id="shipping_estimator_country" name="country" tabindex="2" data-placement="bottom">
-                                        <option value="" selected="selected">Select Country</option>
-                                      </select>
-                                      <!-- <ul class="error-message">
-                                          <li>Enter Valid Country!</li>
-                                      </ul> -->
-                                  </div>
-                              </div>
-
-                          </div>
-                                  </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="row">
-                                <div class="col-sm-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Zip Code :</label><span class="red">*</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" name="zip_code" data-original-title="Zip Code" data-placement="bottom" tabindex="3" class="input">
-                                        <!-- <ul class="error-message">
-                                            <li>Enter Valid Zipcode!</li>
-                                        </ul> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ship-option">
-                            <div class="row shippingEstimator-checkbox">
-                                <div class="col-sm-4 col-xs-12">
-                                    <div class="form-group pull-left">
-                                        <label>Residential Address? :</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="form-group form-option pull-left">
-                                        <div class="checkbox">
-                                            <input type="checkbox" id="checkbox-mailing" tabindex="4">
-                                            <label for="checkbox-mailing"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ship-option">
-                            <div class="row shippingEstimator-checkbox">
-                                <div class="col-sm-4 col-xs-12">
-                                    <div class="form-group pull-left">
-                                        <label>Shipping Method :<span class="red">*</span></label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="form-group form-option pull-left">
-                                        <div class="checkbox">
-                                            <input id="checkbox18" tabindex="5" name="shipping_type" class="css-checkbox" value="ups" type="checkbox" />
-                                            <label for="checkbox18" class="css-label font-style-normal">UPS</label>
-                                        </div>
-                                        <!-- <div class="shippingEstimator-checkbox checkbox">
-                                            <input id="checkbox19" class="css-checkbox" type="checkbox" />
-                                            <label for="checkbox19" class="css-label font-style-normal">FEDEX</label>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="text-center">
-                                <input type="button" value="Submit" class="virtual-modal-btn js-submit-btn-rate-calculation">
-                                <input type="button" value="Reset" class="virtual-modal-btn js-reset-btn-rate-calculation">
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
+                  
                         <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 5px 45px 12px 45px;">
-                                <table id="estimatorResponse" style="width: 100% ! important; padding-bottom: 10px; display:none;">
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                            <div class="col-sm-2 col-xs-12">
+                                <div class="form-group">
+                                    <label>Quantity :</label><span class="red">*</span>                                         
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                   <input type="text" name="qty" data-original-title="Quantity" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
+                                    <!-- <ul class="error-message">
+                                        <li>Enter Quantity</li>
+                                    </ul> -->                                           
+                                </div>
+                            </div>
+                             <div class="col-sm-2 col-xs-12">
+                                <div class="form-group">
+                                    <label>FOB :</label><span class="red">*</span>                                          
+                                </div>
+                            </div>
+                             <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                   <input type="text" id="estimator_fob" name="estimator_fob" data-original-title="FOB" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input" disabled="true">                                         
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-xs-12">
+                                <div class="form-group">
+                                    <label>Country</label>                                           
+                                </div>
+                            </div>
+                             <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-group inp-parts shippingEstimatorCountry">
+                                        <select class="custom-select js-country" style="width: 100%;height: 30px;" id="shipping_estimator_country" name="country" tabindex="2" data-placement="bottom">
+                                            <option value="" selected="selected">Select Country</option>
+                                            <option value="US" selected="">United States</option>
+                                        </select>
+                                    </div>                                           
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-xs-12">
+                                <div class="form-group">
+                                    <label>Destination Zip Code :</label>                                           
+                                </div>
+                            </div>
+                             <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                   <input type="text" name="zip_code" data-original-title="Zip Code" title="" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
+                                    <!-- <ul class="error-message">
+                                        <li>Enter Valid Zipcode!</li>
+                                    </ul> -->                                           
+                                </div>
+                            </div>
+                             <div class="col-lg-6 col-xs-12">
+                                <div class="form-group pull-left">
+                                    <label>Residence :</label>                                      
+                                </div>
+                                <div class="form-group form-option pull-left">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="checkbox-mailing">
+                                        <label for="checkbox-mailing"></label>
+                                    </div> 
+                                </div>
                             </div>
                         </div>
-                        <div class="row text-center">
-                            <div id="estimatorError" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 5px 45px 12px 45px; color:red;display:none;"></div>
+                     
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            
+                           
                         </div>
                     </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="text-center">
+                            <input type="button" value="Submit" class="virtual-modal-btn js-submit-btn-rate-calculation">
+                            <input type="button" value="Revise Quote" class="virtual-modal-btn js-reset-btn-rate-calculation">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div> 
+                    
+                    <div class="text-center" id="shipping_estimator_response" style="padding: 15px; display: none;">
+                        <div class="shippin-main-block">                    
+                            <table class="table table-body inventory-table table-responsive">
+                                <tbody>
+                                    <tr>
+                                        <th>Quantity Per Carton </th>
+                                        <th>Carton Dimensions</th>
+                                        <th>Carton Weight </th>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="qty_per_carton"></td>
+                                        <td class="carton_dimensions"></td>
+                                        <td class="carton_weight"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table style="width: 50% ! important; padding-bottom: 10px;float: right">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-right right-padding"  style="">TOTAL CARTONS</td>
+                                        <td class="no_of_cartons"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right right-padding" >TOTAL WEIGHT</td>
+                                        <td class="total_weight"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="clearfix"></div>
+                            <table id="estimatorResponse" style="width: 100% ! important; padding-bottom: 10px;">
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    </div>       
                 </form>
             </div>
             <div class="modal-footer">

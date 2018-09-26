@@ -76,39 +76,45 @@ $(document).ready(function(){
         $('.checkout-holder').html('Select Country'); //clear country dropdown
         $('#estimatorResponse tbody').remove(); //removes table body of response
         $('#estimatorError').css({"display":"none"}) //hide error message
-        $('#estimatorResponse').css({"display":"none"}) // hide response table
+        $('#shipping_estimator_response').css({"display":"none"}) // hide response table
         // $(".js-country").html('');
         let productResponse = await getProductDetailById(pid)
-        console.log('productresponse',productResponse);
+        // console.log('productresponse',productResponse);
+
         getCountry();
         if(productResponse != null){
-          $('.estimatorProductSku').text(' Item#: '+productResponse.sku)
+          $('.estimatorProductSku').text(productResponse.sku)
           $('.estimatorProductName').text(productResponse.product_name)
+          let fob = productResponse.shipping[0];
+          // console.log(fob.fob_city +' '+ fob.fob_state_code +' '+ fob.fob_zip_code +' '+ fob.fob_country_code)
+          $('#estimator_fob').val(fob.fob_city +' '+ fob.fob_state_code +' '+ fob.fob_zip_code +' '+ fob.fob_country_code)
           // $('.itemCode').text('( Item Code:'+productResponse.sku+')')
         }
         $('.js-submit-btn-rate-calculation').on('click', async function() {
           let formData = $('form#calculate_shipping_estimator').serializeArray()
-          console.log('------formData',formData)
+          // console.log('------formData',formData)
           let shipInfo = {};
-          let shippingType = []
+          // let shippingType = []
           for (var input in formData){
               var value = formData[input]['value'];
-              if (formData[input]['name'] == 'shipping_type') {
-                  shippingType.push(value)
-              }
-              else {
+              // if (formData[input]['name'] == 'shipping_type') {
+              //     shippingType.push(value)
+              // }
+              // else {
                   shipInfo[formData[input]['name']] = value;
-              }
+              // }
           }
-          shipInfo['shippingType'] = shippingType;
-          if (shipInfo.qty != '' && shipInfo.zip_code != '' && shipInfo.country != '' && shipInfo.shippingType.length > 0) {
+          shipInfo['shippingType'] = ['ups'];
+          // if (shipInfo.qty != '' && shipInfo.zip_code != '' && shipInfo.country != '' && shipInfo.shippingType.length > 0) {
+          if (shipInfo.qty != '' && shipInfo.zip_code != '' && shipInfo.country != '') {
+              // console.log('inside fun',shipInfo.qty)
               if (shipInfo.qty > 0) {
                   showPageAjaxLoading();
                   let estimatorObject = {
                       'shipperInfo' : productResponse.shipping[0],
                       'shipToInfo' : shipInfo
                   };
-                  console.log('estimatorObject',estimatorObject)
+                  // console.log('estimatorObject',estimatorObject)
                   $.ajax({
                       type: 'POST',
                       url: project_settings.shipping_estimator_api_url,
@@ -116,7 +122,12 @@ $(document).ready(function(){
                       data:  estimatorObject,
                       dataType: 'json',
                       success: function (result) {
-                          console.log('result',result);
+                          // console.log('result',result);
+                          $('.qty_per_carton').text(result.packaging_info.qtyPerCartoon)
+                          $('.carton_dimensions').text(result.packaging_info.cartonLength +" 'L x "+ result.packaging_info.cartonWidth +" 'W x "+ result.packaging_info.cartonHeight + " 'H")
+                          $('.carton_weight').text(result.packaging_info.cartonWeight)
+                          $('.no_of_cartons').text(result.packaging_info.totalCartons)
+                          $('.total_weight').text(result.packaging_info.totalWeight)
                           // let old_tbody = document.getElementsByTagName('tbody')[0];
                           let tableMain = document.getElementById('estimatorResponse');
                           $('#estimatorResponse tbody').remove();
@@ -124,22 +135,22 @@ $(document).ready(function(){
                           tableMain.append(tableBody);
                           let markUpPer = 5;
                           let markUpValue;
-                          Object.keys(result).forEach(function eachKey(key) {
+                          Object.keys(result.estimatorResponse).forEach(function eachKey(key) {
                               var tr = document.createElement('TR');
                               tableBody.appendChild(tr);
                               var td = document.createElement('TD');
                               td.className="estimatorResult"
                               // td.className="text-right"
                               // td.className="right-padding"
-                              // td.width = "35%"
-                              // td.style={'padding': '0px 10px;'}
+                              td.width = "35%"
+                              td.style={'padding': '0px 10px;'}
                               td.appendChild(document.createTextNode(key));
                               tr.appendChild(td);
                               td = document.createElement('TD');
                               td.className="estimatorResult"
-                              markUpValue = (Number(result[key]) * markUpPer)/100;
-                              result[key] += markUpValue;
-                              td.appendChild(document.createTextNode(result[key].toFixed(2)));
+                              markUpValue = (Number(result.estimatorResponse[key]) * markUpPer)/100;
+                              result.estimatorResponse[key] += markUpValue;
+                              td.appendChild(document.createTextNode(result.estimatorResponse[key].toFixed(2)));
                               tr.appendChild(td);
                           });
                           // console.log('tableBody',tableBody)
@@ -147,7 +158,7 @@ $(document).ready(function(){
                           // console.log('old_tbody-----',old_tbody)
                           // old_tbody.parentNode.replaceChild(tableBody,old_tbody);
                           hidePageAjaxLoading()
-                          $('#estimatorResponse').css({"display":"block"})
+                          $('#shipping_estimator_response').css({"display":"block"}) // display response table
                           $(".estimatorResult").css({"padding": "3px 5px"});
                       },
                       error: function(err) {
@@ -173,9 +184,19 @@ $(document).ready(function(){
 
     $('.js-reset-btn-rate-calculation').on('click', async function() { 
         $('form#calculate_shipping_estimator')[0].reset();
+        // let formData = $('form#calculate_shipping_estimator').serializeArray()
+        // console.log('formData',formData)
+        // for (var input in formData){
+        //   console.log("formData[input]['name']",formData[input]['name'])
+        //   if (formData[input]['name'] != 'estimator_fob') {
+        //     formData[input]['value'] = '';
+        //   }
+        // }
         $('.checkout-holder').html('Select Country');
         $('#estimatorError').css({"display":"none"}) //hide error message
-        $('#estimatorResponse').css({"display":"none"}) // hide response table
+        $('#shipping_estimator_response').css({"display":"none"}) // hide response table
+        // $('#estimatorResponse').css({"display":"none"}) // hide response table
+
     })
 });
 

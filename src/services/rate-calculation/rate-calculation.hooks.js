@@ -5,6 +5,17 @@ var Rating = require('./ups/rating');
 var confirmShipment = new Rating('1CF36E0A07BE2146', 'officebeacon', 'XbbZC4DEaY9bpF');
 confirmShipment.useSandbox(true);
 confirmShipment.setJsonResponse(true);
+
+//global variables
+let cartonHeight = 0;
+let cartonLength = 0;
+let cartonWidth = 0;
+let cartonWeight = 0;
+let qtyPerCartoon = 0;
+let noOfBox = 0;
+let totalWeight = 0;
+//global variables
+
 //Rating.prototype.testRequest();
 //ups requirements
 
@@ -95,7 +106,18 @@ async function beforeCreate(hook) {
 
       if (data) {
         // console.log('data---',data);
-        hook.result = data;
+        let response = {};
+        response['packaging_info'] = {
+          'qtyPerCartoon' : qtyPerCartoon,
+          'cartonHeight' : cartonHeight,
+          'cartonLength' : cartonLength,
+          'cartonWidth' : cartonWidth,
+          'cartonWeight' : cartonWeight,
+          'totalCartons' : noOfBox,
+          'totalWeight' : totalWeight
+        };
+        response['estimatorResponse'] = data;
+        hook.result = response;
       }
     });
   }
@@ -127,11 +149,11 @@ function assignAddress(data) {
 }
 
 function generatePackage(data) {
-  let cartonHeight = 0;
-  let cartonLength = 0;
-  let cartonWidth = 0;
-  let cartonWeight = 0;
-  let qtyPerCartoon = 0;
+  cartonHeight = 0;
+  cartonLength = 0;
+  cartonWidth = 0;
+  cartonWeight = 0;
+  qtyPerCartoon = 0;
   let productWeight = 0;
   let weightArray = [];
 
@@ -158,7 +180,8 @@ function generatePackage(data) {
   console.log('qty---',qty);
   let qtyweight = (qty * productWeight);
 
-  let noOfBox;
+  noOfBox = 0;
+  totalWeight = 0;
   if (qtyPerCartoon != 0) {
     noOfBox = (Math.ceil(qty/qtyPerCartoon));
     totalWeight = qtyweight;
