@@ -364,6 +364,8 @@ $(document).on('click','#sample_submit',function (e) {
             let orderSample = {};
             let productJsonData = {};
             let sampleColors = [];
+            let membershipInfo = [];
+            let sampleInfo = [];
             let qtyTotal = singlePrice = 0;
 
             $('input[name^="sample_quantity"]').each(function() {
@@ -375,6 +377,19 @@ $(document).on('click','#sample_submit',function (e) {
                 }
             });
 
+            $('input[name^="membership_info"]').each(function() {
+                if ($(this).is(':checked')) {
+                    membershipInfo.push($(this).val());
+                }
+            });
+            
+            $('input[name^="sample_info"]').each(function() {
+                if ($(this).is(':checked')) {
+                    sampleInfo.push($(this).val());
+                }
+            });
+
+            console.log('get_product_details.pricing == ',get_product_details.pricing)
             if(get_product_details.pricing != undefined){
                 $.each(get_product_details.pricing, function(index,element){
                     if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global") {
@@ -395,13 +410,20 @@ $(document).on('click','#sample_submit',function (e) {
                 });
             }
 
+            if(singlePrice == '0.00' || singlePrice <= 0) {
+                showErrorMessage("Please enter more number of quantites.");
+                return false;
+            }
+
             let samplePrice = parseFloat(singlePrice * qtyTotal).toFixed(project_settings.price_decimal);
             
             for (var input in form_data){
-                let value = form_data[input]['value'];
+                let value = form_data[input]['value'].trim();
                 orderSample[form_data[input]['name']] = value;
             }
             orderSample['sampleColors'] = sampleColors;
+            orderSample['membershipInfo'] = membershipInfo;
+            orderSample['sampleInfo'] = sampleInfo;
             orderSample['samplePrice'] = samplePrice;
             orderSample['singlePrice'] = singlePrice;
             orderSample['totalQty'] = qtyTotal;
@@ -409,6 +431,8 @@ $(document).on('click','#sample_submit',function (e) {
             orderSample['slug'] = 'posh-order-sample';
 
             delete orderSample['sample_quantity[]'];
+            delete orderSample['membership_info[]'];
+            delete orderSample['sample_info[]'];
             delete orderSample['sample_submit'];
 
             productJsonData['form_data'] = orderSample;
@@ -416,26 +440,26 @@ $(document).on('click','#sample_submit',function (e) {
 
             // console.log('productJsonData == ',productJsonData)
 
-            // $.ajax({
-            //     type : 'POST',
-            //     url : project_settings.request_quote_api_url,
-            //     data : productJsonData,
-            //     cache: false,
-            //     dataType : 'json',
-            //     success : function(response_data) {
-            //         if(response_data!= "") {
-            //             hidePageAjaxLoading()
-            //             showSuccessMessage("Email Sent Successfully.");
-            //             window.location = "orderSampleSuccess.html";
-            //             return false;
-            //         }
-            //         else if(response_data.status == 400) {
-            //             hidePageAjaxLoading()
-            //             showErrorMessage("Internal Server Error.");
-            //             return false;
-            //         }
-            //     }
-            // });
+            $.ajax({
+                type : 'POST',
+                url : project_settings.request_quote_api_url,
+                data : productJsonData,
+                cache: false,
+                dataType : 'json',
+                success : function(response_data) {
+                    if(response_data!= "") {
+                        hidePageAjaxLoading()
+                        showSuccessMessage("Email Sent Successfully.");
+                        window.location = "orderSampleSuccess.html";
+                        return false;
+                    }
+                    else if(response_data.status == 400) {
+                        hidePageAjaxLoading()
+                        showErrorMessage("Internal Server Error.");
+                        return false;
+                    }
+                }
+            });
         
             return false;
         }

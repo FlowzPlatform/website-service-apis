@@ -338,7 +338,7 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                                 <div class="check-box-privacy">
                                     <div class="checkbox check-block">
-                                        <input type="checkbox" name="blank_sample" id="checkbox-blank" tabindex="9">
+                                        <input type="checkbox" name="sample_info[]" value="Blank Sample" id="checkbox-blank" tabindex="9">
                                         <label for="checkbox-blank">
                                             Blank Sample
                                         </label>
@@ -348,7 +348,7 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                                 <div class="check-box-privacy">
                                     <div class="checkbox check-block">
-                                        <input type="checkbox" name="random_sample" id="checkbox-random" tabindex="10">
+                                        <input type="checkbox" name="sample_info[]" value="Random Sample" id="checkbox-random" tabindex="10">
                                         <label for="checkbox-random">
                                             Random Sample
                                         </label>
@@ -410,7 +410,7 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
                                                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>ACCOUNT#</label>
-                                                        <input type="text" name="sample_account" class="input" tabindex="11">
+                                                        <input type="text" name="account" class="input" tabindex="11">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
@@ -459,7 +459,7 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
                                                     <div class="form-group">
                                                         <label>Preferred in Hand Date</label>
                                                         <div id="datetimepicker1" class="input-append date input-group date-block">
-                                                            <input data-format="mm/dd/yyyy" type="text" name="sample_inhand_date" class="form-control" tabindex="16">
+                                                            <input data-format="mm/dd/yyyy" type="text" name="inhand_date" class="form-control" tabindex="16">
                                                             <span class="add-on input-group-addon datepicker-color"><i class="fa fa-calendar"></i></span>
                                                         </div>
                                                     </div>
@@ -478,7 +478,7 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
                                 </div>
                                 <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
                                     <div class="form-group">
-                                        <label>Ship To Name </label><span class="red">*</span>
+                                        <label>Ship To Name </label>
                                         <input type="text" name="ship_to_name" class="input" tabindex="18">
                                     </div>
                                 </div>
@@ -496,7 +496,7 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
                                 </div>
                                 <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6">
                                     <div class="form-group">
-                                        <label>Address 1 </label><span class="red">*</span>
+                                        <label>Address 1 </label>
                                         <input type="text" name="address1" class="input" tabindex="21">
                                     </div>
                                 </div>
