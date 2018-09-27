@@ -4989,7 +4989,7 @@ div#inventory-look .modal-dialog {
 .responsive-tabs-container .accordion-link{display: none !important}
 .dec-price a.myButton.setup {
     margin-right: 0;
-    margin-top: 4px;
+/*    margin-top: 4px;*/
 }
 img.img-responsive.us-flag {
     display: inline-block;
