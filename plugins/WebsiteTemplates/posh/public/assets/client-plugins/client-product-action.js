@@ -287,15 +287,15 @@ $(document).on('click','#js-check-inventory', async function (e) {
                 colorSection = colorSection.replace("#data.inventory_color#",'<span class="js-inventory_color_box" style="'+element_color_style+'"></span>');
                 colorSection = colorSection.replace("#data.qty_on_hand#",qty_on_hand);
 
-                if(element.inventory_expected != null && element.inventory_expected != undefined && element.inventory_expected != ""){
-                    colorSection = colorSection.replace("#data.inventory_expected#",element.inventory_expected);
+                if(element.expected_qty != null && element.expected_qty != undefined && element.expected_qty != ""){
+                    colorSection = colorSection.replace("#data.inventory_expected#",element.expected_qty);
                 }
                 else{
                     colorSection = colorSection.replace("#data.inventory_expected#","-");                    
                 }
                 
-                if(element.inventory_arrival_date != null && element.inventory_arrival_date != undefined && element.inventory_arrival_date != ""){
-                    colorSection = colorSection.replace("#data.inventory_arrival_date#",element.inventory_arrival_date);
+                if(element.arrival_date != null && element.arrival_date != undefined && element.arrival_date != ""){
+                    colorSection = colorSection.replace("#data.inventory_arrival_date#",element.arrival_date);
                 }
                 else{
                     colorSection = colorSection.replace("#data.inventory_arrival_date#","-");                    
