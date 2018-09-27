@@ -26,26 +26,7 @@ if(pid != null) {
             },
         });
         return tmp;
-      }();
-  
-      if(get_product_details != null && get_product_details != undefined) {
-          // RECENTLY VIEWED PRODUCTS
-          let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
-          let recentViewedProducts = [];
-          if (localStorage.getItem(recentProductsName) != null) {
-              recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
-          }
-          
-          if(!(recentViewedProducts.includes(pid))) {
-              if(recentViewedProducts.length > 6) {
-                  recentViewedProducts.splice(0, 1);
-              }
-              recentViewedProducts.push(pid);
-          }
-          localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
-  
-        //   recentlyViewedProducts(recentViewedProducts);
-      }
+    }();
 }
 // console.log('get_product_details',get_product_details)
 
@@ -124,11 +105,11 @@ $(document).ready( async function(){
                      $.each(element.price_range,function(index,element2){
                        // console.log("in each condition");
                        if(element2.qty.lte != undefined){
-                          priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
+                          priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '-' + element2.qty.lte + '</div><div class="table-content" itemprop="price">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                         }
                         else
                         {
-                            priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
+                            priceRang += '<div><div class="table-heading">'+ element2.qty.gte + '+' + '</div><div class="table-content" itemprop="price">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</div></div>';
                         }
                          });
                      $(".quantity-table-col").html(priceRang);
@@ -163,7 +144,7 @@ $(document).ready( async function(){
         // END QUANTITY PRICE TABLE END
         //RECENTLY VIEWED PRODUCTS
             $("#owl-carousel-recently-products").owlCarousel({
-                // navigation: true,
+                navigation: true,
                 items:6,
                 autoPlay: 3200,
                 margin: 10,
@@ -178,10 +159,10 @@ $(document).ready( async function(){
                 itemsMobile: [399, 1],
                 singleItem: false,
                 itemsScaleUp: false,
-                // afterInit: function (elem) {
-                //     var that = this
-                //     that.owlControls.prependTo(elem)
-                // }
+                afterInit: function (elem) {
+                    var that = this
+                    that.owlControls.prependTo(elem)
+                }
             });
         // Zoom Image
         $('.product-gallery').zoom({ on:'click' });
@@ -448,22 +429,29 @@ function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
 
 //END -  RECENTLY VIEWED PRODUCTS
 
-//sample order
+//order sample
 if(get_product_details != null && get_product_details != undefined) {
-    $(document).on('click','#js-order-sample',async function () {
-        $("form#sample_order_form")[0].reset();
-        $("form#sample_order_form").find("ul.red").remove();
-        $('#sample_order_form .colorBoxItems').html('');
-        $('#sample_order_form .heading-2').html(get_product_details.product_name);
-        $('#sample_order_form .colorBoxItems').append('<div class="colorItem">'+get_product_details.sku+';</div>');
-        if(get_product_details.attributes.colors != undefined && get_product_details.attributes.colors.length > 0) {
+    let colorVal = "";
+    $("form#sample_order_form")[0].reset();
+    $("form#sample_order_form").find("ul.red").remove();
+    if(get_product_details.attributes.colors != undefined && get_product_details.attributes.colors.length > 0) {
+        let sampleColorDropdown = '';
+        $('#multi_color').html('');
+        $.each(get_product_details.attributes.colors, function(index_color,element_color){
+            colorVal = element_color.toLowerCase().replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
+            sampleColorDropdown += '<option value="'+colorVal+'">'+element_color+'</option>';
+        });
+
+        $('#multi_color').html(sampleColorDropdown);
+    }
+
+    $("#multi_color").change(async function() {
+        let seletedColors = $(this).val();
+        if(seletedColors != undefined && seletedColors.length > 0) {
             let sampleColorHtml = '';
             $('.sample_color_append').html('');
-            let colorsHexVal = await replaceColorSwatchWithHexaCodes(get_product_details.attributes.colors,"color");
-            $.each(get_product_details.attributes.colors, function(index_color,element_color){
-                let colorVal = element_color.toLowerCase();
-                colorVal = colorVal.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '_').replace(/^(-)+|(-)+$/g,'').toLowerCase();
-                
+            let colorsHexVal = await replaceColorSwatchWithHexaCodes(seletedColors,"color");
+            $.each(seletedColors, function(index_color,element_color){
                 let element_color_style = "background-color:"+element_color+";"
                 if(colorsHexVal != null && colorsHexVal[element_color] != undefined){
                     if(typeof colorsHexVal[element_color].hexcode != 'undefined'){
@@ -474,11 +462,22 @@ if(get_product_details != null && get_product_details != undefined) {
                     }
                 }
 
-                sampleColorHtml += '<tr> <td> <div class="checkbox_color" style="'+element_color_style+'" title="'+element_color+'"> <input class="js_color_checkbox" type="checkbox" name="sample_color[]" id="sample_'+colorVal+'" value="'+element_color+'" data-hex-code="'+element_color+'" /> <label for="Decoration_'+colorVal+'"></label> </div></td><td> <input type="text" name="sample_quantity[]" class="input" placeholder="Enter Quantity"> </td></tr>';
+                sampleColorHtml += '<tr> <td> <div class="checkbox_color" style="'+element_color_style+'" title="'+element_color+'"> <input class="js_color_checkbox" type="checkbox" name="sample_color[]" id="sample_'+colorVal+'" value="'+element_color+'" data-hex-code="'+element_color+'" tabindex="8" /> <label for="Decoration_'+colorVal+'"></label> </div></td><td> <input type="text" name="sample_quantity[]" class="input" placeholder="Enter Quantity"> </td></tr>';
             });
 
             $('.sample_color_append').html(sampleColorHtml);
         }
+        else if(seletedColors != undefined && seletedColors=='') {
+            $('.sample_color_append').html('');
+        }
+    });
+
+    $(document).on('click','#js-order-sample',function () {
+        $("form#sample_order_form")[0].reset();
+        $("form#sample_order_form").find("ul.red").remove();
+        $('#sample_order_form img').attr('src',$('#product_img').attr('src'));
+        $('#sample_order_form .heading-2').html(get_product_details.product_name);
+        $('#sample_order_form .colorBoxItems').html('<div class="colorItem">'+get_product_details.sku+';</div>');
     });
 }
 

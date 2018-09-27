@@ -62,7 +62,7 @@
         
     </div>
 </div>
-<div class="bottom-footer">
+<div id="js_display_virtual" class="bottom-footer">
 	<div class="container">
         <span class="pull-left">Copyright &copy; 2018 PoshXessories. All rights reserved</span>
         <span class="pull-right">Powered by : <a href="http://www.officebeacon.com" target="_blank">www.officebrain.com</a></span>

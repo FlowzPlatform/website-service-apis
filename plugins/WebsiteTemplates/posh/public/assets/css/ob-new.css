@@ -45,8 +45,8 @@
 .color-block .color-filter ul { margin-left: 0px; }
 .color-filter li > div { margin: 5px 2px; }
 .size-arc .radio, .size-arc .checkbox { margin-right: 10px; }
-.option-head a .caret-icon { background: url(../images/sprite.png) no-repeat -8px -39px; }
-.optional-panel.in .option-head a .caret-icon { background: url(../images/sprite.png) no-repeat -8px -75px; }
+.option-head a .caret-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -39px; }
+.optional-panel.in .option-head a .caret-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -75px; }
 .optional-panel.in .option-head a i { -moz-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -o-transform: rotate(-90deg); -ms-transform: rotate(-90deg); transform: rotate(-90deg); }
 .product-detail-tab .tab-content { margin-top: 0; border-top: none; padding-top: 7px; }
 .tab-content>.active { min-height: 200px; }

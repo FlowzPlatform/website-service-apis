@@ -2,7 +2,7 @@
     <aside class="quick-view-left">
         <div class="product-big-image">
             <div class="zoom product-gallery" id="c53481">
-                <img class="img-responsive lazyLoad" id="product_img" alt="Product image" title="Product image"
+                <img itemprop="image" class="img-responsive lazyLoad" id="product_img" alt="Product image" title="Product image"
                 />
                 <div class="zoom-col">
                     <p><i class="fa fa-search"></i>Click to zoom in</p>

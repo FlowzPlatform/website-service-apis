@@ -64,39 +64,39 @@ body {
 <div class="product-functions">
 <div class="productFL">
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" /><a href="javascript:void(0);" id="sell_sheet" target="_blank">Sell Sheet</a>
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954933/websites/images/salesheet.png" /><a href="javascript:void(0);" id="sell_sheet" target="_blank">Sell Sheet</a>
     </div>
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/art.png" /><a href="javascript:void(0);" id="download_art_template" target="_blank">Art Template</a>
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954953/websites/images/art.png" /><a href="javascript:void(0);" id="download_art_template" target="_blank">Art Template</a>
     </div>
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/images.png" /><a href="javascript:void(0);" id="download_image"> Hi-Res Images</a>
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954970/websites/images/images.png" /><a href="javascript:void(0);" id="download_image">Hi-Res Images</a>
     </div>
 
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/emailicon.png">    
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954988/websites/images/emailicon.png">    
         <a href="javascript:void(0);" id="js-email-product" data-toggle="modal"
         data-target="#emailProduct">Email This Page</a>
     </div>
     <div class="pfunction js-product-detail-print-section">
-        <img src="http://www.ameriknmx.com/media/icon/print.png">
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537955007/websites/images/print.png">
         <a href="javascript:void(0)" class="js-product-detail-print-product">Print Page</a></div>
     </div>
 
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/art.png" />
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954953/websites/images/art.png" />
         <a href="javascript:void(0);" id="download_product_template" target="_blank">
             Product Template
         </a>
     </div>
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" />
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954933/websites/images/salesheet.png" />
         <a href="javascript:void(0);" id="download_gcc_template" target="_blank">
             Safety Document
         </a>
     </div>
     <div class="pfunction">
-        <img src="http://www.ameriknmx.com/media/icon/salesheet.png" />
+        <img src="https://res.cloudinary.com/flowz/image/upload/v1537954933/websites/images/salesheet.png" />
         <a href="javascript:void(0);" id="download_special_pricing" target="_blank">
             Special Pricing
         </a>
@@ -112,7 +112,7 @@ body {
 <div id="emailProduct" role="dialog" class="modal fade model-popup-black">
     <div class="modal-dialog">
         <div class="modal-content"><a aria-label="Close" data-dismiss="modal" href="javascript:void(0);"
-            class="close">×</a>
+            class="close">x</a>
             <div class="modal-header">
                 <h1 class="modal-title"><i class="fa fa-envelope fa-fw"></i> Email Product</h1>
             </div>
@@ -245,46 +245,45 @@ body {
     </div>
 </div>
 
-<div id="checkInventory" role="dialog" class="modal fade model-popup-black">
-    <div class="modal-dialog">
+<div class="modal fade model-popup-black " id="inventory-look" tabindex="-1" role="dialog"  aria-hidden="true">
+	<div class="modal-dialog">
 		<div class="modal-content">
-            <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-label="Close">&times;</a>
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">&times;</a>
 			<div class="modal-header">
 				<h1 class="modal-title" ><i class="strip inventory-popup-strip"></i> Inventory look-up</h1>
 			</div>
 			<div class="modal-body">
-				<div class="inventory-main-block" id="inventoryBlock">
-					<table class="table table-head inventory-table table-responsive">
-	                    <tbody>
-	                    	<tr>
-	                            <th>Color </th>
-	                            <th>Quantity </th>
-	                            <th>Check Inventory </th>
-	                        </tr>
-	                    </tbody>
-	               	</table>
-	                <table class="table table-body inventory-table table-responsive">
-	                    <tbody>
-		                    <tr>
-		                        <td>
-		                            <div class="dropdown open">
-		                                <div class="dropdown-toggle" data-toggle="dropdown">
-		                                    <div class="color-block js-current-color"></div>
-		                                    <span class="caret"></span>
-		                                </div>
-		                                <ul class="dropdown-menu animated fadeIn js-inventory-colors" role="menu" aria-labelledby="dropdownMenu1">
-		                                </ul>
-		                            </div>
-		                        </td>
-		                        <td><input type="text" name="text" class="input js-inventory-quantity" placeholder="Enter Quantity"> </td>
-		                        <td class="inventry-btn"><input type="submit" class="btn-default js-inventory-submit" value="Check"> </td>
-		                    </tr>
-	                	</tbody>
-	                </table>
-                    <div class="inventory-msg">
-                        <span class="js-inventory-msg"></span>
+				<div class="inventory-main-block">       
+                    <table class="table table-body inventory-table table-responsive">
+                        <tbody>
+                            <tr class="js_inventory_color_head">
+                                <th>Color </th>
+                                <th>Color Name</th>
+                                <th>Product # </th>
+                                <th>Available </th>
+                                <th> Expected</th>
+                                <th>Arrival Date</th>
+                            </tr>
+                            <tr class="js_inventory_color hide">
+                                <td>#data.inventory_color#</td>
+                                <td>#data.inventory_color_name#</td>
+                                <td>#data.inventory_color_sku#</td>
+                                <td>#data.qty_on_hand#</td>
+                                <td>#data.inventory_expected#</td>
+                                <td>#data.inventory_arrival_date#</td>
+                            </tr>
+                        </tbody>
+                    </table>
+				
+                    <div class="inv-text">
+                        <p>Inventory levels are based on orders in house and are subject to
+change. Next shipment information does not reflect orders placed
+against arriving inventory. Please contact customer service to
+confirm availability. </p><p> <b>Last Update 10/10/2018<br>
+*Call customer service for current inventory 1.909.628.9870</b>
+                        </p>
                     </div>
-				</div>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -298,76 +297,269 @@ body {
 </div>
 
 <div id="orderSample" role="dialog" class="modal fade model-popup-black">
-   <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-         <a href="#" class="close" data-dismiss="modal" aria-label="Close">&times;</a> 
-         <div class="modal-header">
-            <h1 class="modal-title">Order a Sample</h1>
-         </div>
-         <div class="modal-body">
-            <form name="sample_order_form" id="sample_order_form" method="POST">
-               <div class="title-block">
-                  <div class="row">
-                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
-                        <h1 class="heading-2">iPosh Stainless Steel 16oz Tumbler</h1>
-                     </div>
-                  </div>
-                  <div class="colorSkus">
-                     <div class="colorBoxTitle"> <strong>Item #:</strong> </div>
-                     <div class="colorBoxItems">
-                        <div class="colorItem"></div>
-                     </div>
-                  </div>
-                  <table class="table table-body inventory-table table-responsive">
-                     <tbody class="sample_color_append">
-                        <tr>
-                           <td>
-                              <div class="checkbox_color" style="" title="Red"> <input class="js_color_checkbox" type="checkbox" name="sample_color[]" id="sample_red" value="Red" data-hex-code="Red" /> <label for="Decoration_red"></label> </div>
-                           </td>
-                           <td> <input type="text" name="sample_quantity[]" class="input" placeholder="Enter Quantity"> </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-               <div class="row">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                     <div class="form-group">
-                        <label>First Name</label> <span class="mandatory-field">*</span> <input type="text" name="sample_fname" class="input">
-                     </div>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                     <div class="form-group">
-                        <label>Last Name</label> <span class="mandatory-field">*</span> <input type="text" name="sample_lname" class="input"> 
-                     </div>
-                  </div>
-                  <div class="col-sm-6 col-xs-12">
-                     <div class="form-group">
-                        <label>Email </label> <span class="mandatory-field">*</span> <input type="text" name="sample_email" class="input"> 
-                     </div>
-                  </div>
-                  <div class="col-sm-6 col-xs-12">
-                     <div class="form-group">
-                        <label> Phone</label> <span class="mandatory-field">*</span> <input type="text" name="sample_phone" class="input js-phone"> 
-                     </div>
-                  </div>
-                  <div class="col-sm-12 col-xs-12">
-                     <div class="form-group"> <label>Message</label> <textarea id="sample_message" name="sample_message" class="form-control" rows="4"></textarea> </div>
-                  </div>
-                  <div class="col-sm-12 col-xs-12"> <span class="required-field">* Required Fields</span> </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                     <div class="text-center"> <input type="submit" id="sample_submit" name="sample_submit" value="Submit" class="virtual-modal-btn"> </div>
-                  </div>
-               </div>
-            </form>
-         </div>
-      </div>
-   </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content"> <a href="#" class="close" data-dismiss="modal" aria-label="Close">&times;</a>
+            <div class="modal-header">
+                <h1 class="modal-title">Order a Sample</h1>
+            </div>
+            <div class="modal-body">
+                <form name="sample_order_form" id="sample_order_form" method="POST">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
+                            <h1 class="heading-2"></h1>
+                            <div class="colorSkus">
+                                <div class="colorBoxTitle">
+                                    <strong>Item #:</strong>
+                                </div>
+                                <div class="colorBoxItems">
+                                    <div class="colorItem"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-12">
+                            <div class="product-big-image">
+                                <div style="position: relative; overflow: hidden;">
+                                    <img src="https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png" alt="Product image" class="img-responsive">
+                                </div>
+                            </div>
+
+                            <div class="">
+                                <div class="dropdown-colum">
+                                    <label>Select Color</label>
+                                    <select id="multi_color" name="multi_color" class="multi_category ob-qa-multi-select-container dropdown-menu" multiple="multiple" tabindex="7">
+                                    </select>
+                                </div>
+                            </div>
+                            <table class="table table-body inventory-table table-responsive ent-qua">
+                                <tbody class="sample_color_append">
+                                </tbody>
+                            </table>
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                <div class="check-box-privacy">
+                                    <div class="checkbox check-block">
+                                        <input type="checkbox" name="sample_info[]" value="Blank Sample" id="checkbox-blank" tabindex="9">
+                                        <label for="checkbox-blank">
+                                            Blank Sample
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                <div class="check-box-privacy">
+                                    <div class="checkbox check-block">
+                                        <input type="checkbox" name="sample_info[]" value="Random Sample" id="checkbox-random" tabindex="10">
+                                        <label for="checkbox-random">
+                                            Random Sample
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8 col-xs-12">
+                            <div class="title-block">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>First Name</label><span class="red">*</span>
+                                        <input type="text" name="sample_fname" class="input" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Last Name</label><span class="red">*</span>
+                                        <input type="text" name="sample_lname" class="input" tabindex="2">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Email</label><span class="red">*</span>
+                                        <input type="text" name="sample_email" class="input" tabindex="3">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Phone</label><span class="red">*</span>
+                                        <input type="text" name="sample_phone" class="input" tabindex="4">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Company Name </label>
+                                        <input type="text" name="company_name" class="input" tabindex="5">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Membership# </label>
+                                        <input type="text" name="membership" class="input" tabindex="6">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                    <div class="memb-info">
+                                        <div class="sub-form-box">
+                                            <h2>Shipping Account Information </h2>
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>ACCOUNT#</label>
+                                                        <input type="text" name="account" class="input" tabindex="11">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                                    <div class="check-box-privacy">
+                                                        <div class="checkbox check-block">
+                                                            <input type="checkbox" name="membership_info[]" value="ups" id="checkbox-ups" tabindex="12">
+                                                            <label for="checkbox-ups">
+                                                                UPS
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                                    <div class="check-box-privacy">
+                                                        <div class="checkbox check-block">
+                                                            <input type="checkbox" name="membership_info[]" value="fedex" id="checkbox-fedex" tabindex="13">
+                                                            <label for="checkbox-fedex">
+                                                                FEDEX
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                                    <div class="check-box-privacy">
+                                                        <div class="checkbox check-block">
+                                                            <input type="checkbox" name="membership_info[]" value="ground" id="checkbox-ground" tabindex="14">
+                                                            <label for="checkbox-ground">
+                                                                Ground
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                                    <div class="check-box-privacy">
+                                                        <div class="checkbox check-block">
+                                                            <input type="checkbox" name="membership_info[]" value="rush" id="checkbox-rush" tabindex="15">
+                                                            <label for="checkbox-rush">
+                                                                Rush
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+
+                                                <div class="col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Preferred in Hand Date</label>
+                                                        <div id="datetimepicker1" class="input-append date input-group date-block">
+                                                            <input data-format="mm/dd/yyyy" type="text" name="inhand_date" class="form-control" tabindex="16">
+                                                            <span class="add-on input-group-addon datepicker-color"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label> additional shipping instructions </label>
+                                                        <input type="text" name="shipping_instructions" class="input" tabindex="17">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Ship To Name </label>
+                                        <input type="text" name="ship_to_name" class="input" tabindex="18">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label> Attn </label>
+                                        <input type="text" name="attn" class="input" tabindex="19">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>REF#: </label>
+                                        <input type="text" name="ref" class="input" tabindex="20">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>Address 1 </label>
+                                        <input type="text" name="address1" class="input" tabindex="21">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>Address 2 </label>
+                                        <input type="text" name="address2" class="input" tabindex="22">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>City </label>
+                                        <input type="text" name="city" class="input" tabindex="23">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>State/Province </label>
+                                        <input type="text" name="state" class="input" tabindex="24">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Country </label>
+                                        <input type="text" name="country" class="input" tabindex="25">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Zip code </label>
+                                        <input type="text" name="zip_code" class="input" tabindex="26">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label> additional Information </label>
+                                        <input type="text" name="additional_information" class="input" tabindex="26">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-xs-12"> <span class="required-field">* Required Fields</span> </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="text-center">
+                                        <input type="submit" id="sample_submit" name="sample_submit" value="Request a Sample" class="virtual-modal-btn">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 order-text">
+                            <p>Sample orders received by 2PM Pacific Standard Time can ship the same day if specified on order and on Posh Xessories’ preferred carrier if shipping method is not given. Orders received after 2PM (PST) will be processed and shipped the next working day.</p>
+                            <p>Posh Xessories will provide up to $6 net worth of samples at no charge with your shipper number. All samples are offered at EQP pricing. Limit three quantity of same item per customer</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="modal fade model-popup-black " id="setup" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-            <a href="#" class="close" data-dismiss="modal" aria-label="Close">×</a>
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">x</a>
 			<div class="modal-header">
 				<h1 class="modal-title"><i class="strip inventory-popup-strip"></i> Setup Charges</h1>
 			</div>
@@ -381,7 +573,7 @@ body {
 <div class="modal fade model-popup-black" id="prop-charges" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-            <a href="#" class="close" data-dismiss="modal" aria-label="Close">×</a>
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">x</a>
 			<div class="modal-header">
 				<h1 class="modal-title"><i class="fa fa-exclamation-triangle"></i> Prop 65 Warning</h1>
 			</div>

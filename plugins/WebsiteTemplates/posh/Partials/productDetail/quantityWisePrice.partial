@@ -1,5 +1,5 @@
 <div class="product-section-box dec-price">
-    <h2 class="heading-block no-tag">Decorated  Pricing<span class="img-b"> <img src="http://www.ameriknmx.com/media/icon/usflag.png" class="img-responsive"/></span> <a href="#" data-toggle="modal" data-target="#setup" class="myButton setup">Setup Charges</a></h2>
+    <h2 class="heading-block no-tag">Decorated  Pricing<span class="img-b"> <img src="https://res.cloudinary.com/flowz/image/upload/v1537955037/websites/images/usflag.png" class="img-responsive"/></span> <a href="#" data-toggle="modal" data-target="#setup" class="myButton setup">Setup Charges</a></h2>
     <div class="quantity-table">
         <div class="quantity-table-title">
             <div class="table-heading">Qty</div>
