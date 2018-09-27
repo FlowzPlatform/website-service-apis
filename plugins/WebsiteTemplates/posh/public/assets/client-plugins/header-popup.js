@@ -23,12 +23,7 @@ $(document).ready(function() {
             $(".success_url").val(data[0].BaseURL);
             $(".failure_url").val(data[0].BaseURL + 'error404.html')
         })
-        console.log('projectID',projectID)
-        console.log(',loginUrl',loginUrl)
-        console.log('userDetailsUrl',userDetailsUrl)
-        console.log('socialLoginUrl',socialLoginUrl)
-        console.log('BaseUrl',BaseUrl)
-        console.log('baseURL',baseURL)
+
     }
 });
 
@@ -159,7 +154,7 @@ $(".forget-submit").click(function() {
 
 function forgetPassword() {
     if ($(".forget_email").val() != "") {
-      showPageAjaxLoading();
+      // showPageAjaxLoading();
       axios.post(forgetPasswordUrl, {
         email: $(".forget_email").val(),
         url : BaseUrl+'resetPassword.html'
@@ -171,7 +166,7 @@ function forgetPassword() {
         //   window.location = "index.html";
         // }, 3000)
       }).catch(function(error) {
-          hidePageAjaxLoading();
+          // hidePageAjaxLoading();
           $(".alert-box").addClass("show");
           $("#error-message").text(error.response.data);
           $(".forget_email").val('')

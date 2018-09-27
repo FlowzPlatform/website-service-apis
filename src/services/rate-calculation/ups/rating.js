@@ -49,7 +49,7 @@ Rating.prototype.makeRequest = function(options, callback) {
 	// var parser = require('xml2json');
  	// var xmltojson = parser.toJson(responseData);
 	 // var json= JSON.parse(xmltojson);
-	 
+
 	// let json;
 	// await parseString(responseData, function (err, result) {
 	// 	console.dir('result------------',result)
@@ -58,7 +58,7 @@ Rating.prototype.makeRequest = function(options, callback) {
 
 	let x2js = new X2JS()
 	let json = x2js.xml2js(responseData)
-	
+
 	var rate = 	{};
 	if(json.RatingServiceSelectionResponse.Response.ResponseStatusCode == 1)
 	{
