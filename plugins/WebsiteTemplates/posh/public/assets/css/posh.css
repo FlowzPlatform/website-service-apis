@@ -36,8 +36,8 @@
 #owl-carousel-recommeded-products .owl-buttons{ margin: -54px 5px 0 0;}
 .ob-related-product .recommeded-product-slider .owl-buttons{ margin: -38px 5px 0 0;}
 .request-info-modal .quantity-table-col .owl-buttons {margin: -25px -5px 22px 0;} 
-.owl-carousel .owl-buttons .owl-prev:after{content: ""; background: url(../images/combinesprites.png) no-repeat;height: 22px;width: 22px;position: absolute;background-position:-3px -7px;left: 0;top: 0;}
-.owl-carousel .owl-buttons .owl-next:after{content: "";background: url(../images/combinesprites.png) no-repeat; height: 22px;width: 22px;position:absolute;background-position: -17px -7px;right:0;top:0;}
+.owl-carousel .owl-buttons .owl-prev:after{content: ""; background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat;height: 22px;width: 22px;position: absolute;background-position:-3px -7px;left: 0;top: 0;}
+.owl-carousel .owl-buttons .owl-next:after{content: "";background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat; height: 22px;width: 22px;position:absolute;background-position: -17px -7px;right:0;top:0;}
 .owl-carousel .owl-buttons .owl-prev,.owl-carousel .owl-buttons .owl-next{position: relative;background-image: none !important;}
 .owl-carousel .owl-buttons .owl-prev:hover:after{background-position:-3px -121px !important;}
 .owl-carousel .owl-buttons .owl-next:hover:after{background-position:-17px -121px !important;}
@@ -47,10 +47,10 @@
 
 /* Home Slider */
 
-.recommeded-product-slider .owl-next, .owl-next { background: url(../images/pink_arrows.png) no-repeat !important; width: 15px !important; height: 15px !important; border-radius: 0 !important; background-position: -12px !important; padding: 10px !important; background-color: #888 !important; }
-.recommeded-product-slider .owl-next:hover, .owl-next:hover, .ob-related-product .owl-next:hover { background: #fff url(../images/black_arrows.png) no-repeat !important; background-position: -12px !important; }
-.recommeded-product-slider .owl-prev, .owl-prev { background: url(../images/pink_arrows.png) no-repeat !important; width: 15px !important; height: 15px !important; border-radius: 0 !important; padding: 10px !important; background-position: 2px !important; background-color: #888 !important; }
-.recommeded-product-slider .owl-prev:hover, .owl-prev:hover, .ob-related-product .owl-prev:hover { background: #fff url(../images/black_arrows.png) no-repeat !important; background-position: 2px !important;}
+.recommeded-product-slider .owl-next, .owl-next { background: url(https://res.cloudinary.com/flowz/image/upload/v1537511855/websites/POSH-ACCESSORIES/images/pink_arrows.png) no-repeat !important; width: 15px !important; height: 15px !important; border-radius: 0 !important; background-position: -12px !important; padding: 10px !important; background-color: #888 !important; }
+.recommeded-product-slider .owl-next:hover, .owl-next:hover, .ob-related-product .owl-next:hover { background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537511908/websites/POSH-ACCESSORIES/images/black_arrows.png) no-repeat !important; background-position: -12px !important; }
+.recommeded-product-slider .owl-prev, .owl-prev { background: url(https://res.cloudinary.com/flowz/image/upload/v1537511855/websites/POSH-ACCESSORIES/images/pink_arrows.png) no-repeat !important; width: 15px !important; height: 15px !important; border-radius: 0 !important; padding: 10px !important; background-position: 2px !important; background-color: #888 !important; }
+.recommeded-product-slider .owl-prev:hover, .owl-prev:hover, .ob-related-product .owl-prev:hover { background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537511908/websites/POSH-ACCESSORIES/images/black_arrows.png) no-repeat !important; background-position: 2px !important;}
 
 /* **************** */
 .js-view-ecatalog-image, .js-view-flyer-image{ margin: 0 auto !important }
