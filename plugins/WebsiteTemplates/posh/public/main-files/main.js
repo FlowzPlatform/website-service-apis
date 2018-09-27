@@ -2515,7 +2515,7 @@ async function printDiv(printDiv=true) {
         let decideLocalStorageKey = decide_localStorage_key(3);
         var compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     }
-      var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml='';
+      var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPricingHtml='';
       var productData;
       var itemTitleHtml=itemPriceHtml='';
       let titleHtml = $('#js-print_item_title').html();
@@ -2523,6 +2523,7 @@ async function printDiv(printDiv=true) {
       let item_sku = $('#js-print_item_sku').html();
       let activeSummary = $('#js-print_item_summary').html();
       let item_features = $('#js-print_item_features').html();
+      let item_pricing = $('#js-print_item_pricing').html();
 
       if (compare_values != null && compare_values.length > 0) {
             for (item in compare_values)
@@ -2607,12 +2608,45 @@ async function printDiv(printDiv=true) {
                       for (let [i, features] of productData[0]._source.features.entries() ) {
                         if(features.key == 'Material')
                         {
-                          fetureList += features.key+": "+features.value+"<br>";
+                          fetureList += features.value+"<br>";
                         }
                       }
                       var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].id);
                       var itemTitleHtml = itemTitleHtml.replace('#data.features#',fetureList);
                       itemFeaturesHtml = itemTitleHtml;
+
+                      // Product Quantity Price
+                    var itemTitleHtml = item_pricing;
+                    var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].id);
+                    
+                      if(productData[0]._source.pricing != undefined){
+                        let priceRang = '';
+                        let priceRangHtml = '';
+                        $.each(productData[0]._source.pricing, function(index,element){
+                            if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
+                                    $.each(element.price_range,function(index,element2){
+                                    // console.log("in each condition");
+                                    if(element2.qty.lte != undefined){
+                                        priceRang += '<tr><td>'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
+                                    }
+                                    else
+                                    {
+                                        priceRang += '<tr><td>'+ element2.qty.gte + '+' + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></div>';
+                                    }
+                                        });
+                                    // $("#print-product").find(".quantity-table-col").html(priceRang);    
+                                    // $("#print-product").find(".quantity-table-col").css('opacity',1);
+                            }
+                        });
+                        priceRangHtml = '<table class="total-amount-block pull-right"><tbody><tr><td>Quantity</td><td>USD 5C</td></tr>';
+                        priceRangHtml += priceRang;
+                        priceRangHtml += '</tbody></table>';
+                        // console.log('priceRang',priceRang);
+                        var itemTitleHtml = itemTitleHtml.replace('#data.item_pricing#',priceRangHtml);
+                      } 
+                    itemPricingHtml = itemTitleHtml; 
+                    // console.log('itemPricingHtml',itemPricingHtml)
+                    // END - Product Quantity Price
 
                       if(item == 0 || compareValuesCount == 1)
                       {
@@ -2621,6 +2655,7 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_sku").html("<td class='feature-block'>ITEM#</td>"+itemSkuHtml)
                         $(compareHtml).find("#js-print_item_summary").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").html("<td class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
+                        $(compareHtml).find("#js-print_item_pricing").html("<td class='feature-block'>ITEM PRICING</td>"+itemPricingHtml)
                         $('#print-comparision').html(compareHtml.html());
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();
@@ -2632,6 +2667,7 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_sku").append(itemSkuHtml)
                         $(compareHtml).find("#js-print_item_summary").append(activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").append(itemFeaturesHtml)
+                        $(compareHtml).find("#js-print_item_pricing").append(itemPricingHtml)
                         $('#print-comparision').html(compareHtml.html());
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();                          
@@ -3032,7 +3068,7 @@ $(document).on('click','.send-friend-email',function (e)
                         for (let [i, features] of productData[0]._source.features.entries() ) {
                           if(features.key == 'Material')
                           {
-                            fetureList += features.key+": "+features.value+"<br>";
+                            fetureList += features.value+"<br>";
                           }
                         }
                         productJsonData['features'] = fetureList;
@@ -3344,13 +3380,14 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
     compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
   }
 
-  let itemTitleHtml=productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPriceHtml='';
+  let itemTitleHtml=productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPriceHtml=itemPricingHtml='';
   let productData;
   let html = $('#download-comparision #product_img').html();
   let itemPrice = $('#download-comparision #product_price').html();
   let item_sku = $('#download-comparision #product_sku').html();
   let activeSummary = $('#download-comparision #product_summary').html();
   let item_features = $('#download-comparision #product_features').html();
+  let item_pricing = $('#download-comparision #product_pricing').html();
 
   if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) 
   {
@@ -3362,7 +3399,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
 
           $.ajax({
             type: 'GET',
-            url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
+            url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
             async: false,
             beforeSend: function (xhr) {
               xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -3416,13 +3453,45 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
               for (let [i, features] of productData[0]._source.features.entries() ) {
                 if(features.key == 'Material')
                 {
-                  fetureList += features.key+": "+features.value+"<br>";
+                  fetureList += features.value+"<br>";
                 }
               }
 
               itemFeaturesHtml1 = itemFeaturesHtml1.replace('#data.features#',fetureList);
               itemFeaturesHtml = itemFeaturesHtml1;
 
+              // Product Quantity Price
+              let itemPricingHtml1 = item_pricing;
+              
+              if(productData[0]._source.pricing != undefined){
+                let priceRang = '';
+                let priceRangHtml = '';
+                $.each(productData[0]._source.pricing, function(index,element){
+                    if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
+                            $.each(element.price_range,function(index,element2){
+                            // console.log("in each condition");
+                            if(element2.qty.lte != undefined){
+                                priceRang += '<tr><td>'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
+                            }
+                            else
+                            {
+                                priceRang += '<tr><td>'+ element2.qty.gte + '+' + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></div>';
+                            }
+                                });
+                            // $("#print-product").find(".quantity-table-col").html(priceRang);    
+                            // $("#print-product").find(".quantity-table-col").css('opacity',1);
+                    }
+                });
+                priceRangHtml = '<table class="total-amount-block pull-right"><tbody><tr><td>Quantity</td><td>USD 5C</td></tr>';
+                priceRangHtml += priceRang;
+                priceRangHtml += '</tbody></table>';
+                // console.log('priceRang',priceRang);
+                itemPricingHtml1 = itemPricingHtml1.replace('#data.pricing#',priceRangHtml);
+              } 
+              itemPricingHtml = itemPricingHtml1;
+              // END - Product Quantity Price
+
+              
               if(item == 0 || compareValuesCount == 1)
               {
                 compareHtml.find("#product_img").html("<td style='width:20%' class='feature-block'></td>"+productHtml)
@@ -3436,6 +3505,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM#</td>"+itemSkuHtml)
                 compareHtml.find("#product_summary").html("<td style='width:20%'class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                 compareHtml.find("#product_features").html("<td style='width:20%' class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
+                compareHtml.find("#product_pricing").html("<td style='width:20%' class='feature-block'>ITEM PRICING	</td>"+itemPricingHtml)
               }
               else{
                 compareHtml.find("#product_img").append(productHtml)
@@ -3445,6 +3515,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 compareHtml.find("#product_sku").append(itemSkuHtml)
                 compareHtml.find("#product_summary").append(activeSummaryHtml)
                 compareHtml.find("#product_features").append(itemFeaturesHtml)
+                compareHtml.find("#product_pricing").append(itemPricingHtml);
               }
             }
             }

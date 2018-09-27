@@ -5002,10 +5002,10 @@ img.img-responsive.us-flag {
 div#collapsetwo,.catelogue-title-text {
     display: none;
 }
-.menu-box .navbar-nav > li {
+/*.menu-box .navbar-nav > li {
     position: inherit;
     min-height: 38px;
-}
+}*/
 @-moz-document url-prefix() {
  .virtual-button{min-width: 116px;}
   
