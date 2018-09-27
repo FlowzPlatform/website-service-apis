@@ -83,7 +83,7 @@ $(document).ready(function(){
 
         getCountry();
         if(productResponse != null){
-          $('.estimatorProductSku').text(productResponse.sku)
+          $('.estimatorProductSku').text('Item #:'+productResponse.sku)
           $('.estimatorProductName').text(productResponse.product_name)
           let fob = productResponse.shipping[0];
           // console.log(fob.fob_city +' '+ fob.fob_state_code +' '+ fob.fob_zip_code +' '+ fob.fob_country_code)
@@ -150,7 +150,7 @@ $(document).ready(function(){
                               td.className="estimatorResult"
                               markUpValue = (Number(result.estimatorResponse[key]) * markUpPer)/100;
                               result.estimatorResponse[key] += markUpValue;
-                              td.appendChild(document.createTextNode(result.estimatorResponse[key].toFixed(2)));
+                              td.appendChild(document.createTextNode('$ '+ result.estimatorResponse[key].toFixed(2)));
                               tr.appendChild(td);
                           });
                           // console.log('tableBody',tableBody)
@@ -158,6 +158,7 @@ $(document).ready(function(){
                           // console.log('old_tbody-----',old_tbody)
                           // old_tbody.parentNode.replaceChild(tableBody,old_tbody);
                           hidePageAjaxLoading()
+                          $('#estimatorError').css({"display":"none"})
                           $('#shipping_estimator_response').css({"display":"block"}) // display response table
                           $(".estimatorResult").css({"padding": "3px 5px"});
                       },
@@ -185,6 +186,7 @@ $(document).ready(function(){
     $('.js-reset-btn-rate-calculation').on('click', async function() {
         $('input[name=qty]').val('');
         $('.checkout-holder').html('Select Country');
+        getCountry();
         $('input[name=zip_code]').val('')
         $("#checkbox-mailing"). prop("checked", false);
         $('#estimatorError').css({"display":"none"}) //hide error message

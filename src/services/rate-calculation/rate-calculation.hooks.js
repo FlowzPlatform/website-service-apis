@@ -167,13 +167,19 @@ function generatePackage(data) {
   cartonHeight = Number(data.shipperInfo.carton_height)
   cartonLength = Number(data.shipperInfo.carton_length)
   cartonWidth = Number(data.shipperInfo.product_width)
-  cartonWeight = Number(data.shipperInfo.carton_weight)
+
 
   if(data.shipperInfo.product_weight && (data.shipperInfo.product_weight!= '' || data.shipperInfo.product_weight !=0)) {
     productWeight = Number(data.shipperInfo.product_weight)
   }
   else {
     throw new errors.NotAcceptable('Details are not available');
+  }
+  if (data.shipperInfo.carton_weight != '') {
+    cartonWeight = Number(data.shipperInfo.carton_weight)
+  }
+  else {
+    cartonWeight = qtyPerCartoon * productWeight
   }
 
   let qty = Number(data.shipToInfo.qty)
@@ -200,12 +206,14 @@ function generatePackage(data) {
     while(totalQty != 0) {
       if (totalQty <= qtyPerCartoon) {
         pack[k] = totalQty;
-        weightArray[k] = totalQty * productWeight;
+        weightArray[k] = (totalQty * productWeight).toFixed(2);
+        console.log('weightArray[k]',weightArray[k])
         totalQty = 0;
       }
       else {
         pack[k] = qtyPerCartoon;
-        weightArray[k] = qtyPerCartoon * productWeight;
+        weightArray[k] = (qtyPerCartoon * productWeight).toFixed(2);
+        console.log('weightArray[k]',weightArray[k])
         totalQty = totalQty - qtyPerCartoon;
       }
       k++;
