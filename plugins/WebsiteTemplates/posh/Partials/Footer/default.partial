@@ -72,6 +72,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script type="text/javascript" src="./main-files/main.js"></script>
 <script type="text/javascript" src="./assets/client-plugins/common-header.js" defer="defer"></script>
+<script type="text/javascript" src="./assets/client-plugins/header-popup.js" defer="defer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" defer="defer"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" defer="defer"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js" defer="defer"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.6/jquery.lazy.min.js" defer="defer"></script>
