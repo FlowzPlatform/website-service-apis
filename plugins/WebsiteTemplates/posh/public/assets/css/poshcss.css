@@ -4935,7 +4935,7 @@ div#inventory-look .modal-dialog {
     
     min-height: auto;
 }
-.list-view .sales{display: none}
+/*.list-view .sales{display: none}*/
 
 /*LATEST CHANGES*/
 .product-label h2 {
@@ -4962,6 +4962,59 @@ div#inventory-look .modal-dialog {
 .shippingng-estimator-model span.item-code-no {
     font-size: 18px;
 }
+/*LIST VIEW TAGS*/
+.list-view .product-label.f-closeout:before {
+    border-top: 12px solid #359dd3;
+}
+.list-view .product-label.f-closeout:after {
+    border-bottom: 12px solid #359dd3;
+}
+.list-view .product-label{height: 13px;}
+.list-view .product-label h2{padding-top: 2px;}
+.list-view .product-label.f-new:before{border-top:12px solid #f06142}
+.list-view .product-label.f-new:after{border-bottom:12px solid #f06142}
+.list-view .product-label.f-featured:before {
+    border-top: 12px solid #9cc02c;
+}
+.list-view .product-label{padding: 0 2px 0 0;}
+.list-view .product-label.f-featured:after {
+    border-bottom: 12px solid #9cc02c;
+}
+.list-view .product-label h2 {
+    padding-top: 2px;
+    padding-left: 7px;
+    padding-top: 1px;
+}
+.list-view .sales{margin-top: 0px}
+.responsive-tabs-container .accordion-link{display: none !important}
+.dec-price a.myButton.setup {
+    margin-right: 0;
+    margin-top: 4px;
+}
+img.img-responsive.us-flag {
+    display: inline-block;
+    margin-left: 115px;
+    margin-top: 12px;
+}
+.product-section-box.dec-price, .product-section-box.det-pop {
+    min-height: 243px;
+}
+div#collapsetwo,.catelogue-title-text {
+    display: none;
+}
+.menu-box .navbar-nav > li {
+    position: inherit;
+    min-height: 38px;
+}
+@-moz-document url-prefix() {
+ .virtual-button{min-width: 116px;}
+  
+}
+
+      
+      
+      
+/*LIST VIEW TAGS*/
 /*LATEST CHANGES*/
 /*TAGS*/
 /*END PRODUCT CATEGORY ITEM*/
@@ -5333,6 +5386,7 @@ ul.product-wrap li {width: 29%;}
 div#inventory-look .modal-dialog {
     width: 750px;
 }
+.responsive-tabs-container .accordion-link{display: block !important}
 }
 @media (min-width:1100px) and (max-width: 2800px) {.shipping-option p{ min-width:103px;}}
 @media screen and (max-width:1024px){
