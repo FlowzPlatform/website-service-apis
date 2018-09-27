@@ -51,7 +51,13 @@ $(document).ready( async function(){
     }
     showPageAjaxLoading();
 
-    ProductSku = productDetails.sku;
+    if(productDetails.releated_sku != undefined && productDetails.releated_sku != "" && productDetails.releated_sku != null)  {
+        ProductSku = productDetails.releated_sku;
+        ProductSku = ProductSku.join('; ')
+    }
+    else{
+        ProductSku = productDetails.sku;        
+    }
     hasImprintData = productDetails.imprint_data;
 
     let listHtml = $('#title .row').html();
@@ -324,7 +330,7 @@ $(document).ready( async function(){
         virtualButtonHtml1 = virtualButtonHtml1.replace("#data.spplierId#",project_settings.supplier_id)
         virtualButtonHtml1 = virtualButtonHtml1.replace("#data.culture#",project_settings.default_culture)
         $("#ob_virtual_list").html(virtualButtonHtml1)
-        $("#js_display_virtual").after('<script type="text/javascript" src="http://virtualmarketingcart.com/js/virtualintegration.js"></script>')
+        $("#js_display_virtual").after('<script type="text/javascript" src="https://virtualmarketingcart.com/js/virtualintegration.js"></script>')
 
         $('.js-hide-div').removeClass("js-hide-div");
         hidePageAjaxLoading();
@@ -477,7 +483,14 @@ if(get_product_details != null && get_product_details != undefined) {
         $("form#sample_order_form").find("ul.red").remove();
         $('#sample_order_form img').attr('src',$('#product_img').attr('src'));
         $('#sample_order_form .heading-2').html(get_product_details.product_name);
-        $('#sample_order_form .colorBoxItems').html('<div class="colorItem">'+get_product_details.sku+';</div>');
+        if(get_product_details.releated_sku != undefined && get_product_details.releated_sku != "" && get_product_details.releated_sku != null)  {
+            productSku = get_product_details.releated_sku;
+            productSku = productSku.join('; ')
+        }
+        else{
+            productSku = get_product_details.sku;        
+        }
+        $('#sample_order_form .colorBoxItems').html('<div class="colorItem">'+productSku+'</div>');
     });
 }
 

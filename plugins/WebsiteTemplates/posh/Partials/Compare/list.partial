@@ -33,7 +33,12 @@
                     </tr>
                     <tr id="item_features">
                         <td class="product-#data-id#">
-                            <p>#data.features#</p>
+                            #data.features#
+                        </td>
+                    </tr>
+                    <tr id="item_pricing">
+                        <td class="product-#data-id#">
+                            #data.pricing#
                         </td>
                     </tr>
                     <tr id="item_summary">
@@ -56,7 +61,8 @@
                     <tr class="feature dark-bg" id="item_price_row1"></tr>
                     <tr class="feature light-bg" id="item_sku1"></tr>
                     <tr class="feature dark-bg" id="item_features1"></tr>
-                    <tr class="feature light-bg" id="item_summary1"></tr>
+                    <tr class="feature light-bg" id="item_pricing1"></tr>
+                    <tr class="feature dark-bg" id="item_summary1"></tr>
                 </tbody>
             </table>
         </div>
