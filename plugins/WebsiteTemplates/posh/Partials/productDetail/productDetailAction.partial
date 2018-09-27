@@ -358,10 +358,6 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
                         </div>
 
                         <div class="col-lg-8 col-xs-12">
-                            <div class="title-block">
-                                <div class="row">
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
@@ -385,7 +381,7 @@ confirm availability. </p><p> <b>Last Update 10/10/2018<br>
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Phone</label><span class="red">*</span>
-                                        <input type="text" name="sample_phone" class="input" tabindex="4">
+                                        <input type="text" name="sample_phone" class="input js-phone" tabindex="4">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
