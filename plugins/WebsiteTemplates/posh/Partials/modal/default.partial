@@ -38,7 +38,7 @@ body {
 class="modal fade model-popup-black">
    <div class="modal-dialog">
        <div class="modal-content"><a aria-label="Close" data-dismiss="modal" href="javascript:void(0);"
-           class="close">×</a>
+           class="close">x</a>
            <div class="modal-header">
                <h1 class="modal-title"></h1>
            </div>

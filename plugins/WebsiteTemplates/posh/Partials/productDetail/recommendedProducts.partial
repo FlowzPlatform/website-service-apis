@@ -7,7 +7,7 @@
                         Recommended Products
                     </h4>
                 </div>
-                <div class="row">
+                <div class="row" style="display: flex">
                         <div id="owl-carousel-recommeded-products" class="owl-carousel recommeded-product-slider owl-loaded owl-drag js-list">
                                 <div class="item js-product-box product-#data-id#">
                                     <div class="pro-box">

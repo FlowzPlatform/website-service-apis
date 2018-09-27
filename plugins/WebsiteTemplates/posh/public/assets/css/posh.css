@@ -30,10 +30,11 @@
     text-align: right;
     margin: -28px 5px 22px 0;
 }
-#owl-carousel-recommended-products .owl-buttons, ob-related-product .owl-carousel .owl-buttons{
+#owl-carousel-recommended-products .owl-buttons, .ob-related-product .owl-carousel .owl-buttons{
     margin: -38px 5px 0 0;
 }
-.ob-related-product .owl-carousel .owl-buttons, .ob-related-product .recommeded-product-slider .owl-buttons{ margin: -38px 5px 0 0;}
+#owl-carousel-recommeded-products .owl-buttons{ margin: -54px 5px 0 0;}
+.ob-related-product .recommeded-product-slider .owl-buttons{ margin: -38px 5px 0 0;}
 .request-info-modal .quantity-table-col .owl-buttons {margin: -25px -5px 22px 0;} 
 .owl-carousel .owl-buttons .owl-prev:after{content: ""; background: url(../images/combinesprites.png) no-repeat;height: 22px;width: 22px;position: absolute;background-position:-3px -7px;left: 0;top: 0;}
 .owl-carousel .owl-buttons .owl-next:after{content: "";background: url(../images/combinesprites.png) no-repeat; height: 22px;width: 22px;position:absolute;background-position: -17px -7px;right:0;top:0;}
@@ -73,12 +74,12 @@
 .print-product-detail span{padding-bottom:10px} */
 .info-menu ul li > a{border-right: 0;}
 .header-loging .dropdown-menu.user-dropdown li{ text-align: left; padding: 0; width: 100%;}
-.pfunction a { margin-left: 1px; }
+/* .pfunction a { margin-left: 1px; } */
 .product-showcase {
     padding-top: 15px !important;
     font-family: 'Lato', sans-serif !important;
 }
-
+.js-inventory_color_box {width: 25px;height: 25px;display: block;} 
 /*checkbox arrow placement, reset button alignment issue for signup*/
 .checkbox label::before {top: 0px !important;}
 :root .check-box-privacy .checkbox label::after {top: 0px !important;}
@@ -95,7 +96,7 @@ input[type="reset"] {margin-top: 0px;}
 .shippingEstimator-checkbox label::after { padding-top: 1px !important; }
 .shippingEstimator-checkbox .form-option { padding-left: 11px !important; }
 @media screen and (max-width: 767px) {
-    .shippingEstimator-checkbox label::after { margin-left: -4px; !important; }
+    .shippingEstimator-checkbox label::after { margin-left: -4px !important; }
 }
 /*shipping estimator model*/
 
@@ -126,7 +127,7 @@ ul.red li.error {
 }
 
 @media screen and (max-width: 767px) {
-#owl-carousel-recommeded .owl-buttons { display: none; }
+.ob-related-product .owl-carousel .owl-buttons,#owl-carousel-recommeded-products .owl-buttons,#owl-carousel-recommeded .owl-buttons { display: none; }
 .model-popup-black .compare-product-slide .quantity-table .owl-buttons.disabled {display: inline-block;}
 .quantity-table-col .owl-buttons{margin: -35px -5px 22px 0;}
 .quantity-table-col .owl-buttons.disabled {display: block !important;}

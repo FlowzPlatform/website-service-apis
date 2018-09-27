@@ -59,10 +59,10 @@ header .slidemenu ul li > a i.quote-icon span { color: #5b5e68; }
 .sub-heder-main .ob-top-menu .container { position: absolute; left: 0; right: 0; z-index: 4; top: 40px }
 .sub-heder-main .ob-top-menu .slidemenu .fa, .sub-heder-main .ob-top-menu .shop-menu .header-loging .login-text { color: #000 }
 /*--OWL SLIDER--*/
-.recommeded-product-slider .owl-next, .owl-next { background: url(../images/pink_arrows.png) no-repeat; width: 15px; height: 15px; border-radius: 0!important; background-position: -12px; padding: 10px; background-color: #888; }
-.recommeded-product-slider .owl-next:hover, .owl-next:hover, .ob-related-product .owl-next:hover { background: #fff url(../images/black_arrows.png) no-repeat; background-position: -12px; }
-.recommeded-product-slider .owl-prev, .owl-prev { background: url(../images/pink_arrows.png) no-repeat; width: 15px; height: 15px; border-radius: 0; padding: 10px; background-position: 2px; background-color: #888; }
-.recommeded-product-slider .owl-prev:hover, .owl-prev:hover, .ob-related-product .owl-prev:hover { background: #fff url(../images/black_arrows.png) no-repeat; background-position: 2px;}
+.recommeded-product-slider .owl-next, .owl-next { background: url(https://res.cloudinary.com/flowz/image/upload/v1537511855/websites/POSH-ACCESSORIES/images/pink_arrows.png) no-repeat; width: 15px; height: 15px; border-radius: 0!important; background-position: -12px; padding: 10px; background-color: #888; }
+.recommeded-product-slider .owl-next:hover, .owl-next:hover, .ob-related-product .owl-next:hover { background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537511908/websites/POSH-ACCESSORIES/images/black_arrows.png) no-repeat; background-position: -12px; }
+.recommeded-product-slider .owl-prev, .owl-prev { background: url(https://res.cloudinary.com/flowz/image/upload/v1537511855/websites/POSH-ACCESSORIES/images/pink_arrows.png) no-repeat; width: 15px; height: 15px; border-radius: 0; padding: 10px; background-position: 2px; background-color: #888; }
+.recommeded-product-slider .owl-prev:hover, .owl-prev:hover, .ob-related-product .owl-prev:hover { background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537511908/websites/POSH-ACCESSORIES/images/black_arrows.png) no-repeat; background-position: 2px;}
 .recommeded-product-slider .owl-nav { margin-right: 12px; }
 .owl-carousel .owl-nav, .recommeded-product-slider .owl-nav { cursor: default; pointer-events: auto; opacity: 1; text-align: right; margin: -50px 12px 0 0; position: absolute; display: inline-block; top: 0; right: 0; font-size: 0; }
 .color-box .owl-nav { text-align: right; margin: -35px 5px 22px 0; }
@@ -123,15 +123,15 @@ header.fixed-header.fixed-header-top .ob-logo-block { z-index: 10; position: rel
 .social-icon-box li { display: inline-block }
 .social-icon-box li a { opacity: 1 }
 .social-icon-box li a:hover { opacity: .8 }
-.social-icon-box .strip-icon.pinterest-icon { background: url(../images/pin.png); background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: block ;margin-left: -7px}
-.social-icon-box .strip-icon.fb-icon { background: url(../images/facebook-logo.png);background-repeat: no-repeat;width: 40px;height: 32px;background-position: 0 0;margin-left: 2px;border-radius: 3px;background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: block ;margin-left: -7px}
+.social-icon-box .strip-icon.pinterest-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537511958/websites/POSH-ACCESSORIES/images/pin.png); background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: block ;margin-left: -7px}
+.social-icon-box .strip-icon.fb-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537511984/websites/POSH-ACCESSORIES/images/facebook-logo.png);background-repeat: no-repeat;width: 40px;height: 32px;background-position: 0 0;margin-left: 2px;border-radius: 3px;background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: block ;margin-left: -7px}
 .social-icon-box .strip-icon.twitter-icon { background-position: -59px -9px }
 .social-icon-box .strip-icon.g-plus-icon { background-position: -108px -9px }
 .social-icon-box .strip-icon.in-icon { background-position: -156px -9px }
-.social-icon-box .strip-icon.instagram-icon {background: url(../images/insta.png);background-repeat: no-repeat;width: 40px;height: 32px;background-position: 0 0;margin-left: 2px;border-radius: 3px;background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: block ;margin-left: -7px}
+.social-icon-box .strip-icon.instagram-icon {background: url(https://res.cloudinary.com/flowz/image/upload/v1537512007/websites/POSH-ACCESSORIES/images/insta.png);background-repeat: no-repeat;width: 40px;height: 32px;background-position: 0 0;margin-left: 2px;border-radius: 3px;background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: block ;margin-left: -7px}
 /*.social-icon-box .strip-icon.pinterest-icon { background-position: -255px -8px; }*/
-.social-icon-box .strip-icon.yt-icon {background: url(../images/Youtube-2.png);background-repeat: no-repeat;width: 40px;height: 32px;background-position: 0 0;margin-left: 2px;border-radius: 3px;background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: block ;margin-left: -7px}
-.social-icon-box .strip-icon.email-icon {background: url(../images/envelope.png);background-repeat: no-repeat;width: 32px;height: 32px;background-position: 0 0;margin-left: 2px;border-radius: 3px;}
+.social-icon-box .strip-icon.yt-icon {background: url(https://res.cloudinary.com/flowz/image/upload/v1537512031/websites/POSH-ACCESSORIES/images/Youtube-2.png);background-repeat: no-repeat;width: 40px;height: 32px;background-position: 0 0;margin-left: 2px;border-radius: 3px;background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: block ;margin-left: -7px}
+.social-icon-box .strip-icon.email-icon {background: url(https://res.cloudinary.com/flowz/image/upload/v1537512054/websites/POSH-ACCESSORIES/images/envelope.jpg);background-repeat: no-repeat;width: 32px;height: 32px;background-position: 0 0;margin-left: 2px;border-radius: 3px;}
 .social-block { margin-left: 10px }
 .social-block ul li { margin-bottom: 25px }
 .social-block ul li a { display: block; display: inline-block; color: #fff; padding: 0 10px 0 0; border-radius: 2px; font-family: 'Didact Gothic', sans-serif; font-size: 14px; min-width: 200px; transition: all .5s; overflow: hidden; height: 39px }
@@ -141,7 +141,7 @@ header.fixed-header.fixed-header-top .ob-logo-block { z-index: 10; position: rel
 .social-block ul li a.gplus { background: #D37279 }
 .social-block ul li a.linkedin { background: #4AA4D8 }
 .social-block ul li a.instagram { background: #BD8971 }
-.social-block .strip-icon { background: url(../images/social-icons.png); background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: inline-block; vertical-align: middle; margin-right: 10px }
+.social-block .strip-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512081/websites/POSH-ACCESSORIES/images/social-icons.png); background-repeat: no-repeat; width: 40px; height: 40px; background-position: 0 0; display: inline-block; vertical-align: middle; margin-right: 10px }
 .social-block .strip-icon.social-fb-icon { background-position: -13px -48px }
 .social-block .strip-icon.social-twitter-icon { background-position: -62px -48px }
 .social-block .strip-icon.social-gplus-icon { background-position: -112px -48px }
@@ -247,26 +247,26 @@ header.fixed-header.fixed-header-top .ob-logo-block { z-index: 10; position: rel
 .pro-cat-list1 { text-align: center; padding-top: 25px; }
 .pro-category-list a { position: relative }
 .pro-category-list i { position: absolute; top: 11px; width: 35px; height: 35px; margin: 0 auto; left: 0; right: 0 }
-.pro-category1 a i { background: url(../images/sprite.png) no-repeat -35px 5px }
-.pro-category1 a:hover i { background: url(../images/sprite.png) no-repeat -76px 5px }
-.pro-category-list .pro-category2 a i { background: url(../images/sprite.png) no-repeat -35px -29px }
-.pro-category-list .pro-category2 a:hover i { background: url(../images/sprite.png) no-repeat -76px -29px }
-.pro-category-list .pro-category3 a i { background: url(../images/sprite.png) no-repeat -35px -64px }
-.pro-category-list .pro-category3 a:hover i { background: url(../images/sprite.png) no-repeat -76px -64px }
-.pro-category-list .pro-category4 a i { background: url(../images/sprite.png) no-repeat -35px -98px }
-.pro-category-list .pro-category4 a:hover i { background: url(../images/sprite.png) no-repeat -76px -98px }
-.pro-category-list .pro-category5 a i { background: url(../images/sprite.png) no-repeat -35px -138px }
-.pro-category-list .pro-category5 a:hover i { background: url(../images/sprite.png) no-repeat -76px -138px }
-.pro-category-list .pro-category6 a i { background: url(../images/sprite.png) no-repeat -35px -177px }
-.pro-category-list .pro-category6 a:hover i { background: url(../images/sprite.png) no-repeat -76px -177px }
-.pro-category-list .pro-category7 a i { background: url(../images/sprite.png) no-repeat -35px -217px }
-.pro-category-list .pro-category7 a:hover i { background: url(../images/sprite.png) no-repeat -76px -217px }
-.pro-category-list .pro-category8 a i { background: url(../images/sprite.png) no-repeat -35px -255px }
-.pro-category-list .pro-category8 a:hover i { background: url(../images/sprite.png) no-repeat -76px -255px }
-.pro-category-list .pro-category9 a i { background: url(../images/sprite.png) no-repeat -35px -295px }
-.pro-category-list .pro-category9 a:hover i { background: url(../images/sprite.png) no-repeat -76px -295px }
-.pro-category-list .pro-category10 a i { background: url(../images/sprite.png) no-repeat -35px -334px }
-.pro-category-list .pro-category10 a:hover i { background: url(../images/sprite.png) no-repeat -76px -334px }
+.pro-category1 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px 5px }
+.pro-category1 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px 5px }
+.pro-category-list .pro-category2 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px -29px }
+.pro-category-list .pro-category2 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px -29px }
+.pro-category-list .pro-category3 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px -64px }
+.pro-category-list .pro-category3 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px -64px }
+.pro-category-list .pro-category4 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px -98px }
+.pro-category-list .pro-category4 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px -98px }
+.pro-category-list .pro-category5 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px -138px }
+.pro-category-list .pro-category5 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px -138px }
+.pro-category-list .pro-category6 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px -177px }
+.pro-category-list .pro-category6 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px -177px }
+.pro-category-list .pro-category7 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px -217px }
+.pro-category-list .pro-category7 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px -217px }
+.pro-category-list .pro-category8 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px -255px }
+.pro-category-list .pro-category8 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px -255px }
+.pro-category-list .pro-category9 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px -295px }
+.pro-category-list .pro-category9 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px -295px }
+.pro-category-list .pro-category10 a i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -35px -334px }
+.pro-category-list .pro-category10 a:hover i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -76px -334px }
 .pro-category-list .pro-category1 a:hover, .pro-category-list .pro-category2 a:hover, .pro-category-list .pro-category3 a:hover, .pro-category-list .pro-category4 a:hover, .pro-category-list .pro-category5 a:hover, .pro-category-list .pro-category6 a:hover, .pro-category-list .pro-category7 a:hover, .pro-category-list .pro-category8 a:hover, .pro-category-list .pro-category9 a:hover, .pro-category-list .pro-category10 a:hover { color: #000; -webkit-transition: all .4s ease; transition: all .4s ease; background-color: #26262E }
 .pro-button .tooltip { white-space: nowrap }
 .ob-our-brand { background: #F0F0F0; padding: 25px 0 10px }
@@ -274,8 +274,8 @@ header.fixed-header.fixed-header-top .ob-logo-block { z-index: 10; position: rel
 .owl-brand .owl-nav { margin-right: -4px; margin-top: -45px; }
 .owl-brand .item { margin: 0 5px }
 .owl-brand .item img { display: block; max-width: 100%; max-height: 100%; height: auto }
-.owl-brand .owl-next { background: url(../images/next-bg.png) no-repeat; width: 15px; height: 15px; border-radius: 0!important }
-.owl-brand .owl-prev { background: url(../images/prev-bg.png) no-repeat; width: 15px; height: 15px; border-radius: 0 }
+.owl-brand .owl-next { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512276/websites/POSH-ACCESSORIES/images/next-bg.png) no-repeat; width: 15px; height: 15px; border-radius: 0!important }
+.owl-brand .owl-prev { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512295/websites/POSH-ACCESSORIES/images/prev-bg.png) no-repeat; width: 15px; height: 15px; border-radius: 0 }
 .owl-brand .owl-next:hover { /*background: url(../images/pink_arrows.png) no-repeat -20px -1px */}
 .owl-brand .owl-prev:hover { /*background: url(../images/pink_arrows.png) no-repeat -4px -1px*/ }
 .owl-brand .owl-controls { text-align: right; margin: -25px -5px 30px 0 }
@@ -286,7 +286,7 @@ header.fixed-header.fixed-header-top .ob-logo-block { z-index: 10; position: rel
 .deal-banner a img { width: 100% }
 .banner-box { margin-top: 0px; margin-bottom: 15px }
 .banner-over { overflow: hidden; display: block; width: auto; margin-bottom: 30px; }
-.banner-box .cat-left-side { background: url(../images/cat-01.png) 96% 85% no-repeat #fdc3c2; min-width: 570px; min-height: 400px; padding: 20px 0 0 20px; -webkit-transition: all .1s ease; transition: all .1s ease; background-attachment: scroll; }
+.banner-box .cat-left-side { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512328/websites/POSH-ACCESSORIES/images/cat-01.png) 96% 85% no-repeat #fdc3c2; min-width: 570px; min-height: 400px; padding: 20px 0 0 20px; -webkit-transition: all .1s ease; transition: all .1s ease; background-attachment: scroll; }
 .cat-left-side h4 { color: #000; font-size: 24px; font-family: robotobold; margin: 0 0 10px; padding: 0 }
 .cat-left-side ul { margin-bottom: 8px }
 .cat-left-side ul li { color: #93a1b9; font-size: 14px; margin: 2px 0 0;/* background: url(../images/circle.png) no-repeat 0 50%;*/ padding: 0 12px }
@@ -297,10 +297,10 @@ header.fixed-header.fixed-header-top .ob-logo-block { z-index: 10; position: rel
 .cat-right-side .deal-banner { margin-bottom: 30px; display: block; overflow: hidden }
 .cat-right-side .deal-banner img { -webkit-transition: all .1s ease 0; transition: all .1s ease 0 }
 .banner-over p { line-height: 16px }
-.cat-right-side .right-banner-bg1 { background: url(../images/flyers.jpg) 98% 50% no-repeat #e2f0d6; }
-.cat-right-side .right-banner-bg2 { background: url(../images/cat-baner2.png) 100% 100% no-repeat #d0edf5; }
-.cat-right-side .right-banner-bg3 { background: url(../images/cat-banner3.png) 100% 100% no-repeat #e0e0e0; }
-.cat-right-side .right-banner-bg4 { background: url(../images/cat-banner4.png) 100% 100% no-repeat #fcf8b9; min-width: 152px; min-height: 185px; padding: 10px 0 0 10px; -webkit-transition: all .1s ease 0; transition: all .1s ease 0; -webkit-backface-visibility: scroll; backface-visibility: scroll }
+.cat-right-side .right-banner-bg1 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512397/websites/POSH-ACCESSORIES/images/flyers.jpg) 98% 50% no-repeat #e2f0d6; }
+.cat-right-side .right-banner-bg2 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512426/websites/POSH-ACCESSORIES/images/cat-baner2.png) 100% 100% no-repeat #d0edf5; }
+.cat-right-side .right-banner-bg3 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512444/websites/POSH-ACCESSORIES/images/cat-banner3.png) 100% 100% no-repeat #e0e0e0; }
+.cat-right-side .right-banner-bg4 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512464/websites/POSH-ACCESSORIES/images/cat-banner4.png) 100% 100% no-repeat #fcf8b9; min-width: 152px; min-height: 185px; padding: 10px 0 0 10px; -webkit-transition: all .1s ease 0; transition: all .1s ease 0; -webkit-backface-visibility: scroll; backface-visibility: scroll }
 .right-banner-bg1 h4, .right-banner-bg2 h4, .right-banner-bg3 h4, .right-banner-bg4 h4 { margin: 0 0 10px; padding: 0; text-transform: uppercase; color: #000; font-size: 24px; font-family: robotobold; }
 p.right-banner-para { color: #000; margin-bottom: 8px; font-size: 12px; line-height: 14px }
 .right-banner-bg1 a.learn-more:hover { color: #000 }
@@ -314,18 +314,18 @@ ul.footer-contact-detail { padding-top: 5px }
 .footer-contact-detail li { font-family: 'Didact Gothic', sans-serif; font-size: 14px; text-transform: none }
 .footer-contact-detail li a { color: gray }
 .footer-contact-detail li a:hover { color: #e70000 }
-.footer-contact-detail li.phone-number { background: url(../images/footer-icon1.png) no-repeat; height: 30px; display: block; background-position: 0 -3px; padding-left: 25px;color: #000 }
-.footer-contact-detail li.fax-number { color: #000;background: url(../images/footer-icon2.png) no-repeat; height: 30px; display: block; background-position: 0 -1px; padding-left: 25px }
-.footer-contact-detail li.email-contact { background: url(../images/footer-icon3.png) no-repeat; height: 30px; display: block; background-position: 0 -0; padding-left: 25px }
-.footer-contact-detail li.address-contact { background: url(../images/footer-icon4.png) no-repeat; height: 30px; display: block; background-position: 0 -4px; padding-left: 25px }
-.middle-footer .footer-link .contact-icon1 span { background: url(../images/footer-icon1.png) no-repeat scroll left top rgba(0, 0, 0, 0); height: 20px; display: inline-block; background-position: 0 -7px }
-.middle-footer .footer-link .contact-icon1 span:hover { background: url(../images/footer-icon1.png) no-repeat scroll left 82% rgba(0, 0, 0, 0); height: 20px; display: inline-block; background-position: 0 -56px }
-.middle-footer .footer-link .contact-icon2 a { background: url(../images/footer-icon2.png) no-repeat scroll left 3px rgba(0, 0, 0, 0) }
-.middle-footer .footer-link .contact-icon2 a:hover { background: url(../images/footer-icon2.png) no-repeat scroll left 76% rgba(0, 0, 0, 0) }
-.middle-footer .footer-link .contact-icon3 a { background: url(../images/footer-icon3.png) no-repeat scroll left -5% rgba(0, 0, 0, 0); text-transform: none }
-.middle-footer .footer-link .contact-icon3 a:hover { background: url(../images/footer-icon3.png) no-repeat scroll left 76% rgba(0, 0, 0, 0) }
-.middle-footer .footer-link .contact-icon4 a { background: url(../images/footer-icon4.png) no-repeat scroll left top rgba(0, 0, 0, 0); text-transform: none }
-.middle-footer .footer-link .contact-icon4 a:hover { background: url(../images/footer-icon4.png) no-repeat scroll left 82% rgba(0, 0, 0, 0) }
+.footer-contact-detail li.phone-number { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512670/websites/POSH-ACCESSORIES/images/footer-icon1.png) no-repeat; height: 30px; display: block; background-position: 0 -3px; padding-left: 25px;color: #000 }
+.footer-contact-detail li.fax-number { color: #000;background: url(https://res.cloudinary.com/flowz/image/upload/v1537512994/websites/POSH-ACCESSORIES/images/footer-icon2.png) no-repeat; height: 30px; display: block; background-position: 0 -1px; padding-left: 25px }
+.footer-contact-detail li.email-contact { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512705/websites/POSH-ACCESSORIES/images/footer-icon3.png) no-repeat; height: 30px; display: block; background-position: 0 -0; padding-left: 25px }
+.footer-contact-detail li.address-contact { background: url(https://res.cloudinary.com/flowz/image/upload/v1537513040/websites/POSH-ACCESSORIES/images/footer-icon4.png) no-repeat; height: 30px; display: block; background-position: 0 -4px; padding-left: 25px }
+.middle-footer .footer-link .contact-icon1 span { background: url(.https://res.cloudinary.com/flowz/image/upload/v1537512670/websites/POSH-ACCESSORIES/images/footer-icon1.png) no-repeat scroll left top rgba(0, 0, 0, 0); height: 20px; display: inline-block; background-position: 0 -7px }
+.middle-footer .footer-link .contact-icon1 span:hover { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512670/websites/POSH-ACCESSORIES/images/footer-icon1.png) no-repeat scroll left 82% rgba(0, 0, 0, 0); height: 20px; display: inline-block; background-position: 0 -56px }
+.middle-footer .footer-link .contact-icon2 a { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512994/websites/POSH-ACCESSORIES/images/footer-icon2.png) no-repeat scroll left 3px rgba(0, 0, 0, 0) }
+.middle-footer .footer-link .contact-icon2 a:hover { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512994/websites/POSH-ACCESSORIES/images/footer-icon2.png) no-repeat scroll left 76% rgba(0, 0, 0, 0) }
+.middle-footer .footer-link .contact-icon3 a { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512705/websites/POSH-ACCESSORIES/images/footer-icon3.png) no-repeat scroll left -5% rgba(0, 0, 0, 0); text-transform: none }
+.middle-footer .footer-link .contact-icon3 a:hover { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512705/websites/POSH-ACCESSORIES/images/footer-icon3.png) no-repeat scroll left 76% rgba(0, 0, 0, 0) }
+.middle-footer .footer-link .contact-icon4 a { background: url(https://res.cloudinary.com/flowz/image/upload/v1537513040/websites/POSH-ACCESSORIES/images/footer-icon4.png) no-repeat scroll left top rgba(0, 0, 0, 0); text-transform: none }
+.middle-footer .footer-link .contact-icon4 a:hover { background: url(https://res.cloudinary.com/flowz/image/upload/v1537513040/websites/POSH-ACCESSORIES/images/footer-icon4.png) no-repeat scroll left 82% rgba(0, 0, 0, 0) }
 .middle-footer .social-icon-box { border-top: 0; margin-top: 0px; padding-top: 5px }
 .social-icon { float: left; margin-right: 10px }
 .social-icon a img { top: 0; position: relative }
@@ -461,7 +461,7 @@ upload-image { width: 100px; height: 100px }
 .detail-popup-block > ul > li { display: inline-block; width: 12.9%; margin: 4px; vertical-align: top; float: left }
 .detail-popup-block > ul > li > a { font-size: 12px; border: 1px #CCC solid; background: #FCFBF9; min-height: 77px; width: 100%; display: block; padding: 5px; text-align: center; line-height: 15px; color: #000; word-break: normal }
 .detail-popup-block > ul > li > a:hover { color: #3A3A3A; border: 1px #e70000 solid }
-.detail-popup-block .strip, .modal-header .modal-title .strip { background: url(../images/sprite.png); background-repeat: no-repeat; background-position: 0 0; width: 32px; height: 30px; display: block; margin: 0 auto; margin-bottom: 5px; transition: all .3s ease 0 }
+.detail-popup-block .strip, .modal-header .modal-title .strip { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png); background-repeat: no-repeat; background-position: 0 0; width: 32px; height: 30px; display: block; margin: 0 auto; margin-bottom: 5px; transition: all .3s ease 0 }
 .detail-popup-block .strip.virtual-strip { background-position: -235px -7px }
 .detail-popup-block > ul li a:hover .virtual-strip { background-position: -235px -89px }
 .detail-popup-block .strip.inventory-strip { background-position: -317px -7px }
@@ -557,8 +557,8 @@ input[type="submit"].virtual-modal-btn:hover, input[type="reset"].virtual-modal-
 .request-info-modal .skuprice.popup-title > div { background: #f5f5f5 none repeat scroll 0 0; border-right: 3px solid #fff; font-family: 'Didact Gothic', sans-serif; min-height: 33px; padding: 4px 0; text-align: center; border-bottom: 0 }
 .request-info-modal .accordion-toggle { position: relative; display: block }
 .request-info-modal .accordion-toggle i { position: absolute; right: 0; top: -2px }
-.request-info-minus { background: rgba(0, 0, 0, 0) url(../images/sprite.png) no-repeat scroll -5px -186px; width: 22px; height: 22px; display: block }
-.request-info-plus { background: rgba(0, 0, 0, 0) url(../images/sprite.png) no-repeat scroll -6px -224px; width: 22px; height: 22px; display: block }
+.request-info-minus { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat scroll -5px -186px; width: 22px; height: 22px; display: block }
+.request-info-plus { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat scroll -6px -224px; width: 22px; height: 22px; display: block }
 .request-info-modal .panel-group .panel { border-radius: 0; border: 1px #EBEBEB solid; box-shadow: none }
 .request-info-modal .panel-default > .panel-heading { border: none; border-radius: 0; background: none }
 .request-info-modal .panel-default > .panel-heading + .panel-collapse > .panel-body { border-top: 0 }
@@ -678,7 +678,7 @@ input[type="submit"].virtual-modal-btn:hover, input[type="reset"].virtual-modal-
 .feedback-content p { color: #000; text-transform: none; font-size: 14px; line-height: 18px }
 .sample-request-table .table-striped > tbody > tr > td.table-text-left { color: #000 }
 .sample-request-table .table-striped > tbody > tr > td.table-text-left > span { color: #000 }
-.shopping_cart h1 i { display: inline-block; height: 16px; width: 20px; margin-right: 7px }
+.shopping_cart h1 i {  display: inline-block; height: 16px; width: 20px; margin-right: 7px }
 .shopping_block { width: 100% }
 .shopping_block thead { background: #f8f8f8; color: #000; border-bottom: 1px #ddd solid }
 .shopping_block thead tr th { text-align: center; text-transform: uppercase; font-family:  'Didact Gothic', sans-serif;font-weight: 600; padding: 10px 0; border-right: 1px #ddd solid; border-left: 1px #ddd solid; border-top: 1px #ddd solid; padding: 10px 15px; font-weight: 400; font-size: 14px }
@@ -688,7 +688,7 @@ input[type="submit"].virtual-modal-btn:hover, input[type="reset"].virtual-modal-
 .shopping_block tbody tr.media_shopping td:first-child { border-left: 0; text-align: left; color: #000; font-family: 'robotolight_italic'; font-size: 12px; padding: 0 }
 .shopping_block tbody tr.media_shopping { border-bottom: 0 }
 .shopping_block tbody tr td img.list_img { display: inline-block; max-width: 150px; max-height: 100px }
-.shopping_block .delete_icon { background-position: 0 0; background-repeat: no-repeat; width: 25px; height: 25px; display: inline-block }
+/*.shopping_block .delete_icon {  background-position: 0 0; background-repeat: no-repeat; width: 25px; height: 25px; display: inline-block }*/
 .shopping_block .delete_icon:hover { background-position: 0 -25px }
 .shopping_block tbody tr td.sub_total_title { color: #000; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; text-align: center; font-family: 'Didact Gothic', sans-serif; border-bottom: 1px #ddd solid }
 .shopping_block tbody tr td.sub_total { text-transform: uppercase; text-align: center; color: #000; font-size: 18px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; border-bottom: 1px #ddd solid }
@@ -701,11 +701,11 @@ input[type="submit"].virtual-modal-btn:hover, input[type="reset"].virtual-modal-
 .my-quote-edit-delete a i { font-size: 20px }
 .shopping-btn-block input[type="submit"], .shopping-btn-block input[type="button"], .shopping-btn-block input[type="reset"] { margin-right: 0; margin-left: 5px }
 .acc-info { position: absolute; bottom: 0; left: 0; z-index: 0 }
-.acc-info.info-order { background: url(../images/info-order.png) no-repeat; width: 42px; height: 49px; display: block }
-.acc-info.info-quote { background: rgba(0, 0, 0, 0) url(../images/info-quote.png) no-repeat scroll -3px 6px; display: block; height: 49px; width: 50px }
-.acc-info.info-request { background: rgba(0, 0, 0, 0) url(../images/info-request.png) no-repeat scroll -8px 1px; display: block; height: 49px; width: 53px }
-.acc-info.info-reward { background: rgba(0, 0, 0, 0) url(../images/info-reward.png) no-repeat scroll -5px 0; display: block; height: 49px; width: 45px }
-.acc-info.info-subshop { background: url(../images/info-subshop.png) no-repeat; display: block; width: 230px; height: 144px }
+.acc-info.info-order { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517367/websites/POSH-ACCESSORIES/images/info-order.png) no-repeat; width: 42px; height: 49px; display: block }
+.acc-info.info-quote { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537517392/websites/POSH-ACCESSORIES/images/info-quote.png) no-repeat scroll -3px 6px; display: block; height: 49px; width: 50px }
+.acc-info.info-request { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537517414/websites/POSH-ACCESSORIES/images/info-request.png) no-repeat scroll -8px 1px; display: block; height: 49px; width: 53px }
+.acc-info.info-reward { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537517448/websites/POSH-ACCESSORIES/images/info-reward.png) no-repeat scroll -5px 0; display: block; height: 49px; width: 45px }
+.acc-info.info-subshop { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517471/websites/POSH-ACCESSORIES/images/info-subshop.png) no-repeat; display: block; width: 230px; height: 144px }
 .inquiry-subshop { border: 1px solid #ebebeb; min-height: 120px; background: #f5f5f5;  background: url(data:image/svg+xml;
 base64, PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 background: -moz-linear-gradient(top, #f5f5f5 0%, #fff 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #fff)); background: -webkit-linear-gradient(top, #f5f5f5 0%, #fff 100%); background: -o-linear-gradient(top, #f5f5f5 0%, #fff 100%); background: -ms-linear-gradient(top, #f5f5f5 0%, #fff 100%); background: linear-gradient(to bottom, #f5f5f5 0%, #fff 100%);  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#fff', GradientType=0);
@@ -720,11 +720,11 @@ padding: 27px 5px; margin-top: 20px }
 .selection-color-box .dropdown-menu { border-radius: 0; margin-top: -1px; min-width: 150px; width: 170px; left: 40px }
 .selection-color-box .dropdown-menu a { color: #000; font-family: 'Didact Gothic', sans-serif; font-size: 13px; line-height: 16px; padding: 5px 8px }
 .selection-color-box .dropdown-menu span { display: inline-block; float: left; height: 17px; margin-right: 10px; width: 17px }
-.select-color-icon { background: url(../images/standard-color.png) no-repeat; width: 40px; height: 40px; display: inline-block; float: left }
-.pantone-color-icon { background: url(../images/panton-color.png) no-repeat; width: 40px; height: 40px; display: inline-block; float: left }
+.select-color-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517519/websites/POSH-ACCESSORIES/images/standard-color.png) no-repeat; width: 40px; height: 40px; display: inline-block; float: left }
+.pantone-color-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517540/websites/POSH-ACCESSORIES/images/panton-color.png) no-repeat; width: 40px; height: 40px; display: inline-block; float: left }
 .or-block { display: inline-block; padding-left: 12px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; color: #000; font-size: 14px }
 .print-title { text-transform: uppercase; display: block; text-align: right; color: #000; font-size: 14px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; padding-bottom: 5px; padding-top: 10px }
-.loadinggif { background: url(../images/ajax-loader.gif) no-repeat scroll center center; z-index: 9999; width: 30px; height: 41px; position: absolute; right: 0; left: 0; margin: 0 auto; width: 100% }
+.loadinggif { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517561/websites/POSH-ACCESSORIES/images/ajax-loader.gif) no-repeat scroll center center; z-index: 9999; width: 30px; height: 41px; position: absolute; right: 0; left: 0; margin: 0 auto; width: 100% }
 span.login-text i.js-counter { font-style: normal }
 .main-table td { width: 50% }
 .main-table .sub-table tr { border-bottom: 1px #ddd solid; float: none; width: 100% }
@@ -795,14 +795,14 @@ input[type="button"], input[type="reset"] { text-transform: uppercase; min-width
 .forgot-link:hover, .forgot-link:focus { color: #e70000 }
 .ob-login-main-block .forgot-passwd h3 { color: #555; font-family: 'Didact Gothic', sans-serif; font-size: 16px; margin-bottom: 5px; margin-top: 20px; padding: 0; text-transform: none }
 .ob-login-main-block .forgot-passwd p { color: #000; font-size: 13px; line-height: 15px; padding-bottom: 15px }
-.ob-login-main-block .forgot-passwd input[type="text"], .ob-login-main-block .forgot-passwd input[type="password"] { background: #fff url(../images/arrow.png) no-repeat scroll 10px 10px; border-color: #ddd; border-radius: 0; box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; color: #000; height: 34px; padding-left: 25px }
+.ob-login-main-block .forgot-passwd input[type="text"], .ob-login-main-block .forgot-passwd input[type="password"] { background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537517597/websites/POSH-ACCESSORIES/images/arrow.png) no-repeat scroll 10px 10px; border-color: #ddd; border-radius: 0; box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; color: #000; height: 34px; padding-left: 25px }
 .ob-login-main-block .send-email { background: #000 none repeat scroll 0 0; border-radius: 2px; box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.52); color: #fff; display: inline-block; font-family:  'Didact Gothic', sans-serif;font-weight:600; font-size: 13px; margin: 0; padding: 6px 14px 5px; text-align: center; text-transform: uppercase; margin-top: 15px }
 .ob-login-main-block .send-email:hover { background: #e70000 none repeat scroll 0 0 }
-.ob-login-main-block .forgot-passwd input[type="text"]:focus, .ob-login-main-block .forgot-passwd input[type="password"]:focus { border-color: #e70000; background: #fff url(../images/arrow.png) no-repeat 10px -17px; -webkit-box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1); -moz-box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1); box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1) }
+.ob-login-main-block .forgot-passwd input[type="text"]:focus, .ob-login-main-block .forgot-passwd input[type="password"]:focus { border-color: #e70000; background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537517597/websites/POSH-ACCESSORIES/images/arrow.png) no-repeat 10px -17px; -webkit-box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1); -moz-box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1); box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1) }
 .ob-add-new-address h2 { color: #000; font: 16px  'Didact Gothic', sans-serif; text-transform: capitalize }
 .ob-add-new-address .require-message .field-message { display: inline-block; color: #000; font: 13px robotolight; font-style: italic; margin: 12px 0 25px }
 .ob-add-new-address .print-checkbox > div { float: left; padding: 10px 9px 10px 0 }
-.ob-add-new-address .print-checkbox input[type="checkbox"] + label { background: url(../images/checkbox.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #000; display: inline-block; font-style: normal; line-height: 21px; padding-bottom: 0; margin-right: 0; padding-left: 24px; text-transform: capitalize; color: #000; vertical-align: middle; margin-left: -18px; margin-right: 15px; font-size: 13px; font-family: "obotolight_italic"; background: url(../images/checkbox.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #000; display: inline-block; font-style: normal; line-height: 21px; padding-bottom: 0; margin-right: 0; padding-left: 24px; text-transform: capitalize; color: #000; vertical-align: middle; font: 13px robotolight_italic; margin-left: -18px; margin-right: 15px }
+.ob-add-new-address .print-checkbox input[type="checkbox"] + label { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517635/websites/POSH-ACCESSORIES/images/checkbox.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #000; display: inline-block; font-style: normal; line-height: 21px; padding-bottom: 0; margin-right: 0; padding-left: 24px; text-transform: capitalize; color: #000; vertical-align: middle; margin-left: -18px; margin-right: 15px; font-size: 13px; font-family: "obotolight_italic"; background: url(https://res.cloudinary.com/flowz/image/upload/v1537517635/websites/POSH-ACCESSORIES/images/checkbox.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #000; display: inline-block; font-style: normal; line-height: 21px; padding-bottom: 0; margin-right: 0; padding-left: 24px; text-transform: capitalize; color: #000; vertical-align: middle; font: 13px robotolight_italic; margin-left: -18px; margin-right: 15px }
 .ob-add-new-address .checkbox { padding-left: 10px; padding-left: 10px; float: left; margin-top: 0; margin-right: 25px }
 .ob-add-new-address input[type="radio"] { margin-left: 5px; margin-right: 5px }
 .ob-add-new-address .checkbox label { text-transform: capitalize; color: #000; vertical-align: middle; font: 13px robotolight_italic }
@@ -820,7 +820,7 @@ background: -moz-linear-gradient(top, #f5f5f5 0%, #fff 100%); background: -webki
 .ob-my-order-block .my-order-table-block { margin-bottom: 0 }
 .ob-my-order-block .my-order-table-block tr { border-bottom: 1px solid #e6e6e6; padding-bottom: 20px }
 .ob-my-order-block .my-order-table-block tr:last-child { border-bottom: none }
-.ob-my-order-block .panel-heading .myorder-inline .sign { background: url(../images/down-arrow-2.png) no-repeat scroll; width: 18px; height: 12px; position: absolute; top: 8px; right: 0 }
+.ob-my-order-block .panel-heading .myorder-inline .sign { background: url(https://res.cloudinary.com/flowz/image/upload/v1537778690/websites/POSH-ACCESSORIES/images/down-arrow-2.png) no-repeat scroll; width: 18px; height: 12px; position: absolute; top: 8px; right: 0 }
 .ob-my-order-block .panel-group .panel + .panel { margin-top: 20px; box-shadow: none; border: 1px solid #e6e6e6 }
 .ob-my-order-block .my-order-table-block { margin-bottom: 0 }
 .ob-my-order-block .my-order-table-block span { font: 14px  'Didact Gothic', sans-serif }
@@ -896,13 +896,13 @@ background: -moz-linear-gradient(top, #f5f5f5 0%, #fff 100%); background: -webki
 .account-address-block .address-shipping-block a { margin-right: 10px; position: relative; color: #929191; text-transform: capitalize; font: 12px  'Didact Gothic', sans-serif }
 .account-address-block .address-shipping-block a:hover, .ob-main-address-block .address-shipping-block a:hover i { color: #e70000 }
 .account-address-block .address-shipping-block a i { font-size: 13px; color: #646464; margin-right: 5px }
-.ob-my-logo-main-block .upload-logo { background: rgba(0, 0, 0, 0) url(../images/upload-logo-btn.png) no-repeat scroll 0 0; float: right; height: 31px; margin-top: 9px; position: relative; width: 125px }
+.ob-my-logo-main-block .upload-logo { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537517687/websites/POSH-ACCESSORIES/images/upload-logo-btn.png) no-repeat scroll 0 0; float: right; height: 31px; margin-top: 9px; position: relative; width: 125px }
 .ob-my-logo-main-block .upload-logo input { position: absolute; z-index: 2; opacity: 0; width: 100%; height: 100% }
 .ob-my-logo-main-block .mylogo { background-color: #f5f5f5; padding: 10px; border: 1px solid #ececec; position: relative; margin-bottom: 20px; min-height: 310px; }
 .ob-my-logo-main-block .mylogoinner { padding: 10px; background-color: #fff; text-align: center }
 .ob-my-logo-main-block .mylogoinner img { max-width: 100% }
 .ob-my-logo-main-block .delete-logo { background: rgba(0, 0, 0, 0.8); display: none; height: 100%; position: absolute; top: 0; width: 100%; left: 0 }
-.ob-my-logo-main-block .delete-logo span { background: url(../images/x.png); height: 42px; width: 43px; background-repeat: no-repeat; position: absolute; left: 0; right: 0; margin: 0 auto; top: 35% }
+.ob-my-logo-main-block .delete-logo span { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517774/websites/POSH-ACCESSORIES/images/x.png); height: 42px; width: 43px; background-repeat: no-repeat; position: absolute; left: 0; right: 0; margin: 0 auto; top: 35% }
 .ob-my-logo-main-block .mylogoinner:hover .delete-logo { display: block }
 .ob-my-quote-detail-block i.quote-icon span { color: #fff; font-size: 20px }
 .ob-my-quote-detail-block .quote-detail { border: 1px solid #e6e6e6; background: #fefefe; box-shadow: 0 0 2px 0 #e6e6e6 inset; margin-bottom: 20px; padding: 5px 0 0 }
@@ -987,7 +987,7 @@ background: -moz-linear-gradient(top, #f5f5f5 0%, #fff 100%); background: -webki
 .play-video-block iframe { display: block; margin: 0 auto; width: 550px; }
 .play-video-block img { display: inline-block }
 .audio-block { text-align: center; margin: 10px 0 }
-.play-video-shw { background: url(../images/video-shw.png) no-repeat; width: 670px; height: 37px; margin: 0 auto }
+.play-video-shw { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517822/websites/POSH-ACCESSORIES/images/video-shw.png) no-repeat; width: 670px; height: 37px; margin: 0 auto }
 .special-info-block { border: 10px solid #f5f5f5; margin-bottom: 25px }
 .special-info-block .sub-form-box { background: #fafafa; border: 1px solid #fff; padding: 20px }
 .special-info-block .inp-parts .checkout-label { margin-bottom: 0 }
@@ -1162,10 +1162,10 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .ob-pro-search-block .select-style { width: 100% }
 .ob-pro-search-block .advance-search-wrap { width: 70%; float: left }
 .ob-pro-search-block .advance-search-field { width: 100%; height: 38px; color: #000; font-size: 15px  'Didact Gothic', sans-serif; padding: 6px; border: 1px solid #e6e6e6; padding-right: 135px }
-.advance-search-label, .advance-search-label:focus { position: absolute; right: 60px; top: 11px; color: #000; font-familty:  'Didact Gothic', sans-serif; font-size: 13px; text-transform: uppercase; background: url(../images/grey-arrow.png) no-repeat right center; padding-right: 15px; }
+.advance-search-label, .advance-search-label:focus { position: absolute; right: 60px; top: 11px; color: #000; font-familty:  'Didact Gothic', sans-serif; font-size: 13px; text-transform: uppercase; background: url(https://res.cloudinary.com/flowz/image/upload/v1537517856/websites/POSH-ACCESSORIES/images/grey-arrow.png) no-repeat right center; padding-right: 15px; }
 .advance-search-label:hover { opacity: 1; color: #000 }
 .advance-search-wrap .dropdown-menu { width: 100%; margin-top: 35px; background: #F5F5F5; border: 0; padding: 10px; border-radius: 0; box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.4); top: 10px; z-index: 11 }
-.advance-search-wrap .dropdown-menu:before { content: ""; width: 25px; height: 17px; background: url(../images/a-shadow-2.png) no-repeat 0 0; display: inline-block; right: 50px; position: absolute; top: -17px }
+.advance-search-wrap .dropdown-menu:before { content: ""; width: 25px; height: 17px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537517877/websites/POSH-ACCESSORIES/images/a-shadow-2.png) no-repeat 0 0; display: inline-block; right: 50px; position: absolute; top: -17px }
 .advance-search-wrap .tab-block .nav-tabs li a i { height: auto; width: auto }
 .advance-search-wrap .tab-block .nav-tabs li a { font-size: 14px; background: #e3e3e3; color: #7d7d7d; padding: 10px 20px; border: 1px solid transparent; border-bottom: 0 solid transparent }
 .advance-search-wrap .tab-block .nav-tabs li.active a { border: 1px solid #d1d1d1; border-bottom: 0 solid transparent; background: #fff }
@@ -1222,7 +1222,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .ob-sort-block .sort-product { width: 46%; float: left; font-size: 14px; color: #000; margin: 5px 0 }
 .ob-sort-block .sort-product .sort-style { border: 1px #ddd solid; }
 .ob-sort-block .view-product { width: 14%; float: right; font-size: 14px; color: #000; margin: 8px 0 }
-.sort-style { padding: 0; margin: 0; width: 78%; background-color: #fff; background: #fff url(../images/down-arrow.png) no-repeat 97% 50%; position: relative; display: inline-block; vertical-align: middle; height: 25px }
+.sort-style { padding: 0; margin: 0; width: 78%; background-color: #fff; background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537517897/websites/POSH-ACCESSORIES/images/down-arrow.png) no-repeat 97% 50%; position: relative; display: inline-block; vertical-align: middle; height: 25px }
 .sort-style select { padding: 0 20px 0 2px; width: 100%; border: none; box-shadow: none; background-color: transparent; background-image: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; font-size: 14px; color: #404040; font-weight: 300 }
 .sort-style select:focus { outline: none }
 .sort-style .scombobox-display { height: 25px; padding-right: 20px }
@@ -1448,7 +1448,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .price-range-col .ui-page-theme-a .ui-btn.ui-btn-active, .ui-page-theme-a .ui-slider-track .ui-btn-active { background-color: #999; border-color: #999; color: #fff; text-shadow: none }
 .price-range-col .ui-bar-a, .ui-page-theme-a .ui-bar-inherit { background-color: #e9e9e9; border-color: #ddd; color: #333; text-shadow: none; border-radius: 0; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; height: 7px }
 .price-range-col .ui-rangeslider-sliders { height: auto }
-.price-range-col .ui-slider-track .ui-btn.ui-slider-handle { background: url(../images/processbar.png) no-repeat; width: 19px; height: 19px; top: 150% }
+.price-range-col .ui-slider-track .ui-btn.ui-slider-handle { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517917/websites/POSH-ACCESSORIES/images/processbar.png) no-repeat; width: 19px; height: 19px; top: 150% }
 .price-range-col .ui-rangeslider-sliders .ui-slider-track { position: absolute; top: 6px; right: 0; left: 0; margin: 0; display: inline-block }
 .price-range-col .ui-bar-a, .ui-page-theme-a .ui-bar-inherit { background-color: #e9e9e9; border-color: #ddd; color: #333; text-shadow: 0 1px 0 #eee; font-weight: 700 }
 .price-range-col { margin-bottom: 20px }
@@ -1464,19 +1464,19 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .noUi-base { width: 93%; height: 100%; position: relative }
 .noUi-connect { background: #999 }
 .noUi-origin { position: absolute; right: 0; top: 0; left: 0; bottom: 0 }
-.noUi-handle { background: url(../images/processbar.png) no-repeat; width: 19px; height: 19px; top: -7px; cursor: pointer; position: relative; z-index: 1 }
+.noUi-handle { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517917/websites/POSH-ACCESSORIES/images/processbar.png) no-repeat; width: 19px; height: 19px; top: -7px; cursor: pointer; position: relative; z-index: 1 }
 .color-block .panel-heading span { text-transform: uppercase; font-size: 18px; color: #e70000 }
 .color-block .panel-heading .fa { font-size: 24px; float: right; color: #e70000 }
 .color-block .color-filter ul { margin-left: 8px }
 .color-block .color-filter input[type=checkbox] { display: none; border-radius: 0 }
-.color-filter input:checked ~ label { background-image: url(../images/checkbox-arrow.png); width: 30px; height: 30px; display: inline-block; background-position: 2px 1px; background-repeat: no-repeat }
-.color-filter .white-checkbox input:checked ~ label { background-image: url(../images/checkbox-arrow-black.png); width: 30px; height: 30px; display: inline-block; background-position: 2px 1px; background-repeat: no-repeat }
-.color-filter .color-box .multi-checkbox label { background: url(../images/multicolor-icon.png) no-repeat 0 0 }
+.color-filter input:checked ~ label { background-image: url(https://res.cloudinary.com/flowz/image/upload/v1537517958/websites/POSH-ACCESSORIES/images/checkbox-arrow.png); width: 30px; height: 30px; display: inline-block; background-position: 2px 1px; background-repeat: no-repeat }
+.color-filter .white-checkbox input:checked ~ label { background-image: url(https://res.cloudinary.com/flowz/image/upload/v1537517979/websites/POSH-ACCESSORIES/images/checkbox-arrow-black.png); width: 30px; height: 30px; display: inline-block; background-position: 2px 1px; background-repeat: no-repeat }
+.color-filter .color-box .multi-checkbox label { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518004/websites/POSH-ACCESSORIES/images/multicolor-icon.png) no-repeat 0 0 }
 .color-block .color-filter label { height: 30px; width: 30px; float: left; border-radius: 0; font-size: 100%; display: inline-block; border: 2px solid #bdbdbd; margin-left: 0; margin-bottom: 2px }
 .brand-block .panel-heading span { text-transform: uppercase; font-size: 18px; color: #e70000 }
 .brand-block .panel-heading .fa { font-size: 24px; float: right; color: #e70000 }
 .discount-block .ui-checkbox label { color: #999; font-style: normal; text-transform: uppercase; font-family: ' 'Didact Gothic', sans-serif', sans-serif; font-size: 14px; margin-left: 10px; vertical-align: top; line-height: 24px }
-.discount-block .custom-checkbox { width: 17px; height: 17px; display: inline-block; position: absolute; z-index: 1; top: 3px; background: url(../images/checkbox.png) left top no-repeat; color: #999; font-style: normal; text-transform: uppercase; font-family: ' 'Didact Gothic', sans-serif', sans-serif; font-size: 14px }
+.discount-block .custom-checkbox { width: 17px; height: 17px; display: inline-block; position: absolute; z-index: 1; top: 3px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537517635/websites/POSH-ACCESSORIES/images/checkbox.png) left top no-repeat; color: #999; font-style: normal; text-transform: uppercase; font-family: ' 'Didact Gothic', sans-serif', sans-serif; font-size: 14px }
 .discount-block .panel-heading .fa { font-size: 24px; float: right; color: #000 }
 .discount-block .panel-heading span { text-transform: uppercase; font-size: 18px; color: #e70000 }
 .product-rcat-input-style { background: #fff; width: 100% }
@@ -1522,7 +1522,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .quick-view-rating-block .no-rating p { color: #CFC9C9; font-size: 40px; text-transform: uppercase; font-weight: 700 }
 .full-video-block { border: 2px #000 solid; height: 500px; margin-bottom: 20px }
 .full-video-block iframe { width: 100%; height: 100%; z-index: 1 }
-.full-video-block .shadow { background: rgba(0, 0, 0, 0) url(../images/video_shadow.png) no-repeat scroll center bottom; bottom: -35px; left: 0; right: 0; display: block; height: 35px; position: absolute; width: 100%; z-index: 9999 }
+.full-video-block .shadow { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537518055/websites/POSH-ACCESSORIES/images/video_shadow.png) no-repeat scroll center bottom; bottom: -35px; left: 0; right: 0; display: block; height: 35px; position: absolute; width: 100%; z-index: 9999 }
 .video-thumb { width: 100% }
 .ob-quick-view-product .full-video-block { width: 60%; height: 400px; margin: 0 auto }
 .video-thumb .product-video { display: inline-block; height: 140px; margin: 0 0 20px; width: 100% }
@@ -1535,9 +1535,9 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .video-thumb .product-video-title p { color: #7C7C7C; font-family: 'Didact Gothic', sans-serif; font-size: 14px; font-weight: 700; margin: 0; padding: 0; display: block; width: 100% }
 .video-thumb .product-video-title span { color: #999494; font-family: 'Didact Gothic', sans-serif; font-size: 14px; margin: 5px 0 0; padding: 0; display: block; width: 100% }
 .video-thumb .product-video-img:hover .product-video-img-hover { opacity: 1; visibility: visible }
-.empty-rating { background: url(../images/empty-rating.jpg) no-repeat; width: 481px; height: 175px; margin: 150px auto }
+.empty-rating { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518098/websites/POSH-ACCESSORIES/images/empty-rating.jpg) no-repeat; width: 481px; height: 175px; margin: 150px auto }
 .no-video { margin-top: 150px; text-align: center }
-.no-video .no-vedio-img { background: url(../images/no-vedio.png) no-repeat; width: 91px; height: 63px; display: inline-block; margin-bottom: 30px }
+.no-video .no-vedio-img { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518269/websites/POSH-ACCESSORIES/images/no-vedio.png) no-repeat; width: 91px; height: 63px; display: inline-block; margin-bottom: 30px }
 .no-video p { color: #CFC9C9; font-size: 40px; text-transform: uppercase; font-weight: 700 }
 .ob-filter-search .panel-heading { background: #f5f5f5; border: none; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom: 3px solid #f0f0f0; padding-top: 13px; padding-right: 5px }
 .main-cat-con li:first-child { padding: 0 }
@@ -1545,7 +1545,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .main-cat-con li:last-child { border-bottom: none; padding: 10px 0 0 }
 .main-cat-con li span a { color: #000; text-transform: uppercase; vertical-align: top; line-height: 23px; font: 14px  'Didact Gothic', sans-serif }
 .main-cat-con li span a:hover { color: #000; font-family:  'Didact Gothic', sans-serif;font-weight:600 }
-.main-cat-con .main-icon { background: url(../images/strip.png) no-repeat center center; display: inline-block; line-height: 16px; height: 20px; padding-left: 23px; padding-right: 10px }
+.main-cat-con .main-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518291/websites/POSH-ACCESSORIES/images/strip.png) no-repeat center center; display: inline-block; line-height: 16px; height: 20px; padding-left: 23px; padding-right: 10px }
 .main-cat-con .strp1 { background-position: -155px -5px }
 .main-cat-con .strp2 { background-position: -155px -32px }
 .main-cat-con .strp3 { background-position: -155px -55px }
@@ -1556,8 +1556,8 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .main-cat-con .strp8 { background-position: -155px -182px }
 .main-cat-con .strp9 { background-position: -155px -207px }
 .main-cat-con .strp10 { background-position: -155px -232px }
-.owl-theme.owl-block .owl-next { background: url(../images/right-arrow.png) no-repeat; width: 23px; height: 23px; border-radius: 0!important }
-.owl-theme.owl-block .owl-prev { background: url(../images/left-arrows.png) no-repeat; width: 23px; height: 23px; border-radius: 0; padding: 3px 15px }
+.owl-theme.owl-block .owl-next { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518363/websites/POSH-ACCESSORIES/images/right-arrow.png) no-repeat; width: 23px; height: 23px; border-radius: 0!important }
+.owl-theme.owl-block .owl-prev { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518380/websites/POSH-ACCESSORIES/images/left-arrows.png) no-repeat; width: 23px; height: 23px; border-radius: 0; padding: 3px 15px }
 .owl-theme.owl-block .owl-controls { text-align: right; margin: -65px 10px 23px 0 }
 .owl-theme.owl-block .owl-nav { display: block; margin: 0 20px }
 .owl-theme.owl-block .item { margin: 10px 15px }
@@ -1571,17 +1571,17 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .tab-block .nav-tabs > li.active { border-top: 2px #f5f5f5 solid; border-right: 2px #f5f5f5 solid; border-left: 2px #f5f5f5 solid; padding: 1px; margin-bottom: -2px }
 .tab-block .nav-tabs li a:hover { color: #e70000 }
 .tab-block .nav-tabs > li.active > a, .tab-block .nav-tabs > li.active > a:hover, .tab-block .nav-tabs > li.active > a:focus { background: #ececec; background: -moz-linear-gradient(top, #ececec 0%, #fdfdfd 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ececec), color-stop(100%, #fdfdfd)); background: -webkit-linear-gradient(top, #ececec 0%, #fdfdfd 100%); background: -o-linear-gradient(top, #ececec 0%, #fdfdfd 100%); background: -ms-linear-gradient(top, #ececec 0%, #fdfdfd 100%); background: linear-gradient(to bottom, #ececec 0%, #fdfdfd 100%);  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ececec', endColorstr='#fdfdfd', GradientType=0)
-;margin: 0; border: none; color: #e70000 }
-.tab-block .nav-tabs li a i.hot { background: url(../images/hot.png) no-repeat }
-.tab-block .nav-tabs li.active a i.hot, .tab-block .nav-tabs li.hover a i.hot { background: url(../images/hot-active.png) no-repeat }
-.tab-block .nav-tabs li a i.new { background: url(../images/new.png) no-repeat }
-.tab-block .nav-tabs li.active a i.new, .tab-block .nav-tabs li.hover a i.new { background: url(../images/new-active.png) no-repeat }
-.tab-block .nav-tabs li a i.sale { background: url(../images/sale.png) no-repeat }
-.tab-block .nav-tabs li.active a i.sale, .tab-block .nav-tabs li.hover a i.sale { background: url(../images/sale-active.png) no-repeat }
-.tab-block .nav-tabs li a i.closeout { background: url(../images/closeout.png) no-repeat }
-.tab-block .nav-tabs li.active a i.closeout, .tab-block .nav-tabs li.hover a i.closeout { background: url(../images/closeout-active.png) no-repeat }
-.tab-block .nav-tabs li a i.price-drop { background: url(../images/price-drop.png) no-repeat }
-.tab-block .nav-tabs li.active a i.price-drop, .tab-block .nav-tabs li.hover a i.price-drop { background: url(../images/price-drop-active.png) no-repeat }
+margin: 0; border: none; color: #e70000 }
+.tab-block .nav-tabs li a i.hot { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518406/websites/POSH-ACCESSORIES/images/hot.png) no-repeat }
+.tab-block .nav-tabs li.active a i.hot, .tab-block .nav-tabs li.hover a i.hot { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518445/websites/POSH-ACCESSORIES/images/hot-active.png) no-repeat }
+.tab-block .nav-tabs li a i.new { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518466/websites/POSH-ACCESSORIES/images/new.png) no-repeat }
+.tab-block .nav-tabs li.active a i.new, .tab-block .nav-tabs li.hover a i.new { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518486/websites/POSH-ACCESSORIES/images/new-active.png) no-repeat }
+.tab-block .nav-tabs li a i.sale { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518508/websites/POSH-ACCESSORIES/images/sale.png) no-repeat }
+.tab-block .nav-tabs li.active a i.sale, .tab-block .nav-tabs li.hover a i.sale { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518525/websites/POSH-ACCESSORIES/images/sale-active.png) no-repeat }
+.tab-block .nav-tabs li a i.closeout { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518570/websites/POSH-ACCESSORIES/images/closeout.png) no-repeat }
+.tab-block .nav-tabs li.active a i.closeout, .tab-block .nav-tabs li.hover a i.closeout { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518593/websites/POSH-ACCESSORIES/images/closeout-active.png) no-repeat }
+.tab-block .nav-tabs li a i.price-drop { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518614/websites/POSH-ACCESSORIES/images/price-drop.png) no-repeat }
+.tab-block .nav-tabs li.active a i.price-drop, .tab-block .nav-tabs li.hover a i.price-drop { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518634/websites/POSH-ACCESSORIES/images/price-drop-active.png) no-repeat }
 .tab-block .tab-content { border: 2px #f5f5f5 solid; padding: 15px 0 }
 .tab-block .price { text-align: center; font-size: 12px; color: #000; font-weight: 600 }
 .tab-block .sub-title { color: #e70000; font-size: 12px; text-align: center; font-weight: 300 }
@@ -1594,8 +1594,8 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .tab-owl .owl-nav { display: block; margin: 0 20px; top: 110px; right: -20px; left: -20px; }
 .tab-owl .item { margin: 10px; position: relative; height: 280px; background: #fff; text-align: center; display: block; width: 90% }
 .tab-owl .item img { height: 70%; max-width: 99% }
-.tab-owl .owl-next { background: url(../images/right-arrow.png) no-repeat; width: 23px; height: 23px; border-radius: 0!important; position: absolute; right: -20px; top: 37% }
-.tab-owl .owl-prev { background: url(../images/left-arrows.png) no-repeat; width: 23px; height: 23px; border-radius: 0; position: absolute; left: -20px; top: 37% }
+.tab-owl .owl-next { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518363/websites/POSH-ACCESSORIES/images/right-arrow.png) no-repeat; width: 23px; height: 23px; border-radius: 0!important; position: absolute; right: -20px; top: 37% }
+.tab-owl .owl-prev { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518380/websites/POSH-ACCESSORIES/images/left-arrows.png) no-repeat; width: 23px; height: 23px; border-radius: 0; position: absolute; left: -20px; top: 37% }
 .product-category-search .pro-box { border: 2px solid #f5f5f5 }
 .product-category-search .pro-box:hover { border: 2px #e70000 solid }
 .product-category-search .pro-search-cat-block .title { margin-bottom: 25px }
@@ -1660,7 +1660,7 @@ a.continue-shopping-btn i.fa { color: #e70000; margin-left: 5px }
 .estimate-sub-totle h4 { margin: 0; padding: 0; color: #000; font-size: 18px }
 .estimate-sub-totle h5 { color: #e70000; font-size: 25px; margin: 0; padding: 0 }
 .estimate-detail .estimate-address-block .estimate-row { margin-bottom: 0; line-height: 25px }
-.ob-account-info .account-dashboard-info { margin: 10px 0 0; padding: 8px 10px 0 0; background: url(../images/account-dashboard-icon.png) no-repeat; width: 190px; height: 41px; text-align: right; float: right }
+.ob-account-info .account-dashboard-info { margin: 10px 0 0; padding: 8px 10px 0 0; background: url(https://res.cloudinary.com/flowz/image/upload/v1537518686/websites/POSH-ACCESSORIES/images/account-dashboard-icon.png) no-repeat; width: 190px; height: 41px; text-align: right; float: right }
 .account-dashboard-info h4 { margin: 0; padding: 0; color: #3e3e3e; font-weight: 400; text-transform: uppercase; font-family:  'Didact Gothic', sans-serif;font-weight: 600; font-size: 18px }
 .my-account-left div.panel-title i.fa { color: #000; font-size: 18px; margin-top: 5px }
 .shopping-table-block { width: 100% }
@@ -1755,7 +1755,7 @@ a.continue-shopping-btn i.fa { color: #e70000; margin-left: 5px }
 .labels ul li .icons:hover i { color: #e70000 }
 .product-section-box h2 { background: #F9F9F9; font-family:  'Didact Gothic', sans-serif;font-weight:600; font-size: 16px; margin-bottom: 5px; padding: 8px 30px 8px 46px; border-bottom: #EEE 3px solid; color: #000; position: relative }
 .product-section-box h2 span { color: #111; font-size: 12px; font-family: 'Didact Gothic', sans-serif;font-weight:600 }
-.product-section-box h2 i { position: absolute; top: -1px; left: 0; padding: 10px; font-style: normal; background: url(../images/sprite.png) no-repeat -27px -550px; color: #fff; font-size: 18px; font-family: 'Didact Gothic', sans-serif;font-weight:600; width: 39px; height: 39px }
+.product-section-box h2 i { position: absolute; top: -1px; left: 0; padding: 10px; font-style: normal; background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -27px -550px; color: #fff; font-size: 18px; font-family: 'Didact Gothic', sans-serif;font-weight:600; width: 39px; height: 39px }
 .prod-detail-box .inner-block { padding: 7px 0 }
 .prod-detail-box .inner-block p { font-size: 13px; color: #595959; padding: 0 0 15px; text-transform: uppercase }
 .prod-detail-box .inner-block .btn-box { padding: 0 15px; margin-top: 10px }
@@ -1768,7 +1768,7 @@ a.continue-shopping-btn i.fa { color: #e70000; margin-left: 5px }
 .modal-content .close { opacity: 1; position: absolute; right: 15px; top: 65px; font-size: 23px; z-index: 9999; color: #e70000 }
 .bootbox.bootbox-confirm .modal-content .close { top: 0; margin-top: 4px!important }
 .bootbox.bootbox-confirm .modal-content { background: #F5F5F5; border: none }
-.bootbox.bootbox-confirm .modal-body { background: url(../images/titile-slice.png) repeat-x 0 0; border: 1px solid #FFF }
+.bootbox.bootbox-confirm .modal-body { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518716/websites/POSH-ACCESSORIES/images/titile-slice.png) repeat-x 0 0; border: 1px solid #FFF }
 .bootbox.bootbox-confirm .modal-footer { background: #fff; border-top: 0 }
 .close:hover, .close:focus { opacity: 1 }
 .product-compare-list { background: none repeat scroll 0 0 #f0f0f0; color: gray; transition-property: opacity, left, top, width; font-family: 'Didact Gothic', sans-serif, sans-serif; font-size: 13px; margin-top: 10px; padding-bottom: 10px; padding-top: 10px; position: relative; transition-duration: 2s, 1s }
@@ -1788,7 +1788,7 @@ a.continue-shopping-btn i.fa { color: #e70000; margin-left: 5px }
 .skuprice p.stars span { display: inline-block; float: none }
 .skuprice span { color: #969696 }
 .skuprice > div:last-child { border-right: 0 }
-.skuprice span a { height: 15px; width: 15px; display: inline-block; width: 15px; height: 15px; display: inline-block; background-position: 0 0 }
+.skuprice span a { height: 15px; width: 15px; display: inline-block;  width: 15px; height: 15px; display: inline-block; background-position: 0 0 }
 .skuprice span a:hover, .skuprice span a.active { background-position: 0 -15px }
 .product-description .nav-tabs { padding-bottom: 25px; border: none }
 .product-description .nav-tabs li { position: relative; width: 33.3%; float: left; text-align: center; background: #E6E6E6; border: 1px #A7A7A7 solid; margin: 0; border-right: 0 }
@@ -1805,28 +1805,28 @@ a.continue-shopping-btn i.fa { color: #e70000; margin-left: 5px }
 .tooltip-color-box li { margin-right: 5px }
 .color-box input[type=checkbox], .tooltip-color-box input[type=checkbox] { display: none; border-radius: 0 }
 .color-box label, .tooltip-color-box label { padding: 10px; height: 30px; width: 30px; font-size: 0; float: left; border-radius: 0; font-size: 100%; display: inline-block; border: #CCC 2px solid }
-.color-box input:checked ~ label, .tooltip-color-box input:checked ~ label { background-image: url(../images/checkbox-arrow.png); width: 30px; height: 30px; display: inline-block; background-position: 2px 1px; background-repeat: no-repeat }
-.color-box .multi-checkbox label { background: url(../images/multicolor-icon.png) no-repeat 0 0 }
+.color-box input:checked ~ label, .tooltip-color-box input:checked ~ label { background-image: url(https://res.cloudinary.com/flowz/image/upload/v1537517958/websites/POSH-ACCESSORIES/images/checkbox-arrow.png); width: 30px; height: 30px; display: inline-block; background-position: 2px 1px; background-repeat: no-repeat }
+.color-box .multi-checkbox label { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518004/websites/POSH-ACCESSORIES/images/multicolor-icon.png) no-repeat 0 0 }
 .owl-carousel.color-box li.owl-item { max-width: 30px; margin-right: 5px; }
 .color-filter li div.tooltip { white-space: nowrap; width: auto; height: auto; float: none; }
 .color-filter li > div { width: 30px; height: 30px; float: left; margin: 0; background-repeat: no-repeat; background-size: 88% 88%; background-position: center center !important; }
 .color-filter li div + div { width: auto }
-.white-box input:checked ~ label { background-image: url(../images/checkbox-arrow-black.png); width: 30px; height: 30px; display: inline-block }
+.white-box input:checked ~ label { background-image: url(https://res.cloudinary.com/flowz/image/upload/v1537517979/websites/POSH-ACCESSORIES/images/checkbox-arrow-black.png); width: 30px; height: 30px; display: inline-block }
 .padding-bottom-0 { padding-bottom: 0!important }
 .radiobox.select-box { padding-bottom: 0 }
 .product-section-box .imprint-box .radiobox, .product-section-box .print-position { display: inline-block; width: 100%; color: #000; font-size: 14px; font-family: 'Didact Gothic', sans-serif }
 .print-checkbox input[type="checkbox"] { margin: 0; opacity: 0; padding: 0; width: 15px }
-.product-section-box .print-checkbox input[type="checkbox"] + label { background: url(../images/checkbox.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #000; display: inline-block; line-height: 20px; margin-left: -16px; padding-bottom: 0; margin-right: 0; padding-left: 24px; text-transform: capitalize; font-family: 'Didact Gothic', sans-serif; font-size: 14px }
+.product-section-box .print-checkbox input[type="checkbox"] + label { background: url(https://res.cloudinary.com/flowz/image/upload/v1537517635/websites/POSH-ACCESSORIES/images/checkbox.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #000; display: inline-block; line-height: 20px; margin-left: -16px; padding-bottom: 0; margin-right: 0; padding-left: 24px; text-transform: capitalize; font-family: 'Didact Gothic', sans-serif; font-size: 14px }
 .print-position { padding-top: 5px }
 .print-position .print-checkbox { padding-top: 20px }
 .print-position .print-checkbox span { color: #111; font-size: 14px; display: inline-block; padding-bottom: 5px; width: 100%; float: left }
 .print-checkbox input[type="checkbox"]:checked + label { background-position: 0 -24px }
 .radiobox label { font-family: 'Didact Gothic', sans-serif }
 .btn-file { overflow: hidden; position: relative }
-.btn-file input[type="file"] { background: url(../images/upload-botton.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); cursor: inherit; display: block; height: 27px; min-height: 100%; min-width: 100%; opacity: 0; position: absolute; right: 0; text-align: right; top: 0; width: 114px }
+.btn-file input[type="file"] { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518874/websites/POSH-ACCESSORIES/images/upload-botton.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); cursor: inherit; display: block; height: 27px; min-height: 100%; min-width: 100%; opacity: 0; position: absolute; right: 0; text-align: right; top: 0; width: 114px }
 input[readonly] { background-color: #fff!important; cursor: text!important }
 .product-section-box .imprint-box .select-wrapper { display: inline-block; vertical-align: middle; margin-top: 10px; margin-left: 10px }
-input.btn-file, button.btn-file, html input[type="button"].btn-file, input[type="reset"].btn-file, input[type="submit"].btn-file { background: url(../images/upload-botton.png) no-repeat; width: 120px; height: 32px; display: inline-block; padding-left: 30px; color: #FFF; font-size: 13px; box-shadow: none; border: none }
+input.btn-file, button.btn-file, html input[type="button"].btn-file, input[type="reset"].btn-file, input[type="submit"].btn-file { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518874/websites/POSH-ACCESSORIES/images/upload-botton.png) no-repeat; width: 120px; height: 32px; display: inline-block; padding-left: 30px; color: #FFF; font-size: 13px; box-shadow: none; border: none }
 .product-section-box .imprint-box .radiobox .input-group input[type="text"] { box-shadow: none }
 .product-section-box .imprint-box .radiobox .input-group input[type="text"]:focus { border: none }
 .print-position .print-checkbox > div.print-position-right { width: 100%; }
@@ -1847,9 +1847,9 @@ input.btn-file, button.btn-file, html input[type="button"].btn-file, input[type=
 .print-checkbox .col-sm-4 { padding: 0 }
 .print-checkbox > div { float: left; padding: 10px 10px 10px 0 }
 .upload-block { border-radius: 5px; border: 1px #E3E3E3 solid; overflow: hidden; margin-top: -10px }
-.upload-block .btn-file { background: #F5F3F4 url(../images/upload-file-button.png) no-repeat left 4px; padding: 0; font-size: 16px; width: 120px; height: 40px; border-radius: 0; margin: 0; position: relative; border: 0!important; float: left }
+.upload-block .btn-file { background: #F5F3F4 url(https://res.cloudinary.com/flowz/image/upload/v1537778748/websites/POSH-ACCESSORIES/images/upload-file-button.png) no-repeat left 4px; padding: 0; font-size: 16px; width: 120px; height: 40px; border-radius: 0; margin: 0; position: relative; border: 0!important; float: left }
 .upload-block i { font-size: 16px; padding: 8px; display: inline-block }
-input[type="submit"].view-diagram { border: 1px #e70000 solid; background: url(../images/pink-line.png) repeat-x 0 0; border-radius: 2px; height: 29px; line-height: 16px; width: 120px; padding: 0 12px }
+input[type="submit"].view-diagram { border: 1px #e70000 solid; background: url(https://res.cloudinary.com/flowz/image/upload/v1537518914/websites/POSH-ACCESSORIES/images/pink-line.png) repeat-x 0 0; border-radius: 2px; height: 29px; line-height: 16px; width: 120px; padding: 0 12px }
 .estimate-text.shipping-col { font-size: 16px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; padding-top: 13px; color: #333 }
 .estimate-text.shipping-col span { color: #e70000; font-size: 16px; font-family:  'Didact Gothic', sans-serif;font-weight:600 }
 .estimate-table .title { display: table-caption; text-align: center; font-size: larger }
@@ -1880,7 +1880,7 @@ input[type="submit"].view-diagram { border: 1px #e70000 solid; background: url(.
 .quantity-table li { float: left; width: 16% }
 .quantity-table .quantity-size { display: inline-block; width: 100% }
 .quantity-table .quantity-size li i { padding-right: 10px; font-style: normal }
-.quantity-table .quantity-size li { float: left; margin-right: 10px; width: 70px; border: 1px #ddd solid; background: url(../images/gray-slice.png) repeat-x 0 0 }
+.quantity-table .quantity-size li { float: left; margin-right: 10px; width: 70px; border: 1px #ddd solid; background: url(https://res.cloudinary.com/flowz/image/upload/v1537518943/websites/POSH-ACCESSORIES/images/gray-slice.png) repeat-x 0 0 }
 .quantity-table .quantity-size li:nth-child(6), .quantity-table .quantity-size li:nth-child(7) { border-color: #fff; background: none; text-align: center }
 .quantity-table .quantity-size li a { font-size: 16px; color: #000; margin: 2px 0; display: inline-block }
 .quantity-table .quantity-size li a:hover { color: #e70000 }
@@ -1888,9 +1888,9 @@ input[type="submit"].view-diagram { border: 1px #e70000 solid; background: url(.
 .quantity-table .quantity-size li { font-size: 12px }
 .quantity-table .quantity-size li:last-child { margin: 0; padding-top: 5px; width: auto; display: inline-block }
 .quantity-table .quantity-size li:last-child span { width: auto; background-image: none }
-.quantity-table .quantity-size li span { background: #fff url(../images/arrow-r.png) no-repeat 23px 0; display: inline-block; padding: 7px 0 5px 7px; width: 33px; height: 29px }
+.quantity-table .quantity-size li span { background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537518970/websites/POSH-ACCESSORIES/images/arrow-r.png) no-repeat 23px 0; display: inline-block; padding: 7px 0 5px 7px; width: 33px; height: 29px }
 .quantity-table .quantity-size li input { width: 30px; margin: 0; padding: 0; background: none; border: 0; color: #555; text-align: center }
-.quantity-table .quantity-size.red-size li span { background: url(../images/r-arrow-i.png) no-repeat 0 0; color: #fff }
+.quantity-table .quantity-size.red-size li span { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518992/websites/POSH-ACCESSORIES/images/r-arrow-i.png) no-repeat 0 0; color: #fff }
 .quantity-table .quantity-size.blue-size li span { color: #fff }
 .quantity-table .quantity-size.edit-size li { background: none; border: none }
 .quantity-table .quantity-size.edit-size li span { background: none }
@@ -1898,7 +1898,7 @@ input[type="submit"].view-diagram { border: 1px #e70000 solid; background: url(.
 .total-usd { text-align: center; text-transform: uppercase; color: #222; font-family:  'Didact Gothic', sans-serif;font-weight: 600; font-size: 20px }
 .total-usd span { color: #e70000; font-size: 30px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; text-transform: none!important }
 .total-usd .total { font-size: 18px; line-height: 30px; font-family: 'Didact Gothic', sans-serif }
-.coupon { margin-top: 10px; text-transform: uppercase; padding: 10px; width: 145px; height: 46px; text-align: center; background: url(../images/green-image.png) no-repeat 0 0; color: #fff; font-size: 18px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; float: left; cursor: default }
+.coupon { margin-top: 10px; text-transform: uppercase; padding: 10px; width: 145px; height: 46px; text-align: center; background: url(https://res.cloudinary.com/flowz/image/upload/v1537519124/websites/POSH-ACCESSORIES/images/green-image.png) no-repeat 0 0; color: #fff; font-size: 18px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; float: left; cursor: default }
 .coupon i { padding-left: 5px }
 .subline-text { font-family: 'Didact Gothic', sans-serif, sans-serif; font-size: 13px; text-transform: none }
 .styled-button { background: none repeat scroll 0 0 #e5564b; border: 1px solid #c42929; border-radius: 3px; color: #fff; display: inline-block; float: left; margin-right: 20px; font-family: 'Didact Gothic', sans-serif, sans-serif; font-size: 16px; text-transform: uppercase }
@@ -1926,7 +1926,7 @@ input[type="submit"].view-diagram { border: 1px #e70000 solid; background: url(.
 .radiobox .select-wrapper-col .checkout-select-wrapper { height: auto!important; line-height: inherit!important; background: none!important }
 .radiobox .select-wrapper-col .checkout-select-wrapper select { height: 30px!important; width: 100%!important; line-height: inherit!important; box-shadow: none!important }
 .radiobox .inp-parts .checkout-select-wrapper .checkout_holder { margin: 0 10px!important }
-.select-wrapper-col { float: left; color: #000; font-size: 14px; font-family: 'Didact Gothic', sans-serif; display: inline-block; background: url(../images/ob-arrow.png) no-repeat 95% center; cursor: pointer; -webkit-box-shadow: inset 2px 3px 5px 0 rgba(230, 230, 230, 0.5); -moz-box-shadow: inset 2px 3px 5px 0 rgba(230, 230, 230, 0.5); box-shadow: inset 2px 3px 5px 0 rgba(230, 230, 230, 0.5) }
+.select-wrapper-col { float: left; color: #000; font-size: 14px; font-family: 'Didact Gothic', sans-serif; display: inline-block; background: url(https://res.cloudinary.com/flowz/image/upload/v1537519145/websites/POSH-ACCESSORIES/images/ob-arrow.png) no-repeat 95% center; cursor: pointer; -webkit-box-shadow: inset 2px 3px 5px 0 rgba(230, 230, 230, 0.5); -moz-box-shadow: inset 2px 3px 5px 0 rgba(230, 230, 230, 0.5); box-shadow: inset 2px 3px 5px 0 rgba(230, 230, 230, 0.5) }
 .selection-color-box.pantone-selection .dropdown.dropdown_size { width: 82.5%; }
 .selection-color-box.pantone-selection .color-selected-col { width: 100%; }
 .checkout-select-wrapper { border: 1px #e6e6e6 solid }
@@ -1946,11 +1946,11 @@ input[type="submit"].view-diagram { border: 1px #e70000 solid; background: url(.
 .product-section-box .option-body .radiobox.multi-select .select-wrapper-col select { margin: 0 }
 .radiobox .select-wrapper-col select { margin: 0; position: absolute; font-family: 'Didact Gothic', sans-serif; z-index: 2; cursor: pointer; outline: none; font-size: 14px; opacity: 0 }
 .cart-link { margin-top: 10px }
-.cart-link a { background: url(../images/black-slice.png) repeat-x 0 0; color: #fff; font-family:  'Didact Gothic', sans-serif;font-weight: 600; font-size: 16px; text-align: center; border: 1px solid #505050; padding: 7px 8px 6px; min-width: 183px; height: 37px; margin-bottom: 10px }
+.cart-link a { background: url(https://res.cloudinary.com/flowz/image/upload/v1537519167/websites/POSH-ACCESSORIES/images/black-slice.png) repeat-x 0 0; color: #fff; font-family:  'Didact Gothic', sans-serif;font-weight: 600; font-size: 16px; text-align: center; border: 1px solid #505050; padding: 7px 8px 6px; min-width: 183px; height: 37px; margin-bottom: 10px }
 .cart-link a.button-margin-right { margin-right: 0 }
 .cart-link a:last-child { margin-right: 0 }
 .cart-link a i { padding-right: 7px }
-.cart-link a:hover, .cart-link a:focus { background: url(../images/pink-slice.png) repeat-x 0 0; color: #fff; border-color: #e70000 }
+.cart-link a:hover, .cart-link a:focus { background: url(https://res.cloudinary.com/flowz/image/upload/v1537519196/websites/POSH-ACCESSORIES/images/pink-slice.png) repeat-x 0 0; color: #fff; border-color: #e70000 }
 .cart-link input[type="submit"] .product-section-box .cart-link input.btn-default { margin-right: 0; margin-left: 10px; background: #000; padding: 8px 25px; border: 0; width: 130px; text-transform: uppercase; text-align: center; font-family: 'Didact Gothic', sans-serif }
 .product-section-box .cart-link input.btn-default:hover { background: #e70000; color: #fff }
 .radiobox .shipping-select .select-wrapper-col, .radiobox .shipping-select .select-wrapper-col select { width: 100%; font-family: 'Didact Gothic', sans-serif; font-size: 14px }
@@ -1969,19 +1969,19 @@ input[type="submit"].view-diagram { border: 1px #e70000 solid; background: url(.
 .option-head { background: #5b5e68; padding: 7px 20px; min-height: 36px }
 .addnew-option-head { background: #c9c9c9; padding: 7px 20px; min-height: 36px }
 .addnew-option-head a { color: #525252; display: block }
-.addnew-option-head a .caret-icon { background: url(../images/sprite.png) no-repeat -8px -75px; width: 15px; height: 15px; margin: 5px 0 }
+.addnew-option-head a .caret-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -75px; width: 15px; height: 15px; margin: 5px 0 }
 .optional-panel.in .option-head a i { -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -o-transform: rotate(90deg) }
 .option-head a i { padding: 5px; color: #fff; -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); -webkit-transition-duration: .5s; -moz-transition-duration: .5s; -o-transition-duration: .5s; transition-duration: .5s }
 .option-head .fa-check { padding-top: 5px; font-size: 14px }
 .option-head a { color: #fff; font-size: 14px; font-family: 'Didact Gothic', sans-serif;font-weight:600; width: 100%; display: inline }
 a.remove-add { float: right; width: 55px; line-height: 23px; font-style: italic; font-size: 12px }
-.option-head a .caret-icon { background: url(../images/sprite.png) no-repeat -8px -39px; width: 15px; height: 15px; margin: 5px 0; padding: 0!important }
-.optional-panel.in .option-head a .caret-icon { background: url(../images/sprite.png) no-repeat -8px -75px }
+.option-head a .caret-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -39px; width: 15px; height: 15px; margin: 5px 0; padding: 0!important }
+.optional-panel.in .option-head a .caret-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -75px }
 .option-body { padding: 15px 20px; border-top: 1px #E3E3E3 solid; position: relative }
 .option-body .radiobox .select-wrapper-col { margin: 10px 0; position: relative }
 a.coupon { display: inline-block }
 .coupon:hover { color: #fff }
-.offer-col { display: none; width: 172px; height: 120px; background: url(../images/blue-image.png) no-repeat; padding: 8px 12px; color: #fff; position: absolute; top: 59px; left: -2px; text-align: left }
+.offer-col { display: none; width: 172px; height: 120px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537519229/websites/POSH-ACCESSORIES/images/blue-image.png) no-repeat; padding: 8px 12px; color: #fff; position: absolute; top: 59px; left: -2px; text-align: left }
 .product-section-box .offer-col p { font-size: 13px; line-height: 14px; text-align: center; font-family: 'Didact Gothic', sans-serif }
 .product-section-box .offer-col span { font-size: 12px; font-family: 'robotoblack_italic'; text-align: left; padding-left: 5px; color: #fff; text-transform: uppercase }
 .offer-col div { font-size: 32px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; line-height: 34px }
@@ -2028,7 +2028,7 @@ a.coupon { display: inline-block }
 .color-box-pagination ul li a:hover { color: #fff; background: #999 }
 .daigram-module .modal-body { margin: 15px; padding: 0 }
 .modal-content { border-radius: 0 }
-.daigram-module .digram-head { text-align: center; background: url(../images/board-image.png) no-repeat center -2px; padding-top: 45px; padding-bottom: 20px }
+.daigram-module .digram-head { text-align: center; background: url(https://res.cloudinary.com/flowz/image/upload/v1537519251/websites/POSH-ACCESSORIES/images/board-image.png) no-repeat center -2px; padding-top: 45px; padding-bottom: 20px }
 .daigram-module .digram-head h1 { font-size: 26px; color: #444; font-family:  'Didact Gothic', sans-serif;font-weight: 600; padding-bottom: 10px }
 .daigram-module .digram-head h2 { font-size: 16px; background: none; border: 0; margin: 0; padding: 0; color: #fff; font-family: ' 'Didact Gothic', sans-serif' }
 .digram-img { text-align: center; padding-top: 15px; position: relative }
@@ -2066,9 +2066,9 @@ body.modal-open { padding: 0 17px 0 0 !important }
 .chart-block .size-col b { font-family:  'Didact Gothic', sans-serif;font-weight:600; font-weight: 400 }
 .chart-block p.note { padding: 10px 0; font-size: 10px; font-family: ' 'Didact Gothic', sans-serif'; color: #000 }
 .chart-block .size-col > span span { clear: both; float: left; width: 100%; display: inline-block; margin-top: -5px; color: #555; font-size: 11px; font-family: ' 'Didact Gothic', sans-serif' }
-.chart-block .gray-col .size-col > span { background: url(../images/size-arrow-gray.jpg) no-repeat 0 0 }
-.chart-block .green-col .size-col > span { background: url(../images/size-arrow-green.jpg) no-repeat 1px 0 }
-.chart-block .blue-col .size-col > span { background: url(../images/size-arrow-blue.jpg) no-repeat 1px 0 }
+.chart-block .gray-col .size-col > span { background: url(https://res.cloudinary.com/flowz/image/upload/v1537519804/websites/POSH-ACCESSORIES/images/size-arrow-gray.jpg) no-repeat 0 0 }
+.chart-block .green-col .size-col > span { background: url(https://res.cloudinary.com/flowz/image/upload/v1537519822/websites/POSH-ACCESSORIES/images/size-arrow-green.jpg) no-repeat 1px 0 }
+.chart-block .blue-col .size-col > span { background: url(https://res.cloudinary.com/flowz/image/upload/v1537519842/websites/POSH-ACCESSORIES/images/size-arrow-blue.jpg) no-repeat 1px 0 }
 .size-chart-col { border: 1px #85A4B9 solid; margin-bottom: 10px }
 .size-chart-col img { float: left; padding-top: 12px; padding-left: 2px }
 .size-detail { float: right; text-align: center; width: 60%; padding: 15px 0 10px }
@@ -2095,8 +2095,8 @@ body.modal-open { padding: 0 17px 0 0 !important }
 .my-logo-wrapper .mylogoinner img { max-width: 100% }
 .my-logo-wrapper .mylogoinner:hover .delete-logo { display: block }
 .my-logo-wrapper .delete-logo { background: rgba(0, 0, 0, 0.8); display: none; height: 100%; position: absolute; top: 0; width: 100%; left: 0 }
-.my-logo-wrapper .delete-logo span { background: rgba(0, 0, 0, 0) url(../images/add.png) no-repeat scroll 0 0; display: block; height: 42px; width: 43px; top: 40%; left: 40%; background-repeat: no-repeat; position: absolute }
-.my-logo-wrapper .myLabel { background: rgba(0, 0, 0, 0) url(../images/upload-logo-btn.png) no-repeat scroll 0 0; float: right; height: 31px; margin: 0; position: relative; width: 125px }
+.my-logo-wrapper .delete-logo span { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537519862/websites/POSH-ACCESSORIES/images/add.png) no-repeat scroll 0 0; display: block; height: 42px; width: 43px; top: 40%; left: 40%; background-repeat: no-repeat; position: absolute }
+.my-logo-wrapper .myLabel { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537517687/websites/POSH-ACCESSORIES/images/upload-logo-btn.png) no-repeat scroll 0 0; float: right; height: 31px; margin: 0; position: relative; width: 125px }
 .my-logo-wrapper .myLabel input { position: absolute; z-index: 2; opacity: 0; width: 100%; height: 100% }
 .share-icon-wrap { text-align: center; margin: 15px 0 }
 .share-icon-wrap .share-icon { border-radius: 3px; text-align: center; width: 100px; display: inline-block; font-family: ' 'Didact Gothic', sans-serif'; font-size: 12px; color: #fff; position: relative; margin-right: 5px; }
@@ -2115,7 +2115,7 @@ body.modal-open { padding: 0 17px 0 0 !important }
 .color-selection .open .color-selected-col span { position: relative }
 .selection-color-box .dropdown-menu.color-selection-box > span { width: 100% }
 .color-selection-box.dropdown-menu { min-width: inherit; width: 100%; top: 45px; background: #fff; padding: 20px!important; left: 0; border-radius: 0; margin: 0; border: 0; z-index: 999; position: absolute; -webkit-box-shadow: 0 2px 6px 3px rgba(0, 0, 0, 0.20); -moz-box-shadow: 0 2px 6px 3px rgba(0, 0, 0, 0.20); box-shadow: 0 2px 6px 3px rgba(0, 0, 0, 0.20) }
-.color-selection .open .color-selected-col span::before { content: ''; width: 27px; height: 17px; position: absolute; top: 25px; left: 2px; background: url(../images/w-arrow-bg.png) no-repeat 0 0; z-index: 1000 }
+.color-selection .open .color-selected-col span::before { content: ''; width: 27px; height: 17px; position: absolute; top: 25px; left: 2px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537519900/websites/POSH-ACCESSORIES/images/w-arrow-bg.png) no-repeat 0 0; z-index: 1000 }
 .relative-col { position: relative }
 .zoom img.product-image { width: auto; height: 100% }
 .tooltip-block.tooltip-last { margin-right: 10px }
@@ -2144,11 +2144,11 @@ body.modal-open { padding: 0 17px 0 0 !important }
 .advance-search-col .small-colum .inp-parts .checkout-select-wrapper { border-right: 0 }
 .full-colum { width: 70%; float: left }
 .advance-search-col .inp-parts { margin: 0 0 -10px }
-.advance-search-col .inp-parts .checkout-select-wrapper { color: #444; font-size: 13px; font-family: ' 'Didact Gothic', sans-serif'; display: inline-block; border: 1px solid #e6e6e6; background: #fff url(../images/ob-arrow.png) no-repeat 95% center; cursor: pointer; -webkit-box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1); -moz-box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1); box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1) }
+.advance-search-col .inp-parts .checkout-select-wrapper { color: #444; font-size: 13px; font-family: ' 'Didact Gothic', sans-serif'; display: inline-block; border: 1px solid #e6e6e6; background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537519145/websites/POSH-ACCESSORIES/images/ob-arrow.png) no-repeat 95% center; cursor: pointer; -webkit-box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1); -moz-box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1); box-shadow: inset 0 6px 32px -11px rgba(230, 230, 230, 1) }
 .input-colum { position: relative }
 .input-colum input[type="submit"].search-button { position: absolute; right: 0; top: 0 }
-input[type="submit"].save-button { text-transform: initial; font-size: 16px; font-family: 'Didact Gothic', sans-serif; background: #000465 url(../images/sprite.png) no-repeat -25px -472px; color: #fff; min-width: 130px; padding: 10px 0 10px 40px; text-align: left; height: 40px; margin: 0; border-radius: 4px; border: 0 }
-input[type="submit"].pull-right { text-transform: initial; font-size: 16px; font-family: 'Didact Gothic', sans-serif; background: #e70000 url(../images/sprite.png) no-repeat -25px -423px; color: #fff; min-width: 110px; padding: 10px 0 10px 40px; text-align: left; height: 40px; margin: 0; border-radius: 4px; border: 0 }
+input[type="submit"].save-button { text-transform: initial; font-size: 16px; font-family: 'Didact Gothic', sans-serif; background: #000465 url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -25px -472px; color: #fff; min-width: 130px; padding: 10px 0 10px 40px; text-align: left; height: 40px; margin: 0; border-radius: 4px; border: 0 }
+input[type="submit"].pull-right { text-transform: initial; font-size: 16px; font-family: 'Didact Gothic', sans-serif; background: #e70000 url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -25px -423px; color: #fff; min-width: 110px; padding: 10px 0 10px 40px; text-align: left; height: 40px; margin: 0; border-radius: 4px; border: 0 }
 input[type="submit"].save-button:hover { background-color: #e70000 }
 input[type="submit"].search-button:hover { background-color: #000465 }
 .input-colum.two-colum { float: left; width: 46% }
@@ -2259,8 +2259,8 @@ ul.footer-contact-detail li { padding: 3px 12px 0 4px }
 .product-section-box .panel-heading { position: relative }
 .product-section-box .panel-heading .link-text { position: absolute; right: 60px; top: 7px; font-size: 14px; font-family: 'Didact Gothic', sans-serif; color: #000; z-index: 1 }
 .product-section-box .panel-heading .link-text:hover { color: #e70000 }
-.product-section-box .panel-heading .tab-quantity.collapsed .caret-icon { background: url(../images/sprite.png) no-repeat -8px -228px; }
-.product-section-box .panel-heading .tab-quantity .caret-icon { position: absolute; right: 10px; top: 9px; background: url(../images/sprite.png) no-repeat -8px -189px; width: 15px; height: 15px }
+.product-section-box .panel-heading .tab-quantity.collapsed .caret-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -228px; }
+.product-section-box .panel-heading .tab-quantity .caret-icon { position: absolute; right: 10px; top: 9px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -189px; width: 15px; height: 15px }
 .star-design-but { border-radius: 3px; display: inline-block; padding: 8px 25px; color: #fff; background: #3A3A3A; font-size: 16px; font-family: ' 'Didact Gothic', sans-serif'; text-align: center }
 .star-design-but i, .upload-button i { margin-right: 5px }
 .star-design-but:hover, .star-design-but:focus { color: #fff; background: #e70000 }
@@ -2272,8 +2272,8 @@ ul.footer-contact-detail li { padding: 3px 12px 0 4px }
 .shipping-col { padding-top: 10px }
 .shipping-method .radio-but input[type="checkbox"], input[type="radio"] { margin: 0 !important; }
 .shipping-col input { width: 100%; float: left; -webkit-box-shadow: inset 1px 1px 5px 0 rgba(230, 230, 230, 0.5); -moz-box-shadow: inset 1px 1px 5px 0 rgba(230, 230, 230, 0.5); box-shadow: inset 1px 1px 5px 0 rgba(230, 230, 230, 0.5); height: 30px; font-size: 14px; border-radius: 0 }
-.product-section-box .panel-heading h2 i { background: url(../images/sprite.png) no-repeat -27px -550px }
-.product-section-box .panel-heading.open h2 i { background: url(../images/sprite.png) no-repeat -27px -550px }
+.product-section-box .panel-heading h2 i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -27px -550px }
+.product-section-box .panel-heading.open h2 i { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -27px -550px }
 .product-section-box .panel-body { position: relative }
 .heading-block.no-tag { padding-left: 15px }
 .product-description .tab-content h3, .quick-view-product-modal .product-description h3 { font: 18px  'Didact Gothic', sans-serif; color: #000; text-transform: uppercase; }
@@ -2363,8 +2363,8 @@ a.skip-block { font-family:  'Didact Gothic', sans-serif;font-weight: 600; color
 .size-selection-col .option-head a { color: #000; }
 .size-selection-col .option-head em { width: 18px; height: 18px; border: 1px #ccc solid; float: left; margin: 2px 10px 0 0 }
 .size-selection-col .option-head span { padding: 3px 15px; font-size: 12px }
-.size-selection-col .option-head a .caret-icon { background: url(../images/sprite.png) no-repeat -8px -191px; }
-.size-selection-col.optional-panel.in .option-head a .caret-icon { background: url(../images/sprite.png) no-repeat -8px -229px; }
+.size-selection-col .option-head a .caret-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -191px; }
+.size-selection-col.optional-panel.in .option-head a .caret-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -229px; }
 .size-selection-col .option-body { padding-bottom: 0 }
 .select-quntity-col > div { margin-bottom: 15px }
 .shipping-method .select-quntity-col span { float: left; color: #333; font-size: 14px; min-width: 60px; font-family: 'Didact Gothic', sans-serif; padding-top: 3px }
@@ -2404,7 +2404,7 @@ a.skip-block { font-family:  'Didact Gothic', sans-serif;font-weight: 600; color
 .search-mail-block .search-col { position: relative; width: 93%; float: left }
 .search-mail-block .search-col span { font-size: 17px; line-height: 25px }
 .search-mail-block .search-col input[type="text"] { width: 100%; box-shadow: none; padding-right: 35px; height: 30px; font-size: 12px; min-width: inherit; }
-.search-mail-block .search-col input[type="submit"] { height: 26px; width: 26px; text-indent: -9999px; background: url(../images/header-search.png) no-repeat center center; border: 0; box-shadow: none; position: absolute; top: 2px; right: 0 }
+.search-mail-block .search-col input[type="submit"] { height: 26px; width: 26px; text-indent: -9999px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537519953/websites/POSH-ACCESSORIES/images/header-search.png) no-repeat center center; border: 0; box-shadow: none; position: absolute; top: 2px; right: 0 }
 .search-mail-block a { float: right; color: #000; font-size: 22px; margin-right: 5px }
 .search-mail-block a:hover { color: #e70000 }
 .request-wrapper li { margin: 0 }
@@ -2447,13 +2447,13 @@ form.ui-load { position: relative; display: inline-block }
 .about-year-block { position: relative }
 .center-line { width: 10px; height: 100%; background: #f5f5f5; position: absolute; left: 0; right: 0; margin: 0 auto }
 .ob-about-block .about-year-block .about-year p { display: inline-block; width: 75% }
-.ob-about-block .about-year-block .round-year { background: url(../images/year-block.png); width: 100px; height: 100px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight:600 }
+.ob-about-block .about-year-block .round-year { background: url(https://res.cloudinary.com/flowz/image/upload/v1537519974/websites/POSH-ACCESSORIES/images/year-block.png); width: 100px; height: 100px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight:600 }
 .ob-about-block .about-content { padding: 50px 0 }
 .about-seperation-block { margin-bottom: 25px }
 .ob-about-us span { color: #000 }
-.about-left-img { background: url(../images/about-con-left-1.png) no-repeat bottom; width: 18px; height: 161px; display: inline-block }
+.about-left-img { background: url(https://res.cloudinary.com/flowz/image/upload/v1537520000/websites/POSH-ACCESSORIES/images/about-con-left-1.png) no-repeat bottom; width: 18px; height: 161px; display: inline-block }
 .our-company-block { float: left; margin-right: 15px }
-.about-middle-right-img { background: url(../images/about_con_right.png) no-repeat bottom; width: 18px; height: 161px; display: inline-block }
+.about-middle-right-img { background: url(https://res.cloudinary.com/flowz/image/upload/v1537520020/websites/POSH-ACCESSORIES/images/about_con_right.png) no-repeat bottom; width: 18px; height: 161px; display: inline-block }
 .about-middle-block { float: left; width: 75% }
 .myaccountemptyquote { text-align: center }
 .myaccountemptyquote h4 { font-size: 17px; color: #000; margin-top: 20px; font-family:  'Didact Gothic', sans-serif;font-weight:600 }
@@ -2529,7 +2529,7 @@ span.totalcolor { color: #e70000; font: 14px roboto_condensedbold }
 .cat-collapseOne li ul.sub-menu li span a:hover, .cat-collapseOne li ul.sub-menu li span a:active, .cat-collapseOne li ul.sub-menu li span a.active { color: #000 }
 .cat-collapseOne li ul.sub-menu li:last-child { border-bottom: none }
 .cat-collapseOne li ul.sub-menu li .fa { color: #e70000; font-size: 13px }
-.filter-search .icon { background: url(../images/sprite.png) no-repeat center center; display: inline-block; line-height: 16px; height: 20px; padding-left: 23px }
+.filter-search .icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat center center; display: inline-block; line-height: 16px; height: 20px; padding-left: 23px }
 .filter-search .icon-cat { background-position: -135px 0 }
 .cat-collapseOne li span a { color: #000; text-transform: uppercase; font-size: 14px; vertical-align: top; line-height: 23px; font: 14px roboto_condensedbold }
 .filter-search .nav-cat-scrollbar { max-height: 340px; overflow-y: auto }
@@ -2542,7 +2542,7 @@ span.totalcolor { color: #e70000; font: 14px roboto_condensedbold }
 .ob-privacy-policy span { color: #e70000 }
 .ob-privacy-policy a { color: #e70000 }
 .ob-privacy-policy .main-block h1 { color: #e70000; text-align: center; text-transform: uppercase; font-family: ' 'Didact Gothic', sans-serif', sans-serif; font-size: 26.73px; padding: 10px 0 }
-.ob-privacy-policy .main-block-top { background: url(../images/contact-ticket2.png) no-repeat; height: 192px; background-size: 100% 100% }
+.ob-privacy-policy .main-block-top { background: url(https://res.cloudinary.com/flowz/image/upload/v1537520050/websites/POSH-ACCESSORIES/images/contact-ticket2.png) no-repeat; height: 192px; background-size: 100% 100% }
 .ob-privacy-policy .main-block { padding-top: 30px }
 .ob-privacy-policy .main-block p { color: gray; font-size: 14px; text-align: center; line-height: 18px; padding-bottom: 5px }
 .ob-privacy-policy p { color: gray; font-size: 14px; text-align: justify; line-height: 18px; padding-bottom: 5px }
@@ -2559,7 +2559,7 @@ span.totalcolor { color: #e70000; font: 14px roboto_condensedbold }
 .ob-product-compare .compare-block td.feature-block { color: #000; font: 14px  'Didact Gothic', sans-serif; text-align: left; text-transform: uppercase; vertical-align: top; background: #FFF; border-left: 1px solid #ddd }
 .ob-product-compare .compare-block td.feature-block label { color: #000; line-height: 20px; font: 14px; margin-bottom: 100px; text-transform: none }
 .ob-product-compare .compare-block td.feature-block p { font-size: 14px; color: #999; text-transform: none; font-family: 'Didact Gothic', sans-serif; padding: 5px 0 }
-.ob-product-compare .compare-block td.feature-block .more-product { background: url(../images/compare-arrow.png) no-repeat; width: 104px; height: 82px; vertical-align: middle; display: table-cell; font-size: 30px; padding-left: 35px; color: #e70000 }
+.ob-product-compare .compare-block td.feature-block .more-product { background: url(https://res.cloudinary.com/flowz/image/upload/v1537520069/websites/POSH-ACCESSORIES/images/compare-arrow.png) no-repeat; width: 104px; height: 82px; vertical-align: middle; display: table-cell; font-size: 30px; padding-left: 35px; color: #e70000 }
 .ob-product-compare .compare-block > tbody > tr > td { border-right: 1px solid #ddd; padding: 10px; text-align: center; position: relative; vertical-align: top; width: 20%; word-break: break-word; }
 .ob-product-compare .feature td { color: #000; font-size: 14px; font-family: 'Didact Gothic', sans-serif }
 .ob-product-compare .feature.summary td { text-align: justify }
@@ -2569,14 +2569,14 @@ span.totalcolor { color: #e70000; font: 14px roboto_condensedbold }
 .ob-product-compare .color-block.green { background: none repeat scroll 0 0 #4ebded }
 .ob-product-compare .color-block.black { background: none repeat scroll 0 0 #85848a }
 .ob-product-compare .color-block.white { background: none repeat scroll 0 0 #fff }
-.ob-product-compare .color-block.multi { background: url(../images/small-multi-color.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0) }
+.ob-product-compare .color-block.multi { background: url(https://res.cloudinary.com/flowz/image/upload/v1537520092/websites/POSH-ACCESSORIES/images/small-multi-color.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0) }
 .ob-product-compare .feature td .compare-checkbox { display: inline-block; vertical-align: middle; margin: 0 }
 .ob-product-compare .product-name { color: #000; font-size: 14px; border-bottom: 1px #ddd solid; padding: 20px 0 7px; display: inline-block; font-family: ' 'Didact Gothic', sans-serif' }
 .ob-product-compare .product-price { color: #e70000; font-size: 22px }
 .ob-product-compare .product-price span { color: #999; display: inline-block; font-family: 'Didact Gothic', sans-serif; font-size: 17px; vertical-align: top; padding-top: 4px; padding-left: 5px }
 .ob-product-compare .product-pricing { padding-top: 10px }
 .ob-product-compare .product-pricing a { color: #e70000; font: 14px  'Didact Gothic', sans-serif }
-.ob-product-compare .modal-header { background: url(../images/titile-slice.png) repeat-x 0 0; border: 1px solid #FFF }
+.ob-product-compare .modal-header { background: url(https://res.cloudinary.com/flowz/image/upload/v1537518716/websites/POSH-ACCESSORIES/images/titile-slice.png) repeat-x 0 0; border: 1px solid #FFF }
 .ob-product-compare .compare-popup-price h1 { font: 18px robotomedium; color: #000; text-transform: uppercase; text-align: left }
 .ob-product-compare .modal-body { background: #fff }
 .ob-product-compare .compare-product-code { font: 14px  'Didact Gothic', sans-serif; color: #000; text-align: left; text-transform: uppercase }
@@ -2625,7 +2625,7 @@ span.totalcolor { color: #e70000; font: 14px roboto_condensedbold }
 .ob-error-block h2 { font-size: 30px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; color: #000; text-transform: uppercase; margin-bottom: 35px }
 .ob-error-block h3 { font-size: 24px; font-family: ' 'Didact Gothic', sans-serif'; color: #e70000; margin-bottom: 10px }
 .ob-error-block p { font-size: 18px; font-family: ' 'Didact Gothic', sans-serif'; color: #000; margin-bottom: 30px }
-.ob-error-block.under-construction { background: url(../images/under-construction.png) no-repeat center top; padding-top: 230px }
+.ob-error-block.under-construction { background: url(https://res.cloudinary.com/flowz/image/upload/v1537520137/websites/POSH-ACCESSORIES/images/under-construction.png) no-repeat center top; padding-top: 230px }
 .ob-error-block.under-construction h2 { margin-bottom: 20px }
 .ob-error-block.under-construction h3 { margin-bottom: 20px }
 .ob-error-block.under-construction p { margin-bottom: 10px; line-height: 30px }
@@ -2707,11 +2707,11 @@ span.totalcolor { color: #e70000; font: 14px roboto_condensedbold }
 .gray-distributer-block h4 a { font-family:  'Didact Gothic', sans-serif;font-weight: 600; font-size: 16px; color: #000 }
 .gray-distributer-block p { padding: 0; font-family: 'Didact Gothic', sans-serif; font-size: 14px; color: #000 }
 .gray-distributer-block .contact-no { background: #F5F5F5; color: #000; padding: 5px 20px; display: inline-block; min-width: 170px; margin-left: -20px; position: relative; font-family: 'Didact Gothic', sans-serif }
-.gray-distributer-block .contact-no i.shad { background: url(../images/find_distributer_img/shadow.png) no-repeat bottom left; position: absolute; bottom: -4px; left: 0; width: 4px; height: 4px }
+.gray-distributer-block .contact-no i.shad {  position: absolute; bottom: -4px; left: 0; width: 4px; height: 4px }
 .gray-distributer-block .contact-no i { margin-right: 10px }
 .gray-distributer-block:hover { background: #FCFCFC }
 .gray-distributer-block:hover .contact-no { background: #e70000; color: #fff; transition: all .8s ease 0 }
-.gray-distributer-block:hover .contact-no i.shad { background: url(../images/find_distributer_img/shadow_hover.png) no-repeat bottom left; transition: all .8s ease 0 }
+.gray-distributer-block:hover .contact-no i.shad {  transition: all .8s ease 0 }
 .gray-distributer-block:hover h4 a { color: #e70000; transition: all .8s ease 0 }
 h3.locate-title { font-family:  'Didact Gothic', sans-serif;font-weight: 600; font-size: 16px; margin-bottom: 15px }
 .about-block .about-br-block { border-bottom: 2px solid #bdbdbd; padding-bottom: 25px; margin-bottom: 25px }
@@ -2858,7 +2858,7 @@ h3.locate-title { font-family:  'Didact Gothic', sans-serif;font-weight: 600; fo
 .ob-gift-received-block .my-quote-detail-table .table-striped > tbody > tr > td { text-transform: lowercase }
 .amout-price-lable { margin: 20px 0; padding: 0; background: #e6e6e6; border: 1px solid #cecece; position: relative; height: 63px; display: inline-block; float: right }
 .amout-price-lable h2 { margin: 0; padding: 9px 20px; border-right: 5px solid #e70000; color: #e70000; font-size: 40px; font-family: 'Didact Gothic', sans-serif }
-.amout-price-lable-arrow { margin: 0; padding: 0; position: absolute; left: -30px; top: -1px; background: url(../images/amout-price-lable-arrow.png)no-repeat left top; width: 30px; height: 63px; display: inline-block }
+.amout-price-lable-arrow { margin: 0; padding: 0; position: absolute; left: -30px; top: -1px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537777158/websites/POSH-ACCESSORIES/images/amout-price-lable-arrow.png)no-repeat left top; width: 30px; height: 63px; display: inline-block }
 .about-lable { display: inline-block; float: right; margin: 20px 40px 0 0; padding: 20px 0 }
 .about-lable h3 { margin: 0; padding: 0; color: #e70000; font-size: 18px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; text-transform: uppercase }
 .color-selection-box .dropdown_size .btn-default { background: #fff; margin-left: 0 }
@@ -2876,12 +2876,12 @@ h2.resp-accordion { cursor: pointer; padding: 5px; display: none }
 .resp-accordion { font-size: 13px; border: 1px solid #c1c1c1; border-top: 0 solid #c1c1c1; margin: 0; padding: 10px 15px }
 .resp-tab-title:last-child { border-bottom: 12px solid #c1c1c1!important; background: blue }
 .checkout-right-box .checkout-price-table th { background-color: #f5f5f5; border-color: #f5f5f5; font-weight: 400 }
-.billing-tab-icon1 { background: url(../images/billing-address-hover.png) no-repeat; height: 49px; width: 49px; float: left; margin: 8px 15px 0 }
-.billing-add-tab .resp-tabs-list li.resp-tab-active .billing-tab-icon1 { background: url(../images/billing-address-hower.png) no-repeat }
-.billing-tab-icon2 { background: url(../images/shipping-address-normaal.png) no-repeat; height: 49px; width: 49px; display: inline-block; float: left; margin: 8px 15px 0 }
-.billing-add-tab .resp-tabs-list li.resp-tab-active .billing-tab-icon2 { background: url(../images/shipping-address-hower.png) no-repeat }
-.billing-tab-icon3 { background: url(../images/payment-method-normal.png) no-repeat; height: 49px; width: 49px; display: inline-block; float: left; margin: 8px 15px 0 }
-.billing-add-tab .resp-tabs-list li.resp-tab-active .billing-tab-icon3 { background: url(../images/payment-method-hower.png) no-repeat }
+.billing-tab-icon1 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777187/websites/POSH-ACCESSORIES/images/billing-address-hover.png) no-repeat; height: 49px; width: 49px; float: left; margin: 8px 15px 0 }
+.billing-add-tab .resp-tabs-list li.resp-tab-active .billing-tab-icon1 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777236/websites/POSH-ACCESSORIES/images/billing-address-hower.png) no-repeat }
+.billing-tab-icon2 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777262/websites/POSH-ACCESSORIES/images/shipping-address-normaal.png) no-repeat; height: 49px; width: 49px; display: inline-block; float: left; margin: 8px 15px 0 }
+.billing-add-tab .resp-tabs-list li.resp-tab-active .billing-tab-icon2 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777284/websites/POSH-ACCESSORIES/images/shipping-address-hower.png) no-repeat }
+.billing-tab-icon3 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777307/websites/POSH-ACCESSORIES/images/payment-method-normal.png) no-repeat; height: 49px; width: 49px; display: inline-block; float: left; margin: 8px 15px 0 }
+.billing-add-tab .resp-tabs-list li.resp-tab-active .billing-tab-icon3 { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777326/websites/POSH-ACCESSORIES/images/payment-method-hower.png) no-repeat }
 .billing-add-tab .tab-con-title { width: 100%; color: #525252; font-size: 14px; text-transform: uppercase; padding-left: 20px; background: #f5f5f5; line-height: 50px; color: #000; font-family:  'Didact Gothic', sans-serif;font-weight:600 }
 .tab-padding { padding: 0 18px }
 .tab-padding .tab-para { margin: 0; color: #000; font-size: 14px; font-family: 'robotoitalic' }
@@ -2924,7 +2924,7 @@ h2.resp-accordion { cursor: pointer; padding: 5px; display: none }
 .billing-add-tab .checkout-form .checkout-checkbox label { font-family: 'robotolight_italic'; float: left; color: #000; font-size: 13px; margin-right: 15px }
 .billing-add-tab .checkout-form .checkout-checkbox input { float: left; margin-right: 8px; margin-top: 3px }
 .billing-add-tab .checkout-form label.highlight { color: #e80288 }
-.inp-parts .checkout-select-wrapper { color: #000; font-size: 13px; font-family: ' 'Didact Gothic', sans-serif'; display: inline-block; border: 1px solid #e6e6e6; background: #FFF url(../images/checkout-select-arrow.png) no-repeat 95% center; cursor: pointer; -webkit-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; -moz-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset }
+.inp-parts .checkout-select-wrapper { color: #000; font-size: 13px; font-family: ' 'Didact Gothic', sans-serif'; display: inline-block; border: 1px solid #e6e6e6; background: #FFF url(https://res.cloudinary.com/flowz/image/upload/v1537778015/websites/POSH-ACCESSORIES/images/checkout-select-arrow.png) no-repeat 95% center; cursor: pointer; -webkit-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; -moz-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset }
 .inp-parts .checkout-select-wrapper .checkout_holder { display: block; margin: 0 20px 0 10px; white-space: nowrap; overflow: hidden; cursor: pointer; position: relative; z-index: 0 }
 .payment-methad.resp-vtabs { margin-top: 30px!important }
 .payment-methad.resp-vtabs ul.resp-tabs-list { float: left; width: 30%; margin-top: 0!important }
@@ -2933,7 +2933,7 @@ h2.resp-accordion { cursor: pointer; padding: 5px; display: none }
 .billing-add-tab .checkout-verticaltabs .resp-tabs-container { padding: 10px; background-color: #fbfbfb; float: left; width: 70%; clear: none }
 .payment-methad.resp-vtabs .resp-tab-content { border: none; word-wrap: break-word; border: none; background: #fbfbfb; padding: 10px }
 .payment-methad.resp-vtabs li.resp-tab-active { position: relative; z-index: 1; background: #c1c6ca!important; border-bottom: 2px solid #fff!important; color: #000; font-family: "robotoblack_italic" }
-.payment-methad.resp-vtabs li.resp-tab-active::after { content: url(../images/checkout-pay-arrow.png); display: inline-block; right: -31px; top: 0; position: absolute }
+.payment-methad.resp-vtabs li.resp-tab-active::after { content: url(https://res.cloudinary.com/flowz/image/upload/v1537777670/websites/POSH-ACCESSORIES/images/checkout-pay-arrow.png); display: inline-block; right: -31px; top: 0; position: absolute }
 .resp-arrow { width: 0; height: 0; float: right; margin-top: 20px; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #c1c1c1; margin-right: 10px }
 h2.resp-tab-active span.resp-arrow { border: none; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 8px solid #e70000 }
 .billing-add-tab .check-payment-tab .tab-content { width: 70%; float: right; background: #fbfbfb; border: 0; padding: 10px 10px 40px; margin-top: 0 }
@@ -2941,7 +2941,7 @@ h2.resp-tab-active span.resp-arrow { border: none; border-left: 6px solid transp
 .pay-title { color: #000; font-family: 'robotolight_italic'; font-size: 13px; border-bottom: 1px solid #e6e6e6; padding-bottom: 5px; font-weight: 600 }
 .payment-box { margin: 15px 0; text-align: center }
 .payment-box input[type="radio"] { margin: 0; opacity: 0; padding: 0; width: 28px }
-.payment-box input[type="radio"] + label { background: url(../images/pay-radio-button.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #5f5f5f; display: inline-block; font-style: normal; height: 15px; margin-top: 10px; margin-left: -20px; padding-bottom: 0; padding-left: 20px; text-transform: capitalize }
+.payment-box input[type="radio"] + label { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777698/websites/POSH-ACCESSORIES/images/pay-radio-button.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #5f5f5f; display: inline-block; font-style: normal; height: 15px; margin-top: 10px; margin-left: -20px; padding-bottom: 0; padding-left: 20px; text-transform: capitalize }
 .payment-box input[type="radio"]:checked + label { background-position: 0 -15px }
 .payment-box img { margin-top: -15px }
 .payment-info-box { max-width: 325px; margin: 0 auto; border: 1px solid #e6e6e6; overflow: hidden; padding: 10px }
@@ -3059,7 +3059,7 @@ h2.resp-tab-active span.resp-arrow { border: none; border-left: 6px solid transp
 .addnew-select .radiobox .select-wrapper-col select { width: 93% }
 .selectres { display: inline-block }
 .change-password-box .btn { text-transform: uppercase; min-width: 105px }
-.newsletter-checkbox .print-checkbox input[type="checkbox"] + label, .name input[type="checkbox"] + label { background: url(../images/checkbox-01.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #5f5f5f; display: inline-block; font-style: normal; line-height: 17px; margin-left: -18px; margin-right: 0; padding-bottom: 0; padding-left: 24px; text-transform: capitalize }
+.newsletter-checkbox .print-checkbox input[type="checkbox"] + label, .name input[type="checkbox"] + label { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777726/websites/POSH-ACCESSORIES/images/checkbox-01.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0); color: #5f5f5f; display: inline-block; font-style: normal; line-height: 17px; margin-left: -18px; margin-right: 0; padding-bottom: 0; padding-left: 24px; text-transform: capitalize }
 .newsletter-checkbox .print-checkbox input[type="checkbox"]:checked + label { background-position: 0 -24px }
 .nsmnone { margin-right: 0 }
 .select-checkbox-type .categoryName { float: left; margin-right: 14px; position: relative; width: 100% }
@@ -3223,8 +3223,8 @@ h2.resp-tab-active span.resp-arrow { border: none; border-left: 6px solid transp
 .sitemap-parts .panel-group { position: relative }
 .sitemap-parts .panel-heading { border-bottom: solid 1px #d6d6d6; padding-left: 0 }
 .sitemap-parts .panel-heading h2 { font-size: 16px; color: #000; font-family: ' 'Didact Gothic', sans-serif'; font-weight: 700 }
-.sitemap-parts .panel-heading .caret-icon { position: absolute; right: 10px; top: 9px; background: url(../images/sprite.png) no-repeat -8px -75px; width: 15px; height: 15px }
-.sitemap-parts .panel-heading.open .caret-icon { position: absolute; right: 10px; top: 9px; background: url(../images/sprite.png) no-repeat -8px -39px; width: 15px; height: 15px }
+.sitemap-parts .panel-heading .caret-icon { position: absolute; right: 10px; top: 9px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -75px; width: 15px; height: 15px }
+.sitemap-parts .panel-heading.open .caret-icon { position: absolute; right: 10px; top: 9px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -8px -39px; width: 15px; height: 15px }
 .sitemap-parts .panel-heading.open h2 { color: #e70000 }
 .sitemap-parts .panel-group .panel-heading+.panel-collapse>.panel-body { border-top: 0; padding: 0 }
 .sitemap-menu { width: 230px; margin: 0 auto }
@@ -3293,8 +3293,8 @@ input.form-control { border-radius: 0 }
 .sub-shop-list-cont { width: 100%; display: table; height: 360px; padding: 10px; border: solid 1px #ddd }
 .sub-shop-list-cont > a { display: table-cell; max-width: 0; width: 100%; vertical-align: middle; height: 340px; text-align: center }
 .sub-shop-list-cont > a > img { max-height: 100%; max-width: 100%; border: slid 1px #ddd }
-.unsub-wrap { background: url(../images/unsub-bg.jpg); background-size: cover; background-position: center center; min-height: 100vh; height: 100vh }
-.unsub-wrap .innerpage { background: url(../images/unsub-guy.png) no-repeat center top; margin-top: 0; position: relative; padding-top: 100px; z-index: 10; min-height: 100vh; height: 100vh }
+.unsub-wrap { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777760/websites/POSH-ACCESSORIES/images/unsub-bg.jpg); background-size: cover; background-position: center center; min-height: 100vh; height: 100vh }
+.unsub-wrap .innerpage { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777793/websites/POSH-ACCESSORIES/images/unsub-guy.png) no-repeat center top; margin-top: 0; position: relative; padding-top: 100px; z-index: 10; min-height: 100vh; height: 100vh }
 .unsub-wrap .ob-unsubscribe-block { left: 0; margin: 0 auto; position: absolute; right: 0; top: 270px; min-height: 350px }
 .unsub-wrap .ob-unsubscribe-block h1 { font-size: 50px; font-family: 'robotolight'; text-transform: uppercase; text-align: center; color: #e70000; font-weight: 300; padding: 20px 0; line-height: 55px; letter-spacing: 5px }
 .unsub-wrap .ob-unsubscribe-block h3 { text-align: center; font-size: 24px; text-transform: uppercase; font-family: 'Didact Gothic', sans-serif; padding-bottom: 20px; color: #000 }
@@ -3316,7 +3316,7 @@ input.form-control { border-radius: 0 }
 .ui-sub-tab > .nav-tabs li a, .three-tab .nav-tabs li a { text-transform: none }
 .product-description .three-tab .nav-tabs a:hover, .product-description .three-tab .nav-tabs a:focus { background: #fff; }
 .ui-sub-tab > .nav-tabs li.active a::before, .three-tab .nav-tabs li.active a::before { display: none }
-.ui-sub-tab > .quantity-table > .quantity-size li:nth-child(6), .three-tab .quantity-table > .quantity-size li:nth-child(6) { border: 1px #ddd solid; background: url(../images/gray-slice.png) repeat-x 0 0; text-align: left }
+.ui-sub-tab > .quantity-table > .quantity-size li:nth-child(6), .three-tab .quantity-table > .quantity-size li:nth-child(6) { border: 1px #ddd solid; background: url(https://res.cloudinary.com/flowz/image/upload/v1537518943/websites/POSH-ACCESSORIES/images/gray-slice.png) repeat-x 0 0; text-align: left }
 .three-tab .nav-tabs li { margin: 0 0 -1px!important; width: 33.3% !important; }
 .quantity-table .quantity-size li.color-input { width: 30px; height: 30px; border: 2px #ddd solid!important }
 .product-detail-wrapper .print-checkbox label { font-size: 14px }
@@ -3435,7 +3435,7 @@ h1.modal-title i.quote-icon span { color: #000; }
 .main-checkout-block .company-add-padding .company-contact-info-box .company-contact-info-left { width: 35% }
 .main-checkout-block .company-add-padding .company-contact-info-box .company-contact-info-right { width: 65% }
 .main-checkout-block .continue-btn { box-shadow: none; border-radius: 0; min-width: 157px; height: 32px; border: none; margin: 0 }
-.main-checkout-block .panel-group .panel:after { background: url(../images/checkout-payment-process.png) no-repeat; content: ""; height: 50px; top: 8px; position: absolute; width: 50px }
+.main-checkout-block .panel-group .panel:after { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777854/websites/POSH-ACCESSORIES/images/checkout-payment-process.png) no-repeat; content: ""; height: 50px; top: 8px; position: absolute; width: 50px }
 .main-checkout-block .panel-group .panel:nth-child(1):after { background-position: -60px 0; left: 14px }
 .main-checkout-block .panel-group .panel:nth-child(2):after { background-position: -60px -72px; left: -27px }
 .main-checkout-block .panel-group .panel:nth-child(3):after { background-position: -60px -147px; left: -27px }
@@ -3443,7 +3443,7 @@ h1.modal-title i.quote-icon span { color: #000; }
 .main-checkout-block .panel-group .panel.open:nth-child(2):after { background-position: 0 -72px; left: -26px }
 .main-checkout-block .panel-group .panel.open:nth-child(3):after { background-position: 0 -147px; left: -26px }
 .search-contact-book { margin: 0 0 20px; padding: 10px; background: #f0f0f0; border: 2px solid #e3e3e3; width: 100% }
-.search-contact-book input[type="search"] { margin: 0; padding: 5px; background: url(../images/checkout-search.png) no-repeat right 10px top 50% #fff; height: 26px; border: 1px solid #dedede; width: 84%; color: #b2b2b2; font-size: 12px; font-family: 'robotoitalic'; vertical-align: top }
+.search-contact-book input[type="search"] { margin: 0; padding: 5px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537777877/websites/POSH-ACCESSORIES/images/checkout-search.png) no-repeat right 10px top 50% #fff; height: 26px; border: 1px solid #dedede; width: 84%; color: #b2b2b2; font-size: 12px; font-family: 'robotoitalic'; vertical-align: top }
 .search-contact-book input[type="text"] { margin: 0; padding: 5px; background: #fff; height: 26px; border: 1px solid #dedede; width: 80%; color: #b2b2b2; font-size: 12px; font-family: 'robotoitalic'; vertical-align: top }
 .search-contact-book input[type="submit"] { margin: 0; padding: 0; background: #4d4d4d; height: 26px; border: 1px solid #dedede; min-width: 103px; color: #fff; font-size: 14px; text-align: center; text-transform: uppercase; line-height: 23px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; box-shadow: none; border-radius: 0 }
 .search-contact-book span { color: #000; font-size: 16px; font-family:  'Didact Gothic', sans-serif;font-weight: 600; text-transform: uppercase; margin-right: 20px; display: inline-block }
@@ -3469,7 +3469,7 @@ h1.modal-title i.quote-icon span { color: #000; }
 .card-security span { margin: 0; padding: 0; display: block; font-size: 14px; color: #e70000; font-family: 'robotoitalic' }
 .card-security p { margin: 0; padding: 0; font-size: 14px; color: #000; font-family: ' 'Didact Gothic', sans-serif' }
 .card-type { margin: 20px 0; padding: 0 }
-.card-type a { margin: 0 20px 0 0; padding: 0; display: inline-block; background: url(../images/card-type.png)no-repeat left top; width: 65px; height: 56px }
+.card-type a { margin: 0 20px 0 0; padding: 0; display: inline-block; background: url(https://res.cloudinary.com/flowz/image/upload/v1537777897/websites/POSH-ACCESSORIES/images/card-type.png)no-repeat left top; width: 65px; height: 56px }
 .card-type a.visa { background-position: 0 0 }
 .card-type a.mastercard { background-position: -92px 0 }
 .card-type a.discover { background-position: -184px 0 }
@@ -3656,19 +3656,19 @@ h1.modal-title i.quote-icon span { color: #000; }
 .search-product-popup .dropdown.top-advance-search.advance-search-btn { width: 14% }
 .file-input-wrap input { display: none }
 .quote-detail-title li.dropdown:hover .dropdown-menu { display: block; width: 240px; left: -110px; padding: 20px 5px 10px 10px; margin-top: 5px; border-radius: 0 }
-.quote-detail-title li.dropdown:hover::before { content: ''; width: 27px; height: 17px; position: absolute; top: 25px; right: 2px; background: url(../images/w-arrow-bg.png) no-repeat 0 0; z-index: 1111 }
+.quote-detail-title li.dropdown:hover::before { content: ''; width: 27px; height: 17px; position: absolute; top: 25px; right: 2px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537519900/websites/POSH-ACCESSORIES/images/w-arrow-bg.png) no-repeat 0 0; z-index: 1111 }
 .save-icon .radio-col span { margin-top: 15px!important; display: block }
 .save-icon .radio-col { margin-bottom: 0!important }
 .save-icon { padding: 0 7px 5px }
 .save-icon:last-child { padding-right: 0 }
 .save-icon .radio-col label { padding-bottom: 5px!important }
 .save-icon .radio-col span::before { position: absolute; top: -20px; left: 22px }
-.jpg-icon { width: 60px; height: 65px; background: url(../images/save-as-img.jpg) no-repeat 0 5px }
-.pdf-icon { width: 60px; height: 65px; background: url(../images/save-as-img.jpg) no-repeat -65px 5px }
-.css-icon { width: 60px; height: 65px; background: url(../images/save-as-img.jpg) no-repeat -135px 5px }
-.save-icon .radio-col label:hover .jpg-icon { background: url(../images/save-as-img.jpg) no-repeat 0 -58px }
-.save-icon .radio-col label:hover .pdf-icon { background: url(../images/save-as-img.jpg) no-repeat -65px -58px }
-.save-icon .radio-col label:hover .css-icon { background: url(../images/save-as-img.jpg) no-repeat -135px -58px }
+.jpg-icon { width: 60px; height: 65px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537777965/websites/POSH-ACCESSORIES/images/save-as-img.jpg) no-repeat 0 5px }
+.pdf-icon { width: 60px; height: 65px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537777965/websites/POSH-ACCESSORIES/images/save-as-img.jpg) no-repeat -65px 5px }
+.css-icon { width: 60px; height: 65px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537777965/websites/POSH-ACCESSORIES/images/save-as-img.jpg) no-repeat -135px 5px }
+.save-icon .radio-col label:hover .jpg-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777965/websites/POSH-ACCESSORIES/images/save-as-img.jpg) no-repeat 0 -58px }
+.save-icon .radio-col label:hover .pdf-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777965/websites/POSH-ACCESSORIES/images/save-as-img.jpg) no-repeat -65px -58px }
+.save-icon .radio-col label:hover .css-icon { background: url(https://res.cloudinary.com/flowz/image/upload/v1537777965/websites/POSH-ACCESSORIES/images/save-as-img.jpg) no-repeat -135px -58px }
 .radio-col input[type=radio].ace { opacity: 0; position: absolute; z-index: 12; width: 18px; height: 18px; cursor: pointer; margin-left: 0 }
 .radio-col input[type=radio].ace+.lbl { position: relative; z-index: 11; display: inline-block; margin: 0; line-height: 16px; min-height: 18px; min-width: 18px; font-weight: 400 }
 .radio-col input[type=radio].ace.ring +.lbl::before { font-size: 5px; color: transparent; text-shadow: none; box-shadow: none; margin-right: 8px }
@@ -3831,15 +3831,15 @@ button[type="reset"].admin-custom-btn { background: #e70000; box-shadow: none; b
 .search-product-popup .search-in-dropdown { float: left; width: 135px }
 .search-product-popup .inp-parts { float: left; width: 100%; position: relative; height: 56px }
 .search-product-popup .color-select { margin-right: 20px }
-.search-product-popup .search-in-dropdown .inp-parts .checkout-select-wrapper { background: url(../images/checkout-select-arrow.png) #E8E8E8 no-repeat scroll 95% center; font-family:  'Didact Gothic', sans-serif;font-weight:600 }
+.search-product-popup .search-in-dropdown .inp-parts .checkout-select-wrapper { background: url(https://res.cloudinary.com/flowz/image/upload/v1537778015/websites/POSH-ACCESSORIES/images/checkout-select-arrow.png) #E8E8E8 no-repeat scroll 95% center; font-family:  'Didact Gothic', sans-serif;font-weight:600 }
 .search-product-popup .search-in-dropdown .ob-gender-select-box span.checkout-select-wrapper, .search-product-popup .search-in-dropdown .ob-gender-select-box span.checkout-select-wrapper .custom-select, .search-product-popup .search-in-dropdown .inp-parts.ob-gender-select-box { width: 100%; height: 38px; text-transform: uppercase; line-height: 38px; margin: 0 }
 .search-product-popup .inp-parts .checkout-select-wrapper select { margin: 0; position: absolute; z-index: 2; cursor: pointer; outline: none; opacity: 0;  _nofocusline: expression(this.hideFocus=true);
  -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
 filter: alpha(opacity=0); -khtml-opacity: 0; -moz-opacity: 0 }
-.search-product-popup .inp-parts .checkout-select-wrapper { color: #000; font-size: 13px; font-family: ' 'Didact Gothic', sans-serif'; display: inline-block; border: 1px solid #e6e6e6; background: #FFF url(../images/checkout-select-arrow.png) no-repeat 95% center; cursor: pointer; -webkit-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; -moz-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset }
+.search-product-popup .inp-parts .checkout-select-wrapper { color: #000; font-size: 13px; font-family: ' 'Didact Gothic', sans-serif'; display: inline-block; border: 1px solid #e6e6e6; background: #FFF url(https://res.cloudinary.com/flowz/image/upload/v1537778015/websites/POSH-ACCESSORIES/images/checkout-select-arrow.png) no-repeat 95% center; cursor: pointer; -webkit-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; -moz-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset }
 .search-product-popup .header-search.search-field { float: left; max-width: 710px; position: relative; width: auto; padding: 0 }
 .search-product-popup .header-search .form-control { float: left; color: #b2b2b2; font-size: 13px; border-radius: 0; border: none; box-shadow: none; height: 38px; padding: 0 25px 0 12px; line-height: 38px; -webkit-transition: none; transition: none; -webkit-appearance: none; width: 500px; border-top: 2px solid #dedede; border-bottom: 2px solid #dedede; font-style: italic }
-.search-product-popup .advance-search-label, .search-product-popup .advance-search-label:focus { position: absolute; color: #000; font: 14px  'Didact Gothic', sans-serif; text-transform: uppercase; background: url(../images/grey-arrow.png) no-repeat right center; padding-right: 15px; opacity: .6; right: 95px; text-transform: none; background-color: #fff; top: 9px }
+.search-product-popup .advance-search-label, .search-product-popup .advance-search-label:focus { position: absolute; color: #000; font: 14px  'Didact Gothic', sans-serif; text-transform: uppercase; background: url(https://res.cloudinary.com/flowz/image/upload/v1537517856/websites/POSH-ACCESSORIES/images/grey-arrow.png) no-repeat right center; padding-right: 15px; opacity: .6; right: 95px; text-transform: none; background-color: #fff; top: 9px }
 .search-product-popup .header-search.advance-search-wrap .dropdown-menu { left: auto; right: 27px; width: 600px; position: absolute; z-index: 100 }
 .search-product-popup .advance-search-wrap .dropdown-menu { width: 100%; margin-top: 35px; background: #F5F5F5; border: 0; padding: 10px; border-radius: 0; box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2); top: 10px; z-index: 11 }
 .search-product-popup .tab-block .nav-tabs { border-bottom: 0; height: auto }
@@ -3864,7 +3864,7 @@ filter: alpha(opacity=0); -khtml-opacity: 0; -moz-opacity: 0 }
 .search-product-popup .search-edit-options a { color: inherit; padding: 0 10px; color: #e70000; font-size: 13px; cursor: pointer }
 .search-product-popup .search-edit-options a i { color: #999; margin-right: 10px }
 .search-product-popup .advance-search-wrap .view-all-search-result { display: block; margin-top: 10px; border: 1px solid #ddd; background: #fff; padding: 10px; text-align: center; color: #e70000; font-size: 12px }
-.search-product-popup .advance-search-wrap .dropdown-menu:before { content: ""; width: 25px; height: 17px; background: url(../images/a-shadow-2.png) no-repeat 0 0; display: inline-block; right: 50px; position: absolute; top: -17px }
+.search-product-popup .advance-search-wrap .dropdown-menu:before { content: ""; width: 25px; height: 17px; background: url(https://res.cloudinary.com/flowz/image/upload/v1537517877/websites/POSH-ACCESSORIES/images/a-shadow-2.png) no-repeat 0 0; display: inline-block; right: 50px; position: absolute; top: -17px }
 .search-product-popup .top-advance-search > a { background: none; color: #000; padding: 0; border: 0; text-transform: none; font-size: 14px; font-family: 'Didact Gothic', sans-serif; font-style: italic }
 .search-product-popup .top-advance-search .header-advace-search { position: absolute; left: 0; width: 100%; padding: 5px 0 15px }
 .search-product-popup .menu-box .dropdown-menu.header-advace-search { box-shadow: none; border-top: #CCC 1px solid }
@@ -3883,7 +3883,7 @@ filter: alpha(opacity=0); -khtml-opacity: 0; -moz-opacity: 0 }
 .search-product-popup .dropdown-toggle.select_box_caret2.btn-default { position: absolute; right: 0; height: 38px; border: none; color: #000; border: 1px solid #e6e6e6; border-left: none; background: #FFF }
 .search-product-popup .multiselect-container.dropdown-menu { margin-top: 40px!important; width: 100%; max-height: 200px; overflow: auto }
 .search-product-popup .advance-search-col .inp-parts { margin: 0 0 -10px }
-.search-product-popup .advance-search-col .inp-parts .checkout-select-wrapper { color: #444; font-size: 13px; position: relative; font-family: ' 'Didact Gothic', sans-serif'; display: inline-block; border: 1px solid #e6e6e6; background: #fff url(../images/ob-arrow.png) no-repeat 95% center; cursor: pointer }
+.search-product-popup .advance-search-col .inp-parts .checkout-select-wrapper { color: #444; font-size: 13px; position: relative; font-family: ' 'Didact Gothic', sans-serif'; display: inline-block; border: 1px solid #e6e6e6; background: #fff url(https://res.cloudinary.com/flowz/image/upload/v1537519145/websites/POSH-ACCESSORIES/images/ob-arrow.png) no-repeat 95% center; cursor: pointer }
 .search-product-popup .inp-parts .form-contr.search-product-popup ol { border-radius: 0; font-family: ' 'Didact Gothic', sans-serif'; border: 1px solid #e6e6e6; color: #000; font-size: 13px; height: 40px; -webkit-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; -moz-box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset; box-shadow: 0 6px 32px -11px rgba(230, 230, 230, 1) inset }
 .search-product-popup .search-product-popup .inp-parts .checkout-select-wrapper, .search-product-popup .inp-parts .checkout-select-wrapper select { width: 100%; height: 40px; line-height: 40px }
 .search-product-popup .advance-search-col .col-lg-3 { width: 33.3% }
@@ -3892,7 +3892,7 @@ filter: alpha(opacity=0); -khtml-opacity: 0; -moz-opacity: 0 }
 .search-product-popup .space-col { color: #000; width: 8%; float: left; padding-top: 35px }
 .search-product-popup .advance-search-col > .clearfix { display: none }
 .search-product-popup .advance-search-col .button-colum a.save-button-link { background: #000465!important; color: #FFF; text-align: center; height: 37px; display: inline-block; padding: 0 10px; line-height: 37px; border-radius: 3px }
-.search-product-popup input[type="submit"].pull-right { text-transform: initial; font-size: 16px; font-family: 'Didact Gothic', sans-serif; background: #e70000 url(../images/sprite.png) no-repeat -25px -426px; color: #fff; min-width: 110px; padding: 7px 0 10px 40px; text-align: left; height: 37px; margin: 0; border-radius: 4px; border: 0 }
+.search-product-popup input[type="submit"].pull-right { text-transform: initial; font-size: 16px; font-family: 'Didact Gothic', sans-serif; background: #e70000 url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat -25px -426px; color: #fff; min-width: 110px; padding: 7px 0 10px 40px; text-align: left; height: 37px; margin: 0; border-radius: 4px; border: 0 }
 .search-product-popup .button-colum { padding-top: 24px }
 .search-product-popup .top-advance-search.open > a.dropdown-toggle { color: #e70000; background: none }
 .search-product-popup .ob-gender-select-box select { height: 39px; line-height: 39px; width: 135px; background: #ccc; color: #555; font-family:  'Didact Gothic', sans-serif;font-weight:600; font-size: 12px; text-transform: uppercase; padding: 0 5px }
@@ -3923,11 +3923,11 @@ form.advance-search-form { display: inline-block }
 .ob-about-block .inner-box-with-logo p span { font-family: "robotomedium" }
 .ob-about-block .gray-block p { color: #000; font-family: ' 'Didact Gothic', sans-serif' }
 .ob-about-block .no-mrgin { margin: 0 }
-.ob-about-block .about-year-block .round-year-block-first { background: transparent url("../images/1997- Symbol.png") no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 80px; margin-top: 20px }
-.ob-about-block .about-year-block .round-year-block-second { background: transparent url(../images/flag.png) no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 80px }
-.ob-about-block .about-year-block .round-year-block-third { background: transparent url("../images/wide- product-range.png") no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 80px }
-.ob-about-block .about-year-block .round-year-block-fourth { background: transparent url("../images/ethical- trade- symbol.png") no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 80px }
-.ob-about-block .about-year-block .round-year-block-fifth { background: transparent url(../images/environment-symbol.png) no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 20px }
+.ob-about-block .about-year-block .round-year-block-first { background: transparent url("https://res.cloudinary.com/flowz/image/upload/v1537778153/websites/POSH-ACCESSORIES/images/1997-_Symbol.png") no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 80px; margin-top: 20px }
+.ob-about-block .about-year-block .round-year-block-second { background: transparent url(https://res.cloudinary.com/flowz/image/upload/v1537778191/websites/POSH-ACCESSORIES/images/flag.png) no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 80px }
+.ob-about-block .about-year-block .round-year-block-third { background: transparent url("https://res.cloudinary.com/flowz/image/upload/v1537778209/websites/POSH-ACCESSORIES/images/wide-_product-range.png") no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 80px }
+.ob-about-block .about-year-block .round-year-block-fourth { background: transparent url("https://res.cloudinary.com/flowz/image/upload/v1537778229/websites/POSH-ACCESSORIES/images/ethical-_trade-_symbol.png") no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 80px }
+.ob-about-block .about-year-block .round-year-block-fifth { background: transparent url(https://res.cloudinary.com/flowz/image/upload/v1537778252/websites/POSH-ACCESSORIES/images/environment-symbol.png) no-repeat scroll 0 0; width: 150px; height: 150px; display: block; margin: 0 auto; text-align: center; line-height: 100px; color: #e70000; font-family:  'Didact Gothic', sans-serif;font-weight: 600; margin-bottom: 20px }
 .main-title img { padding-bottom: 3px; margin-right: 11px }
 .ob-privacy-policy p { font-family:  'Didact Gothic', sans-serif }
 .ob-privacy-policy h2.head-sub { font: 16px robotomedium; margin-top: 10px; padding-bottom: 5px }
@@ -4061,10 +4061,10 @@ top: -1px;
 .table-size-box { width: 47% !important; }
 .main-shopping-cart-block .size-quantity-table { margin-top: 11px; }
 .main-shopping-block .quantity-table .quantity-table-disc { width: 77% }
-.request-info-modal .accordion-toggle.collapsed i { background: rgba(0, 0, 0, 0) url("../images/sprite.png") no-repeat scroll -6px -224px; }
-.request-info-modal .accordion-toggle i { background: rgba(0, 0, 0, 0) url("../images/sprite.png") no-repeat scroll -5px -186px; }
-.request-info-minus { background: rgba(0, 0, 0, 0) url("../images/sprite.png") no-repeat scroll -5px -186px; width: 22px; height: 22px; display: block; }
-.request-info-modal .accordion-toggle.collapsed i { background: rgba(0, 0, 0, 0) url(../images/sprite.png) no-repeat scroll -6px -224px; }
+.request-info-modal .accordion-toggle.collapsed i { background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png") no-repeat scroll -6px -224px; }
+.request-info-modal .accordion-toggle i { background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png") no-repeat scroll -5px -186px; }
+.request-info-minus { background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png") no-repeat scroll -5px -186px; width: 22px; height: 22px; display: block; }
+.request-info-modal .accordion-toggle.collapsed i { background: rgba(0, 0, 0, 0) url(https://res.cloudinary.com/flowz/image/upload/v1537512147/websites/POSH-ACCESSORIES/images/sprite.png) no-repeat scroll -6px -224px; }
 .pro-box { margin-right: 1px; margin-left: 1px; }
 .ob-product-compare .pro-img { margin: 8px auto; }
 .color-selected-col span { margin-top: -4px; }
@@ -4124,7 +4124,7 @@ span.imprint-lbl-method {width: 92%;overflow: hidden;display: inline-block;}
 .product-cat-new li div{width: 100%;}
 .product-cat-new li div a {  border: 0px;   height: auto;   float: none; display: inline-block;}
 .product-cat-new li div a:hover i,
-.product-cat-new li div a i{background: url(../images/category-sprite.png);height:58px;width:58px;margin-bottom:10px;display: inline-block;}
+.product-cat-new li div a i{background: url(https://res.cloudinary.com/flowz/image/upload/v1537778295/websites/POSH-ACCESSORIES/images/category-sprite.png);height:58px;width:58px;margin-bottom:10px;display: inline-block;}
 .product-cat-new li div a:hover i {}
 .product-cat-new li div a div{font-size: 14px;color:#000;margin: 0px;text-align: center;font-weight: bold;}
 
@@ -4246,7 +4246,7 @@ header {position: relative !important;}
 .ui-header .logo-col {margin: 0px 0;top: -20px;position: relative}
 .advance-search-btn{margin-top: 0px;}
 .home-content .pro-box:hover .product-zoom, .home-content .pro-box:hover .pav-colorbox{    padding-top: 15px;}
-.banner-box .cat-left-side {background: url(../images/ecat.png) 96% 85% no-repeat #fdc3c2;}
+.banner-box .cat-left-side {background: url(https://res.cloudinary.com/flowz/image/upload/v1537778318/websites/POSH-ACCESSORIES/images/ecat.png) 96% 85% no-repeat #fdc3c2;}
 .cat-left-side h4 {color: #FFF;}
 .cat-left-side ul li a, .cat-left-side ul li a:hover {color: #FFF}
 .cat-left-side a.see-more {background: #888;padding: 5px 43px;border-radius: 5px;color:#FFF}
@@ -4848,7 +4848,7 @@ table.ent-qua {
 .list-view .pro-desc .item-price{background: #FFF}
 .list-view .pro-box:hover .pro-desc .item-price{background: #FFF;color: #000}
 .psa-strip-icon {
-    background-image: url(../images/PSA-pecial.png);
+    background-image: url(https://res.cloudinary.com/flowz/image/upload/v1537778340/websites/POSH-ACCESSORIES/images/PSA-pecial.png);
     background-repeat: no-repeat;
     width: 52px;
     height: 32px;
@@ -4935,6 +4935,87 @@ div#inventory-look .modal-dialog {
     
     min-height: auto;
 }
+/*.list-view .sales{display: none}*/
+
+/*LATEST CHANGES*/
+.product-label h2 {
+    font-size: 10px;
+    font-weight: 800;
+    padding-right: 4px;
+    text-align: right;
+}
+.product-label {
+   
+    width: auto;
+}
+.product-label h2 {
+    padding-top: 1px;
+}
+.shippingng-estimator-model .radio, .shippingng-estimator-model .checkbox{    margin-left: 22px;}
+.header-search.search-field.advance-search-wrap.dropdown > input{padding-right: 10px;}
+.shippin-main-block th {
+    border: 1px solid #DDD;
+    border-top: 1px solid #DDD !important;text-align: center
+}
+.inventory-table > tbody>tr>th:first-child, .inventory-table > tbody>tr>td:first-child{width: auto}
+.shippin-main-block  #calculate_shipping_estimator table{margin-bottom: 0px}
+.shippingng-estimator-model span.item-code-no {
+    font-size: 18px;
+}
+/*LIST VIEW TAGS*/
+.list-view .product-label.f-closeout:before {
+    border-top: 12px solid #359dd3;
+}
+.list-view .product-label.f-closeout:after {
+    border-bottom: 12px solid #359dd3;
+}
+.list-view .product-label{height: 13px;}
+.list-view .product-label h2{padding-top: 2px;}
+.list-view .product-label.f-new:before{border-top:12px solid #f06142}
+.list-view .product-label.f-new:after{border-bottom:12px solid #f06142}
+.list-view .product-label.f-featured:before {
+    border-top: 12px solid #9cc02c;
+}
+.list-view .product-label{padding: 0 2px 0 0;}
+.list-view .product-label.f-featured:after {
+    border-bottom: 12px solid #9cc02c;
+}
+.list-view .product-label h2 {
+    padding-top: 2px;
+    padding-left: 7px;
+    padding-top: 1px;
+}
+.list-view .sales{margin-top: 0px}
+.responsive-tabs-container .accordion-link{display: none !important}
+.dec-price a.myButton.setup {
+    margin-right: 0;
+    margin-top: 4px;
+}
+img.img-responsive.us-flag {
+    display: inline-block;
+    margin-left: 115px;
+    margin-top: 12px;
+}
+.product-section-box.dec-price, .product-section-box.det-pop {
+    min-height: 243px;
+}
+div#collapsetwo,.catelogue-title-text {
+    display: none;
+}
+.menu-box .navbar-nav > li {
+    position: inherit;
+    min-height: 38px;
+}
+@-moz-document url-prefix() {
+ .virtual-button{min-width: 116px;}
+  
+}
+
+      
+      
+      
+/*LIST VIEW TAGS*/
+/*LATEST CHANGES*/
 /*TAGS*/
 /*END PRODUCT CATEGORY ITEM*/
  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -5017,7 +5098,7 @@ body, input, select, textarea, button, .ui-btn{font-family: 'Didact Gothic', san
 .advance-open {display:block !important;}
 .search-mail-block .search-col > span.twitter-typeahead:before {content: "\f002";display: inline-block;font: normal normal normal 14px/1 FontAwesome;font-size: inherit;text-rendering: auto;-webkit-font-smoothing: antialiased;font-size: 14px;-moz-osx-font-smoothing: grayscale;color: #4d4d4d;position: absolute;right: -20px;top: 8px;}
 .size-quantity-table tr th::after, .size-quantity-table tr td::after {display: none;}
-.nav-search-btn.sea-open .header-search-medium::after {background: rgba(0,0,0,0) url(../images/a-shadow.png) no-repeat scroll 0 0;content: "";display: inline-block;height: 17px;right: 35px !important;position: absolute;bottom: 0px;width: 25px;z-index: 9999;}
+.nav-search-btn.sea-open .header-search-medium::after {background: rgba(0,0,0,0) url(https://res.cloudinary.com/flowz/image/upload/v1537778369/websites/POSH-ACCESSORIES/images/a-shadow.png) no-repeat scroll 0 0;content: "";display: inline-block;height: 17px;right: 35px !important;position: absolute;bottom: 0px;width: 25px;z-index: 9999;}
 
 .product-detail-tab .tab-content.responsive .tab-pane * {font-size: 14px;}
 .product-detail-tab .tab-content.responsive .tab-pane.active  {min-height: 1px;}
@@ -5028,16 +5109,16 @@ body, input, select, textarea, button, .ui-btn{font-family: 'Didact Gothic', san
 
 
 /***** Combine images using CSS sprites F(45) START ***/
-.product-add:after{content: ""; background: url(../images/combinesprites.png) no-repeat; height: 22px;width: 22px; position: absolute; background-position: -10px -64px; right: -10px; bottom: 5px;}
-.menu-box .navbar-nav .dropdown-submenu > a:after{content:"";background: url(../images/combinesprites.png) no-repeat;height:22px;width:22px;position:absolute; background-position: -10px -64px; right: 0;}
+.product-add:after{content: ""; background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat; height: 22px;width: 22px; position: absolute; background-position: -10px -64px; right: -10px; bottom: 5px;}
+.menu-box .navbar-nav .dropdown-submenu > a:after{content:"";background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat;height:22px;width:22px;position:absolute; background-position: -10px -64px; right: 0;}
 .cat-left-side a.see-more:after , .right-banner-bg1 a.learn-more:after , .right-banner-bg2 a.learn-more:after , .right-banner-bg3 a.learn-more:after , .right-banner-bg4 a.learn-more:after{
-content: "";  background: url(../images/combinesprites.png) no-repeat; height: 22px; width: 22px; position: absolute;  background-position: -10px -91px; margin-left: 6px;}
+content: "";  background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat; height: 22px; width: 22px; position: absolute;  background-position: -10px -91px; margin-left: 6px;}
 .cat-left-side a.see-more, .right-banner-bg1 a.learn-more , .right-banner-bg2 a.learn-more , .right-banner-bg3 a.learn-more , .right-banner-bg4 a.learn-more ,.cat-left-side ul li, .menu-box .navbar-nav .dropdown-submenu > a , .product-add{position:relative}
-.cat-left-side ul li:before{ content: "";background: url(../images/combinesprites.png) no-repeat; height: 22px; width: 22px; position: absolute; background-position: -18px -50px; left: 0; }
-.header-search.search-field .advance-search-label:after, header.fixed-header.fixed-header-top .header-search .advance-search-label:after{ content: ""; background: url(../images/combinesprites.png) no-repeat; height: 22px;   width: 22px;  position: absolute;  background-position: -3px -32px; right: 0; top: 0;}
+.cat-left-side ul li:before{ content: "";background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat; height: 22px; width: 22px; position: absolute; background-position: -18px -50px; left: 0; }
+.header-search.search-field .advance-search-label:after, header.fixed-header.fixed-header-top .header-search .advance-search-label:after{ content: ""; background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat; height: 22px;   width: 22px;  position: absolute;  background-position: -3px -32px; right: 0; top: 0;}
 .header-search.search-field .advance-search-label{background:none}
-.owl-carousel .owl-nav .owl-prev:after{content: ""; background: url(../images/combinesprites.png) no-repeat;height: 22px;width: 22px;position: absolute;background-position:-3px -7px;left: 0;top: 0;}
-.owl-carousel .owl-nav .owl-next:after{content: "";background: url(../images/combinesprites.png) no-repeat; height: 22px;width: 22px;position:absolute;background-position: -17px -7px;right:0;top:0;}
+.owl-carousel .owl-nav .owl-prev:after{content: ""; background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat;height: 22px;width: 22px;position: absolute;background-position:-3px -7px;left: 0;top: 0;}
+.owl-carousel .owl-nav .owl-next:after{content: "";background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat; height: 22px;width: 22px;position:absolute;background-position: -17px -7px;right:0;top:0;}
 .owl-carousel .owl-nav .owl-prev,.owl-carousel .owl-nav .owl-next{position: relative;background-image: none !important;}
 .owl-carousel .owl-nav .owl-prev:hover:after{background-position:-3px -121px !important;}
 .owl-carousel .owl-nav .owl-next:hover:after{background-position:-17px -121px !important;}
@@ -5064,7 +5145,7 @@ content: "";  background: url(../images/combinesprites.png) no-repeat; height: 2
 .ob-category-top-img .jssorb03,.ob-category-top-img .jssora20l,.ob-category-top-img .jssora20r  {display: none !important;}
 .price-range-col input{width: 65px;font-size: 14px}
 .price-block .filter-btn{margin: 14px 19px;}
-.irs-slider {background-image: url(../images/processbar.png);}
+.irs-slider {background-image: url(https://res.cloudinary.com/flowz/image/upload/v1537517917/websites/POSH-ACCESSORIES/images/processbar.png);}
 .radiobox .input-group .upload-button{margin-left: 0px}
 .mac-os .quick-quote-form textarea, .mac-os .model-popup-black .form-group textarea {margin-bottom: 0px;}
 #product_compare_email_to_friend input[type="button"], input[type="reset"] {margin-top: 15px;}
@@ -5119,7 +5200,7 @@ span.imprint-lbl-method{text-overflow: ellipsis;}
 .search-in-dropdown {;margin-bottom: 25px}
 .ob-product-detail-right .quantity-table{width: 99%;}
 .ob-product-detail-right .quantity-table .quantity-table-disc {width: 77%;}
-.banner-box .cat-left-side {background: url(../images/Flyer-Add.jpg) 96% 85% no-repeat #bc252a;}
+.banner-box .cat-left-side {background: url(https://res.cloudinary.com/flowz/image/upload/v1537778463/websites/POSH-ACCESSORIES/images/Flyer-Add.jpg) 96% 85% no-repeat #bc252a;}
 ul.product-wrap li {
     width: 17.8%;
 }
@@ -5137,7 +5218,7 @@ ul.product-wrap li {
 .ob-category-top-img .jssorb03,.ob-category-top-img .jssora20l,.ob-category-top-img .jssora20r  {display: none !important;}
 .home-content {margin-top: 222px;}
 .price-block .filter-btn{margin: 14px 19px !important; }
-.irs-slider {background-image: url(../images/processbar.png);}
+.irs-slider {background-image: url(https://res.cloudinary.com/flowz/image/upload/v1537517917/websites/POSH-ACCESSORIES/images/processbar.png);}
 .price-range-col input{width: 65px;font-size: 14px}
 .radiobox .input-group .upload-button{margin-left: 0px}
 .scroll-block {overflow-x: scroll;}
@@ -5191,7 +5272,7 @@ header {position: relative !important;}
 .ob-product-detail-right .quantity-table .quantity-table-disc {width: 73%;}
 .shipping-scroll div {width: 100%;}
 .col-lg-6.col-md-6.col-sm-5.col-xs-12.radio-but {width: 100%;}
-.banner-box .cat-left-side {background: url(../images/Flyer-Add.jpg) 96% 85% no-repeat #bc252a;}
+.banner-box .cat-left-side {background: url(https://res.cloudinary.com/flowz/image/upload/v1537778463/websites/POSH-ACCESSORIES/images/Flyer-Add.jpg) 96% 85% no-repeat #bc252a;}
 .quick-view-left .product-big-image{width: 100% !important}
 ul.product-wrap li {
     width: 15%;
@@ -5229,7 +5310,7 @@ ul.product-wrap li {
 .header-search.search-field.advance-search-wrap.dropdown > input{z-index: 99999}
 /*    .middle-footer h3.footer-heading{cursor:pointer;background:url(../images/plus.png) no-repeat right center;}
     .middle-footer h3.active{background:url(../images/minus.png) no-repeat right cente}*/
-.middle-footer h3.footer-heading {background: url(../images/down-arrow-footer.png) no-repeat right 2px;background-position: right -6px top -12px;}
+.middle-footer h3.footer-heading {background: url(https://res.cloudinary.com/flowz/image/upload/v1537778507/websites/POSH-ACCESSORIES/images/down-arrow-footer.png) no-repeat right 2px;background-position: right -6px top -12px;}
 .ui-load .ui-load-element {display:none;}
 a.add-btn.gray.js_open_modal_print {display:none;}
 .model-popup-black .compare-product-slide .quantity-table .owl-nav.disabled {display: inline-block;}
@@ -5305,6 +5386,7 @@ ul.product-wrap li {width: 29%;}
 div#inventory-look .modal-dialog {
     width: 750px;
 }
+.responsive-tabs-container .accordion-link{display: block !important}
 }
 @media (min-width:1100px) and (max-width: 2800px) {.shipping-option p{ min-width:103px;}}
 @media screen and (max-width:1024px){

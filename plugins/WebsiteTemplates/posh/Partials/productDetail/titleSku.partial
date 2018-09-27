@@ -1,7 +1,7 @@
 <div id="title" class="title-block">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left productDetailTitle">
-            <h1 class="heading-2">#data.product_name#</h1>
+            <h1 class="heading-2" itemprop="name">#data.product_name#</h1>
         </div>
 
     </div>
@@ -13,7 +13,7 @@
         <strong>Item #:</strong>
     </div>
     <div class="colorBoxItems">
-        <div class="colorItem js-product_sku">#data.sku#</div>
+        <div class="colorItem js-product_sku" itemprop="sku">#data.sku#</div>
     </div>
 
 </div>

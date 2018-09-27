@@ -76,39 +76,45 @@ $(document).ready(function(){
         $('.checkout-holder').html('Select Country'); //clear country dropdown
         $('#estimatorResponse tbody').remove(); //removes table body of response
         $('#estimatorError').css({"display":"none"}) //hide error message
-        $('#estimatorResponse').css({"display":"none"}) // hide response table
+        $('#shipping_estimator_response').css({"display":"none"}) // hide response table
         // $(".js-country").html('');
         let productResponse = await getProductDetailById(pid)
-        console.log('productresponse',productResponse);
+        // console.log('productresponse',productResponse);
+
         getCountry();
         if(productResponse != null){
-          $('.estimatorProductSku').text(' Item#: '+productResponse.sku)
+          $('.estimatorProductSku').text(productResponse.sku)
           $('.estimatorProductName').text(productResponse.product_name)
+          let fob = productResponse.shipping[0];
+          // console.log(fob.fob_city +' '+ fob.fob_state_code +' '+ fob.fob_zip_code +' '+ fob.fob_country_code)
+          $('#estimator_fob').val(fob.fob_city +' '+ fob.fob_state_code +' '+ fob.fob_zip_code +' '+ fob.fob_country_code)
           // $('.itemCode').text('( Item Code:'+productResponse.sku+')')
         }
         $('.js-submit-btn-rate-calculation').on('click', async function() {
           let formData = $('form#calculate_shipping_estimator').serializeArray()
-          console.log('------formData',formData)
+          // console.log('------formData',formData)
           let shipInfo = {};
-          let shippingType = []
+          // let shippingType = []
           for (var input in formData){
               var value = formData[input]['value'];
-              if (formData[input]['name'] == 'shipping_type') {
-                  shippingType.push(value)
-              }
-              else {
+              // if (formData[input]['name'] == 'shipping_type') {
+              //     shippingType.push(value)
+              // }
+              // else {
                   shipInfo[formData[input]['name']] = value;
-              }
+              // }
           }
-          shipInfo['shippingType'] = shippingType;
-          if (shipInfo.qty != '' && shipInfo.zip_code != '' && shipInfo.country != '' && shipInfo.shippingType.length > 0) {
+          shipInfo['shippingType'] = ['ups'];
+          // if (shipInfo.qty != '' && shipInfo.zip_code != '' && shipInfo.country != '' && shipInfo.shippingType.length > 0) {
+          if (shipInfo.qty != '' && shipInfo.zip_code != '' && shipInfo.country != '') {
+              // console.log('inside fun',shipInfo.qty)
               if (shipInfo.qty > 0) {
                   showPageAjaxLoading();
                   let estimatorObject = {
                       'shipperInfo' : productResponse.shipping[0],
                       'shipToInfo' : shipInfo
                   };
-                  console.log('estimatorObject',estimatorObject)
+                  // console.log('estimatorObject',estimatorObject)
                   $.ajax({
                       type: 'POST',
                       url: project_settings.shipping_estimator_api_url,
@@ -116,7 +122,12 @@ $(document).ready(function(){
                       data:  estimatorObject,
                       dataType: 'json',
                       success: function (result) {
-                          console.log('result',result);
+                          // console.log('result',result);
+                          $('.qty_per_carton').text(result.packaging_info.qtyPerCartoon)
+                          $('.carton_dimensions').text(result.packaging_info.cartonLength +" 'L x "+ result.packaging_info.cartonWidth +" 'W x "+ result.packaging_info.cartonHeight + " 'H")
+                          $('.carton_weight').text(result.packaging_info.cartonWeight)
+                          $('.no_of_cartons').text(result.packaging_info.totalCartons)
+                          $('.total_weight').text(result.packaging_info.totalWeight)
                           // let old_tbody = document.getElementsByTagName('tbody')[0];
                           let tableMain = document.getElementById('estimatorResponse');
                           $('#estimatorResponse tbody').remove();
@@ -124,22 +135,22 @@ $(document).ready(function(){
                           tableMain.append(tableBody);
                           let markUpPer = 5;
                           let markUpValue;
-                          Object.keys(result).forEach(function eachKey(key) {
+                          Object.keys(result.estimatorResponse).forEach(function eachKey(key) {
                               var tr = document.createElement('TR');
                               tableBody.appendChild(tr);
                               var td = document.createElement('TD');
                               td.className="estimatorResult"
                               // td.className="text-right"
                               // td.className="right-padding"
-                              // td.width = "35%"
-                              // td.style={'padding': '0px 10px;'}
+                              td.width = "35%"
+                              td.style={'padding': '0px 10px;'}
                               td.appendChild(document.createTextNode(key));
                               tr.appendChild(td);
                               td = document.createElement('TD');
                               td.className="estimatorResult"
-                              markUpValue = (Number(result[key]) * markUpPer)/100;
-                              result[key] += markUpValue;
-                              td.appendChild(document.createTextNode(result[key].toFixed(2)));
+                              markUpValue = (Number(result.estimatorResponse[key]) * markUpPer)/100;
+                              result.estimatorResponse[key] += markUpValue;
+                              td.appendChild(document.createTextNode(result.estimatorResponse[key].toFixed(2)));
                               tr.appendChild(td);
                           });
                           // console.log('tableBody',tableBody)
@@ -147,7 +158,7 @@ $(document).ready(function(){
                           // console.log('old_tbody-----',old_tbody)
                           // old_tbody.parentNode.replaceChild(tableBody,old_tbody);
                           hidePageAjaxLoading()
-                          $('#estimatorResponse').css({"display":"block"})
+                          $('#shipping_estimator_response').css({"display":"block"}) // display response table
                           $(".estimatorResult").css({"padding": "3px 5px"});
                       },
                       error: function(err) {
@@ -173,27 +184,93 @@ $(document).ready(function(){
 
     $('.js-reset-btn-rate-calculation').on('click', async function() { 
         $('form#calculate_shipping_estimator')[0].reset();
+        // let formData = $('form#calculate_shipping_estimator').serializeArray()
+        // console.log('formData',formData)
+        // for (var input in formData){
+        //   console.log("formData[input]['name']",formData[input]['name'])
+        //   if (formData[input]['name'] != 'estimator_fob') {
+        //     formData[input]['value'] = '';
+        //   }
+        // }
         $('.checkout-holder').html('Select Country');
         $('#estimatorError').css({"display":"none"}) //hide error message
-        $('#estimatorResponse').css({"display":"none"}) // hide response table
+        $('#shipping_estimator_response').css({"display":"none"}) // hide response table
+        // $('#estimatorResponse').css({"display":"none"}) // hide response table
+
     })
 });
 
 // inventory start
 let inventoryData = [];
 $(document).on('click','#js-check-inventory', async function (e) {
-    $('.js-inventory-msg').addClass('hide')
-    $('.js-inventory-colors').html('');
-    $('.js-inventory-quantity').val('');
-    $('.js-current-color').attr('data-value', '')
-    $('.js-current-color').attr('style','')
+    $('#inventory-look').find('.modal-body').css('visibility','hidden');
+    showPageAjaxLoading();
+    // $('.js-inventory-msg').addClass('hide')
+    // $('.js-inventory-colors').html('');
+    // $('.js-inventory-quantity').val('');
+    // $('.js-current-color').attr('data-value', '')
+    // $('.js-current-color').attr('style','')
+    // let productResponse = await getProductDetailById(pid)
+    // console.log('productResponse',productResponse)
+    // if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) {
+    //     $.each(productResponse.inventory, function(i,element){
+    //         let colorInventoryColors = "";
+    //         $.each(element.attributes.colors, async function(j,color){
+    //             inventoryData[color] = parseInt(element.qty_on_hand);
+    //             let element_color_style = "background-color:"+color+";"
+    //             let colorsHexVal = await replaceColorSwatchWithHexaCodes(color,"color");
+    //             if(colorsHexVal != null && colorsHexVal[color] != undefined){
+    //                 if(typeof colorsHexVal[color].hexcode != 'undefined'){
+    //                     element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
+    //                 }
+    //                 else if (typeof colorsHexVal[element_color].file != 'undefined') {
+    //                     element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
+    //                 }
+    //             }
+    //             colorInventoryColors = '<li role="presentation"><a class="Color-box" data-value="'+color+'" style="'+element_color_style+'" role="menuitem" tabindex="-1" href="javascript:;"></a></li>';
+    //             $('.js-inventory-colors').append(colorInventoryColors);
+    //         });
+    //     });
+    // }
+    // else {
+    //   $('#inventoryBlock').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>')
+    // }
     let productResponse = await getProductDetailById(pid)
-    console.log('productResponse',productResponse)
-    if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) {
+    // console.log('productResponse',productResponse)
+    $(".inventory-table ").find("tr:gt(1)").remove();
+    let colorSection = "";
+    if(productResponse.inventory != 'undefined' && Array.isArray(productResponse.inventory) && productResponse.inventory.length > 0) 
+    {
+        colorSection = "<tr>";
+        colorSection += $(".js_inventory_color").html();
+        colorSection += "</tr>";
+
+        let colorInventoryColors = "";
+
         $.each(productResponse.inventory, function(i,element){
-            let colorInventoryColors = "";
+            // console.log('element',element)
+            let qty_on_hand = '';
+            
+            if(element.qty_on_hand != null && element.qty_on_hand != undefined && element.qty_on_hand != ""){
+                qty_on_hand = element.qty_on_hand;
+            }
+
+            if(element.min_qty != null && element.min_qty != undefined && element.min_qty != "" && qty_on_hand != ""){
+                if(qty_on_hand < element.min_qty){
+                    qty_on_hand = 'CALL';
+                }
+            }
+            
+            let product_sku = '';
+
+            if(element.sku != null && element.sku != undefined && element.sku != ""){
+                product_sku = element.sku;
+            }
+            
             $.each(element.attributes.colors, async function(j,color){
-                inventoryData[color] = parseInt(element.qty_on_hand);
+                // console.log('color',color)
+                let color_name = color;
+                
                 let element_color_style = "background-color:"+color+";"
                 let colorsHexVal = await replaceColorSwatchWithHexaCodes(color,"color");
                 if(colorsHexVal != null && colorsHexVal[color] != undefined){
@@ -204,52 +281,74 @@ $(document).on('click','#js-check-inventory', async function (e) {
                         element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
                     }
                 }
-                colorInventoryColors = '<li role="presentation"><a class="Color-box" data-value="'+color+'" style="'+element_color_style+'" role="menuitem" tabindex="-1" href="javascript:;"></a></li>';
-                $('.js-inventory-colors').append(colorInventoryColors);
+                
+                colorSection = colorSection.replace("#data.inventory_color_name#",color_name);
+                colorSection = colorSection.replace("#data.inventory_color_sku#",product_sku);
+                colorSection = colorSection.replace("#data.inventory_color#",'<span class="js-inventory_color_box" style="'+element_color_style+'"></span>');
+                colorSection = colorSection.replace("#data.qty_on_hand#",qty_on_hand);
+
+                if(element.inventory_expected != null && element.inventory_expected != undefined && element.inventory_expected != ""){
+                    colorSection = colorSection.replace("#data.inventory_expected#",element.inventory_expected);
+                }
+                else{
+                    colorSection = colorSection.replace("#data.inventory_expected#","-");                    
+                }
+                
+                if(element.inventory_arrival_date != null && element.inventory_arrival_date != undefined && element.inventory_arrival_date != ""){
+                    colorSection = colorSection.replace("#data.inventory_arrival_date#",element.inventory_arrival_date);
+                }
+                else{
+                    colorSection = colorSection.replace("#data.inventory_arrival_date#","-");                    
+                }
+                
+                $( colorSection ).insertAfter( ".js_inventory_color" );
             });
         });
+        $('#inventory-look').find('.modal-body').css('visibility','visible');
     }
-    else {
-      $('#inventoryBlock').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>')
+    else{
+        $('#inventory-look').find('.modal-body').html('<div style="text-align: center;margin-bottom: 20px;"><b>Color is not available for this product</b></div>');
+        $('#inventory-look').find('.modal-body').css('visibility','visible');
     }
+    hidePageAjaxLoading();
 });
-$(document).on('click','.js-inventory-colors li', function (e) {
-    if($(this).find('a').attr("style") != 'undefined' && $(this).find('a').attr("style") != '') {
-        $('.js-current-color').attr('data-value',$(this).find('a').data("value"))
-        $('.js-current-color').attr('style',$(this).find('a').attr("style"))
-    }
-});
-$(document).on('click','.js-inventory-submit', function (e) {
-    let colorName = $('.js-current-color').attr('data-value');
-    let enteredQty = $('.js-inventory-quantity').val();
+// $(document).on('click','.js-inventory-colors li', function (e) {
+//     if($(this).find('a').attr("style") != 'undefined' && $(this).find('a').attr("style") != '') {
+//         $('.js-current-color').attr('data-value',$(this).find('a').data("value"))
+//         $('.js-current-color').attr('style',$(this).find('a').attr("style"))
+//     }
+// });
+// $(document).on('click','.js-inventory-submit', function (e) {
+//     let colorName = $('.js-current-color').attr('data-value');
+//     let enteredQty = $('.js-inventory-quantity').val();
 
-    if(colorName == undefined || colorName == '') {
-        $('.js-inventory-msg').removeClass('hide')
-        $('.js-inventory-msg').css('color','red');
-        $('.js-inventory-msg').html('Please Select Color.');
-        return false;
-    }
-    else if(Math.floor(enteredQty) == enteredQty && $.isNumeric(enteredQty)) {
-        if(enteredQty <= inventoryData[colorName]) {
-            $('.js-inventory-msg').removeClass('hide')
-            $('.js-inventory-msg').css('color','green');
-            $('.js-inventory-msg').html('In Stock');
-            return false;
-        }
-        else {
-            $('.js-inventory-msg').removeClass('hide')
-            $('.js-inventory-msg').css('color','red');
-            $('.js-inventory-msg').html('Not In Stock');
-            return false;
-        }
-    }
-    else {
-        $('.js-inventory-msg').removeClass('hide')
-        $('.js-inventory-msg').css('color','red');
-        $('.js-inventory-msg').html('Please Enter Valid Quantity.');
-        return false;
-    }
-});
+//     if(colorName == undefined || colorName == '') {
+//         $('.js-inventory-msg').removeClass('hide')
+//         $('.js-inventory-msg').css('color','red');
+//         $('.js-inventory-msg').html('Please Select Color.');
+//         return false;
+//     }
+//     else if(Math.floor(enteredQty) == enteredQty && $.isNumeric(enteredQty)) {
+//         if(enteredQty <= inventoryData[colorName]) {
+//             $('.js-inventory-msg').removeClass('hide')
+//             $('.js-inventory-msg').css('color','green');
+//             $('.js-inventory-msg').html('In Stock');
+//             return false;
+//         }
+//         else {
+//             $('.js-inventory-msg').removeClass('hide')
+//             $('.js-inventory-msg').css('color','red');
+//             $('.js-inventory-msg').html('Not In Stock');
+//             return false;
+//         }
+//     }
+//     else {
+//         $('.js-inventory-msg').removeClass('hide')
+//         $('.js-inventory-msg').css('color','red');
+//         $('.js-inventory-msg').html('Please Enter Valid Quantity.');
+//         return false;
+//     }
+// });
 // inventory end
 
 // order sample start
@@ -258,10 +357,7 @@ $(document).on('click','#sample_submit',function (e) {
         rules: {
             "sample_fname" : "required",
             "sample_lname" : "required",
-            "sample_phone" : {
-                required:true,
-                // minlength: 10
-            },
+            "sample_phone" : "required",
             "sample_email":{
                 required:true,
                 email: true
@@ -270,10 +366,7 @@ $(document).on('click','#sample_submit',function (e) {
         messages: {
             "sample_fname" : "Please Enter first name.",
             "sample_lname" : "Please Enter last name.",
-            "sample_phone" : {
-                required : "Please enter phone number.",
-                // minlength: "Please enter valid phone number."
-            },
+            "sample_phone" : "Please enter phone number.",
             "sample_email":{
                 required:"Please enter email",
                 email: "Please enter valid email."
@@ -292,6 +385,8 @@ $(document).on('click','#sample_submit',function (e) {
             let orderSample = {};
             let productJsonData = {};
             let sampleColors = [];
+            let membershipInfo = [];
+            let sampleInfo = [];
             let qtyTotal = singlePrice = 0;
 
             $('input[name^="sample_quantity"]').each(function() {
@@ -303,6 +398,19 @@ $(document).on('click','#sample_submit',function (e) {
                 }
             });
 
+            $('input[name^="membership_info"]').each(function() {
+                if ($(this).is(':checked')) {
+                    membershipInfo.push($(this).val());
+                }
+            });
+            
+            $('input[name^="sample_info"]').each(function() {
+                if ($(this).is(':checked')) {
+                    sampleInfo.push($(this).val());
+                }
+            });
+
+            console.log('get_product_details.pricing == ',get_product_details.pricing)
             if(get_product_details.pricing != undefined){
                 $.each(get_product_details.pricing, function(index,element){
                     if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global") {
@@ -323,13 +431,20 @@ $(document).on('click','#sample_submit',function (e) {
                 });
             }
 
+            if(singlePrice == '0.00' || singlePrice <= 0) {
+                showErrorMessage("Please enter more number of quantites.");
+                return false;
+            }
+
             let samplePrice = parseFloat(singlePrice * qtyTotal).toFixed(project_settings.price_decimal);
             
             for (var input in form_data){
-                let value = form_data[input]['value'];
+                let value = form_data[input]['value'].trim();
                 orderSample[form_data[input]['name']] = value;
             }
             orderSample['sampleColors'] = sampleColors;
+            orderSample['membershipInfo'] = membershipInfo;
+            orderSample['sampleInfo'] = sampleInfo;
             orderSample['samplePrice'] = samplePrice;
             orderSample['singlePrice'] = singlePrice;
             orderSample['totalQty'] = qtyTotal;
@@ -337,6 +452,8 @@ $(document).on('click','#sample_submit',function (e) {
             orderSample['slug'] = 'posh-order-sample';
 
             delete orderSample['sample_quantity[]'];
+            delete orderSample['membership_info[]'];
+            delete orderSample['sample_info[]'];
             delete orderSample['sample_submit'];
 
             productJsonData['form_data'] = orderSample;
