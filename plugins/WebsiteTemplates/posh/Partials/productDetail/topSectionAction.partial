@@ -65,7 +65,7 @@
             </div>
             <div class="modal-body" style="padding: 0px;">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 text-center">
                         <h3>SKU: <span class="estimatorProductSku" style="color: #000"></span> 
                             <span class="item-code-no estimatorProductName" style="color: #000"></span>
                         </h3>
