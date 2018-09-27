@@ -182,17 +182,11 @@ $(document).ready(function(){
         })
     })
 
-    $('.js-reset-btn-rate-calculation').on('click', async function() { 
-        $('form#calculate_shipping_estimator')[0].reset();
-        // let formData = $('form#calculate_shipping_estimator').serializeArray()
-        // console.log('formData',formData)
-        // for (var input in formData){
-        //   console.log("formData[input]['name']",formData[input]['name'])
-        //   if (formData[input]['name'] != 'estimator_fob') {
-        //     formData[input]['value'] = '';
-        //   }
-        // }
+    $('.js-reset-btn-rate-calculation').on('click', async function() {
+        $('input[name=qty]').val('');
         $('.checkout-holder').html('Select Country');
+        $('input[name=zip_code]').val('')
+        $("#checkbox-mailing"). prop("checked", false);
         $('#estimatorError').css({"display":"none"}) //hide error message
         $('#shipping_estimator_response').css({"display":"none"}) // hide response table
         // $('#estimatorResponse').css({"display":"none"}) // hide response table
