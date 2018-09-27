@@ -30,10 +30,51 @@
                                 </a>
                             </li>
                             <li class="dropdown login-col header-login-text login-show hide">
-                                <a href="login.html" class="dropdown-toggle">
+                                <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="fa fa-user"></span>
                                     <span class="login-text"><span>LOGIN</span></span>
                                 </a>
+                                <div class="dropdown-menu dropdown-menu-arrow">
+                                  <div class="inner-box">
+                                  	<h2 class="title-login"><i class="fa fa-sign-in"></i> login</h2>
+                                      <a href="javascript:void(0)" class="close-model fa fa-close" data-toggle="tooltip" data-placement="left" data-original-title="Close"></a>
+                                      <form id="formLogIn">
+                                          <input type="text" name="user_email" placeholder="E-mail" class="form-control input-fields user_email" required />
+                                          <ul class="error-message red"><li class="error red js-login-error" id="error-message"></li></ul>
+                                          <input type="password" name="user_pass" placeholder="**********" title="Password" class="form-control input-fields mb-1 user_pass" required />
+                                          <div class="row">
+                                              <div class="col-sm-6">
+                                                  <div class="check-box">
+                                                      <div class="pull-left">
+                                                          <input type="checkbox" id="c145" name="checkbox">
+                                                          <label for="c145"><span></span></label>
+                                                      </div>
+                                                      <label for="c145">Remember me</label>
+                                                  </div>
+                                              </div>
+                                              <div class="col-sm-6 text-right">
+                                                  <a href="javascript:void(0)" class="js_forgot">Forgot Password?</a>
+                                              </div>
+                                          </div>
+                                          <input type="button" class="btn login-btn login-submit" value="LogIn"/>
+                                          <div class="forgot-passwd js-forgot-passwd" style="display: none;">
+                                              <h3>Forgot your Password?</h3>
+                                              <p>Enter your Email Address here to receive a link to change password.</p>
+                                              <div>
+                                                  <input type="text" name="forget_email" placeholder="E-mail" class="form-control input-fields forget_email" />
+                                              </div>
+                                              <!-- <a href="javascript:void(0)" class="send-email forget-submit">SEND Email</a> -->
+                                              <button type="button" class="btn send-email forget-submit">Submit</button>
+                                          </div>
+                                      </form>
+                                      <div class="log-bottom">
+                                          <p class="pull-left">Not Registered?</p>
+                                          <a href="signup.html" class="red pull-right">Create an account</a>
+                                          <div class="clearfix"></div>
+                                      </div>
+                                      <div class="clear"></div>
+                                  </div>
+                              </div>
                             </li>
                             <li class="dropdown login-col header-login-text logout-show hide"><a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown"><span class="fa fa-user"></span><span class="login-text username-text">welcome</span></a>
                                     <ul
@@ -45,8 +86,8 @@
                                         <li><a class="login-text-check" href="javascript:;">LOGOUT</a>
                                         </li>
                                     </ul>
-                            </li>    
-                                        
+                            </li>
+
                             <li class="log login-show hide"><a href="signup.html">Register</a></li>
                         </ul>
                         <div class="clearfix"></div>
@@ -72,9 +113,9 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
-    
+
     </div>
 
     <div class="ui-menu-nav">

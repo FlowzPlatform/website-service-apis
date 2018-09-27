@@ -60,3 +60,6 @@ svg.svg-inline--fa.fa-search.fa-w-16.fa-fw.search_icon.top_search {
     float : none;
 } */
 /* -------------------------------------- */ 
+.menu-box .navbar-nav > li > a {
+    color: #fff !important;
+}
