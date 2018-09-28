@@ -9,10 +9,12 @@ $(function() {
 $('.signupPosh-click').on('click',function() {
 	let projectID;
 	let baseURL;
+	let websiteURL;
 	setTimeout(() => {
 		$.getJSON("./assets/project-details.json", function(data) {
 	        projectID = data[0].projectID;
 	        baseURL = data[0].builder_service_api;
+					websiteURL = data[0].BaseURL;
 	    })
 	},1000)
 	$('form#signUp').validate({
@@ -77,7 +79,8 @@ $('.signupPosh-click').on('click',function() {
         	let fullname = $('.firstName').val().trim() + ' ' + $('.lastName').val().trim();
         	let email = $('.userEmail').val().trim();
         	let password = $('.password').val().trim();
-        	var userDetails = {"password":password ,"email":email ,"fullname":fullname};
+					let redirectUrl = websiteURL + 'index.html'
+        	var userDetails = {"password":password ,"email":email ,"fullname":fullname,"redirect_url": redirectUrl};
         	// console.log('setup url', project_settings.api_url+"setup")
         	// console.log('JSON.stringify(userDetails)',JSON.stringify(userDetails));
         	// console.log("baseURL + '/website-users'", baseURL + '/website-users');
@@ -91,7 +94,7 @@ $('.signupPosh-click').on('click',function() {
 				dataType: 'json',
 				headers: { 'Content-Type': 'application/json' },
 				success: function (result) {
-					showSuccessMessage(result.message);
+					showSuccessMessage("Thank you for the registration. Please check e-mail for verification!");
 					$.ajax({
 						'async': false,
 						'type': "GET",
@@ -113,7 +116,7 @@ $('.signupPosh-click').on('click',function() {
 	            			}
 						}
 					});
-					window.location = "login.html";
+					// window.location = "index.html";
 				},
 				error: function(err) {
 					hidePageAjaxLoading();
@@ -166,7 +169,7 @@ function getCountryData(countryId=0){
 		  // console.log('Error fetching and parsing data', error);
 		});
 	}
-  
+
   }
 
 if( $('.js-country') &&  $('.js-state')){
