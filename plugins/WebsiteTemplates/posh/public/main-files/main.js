@@ -810,7 +810,26 @@ function addInTransaction(type,product_id){
   if (user_id == null ) {
     dataSaveToLocal(type,product_id)
   } else {
-    dataSaveToDatabase(type,product_id,user_id)
+    if(type == 3)
+    {
+      if (localStorage.getItem("savedComparedRegister") != null && localStorage.getItem("savedComparedRegister").length > 0) 
+      {
+        let compareCount = JSON.parse(localStorage.getItem("savedComparedRegister")).length;
+        if(compareCount == 4 || compareCount>4)
+        {
+          showErrorMessage("You can add upto 4 products to compare.");
+        }
+        else{
+          dataSaveToDatabase(type,product_id,user_id)   
+        }         
+      }
+      else{
+        dataSaveToDatabase(type,product_id,user_id)   
+      }
+    }
+    else{
+      dataSaveToDatabase(type,product_id,user_id) 
+    }
   }
 }
 
@@ -946,8 +965,11 @@ function deleteFromLocal(type,product_id){
       // else{
       //   $('#myCompareList #listing .ob-product-compare .compare-block').css('width',209*5+'px')
       // }
-      $("#myCompareList").find(".js-compare-btns").show()
-      document.getElementById("comparedCount").innerHTML =  JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
+      $("#myCompareList").find(".js-compare-btns").show();
+      let compareProductCount = JSON.parse(localStorage.getItem(decideLocalStorageKey)).length;
+      document.getElementById("comparedCount").innerHTML =  compareProductCount;
+      let remainingProducts = 4-compareProductCount;
+      $('.js-more_product').html(remainingProducts);
     }
     /////////////// xxxxx ////////////////////
   }
@@ -968,8 +990,18 @@ function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
         }
 
         let recentAddedInWishlist = [];
-        data['id'] = response_data.data.id;
-        recentAddedInWishlist.push(data);
+        recentAddedInWishlist.push(response_data.data);
+
+        if (localStorage.getItem("savedComparedRegister") != null && localStorage.getItem("savedComparedRegister").length > 0) 
+        {
+          let values = JSON.parse(localStorage.getItem('savedComparedRegister'));
+          values.push(recentAddedInWishlist)
+          localStorage.setItem('savedComparedRegister', JSON.stringify(values))
+        }
+        else{
+          localStorage.setItem('savedComparedRegister', JSON.stringify(recentAddedInWishlist))          
+        }
+        
       }
       if(show_msg != false) {
         if(response_data.status == 200) {
@@ -1218,6 +1250,8 @@ function updateShoppingDatabaseCount(type, operation) {
     {
       let compareCount = eval(parseInt(document.getElementById("comparedCount").innerHTML)+operation+1);
       document.getElementById("comparedCount").innerHTML = Math.max(0, compareCount)
+      let remainingProducts = 4-compareCount;
+      $('.js-more_product').html(remainingProducts);
     };
   }
   if (type == 4) {
@@ -1278,14 +1312,19 @@ function checkIfExist(type ,product_id ,array, decideLocalStorageKey, show_msg=t
 
   if (!found)
   {
-    array.push({ type: type , 'product_id': product_id,'id': product_id,'website_id':website_settings['projectID']  });
+    if(type == 3 && (array.length == 4 || array.length>4)){
+      showErrorMessage("You can add upto 4 products to compare.");
+    } 
+    else{
+      array.push({ type: type , 'product_id': product_id,'id': product_id,'website_id':website_settings['projectID']  });
 
-    let recentAddedInWishlist = [];
-    recentAddedInWishlist.push({ 'type': type,'product_id': product_id, 'id': product_id});
+      let recentAddedInWishlist = [];
+      recentAddedInWishlist.push({ 'type': type,'product_id': product_id, 'id': product_id});
 
-    if(show_msg != false) {
-      showSuccessMessage("Item added successfully"+addedTo);
-    }
+      if(show_msg != false) {
+        showSuccessMessage("Item added successfully"+addedTo);
+      }
+    } 
   }else{
     if(show_msg != false) {
       showErrorMessage("Item already exist"+ alreadyAddedIn);
@@ -2093,7 +2132,9 @@ function showCompareList(recetAdded=false)
                       $("#myCompareList #listing .js-no-records").remove();
                       $("#myCompareList #listing div:first").removeClass("hide");
 
-                      compareHtml.find("#item_title_price1").html("<td class='feature-block'></td>"+productHtml)
+                      let remainingProducts = 4-compare_values.length;
+
+                      compareHtml.find("#item_title_price1").html('<td class="feature-block"><label>You can add upto <br><span>4 products to compare</span></label><p>Now you can add</p><div class="more-product js-more_product">'+remainingProducts+'</div><p>more product</p></td>'+productHtml)
                       compareHtml.find("#item_price_row1").html("<td class='feature-block'></td>"+item_price_rowHtml)
                       compareHtml.find("#item_sku1").html("<td class='feature-block'>ITEM#</td>"+itemSkuHtml)
                       compareHtml.find("#item_summary1").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
@@ -2140,6 +2181,19 @@ function showCompareList(recetAdded=false)
                     }
                   }
                 });
+              }
+            }
+            if(compare_values.length<5)
+            {
+              let noImg = '<td><div class="pro-img"><div class="img-block"><img src="images/add-product-img.jpg" class="img-responsive center-block" alt="Text"></div></div><div class="btn-box-main"><a href="search.html" class="add-btn gray">Add product</a></div></td>';
+              for(i=compare_values.length;i<4;i++){
+                $('#item_title_price1').append(noImg);
+                $("#item_price_row1").append('<td>&nbsp;</td>')
+                $("#item_sku1").append('<td>&nbsp;</td>')
+                $("#item_summary1").append('<td>&nbsp;</td>')
+                $("#item_features1").append('<td>&nbsp;</td>')
+                $("#item_pricing1").append('<td>&nbsp;</td>')
+                $("#item_colors1").append('<td>&nbsp;</td>')
               }
             }
       } else {
@@ -3099,11 +3153,9 @@ $(document).on('click','.send-friend-email',function (e)
                             }
                             else {
                               productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                              productJsonData['image'] = addOptimizeImgUrl(productJsonData['image'],'w_100,h_100')
                             }
                         }else{
                             productJsonData['image'] = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                            productJsonData['image'] = addOptimizeImgUrl(productJsonData['image'],'w_100,h_100')
                         }
 
                         productJsonData['product_name'] = productData[0]._source.product_name;
