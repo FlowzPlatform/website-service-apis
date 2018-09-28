@@ -30,10 +30,16 @@ $(document).ready(async function(){
         
         if(productSlug != ""){
             let replaceProductBox = '';
+            $(".js-tag-featured-product-list").removeClass('hide');
+            $(".js-tag-featured-product-list .row #owl-carousel-recommeded").css('visibility','hidden');
+        
             replaceProductBox = await tagProducts("tag_slug="+productSlug,productBoxHtml)
             if(replaceProductBox != ''){
                 tagHtmlList.find('.js-list').html(replaceProductBox)
                 tagHtmlList.removeClass('hide')
+                document.getElementById('posh-load').style.visibility="hidden";
+                $(".js-tag-featured-product-list .row #owl-carousel-recommeded").css('visibility','visible');
+                
                 tagHtmlList.find("#owl-carousel-recommeded").closest(".row").css({"display": "flex"});
                 
                 $("#owl-carousel-recommeded").owlCarousel({

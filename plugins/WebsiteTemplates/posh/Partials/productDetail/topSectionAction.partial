@@ -4,7 +4,7 @@
         <a href="javascript:void(0);" id="shippingEstButton" class="myButton" data-toggle="modal" data-target="#shipping_estimator_model">Shipping Estimator</a>
         <div id="bySampleLink"></div>
         <a href="javascript:void(0);" id="js-order-sample" data-toggle="modal" data-target="#orderSample" class="myButton">Order Sample</a>
-        <a href="javascript:void(0);" id="js-quote" class="myButton" data-toggle="modal" data-target="#">Quote</a>                
+        <a href="javascript:void(0);" id="js-quote" class="myButton" data-toggle="modal" data-target="#">Quote</a>
         <style>
         .virtual-button {
             background: #ee0000!important;
@@ -52,7 +52,7 @@
                 <input class="ob-btvirtualloadcontent" style="display:none;" id="c70827" type="button" />
             </div>
         </div>
-        
+
     </div>
 </div>
 
