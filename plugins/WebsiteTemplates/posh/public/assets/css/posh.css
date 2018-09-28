@@ -118,7 +118,8 @@ a.js-download_pdf_from_url {
     color: #e70000;
     font-size: 22px;
 }
-.feature.dark-bg p, .feature.light-bg p { text-align: justify; }
+.feature.dark-bg p, .feature.light-bg p { text-align: justify;color: #404040;line-height: 19px;font-size: 14px; }
+.ob-product-compare .feature td{ text-align: center;}
 .js-product_description_text{ padding-bottom: 15px !important; }
 #owl-carousel-recommeded-products .item { margin: 0 1px; }
 .owl-carousel .owl-wrapper-outer { position: relative; overflow: hidden; width:100%;-webkit-transform: translate3d(0px, 0px, 0px); }

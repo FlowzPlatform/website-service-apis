@@ -51,13 +51,8 @@ $(document).ready( async function(){
     }
     showPageAjaxLoading();
 
-    if(productDetails.releated_sku != undefined && productDetails.releated_sku != "" && productDetails.releated_sku != null)  {
-        ProductSku = productDetails.releated_sku;
-        ProductSku = ProductSku.join('; ')
-    }
-    else{
-        ProductSku = productDetails.sku;        
-    }
+    ProductSku = productDetails.sku;
+    
     hasImprintData = productDetails.imprint_data;
 
     let listHtml = $('#title .row').html();
@@ -72,7 +67,16 @@ $(document).ready( async function(){
     $('#product_img').data("zoom-image",productImageUrl)
     $('#product_img').data("orig-img",productImageUrl)
 
-    $('.js-product_sku').html(ProductSku);
+    if(productDetails.releated_sku != undefined && productDetails.releated_sku != "" && productDetails.releated_sku != null)  
+    {
+        let releated_sku = productDetails.releated_sku;
+        releated_sku = releated_sku.replace('|','; ')
+        $('.js-product_sku').html(releated_sku);
+    }
+    else{
+        $('.js-product_sku').html(ProductSku);
+    }
+    
     
     // Add Variation Images
     let imageGallaryHtml = '<ul>';
@@ -479,13 +483,14 @@ if(get_product_details != null && get_product_details != undefined) {
     });
 
     $(document).on('click','#js-order-sample',function () {
+        let productSku='';
         $("form#sample_order_form")[0].reset();
         $("form#sample_order_form").find("ul.red").remove();
         $('#sample_order_form img').attr('src',$('#product_img').attr('src'));
         $('#sample_order_form .heading-2').html(get_product_details.product_name);
         if(get_product_details.releated_sku != undefined && get_product_details.releated_sku != "" && get_product_details.releated_sku != null)  {
             productSku = get_product_details.releated_sku;
-            productSku = productSku.join('; ')
+            productSku = productSku.replace('|','; ')
         }
         else{
             productSku = get_product_details.sku;        
