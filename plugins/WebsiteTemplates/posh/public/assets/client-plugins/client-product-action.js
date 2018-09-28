@@ -264,17 +264,23 @@ $(document).on('click','#js-check-inventory', async function (e) {
             }
             
             $.each(element.attributes.colors, async function(j,color){
-                // console.log('color',color)
+                // console.log(element.attributes.style[j]);
+
                 let color_name = color;
                 
                 let element_color_style = "background-color:"+color+";"
-                let colorsHexVal = await replaceColorSwatchWithHexaCodes(color,"color");
-                if(colorsHexVal != null && colorsHexVal[color] != undefined){
-                    if(typeof colorsHexVal[color].hexcode != 'undefined'){
-                        element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
-                    }
-                    else if (typeof colorsHexVal[element_color].file != 'undefined') {
-                        element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
+                if(element.attributes.style != undefined)
+                {
+                    let color_style = element.attributes.style[j];
+
+                    let colorsHexVal = await replaceColorSwatchWithHexaCodes(color_style,"color");
+                    if(colorsHexVal != null && colorsHexVal[color_style] != undefined){
+                        if(typeof colorsHexVal[color_style].hexcode != undefined){
+                            element_color_style = "background-color:"+colorsHexVal[color_style].hexcode+";"
+                        }
+                        else if (typeof colorsHexVal[element_color].file != undefined) {
+                            element_color_style = "background-image:url("+colorsHexVal[color_style].file.url+");"
+                        }
                     }
                 }
                 
