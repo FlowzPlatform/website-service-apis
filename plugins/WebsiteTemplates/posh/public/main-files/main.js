@@ -1934,7 +1934,7 @@ function showCompareList(recetAdded=false)
                 $.ajax({
                   type: 'GET',
                   // url: project_settings.product_api_url+"?_id="+prodId,
-                  url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
+                  url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing,attributes",
                   async: false,
                   beforeSend: function (xhr) {
                     xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -1944,6 +1944,7 @@ function showCompareList(recetAdded=false)
                   {
                     rawData = data.hits.hits;
                     productData = rawData;
+                    var productHtmlColor1 = '';
                     if(productData.length >0){
                     compareValuesCount = compareValuesCount+1;
 
@@ -2033,6 +2034,53 @@ function showCompareList(recetAdded=false)
                     itemPricingHtml = itemTitleHtml; 
                     // console.log('itemPricingHtml',itemPricingHtml)
                     // END - Product Quantity Price
+
+                    // product colors
+
+                    if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
+                      
+                      var productHtmlColor = '';
+
+                      // let colorArr = $.map( productData[0]._source.attributes.colors, function( obj, i ) { return i; } );
+                      
+                      // let colorsHexVal = await replaceColorSwatchWithHexaCodes(colorArr,"color");
+                      
+                      // for (let color_quantity in colorArr) {
+                      //   let element_color_style = "background-color:"+color_quantity+";"
+                      //   if(colorsHexVal != null && colorsHexVal[color_quantity] != undefined){
+                      //       if(typeof colorsHexVal[color_quantity].hexcode != 'undefined'){
+                      //           element_color_style = "background-color:"+colorsHexVal[color_quantity].hexcode+";"
+                      //       }
+                      //       else if (typeof colorsHexVal[color_quantity].file != 'undefined') {
+                      //           element_color_style = "background-image:url("+colorsHexVal[color_quantity].file.url+");"
+                      //       }
+                      //   }
+                      //   productHtmlColor += '<span class ="color-block" style="'+element_color_style+'"></span>';
+                      // }
+                      
+                      let productColorList = productData[0]._source.attributes.colors;
+                      // console.log('productColorList',productColorList)
+                      for (let color of productColorList) {
+                        // console.log('color',color)
+                      // $.each(productColorList, async function(j,color){
+                          let element_color_style = "background-color:"+color+";"
+                          let colorsHexVal = replaceColorSwatchWithHexaCodes(color,"color");
+                          // console.log('colorsHexVal',colorsHexVal)
+                          if(colorsHexVal != null && colorsHexVal[color] != undefined){
+                              if(typeof colorsHexVal[color].hexcode != 'undefined'){
+                                  element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
+                              }
+                              else if (typeof colorsHexVal[element_color].file != 'undefined') {
+                                  element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
+                              }
+                          }
+                          // console.log('element_color_style',element_color_style)
+                          productHtmlColor += '<span class ="color-block" style="'+element_color_style+'"></span>';
+                          
+                      }
+                      // console.log('productHtmlColor',productHtmlColor)
+                    }
+                    
                     if(item == 0 || compareValuesCount == 1)
                     {
                       $("#myCompareList #listing .js-no-records").remove();
@@ -2044,6 +2092,8 @@ function showCompareList(recetAdded=false)
                       compareHtml.find("#item_summary1").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                       compareHtml.find("#item_features1").html("<td class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
                       compareHtml.find("#item_pricing1").html("<td class='feature-block'>ITEM PRICING</td>"+itemPricingHtml)
+                      compareHtml.find("#item_colors1").html("<td class='feature-block'> AVAILABLE COLORS</td>"+"<td>"+productHtmlColor+"</td>")
+                      
                       $('#myCompareList #listing').html(compareHtml.html());
                       if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                         $("#listing .product-"+productData[0]._id).find(".js_quantity_input").parent().remove();
@@ -2056,6 +2106,8 @@ function showCompareList(recetAdded=false)
                       compareHtml.find("#item_summary1").append(activeSummaryHtml)
                       compareHtml.find("#item_features1").append(itemFeaturesHtml)
                       compareHtml.find("#item_pricing1").append(itemPricingHtml)
+                      compareHtml.find("#item_colors1").append("<td>"+productHtmlColor+"</td>")
+                      
                       $('#myCompareList #listing').html(compareHtml.html());
                       if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                         $("#listing .product-"+productData[0]._id).find(".js_quantity_input").parent().remove();
