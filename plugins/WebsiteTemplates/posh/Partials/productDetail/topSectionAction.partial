@@ -66,7 +66,7 @@
             <div class="modal-body" style="padding: 0px;">
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <h3>SKU: <span class="estimatorProductSku" style="color: #000"></span> p
+                        <h3><span class="estimatorProductSku" style="color: #000"></span>
                             <span class="item-code-no estimatorProductName" style="color: #000"></span>
                         </h3>
                     </div>
@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-sm-2 col-xs-12">
                                 <div class="form-group">
-                                    <label>Destination Zip Code :</label><span class="red">*</span>
+                                    <label>Zip Code :</label><span class="red">*</span>
                                 </div>
                             </div>
                              <div class="col-sm-4 col-xs-12">
