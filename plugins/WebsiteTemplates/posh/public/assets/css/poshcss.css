@@ -4022,6 +4022,7 @@ form.advance-search-form { display: inline-block }
 #recent_products .pro-box { border-left: 1px solid #DDD; }
 .request-info-modal .quantity-table-col .owl-nav {margin: -32px -5px 22px 0 !important;}
 .nav-search-btn.sea-open .header-search-medium::after {bottom: -22px;}
+.ob-product-detail-right .title-block .heading-2{text-align: left}
 }
 /*EXTRA DURING DEV*/
 .jssorb03 .av { border-color: #e70000 !important; }
@@ -5010,6 +5011,7 @@ div#collapsetwo,.catelogue-title-text {
  .virtual-button{min-width: 116px;}
   
 }
+.menu-box .navbar-nav > li > a{min-height: 38px;}
 
       
       
@@ -5387,6 +5389,9 @@ div#inventory-look .modal-dialog {
     width: 750px;
 }
 .responsive-tabs-container .accordion-link{display: block !important}
+.menu-box .dropdown-menu .dropdown-submenu .dropdown-menu{position: static}
+#mainmenu-nav #mainmenu .dropdown-submenu .dropdown-menu li a{background: none}
+div#inventory-look .modal-dialog{width: 96%;}
 }
 @media (min-width:1100px) and (max-width: 2800px) {.shipping-option p{ min-width:103px;}}
 @media screen and (max-width:1024px){
@@ -5453,6 +5458,10 @@ div#add-new-address .modal-dialog.modal-lg {
 .product-description .nav-tabs li {border: 1px #a7a7a7 solid !important;}
 .ob-product-detail-right .quantity-table .quantity-table-col.owl-carousel .owl-item {width: 58px !important;}
 a.myButton.setup{min-width: 150px;}
+a.myButton.setup{min-width: 150px;
+    width: 100%;
+    margin-top: 13px;
+    margin-right: 0;}
 }
 @media screen and (max-width:400px){
 .product-description .tab-content .shipping-method p {font-size: 13px;}
@@ -5481,6 +5490,20 @@ a.myButton.setup{min-width: 150px;}
 .ob-product-detail-right .quantity-table .quantity-table-disc {width: 79%;}
 .estimate-row.js_shipp_detail1_0 div {width: 100%;}
 .estimate-detail .estimate-tag-block{overflow-x: hidden !important;}
+}
+@media (max-width: 490px){
+    .ob-top-menu .info-menu.slidemenu ,.social-icon-box {
+    width: 100%;
+}
+.social-icon-box li {
+    display: inline-block;
+    text-align: center;
+    float: none;
+    margin-top: 16px;
+}
+.social-icon-box .pull-left, .social-icon-box .pull-right, .news-box, .bottom-footer .pull-left, .bottom-footer .pull-right{    text-align: center !important;    float: none!important;}
+.social-icon-box .pull-left{margin-left: 0px}
+#ob-virtualmarketingcart a{position: initial}
 }
 @media (min-width:560px) and (max-width: 767px){
     .shipping-option>div { margin-left: 0px !important;}
