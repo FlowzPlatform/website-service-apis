@@ -1899,7 +1899,7 @@ function showCompareList(recetAdded=false)
     if($("#myCompareList").length > 0)
     {
       $('#myCompareList #listing').addClass('hide');
-      var productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPricingHtml='';
+      var productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPricingHtml=itemColorsHtml='';
       var productData;
       var itemTitleHtml='';
       let html = $('.js-list #item_title_price').html();
@@ -1908,6 +1908,8 @@ function showCompareList(recetAdded=false)
       let activeSummary = $('.js-list #item_summary').html();
       let item_features = $('.js-list #item_features').html();
       let item_pricing = $('.js-list #item_pricing').html();
+      let item_colors = $('.js-list #item_colors').html();
+      
 
       if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) {
             for (item in compare_values)
@@ -2036,7 +2038,9 @@ function showCompareList(recetAdded=false)
                     // END - Product Quantity Price
 
                     // product colors
-
+                    var itemTitleHtml = item_colors;
+                    var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].id);
+                    
                     if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
                       
                       var productHtmlColor = '';
@@ -2080,7 +2084,10 @@ function showCompareList(recetAdded=false)
                       }
                       // console.log('productHtmlColor',productHtmlColor)
                     }
+                    var itemTitleHtml = itemTitleHtml.replace("#data.colors#",productHtmlColor);
                     
+                    var itemColors = itemTitleHtml;
+
                     if(item == 0 || compareValuesCount == 1)
                     {
                       $("#myCompareList #listing .js-no-records").remove();
@@ -2092,7 +2099,7 @@ function showCompareList(recetAdded=false)
                       compareHtml.find("#item_summary1").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                       compareHtml.find("#item_features1").html("<td class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
                       compareHtml.find("#item_pricing1").html("<td class='feature-block'>ITEM PRICING</td>"+itemPricingHtml)
-                      compareHtml.find("#item_colors1").html("<td class='feature-block'> AVAILABLE COLORS</td>"+"<td>"+productHtmlColor+"</td>")
+                      compareHtml.find("#item_colors1").html("<td class='feature-block'> AVAILABLE COLORS</td>"+itemColors)
                       
                       $('#myCompareList #listing').html(compareHtml.html());
                       if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
@@ -2106,7 +2113,7 @@ function showCompareList(recetAdded=false)
                       compareHtml.find("#item_summary1").append(activeSummaryHtml)
                       compareHtml.find("#item_features1").append(itemFeaturesHtml)
                       compareHtml.find("#item_pricing1").append(itemPricingHtml)
-                      compareHtml.find("#item_colors1").append("<td>"+productHtmlColor+"</td>")
+                      compareHtml.find("#item_colors1").append(itemColors)
                       
                       $('#myCompareList #listing').html(compareHtml.html());
                       if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
