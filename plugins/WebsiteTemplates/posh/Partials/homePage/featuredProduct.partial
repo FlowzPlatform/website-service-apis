@@ -7,6 +7,16 @@
                     </h4>
                 </div>
                 <div class="row">
+                <div id="posh-load"></div>
+                        <style>
+                            #posh-load{
+                         padding: 100px;
+                         position: absolute;
+                        height: 90%;width: 100%;
+                        z-index:9999;
+                        background:url("https://lh6.ggpht.com/_S0f-AWxKVdM/Sc4G-1MAUtI/AAAAAAAAHg8/SoQCgQ6-aSY/1%5B3%5D.gif?imgmax=800") no-repeat center center;
+                    }
+                        </style>
                         <div id="owl-carousel-recommeded" class="owl-carousel recommeded-product-slider owl-loaded owl-drag js-list">
                                 <div class="item js-product-box product-#data-id#">
                                     <div class="pro-box">
