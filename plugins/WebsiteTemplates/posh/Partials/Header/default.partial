@@ -24,13 +24,44 @@
                                 </a>
                             </li>
                             <li class="header-login-text dropdown dropdown-popup">
-                                <a href="compare.html" class="dropdown-toggle">
+                                <a href="compare.html" id="compare_popup" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="fa fa-retweet fa-fw"></span>
-                                    <span class="login-text"><span>Compare</span> (<i class="js-counter" id="comparedCount">0</i>)</span>
+                                    <span class="login-text"><span>Compare</span> (<i class="js-counter" id="comparedCount"></i>)</span>
                                 </a>
+                                <div id="ComparePopup" class="dropdown-menu dropdown-menu-arrow hidden-xs">
+                                  <div class="inner-box" id="listing">
+                                      <div class="header-dropdown"><i class="fa fa-retweet fa-fw"></i>Compare product<a href="javascript:void(0)" class="close-model fa fa-close" data-toggle="tooltip" data-placement="left" data-original-title="Close"></a></div>
+                                      <div class="dropdown-grid" style="display:none;">
+                                          <div class="list-item product-#data-id#">
+                                              <a href="javascript:void(0)" class="close-btn fa fa-times-circle js-close-but js-remove-compare" data-toggle="tooltip" data-placement="left" data-original-title="Remove"  data-id="#data.id#"></a>
+                                              <a href="#data.product_link#" class="cart-img">
+                                                  <img src="#data.image#" alt="Text" class="img-responsive" />
+                                              </a>
+                                              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 detail-col">
+                                                  <h3 class="productTitle product-name" id="item_title_price">#data.title#</h3>
+                                                  <h4 class="product-#data-id#" id="item_sku">#data.sku#</h4>
+                                                  <div id="item_pricing" class="price product-#data-id#">#data.pricing#
+                                                    <span>Qty. #data.min_qty#</span>
+                                                  </div>
+                                                  <!-- <div class="add-button">
+                                                     <a href="shopping_cart.php" data-toggle="tooltip" data-placement="top" title="text" data-original-title="Cart"><i class="fa fa-shopping-cart"></i></a>
+                                                      <a href="#" data-toggle="tooltip" data-placement="top" title="text" data-original-title="Quote"><i class="fa fa-comment quote-icon"><span>,,</span></i></a>
+                                                      <a href="#" data-toggle="tooltip" data-placement="top" title="text" data-original-title="Wishlist"><i class="fa fa-heart fa-fw"></i></a>
+                                                  </div> -->
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="popupList"></div>
+
+                                      <div class="dropdown-btn">
+                                          <a href="compare.html" class="bft-but btn-red fl"><i class="fa fa-retweet fa-fw"></i>Go to compare</a>
+                                          <a href="javascript:void(0)" class="bft-but fr js-btn-delete-all-compare-product">Remove all</a>
+                                      </div>
+                                  </div>
+                              </div>
                             </li>
                             <li class="dropdown login-col header-login-text login-show hide">
-                                <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="fa fa-user"></span>
                                     <span class="login-text"><span>LOGIN</span></span>
                                 </a>
