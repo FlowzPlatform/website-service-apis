@@ -37,7 +37,28 @@ $(document).ready( async function(){
         return false;
     }
     $("#flowz_content").closest('.row').css('display','flex');
+
     recommededProducts();
+
+    // RECENTLY VIEWED PRODUCTS
+    if(get_product_details != null && get_product_details != undefined) {
+        let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
+        let recentViewedProducts = [];
+        if (localStorage.getItem(recentProductsName) != null) {
+            recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
+        }
+        
+        if(!(recentViewedProducts.includes(pid))) {
+            if(recentViewedProducts.length > 6) {
+                recentViewedProducts.splice(0, 1);
+            }
+            recentViewedProducts.push(pid);
+        }
+        localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
+
+        recentlyViewedProducts(recentProductsName,recentViewedProducts);
+    }
+
     var productDetails = get_product_details;
     ProductName = productDetails.product_name;
     let ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
@@ -152,28 +173,7 @@ $(document).ready( async function(){
             }
         });
         // END QUANTITY PRICE TABLE END
-        //RECENTLY VIEWED PRODUCTS
-            $("#owl-carousel-recently-products").owlCarousel({
-                navigation: true,
-                items:6,
-                autoPlay: 3200,
-                margin: 10,
-                autoplayHoverPause: true,
-                lazyLoad: true,
-                stopOnHover: true,
-                itemsCustom: false,
-                itemsDesktop: [1170, 6],
-                itemsDesktop: [1024, 3],
-                itemsTabletSmall: false,
-                itemsMobile: [400, 2],
-                itemsMobile: [399, 1],
-                singleItem: false,
-                itemsScaleUp: false,
-                afterInit: function (elem) {
-                    var that = this
-                    that.owlControls.prependTo(elem)
-                }
-            });
+        
         // Zoom Image
         $('.product-gallery').zoom({ on:'click' });
         $(".product-thumb-img-anchar").on('click', function () {
@@ -349,6 +349,7 @@ $(document).ready( async function(){
             "name": get_product_details.product_name,
             "brand": get_product_details.categories[0],
             "image": get_product_details.default_image,
+            "sku": get_product_details.sku,
             "offers": {
                 "@type": "Offer",
                 "availability": "http://schema.org/InStock",
@@ -359,27 +360,10 @@ $(document).ready( async function(){
         document.querySelector('body').appendChild(el);
 })
 
+
+
 // RECENTLY VIEWED PRODUCTS
-if(get_product_details != null && get_product_details != undefined) {
-    // RECENTLY VIEWED PRODUCTS
-    let recentProductsName = "recentViewedProducts_"+website_settings.projectID;
-    let recentViewedProducts = [];
-    if (localStorage.getItem(recentProductsName) != null) {
-        recentViewedProducts = JSON.parse(localStorage.getItem(recentProductsName));
-    }
-    
-    if(!(recentViewedProducts.includes(pid))) {
-        if(recentViewedProducts.length > 6) {
-            recentViewedProducts.splice(0, 1);
-        }
-        recentViewedProducts.push(pid);
-    }
-    localStorage.setItem(recentProductsName, JSON.stringify(recentViewedProducts));
-
-    recentlyViewedProducts(recentProductsName,recentViewedProducts);
-}
-
-function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
+async function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
     if(recentViewedProducts != null && recentViewedProducts.length > 1)
     {
         let recentLoop = recentViewedProducts.reverse();
@@ -388,56 +372,78 @@ function recentlyViewedProducts(recentProductsName,recentViewedProducts) {
             recentLoop.splice(cIndex, 1);
         }
 
-        let recentProductHtml = "";
-        $.each( recentLoop, function( key, productId ) {
-            $.ajax({
-                type: 'GET',
-                url: project_settings.product_api_url+"?_id="+productId+"&source=default_image,product_id,sku,product_name,currency,min_price,price_1,images",
-                async: false,
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
-                },
-                dataType: 'json',
-                success: function (data) {
-                    if(data.hits.hits.length > 0) {
-                        if(data.hits.hits[0]._source != 'undefined' && !isEmpty(data.hits.hits[0]._source))
-                        {
-                            let productData = data.hits.hits[0]._source;
-                            let productImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
-                            if(productData.images != undefined){
-                                if(productData.images[0].images[0].secure_url != undefined && productData.images[0].images[0].secure_url != '') {
-                                    productImage = productData.images[0].images[0].secure_url
-                                }
-                            }
-                            let detailLink = website_settings.BaseURL+'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId;
-                            // let price = parseFloat(productData.price_1).toFixed(project_settings.price_decimal);
-                            let price = parseFloat(productData.min_price).toFixed(project_settings.price_decimal)
-
-                            recentProductHtml += '<div class="item"> <div class="pro-box"> <div class="pro-image box01"> <div class="product-img-blk"> <a href="'+detailLink+'"> <img src="'+productImage+'" class="img-responsive center-block lazyLoad" alt="'+productData.product_name+'" title="'+productData.product_name+'"> </a> </div></div><div class="pro-desc"> <div class="item-code"> Item # : '+productData.sku+' </div><a href="'+detailLink+'" class="item-title"> '+productData.product_name+' </a> <div class="item-price">$ '+price+'</div><div class="list-quantity-block"></div><div class="pro-button"> <ul> <li><a href="javascript:void(0);" data-id="'+productId+'" class="js-add-to-compare"><i class="fa fa-retweet fa-fw"></i></a></li></ul> </div><div class="clearfix"></div></div><div class="clearfix"></div></div></div>';
-                        }
-                        else {
-                            let AIndex = recentLoop.indexOf(productId);
-                            if (AIndex > -1) {
-                                recentLoop.splice(AIndex, 1);
-                            }
-                            localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
-                        }
-                    }
-                    else {
-                        recentLoop = [];
-                        recentLoop.push(pid);
-                        localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
-                    }
-                }
-            });
-        });
-
-        $('#owl-carousel-recently-products').html(recentProductHtml);
+        let productBoxHtml = $("#owl-carousel-recently-products").html();
+        let replaceProductBox = await recentProductsList(recentProductsName,recentLoop,productBoxHtml)
+        $('#owl-carousel-recently-products').html(replaceProductBox);
         $('.js-recent-viewed-products').removeClass('hide');
+
+        $("#owl-carousel-recently-products").owlCarousel({
+            navigation: true,
+            items:6,
+            autoPlay: 3200,
+            margin: 10,
+            autoplayHoverPause: true,
+            lazyLoad: true,
+            stopOnHover: true,
+            itemsCustom: false,
+            itemsDesktop: [1170, 6],
+            itemsDesktop: [1024, 3],
+            itemsTabletSmall: false,
+            itemsMobile: [400, 2],
+            itemsMobile: [399, 1],
+            singleItem: false,
+            itemsScaleUp: false,
+            afterInit: function (elem) {
+                var that = this
+                that.owlControls.prependTo(elem)
+            }
+        });
     }
 }
 
-//END -  RECENTLY VIEWED PRODUCTS
+let recentProductsList = function(recentProductsName,recentLoop,productBoxHtml) {
+    return new Promise(async (resolve , reject ) => {
+        let recentProductBoxHtml = '';
+        $('#owl-carousel-recently-products').html('');
+        for(let [key,productId] of recentLoop.entries()){
+            let productBoxHtml1 = '';
+            let productRes = await getProductDetailById(productId,"default_image,product_id,sku,product_name,currency,min_price,price_1,images");
+            if(productRes !== undefined && productRes != null) {
+                productBoxHtml1 = productBoxHtml.replace(/#product_id#/g,productId)
+                productBoxHtml1 = productBoxHtml1.replace(/#product_detail_link#/g,'productdetail.html?locale='+project_settings.default_culture+'&pid='+productId)
+                
+                ProductImage = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                if(productRes.images !== undefined) {
+                    if(productRes.images[0].images[0].secure_url != undefined && productRes.images[0].images[0].secure_url != '') {
+                        ProductImage = productRes.images[0].images[0].secure_url;
+                        ProductImage = addOptimizeImgUrl(ProductImage,'w_210');
+                    }
+                }
+
+                productBoxHtml1 = productBoxHtml1.replace('#product_image#',ProductImage)
+                productBoxHtml1 = productBoxHtml1.replace('#product_sku#',productRes.sku)
+                productBoxHtml1 = productBoxHtml1.replace('#product_currency#','$')
+                productBoxHtml1 = productBoxHtml1.replace('#product_price#',productRes.min_price.toFixed(project_settings.price_decimal))
+                productBoxHtml1 = productBoxHtml1.replace(/#product_name#/g,productRes.product_name)
+                recentProductBoxHtml += productBoxHtml1;
+            }
+            else {
+                // recentProductBoxHtml += '';
+                // let AIndex = recentLoop.indexOf(productId);
+                // if (AIndex > -1) {
+                //     recentLoop.splice(AIndex, 1);
+                // }
+                // localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
+
+                recentProductBoxHtml = '';
+                recentLoop = [];
+                recentLoop.push(pid);
+                localStorage.setItem(recentProductsName, JSON.stringify(recentLoop));
+            }
+        }
+        resolve(recentProductBoxHtml)
+    })
+}
 
 //order sample
 if(get_product_details != null && get_product_details != undefined) {
@@ -506,7 +512,8 @@ async function recommededProducts(){
         let productBoxHtml = $(".js-tag-recommended-product-list").find('.js-list').html()
         let productSlug = $(".js-tag-recommended-product-list").attr("data-slug")
         if(productSlug != ""){
-            let replaceProductBox = await tagProducts("tag_slug="+productSlug,productBoxHtml)
+            let replaceProductBox = await tagProducts(productSlug,productBoxHtml)
+            // let replaceProductBox = await tagProducts("tag_slug="+productSlug,productBoxHtml)
             if(replaceProductBox != ''){
                 tagHtmlList.find('.js-list').html(replaceProductBox)
                 tagHtmlList.removeClass('hide')

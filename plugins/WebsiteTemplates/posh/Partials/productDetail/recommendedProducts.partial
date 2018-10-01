@@ -2,7 +2,7 @@
 <div class="hide js-tag-recommended-product-list"  data-slug="recommended-products">
     <div class="pro-overflow">
             <div class="slider-wrapper">
-                <div class="common-title fpt">
+                <div class="common-title">
                     <h4 class="most-popular-title">
                         Recommended Products
                     </h4>
