@@ -33,7 +33,7 @@
 #owl-carousel-recommended-products .owl-buttons, .ob-related-product .owl-carousel .owl-buttons{
     margin: -38px 5px 0 0;
 }
-#owl-carousel-recommeded-products .owl-buttons{ margin: -54px 5px 0 0;}
+#owl-carousel-recommeded-products .owl-buttons{ margin: -38px -2px 0 0;}
 .ob-related-product .recommeded-product-slider .owl-buttons{ margin: -38px 5px 0 0;}
 .request-info-modal .quantity-table-col .owl-buttons {margin: -25px -5px 22px 0;} 
 .owl-carousel .owl-buttons .owl-prev:after{content: ""; background: url(https://res.cloudinary.com/flowz/image/upload/v1537778411/websites/POSH-ACCESSORIES/images/combinesprites.png) no-repeat;height: 22px;width: 22px;position: absolute;background-position:-3px -7px;left: 0;top: 0;}
