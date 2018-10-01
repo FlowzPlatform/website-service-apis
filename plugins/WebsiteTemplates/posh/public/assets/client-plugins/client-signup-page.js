@@ -79,6 +79,7 @@ $('.signupPosh-click').on('click',function() {
         	let fullname = $('.firstName').val().trim() + ' ' + $('.lastName').val().trim();
         	let email = $('.userEmail').val().trim();
         	let password = $('.password').val().trim();
+			let redirectUrl = websiteURL + 'index.html'
         	var userDetails = {"password":password ,"email":email ,"fullname":fullname,"redirect_url": redirectUrl};
         	// console.log('setup url', project_settings.api_url+"setup")
         	// console.log('JSON.stringify(userDetails)',JSON.stringify(userDetails));
