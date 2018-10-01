@@ -2185,7 +2185,7 @@ function showCompareList(recetAdded=false)
             }
             if(compare_values.length<5)
             {
-              let noImg = '<td><div class="pro-img"><div class="img-block"><img src="images/add-product-img.jpg" class="img-responsive center-block" alt="Text"></div></div><div class="btn-box-main"><a href="search.html" class="add-btn gray">Add product</a></div></td>';
+              let noImg = '<td><div class="pro-img"><div class="img-block"><img src="https://res.cloudinary.com/flowz/image/upload/v1538147913/websites/POSH-ACCESSORIES/images/add-product-img.jpg" class="img-responsive center-block" alt="Text"></div></div><div class="btn-box-main"><a href="search.html" class="add-btn gray">Add product</a></div></td>';
               for(i=compare_values.length;i<4;i++){
                 $('#item_title_price1').append(noImg);
                 $("#item_price_row1").append('<td>&nbsp;</td>')
@@ -2628,7 +2628,7 @@ async function printDiv(printDiv=true) {
         let decideLocalStorageKey = decide_localStorage_key(3);
         var compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
     }
-      var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPricingHtml='';
+      var productPriceHtml=productTitleHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPricingHtml=itemAvailableColorsHtml='';
       var productData;
       var itemTitleHtml=itemPriceHtml='';
       let titleHtml = $('#js-print_item_title').html();
@@ -2637,6 +2637,7 @@ async function printDiv(printDiv=true) {
       let activeSummary = $('#js-print_item_summary').html();
       let item_features = $('#js-print_item_features').html();
       let item_pricing = $('#js-print_item_pricing').html();
+      let item_available_colors = $('#js-print_item_available_colors').html();
 
       if (compare_values != null && compare_values.length > 0) {
             for (item in compare_values)
@@ -2664,7 +2665,7 @@ async function printDiv(printDiv=true) {
 
                   $.ajax({
                     type: 'GET',
-                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
+                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing,attributes",
                     async: false,
                     beforeSend: function (xhr) {
                       xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -2740,18 +2741,18 @@ async function printDiv(printDiv=true) {
                                     $.each(element.price_range,function(index,element2){
                                     // console.log("in each condition");
                                     if(element2.qty.lte != undefined){
-                                        priceRang += '<tr><td>'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
+                                        priceRang += '<tr><td class="quantity_block">'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
                                     }
                                     else
                                     {
-                                        priceRang += '<tr><td>'+ element2.qty.gte + '+' + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></div>';
+                                        priceRang += '<tr><td class="quantity_block">'+ element2.qty.gte + '+' + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></div>';
                                     }
                                         });
                                     // $("#print-product").find(".quantity-table-col").html(priceRang);    
                                     // $("#print-product").find(".quantity-table-col").css('opacity',1);
                             }
                         });
-                        priceRangHtml = '<table class="total-amount-block pull-right"><tbody><tr><td>Quantity</td><td>USD 5C</td></tr>';
+                        priceRangHtml = '<table class="total-amount-block"><tbody><tr><td class="quantity_block">Quantity</td><td>USD 5C</td></tr>';
                         priceRangHtml += priceRang;
                         priceRangHtml += '</tbody></table>';
                         // console.log('priceRang',priceRang);
@@ -2760,15 +2761,44 @@ async function printDiv(printDiv=true) {
                     itemPricingHtml = itemTitleHtml; 
                     // console.log('itemPricingHtml',itemPricingHtml)
                     // END - Product Quantity Price
+                      
+                    // product colors
+                    // let itemColors = item_available_colors;
+                    
+                    // if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
+                      
+                    //   var productHtmlColor = '';
 
-                      if(item == 0 || compareValuesCount == 1)
+                    //   let productColorList = productData[0]._source.attributes.colors;
+                    //   for (let color of productColorList) {
+                    //       let element_color_style = "background-color:"+color+";"
+                    //       let colorsHexVal = replaceColorSwatchWithHexaCodes(color,"color");
+                    //       if(colorsHexVal != null && colorsHexVal[color] != undefined){
+                    //           if(typeof colorsHexVal[color].hexcode != 'undefined'){
+                    //               element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
+                    //           }
+                    //           else if (typeof colorsHexVal[element_color].file != 'undefined') {
+                    //               element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
+                    //           }
+                    //       }
+                    //       productHtmlColor += '<span class ="color-block" style="'+element_color_style+'"></span>';
+                          
+                    //   }
+                    // }
+                    // itemColors = itemColors.replace("#data.item_available_colors#",productHtmlColor);
+                    
+                    // itemAvailableColorsHtml = itemColors;
+                    // END - product colors
+
+                    if(item == 0 || compareValuesCount == 1)
                       {
-                        $(compareHtml).find("#js-print_item_title").html("<td class='feature-block'></td>"+productTitleHtml)
-                        $(compareHtml).find("#js-print_item_price").html("<td class='feature-block'></td>"+productPriceHtml)
-                        $(compareHtml).find("#js-print_item_sku").html("<td class='feature-block'>ITEM#</td>"+itemSkuHtml)
-                        $(compareHtml).find("#js-print_item_summary").html("<td class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
-                        $(compareHtml).find("#js-print_item_features").html("<td class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
-                        $(compareHtml).find("#js-print_item_pricing").html("<td class='feature-block'>ITEM PRICING</td>"+itemPricingHtml)
+                        $(compareHtml).find("#js-print_item_title").html("<td style='width:20%;' class='feature-block'></td>"+productTitleHtml)
+                        $(compareHtml).find("#js-print_item_price").html("<td style='width:20%;' class='feature-block'></td>"+productPriceHtml)
+                        $(compareHtml).find("#js-print_item_sku").html("<td style='width:20%;' class='feature-block'>ITEM#</td>"+itemSkuHtml)
+                        $(compareHtml).find("#js-print_item_summary").html("<td style='width:20%;' class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
+                        $(compareHtml).find("#js-print_item_features").html("<td style='width:20%;' class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
+                        $(compareHtml).find("#js-print_item_pricing").html("<td style='width:20%;' class='feature-block'>ITEM PRICING</td>"+itemPricingHtml)
+                        // $(compareHtml).find("#js-print_item_available_colors").html("<td class='feature-block'>Available colors</td>"+itemAvailableColorsHtml)
                         $('#print-comparision').html(compareHtml.html());
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();
@@ -2781,6 +2811,7 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_summary").append(activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").append(itemFeaturesHtml)
                         $(compareHtml).find("#js-print_item_pricing").append(itemPricingHtml)
+                        // $(compareHtml).find("#js-print_item_available_colors").append(itemAvailableColorsHtml)
                         $('#print-comparision').html(compareHtml.html());
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();                          
@@ -2796,6 +2827,14 @@ async function printDiv(printDiv=true) {
 
       $('.js-print-html').find('td').each (function() {
         $(this).css("border","1px solid gray");
+      });
+
+      $('.js-print-html').find('.total-amount-block td').each (function() {
+        $(this).css({"border-top":"none","border-right":"none","border-left":"none","border-bottom":"1px solid black"});
+      });
+      
+      $('.js-print-html').find('.total-amount-block td.quantity_block').each (function() {
+        $(this).css("border-right","1px solid black");
       });
 
       $('.js-print-html').find('.img-block').find('img').each (function() {
@@ -3104,6 +3143,7 @@ $(document).on('click','.send-friend-email',function (e)
           let item_sku = $('#js-print_item_sku').html();
           let activeSummary = $('#js-print_item_summary').html();
           let item_features = $('#js-print_item_features').html();
+          let item_pricing = $('#js-print_item_pricing').html();
 
           if (compare_values != null && compare_values.length > 0) {
             var compareData = [];
@@ -3132,7 +3172,7 @@ $(document).on('click','.send-friend-email',function (e)
 
                   $.ajax({
                     type: 'GET',
-                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images",
+                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
                     async: false,
                     beforeSend: function (xhr) {
                       xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -3183,6 +3223,39 @@ $(document).on('click','.send-friend-email',function (e)
                           }
                         }
                         productJsonData['features'] = fetureList;
+
+                        
+                        // Product Quantity Price
+                        var itemTitleHtml = item_pricing;
+                        
+                        if(productData[0]._source.pricing != undefined){
+                          let priceRang = '';
+                          let priceRangHtml = '';
+                          $.each(productData[0]._source.pricing, function(index,element){
+                              
+                            if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
+                                  
+                                  $.each(element.price_range,function(index,element2){
+                                    // console.log("in each condition");
+                                    if(element2.qty.lte != undefined){
+                                        priceRang += '<tr><td style="border-bottom: 1px solid #000;border-right: 1px solid #000;">'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td style="border-bottom: 1px solid #000;">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
+                                    }
+                                    else
+                                    {
+                                        priceRang += '<tr><td style="border-bottom: 1px solid #000;border-right: 1px solid #000;">'+ element2.qty.gte + '+' + '</td><td style="border-bottom: 1px solid #000;">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></div>';
+                                    }
+                                  });
+                              }
+                          });
+                          priceRangHtml += '<table class="total-amount-block pull-right"><tbody><tr><td style="border-bottom: 1px solid #000;border-right: 1px solid #000;">Quantity</td><td style="border-bottom: 1px solid #000;">USD 5C</td></tr>';
+                          priceRangHtml += priceRang;
+                          priceRangHtml += '</tbody></table>';
+                          console.log('priceRangHtml',priceRangHtml)
+                          productJsonData['item_pricing'] = priceRangHtml;
+                        } 
+                        console.log("productJsonData['item_pricing']",productJsonData['item_pricing'])
+                        // END - Product Quantity Price
+
                         compareData.push(productJsonData);
                       }
                     }
