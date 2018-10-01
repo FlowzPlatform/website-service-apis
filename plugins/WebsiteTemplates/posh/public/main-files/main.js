@@ -617,6 +617,8 @@ var init = function() {
     showCompareList();
   }
 
+
+////////////////header search///////////////////////////
 let total_hits;
 let myarr = [];
 let result = [];
@@ -761,6 +763,8 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
     });
 }
 
+////////////////header search///////////////////////////
+
 //add in to Compare, Wishlist and Cart
 $(document).on('click', '.js-add-to-wishlist', function(e) {
   e.preventDefault();
@@ -841,6 +845,7 @@ function dataSaveToLocal(type,product_id,show_msg=true){
     localStorage.setItem(decideLocalStorageKey , JSON.stringify(wishlistDataSaveToLocalhost))
     if(show_msg != false) {
       updateShoppingLocalCount(values.length , type);
+      showComparePopup();
     }
 
   }else{
@@ -867,6 +872,7 @@ function dataSaveToLocal(type,product_id,show_msg=true){
 
     if(show_msg != false) {
       updateShoppingLocalCount(JSON.parse(localStorage.getItem(decideLocalStorageKey)).length , type);
+      showComparePopup();
       showSuccessMessage("item successfully added"+addedTo);
     }
   }
@@ -938,6 +944,7 @@ function deleteFromLocal(type,product_id){
       {
         values.splice(i, 1);
         $("#myCompareList #listing .product-"+product_id).remove();
+        $("#ComparePopup #listing .product-"+product_id).remove();
       }
     }
     localStorage.setItem(decideLocalStorageKey , JSON.stringify(values))
@@ -953,8 +960,11 @@ function deleteFromLocal(type,product_id){
       else{
           $('#myCompareList #listing .js-no-records').html('No records found.')
       }
-      $("#myCompareList").find(".js-compare-btns").hide()   
-      document.getElementById("comparedCount").innerHTML =  0;   
+      $("#myCompareList").find(".js-compare-btns").hide()
+      document.getElementById("comparedCount").innerHTML =  0;
+      let emptyListHTML = '<div class="empty-list-dropdown"><h2><i class="fa fa-retweet fa-fw"></i><br>Your Compare List Is Empty</h2></div>'
+      $('#ComparePopup .popupList').html(emptyListHTML)
+      $('#ComparePopup .dropdown-btn').css({"display": "none"})
     }
     else
     {
@@ -992,16 +1002,17 @@ function dataSaveToDatabase(type,product_id,user_id,show_msg=true){
         let recentAddedInWishlist = [];
         recentAddedInWishlist.push(response_data.data);
 
-        if (localStorage.getItem("savedComparedRegister") != null && localStorage.getItem("savedComparedRegister").length > 0) 
+        if (localStorage.getItem("savedComparedRegister") != null && localStorage.getItem("savedComparedRegister").length > 0)
         {
           let values = JSON.parse(localStorage.getItem('savedComparedRegister'));
-          values.push(recentAddedInWishlist)
+          // values.push(recentAddedInWishlist)
+          values.push(response_data.data)
           localStorage.setItem('savedComparedRegister', JSON.stringify(values))
         }
         else{
           localStorage.setItem('savedComparedRegister', JSON.stringify(recentAddedInWishlist))          
         }
-        
+        showComparePopup()
       }
       if(show_msg != false) {
         if(response_data.status == 200) {
@@ -1091,7 +1102,7 @@ function deleteFromDatabase(type,id,user_id){
         {
           updateShoppingDatabaseCount(type,'-');
           $("#myCompareList #listing .product-"+id).remove();
-
+          $("#ComparePopup #listing .product-"+id).remove();
               if(websiteConfiguration.transaction.compare_product.status != 0 || websiteConfiguration.transaction.compare_product.parent_status != 0)
               {
                 if(document.getElementById("comparedCount").innerHTML == 0)
@@ -1107,6 +1118,9 @@ function deleteFromDatabase(type,id,user_id){
                   $("#myCompareList").find(".js-compare-btns").hide()
                   document.getElementById("comparedCount").innerHTML =  0;
                   localStorage.setItem("savedComparedRegister",'');
+                  let emptyListHTML = '<div class="empty-list-dropdown"><h2><i class="fa fa-retweet fa-fw"></i><br>Your Compare List Is Empty</h2></div>'
+                  $('#ComparePopup .popupList').html(emptyListHTML)
+                  $('#ComparePopup .dropdown-btn').css({"display": "none"})
                 }
                 else
                 {
@@ -3329,9 +3343,12 @@ $(document).on('click', '.js-btn-delete-all-compare-product',function(e) {
               }
             }
           }
+          localStorage.setItem("savedComparedRegister",'');
           await sleep(500)
           location.reload();
-
+          let emptyListHTML = '<div class="empty-list-dropdown"><h2><i class="fa fa-retweet fa-fw"></i><br>Your Compare List Is Empty</h2></div>'
+          $('#ComparePopup .popupList').html(emptyListHTML)
+          $('#ComparePopup .dropdown-btn').css({"display": "none"})
         }catch(e){}
       }
       else{
@@ -3348,6 +3365,9 @@ $(document).on('click', '.js-btn-delete-all-compare-product',function(e) {
           }
           $("#myCompareList").find(".js-compare-btns").hide()
           document.getElementById("comparedCount").innerHTML =  0;
+          let emptyListHTML = '<div class="empty-list-dropdown"><h2><i class="fa fa-retweet fa-fw"></i><br>Your Compare List Is Empty</h2></div>'
+          $('#ComparePopup .popupList').html(emptyListHTML)
+          $('#ComparePopup .dropdown-btn').css({"display": "none"})
           hidePageAjaxLoading();
         }catch(e){console.log(e)}
       }
@@ -3377,7 +3397,7 @@ $(document).ready(function(){
            }
            return valid;
        },
-    
+
      $.validator.messages.multiemails
     );
 })

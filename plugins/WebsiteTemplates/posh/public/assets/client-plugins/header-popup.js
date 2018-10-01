@@ -109,10 +109,12 @@ function showComparePopup(recetAdded=false) {
       }
       // console.log('productHtml',productHtml)
       $('#ComparePopup .popupList').html(productHtml)
+      $('#ComparePopup .dropdown-btn').css({"display": "block"})
     }
     else {
       let emptyListHTML = '<div class="empty-list-dropdown"><h2><i class="fa fa-retweet fa-fw"></i><br>Your Compare List Is Empty</h2></div>'
-      $('#ComparePopup #listing').html(emptyListHTML)
+      $('#ComparePopup .popupList').html(emptyListHTML)
+      $('#ComparePopup .dropdown-btn').css({"display": "none"})
     }
   }
 }
