@@ -22,7 +22,7 @@ RUN apt-get install --yes nano
 RUN apt-get install --yes git
 ADD .netrc /root
 RUN echo "USER: $GITLAB_USER"
-RUN echo "$GITLAB_PASS"
+RUN echo "PASS: $GITLAB_PASS"
 RUN echo "     login $GITLAB_USER" >> /root/.netrc
 RUN echo "     password $GITLAB_PASS" >> /root/.netrc
 RUN git config --global user.email " fsaiyed@officebrain.com"
