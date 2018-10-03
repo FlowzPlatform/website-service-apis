@@ -66,6 +66,29 @@ var cloudinaryDetails = function () {
   return tmp;
 }();
 
+
+// fetch colors from table
+var colorConfiguration = function () {
+  let tmp = null;
+  $.ajax({
+    method: 'GET',
+    url : project_settings.color_table_api_url+'?vid='+website_settings.Projectvid.vid+'&websiteid='+website_settings['projectID'],
+    async: false,
+    success: function(data) {
+      if(data.data.length > 0 ) {
+        let colorObj = {}
+        $.each(data.data,function(key,val){
+          colorObj[val.colorname] = val
+        })
+        tmp = colorObj
+      }
+      // tmp = data.data;
+    }
+  });
+  return tmp;
+}();
+// END - fetch colors from table
+
 function getWebsiteInfoById(websiteId,webInfoAPi) {
       let returnData = null;
       $.ajax({
@@ -2125,7 +2148,6 @@ function showCompareList(recetAdded=false)
                         $.each(productData[0]._source.pricing, function(index,element){
                             if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
                                     $.each(element.price_range,function(index,element2){
-                                    // console.log("in each condition");
                                     if(element2.qty.lte != undefined){
                                         priceRang += '<tr><td>'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
                                     }
@@ -2141,11 +2163,9 @@ function showCompareList(recetAdded=false)
                         priceRangHtml = '<table class="total-amount-block pull-right"><tbody><tr><td>Quantity</td><td>USD 5C</td></tr>';
                         priceRangHtml += priceRang;
                         priceRangHtml += '</tbody></table>';
-                        // console.log('priceRang',priceRang);
                         var itemTitleHtml = itemTitleHtml.replace('#data.pricing#',priceRangHtml);
                       } 
                     itemPricingHtml = itemTitleHtml; 
-                    // console.log('itemPricingHtml',itemPricingHtml)
                     // END - Product Quantity Price
 
                     // product colors
@@ -2155,45 +2175,23 @@ function showCompareList(recetAdded=false)
                     if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
                       
                       var productHtmlColor = '';
-
-                      // let colorArr = $.map( productData[0]._source.attributes.colors, function( obj, i ) { return i; } );
-                      
-                      // let colorsHexVal = await replaceColorSwatchWithHexaCodes(colorArr,"color");
-                      
-                      // for (let color_quantity in colorArr) {
-                      //   let element_color_style = "background-color:"+color_quantity+";"
-                      //   if(colorsHexVal != null && colorsHexVal[color_quantity] != undefined){
-                      //       if(typeof colorsHexVal[color_quantity].hexcode != 'undefined'){
-                      //           element_color_style = "background-color:"+colorsHexVal[color_quantity].hexcode+";"
-                      //       }
-                      //       else if (typeof colorsHexVal[color_quantity].file != 'undefined') {
-                      //           element_color_style = "background-image:url("+colorsHexVal[color_quantity].file.url+");"
-                      //       }
-                      //   }
-                      //   productHtmlColor += '<span class ="color-block" style="'+element_color_style+'"></span>';
-                      // }
                       
                       let productColorList = productData[0]._source.attributes.colors;
-                      // console.log('productColorList',productColorList)
                       for (let color of productColorList) {
-                        // console.log('color',color)
                       // $.each(productColorList, async function(j,color){
                           let element_color_style = "background-color:"+color+";"
-                          let colorsHexVal = replaceColorSwatchWithHexaCodes(color,"color");
-                          // console.log('colorsHexVal',colorsHexVal)
+                          let colorsHexVal = colorConfiguration;//replaceColorSwatchWithHexaCodes(color,"color");
                           if(colorsHexVal != null && colorsHexVal[color] != undefined){
                               if(typeof colorsHexVal[color].hexcode != 'undefined'){
                                   element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
                               }
-                              else if (typeof colorsHexVal[element_color].file != 'undefined') {
+                              else if (typeof colorsHexVal[color].file != 'undefined') {
                                   element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
                               }
                           }
-                          // console.log('element_color_style',element_color_style)
                           productHtmlColor += '<span class ="color-block" style="'+element_color_style+'"></span>';
                           
                       }
-                      // console.log('productHtmlColor',productHtmlColor)
                     }
                     var itemTitleHtml = itemTitleHtml.replace("#data.colors#",productHtmlColor);
                     
@@ -2770,9 +2768,6 @@ async function printDiv(printDiv=true) {
                       }
                       else
                       {
-                        // console.log('productData[0]._id',productData[0]._id)
-                        // console.log("#listing #js-price-per-qty-"+compare_values[item].id,$("#listing #js-price-per-qty-"+compare_values[item].id).find(".priceProd").html())
-                        // console.log("#listing .product-"+compare_values[item].id,$("#listing .product-"+compare_values[item].id).find(".js_quantity_input").val())
                         var itemPriceHtml = itemPriceHtml.replace('#data.price#',$("#listing #js-price-per-qty-"+compare_values[item].id).find(".priceProd").html());
                         var itemPriceHtml = itemPriceHtml.replace('#data.min_qty#',$("#listing .product-"+compare_values[item].id).find(".js_quantity_input").val()); 
                       }
@@ -2811,7 +2806,6 @@ async function printDiv(printDiv=true) {
                         $.each(productData[0]._source.pricing, function(index,element){
                             if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
                                     $.each(element.price_range,function(index,element2){
-                                    // console.log("in each condition");
                                     if(element2.qty.lte != undefined){
                                         priceRang += '<tr><td class="quantity_block">'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
                                     }
@@ -2827,41 +2821,43 @@ async function printDiv(printDiv=true) {
                         priceRangHtml = '<table class="total-amount-block"><tbody><tr><td class="quantity_block">Quantity</td><td>USD 5C</td></tr>';
                         priceRangHtml += priceRang;
                         priceRangHtml += '</tbody></table>';
-                        // console.log('priceRang',priceRang);
                         var itemTitleHtml = itemTitleHtml.replace('#data.item_pricing#',priceRangHtml);
                       } 
                     itemPricingHtml = itemTitleHtml; 
-                    // console.log('itemPricingHtml',itemPricingHtml)
                     // END - Product Quantity Price
                       
                     // product colors
-                    // let itemColors = item_available_colors;
+                    let itemColors = item_available_colors;
                     
-                    // if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
+                    if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
                       
-                    //   var productHtmlColor = '';
+                      var productHtmlColor = '';
 
-                    //   let productColorList = productData[0]._source.attributes.colors;
-                    //   for (let color of productColorList) {
-                    //       let element_color_style = "background-color:"+color+";"
-                    //       let colorsHexVal = replaceColorSwatchWithHexaCodes(color,"color");
-                    //       if(colorsHexVal != null && colorsHexVal[color] != undefined){
-                    //           if(typeof colorsHexVal[color].hexcode != 'undefined'){
-                    //               element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
-                    //           }
-                    //           else if (typeof colorsHexVal[element_color].file != 'undefined') {
-                    //               element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
-                    //           }
-                    //       }
-                    //       productHtmlColor += '<span class ="color-block" style="'+element_color_style+'"></span>';
+                      let productColorList = productData[0]._source.attributes.colors;
+                      for (let color of productColorList) {
+                          let element_color_style = "background-color:"+color+";"
+                          element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
+                          let colorsHexVal = colorConfiguration;//replaceColorSwatchWithHexaCodes(color,"color");
+                          if(colorsHexVal != null && colorsHexVal[color] != undefined){
+                              if(typeof colorsHexVal[color].hexcode != 'undefined'){
+                                  element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
+                                  element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
+                                  
+                              }
+                              else if (typeof colorsHexVal[color].file != 'undefined') {
+                                  element_color_style = "<img style='border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;' class='color-block' src='"+colorsHexVal[color].file.url+"'>";
+                                  element_color_style = '<span class="color-block">'+element_color_style+'</span>';
+                                  
+                              }
+                          }
+                          productHtmlColor += element_color_style;
                           
-                    //   }
-                    // }
-                    // itemColors = itemColors.replace("#data.item_available_colors#",productHtmlColor);
+                      }
+                    }
+                    itemColors = itemColors.replace("#data.item_available_colors#",productHtmlColor);
                     
-                    // itemAvailableColorsHtml = itemColors;
+                    itemAvailableColorsHtml = itemColors;
                     // END - product colors
-
                     if(item == 0 || compareValuesCount == 1)
                       {
                         $(compareHtml).find("#js-print_item_title").html("<td style='width:20%;' class='feature-block'></td>"+productTitleHtml)
@@ -2870,7 +2866,7 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_summary").html("<td style='width:20%;' class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").html("<td style='width:20%;' class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
                         $(compareHtml).find("#js-print_item_pricing").html("<td style='width:20%;' class='feature-block'>ITEM PRICING</td>"+itemPricingHtml)
-                        // $(compareHtml).find("#js-print_item_available_colors").html("<td class='feature-block'>Available colors</td>"+itemAvailableColorsHtml)
+                        $(compareHtml).find("#js-print_item_available_colors").html("<td class='feature-block'> AVAILABLE COLORS</td>"+itemAvailableColorsHtml)
                         $('#print-comparision').html(compareHtml.html());
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();
@@ -2883,7 +2879,7 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_summary").append(activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").append(itemFeaturesHtml)
                         $(compareHtml).find("#js-print_item_pricing").append(itemPricingHtml)
-                        // $(compareHtml).find("#js-print_item_available_colors").append(itemAvailableColorsHtml)
+                        $(compareHtml).find("#js-print_item_available_colors").append(itemAvailableColorsHtml)
                         $('#print-comparision').html(compareHtml.html());
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();                          
@@ -3244,7 +3240,7 @@ $(document).on('click','.send-friend-email',function (e)
 
                   $.ajax({
                     type: 'GET',
-                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
+                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing,attributes",
                     async: false,
                     beforeSend: function (xhr) {
                       xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -3308,7 +3304,6 @@ $(document).on('click','.send-friend-email',function (e)
                             if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
                                   
                                   $.each(element.price_range,function(index,element2){
-                                    // console.log("in each condition");
                                     if(element2.qty.lte != undefined){
                                         priceRang += '<tr><td style="border-bottom: 1px solid #000;border-right: 1px solid #000;">'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td style="border-bottom: 1px solid #000;">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
                                     }
@@ -3322,11 +3317,38 @@ $(document).on('click','.send-friend-email',function (e)
                           priceRangHtml += '<table class="total-amount-block pull-right"><tbody><tr><td style="border-bottom: 1px solid #000;border-right: 1px solid #000;">Quantity</td><td style="border-bottom: 1px solid #000;">USD 5C</td></tr>';
                           priceRangHtml += priceRang;
                           priceRangHtml += '</tbody></table>';
-                          console.log('priceRangHtml',priceRangHtml)
                           productJsonData['item_pricing'] = priceRangHtml;
                         } 
-                        console.log("productJsonData['item_pricing']",productJsonData['item_pricing'])
                         // END - Product Quantity Price
+
+                        // product colors
+                        if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
+                      
+                          var productHtmlColor = '';
+    
+                          let productColorList = productData[0]._source.attributes.colors;
+                          for (let color of productColorList) {
+                              let element_color_style = "background-color:"+color+";"
+                              element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
+                              let colorsHexVal = colorConfiguration;//replaceColorSwatchWithHexaCodes(color,"color");
+                              if(colorsHexVal != null && colorsHexVal[color] != undefined){
+                                  if(typeof colorsHexVal[color].hexcode != 'undefined'){
+                                      element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
+                                      element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
+                                      
+                                  }
+                                  else if (typeof colorsHexVal[color].file != 'undefined') {
+                                      element_color_style = "<img style='border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;' class='color-block' src='"+colorsHexVal[color].file.url+"'>";
+                                      element_color_style = '<span class="color-block">'+element_color_style+'</span>';
+                                      
+                                  }
+                              }
+                              productHtmlColor += element_color_style;
+                              
+                          }
+                          productJsonData['item_available_colors'] = productHtmlColor;                       
+                        }
+                        // END - product colors
 
                         compareData.push(productJsonData);
                       }
@@ -3642,7 +3664,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
     compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
   }
 
-  let itemTitleHtml=productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPriceHtml=itemPricingHtml='';
+  let itemTitleHtml=productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPriceHtml=itemPricingHtml=itemAvailableColorsHtmllet ='';
   let productData;
   let html = $('#download-comparision #product_img').html();
   let itemPrice = $('#download-comparision #product_price').html();
@@ -3650,7 +3672,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
   let activeSummary = $('#download-comparision #product_summary').html();
   let item_features = $('#download-comparision #product_features').html();
   let item_pricing = $('#download-comparision #product_pricing').html();
-
+  item_available_colors = $('#js-print_item_available_colors').html();
   if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) 
   {
     for (item in compare_values)
@@ -3661,7 +3683,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
 
           $.ajax({
             type: 'GET',
-            url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
+            url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing,attributes",
             async: false,
             beforeSend: function (xhr) {
               xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -3731,7 +3753,6 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 $.each(productData[0]._source.pricing, function(index,element){
                     if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
                             $.each(element.price_range,function(index,element2){
-                            // console.log("in each condition");
                             if(element2.qty.lte != undefined){
                                 priceRang += '<tr><td>'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
                             }
@@ -3747,12 +3768,41 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 priceRangHtml = '<table class="total-amount-block pull-right"><tbody><tr><td>Quantity</td><td>USD 5C</td></tr>';
                 priceRangHtml += priceRang;
                 priceRangHtml += '</tbody></table>';
-                // console.log('priceRang',priceRang);
                 itemPricingHtml1 = itemPricingHtml1.replace('#data.pricing#',priceRangHtml);
               } 
               itemPricingHtml = itemPricingHtml1;
               // END - Product Quantity Price
 
+              // product colors
+              // let itemColors = item_available_colors;
+                    
+              // if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
+                
+              //   var productHtmlColor = '';
+
+              //   let productColorList = productData[0]._source.attributes.colors;
+              //   for (let color of productColorList) {
+              //       let element_color_style = "background-color:"+color+";"
+              //       element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
+              //       let colorsHexVal = colorConfiguration;//replaceColorSwatchWithHexaCodes(color,"color");
+              //       if(colorsHexVal != null && colorsHexVal[color] != undefined){
+              //           if(typeof colorsHexVal[color].hexcode != 'undefined'){
+              //               element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
+              //               element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
+                            
+              //           }
+              //           else if (typeof colorsHexVal[color].file != 'undefined') {
+              //               element_color_style = "<img style='height: 18px;width: 18px;' class='color-block' src='"+colorsHexVal[color].file.url+"'>";                            
+              //           }
+              //       }
+              //       productHtmlColor += element_color_style;
+                    
+              //   }
+              // }
+              // itemColors = itemColors.replace("#data.item_available_colors#",productHtmlColor);
+              
+              // itemAvailableColorsHtml = itemColors;
+              // END - product colors
               
               if(item == 0 || compareValuesCount == 1)
               {
@@ -3767,6 +3817,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM#</td>"+itemSkuHtml)
                 compareHtml.find("#product_summary").html("<td style='width:20%'class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                 compareHtml.find("#product_features").html("<td style='width:20%' class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
+                // compareHtml.find("#js-print_item_available_colors").html("<td style='width:20%' class='feature-block'>AVAILABLE COLORS</td>"+itemAvailableColorsHtml)
                 compareHtml.find("#product_pricing").html("<td style='width:20%' class='feature-block'>ITEM PRICING	</td>"+itemPricingHtml)
               }
               else{
@@ -3777,6 +3828,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 compareHtml.find("#product_sku").append(itemSkuHtml)
                 compareHtml.find("#product_summary").append(activeSummaryHtml)
                 compareHtml.find("#product_features").append(itemFeaturesHtml)
+                // compareHtml.find("#js-print_item_available_colors").append(itemAvailableColorsHtml)                
                 compareHtml.find("#product_pricing").append(itemPricingHtml);
               }
             }
