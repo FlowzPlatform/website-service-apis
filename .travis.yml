@@ -24,7 +24,7 @@ jobs:
             docker push $DOCKER_USERNAME_FLOWZ/flowz_service_api_backend_flowz:latest;
         elif [ ${TRAVIS_BRANCH} = "develop" ]; then
             docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-            docker build -t flowz_service_api_backend_flowz:dev --build-arg GITLAB_USER="$GITLAB_USER" --build-arg GITLAB_PASS="$GITLAB_PASS" .;
+            docker build -t flowz_service_api_backend_flowz:dev --build-arg GITLAB_USER="$GITLAB_USER" --build-arg GITLAB_PASSWORD="$GITLAB_PASSWORD" .;
             docker images;
             docker tag flowz_service_api_backend_flowz:dev $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
             docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
