@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 ARG GITLAB_USER
-ARG GITLAB_PASS
+ARG GITLAB_PASSWORD
 
 # install dependencies
 RUN apt-get update \
@@ -22,9 +22,9 @@ RUN apt-get install --yes nano
 RUN apt-get install --yes git
 ADD .netrc /root
 RUN echo "USER: $GITLAB_USER"
-RUN echo "PASS: $GITLAB_PASS"
+RUN echo "PASS: $GITLAB_PASSWORD"
 RUN echo "     login $GITLAB_USER" >> /root/.netrc
-RUN echo "     password $GITLAB_PASS" >> /root/.netrc
+RUN echo "     password $GITLAB_PASSWORD" >> /root/.netrc
 RUN git config --global user.email " fsaiyed@officebrain.com"
 RUN git config --global user.name "Faizan Saiyed"
 
