@@ -133,7 +133,7 @@ $(document).on('click', '.email-product-modal-submit', function(e) {
         flyerJson['flyer_image'] = flyerImageLink
         mailFlyerJson['form_data'] = flyerJson;
         mailFlyerJson['website_id'] = website_settings['projectID'];
-        console.log('mailFlyerJson',mailFlyerJson)
+        // console.log('mailFlyerJson',mailFlyerJson)
 
         $.ajax({
     		  type : 'POST',
@@ -142,12 +142,11 @@ $(document).on('click', '.email-product-modal-submit', function(e) {
     		  cache: false,
     		  dataType : 'json',
     		  success : function(response_data) {
-    			console.log("response_data",response_data)
+    			// console.log("response_data",response_data)
     			if(response_data!= "") {
-    			//   $("#send_quick_quoteemail").find("input,textarea").val('');
     				hidePageAjaxLoading()
     				showSuccessMessage("Email Sent Successfully.");
-    				// window.location = "flyers.html";
+    				window.location = "flyers.html";
     				return false;
     			}
     			else if(response_data.status == 400) {

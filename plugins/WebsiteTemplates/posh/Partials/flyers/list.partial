@@ -75,6 +75,10 @@ button.remove {
 .col-sm-12.col-md-6.col-lg-4.col-xs-12.product-wrap.js-product-box.product--data-id- {
     cursor: pointer;
 }
+
+.flyerForm {
+  padding: 0px;
+}
 </style>
 
 
@@ -91,6 +95,9 @@ button.remove {
                 <ul>
                     <li>
                         <a href="javascript:void(0);" class="js-open-modal-flyer" title="View Flyer" data-image="#flyer-image-link#" data-original-title="View Flyer"><i class="fa fa-eye"></i>View Flyer</a>
+                    </li>
+                    <li>
+                      <a title="" href="javascript:void(0)" data-toggle="modal" data-target="#email-product" data-placement="top" data-hover="tooltip" data-original-title="Email"><i class="fa fa-envelope"></i></a>
                     </li>
                     <li>
                         <a data-placement="top" class="js-download_pdf_from_url" data-title="#flyer-title#" href="#flyer-pdf-link#" target="_blank" title="Download" data-original-title="Download"><i class="fa fa-download"></i></a>
@@ -114,10 +121,10 @@ button.remove {
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-sm-12" style="padding:0px;">
 						 <div class="email-product-popup product-section-box">
 							 <form id="email-flyer-form">
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flyerForm">
 										 <div class="row">
 											 <div class="col-sm-3 col-xs-12">
 												 <div class="form-group">
@@ -134,7 +141,7 @@ button.remove {
 										 </div>
 									 </div>
 								 	</div>
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flyerForm">
 										<div class="row">
 											<div class="col-sm-3 col-xs-12">
 												<div class="form-group">
@@ -151,7 +158,7 @@ button.remove {
 										</div>
 									</div>
 									</div>
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flyerForm">
 										<div class="row">
 											<div class="col-sm-3 col-xs-12">
 												<div class="form-group">
@@ -168,7 +175,7 @@ button.remove {
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flyerForm">
 										<div class="row">
 											<div class="col-sm-3 col-xs-12">
 												<div class="form-group">
