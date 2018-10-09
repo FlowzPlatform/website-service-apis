@@ -33,7 +33,8 @@ $(document).ready(async function(){
             $(".js-tag-featured-product-list").removeClass('hide');
             $(".js-tag-featured-product-list .row #owl-carousel-recommeded").css('visibility','hidden');
         
-            replaceProductBox = await tagProducts("tag_slug="+productSlug,productBoxHtml)
+            replaceProductBox = await tagProducts(productSlug,productBoxHtml)
+            // replaceProductBox = await tagProducts("tag_slug="+productSlug,productBoxHtml)
             if(replaceProductBox != ''){
                 tagHtmlList.find('.js-list').html(replaceProductBox)
                 tagHtmlList.removeClass('hide')
