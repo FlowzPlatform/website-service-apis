@@ -92,7 +92,7 @@ $(document).on('click', '.email-product-modal-submit', function(e) {
     $('form#email-flyer-form').validate({
       rules: {
         "senderName": "required",
-        "fromMail": {
+        "email": {
           required: true,
           email: true
         },
@@ -104,7 +104,7 @@ $(document).on('click', '.email-product-modal-submit', function(e) {
       },
       messages: {
         "senderName": "Enter Valid Name!",
-        "fromMail": {
+        "email": {
           required : "Enter Email!",
           email : "Enter Valid Email!"
         },
