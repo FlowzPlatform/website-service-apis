@@ -203,33 +203,41 @@ body {
             </div>
             <div class="clearfix"></div>
             <div class="print-product-detail js-print-product-detail">
-                <h3 class="print-sub-title">Product Details</h3>
+                <h3 class="print-sub-title">Product Specifications</h3>
                 <div class="row">
-                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>Colours :</label></div>
-                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6"><span>#data.colors#</span></div>
+                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                        <ul>
+                            #data.specification#
+                        </ul>
+                    </div>    
                 </div>
             </div>
             <div class="clearfix"></div>
             <div class="product-print-shipping js-print-product-detail">
                 <h3 class="print-sub-title">Production And Shipping</h3>
                 <div class="row">
-                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>PRODUCTION DAYS:</label></div>
+                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>Carton Size:</label></div>
                 <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6">
-                    <span> #data.production_days# </span>
+                    <span> #data.carton_size# </span>
                 </div>
-                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>SETUP CHARGE:</label></div>
+                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>Carton Weight:</label></div>
                 <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6">
-                    <span> #data.setup_charge# </span>
+                    <span> #data.carton_weight# </span>
                 </div>
-                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>FOB:</label></div>
-                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6">
-                    <span> #data.fob# </span>
-                </div>
-                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>QTY PER CARTON:</label></div>
+                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>Carton Quantity:</label></div>
                 <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6">
                     <span> #data.qty_per_carton# </span>
                 </div>
+                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-6"><label>PRODUCTION TIME:</label></div>
+                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-6">
+                    <span> #data.production_days# </span>
                 </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3 class="print-sub-title">Decoration Options</h3>  
+            <div class="js-decoration_option">
             </div>
         </div>
     </div>
