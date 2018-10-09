@@ -75,6 +75,10 @@ button.remove {
 .col-sm-12.col-md-6.col-lg-4.col-xs-12.product-wrap.js-product-box.product--data-id- {
     cursor: pointer;
 }
+
+.flyerForm {
+  padding: 0px;
+}
 </style>
 
 
@@ -93,6 +97,9 @@ button.remove {
                         <a href="javascript:void(0);" class="js-open-modal-flyer" title="View Flyer" data-image="#flyer-image-link#" data-original-title="View Flyer"><i class="fa fa-eye"></i>View Flyer</a>
                     </li>
                     <li>
+                      <a title="" href="javascript:void(0)" data-toggle="modal" data-target="#email-product" data-placement="top" data-hover="tooltip" data-original-title="Email"><i class="fa fa-envelope"></i></a>
+                    </li>
+                    <li>
                         <a data-placement="top" class="js-download_pdf_from_url" data-title="#flyer-title#" href="#flyer-pdf-link#" target="_blank" title="Download" data-original-title="Download"><i class="fa fa-download"></i></a>
                     </li>
                 </ul>
@@ -104,5 +111,105 @@ button.remove {
 
 </div>
 <div class="listing"></div>
+
+<div class="modal fade model-popup-black " id="email-product" tabindex="-1" role="dialog"  aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+				<a href="#" class="close" data-dismiss="modal" aria-label="Close">&times;</a>
+			<div class="modal-header">
+				<h1 class="modal-title" ><i class="strip email-popup-strip"></i> E-mail Product</h1>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-12" style="padding:0px;">
+						 <div class="email-product-popup product-section-box">
+							 <form id="email-flyer-form">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flyerForm">
+										 <div class="row">
+											 <div class="col-sm-3 col-xs-12">
+												 <div class="form-group">
+													 <label>Sender Name :</label><span class="red">*</span>
+												 </div>
+											 </div>
+											 <div class="col-sm-9 col-xs-12">
+												 <div class="form-group">
+													 <input type="text" name="senderName"  data-original-title="Sender Name" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
+													 <!-- <ul class="error-message">
+													 <li>Enter Valid First Name!</li>
+												 </ul> -->
+											 </div>
+										 </div>
+									 </div>
+								 	</div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flyerForm">
+										<div class="row">
+											<div class="col-sm-3 col-xs-12">
+												<div class="form-group">
+													<label>From Email :</label><span class="red">*</span>
+												</div>
+											</div>
+											<div class="col-sm-9 col-xs-12">
+												<div class="form-group">
+													<input type="text" name="email"  data-original-title="From Mail" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
+													<!-- <ul class="error-message">
+													<li>Enter Valid Email!</li>
+												</ul> -->
+											</div>
+										</div>
+									</div>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flyerForm">
+										<div class="row">
+											<div class="col-sm-3 col-xs-12">
+												<div class="form-group">
+													<label>Recepient Email :</label><span class="red">*</span>
+												</div>
+											</div>
+											<div class="col-sm-9 col-xs-12">
+												<div class="form-group">
+													<input type="text" name="to_email"  data-original-title="Recepient Mail" data-placement="bottom" data-toggle="tooltip" tabindex="1" class="input">
+													<!-- <ul class="error-message">
+													<li>Enter Valid Email!</li>
+												</ul> -->
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flyerForm">
+										<div class="row">
+											<div class="col-sm-3 col-xs-12">
+												<div class="form-group">
+													<label>Message :</label><span class="red">*</span>
+												</div>
+											</div>
+											<div class="col-sm-9 col-xs-12">
+												<div class="form-group">
+													<textarea name="message" class="textarea" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-original-title="Message"></textarea>
+													<!-- <ul class="error-message">
+													<li>Enter Valid Message!</li>
+												</ul> -->
+											</div>
+										</div>
+									</div>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="text-center">
+											<input type="submit" class="email-product-modal-submit" value="Submit">
+											<input type="reset" value="Reset" class="email-product-modal-reset">
+										</div>
+									</div>
+							 </form>
+
+
+
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
 
 <reusecomponent class="c49533">{{> flyers id='viewFlyerImage.partial' }}</reusecomponent>

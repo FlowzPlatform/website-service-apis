@@ -179,12 +179,12 @@ function generatePackage(data) {
     cartonWeight = Number(data.shipperInfo.carton_weight)
   }
   else {
-    cartonWeight = qtyPerCartoon * productWeight
+    cartonWeight = (qtyPerCartoon * productWeight).toFixed(2)
   }
 
   let qty = Number(data.shipToInfo.qty)
   console.log('qty---',qty);
-  let qtyweight = (qty * productWeight);
+  let qtyweight = (qty * productWeight).toFixed(2);
 
   noOfBox = 0;
   totalWeight = 0;
@@ -202,18 +202,17 @@ function generatePackage(data) {
     let pack = [];
     let totalQty = qty;
     let k = 0;
-    console.log('totalQty',typeof totalQty)
     while(totalQty != 0) {
       if (totalQty <= qtyPerCartoon) {
         pack[k] = totalQty;
         weightArray[k] = (totalQty * productWeight).toFixed(2);
-        console.log('weightArray[k]',weightArray[k])
+        // console.log('weightArray[k]',weightArray[k])
         totalQty = 0;
       }
       else {
         pack[k] = qtyPerCartoon;
         weightArray[k] = (qtyPerCartoon * productWeight).toFixed(2);
-        console.log('weightArray[k]',weightArray[k])
+        // console.log('weightArray[k]',weightArray[k])
         totalQty = totalQty - qtyPerCartoon;
       }
       k++;
