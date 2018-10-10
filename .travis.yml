@@ -18,19 +18,19 @@ jobs:
       script:
       - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
             docker login -u="$DOCKER_USERNAME_FLOWZ" -p="$DOCKER_PASSWORD_FLOWZ";
-            docker build -t flowz_service_api_backend_flowz:latest .;
+            docker build -t flowz_service_api_backend_flowz:latest --build-arg GITLAB_USER="$GITLAB_USER" --build-arg GITLAB_PASSWORD="$GITLAB_PASSWORD" .;
             docker images;
             docker tag flowz_service_api_backend_flowz:latest $DOCKER_USERNAME_FLOWZ/flowz_service_api_backend_flowz:latest;
             docker push $DOCKER_USERNAME_FLOWZ/flowz_service_api_backend_flowz:latest;
         elif [ ${TRAVIS_BRANCH} = "develop" ]; then
             docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-            docker build -t flowz_service_api_backend_flowz:dev .;
+            docker build -t flowz_service_api_backend_flowz:dev --build-arg GITLAB_USER="$GITLAB_USER" --build-arg GITLAB_PASSWORD="$GITLAB_PASSWORD" .;
             docker images;
             docker tag flowz_service_api_backend_flowz:dev $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
             docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:dev;
         elif [ ${TRAVIS_BRANCH} = "staging" ]; then
             docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-            docker build -t flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER .;
+            docker build -t flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER --build-arg GITLAB_USER="$GITLAB_USER" --build-arg GITLAB_PASSWORD="$GITLAB_PASSWORD" .;
             docker tag flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER $DOCKER_USERNAME/flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER;
             docker tag flowz_service_api_backend_flowz:$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER $DOCKER_USERNAME/flowz_service_api_backend_flowz:staging;
             docker images;
@@ -38,7 +38,7 @@ jobs:
             docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:staging;
         else
             docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-            docker build -t flowz_service_api_backend_flowz:qa .;
+            docker build -t flowz_service_api_backend_flowz:qa --build-arg GITLAB_USER="$GITLAB_USER" --build-arg GITLAB_PASSWORD="$GITLAB_PASSWORD" .;
             docker images;
             docker tag flowz_service_api_backend_flowz:qa $DOCKER_USERNAME/flowz_service_api_backend_flowz:qa;
             docker push $DOCKER_USERNAME/flowz_service_api_backend_flowz:qa;
@@ -61,3 +61,4 @@ notifications:
       - gkumar@officebrain.com
     on_success: always
     on_failure: always
+
