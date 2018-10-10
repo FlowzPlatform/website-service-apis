@@ -129,7 +129,7 @@ $(document).on('click', '.email-product-modal-submit', function(e) {
         for (let input of formData) {
             flyerJson[input.name] = input.value;
         }
-        flyerJson['slug'] = 'flyer';
+        flyerJson['slug'] = 'posh-flyer';
         flyerJson['flyer_image'] = flyerImageLink
         mailFlyerJson['form_data'] = flyerJson;
         mailFlyerJson['website_id'] = website_settings['projectID'];
