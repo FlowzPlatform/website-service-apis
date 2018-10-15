@@ -42,7 +42,7 @@ class Service {
 
  remove(id, params) {
    return new Promise((resolve , reject)=>{
-      console.log("params..........................--------",params)
+      // console.log("params..........................--------",params)
       this.app.service("flows-dir-listing").remove('',params).then(function (response) {
       resolve(response)
       }).catch(function (err) {
