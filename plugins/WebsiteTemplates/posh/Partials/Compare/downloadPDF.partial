@@ -30,7 +30,7 @@
                                         <td style="width:20%;text-align: center;" class=" ">#data.sku#</td>
                                 </tr>
                                 <tr class="feature dark-bg" id="product_features">
-                                        <td style="width:20%;" class=" ">#data.features#</td>
+                                        <td style="width:20%;text-align: center;" class=" ">#data.features#</td>
                                 </tr>
                                 <tr class="feature light-bg" id="product_pricing">
                                         <td style="width:20%;" class=" ">#data.pricing#</td>

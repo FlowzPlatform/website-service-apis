@@ -38,7 +38,7 @@ $(document).ready(async function(){
             if(replaceProductBox != ''){
                 tagHtmlList.find('.js-list').html(replaceProductBox)
                 tagHtmlList.removeClass('hide')
-                document.getElementById('posh-load').style.visibility="hidden";
+                // document.getElementById('posh-load').style.visibility="hidden";
                 $(".js-tag-featured-product-list .row #owl-carousel-recommeded").css('visibility','visible');
                 
                 tagHtmlList.find("#owl-carousel-recommeded").closest(".row").css({"display": "flex"});
@@ -64,6 +64,9 @@ $(document).ready(async function(){
                         that.owlControls.prependTo(elem)
                     }
                 });
+            }
+            else{
+                $(".js-tag-featured-product-list").addClass('hide');
             }
         }
     }
