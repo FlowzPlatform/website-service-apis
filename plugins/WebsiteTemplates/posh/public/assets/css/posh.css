@@ -104,6 +104,10 @@ input[type="reset"] {margin-top: 0px;}
 .flyer-wrapper a.js-download_pdf_from_url {
     padding: 10px 0px !important;
 }
+/* social share */
+.jssocials-share-logo {height:auto !important;display: block;margin: 0 auto 10px;}
+.jssocials-share-link {border-radius: 3px;text-align: center;width: 100px;display: inline-block;font-size: 12px;color: #fff;position: relative;margin-right: 5px;}
+
 /*shipping estimator model*/
 .shippingng-estimator-model h3 { margin: 10px auto 8px; }
 .shippingng-estimator-model .shippingEstimatorCountry span {color: #7E7E7E;}
