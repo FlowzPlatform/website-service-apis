@@ -1149,7 +1149,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .fliter-flag-list .product-flag-block .product-label.f-featured:after { border-bottom: 29px solid #9cc02c }
 .fliter-flag-list .product-flag-block .product-label.f-featured:before { border-top: 29px solid #9cc02c }
 .ob-category-top-img { margin: 10px 0 }
-.ob-product-block { background: #f5f5f5; padding: 5px 10px 0 10px; margin-bottom: 10px }
+.ob-product-block { background: #f5f5f5; padding: 5px 10px 0 10px; margin-bottom: 10px; position: relative !important; margin-right: 28px }
 .ob-product-block.left-wishlist-block { border: 1px solid #d2d2d2 }
 .ob-product-block.left-wishlist-block .ob-sort-block { padding: 3px 0 0 }
 .ob-pro-search-block { background: #fafafa; border: 1px #fff solid; padding: 20px }
@@ -1159,6 +1159,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .search-icon { position: absolute; right: 0; top: 0; padding: 8px 10px; background: #f0f0f0; border-top: 1px #e6e6e8 solid; border-right: 1px #e6e6e8 solid; border-bottom: 1px #e6e6e8 solid; font-size: 20px; color: #3b3b3b; line-height: 1; border-left: 0 }
 .search-field:hover .search-icon { color: #e70000 }
 .search-field span.saveno { position: absolute; top: 8px; right: 32px; text-transform: uppercase; font-family:  'Didact Gothic', sans-serif;font-weight:600; font-size: 14px; color: #cacaca; background: #fff; padding-left: 5px }
+.css-11s5mbb {position: relative !important; margin-right: 24px !important}
 .ob-pro-search-block .select-style { width: 100% }
 .ob-pro-search-block .advance-search-wrap { width: 70%; float: left }
 .ob-pro-search-block .advance-search-field { width: 100%; height: 38px; color: #000; font-size: 15px  'Didact Gothic', sans-serif; padding: 6px; border: 1px solid #e6e6e6; padding-right: 135px }
