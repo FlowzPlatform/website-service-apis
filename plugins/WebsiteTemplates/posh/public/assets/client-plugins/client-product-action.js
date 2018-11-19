@@ -73,7 +73,7 @@ $(document).ready(function(){
     //shipping estimator
     $('#shippingEstButton').on('click', async function() {
         $('form#calculate_shipping_estimator')[0].reset(); //clear form
-        $('.checkout-holder').html('Select Country'); //clear country dropdown
+        $('.checkout-holder').html(''); //clear country dropdown
         $('#estimatorResponse tbody').remove(); //removes table body of response
         $('#estimatorError').css({"display":"none"}) //hide error message
         $('#shipping_estimator_response').css({"display":"none"}) // hide response table
@@ -857,9 +857,16 @@ function getCountry(countryId=0) {
         .then(response => {
             let countryHtml = $(".js-country").html('');
             if(response.data.length > 0){
-                countryHtml = '<option value="" selected="selected">Select Country</option>'
+               //countryHtml = '<option value="">Select Country</option>'
+               countryHtml = ''
                 $.each(response.data,function(key,country){
-                    countryHtml += '<option value="'+country.country_code+'">'+country.country_name+'</option>'
+                    if(country.country_code=='US'){
+                        countryHtml += '<option selected value="'+country.country_code+'">'+country.country_name+'</option>'
+                        $('.checkout-holder').html(country.country_name);    
+                    }
+                    else{
+                        countryHtml += '<option value="'+country.country_code+'">'+country.country_name+'</option>'
+                    }
                 })
                 $('.js-country').html(countryHtml)
                 // doSelection('country',countryId);
