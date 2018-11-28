@@ -1149,7 +1149,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .fliter-flag-list .product-flag-block .product-label.f-featured:after { border-bottom: 29px solid #9cc02c }
 .fliter-flag-list .product-flag-block .product-label.f-featured:before { border-top: 29px solid #9cc02c }
 .ob-category-top-img { margin: 10px 0 }
-.ob-product-block { background: #f5f5f5; padding: 5px 10px 0 10px; margin-bottom: 10px; position: relative !important; margin-right: 28px }
+.ob-product-block { background: #f5f5f5; padding: 5px 10px 0 10px; margin-bottom: 10px }
 .ob-product-block.left-wishlist-block { border: 1px solid #d2d2d2 }
 .ob-product-block.left-wishlist-block .ob-sort-block { padding: 3px 0 0 }
 .ob-pro-search-block { background: #fafafa; border: 1px #fff solid; padding: 20px }
@@ -1159,7 +1159,6 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .search-icon { position: absolute; right: 0; top: 0; padding: 8px 10px; background: #f0f0f0; border-top: 1px #e6e6e8 solid; border-right: 1px #e6e6e8 solid; border-bottom: 1px #e6e6e8 solid; font-size: 20px; color: #3b3b3b; line-height: 1; border-left: 0 }
 .search-field:hover .search-icon { color: #e70000 }
 .search-field span.saveno { position: absolute; top: 8px; right: 32px; text-transform: uppercase; font-family:  'Didact Gothic', sans-serif;font-weight:600; font-size: 14px; color: #cacaca; background: #fff; padding-left: 5px }
-.css-11s5mbb {position: relative !important; margin-right: 24px !important}
 .ob-pro-search-block .select-style { width: 100% }
 .ob-pro-search-block .advance-search-wrap { width: 70%; float: left }
 .ob-pro-search-block .advance-search-field { width: 100%; height: 38px; color: #000; font-size: 15px  'Didact Gothic', sans-serif; padding: 6px; border: 1px solid #e6e6e6; padding-right: 135px }
@@ -1336,7 +1335,7 @@ h4.print-child-title { color: #000; font-size: 15px; font-family:  'Didact Gothi
 .list-quantity-block .quantity-table-disc .owl-controls .owl-nav { top: -22px }
 .pro-box { border: 1px #d2d2d2 solid }
 .pro-desc { background: #888; text-align: center; padding: 5px 0px 0px 0px; position: relative; min-height: 98px }
-.pro-desc .item-title { font-size: 13px; color: #fff; display: block; font-family: 'Didact Gothic', sans-serif; text-transform: uppercase; padding: 0 5px; min-height: 36px }
+.pro-desc .item-title { font-size: 13px; color: #fff; display: block; font-family: 'Didact Gothic', sans-serif; text-transform: none; padding: 0 5px; min-height: 36px }
 .pro-box:hover .pro-desc { background: #e70000; }
 .pro-box:hover .rating { color: #e70000; }
 .pro-desc .item-code { font-size: 14px; color: #fff; border-bottom: 1px rgba(255, 255, 255, 0.31) solid; display: inline-block; font-family: 'Didact Gothic', sans-serif; padding-bottom: 5px }
@@ -3826,7 +3825,7 @@ button[type="reset"].admin-custom-btn { background: #e70000; box-shadow: none; b
 .box-selected { border: #e70000 1px solid }
 /*--SEARCH PRODUCT--*/
 
-.search-product-popup .menu-box .navbar-nav { font-size: 14px; color: #000; text-transform: uppercase }
+.search-product-popup .menu-box .navbar-nav { font-size: 14px; color: #000; text-transform: none }
 .search-product-popup .position-inherit { position: inherit!important }
 .search-product-popup .menu-box .navbar-nav > li > a { line-height: 60px; padding: 0 12px; font-size: 14px; font-family:  'Didact Gothic', sans-serif;font-weight:600; color: #000 }
 .search-product-popup .search-in-dropdown { float: left; width: 135px }
@@ -4318,7 +4317,7 @@ ul.spec li {
 .menu-box .navbar-nav {
     font-size: 14px;
     color: #000;
-    text-transform: uppercase;
+    text-transform: none;
     width: 35%;
     float: left;
 }
@@ -5009,14 +5008,24 @@ div#collapsetwo,.catelogue-title-text {
     min-height: 38px;
 }*/
 @-moz-document url-prefix() {
- .virtual-button{min-width: 116px;}
-  
+  .virtual-button{min-width: 116px !important;}
 }
 .menu-box .navbar-nav > li > a{min-height: 38px;}
-
-      
-      
-      
+.footer-contact-detail li.address-contact {background: url(https://res.cloudinary.com/dmdst9hep/image/upload/v1539082787/sprite.png) no-repeat;background-position: -4px -105px !important;}
+.footer-contact-detail li.phone-number {background: url(https://res.cloudinary.com/dmdst9hep/image/upload/v1539082787/sprite.png) no-repeat;background-position: -4px 2px !important;}
+.footer-contact-detail li.email-contact {background: url(https://res.cloudinary.com/dmdst9hep/image/upload/v1539082787/sprite.png) no-repeat;background-position: -4px -68px !important;}
+.virtual-button{  position: relative !important;
+    top: 0 !important;
+    margin-left: 4px !important;right: 0 !important; }
+.inventory-table.table-body> tbody>tr>td{text-align: center;}
+#inventory-look .inventory-main-block {
+    padding: 5px;
+}
+#inventory-look .js-inventory_color_box{    margin: 2px;}
+div#inventory-look .modal-dialog {
+    width: 850px;
+}
+       
 /*LIST VIEW TAGS*/
 /*LATEST CHANGES*/
 /*TAGS*/
@@ -5394,6 +5403,7 @@ div#inventory-look .modal-dialog {
 #mainmenu-nav #mainmenu .dropdown-submenu .dropdown-menu li a{background: none}
 div#inventory-look .modal-dialog{width: 96%;}
 }
+.menu-box .dropdown-menu > li > a {padding: 4px 8px;}
 @media (min-width:1100px) and (max-width: 2800px) {.shipping-option p{ min-width:103px;}}
 @media screen and (max-width:1024px){
 /*.home-content {margin-top: 222px !important;}*/
@@ -5414,7 +5424,7 @@ div#add-new-address .modal-dialog.modal-lg {
 }
 @media screen and (min-width:767px){
 .menu-box .navbar-nav.ui-navigation li.dropdown:hover ul.dropdown-menu li a:hover{    background: transparent;}
-.menu-box .navbar-nav.ui-navigation li.dropdown:hover ul.dropdown-menu{display:block;}
+.menu-box .navbar-nav.ui-navigation li.dropdown:hover ul.dropdown-menu{display:block; padding-top: 0px; padding-bottom: 0px;}
 .menu-box .navbar-nav.ui-navigation li.dropdown:hover ul.dropdown-menu li.dropdown-submenu:hover div.dropdown-menu{min-width:225px;height: auto; width: auto !important;}
 .menu-box .navbar-nav.ui-navigation li.dropdown:hover ul.dropdown-menu li.dropdown-submenu:hover div.dropdown-menu ul li{border-right:0px; float:none;width:inherit}
 .menu-box .navbar-nav.ui-navigation li.dropdown:hover ul.dropdown-menu li.dropdown-submenu:hover div.dropdown-menu ul{display:block}

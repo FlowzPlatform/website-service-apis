@@ -66,29 +66,6 @@ var cloudinaryDetails = function () {
   return tmp;
 }();
 
-
-// fetch colors from table
-var colorConfiguration = function () {
-  let tmp = null;
-  $.ajax({
-    method: 'GET',
-    url : project_settings.color_table_api_url+'?vid='+website_settings.Projectvid.vid+'&websiteid='+website_settings['projectID'],
-    async: false,
-    success: function(data) {
-      if(data.data.length > 0 ) {
-        let colorObj = {}
-        $.each(data.data,function(key,val){
-          colorObj[val.colorname] = val
-        })
-        tmp = colorObj
-      }
-      // tmp = data.data;
-    }
-  });
-  return tmp;
-}();
-// END - fetch colors from table
-
 function getWebsiteInfoById(websiteId,webInfoAPi) {
       let returnData = null;
       $.ajax({
@@ -101,7 +78,7 @@ function getWebsiteInfoById(websiteId,webInfoAPi) {
               returnData = data;
           }
       });
-    	return returnData;
+      return returnData;
 }
 
 async function getProductDetailById(id) {
@@ -224,7 +201,7 @@ let tagProducts = function(tagSlug,productBoxHtml) {
                   productBoxHtml1 = productBoxHtml1.replace('#data.image#',ProductImage)
                   productBoxHtml1 = productBoxHtml1.replace('#data.sku#',productRes.sku)
                   productBoxHtml1 = productBoxHtml1.replace('#data.currency#','$')
-                  productBoxHtml1 = productBoxHtml1.replace('#data.price#',productRes.min_price.toFixed(project_settings.price_decimal))
+                  productBoxHtml1 = productBoxHtml1.replace('#data.price#',productRes.min_price.toFixed(project_settings.price_decimal)+'(r) - $'+productRes.max_price.toFixed(project_settings.price_decimal)+'(r)')
                   productBoxHtml1 = productBoxHtml1.replace(/#data.title#/g,productRes.product_name)
                   productBoxHtml1 = productBoxHtml1.replace(/#data.tagName#/g,tagSlug.replace("-", " "))
                   replaceProductBox += productBoxHtml1
@@ -431,18 +408,18 @@ if (user_id != null ) {
 //alert(admin_role_flag)
 
 function $_GET(param) {
-	let vars = {};
-	window.location.href.replace( location.hash, '' ).replace(
-		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-		function( m, key, value ) { // callback
-			vars[key] = value !== undefined ? value : '';
-		}
-	);
+  let vars = {};
+  window.location.href.replace( location.hash, '' ).replace(
+    /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+    function( m, key, value ) { // callback
+      vars[key] = value !== undefined ? value : '';
+    }
+  );
 
-	if ( param ) {
-		return vars[param] ? vars[param] : null;
-	}
-	return vars;
+  if ( param ) {
+    return vars[param] ? vars[param] : null;
+  }
+  return vars;
 }
 
 function validateEmail(sEmail) {
@@ -768,8 +745,8 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
           "Authorization" : "Basic " + auth
         },
          "data": " {\n \"query\": {\n \"bool\": {\n \"must\": {\n \"match_all\": {\n \n }\n },\n \"filter\": {\n \"match\": {\n \""+HeaderSearchValue+"\": \" "+ val +" \"\n }\n }\n }\n },\n \"_source\":[\""+HeaderSearchValue+"\"] \n}\u0001"
-     //  "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword \": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"search_keyword\"] \n}\u0001"
-     //  "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \""+ CategorySearch +"\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"categories\"] \n}\u0001"
+     //  "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n                   \"match\": {\n          \"search_keyword \": \" "+ val +" \"\n        }\n      }\n    }\n  },\n   \"_source\":[\"search_keyword\"] \n}\u0001"
+     //  "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n                   \"match\": {\n          \""+ CategorySearch +"\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n  \"_source\":[\"categories\"] \n}\u0001"
       }
       $.ajax(settings).done(function (data) {
         total_hits = data.hits.total;
@@ -782,8 +759,8 @@ let auth = btoa(website_settings.Projectvid.esUser + ':' + website_settings.Proj
                     "Authorization" : "Basic " + auth
                   },
               "data": "{\n \"query\": {\n \"bool\": {\n \"must\": {\n \"match_all\": {\n \n }\n },\n \"filter\": {\n \"match\": {\n \""+HeaderSearchValue+"\": \" "+ val +" \"\n }\n }\n }\n },\n \"_source\":[\""+HeaderSearchValue+"\"] \n}\u0001"
-              //    "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \""+ CategorySearch +" \": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"categories\"] \n}\u0001"
-            //    "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n        						\"match\": {\n          \"search_keyword\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n 	\"_source\":[\"search_keyword\"] \n}\u0001"
+              //    "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n                    \"match\": {\n          \""+ CategorySearch +" \": \" "+ val +" \"\n        }\n      }\n    }\n  },\n   \"_source\":[\"categories\"] \n}\u0001"
+            //    "data": " {\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match_all\": {\n         \n        }\n      },\n      \"filter\": {\n                    \"match\": {\n          \"search_keyword\": \" "+ val +" \"\n        }\n      }\n    }\n  },\n  \"_source\":[\"search_keyword\"] \n}\u0001"
                 }
                 $.ajax(settings1).done(function (data) {
                   myarr = [];
@@ -1440,7 +1417,7 @@ function getProductDetailBysku(sku){
           "cache-control": "no-cache",
           "postman-token": "be0d1ef5-f2d5-dec4-2000-2fe2c0625233"
         },
-        "data": " {\n  \"query\": {\n    \"bool\": {\n      \"filter\": {\n        \"match_phrase\": {\n          \"sku\": \"80-68730\"\n        }\n      }\n    }\n  					}\n}\u0001"
+        "data": " {\n  \"query\": {\n    \"bool\": {\n      \"filter\": {\n        \"match_phrase\": {\n          \"sku\": \"80-68730\"\n        }\n      }\n    }\n            }\n}\u0001"
       }
 
       $.ajax(settings).done(function (response) {
@@ -1468,40 +1445,40 @@ function getProductDetailBysku(sku){
 
 function showErrorMessage(error_message) {
   error_message = error_message.charAt(0).toUpperCase() + error_message.slice(1).toLowerCase();
-	if ($('.alert-success').length){
-		$( ".alert-success").remove();
-	}
-	if ($('.alert-danger').length) {
-		$('.alert-danger').animate({marginTop: "-=50"}, 100, null, function() {
-			$('.alert-danger span').html(error_message);
-			$(this).animate({marginTop: "+=50"}, 100, null)
-		});
-	} else {
+  if ($('.alert-success').length){
+    $( ".alert-success").remove();
+  }
+  if ($('.alert-danger').length) {
+    $('.alert-danger').animate({marginTop: "-=50"}, 100, null, function() {
+      $('.alert-danger span').html(error_message);
+      $(this).animate({marginTop: "+=50"}, 100, null)
+    });
+  } else {
     $('body').prepend('<div class="container"><div class="alert alert-danger" style="margin-top:-50px;"><a data-dismiss="alert" class="close" href="javascript:void(0)">&times;</a><span>'+ error_message+'</span></div><div class="clr"></div></div>');
-		$('.alert-danger').animate({marginTop: "+=50"}, 100, null);
-	}
-	setTimeout("hideAlertBar();", 5000);
+    $('.alert-danger').animate({marginTop: "+=50"}, 100, null);
+  }
+  setTimeout("hideAlertBar();", 5000);
 }
 
 function showSuccessMessage(success_message,url=null) {
   success_message = success_message.charAt(0).toUpperCase() + success_message.slice(1).toLowerCase();
-	if($('.alert-danger').length) {
-		$( ".alert-danger").remove();
-	}
-	if($('.alert-success').length) {
-		$('.alert-success').animate({marginTop: "-=50"}, 100, null, function() {
-			$('.alert-success span').html(success_message);
-			$(this).animate({marginTop: "+=50"}, 100, null);
-		});
-	}
-	else {
-		if( $('#modal-table').is(":visible") && $('#modal-table .modal-content').length>0 ){
-			$('body').prepend('<div class="container"><div class="alert alert-success" style="margin-top:-50px;"><a data-dismiss="alert" class="close" type="button">&times;</a> <span>'+ success_message+'</span></div><div class="clr"></div></div>');
-		} else {
-			$('body').prepend('<div class="container"><div class="alert alert-success" style="margin-top:-50px;"><a data-dismiss="alert" class="close" type="button">&times;</a> <span>'+ success_message+'</span></div><div class="clr"></div></div>');
-		}
-		$('.alert-success').animate({marginTop: "+=50"}, 100, null);
-	}
+  if($('.alert-danger').length) {
+    $( ".alert-danger").remove();
+  }
+  if($('.alert-success').length) {
+    $('.alert-success').animate({marginTop: "-=50"}, 100, null, function() {
+      $('.alert-success span').html(success_message);
+      $(this).animate({marginTop: "+=50"}, 100, null);
+    });
+  }
+  else {
+    if( $('#modal-table').is(":visible") && $('#modal-table .modal-content').length>0 ){
+      $('body').prepend('<div class="container"><div class="alert alert-success" style="margin-top:-50px;"><a data-dismiss="alert" class="close" type="button">&times;</a> <span>'+ success_message+'</span></div><div class="clr"></div></div>');
+    } else {
+      $('body').prepend('<div class="container"><div class="alert alert-success" style="margin-top:-50px;"><a data-dismiss="alert" class="close" type="button">&times;</a> <span>'+ success_message+'</span></div><div class="clr"></div></div>');
+    }
+    $('.alert-success').animate({marginTop: "+=50"}, 100, null);
+  }
   if(url == null){
       setTimeout("hideAlertBar();", 5000);
   }else{
@@ -1510,15 +1487,15 @@ function showSuccessMessage(success_message,url=null) {
 }
 
 function hideAlertBar(){
-	$(".alert-success, .alert-warning,  .alert-danger, .alert-info").animate({marginTop: "-=50"}, 600, function() {$(this).parent().remove();});
+  $(".alert-success, .alert-warning,  .alert-danger, .alert-info").animate({marginTop: "-=50"}, 600, function() {$(this).parent().remove();});
 }
 function showPageAjaxLoading(){
-	if (!$('.widget-box-overlay').length) {
-		$('body').prepend('<div class="widget-box-overlay" style="display: block;"><img class="lazyLoad" alt="loader" title="loader" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
-	}
+  if (!$('.widget-box-overlay').length) {
+    $('body').prepend('<div class="widget-box-overlay" style="display: block;"><img class="lazyLoad" alt="loader" title="loader" src="http://res.cloudinary.com/flowz/raw/upload/v1515763939/websites//images/preloader.gif"></div>');
+  }
 }
 function hidePageAjaxLoading(){
-	$('.widget-box-overlay').remove();
+  $('.widget-box-overlay').remove();
 }
 
 function showQuickQuoteList()
@@ -1593,7 +1570,7 @@ function showQuickQuoteList()
                     if(productResponseData.length > 0)
                     {
                       wishlistValuesCount = wishlistValuesCount+1;
-		                  let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                      let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                       if(productResponseData[0]._source.images != undefined){
                         if(productResponseData[0]._source.images[0].images[0].secure_url != undefined && productResponseData[0]._source.images[0].images[0].secure_url != '') {
                           product_image = productResponseData[0]._source.images[0].images[0].secure_url;
@@ -1693,7 +1670,7 @@ function showQuickQuoteList()
                             itemsMobile: [479, 2]
                         });
                         $(".carousel-color-section").owlCarousel({
-                         	  items : 14, //10 items above 1000px browser width
+                            items : 14, //10 items above 1000px browser width
                             itemsDesktop : [1000,14], //5 items between 1000px and 901px
                             itemsDesktopSmall : [900,14], // betweem 900px and 601px
                             itemsTablet: [600,9], //2 items between 600 and 0
@@ -1717,14 +1694,14 @@ function showQuickQuoteList()
       } else {
         $('#myQuickQuoteList .listing').html('<span class="js-no-records">No records found.</span>');
         $('#myQuickQuoteList .quick-quote-form').addClass('hide');
-	      // if($(".wishlist-view-tab").length > 0 ) {
-        // 	$(".wishlist-view-tab").hide()
-      	// }
+        // if($(".wishlist-view-tab").length > 0 ) {
+        //  $(".wishlist-view-tab").hide()
+        // }
       }
 
       $('#myQuickQuoteList .listing').removeClass('hide');
       // if($(".wishlist-view-tab").length > 0 ) {
-      // 	$(".wishlist-view-tab").show()
+      //  $(".wishlist-view-tab").show()
       // }
 
       if(wishlistValuesCount)
@@ -1733,9 +1710,9 @@ function showQuickQuoteList()
         {
           document.getElementById("quickQuoteCount").innerHTML = wishlistValuesCount;
         }
-	      // if($(".wishlist-view-tab").length > 0 ) {
-        // 	$(".wishlist-view-tab").show()
-      	// }
+        // if($(".wishlist-view-tab").length > 0 ) {
+        //  $(".wishlist-view-tab").show()
+        // }
       }
       else{
         if($("#quickQuoteCount").length>0)
@@ -1744,9 +1721,9 @@ function showQuickQuoteList()
         }
         $('#myQuickQuoteList .listing').html('<span class="js-no-records">No records found.</span>');
         $('#myQuickQuoteList .quick-quote-form').addClass('hide');
-	      // if($(".wishlist-view-tab").length > 0 ) {
-        // 	$(".wishlist-view-tab").hide()
-      	// }
+        // if($(".wishlist-view-tab").length > 0 ) {
+        //  $(".wishlist-view-tab").hide()
+        // }
       }
     }
     else{
@@ -1787,9 +1764,9 @@ function showQuickQuoteList()
         }
         $('#myQuickQuoteList .listing').html('<span class="js-no-records">No records found.</span>');
         $('#myQuickQuoteList .quick-quote-form').addClass('hide');
-	      // if($(".wishlist-view-tab").length > 0 ) {
-        // 	$(".wishlist-view-tab").hide()
-      	// }
+        // if($(".wishlist-view-tab").length > 0 ) {
+        //  $(".wishlist-view-tab").hide()
+        // }
       }
     }
   }
@@ -1928,14 +1905,14 @@ function showWishList(recetAdded=false)
           }
       } else {
         $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
-	if($(".wishlist-view-tab").length > 0 ) {
-        	$(".wishlist-view-tab").hide()
-      	}
+  if($(".wishlist-view-tab").length > 0 ) {
+          $(".wishlist-view-tab").hide()
+        }
       }
 
       $('#myWishList .listing').removeClass('hide');
       if($(".wishlist-view-tab").length > 0 ) {
-      	$(".wishlist-view-tab").show()
+        $(".wishlist-view-tab").show()
       }
 
       if(wishlistValuesCount)
@@ -1944,9 +1921,9 @@ function showWishList(recetAdded=false)
         {
           document.getElementById("wishlistCount").innerHTML = wishlistValuesCount;
         }
-	if($(".wishlist-view-tab").length > 0 ) {
-        	$(".wishlist-view-tab").show()
-      	}
+  if($(".wishlist-view-tab").length > 0 ) {
+          $(".wishlist-view-tab").show()
+        }
       }
       else{
         if($("#wishlistCount").length>0)
@@ -1954,9 +1931,9 @@ function showWishList(recetAdded=false)
           document.getElementById("wishlistCount").innerHTML = 0;
         }
         $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
-	if($(".wishlist-view-tab").length > 0 ) {
-        	$(".wishlist-view-tab").hide()
-      	}
+  if($(".wishlist-view-tab").length > 0 ) {
+          $(".wishlist-view-tab").hide()
+        }
       }
     }
     else{
@@ -1984,9 +1961,9 @@ function showWishList(recetAdded=false)
         if($("#wishlistCount").length>0)
         {
           document.getElementById("wishlistCount").innerHTML = wishlistValuesCount;
-	  if($(".wishlist-view-tab").length > 0 ) {
-		$(".wishlist-view-tab").show()
-	  }
+    if($(".wishlist-view-tab").length > 0 ) {
+    $(".wishlist-view-tab").show()
+    }
         }
       }
       else{
@@ -1995,9 +1972,9 @@ function showWishList(recetAdded=false)
           document.getElementById("wishlistCount").innerHTML = 0;
         }
         $('#myWishList .listing').html('<span class="js-no-records">No records found.</span>');
-	if($(".wishlist-view-tab").length > 0 ) {
-        	$(".wishlist-view-tab").hide()
-      	}
+  if($(".wishlist-view-tab").length > 0 ) {
+          $(".wishlist-view-tab").hide()
+        }
       }
     }
   }
@@ -2086,7 +2063,7 @@ function showCompareList(recetAdded=false)
 
                     var itemTitleHtml = html;
                     var itemTitleHtml = itemTitleHtml.replace(/#data.id#/g,compare_values[item].id);
-		                let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
+                    let product_image = 'https://res.cloudinary.com/flowz/image/upload/v1531481668/websites/images/no-image.png';
                     if( productData[0]._source.images != undefined ){
                       if(productData[0]._source.images[0].images[0].secure_url != undefined && productData[0]._source.images[0].images[0].secure_url != '') {
                         product_image = productData[0]._source.images[0].images[0].secure_url;
@@ -2148,6 +2125,7 @@ function showCompareList(recetAdded=false)
                         $.each(productData[0]._source.pricing, function(index,element){
                             if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
                                     $.each(element.price_range,function(index,element2){
+                                    // console.log("in each condition");
                                     if(element2.qty.lte != undefined){
                                         priceRang += '<tr><td>'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
                                     }
@@ -2163,9 +2141,11 @@ function showCompareList(recetAdded=false)
                         priceRangHtml = '<table class="total-amount-block pull-right"><tbody><tr><td>Quantity</td><td>USD 5C</td></tr>';
                         priceRangHtml += priceRang;
                         priceRangHtml += '</tbody></table>';
+                        // console.log('priceRang',priceRang);
                         var itemTitleHtml = itemTitleHtml.replace('#data.pricing#',priceRangHtml);
                       } 
                     itemPricingHtml = itemTitleHtml; 
+                    // console.log('itemPricingHtml',itemPricingHtml)
                     // END - Product Quantity Price
 
                     // product colors
@@ -2175,23 +2155,45 @@ function showCompareList(recetAdded=false)
                     if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
                       
                       var productHtmlColor = '';
+
+                      // let colorArr = $.map( productData[0]._source.attributes.colors, function( obj, i ) { return i; } );
+                      
+                      // let colorsHexVal = await replaceColorSwatchWithHexaCodes(colorArr,"color");
+                      
+                      // for (let color_quantity in colorArr) {
+                      //   let element_color_style = "background-color:"+color_quantity+";"
+                      //   if(colorsHexVal != null && colorsHexVal[color_quantity] != undefined){
+                      //       if(typeof colorsHexVal[color_quantity].hexcode != 'undefined'){
+                      //           element_color_style = "background-color:"+colorsHexVal[color_quantity].hexcode+";"
+                      //       }
+                      //       else if (typeof colorsHexVal[color_quantity].file != 'undefined') {
+                      //           element_color_style = "background-image:url("+colorsHexVal[color_quantity].file.url+");"
+                      //       }
+                      //   }
+                      //   productHtmlColor += '<span class ="color-block" style="'+element_color_style+'"></span>';
+                      // }
                       
                       let productColorList = productData[0]._source.attributes.colors;
+                      // console.log('productColorList',productColorList)
                       for (let color of productColorList) {
+                        // console.log('color',color)
                       // $.each(productColorList, async function(j,color){
                           let element_color_style = "background-color:"+color+";"
-                          let colorsHexVal = colorConfiguration;//replaceColorSwatchWithHexaCodes(color,"color");
+                          let colorsHexVal = replaceColorSwatchWithHexaCodes(color,"color");
+                          // console.log('colorsHexVal',colorsHexVal)
                           if(colorsHexVal != null && colorsHexVal[color] != undefined){
                               if(typeof colorsHexVal[color].hexcode != 'undefined'){
                                   element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
                               }
-                              else if (typeof colorsHexVal[color].file != 'undefined') {
+                              else if (typeof colorsHexVal[element_color].file != 'undefined') {
                                   element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
                               }
                           }
+                          // console.log('element_color_style',element_color_style)
                           productHtmlColor += '<span class ="color-block" style="'+element_color_style+'"></span>';
                           
                       }
+                      // console.log('productHtmlColor',productHtmlColor)
                     }
                     var itemTitleHtml = itemTitleHtml.replace("#data.colors#",productHtmlColor);
                     
@@ -2402,19 +2404,19 @@ async function getCountryStateCityById(id,type){
 }
 
 var returnAddressBookDetailById = async function(addressBookId) {
-	let returnData = null;
-	await axios({
-			method: 'GET',
-			url: project_settings.address_book_api_url+'/'+addressBookId,
-		})
-	.then(response => {
-		 returnData = response.data;
-		 return returnData
-	})
-	.catch(function (error){
+  let returnData = null;
+  await axios({
+      method: 'GET',
+      url: project_settings.address_book_api_url+'/'+addressBookId,
+    })
+  .then(response => {
+     returnData = response.data;
+     return returnData
+  })
+  .catch(function (error){
 
-	})
-	return returnData;
+  })
+  return returnData;
 }
 
 /* Get Data of state and city by country and state id */
@@ -2452,7 +2454,7 @@ $(document).ready(function(){
           phone_delemeter ='-'
           if(event.which!=0)
           {
-            if(event.which==8)	return true;
+            if(event.which==8)  return true;
             else if(((event.which>=48&&event.which<=57)||event.which==45)&&((phone_delemeter == '' && cntkey<10)||(phone_delemeter != '' && cntkey<12)))
             {
                 if(event.which!=45&&(cntkey==3||cntkey==7))
@@ -2460,9 +2462,9 @@ $(document).ready(function(){
                     $(this).val($(this).val()+phone_delemeter);
                     return true;
                 }
-                else if(event.which==45&&(cntkey==3||cntkey==7))	return true;
-                else if(event.which==45)	return false;
-                else	return true;
+                else if(event.which==45&&(cntkey==3||cntkey==7))  return true;
+                else if(event.which==45)  return false;
+                else  return true;
             }
             else
             {
@@ -2596,20 +2598,20 @@ async function deleteItemById(ajaxUrl)
 
 async function getUserDetailById(userId) {
       let returnData = null;
-    	await axios({
-    			method: 'GET',
-    			url: project_settings.user_detail_by_id+userId,
-    			headers: {'Authorization' : userToken},
-    		})
-    	.then(response => {
+      await axios({
+          method: 'GET',
+          url: project_settings.user_detail_by_id+userId,
+          headers: {'Authorization' : userToken},
+        })
+      .then(response => {
           if(response.data.data.length > 0){
               returnData = response.data.data[0];
           }
           return returnData
-    	})
+      })
       .catch(function (error) {
       });
-    	return returnData;
+      return returnData;
 }
 
 // async function replaceColorSwatchWithHexaCodes(attribute_value,attribute_name){
@@ -2768,6 +2770,9 @@ async function printDiv(printDiv=true) {
                       }
                       else
                       {
+                        // console.log('productData[0]._id',productData[0]._id)
+                        // console.log("#listing #js-price-per-qty-"+compare_values[item].id,$("#listing #js-price-per-qty-"+compare_values[item].id).find(".priceProd").html())
+                        // console.log("#listing .product-"+compare_values[item].id,$("#listing .product-"+compare_values[item].id).find(".js_quantity_input").val())
                         var itemPriceHtml = itemPriceHtml.replace('#data.price#',$("#listing #js-price-per-qty-"+compare_values[item].id).find(".priceProd").html());
                         var itemPriceHtml = itemPriceHtml.replace('#data.min_qty#',$("#listing .product-"+compare_values[item].id).find(".js_quantity_input").val()); 
                       }
@@ -2806,6 +2811,7 @@ async function printDiv(printDiv=true) {
                         $.each(productData[0]._source.pricing, function(index,element){
                             if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
                                     $.each(element.price_range,function(index,element2){
+                                    // console.log("in each condition");
                                     if(element2.qty.lte != undefined){
                                         priceRang += '<tr><td class="quantity_block">'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
                                     }
@@ -2821,43 +2827,41 @@ async function printDiv(printDiv=true) {
                         priceRangHtml = '<table class="total-amount-block"><tbody><tr><td class="quantity_block">Quantity</td><td>USD 5C</td></tr>';
                         priceRangHtml += priceRang;
                         priceRangHtml += '</tbody></table>';
+                        // console.log('priceRang',priceRang);
                         var itemTitleHtml = itemTitleHtml.replace('#data.item_pricing#',priceRangHtml);
                       } 
                     itemPricingHtml = itemTitleHtml; 
+                    // console.log('itemPricingHtml',itemPricingHtml)
                     // END - Product Quantity Price
                       
                     // product colors
-                    let itemColors = item_available_colors;
+                    // let itemColors = item_available_colors;
                     
-                    if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
+                    // if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
                       
-                      var productHtmlColor = '';
+                    //   var productHtmlColor = '';
 
-                      let productColorList = productData[0]._source.attributes.colors;
-                      for (let color of productColorList) {
-                          let element_color_style = "background-color:"+color+";"
-                          element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
-                          let colorsHexVal = colorConfiguration;//replaceColorSwatchWithHexaCodes(color,"color");
-                          if(colorsHexVal != null && colorsHexVal[color] != undefined){
-                              if(typeof colorsHexVal[color].hexcode != 'undefined'){
-                                  element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
-                                  element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
-                                  
-                              }
-                              else if (typeof colorsHexVal[color].file != 'undefined') {
-                                  element_color_style = "<img style='border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;' class='color-block' src='"+colorsHexVal[color].file.url+"'>";
-                                  element_color_style = '<span class="color-block">'+element_color_style+'</span>';
-                                  
-                              }
-                          }
-                          productHtmlColor += element_color_style;
+                    //   let productColorList = productData[0]._source.attributes.colors;
+                    //   for (let color of productColorList) {
+                    //       let element_color_style = "background-color:"+color+";"
+                    //       let colorsHexVal = replaceColorSwatchWithHexaCodes(color,"color");
+                    //       if(colorsHexVal != null && colorsHexVal[color] != undefined){
+                    //           if(typeof colorsHexVal[color].hexcode != 'undefined'){
+                    //               element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
+                    //           }
+                    //           else if (typeof colorsHexVal[element_color].file != 'undefined') {
+                    //               element_color_style = "background-image:url("+colorsHexVal[color].file.url+");"
+                    //           }
+                    //       }
+                    //       productHtmlColor += '<span class ="color-block" style="'+element_color_style+'"></span>';
                           
-                      }
-                    }
-                    itemColors = itemColors.replace("#data.item_available_colors#",productHtmlColor);
+                    //   }
+                    // }
+                    // itemColors = itemColors.replace("#data.item_available_colors#",productHtmlColor);
                     
-                    itemAvailableColorsHtml = itemColors;
+                    // itemAvailableColorsHtml = itemColors;
                     // END - product colors
+
                     if(item == 0 || compareValuesCount == 1)
                       {
                         $(compareHtml).find("#js-print_item_title").html("<td style='width:20%;' class='feature-block'></td>"+productTitleHtml)
@@ -2866,7 +2870,7 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_summary").html("<td style='width:20%;' class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").html("<td style='width:20%;' class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
                         $(compareHtml).find("#js-print_item_pricing").html("<td style='width:20%;' class='feature-block'>ITEM PRICING</td>"+itemPricingHtml)
-                        $(compareHtml).find("#js-print_item_available_colors").html("<td class='feature-block'> AVAILABLE COLORS</td>"+itemAvailableColorsHtml)
+                        // $(compareHtml).find("#js-print_item_available_colors").html("<td class='feature-block'>Available colors</td>"+itemAvailableColorsHtml)
                         $('#print-comparision').html(compareHtml.html());
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();
@@ -2879,7 +2883,7 @@ async function printDiv(printDiv=true) {
                         $(compareHtml).find("#js-print_item_summary").append(activeSummaryHtml)
                         $(compareHtml).find("#js-print_item_features").append(itemFeaturesHtml)
                         $(compareHtml).find("#js-print_item_pricing").append(itemPricingHtml)
-                        $(compareHtml).find("#js-print_item_available_colors").append(itemAvailableColorsHtml)
+                        // $(compareHtml).find("#js-print_item_available_colors").append(itemAvailableColorsHtml)
                         $('#print-comparision').html(compareHtml.html());
                         if(websiteConfiguration.site_management.price_and_qunatity_for_guest_user.status == 0){
                           $("#print-comparision #js-print_item_price").remove();                          
@@ -3240,7 +3244,7 @@ $(document).on('click','.send-friend-email',function (e)
 
                   $.ajax({
                     type: 'GET',
-                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing,attributes",
+                    url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
                     async: false,
                     beforeSend: function (xhr) {
                       xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -3304,6 +3308,7 @@ $(document).on('click','.send-friend-email',function (e)
                             if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
                                   
                                   $.each(element.price_range,function(index,element2){
+                                    // console.log("in each condition");
                                     if(element2.qty.lte != undefined){
                                         priceRang += '<tr><td style="border-bottom: 1px solid #000;border-right: 1px solid #000;">'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td style="border-bottom: 1px solid #000;">' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
                                     }
@@ -3317,38 +3322,11 @@ $(document).on('click','.send-friend-email',function (e)
                           priceRangHtml += '<table class="total-amount-block pull-right"><tbody><tr><td style="border-bottom: 1px solid #000;border-right: 1px solid #000;">Quantity</td><td style="border-bottom: 1px solid #000;">USD 5C</td></tr>';
                           priceRangHtml += priceRang;
                           priceRangHtml += '</tbody></table>';
+                          console.log('priceRangHtml',priceRangHtml)
                           productJsonData['item_pricing'] = priceRangHtml;
                         } 
+                        console.log("productJsonData['item_pricing']",productJsonData['item_pricing'])
                         // END - Product Quantity Price
-
-                        // product colors
-                        if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
-                      
-                          var productHtmlColor = '';
-    
-                          let productColorList = productData[0]._source.attributes.colors;
-                          for (let color of productColorList) {
-                              let element_color_style = "background-color:"+color+";"
-                              element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
-                              let colorsHexVal = colorConfiguration;//replaceColorSwatchWithHexaCodes(color,"color");
-                              if(colorsHexVal != null && colorsHexVal[color] != undefined){
-                                  if(typeof colorsHexVal[color].hexcode != 'undefined'){
-                                      element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
-                                      element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
-                                      
-                                  }
-                                  else if (typeof colorsHexVal[color].file != 'undefined') {
-                                      element_color_style = "<img style='border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;' class='color-block' src='"+colorsHexVal[color].file.url+"'>";
-                                      element_color_style = '<span class="color-block">'+element_color_style+'</span>';
-                                      
-                                  }
-                              }
-                              productHtmlColor += element_color_style;
-                              
-                          }
-                          productJsonData['item_available_colors'] = productHtmlColor;                       
-                        }
-                        // END - product colors
 
                         compareData.push(productJsonData);
                       }
@@ -3664,7 +3642,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
     compare_values = JSON.parse(localStorage.getItem(decideLocalStorageKey));
   }
 
-  let itemTitleHtml=productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPriceHtml=itemPricingHtml=itemAvailableColorsHtmllet ='';
+  let itemTitleHtml=productHtml=itemSkuHtml=activeSummaryHtml=itemFeaturesHtml=itemPriceHtml=itemPricingHtml='';
   let productData;
   let html = $('#download-comparision #product_img').html();
   let itemPrice = $('#download-comparision #product_price').html();
@@ -3672,7 +3650,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
   let activeSummary = $('#download-comparision #product_summary').html();
   let item_features = $('#download-comparision #product_features').html();
   let item_pricing = $('#download-comparision #product_pricing').html();
-  item_available_colors = $('#js-print_item_available_colors').html();
+
   if (typeof(compareHtml.html()) !== "undefined" && compare_values != null && compare_values.length > 0) 
   {
     for (item in compare_values)
@@ -3683,7 +3661,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
 
           $.ajax({
             type: 'GET',
-            url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing,attributes",
+            url: project_settings.product_api_url+"?_id="+prodId+"&source=default_image,product_id,sku,product_name,currency,min_price,description,features,images,pricing",
             async: false,
             beforeSend: function (xhr) {
               xhr.setRequestHeader ("vid", website_settings.Projectvid.vid);
@@ -3753,6 +3731,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 $.each(productData[0]._source.pricing, function(index,element){
                     if(element.price_type == "regular" && element.type == "decorative" && element.global_price_type == "global"){
                             $.each(element.price_range,function(index,element2){
+                            // console.log("in each condition");
                             if(element2.qty.lte != undefined){
                                 priceRang += '<tr><td>'+ element2.qty.gte + '-' + element2.qty.lte + '</td><td>' + '$' + parseFloat(element2.price).toFixed(project_settings.price_decimal) + '</td></tr>';
                             }
@@ -3768,41 +3747,12 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 priceRangHtml = '<table class="total-amount-block pull-right"><tbody><tr><td>Quantity</td><td>USD 5C</td></tr>';
                 priceRangHtml += priceRang;
                 priceRangHtml += '</tbody></table>';
+                // console.log('priceRang',priceRang);
                 itemPricingHtml1 = itemPricingHtml1.replace('#data.pricing#',priceRangHtml);
               } 
               itemPricingHtml = itemPricingHtml1;
               // END - Product Quantity Price
 
-              // product colors
-              // let itemColors = item_available_colors;
-                    
-              // if(productData[0]._source.attributes.colors != undefined && productData[0]._source.attributes.colors.length > 0) {
-                
-              //   var productHtmlColor = '';
-
-              //   let productColorList = productData[0]._source.attributes.colors;
-              //   for (let color of productColorList) {
-              //       let element_color_style = "background-color:"+color+";"
-              //       element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
-              //       let colorsHexVal = colorConfiguration;//replaceColorSwatchWithHexaCodes(color,"color");
-              //       if(colorsHexVal != null && colorsHexVal[color] != undefined){
-              //           if(typeof colorsHexVal[color].hexcode != 'undefined'){
-              //               element_color_style = "background-color:"+colorsHexVal[color].hexcode+";"
-              //               element_color_style = '<span style="border: 1px solid #000;display: inline-block;height: 18px;margin-right: 7px;vertical-align: top;width: 18px;border-radius: 10px;'+element_color_style+'" class="color-block"></span>';
-                            
-              //           }
-              //           else if (typeof colorsHexVal[color].file != 'undefined') {
-              //               element_color_style = "<img style='height: 18px;width: 18px;' class='color-block' src='"+colorsHexVal[color].file.url+"'>";                            
-              //           }
-              //       }
-              //       productHtmlColor += element_color_style;
-                    
-              //   }
-              // }
-              // itemColors = itemColors.replace("#data.item_available_colors#",productHtmlColor);
-              
-              // itemAvailableColorsHtml = itemColors;
-              // END - product colors
               
               if(item == 0 || compareValuesCount == 1)
               {
@@ -3817,8 +3767,7 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 compareHtml.find("#product_sku").html("<td style='width:20%' class='feature-block'>ITEM#</td>"+itemSkuHtml)
                 compareHtml.find("#product_summary").html("<td style='width:20%'class='feature-block'>SUMMARY</td>"+activeSummaryHtml)
                 compareHtml.find("#product_features").html("<td style='width:20%' class='feature-block'>MATERIAL</td>"+itemFeaturesHtml)
-                // compareHtml.find("#js-print_item_available_colors").html("<td style='width:20%' class='feature-block'>AVAILABLE COLORS</td>"+itemAvailableColorsHtml)
-                compareHtml.find("#product_pricing").html("<td style='width:20%' class='feature-block'>ITEM PRICING	</td>"+itemPricingHtml)
+                compareHtml.find("#product_pricing").html("<td style='width:20%' class='feature-block'>ITEM PRICING </td>"+itemPricingHtml)
               }
               else{
                 compareHtml.find("#product_img").append(productHtml)
@@ -3828,7 +3777,6 @@ $(document).on('click','.js-btn-download-compare-product', async function (e) {
                 compareHtml.find("#product_sku").append(itemSkuHtml)
                 compareHtml.find("#product_summary").append(activeSummaryHtml)
                 compareHtml.find("#product_features").append(itemFeaturesHtml)
-                // compareHtml.find("#js-print_item_available_colors").append(itemAvailableColorsHtml)                
                 compareHtml.find("#product_pricing").append(itemPricingHtml);
               }
             }
@@ -3920,15 +3868,15 @@ function stripHtml(html){
 
 function addOptimizeImgUrl(imgUrl, wparam)
 {
-	let b = imgUrl.split("/")
-	b.splice(6, 0, wparam);
-	return b.join('/');
+  let b = imgUrl.split("/")
+  b.splice(6, 0, wparam);
+  return b.join('/');
 }
 
 $(document).on('keypress', '.js-only-interger', function(e) {  
-		if (e.which != 13 && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+    if (e.which != 13 && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
             return false;
-		}
+    }
 });
 
 //download Pdf using URL - href and data-title required

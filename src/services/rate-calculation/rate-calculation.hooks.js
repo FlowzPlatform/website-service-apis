@@ -95,9 +95,6 @@ async function beforeCreate(hook) {
     await assignAddress(hook.data);
     // hook.data.shipperInfo.shipping_qty_per_carton = 0;
     await generatePackage(hook.data);
-    // console.log('rateJson.shipment.shipper.address-------',rateJson.shipment.shipper.address)
-    // console.log('rateJson.shipment.shipTo.address-------',rateJson.shipment.shipTo.address)
-    // console.log('rateJson.shipment.shipFrom.address-------',rateJson.shipment.shipFrom.address)
     Rating.prototype.makeRequest(rateJson, function(err, data) {
       if (err) {
         // console.error('error--',err);
@@ -183,7 +180,7 @@ function generatePackage(data) {
   }
 
   let qty = Number(data.shipToInfo.qty)
-  console.log('qty---',qty);
+  // console.log('qty---',qty);
   let qtyweight = (qty * productWeight).toFixed(2);
 
   noOfBox = 0;
@@ -197,7 +194,7 @@ function generatePackage(data) {
     totalWeight = qtyweight;
   }
 
-  console.log('noOfBox',noOfBox);
+  // console.log('noOfBox',noOfBox);
   if (noOfBox > 1) {
     let pack = [];
     let totalQty = qty;

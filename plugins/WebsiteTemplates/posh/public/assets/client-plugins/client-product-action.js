@@ -81,7 +81,7 @@ $(document).ready(function(){
         let productResponse = await getProductDetailById(pid)
         // console.log('productresponse',productResponse);
 
-        getCountry();
+        await getCountry();
         if(productResponse != null){
           $('.estimatorProductSku').text('Item #:'+productResponse.sku)
           $('.estimatorProductName').text(productResponse.product_name)
@@ -259,18 +259,27 @@ $(document).on('click','#js-check-inventory', async function (e) {
             
             let product_sku = '';
 
-            if(element.sku != null && element.sku != undefined && element.sku != ""){
-                product_sku = element.sku;
+            if(element.related_sku != null && element.related_sku != undefined && element.related_sku != ""){
+                product_sku = element.related_sku;
             }
             
-            $.each(element.attributes.colors, async function(j,color){
+            $.each(element.attributes.colors, function(j,color){
                 // console.log(element.attributes.style[j]);
+
+                // replace fix
+                colorSection = "<tr>";
+                colorSection += $(".js_inventory_color").html();
+                colorSection += "</tr>";
 
                 let color_name = color;
                 
                 let element_color_style = "background-color:"+color+";"
                 if(element.attributes.style != undefined)
                 {
+                    let color_style = element.attributes.style[j];
+                    element_color_style = "background-color:"+color_style+";"
+                    
+                    /*
                     let color_style = element.attributes.style[j];
 
                     let colorsHexVal = await replaceColorSwatchWithHexaCodes(color_style,"color");
@@ -281,7 +290,7 @@ $(document).on('click','#js-check-inventory', async function (e) {
                         else if (typeof colorsHexVal[element_color].file != undefined) {
                             element_color_style = "background-image:url("+colorsHexVal[color_style].file.url+");"
                         }
-                    }
+                    } */
                 }
                 
                 colorSection = colorSection.replace("#data.inventory_color_name#",color_name);
@@ -639,7 +648,7 @@ $(document).on('click','.js-product-detail-print-product', async function (e) {
     showPageAjaxLoading();
     let productResponse = await getProductDetailById(pid)
     $('#modal-table').attr('class','modal fade model-popup-black print-product-detail');
-    $("#modal-table").find(".modal-title").html('<i class="strip video-popup-strip"></i> Print Preview');
+    $("#modal-table").find(".modal-title").html('Sell Sheet');
     $("#modal-table").find(".modal-dialog").removeClass("play-video").addClass('print-product print-comparision');
 
     // Product Quantity Price
@@ -871,6 +880,7 @@ function getCountry(countryId=0) {
                 $('.js-country').html(countryHtml)
                 // doSelection('country',countryId);
             }
+          
         })
         .catch(error => {
         // console.log('Error fetching and parsing data', error);
@@ -883,3 +893,11 @@ $(document).on('click','#js-email-product', function() {
   $("form#email_product")[0].reset();
   $("form#email_product").find("ul.red").remove();
 })
+
+
+
+$(document).on('click','.js-email-product',function() {
+    setTimeout(function() {
+        $('#js-email-product').click();
+    },500) 
+});

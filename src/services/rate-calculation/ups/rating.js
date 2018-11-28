@@ -5,9 +5,11 @@ var SANDBOX_API = 'wwwcie.ups.com';
 var LIVE_API = 'onlinetools.ups.com';
 
 let errors = require('@feathersjs/errors') ;
-
+let axios=require('axios')
 // let parseString = require('xml2js').parseString;
-
+let date=new Date();
+let apidate=''+date.getFullYear()+date.getMonth()+date.getDate();
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~apidate:',apidate)
 const X2JS = require('x2js')
 
 var USE_JSON = false;
@@ -36,10 +38,10 @@ Rating.prototype.setJsonResponse = function(bool) {
 Rating.prototype.makeRequest = function(options, callback) {
 
 	//set account credentials
-	options['licenseId'] = '1CF36E0A07BE2146';
-	options['userId'] = 'officebeacon';
-	options['password'] = 'XbbZC4DEaY9bpF';
-
+	options['licenseId'] = '9D54B58179E4C9B5';
+	options['userId'] = 'poshx';
+	options['password'] = 'Posh1234';
+	// console.log('options:',JSON.stringify(options))
 	var requestData = buildRequestData(options);
 
 	var command = '/usr/bin/curl -k -d "'+(requestData)+'" https://onlinetools.ups.com/ups.app/xml/Rate ';
@@ -55,10 +57,32 @@ Rating.prototype.makeRequest = function(options, callback) {
 	// 	console.dir('result------------',result)
 	// 	json = result;
 	// });
-
+	let timetransitapi='{ "Security": { "UsernameToken": { "Username": "poshx", "Password": "Posh1234" }, "UPSServiceAccessToken": { "AccessLicenseNumber": "9D54B58179E4C9B5" } }, "TimeInTransitRequest": { "Request": { "RequestOption": "TNT", "TransactionReference": { "CustomerContext": "", "TransactionIdentifier": "" } }, "ShipFrom": { "Address": { "StateProvinceCode": "'+options.shipment.shipper.address.StateProvinceCode+'", "CountryCode": "'+options.shipment.shipper.address.countryCode+'", "PostalCode": "'+options.shipment.shipper.address.PostalCode+'" } }, "ShipTo": { "Address": { "CountryCode": "'+options.shipment.shipTo.address.countryCode+'", "PostalCode": "'+options.shipment.shipTo.address.postalCode+'" } }, "Pickup": { "Date": "'+apidate+'" }, "ShipmentWeight": { "UnitOfMeasurement": { "Code": "LBS", "Description": "" }, "Weight": "'+options.shipment.package[0].weight+'" }, "MaximumListSize": "10" } }'
+	let timedatacommand="curl -H 'Content-Type: application/json' -X POST -d '"+timetransitapi+"' https://onlinetools.ups.com/rest/TimeInTransit"
+	let timedata=shell_exec(timedatacommand);
+	timedata=JSON.parse(timedata)
+	let days
+	// console.log('@@@@@@@@@@@@@@@@',JSON.parse(timedata))
+	if(timedata.TimeInTransitResponse.TransitResponse!=undefined){
+	for(let i in timedata.TimeInTransitResponse.TransitResponse.ServiceSummary){
+		// console.log('!!!!!!!!!!!!!!!!i',timedata.TimeInTransitResponse.TransitResponse.ServiceSummary[i].Service)
+		if(timedata.TimeInTransitResponse.TransitResponse.ServiceSummary[i].Service.Code=='GND'){
+			days=timedata.TimeInTransitResponse.TransitResponse.ServiceSummary[i].EstimatedArrival.BusinessDaysInTransit
+			
+		}
+	}	
+	}
+	else if(timedata.TimeInTransitResponse.CandidateResponse){
+		days=undefined
+	}
+	// axios.post('https://onlinetools.ups.com/rest/TimeInTransit',timetransitapi,{})
+	// .then((res)=>{
+	// 	days=res.data.TimeInTransitResponse.TransitResponse.ServiceSummary[6].EstimatedArrival.BusinessDaysInTransit
+	// })
+	// console.log('days',days)
 	let x2js = new X2JS()
 	let json = x2js.xml2js(responseData)
-
+	// console.log(JSON.stringify(json))
 	var rate = 	{};
 	if(json.RatingServiceSelectionResponse.Response.ResponseStatusCode == 1)
 	{
@@ -68,7 +92,7 @@ Rating.prototype.makeRequest = function(options, callback) {
 				var code = quote.Service.Code;
 			//var negoprice = quote.NegotiatedRates.NetSummaryCharges.GrandTotal.MonetaryValue;
 				var price = Number(quote.TotalCharges.MonetaryValue);
-				console.log('price without markup', price);
+				// console.log('price without markup', price);
 				// let markUpPer = 5;
 				// let markUpValue = (price * markUpPer)/100;
 				// console.log('markUpValue', markUpValue)
@@ -77,7 +101,10 @@ Rating.prototype.makeRequest = function(options, callback) {
 				switch (code)
 				{
 					case '03':
-						rate['UPS Ground'] = price;
+						// console.log('GuaranteedDaysToDelivery for ups Ground',Number(quote.GuaranteedDaysToDelivery))
+						
+						rate['UPS Ground'] = [price,Number(days)];
+						// rate['UPS Ground Transit Days']=Number(days);
 						break;
 					case '12':
 						rate['UPS 3 Day Select'] = price;
@@ -246,7 +273,7 @@ function buildRequestData(data) {
 	response += "	    </ShipmentServiceOptions>";*/
 	response += "	  </Shipment>";
 	response += "	</RatingServiceSelectionRequest>";
-
+	// console.log('###############################:',response)
 	return  response;
 
 };
